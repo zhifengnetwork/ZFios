@@ -15,6 +15,7 @@
 		180A97A3222E1812003A12FF /* ZFConfirmationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A97A2222E1812003A12FF /* ZFConfirmationTableCell.m */; };
 		180A97A6222E21CD003A12FF /* ZFStartAuctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A97A5222E21CD003A12FF /* ZFStartAuctionVC.m */; };
 		180A97AD222E32F4003A12FF /* ZFAssembleCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A97AC222E32F4003A12FF /* ZFAssembleCollectionCell.m */; };
+		180F262C22364B6800B688E9 /* UIView+HJViewStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F262B22364B6800B688E9 /* UIView+HJViewStyle.m */; };
 		180F31A3222F68610040718F /* ZFAddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F31A2222F68610040718F /* ZFAddressTableCell.m */; };
 		180F31A6222F6C510040718F /* ZFOrderInformationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F31A5222F6C510040718F /* ZFOrderInformationTableCell.m */; };
 		180F31A9222F71AF0040718F /* ZFTotalCommodityTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F31A8222F71AF0040718F /* ZFTotalCommodityTableCell.m */; };
@@ -49,7 +50,6 @@
 		1830DB6B2232181900C30C90 /* ZFEndSpikeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830DB6A2232181900C30C90 /* ZFEndSpikeHeadView.m */; };
 		1830DB6E2232525200C30C90 /* ZFMyOrderCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830DB6D2232525200C30C90 /* ZFMyOrderCollectionCell.m */; };
 		1830DB712232560300C30C90 /* ZFMyOrderHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830DB702232560300C30C90 /* ZFMyOrderHeadView.m */; };
-		1830DB792232798C00C30C90 /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 1830DB782232798B00C30C90 /* UIView+Effects.m */; };
 		18381E6F22278115009F176F /* ZFClassificationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18381E6E22278115009F176F /* ZFClassificationTableCell.m */; };
 		18381E72222785CF009F176F /* ZFSpikeMerchandiseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18381E71222785CF009F176F /* ZFSpikeMerchandiseTableCell.m */; };
 		18381E752227C7C6009F176F /* ZFHomeTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18381E732227C7C6009F176F /* ZFHomeTopToolView.m */; };
@@ -57,6 +57,11 @@
 		18515F85222FC4F000F36E26 /* ZFStationNewsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18515F84222FC4F000F36E26 /* ZFStationNewsHeadView.m */; };
 		18515F8B222FCC9A00F36E26 /* DCTitleRolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18515F89222FCC9A00F36E26 /* DCTitleRolling.m */; };
 		18515F8C222FCC9A00F36E26 /* UIView+DCRolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18515F8A222FCC9A00F36E26 /* UIView+DCRolling.m */; };
+		188F41AC223612A100165142 /* ZFPersonalHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */; };
+		188F41AF2236181B00165142 /* ZFPersonalCentralTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AE2236181B00165142 /* ZFPersonalCentralTableCell.m */; };
+		188F41B2223619DE00165142 /* ZFPersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41B1223619DE00165142 /* ZFPersonalVC.m */; };
+		188F41B5223658E700165142 /* ZFPersonalDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41B4223658E700165142 /* ZFPersonalDataVC.m */; };
+		188F41B82236666400165142 /* ZFTextInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41B72236666400165142 /* ZFTextInputVC.m */; };
 		189CC0D02223E81300EB5A64 /* UIImage+WaterMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC06A2223E81300EB5A64 /* UIImage+WaterMark.m */; };
 		189CC0D12223E81300EB5A64 /* UIButton+LXMImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC06D2223E81300EB5A64 /* UIButton+LXMImagePosition.m */; };
 		189CC0D22223E81300EB5A64 /* UIButton+Ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC0712223E81300EB5A64 /* UIButton+Ex.m */; };
@@ -157,6 +162,8 @@
 		180A97A5222E21CD003A12FF /* ZFStartAuctionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFStartAuctionVC.m; sourceTree = "<group>"; };
 		180A97AB222E32F4003A12FF /* ZFAssembleCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAssembleCollectionCell.h; sourceTree = "<group>"; };
 		180A97AC222E32F4003A12FF /* ZFAssembleCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAssembleCollectionCell.m; sourceTree = "<group>"; };
+		180F262A22364B6800B688E9 /* UIView+HJViewStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HJViewStyle.h"; sourceTree = "<group>"; };
+		180F262B22364B6800B688E9 /* UIView+HJViewStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HJViewStyle.m"; sourceTree = "<group>"; };
 		180F31A1222F68610040718F /* ZFAddressTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAddressTableCell.h; sourceTree = "<group>"; };
 		180F31A2222F68610040718F /* ZFAddressTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAddressTableCell.m; sourceTree = "<group>"; };
 		180F31A4222F6C510040718F /* ZFOrderInformationTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFOrderInformationTableCell.h; sourceTree = "<group>"; };
@@ -226,8 +233,6 @@
 		1830DB6D2232525200C30C90 /* ZFMyOrderCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyOrderCollectionCell.m; sourceTree = "<group>"; };
 		1830DB6F2232560300C30C90 /* ZFMyOrderHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyOrderHeadView.h; sourceTree = "<group>"; };
 		1830DB702232560300C30C90 /* ZFMyOrderHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyOrderHeadView.m; sourceTree = "<group>"; };
-		1830DB772232798B00C30C90 /* UIView+Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Effects.h"; sourceTree = "<group>"; };
-		1830DB782232798B00C30C90 /* UIView+Effects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Effects.m"; sourceTree = "<group>"; };
 		18381E6D22278115009F176F /* ZFClassificationTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassificationTableCell.h; sourceTree = "<group>"; };
 		18381E6E22278115009F176F /* ZFClassificationTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassificationTableCell.m; sourceTree = "<group>"; };
 		18381E70222785CF009F176F /* ZFSpikeMerchandiseTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFSpikeMerchandiseTableCell.h; sourceTree = "<group>"; };
@@ -242,6 +247,16 @@
 		18515F88222FCC9A00F36E26 /* DCTitleRolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTitleRolling.h; sourceTree = "<group>"; };
 		18515F89222FCC9A00F36E26 /* DCTitleRolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTitleRolling.m; sourceTree = "<group>"; };
 		18515F8A222FCC9A00F36E26 /* UIView+DCRolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DCRolling.m"; sourceTree = "<group>"; };
+		188F41AA223612A100165142 /* ZFPersonalHeadTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalHeadTableCell.h; sourceTree = "<group>"; };
+		188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalHeadTableCell.m; sourceTree = "<group>"; };
+		188F41AD2236181B00165142 /* ZFPersonalCentralTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalCentralTableCell.h; sourceTree = "<group>"; };
+		188F41AE2236181B00165142 /* ZFPersonalCentralTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalCentralTableCell.m; sourceTree = "<group>"; };
+		188F41B0223619DE00165142 /* ZFPersonalVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalVC.h; sourceTree = "<group>"; };
+		188F41B1223619DE00165142 /* ZFPersonalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalVC.m; sourceTree = "<group>"; };
+		188F41B3223658E700165142 /* ZFPersonalDataVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalDataVC.h; sourceTree = "<group>"; };
+		188F41B4223658E700165142 /* ZFPersonalDataVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalDataVC.m; sourceTree = "<group>"; };
+		188F41B62236666400165142 /* ZFTextInputVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTextInputVC.h; sourceTree = "<group>"; };
+		188F41B72236666400165142 /* ZFTextInputVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTextInputVC.m; sourceTree = "<group>"; };
 		189CC0652223E6D500EB5A64 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		189CC06A2223E81300EB5A64 /* UIImage+WaterMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WaterMark.m"; sourceTree = "<group>"; };
 		189CC06B2223E81300EB5A64 /* UIImage+WaterMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WaterMark.h"; sourceTree = "<group>"; };
@@ -483,6 +498,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		180F262922364B6800B688E9 /* HJViewStyle */ = {
+			isa = PBXGroup;
+			children = (
+				180F262A22364B6800B688E9 /* UIView+HJViewStyle.h */,
+				180F262B22364B6800B688E9 /* UIView+HJViewStyle.m */,
+			);
+			path = HJViewStyle;
+			sourceTree = "<group>";
+		};
 		180F319E222F67DC0040718F /* FillOrder(填写订单) */ = {
 			isa = PBXGroup;
 			children = (
@@ -664,20 +688,12 @@
 		182E8A0A2224017C005CE5FE /* Me(我) */ = {
 			isa = PBXGroup;
 			children = (
+				188F41A72236125000165142 /* PersonalData(个人资料) */,
 				18EA50C222266FAE00A2D612 /* Controller */,
 				181A421C22322047008A7014 /* Model */,
 				181A421B2232203D008A7014 /* View */,
 			);
 			path = "Me(我)";
-			sourceTree = "<group>";
-		};
-		1830DB762232798B00C30C90 /* ViewEffects */ = {
-			isa = PBXGroup;
-			children = (
-				1830DB772232798B00C30C90 /* UIView+Effects.h */,
-				1830DB782232798B00C30C90 /* UIView+Effects.m */,
-			);
-			path = ViewEffects;
 			sourceTree = "<group>";
 		};
 		18367D9B2226A41A00EC8FBE /* Foot */ = {
@@ -752,6 +768,39 @@
 				18515F8A222FCC9A00F36E26 /* UIView+DCRolling.m */,
 			);
 			path = CDDTitleRolling;
+			sourceTree = "<group>";
+		};
+		188F41A72236125000165142 /* PersonalData(个人资料) */ = {
+			isa = PBXGroup;
+			children = (
+				188F41A92236127B00165142 /* Controller */,
+				188F41A82236127500165142 /* View */,
+			);
+			path = "PersonalData(个人资料)";
+			sourceTree = "<group>";
+		};
+		188F41A82236127500165142 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				188F41AA223612A100165142 /* ZFPersonalHeadTableCell.h */,
+				188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */,
+				188F41AD2236181B00165142 /* ZFPersonalCentralTableCell.h */,
+				188F41AE2236181B00165142 /* ZFPersonalCentralTableCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		188F41A92236127B00165142 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				188F41B62236666400165142 /* ZFTextInputVC.h */,
+				188F41B72236666400165142 /* ZFTextInputVC.m */,
+				188F41B0223619DE00165142 /* ZFPersonalVC.h */,
+				188F41B1223619DE00165142 /* ZFPersonalVC.m */,
+				188F41B3223658E700165142 /* ZFPersonalDataVC.h */,
+				188F41B4223658E700165142 /* ZFPersonalDataVC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		189CC0662223E81300EB5A64 /* Classes */ = {
@@ -926,7 +975,7 @@
 		189CC0A12223E81300EB5A64 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				1830DB762232798B00C30C90 /* ViewEffects */,
+				180F262922364B6800B688E9 /* HJViewStyle */,
 				18515F86222FCC9A00F36E26 /* CDDTitleRolling */,
 				18C26C03222D7ECA004951D9 /* CountDown */,
 				189CC0A22223E81300EB5A64 /* Emoticon */,
@@ -1486,6 +1535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188F41AF2236181B00165142 /* ZFPersonalCentralTableCell.m in Sources */,
 				180A97A6222E21CD003A12FF /* ZFStartAuctionVC.m in Sources */,
 				189CC0E62223E81300EB5A64 /* HMEmoticonCell.m in Sources */,
 				18F8D8952228D22700203E9A /* ZFSelectedCategoriesCell.m in Sources */,
@@ -1497,6 +1547,8 @@
 				189CC0E72223E81300EB5A64 /* HMEmoticonInputView.m in Sources */,
 				5358868122361C1300D7A4B6 /* ZFShoppingCartCell.m in Sources */,
 				18E3CF99222A5ED2003C7737 /* ZFSpikeDetailsTableCell.m in Sources */,
+				188F41AC223612A100165142 /* ZFPersonalHeadTableCell.m in Sources */,
+				188F41B2223619DE00165142 /* ZFPersonalVC.m in Sources */,
 				18D9160922301BE3003B113A /* ZFClusterWindowView.m in Sources */,
 				189CC0F42223E81300EB5A64 /* HttpTool.m in Sources */,
 				182E89902223BEA0005CE5FE /* ViewController.m in Sources */,
@@ -1555,10 +1607,10 @@
 				189CC0E52223E81300EB5A64 /* HMEmoticonButton.m in Sources */,
 				181A421F2232209F008A7014 /* ZFMyHeadView.m in Sources */,
 				189CC0E22223E81300EB5A64 /* HMEmoticonTipView.m in Sources */,
+				188F41B5223658E700165142 /* ZFPersonalDataVC.m in Sources */,
 				18381E72222785CF009F176F /* ZFSpikeMerchandiseTableCell.m in Sources */,
 				18515F8B222FCC9A00F36E26 /* DCTitleRolling.m in Sources */,
 				189CC0D22223E81300EB5A64 /* UIButton+Ex.m in Sources */,
-				1830DB792232798C00C30C90 /* UIView+Effects.m in Sources */,
 				180F31C1222FDB9B0040718F /* ZFClusterWindowTableCell.m in Sources */,
 				18EA50C722266FBD00A2D612 /* ZFMeVC.m in Sources */,
 				189CC0DA2223E81300EB5A64 /* UserInfoModel.m in Sources */,
@@ -1574,6 +1626,7 @@
 				18F60014222E6DE500DE7EF4 /* ZFSubmissionTableCell.m in Sources */,
 				189CC0EA2223E81300EB5A64 /* HMEmoticon.m in Sources */,
 				189CC0D52223E81300EB5A64 /* ZFLoginVC.m in Sources */,
+				180F262C22364B6800B688E9 /* UIView+HJViewStyle.m in Sources */,
 				182E898D2223BEA0005CE5FE /* AppDelegate.m in Sources */,
 				18F60008222E60E100DE7EF4 /* ZFSubmittedHeadTableCell.m in Sources */,
 				18381E752227C7C6009F176F /* ZFHomeTopToolView.m in Sources */,
@@ -1583,6 +1636,7 @@
 				1808E0D72231224E00B9DB1D /* ZFSpikeFooterView.m in Sources */,
 				18381E6F22278115009F176F /* ZFClassificationTableCell.m in Sources */,
 				18381E7C2227F233009F176F /* ZFPicturesDisplayingHeadView.m in Sources */,
+				188F41B82236666400165142 /* ZFTextInputVC.m in Sources */,
 				189CC0E82223E81300EB5A64 /* NSBundle+HMEmoticon.m in Sources */,
 				1830DB712232560300C30C90 /* ZFMyOrderHeadView.m in Sources */,
 				18C26BFF222D6AA7004951D9 /* ZFHomeSpikeHeadView.m in Sources */,
