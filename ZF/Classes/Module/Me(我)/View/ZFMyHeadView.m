@@ -111,8 +111,20 @@
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
         _iconView.image = [UIImage imageNamed:@"hd"];
+        //头像点击事件
+        _iconView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_iconView addGestureRecognizer:singleTap];
     }
     return _iconView;
+}
+
+- (void)handleSingleTap:(UITouch *)touch
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick)])
+    {
+        [self.delegate ZFMyHeadViewDidClick];
+    }
 }
 
 

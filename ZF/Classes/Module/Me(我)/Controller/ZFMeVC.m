@@ -11,9 +11,10 @@
 #import "ZFMyHeadView.h"
 #import "ZFMyOrderHeadView.h"
 #import "ZFMyOrderCollectionCell.h"
+#import "ZFPersonalVC.h"
 
 
-@interface ZFMeVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface ZFMeVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFMyHeadViewDelegate>
 
 @property (strong , nonatomic)UICollectionView *collectionView;
 
@@ -105,6 +106,7 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         if (indexPath.section==0)
         {
             ZFMyHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyHeadViewID forIndexPath:indexPath];
+            headerView.delegate = self;
             reusableview = headerView;
         }
         else if (indexPath.section==1)
@@ -183,6 +185,15 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
             
         }
     }
+}
+
+
+//我的头部headview被点击
+- (void)ZFMyHeadViewDidClick
+{
+    //跳转到个人资料
+    ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

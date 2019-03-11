@@ -10,10 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ZFMyHeadViewDelegate <NSObject>
+
+//我的头部headview被点击
+- (void)ZFMyHeadViewDidClick;
+
+@end
+
+
 /**
  我的头部headview
  */
 @interface ZFMyHeadView : UICollectionReusableView
+
+@property (nonatomic, weak) id<ZFMyHeadViewDelegate> delegate;
 
 @end
 
