@@ -60,6 +60,8 @@
 		188F41AC223612A100165142 /* ZFPersonalHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */; };
 		188F41AF2236181B00165142 /* ZFPersonalCentralTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AE2236181B00165142 /* ZFPersonalCentralTableCell.m */; };
 		188F41B2223619DE00165142 /* ZFPersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41B1223619DE00165142 /* ZFPersonalVC.m */; };
+		188F41B5223658E700165142 /* ZFPersonalDataVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41B4223658E700165142 /* ZFPersonalDataVC.m */; };
+		188F41B82236666400165142 /* ZFTextInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41B72236666400165142 /* ZFTextInputVC.m */; };
 		189CC0D02223E81300EB5A64 /* UIImage+WaterMark.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC06A2223E81300EB5A64 /* UIImage+WaterMark.m */; };
 		189CC0D12223E81300EB5A64 /* UIButton+LXMImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC06D2223E81300EB5A64 /* UIButton+LXMImagePosition.m */; };
 		189CC0D22223E81300EB5A64 /* UIButton+Ex.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC0712223E81300EB5A64 /* UIButton+Ex.m */; };
@@ -247,6 +249,10 @@
 		188F41AE2236181B00165142 /* ZFPersonalCentralTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalCentralTableCell.m; sourceTree = "<group>"; };
 		188F41B0223619DE00165142 /* ZFPersonalVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalVC.h; sourceTree = "<group>"; };
 		188F41B1223619DE00165142 /* ZFPersonalVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalVC.m; sourceTree = "<group>"; };
+		188F41B3223658E700165142 /* ZFPersonalDataVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalDataVC.h; sourceTree = "<group>"; };
+		188F41B4223658E700165142 /* ZFPersonalDataVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalDataVC.m; sourceTree = "<group>"; };
+		188F41B62236666400165142 /* ZFTextInputVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTextInputVC.h; sourceTree = "<group>"; };
+		188F41B72236666400165142 /* ZFTextInputVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFTextInputVC.m; sourceTree = "<group>"; };
 		189CC0652223E6D500EB5A64 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		189CC06A2223E81300EB5A64 /* UIImage+WaterMark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WaterMark.m"; sourceTree = "<group>"; };
 		189CC06B2223E81300EB5A64 /* UIImage+WaterMark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WaterMark.h"; sourceTree = "<group>"; };
@@ -777,8 +783,12 @@
 		188F41A92236127B00165142 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				188F41B62236666400165142 /* ZFTextInputVC.h */,
+				188F41B72236666400165142 /* ZFTextInputVC.m */,
 				188F41B0223619DE00165142 /* ZFPersonalVC.h */,
 				188F41B1223619DE00165142 /* ZFPersonalVC.m */,
+				188F41B3223658E700165142 /* ZFPersonalDataVC.h */,
+				188F41B4223658E700165142 /* ZFPersonalDataVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1577,6 +1587,7 @@
 				189CC0E52223E81300EB5A64 /* HMEmoticonButton.m in Sources */,
 				181A421F2232209F008A7014 /* ZFMyHeadView.m in Sources */,
 				189CC0E22223E81300EB5A64 /* HMEmoticonTipView.m in Sources */,
+				188F41B5223658E700165142 /* ZFPersonalDataVC.m in Sources */,
 				18381E72222785CF009F176F /* ZFSpikeMerchandiseTableCell.m in Sources */,
 				18515F8B222FCC9A00F36E26 /* DCTitleRolling.m in Sources */,
 				189CC0D22223E81300EB5A64 /* UIButton+Ex.m in Sources */,
@@ -1605,6 +1616,7 @@
 				1808E0D72231224E00B9DB1D /* ZFSpikeFooterView.m in Sources */,
 				18381E6F22278115009F176F /* ZFClassificationTableCell.m in Sources */,
 				18381E7C2227F233009F176F /* ZFPicturesDisplayingHeadView.m in Sources */,
+				188F41B82236666400165142 /* ZFTextInputVC.m in Sources */,
 				189CC0E82223E81300EB5A64 /* NSBundle+HMEmoticon.m in Sources */,
 				1830DB712232560300C30C90 /* ZFMyOrderHeadView.m in Sources */,
 				18C26BFF222D6AA7004951D9 /* ZFHomeSpikeHeadView.m in Sources */,

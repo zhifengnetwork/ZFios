@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UILabel* nameLabel;
+@property (nonatomic, strong) UILabel* titleLabel;
+@property (nonatomic, strong) UIImageView* iconView;
 @property (nonatomic, strong) UIImageView* nextView;
 
 @end
@@ -36,6 +38,8 @@
     self.contentView.backgroundColor = TableViewBGColor;
     [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.nameLabel];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.iconView];
     [self.contentView addSubview:self.nextView];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -50,10 +54,37 @@
         make.centerY.equalTo(self.contentView);
     }];
     
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self->_nextView.mas_left).offset(-20);
+        make.centerY.equalTo(self.contentView);
+    }];
+    self.isShowTitleButton = NO;
+    
+    [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self->_nextView.mas_left).offset(-20);
+        make.width.height.mas_equalTo(35);
+        make.centerY.equalTo(self.contentView);
+    }];
+    self.isShowButton = NO;
+    
     [_nextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-30);
         make.centerY.equalTo(self.contentView);
     }];
+    self.isShowNextButton = YES;
+    
+    //下面横线
+    UIView *hLineView = [[UIView alloc] init];
+    hLineView.backgroundColor = RGBColorHex(0xf5f5f5);
+    [self.contentView addSubview:hLineView];
+    
+    [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.equalTo(self->_nameLabel.mas_left);
+         make.right.equalTo(self->_nextView.mas_right);
+         make.bottom.equalTo(self.contentView);
+         make.height.mas_equalTo(0.5f);
+     }];
     
 }
 
@@ -61,6 +92,12 @@
 {
     _title = title;
     _nameLabel.text = _title;
+}
+
+- (void)setName:(NSString *)name
+{
+    _name = name;
+    _titleLabel.text = _name;
 }
 
 -(void)setRoundTop:(BOOL)roundTop
@@ -74,6 +111,28 @@
     _roundBottom = roundBottom;
     _bgView.roundBottom = _roundBottom;
 }
+
+-(void)setIsShowButton:(BOOL)isShowButton
+{
+    _isShowButton = isShowButton;
+    
+    _iconView.hidden = !_isShowButton;
+}
+
+- (void)setIsShowTitleButton:(BOOL)isShowTitleButton
+{
+    _isShowTitleButton = isShowTitleButton;
+    
+    _titleLabel.hidden = !_isShowTitleButton;
+}
+
+- (void)setIsShowNextButton:(BOOL)isShowNextButton
+{
+    _isShowNextButton = isShowNextButton;
+    
+    _nextView.hidden = !_isShowNextButton;
+}
+
 
 
 -(UIView *)bgView
@@ -96,6 +155,26 @@
         _nameLabel.text = @"地址管理";
     }
     return _nameLabel;
+}
+
+- (UIImageView *)iconView {
+    if (_iconView == nil) {
+        _iconView = [[UIImageView alloc] init];
+        _iconView.image = [UIImage imageNamed:@"hd"];
+        _iconView.clipsToBounds = YES;
+        _iconView.layer.cornerRadius = 3.0f;
+    }
+    return _iconView;
+}
+
+- (UILabel *)titleLabel {
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.textColor = RGBColorHex(0x666666);
+        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.text = @"Tony";
+    }
+    return _titleLabel;
 }
 
 - (UIImageView *)nextView {

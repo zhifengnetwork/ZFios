@@ -39,11 +39,6 @@
     }];
 }
 
-- (void)submissionButtonDidClick
-{
-    
-}
-
 - (UIButton *)submissionButton {
     if (_submissionButton == nil) {
         _submissionButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -51,7 +46,6 @@
         [_submissionButton setTitle:@"提交订单" forState:UIControlStateNormal];
         _submissionButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_submissionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_submissionButton addTarget:self action:@selector(submissionButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submissionButton;
 }

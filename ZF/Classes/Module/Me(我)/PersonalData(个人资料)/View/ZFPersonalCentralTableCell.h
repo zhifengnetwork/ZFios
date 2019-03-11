@@ -17,10 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *title;
 
+@property (nonatomic, strong) NSString *name;
 ///头部圆角
 @property (nonatomic, assign) BOOL roundTop;
 ///底部圆角
 @property (nonatomic, assign) BOOL roundBottom;
+
+@property (nonatomic, assign) BOOL isShowButton;
+
+@property (nonatomic, assign) BOOL isShowTitleButton;
+
+@property (nonatomic, assign) BOOL isShowNextButton;
 
 @end
 
