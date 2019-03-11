@@ -7,7 +7,7 @@
 //
 
 #import "ZFMyOrderHeadView.h"
-#import "UIView+Effects.h"
+#import "UIView+HJViewStyle.h"
 
 
 @interface ZFMyOrderHeadView()
@@ -55,7 +55,7 @@
     }];
     
     //切圆角
-    _bgView.conrnerRadius(15).conrnerCorner(UIRectCornerTopLeft | UIRectCornerTopRight).showVisual();
+    _bgView.cornerRadius = 15;
 }
 
 -(void)moreButtonDidClick

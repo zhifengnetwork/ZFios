@@ -7,6 +7,7 @@
 //
 
 #import "ZFPersonalHeadTableCell.h"
+#import "UIView+HJViewStyle.h"
 
 @interface ZFPersonalHeadTableCell()
 
@@ -33,30 +34,29 @@
 
 - (void)setup
 {
-    self.contentView.backgroundColor = RGBColorHex(0xf3f5f7);
+    self.contentView.backgroundColor = TableViewBGColor;
     [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.iconView];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.userNameLabel];
     [self.contentView addSubview:self.nextView];
     
-    
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(343);
-        make.height.mas_equalTo(80);
-        make.top.mas_equalTo(20);
-        make.centerX.equalTo(self.contentView);
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-15);
+        make.top.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
     }];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_bgView.mas_left).offset(15);
-        make.centerY.equalTo(self->_bgView);
+        make.left.mas_equalTo(30);
+        make.centerY.equalTo(self.contentView);
         make.width.height.mas_equalTo(70);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_iconView.mas_right).offset(15);
-        make.top.equalTo(self->_bgView.mas_top).offset(15);
+        make.top.mas_equalTo(15);
     }];
     
     [_userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -65,9 +65,12 @@
     }];
     
     [_nextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self->_bgView.mas_right).offset(-15);
-        make.centerY.equalTo(self->_bgView);
+        make.right.mas_equalTo(-30);
+        make.centerY.equalTo(self.contentView);
     }];
+    
+    //切圆角
+    _bgView.cornerRadius = 10;
     
 }
 
@@ -77,8 +80,6 @@
     {
         _bgView = [[UIView alloc]initWithFrame:CGRectZero];
         _bgView.backgroundColor = RGBColorHex(0xffffff);
-        _bgView.clipsToBounds = YES;
-        _bgView.layer.cornerRadius = 3.0f;
     }
     return _bgView;
 }

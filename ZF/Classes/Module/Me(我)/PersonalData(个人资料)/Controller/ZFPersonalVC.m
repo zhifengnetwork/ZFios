@@ -91,6 +91,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
         pcell = [[ZFPersonalCentralTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFPersonalCentralTableCellID];
         if (indexPath.row==0) {
             pcell.title = @"地址管理";
+            pcell.roundTop = YES;
         }
         else if (indexPath.row==1) {
             pcell.title = @"账号与安全";
@@ -106,6 +107,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
         }
         else if (indexPath.row==5) {
             pcell.title = @"关于APP";
+            pcell.roundBottom = YES;
         }
         
         cell = pcell;
@@ -128,7 +130,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0;
+    return 20;
 }
 
 #pragma mark - TableViewDelegate

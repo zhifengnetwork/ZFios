@@ -17,6 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *title;
 
+///头部圆角
+@property (nonatomic, assign) BOOL roundTop;
+///底部圆角
+@property (nonatomic, assign) BOOL roundBottom;
+
 @end
 
 NS_ASSUME_NONNULL_END

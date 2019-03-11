@@ -7,7 +7,7 @@
 //
 
 #import "ZFMyOrderCollectionCell.h"
-#import "UIView+Effects.h"
+#import "UIView+HJViewStyle.h"
 
 @interface ZFMyOrderCollectionCell()
 
@@ -61,7 +61,7 @@
      }];
     
     //切圆角
-    _bgView.conrnerRadius(15).conrnerCorner(UIRectCornerTopLeft | UIRectCornerTopRight).showVisual();
+    _bgView.cornerRadius = 15;
     
 }
 
