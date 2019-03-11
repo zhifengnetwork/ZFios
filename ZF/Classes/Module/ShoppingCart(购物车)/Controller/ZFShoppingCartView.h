@@ -10,4 +10,5 @@
 
 @interface ZFShoppingCartView : UIView
 
++ (instancetype)CartView;
 @end

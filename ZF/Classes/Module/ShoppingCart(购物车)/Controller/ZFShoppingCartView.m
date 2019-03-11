@@ -7,22 +7,32 @@
 //
 
 #import "ZFShoppingCartView.h"
+@interface ZFShoppingCartView()
+@property (weak, nonatomic) IBOutlet UIButton *allSelectButton;
+@property (weak, nonatomic) IBOutlet UILabel *allMoneyLabel;
 
+@end
 @implementation ZFShoppingCartView
 
-- (void)awakeFromNib{
-    [super awakeFromNib];
-    [self setUp];
+//- (void)awakeFromNib{
+//    [super awakeFromNib];
+//    [self setUp];
+//}
+//- (instancetype)initWithFrame:(CGRect)frame
+//{
+//    self = [super initWithFrame:frame];
+//    if (self) {
+//        [self setUp];
+//    }
+//    return self;
+//}
+//- (void)setUp{
+//
+//}
++ (instancetype)CartView{
+    return [[[NSBundle mainBundle] loadNibNamed:@"ZFShoppingCartView" owner:self options:nil]lastObject];
 }
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setUp];
-    }
-    return self;
-}
-- (void)setUp{
+- (IBAction)buy:(id)sender {
     
 }
 @end

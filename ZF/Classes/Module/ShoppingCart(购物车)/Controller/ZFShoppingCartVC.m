@@ -7,26 +7,45 @@
 //
 
 #import "ZFShoppingCartVC.h"
-
-@interface ZFShoppingCartVC ()
+#import "ZFShoppingCartCell.h"
+#import "ZFShoppingCartView.h"
+@interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
 @implementation ZFShoppingCartVC
 
+/*cell */
+static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"购物车";
+   
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
+    tableView.backgroundColor = RGBColorHex(0xf4f4f4);
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.rowHeight = 270;
+    [self.view addSubview:tableView];
+    
+    ZFShoppingCartView *view = [ZFShoppingCartView CartView];
+    
+    view.frame = CGRectMake(0,tableView.frame.size.height - LL_StatusBarAndNavigationBarHeight, LL_ScreenWidth, 55);
+    [self.view addSubview:view];
+    
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
 }
-*/
-
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZFShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFShoppingCartTableCellID];
+    if (cell == nil) {
+        cell = [ZFShoppingCartCell  ShoppingCartCell];
+    }
+    return cell;
+}
 @end
