@@ -10,15 +10,20 @@
 #import "ZFAddressManagementTableCell.h"
 #import "ZFSubmissionTableCell.h"
 #import "ZFTool.h"
+#import "ZFSpikeFooterView.h"
 
-@interface ZFAddressManagementVC ()
+@interface ZFAddressManagementVC ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) ZFSpikeFooterView *footerView;
 
 @end
 
 @implementation ZFAddressManagementVC
 
 static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTableCellID";
-static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
+//static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 
 
 - (void)viewDidLoad {
@@ -28,7 +33,6 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     self.title = @"地址管理";
     [self setupTableView];
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -48,22 +52,36 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 
 - (void)setupTableView
 {
+    [self.view addSubview:self.footerView];
+    [_footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-15);
+        make.bottom.mas_equalTo(-25);
+        make.height.mas_equalTo(50);
+    }];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.bottom.equalTo(self->_footerView.mas_top);
+    }];
+    
     self.tableView.estimatedRowHeight = 0;
     self.tableView.estimatedSectionHeaderHeight = 0;
     self.tableView.estimatedSectionFooterHeight = 0;
-    self.tableView.backgroundColor = RGBTableViewBGColor;
+    self.tableView.backgroundColor = RGBColorHex(0xf3f5f7);
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.alwaysBounceVertical=NO;
     
     [self.tableView registerClass:[ZFAddressManagementTableCell class] forCellReuseIdentifier:ZFAddressManagementTableCellID];
-    [self.tableView registerClass:[ZFSubmissionTableCell class] forCellReuseIdentifier:ZFSubmissionTableCellID];
 }
+
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -82,14 +100,6 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
         
         cell = scell;
     }
-    else if (indexPath.section==1)
-    {
-        ZFSubmissionTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFSubmissionTableCellID];
-        scell = [[ZFSubmissionTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSubmissionTableCellID];
-        scell.title = @"新建收货地址";
-        
-        cell = scell;
-    }
     
     return cell;
 }
@@ -98,12 +108,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 //每行的高度是多少
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0)
-    {
-        return 66;
-    }
-    
-    return 50;
+    return 66;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -130,6 +135,43 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     }
 }
 
+- (void)handleSingleTap:(UITouch *)touch
+{
+    
+}
+
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight) style:UITableViewStylePlain];
+        //设置数据源，注意必须实现对应的UITableViewDataSource协议
+        _tableView.dataSource=self;
+        //设置代理
+        _tableView.delegate=self;
+        _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        [self.view addSubview:_tableView];
+        
+    }
+    return _tableView;
+}
+
+
+-(ZFSpikeFooterView *)footerView
+{
+    if (_footerView==nil)
+    {
+        _footerView = [[ZFSpikeFooterView alloc]init];
+        _footerView.name = @"新建收货地址";
+        _footerView.layer.cornerRadius = 5;
+        _footerView.clipsToBounds = YES;
+        
+        //UIView增加点击事件
+        _footerView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_footerView addGestureRecognizer:singleTap];
+    }
+    
+    return _footerView;
+}
 
 
 @end

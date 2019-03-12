@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  地址管理
  */
-@interface ZFAddressManagementVC : UITableViewController
+@interface ZFAddressManagementVC : UIViewController
 
 @end
 
