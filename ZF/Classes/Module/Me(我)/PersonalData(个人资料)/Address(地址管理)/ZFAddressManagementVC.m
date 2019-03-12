@@ -1,34 +1,31 @@
 //
-//  ZFPersonalVC.m
+//  ZFAddressManagementVC.m
 //  ZF
 //
-//  Created by apple on 2019/3/11.
+//  Created by apple on 2019/3/12.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFPersonalVC.h"
-#import "ZFPersonalHeadTableCell.h"
-#import "ZFPersonalCentralTableCell.h"
-#import "ZFSubmissionTableCell.h"
-#import "ZFPersonalDataVC.h"
 #import "ZFAddressManagementVC.h"
+#import "ZFAddressManagementTableCell.h"
+#import "ZFSubmissionTableCell.h"
+#import "ZFTool.h"
 
-@interface ZFPersonalVC ()
+@interface ZFAddressManagementVC ()
 
 @end
 
-@implementation ZFPersonalVC
+@implementation ZFAddressManagementVC
 
-static NSString *const ZFPersonalHeadTableCellID = @"ZFPersonalHeadTableCellID";
-static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCellID";
+static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTableCellID";
 static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [ZFTool isHiddenNavigationBarSeparatorLine:YES vc:self];
-    self.title = @"个人资料";
+    [ZFTool isHiddenNavigationBarSeparatorLine:YES vc:self];
+    self.title = @"地址管理";
     [self setupTableView];
 }
 
@@ -59,23 +56,18 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.alwaysBounceVertical=NO;
     
-    [self.tableView registerClass:[ZFPersonalHeadTableCell class] forCellReuseIdentifier:ZFPersonalHeadTableCellID];
-    [self.tableView registerClass:[ZFPersonalCentralTableCell class] forCellReuseIdentifier:ZFPersonalCentralTableCellID];
+    [self.tableView registerClass:[ZFAddressManagementTableCell class] forCellReuseIdentifier:ZFAddressManagementTableCellID];
     [self.tableView registerClass:[ZFSubmissionTableCell class] forCellReuseIdentifier:ZFSubmissionTableCellID];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section==1)
-    {
-        return 6;
-    }
     return 1;
 }
 
@@ -85,43 +77,16 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     
     if (indexPath.section==0)
     {
-        ZFPersonalHeadTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFPersonalHeadTableCellID];
-        scell = [[ZFPersonalHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFPersonalHeadTableCellID];
+        ZFAddressManagementTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFAddressManagementTableCellID];
+        scell = [[ZFAddressManagementTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAddressManagementTableCellID];
         
         cell = scell;
     }
     else if (indexPath.section==1)
     {
-        ZFPersonalCentralTableCell* pcell = [tableView dequeueReusableCellWithIdentifier:ZFPersonalCentralTableCellID];
-        pcell = [[ZFPersonalCentralTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFPersonalCentralTableCellID];
-        if (indexPath.row==0) {
-            pcell.title = @"地址管理";
-            pcell.roundTop = YES;
-        }
-        else if (indexPath.row==1) {
-            pcell.title = @"账号与安全";
-        }
-        else if (indexPath.row==2) {
-            pcell.title = @"支付设置";
-        }
-        else if (indexPath.row==3) {
-            pcell.title = @"通用";
-        }
-        else if (indexPath.row==4) {
-            pcell.title = @"操作流程";
-        }
-        else if (indexPath.row==5) {
-            pcell.title = @"关于APP";
-            pcell.roundBottom = YES;
-        }
-        
-        cell = pcell;
-    }
-    else if (indexPath.section==2)
-    {
         ZFSubmissionTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFSubmissionTableCellID];
         scell = [[ZFSubmissionTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSubmissionTableCellID];
-        scell.title = @"退出登录";
+        scell.title = @"新建收货地址";
         
         cell = scell;
     }
@@ -135,14 +100,10 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 {
     if (indexPath.section==0)
     {
-        return 80;
-    }
-    else if (indexPath.section==2)
-    {
-        return 60;
+        return 66;
     }
     
-    return 45;
+    return 50;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -164,16 +125,8 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 {
     if (indexPath.section==0)
     {
-        ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if (indexPath.section==1)
-    {
-        if (indexPath.row==0) {
-            ZFAddressManagementVC* vc = [[ZFAddressManagementVC alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        
+//        ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

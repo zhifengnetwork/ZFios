@@ -30,6 +30,8 @@
 		180F34082226379200EB0449 /* ZFAccountModificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F34072226379200EB0449 /* ZFAccountModificationVC.m */; };
 		180F340B22263D4000EB0449 /* ZFResetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F340A22263D4000EB0449 /* ZFResetPasswordVC.m */; };
 		181608D22225292D004CC2D3 /* ZFRegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 181608D12225292D004CC2D3 /* ZFRegisterVC.m */; };
+		1819918722376760004585D8 /* ZFAddressManagementTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819918622376760004585D8 /* ZFAddressManagementTableCell.m */; };
+		1819918A22376BE2004585D8 /* ZFAddressManagementVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819918922376BE2004585D8 /* ZFAddressManagementVC.m */; };
 		181A421F2232209F008A7014 /* ZFMyHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A421E2232209F008A7014 /* ZFMyHeadView.m */; };
 		18285F05222CFB8800CBA408 /* ZFAuctionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285F04222CFB8800CBA408 /* ZFAuctionTableCell.m */; };
 		18285F08222D072800CBA408 /* ZFAuctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285F07222D072800CBA408 /* ZFAuctionVC.m */; };
@@ -192,6 +194,10 @@
 		180F340A22263D4000EB0449 /* ZFResetPasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFResetPasswordVC.m; sourceTree = "<group>"; };
 		181608D02225292D004CC2D3 /* ZFRegisterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFRegisterVC.h; sourceTree = "<group>"; };
 		181608D12225292D004CC2D3 /* ZFRegisterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFRegisterVC.m; sourceTree = "<group>"; };
+		1819918522376760004585D8 /* ZFAddressManagementTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAddressManagementTableCell.h; sourceTree = "<group>"; };
+		1819918622376760004585D8 /* ZFAddressManagementTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAddressManagementTableCell.m; sourceTree = "<group>"; };
+		1819918822376BE2004585D8 /* ZFAddressManagementVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAddressManagementVC.h; sourceTree = "<group>"; };
+		1819918922376BE2004585D8 /* ZFAddressManagementVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAddressManagementVC.m; sourceTree = "<group>"; };
 		181A421D2232209F008A7014 /* ZFMyHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyHeadView.h; sourceTree = "<group>"; };
 		181A421E2232209F008A7014 /* ZFMyHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyHeadView.m; sourceTree = "<group>"; };
 		18285F03222CFB8800CBA408 /* ZFAuctionTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAuctionTableCell.h; sourceTree = "<group>"; };
@@ -538,6 +544,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		1819918422375527004585D8 /* Address(地址管理) */ = {
+			isa = PBXGroup;
+			children = (
+				1819918822376BE2004585D8 /* ZFAddressManagementVC.h */,
+				1819918922376BE2004585D8 /* ZFAddressManagementVC.m */,
+				1819918522376760004585D8 /* ZFAddressManagementTableCell.h */,
+				1819918622376760004585D8 /* ZFAddressManagementTableCell.m */,
+			);
+			path = "Address(地址管理)";
+			sourceTree = "<group>";
+		};
 		181A421B2232203D008A7014 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -773,6 +790,7 @@
 		188F41A72236125000165142 /* PersonalData(个人资料) */ = {
 			isa = PBXGroup;
 			children = (
+				1819918422375527004585D8 /* Address(地址管理) */,
 				188F41A92236127B00165142 /* Controller */,
 				188F41A82236127500165142 /* View */,
 			);
@@ -1597,7 +1615,9 @@
 				189CC0D12223E81300EB5A64 /* UIButton+LXMImagePosition.m in Sources */,
 				180F31B2222FA6890040718F /* ZFStationNewsVC.m in Sources */,
 				189CC0F02223E81300EB5A64 /* UIImage+HMEmoticon.m in Sources */,
+				1819918A22376BE2004585D8 /* ZFAddressManagementVC.m in Sources */,
 				189CC0DE2223E81300EB5A64 /* BaseNaviViewController.m in Sources */,
+				1819918722376760004585D8 /* ZFAddressManagementTableCell.m in Sources */,
 				181608D22225292D004CC2D3 /* ZFRegisterVC.m in Sources */,
 				189CC0F92223EA2400EB5A64 /* http_user.m in Sources */,
 				18EA50C122266F2600A2D612 /* ZFShoppingCartVC.m in Sources */,
