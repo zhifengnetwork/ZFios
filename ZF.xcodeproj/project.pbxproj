@@ -36,6 +36,8 @@
 		181991902237A393004585D8 /* ZFAddressTagTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819918F2237A393004585D8 /* ZFAddressTagTableCell.m */; };
 		181991952237A990004585D8 /* ZFDefaultAddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 181991942237A990004585D8 /* ZFDefaultAddressTableCell.m */; };
 		181991982237AC12004585D8 /* ZFEditorialConsigneeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 181991972237AC12004585D8 /* ZFEditorialConsigneeVC.m */; };
+		1819919C2237C629004585D8 /* ZFTimeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819919B2237C629004585D8 /* ZFTimeTableCell.m */; };
+		1819919F2237C781004585D8 /* ZFRecordDetailsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819919E2237C781004585D8 /* ZFRecordDetailsTableCell.m */; };
 		181A421F2232209F008A7014 /* ZFMyHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A421E2232209F008A7014 /* ZFMyHeadView.m */; };
 		18285F05222CFB8800CBA408 /* ZFAuctionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285F04222CFB8800CBA408 /* ZFAuctionTableCell.m */; };
 		18285F08222D072800CBA408 /* ZFAuctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285F07222D072800CBA408 /* ZFAuctionVC.m */; };
@@ -210,6 +212,10 @@
 		181991942237A990004585D8 /* ZFDefaultAddressTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDefaultAddressTableCell.m; sourceTree = "<group>"; };
 		181991962237AC12004585D8 /* ZFEditorialConsigneeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFEditorialConsigneeVC.h; sourceTree = "<group>"; };
 		181991972237AC12004585D8 /* ZFEditorialConsigneeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFEditorialConsigneeVC.m; sourceTree = "<group>"; };
+		1819919A2237C629004585D8 /* ZFTimeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFTimeTableCell.h; sourceTree = "<group>"; };
+		1819919B2237C629004585D8 /* ZFTimeTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFTimeTableCell.m; sourceTree = "<group>"; };
+		1819919D2237C781004585D8 /* ZFRecordDetailsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFRecordDetailsTableCell.h; sourceTree = "<group>"; };
+		1819919E2237C781004585D8 /* ZFRecordDetailsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFRecordDetailsTableCell.m; sourceTree = "<group>"; };
 		181A421D2232209F008A7014 /* ZFMyHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyHeadView.h; sourceTree = "<group>"; };
 		181A421E2232209F008A7014 /* ZFMyHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyHeadView.m; sourceTree = "<group>"; };
 		18285F03222CFB8800CBA408 /* ZFAuctionTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAuctionTableCell.h; sourceTree = "<group>"; };
@@ -591,6 +597,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		181991992237C5FF004585D8 /* Footprint(足迹) */ = {
+			isa = PBXGroup;
+			children = (
+				1819919A2237C629004585D8 /* ZFTimeTableCell.h */,
+				1819919B2237C629004585D8 /* ZFTimeTableCell.m */,
+				1819919D2237C781004585D8 /* ZFRecordDetailsTableCell.h */,
+				1819919E2237C781004585D8 /* ZFRecordDetailsTableCell.m */,
+			);
+			path = "Footprint(足迹)";
+			sourceTree = "<group>";
+		};
 		181A421B2232203D008A7014 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,6 +758,7 @@
 		182E8A0A2224017C005CE5FE /* Me(我) */ = {
 			isa = PBXGroup;
 			children = (
+				181991992237C5FF004585D8 /* Footprint(足迹) */,
 				188F41A72236125000165142 /* PersonalData(个人资料) */,
 				18EA50C222266FAE00A2D612 /* Controller */,
 				181A421C22322047008A7014 /* Model */,
@@ -1621,6 +1639,7 @@
 				1830DB6E2232525200C30C90 /* ZFMyOrderCollectionCell.m in Sources */,
 				18F8D8982228D7DE00203E9A /* ZFSelectedVC.m in Sources */,
 				18C26BFC222D62BD004951D9 /* ZFAuctionWMVC.m in Sources */,
+				1819919F2237C781004585D8 /* ZFRecordDetailsTableCell.m in Sources */,
 				18EA50D022268E4500A2D612 /* ZFCommodityTableCell.m in Sources */,
 				18F8D89B2229128D00203E9A /* ZFSelectedTitleHeadView.m in Sources */,
 				18F6000B222E655400DE7EF4 /* ZFSubmittedTitleTableCell.m in Sources */,
@@ -1701,6 +1720,7 @@
 				1830DB712232560300C30C90 /* ZFMyOrderHeadView.m in Sources */,
 				18C26BFF222D6AA7004951D9 /* ZFHomeSpikeHeadView.m in Sources */,
 				189CC0DF2223E81300EB5A64 /* BaseTabBarController.m in Sources */,
+				1819919C2237C629004585D8 /* ZFTimeTableCell.m in Sources */,
 				180F31A3222F68610040718F /* ZFAddressTableCell.m in Sources */,
 				180F31B5222FAC1A0040718F /* ZFHarvestAddressTableCell.m in Sources */,
 				189CC0E92223E81300EB5A64 /* HMEmoticonAttachment.m in Sources */,

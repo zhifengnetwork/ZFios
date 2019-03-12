@@ -31,8 +31,15 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     [ZFTool isHiddenNavigationBarSeparatorLine:YES vc:self];
     self.title = @"编辑收货人";
     [self setupTableView];
+    
+    UIImage *imgRight = [UIImage imageNamed:@"delete"];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(deleteButtonDidClick)];
 }
 
+- (void)deleteButtonDidClick
+{
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
