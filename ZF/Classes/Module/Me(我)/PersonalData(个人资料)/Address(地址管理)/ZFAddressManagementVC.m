@@ -31,6 +31,7 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
     
     [ZFTool isHiddenNavigationBarSeparatorLine:YES vc:self];
     self.title = @"地址管理";
+    self.view.backgroundColor = TableViewBGColor;
     [self setupTableView];
 }
 
@@ -54,8 +55,7 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
 {
     [self.view addSubview:self.footerView];
     [_footerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
+        make.left.right.equalTo(self.view);
         make.bottom.mas_equalTo(-25);
         make.height.mas_equalTo(50);
     }];
