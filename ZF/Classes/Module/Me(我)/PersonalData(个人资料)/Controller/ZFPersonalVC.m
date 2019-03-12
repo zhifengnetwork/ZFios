@@ -11,6 +11,7 @@
 #import "ZFPersonalCentralTableCell.h"
 #import "ZFSubmissionTableCell.h"
 #import "ZFPersonalDataVC.h"
+#import "ZFAddressManagementVC.h"
 
 @interface ZFPersonalVC ()
 
@@ -165,6 +166,14 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     {
         ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.section==1)
+    {
+        if (indexPath.row==0) {
+            ZFAddressManagementVC* vc = [[ZFAddressManagementVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        
     }
 }
 

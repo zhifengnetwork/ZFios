@@ -34,6 +34,7 @@ static NSString *const ZFSecondkillMerTableCelllD = @"ZFSecondkillMerTableCelllD
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"";
+    self.view.backgroundColor = TableViewBGColor;
     [self setupUI];
     [self setupTableView];
     
@@ -54,13 +55,13 @@ static NSString *const ZFSecondkillMerTableCelllD = @"ZFSecondkillMerTableCelllD
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+//    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:animated];
+//    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 
@@ -220,6 +221,7 @@ static NSString *const ZFSecondkillMerTableCelllD = @"ZFSecondkillMerTableCelllD
     {
         _footerView = [[ZFSpikeFooterView alloc]init];
         _footerView.name = @"立即购买";
+        _footerView.backgroundColor = RGBColorHex(0xff5722);
         
         //UIView增加点击事件
         _footerView.userInteractionEnabled = YES;

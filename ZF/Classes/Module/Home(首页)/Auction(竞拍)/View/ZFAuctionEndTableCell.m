@@ -124,7 +124,9 @@
         _titleLabel.font = [UIFont systemFontOfSize:16];
         _titleLabel.text = @"            竞拍已经结束";
         _titleLabel.layer.borderWidth = 1.0f;
-        _titleLabel.layer.borderColor = RGBColorHex(0xE8315D).CGColor;    }
+        _titleLabel.layer.borderColor = RGBColorHex(0xE8315D).CGColor;
+        
+    }
     return _titleLabel;
 }
 

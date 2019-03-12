@@ -28,11 +28,12 @@
 
 - (void)setup
 {
-    self.backgroundColor = RGBColorHex(0xff5722);
     [self addSubview:self.nameLabel];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self);
+        make.top.bottom.equalTo(self);
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-15);
     }];
     
 }
@@ -50,7 +51,11 @@
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.textColor = [UIColor whiteColor];
+        _nameLabel.backgroundColor = RGBColorHex(0xff5722);
         _nameLabel.font = [UIFont systemFontOfSize:18];
+        _nameLabel.textAlignment = NSTextAlignmentCenter;
+        _nameLabel.layer.cornerRadius = 5.0f;
+        _nameLabel.clipsToBounds = YES;
     }
     return _nameLabel;
 }

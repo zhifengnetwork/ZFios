@@ -139,6 +139,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
     {
         if (indexPath.row==2) {
             ZFTextInputVC* vc = [[ZFTextInputVC alloc]init];
+            vc.type = 1;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
