@@ -32,6 +32,10 @@
 + (instancetype)CartView{
     return [[[NSBundle mainBundle] loadNibNamed:@"ZFShoppingCartView" owner:self options:nil]lastObject];
 }
+- (IBAction)allSelect:(id)sender {
+    
+}
+
 - (IBAction)buy:(id)sender {
     
 }

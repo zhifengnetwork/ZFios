@@ -7,14 +7,19 @@
 //
 
 #import "ZFShoppingCartCell.h"
+#import "ZFMenuAlert.h"
 @interface ZFShoppingCartCell()
-@property (weak, nonatomic) IBOutlet UIView *bgView;
-@property (weak, nonatomic) IBOutlet UIButton *selectShopButton;
-@property (weak, nonatomic) IBOutlet UILabel *storeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *fullSale;
-@property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;
-@property (weak, nonatomic) IBOutlet UILabel *saleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *goodsMoneyLabel;
+@property (weak, nonatomic) IBOutlet UIView *bgView;//背景层
+@property (weak, nonatomic) IBOutlet UIButton *selectShopButton;//商店选中按钮
+@property (weak, nonatomic) IBOutlet UILabel *storeLabel;//商店名字
+@property (weak, nonatomic) IBOutlet UILabel *fullSale;//满赠优惠显示
+@property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;//商品图片
+@property (weak, nonatomic) IBOutlet UILabel *goodsLabel;//商品名字
+@property (weak, nonatomic) IBOutlet UIView *menuView;
+@property (weak, nonatomic) IBOutlet UILabel *goodsCountLabel;//商品数量
+@property (weak, nonatomic) IBOutlet UILabel *goodsPriceLabel;//商品价格
+@property (weak, nonatomic) IBOutlet UILabel *saleLabel;//优惠显示
+
 
 @end
 @implementation ZFShoppingCartCell
@@ -25,18 +30,28 @@
     [self setUp];
 }
 - (void)setFrame:(CGRect)frame{
-    frame.origin.x = 10;
+    frame.origin.x = 16;
     frame.size.width -= 2* frame.origin.x;
     frame.size.height -= 2*frame.origin.x;
     [super setFrame:frame];
 }
 - (void)setUp{
     //背景层
-    self.bgView.backgroundColor = RGBColorHex(0xffffff);
+    self.backgroundColor = RGBColorHex(0xffffff);
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = 8.0;
     
+    ZFMenuAlert * alert =  [[ZFMenuAlert alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    alert.arrMDataSource = @[@"dafd",@"dfasfsa"];
+    alert.backgroundColor = [UIColor redColor];
+    self.menuView = alert;
+    
+    [alert setDidSelectedCallback:^(NSInteger index, NSString *content) {
+        //回调中要实现的功能.
+    }];
+    
 }
+
 + (instancetype)ShoppingCartCell{
     
     return [[[NSBundle mainBundle] loadNibNamed:@"ZFShoppingCartCell" owner:self options:nil]lastObject];

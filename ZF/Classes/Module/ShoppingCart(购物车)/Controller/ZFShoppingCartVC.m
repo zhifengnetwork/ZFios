@@ -22,16 +22,23 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"购物车";
-   
+    //右边按钮
+    UIButton * btn = [[UIButton alloc]init];
+    [btn setBackgroundImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
+    [btn setTitle:@"管理" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [btn sizeToFit];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
     tableView.backgroundColor = RGBColorHex(0xf4f4f4);
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.rowHeight = 270;
     [self.view addSubview:tableView];
-    
+    //结算界面
     ZFShoppingCartView *view = [ZFShoppingCartView CartView];
-    
     view.frame = CGRectMake(0,tableView.frame.size.height - LL_StatusBarAndNavigationBarHeight, LL_ScreenWidth, 55);
     [self.view addSubview:view];
     
