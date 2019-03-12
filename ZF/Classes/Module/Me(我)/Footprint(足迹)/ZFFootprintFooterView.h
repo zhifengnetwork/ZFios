@@ -1,5 +1,5 @@
 //
-//  ZFRecordDetailsTableCell.h
+//  ZFFootprintFooterView.h
 //  ZF
 //
 //  Created by apple on 2019/3/12.
@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- 记录商品详情cell
- */
-@interface ZFRecordDetailsTableCell : BaseTableViewCell
+@interface ZFFootprintFooterView : UIView
 
 @end
 

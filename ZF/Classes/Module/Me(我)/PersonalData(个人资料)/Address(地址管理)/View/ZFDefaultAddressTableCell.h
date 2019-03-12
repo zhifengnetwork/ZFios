@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  设置默认地址cell
  */
-@interface ZFDefaultAddressTableCell : UITableViewCell
+@interface ZFDefaultAddressTableCell : BaseTableViewCell
 
 @end
 

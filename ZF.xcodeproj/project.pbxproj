@@ -36,7 +36,7 @@
 		181991902237A393004585D8 /* ZFAddressTagTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819918F2237A393004585D8 /* ZFAddressTagTableCell.m */; };
 		181991952237A990004585D8 /* ZFDefaultAddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 181991942237A990004585D8 /* ZFDefaultAddressTableCell.m */; };
 		181991982237AC12004585D8 /* ZFEditorialConsigneeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 181991972237AC12004585D8 /* ZFEditorialConsigneeVC.m */; };
-		1819919C2237C629004585D8 /* ZFTimeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819919B2237C629004585D8 /* ZFTimeTableCell.m */; };
+		1819919C2237C629004585D8 /* ZFTimeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819919B2237C629004585D8 /* ZFTimeHeadView.m */; };
 		1819919F2237C781004585D8 /* ZFRecordDetailsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819919E2237C781004585D8 /* ZFRecordDetailsTableCell.m */; };
 		181A421F2232209F008A7014 /* ZFMyHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 181A421E2232209F008A7014 /* ZFMyHeadView.m */; };
 		18285F05222CFB8800CBA408 /* ZFAuctionTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285F04222CFB8800CBA408 /* ZFAuctionTableCell.m */; };
@@ -65,6 +65,9 @@
 		18515F85222FC4F000F36E26 /* ZFStationNewsHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18515F84222FC4F000F36E26 /* ZFStationNewsHeadView.m */; };
 		18515F8B222FCC9A00F36E26 /* DCTitleRolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18515F89222FCC9A00F36E26 /* DCTitleRolling.m */; };
 		18515F8C222FCC9A00F36E26 /* UIView+DCRolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 18515F8A222FCC9A00F36E26 /* UIView+DCRolling.m */; };
+		186471792237FB3600F2C147 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186471782237FB3600F2C147 /* BaseTableViewCell.m */; };
+		1864717C2238013A00F2C147 /* ZFFootprintVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864717B2238013A00F2C147 /* ZFFootprintVC.m */; };
+		1864717F2238098800F2C147 /* ZFFootprintFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864717E2238098800F2C147 /* ZFFootprintFooterView.m */; };
 		188F41AC223612A100165142 /* ZFPersonalHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */; };
 		188F41AF2236181B00165142 /* ZFPersonalCentralTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AE2236181B00165142 /* ZFPersonalCentralTableCell.m */; };
 		188F41B2223619DE00165142 /* ZFPersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41B1223619DE00165142 /* ZFPersonalVC.m */; };
@@ -214,8 +217,8 @@
 		181991942237A990004585D8 /* ZFDefaultAddressTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDefaultAddressTableCell.m; sourceTree = "<group>"; };
 		181991962237AC12004585D8 /* ZFEditorialConsigneeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFEditorialConsigneeVC.h; sourceTree = "<group>"; };
 		181991972237AC12004585D8 /* ZFEditorialConsigneeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFEditorialConsigneeVC.m; sourceTree = "<group>"; };
-		1819919A2237C629004585D8 /* ZFTimeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFTimeTableCell.h; sourceTree = "<group>"; };
-		1819919B2237C629004585D8 /* ZFTimeTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFTimeTableCell.m; sourceTree = "<group>"; };
+		1819919A2237C629004585D8 /* ZFTimeHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFTimeHeadView.h; sourceTree = "<group>"; };
+		1819919B2237C629004585D8 /* ZFTimeHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFTimeHeadView.m; sourceTree = "<group>"; };
 		1819919D2237C781004585D8 /* ZFRecordDetailsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFRecordDetailsTableCell.h; sourceTree = "<group>"; };
 		1819919E2237C781004585D8 /* ZFRecordDetailsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFRecordDetailsTableCell.m; sourceTree = "<group>"; };
 		181A421D2232209F008A7014 /* ZFMyHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyHeadView.h; sourceTree = "<group>"; };
@@ -273,6 +276,12 @@
 		18515F88222FCC9A00F36E26 /* DCTitleRolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTitleRolling.h; sourceTree = "<group>"; };
 		18515F89222FCC9A00F36E26 /* DCTitleRolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCTitleRolling.m; sourceTree = "<group>"; };
 		18515F8A222FCC9A00F36E26 /* UIView+DCRolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+DCRolling.m"; sourceTree = "<group>"; };
+		186471772237FB3600F2C147 /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		186471782237FB3600F2C147 /* BaseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		1864717A2238013A00F2C147 /* ZFFootprintVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFFootprintVC.h; sourceTree = "<group>"; };
+		1864717B2238013A00F2C147 /* ZFFootprintVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFFootprintVC.m; sourceTree = "<group>"; };
+		1864717D2238098800F2C147 /* ZFFootprintFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFFootprintFooterView.h; sourceTree = "<group>"; };
+		1864717E2238098800F2C147 /* ZFFootprintFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFFootprintFooterView.m; sourceTree = "<group>"; };
 		188F41AA223612A100165142 /* ZFPersonalHeadTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalHeadTableCell.h; sourceTree = "<group>"; };
 		188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalHeadTableCell.m; sourceTree = "<group>"; };
 		188F41AD2236181B00165142 /* ZFPersonalCentralTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalCentralTableCell.h; sourceTree = "<group>"; };
@@ -606,10 +615,14 @@
 		181991992237C5FF004585D8 /* Footprint(足迹) */ = {
 			isa = PBXGroup;
 			children = (
-				1819919A2237C629004585D8 /* ZFTimeTableCell.h */,
-				1819919B2237C629004585D8 /* ZFTimeTableCell.m */,
+				1819919A2237C629004585D8 /* ZFTimeHeadView.h */,
+				1819919B2237C629004585D8 /* ZFTimeHeadView.m */,
 				1819919D2237C781004585D8 /* ZFRecordDetailsTableCell.h */,
 				1819919E2237C781004585D8 /* ZFRecordDetailsTableCell.m */,
+				1864717A2238013A00F2C147 /* ZFFootprintVC.h */,
+				1864717B2238013A00F2C147 /* ZFFootprintVC.m */,
+				1864717D2238098800F2C147 /* ZFFootprintFooterView.h */,
+				1864717E2238098800F2C147 /* ZFFootprintFooterView.m */,
 			);
 			path = "Footprint(足迹)";
 			sourceTree = "<group>";
@@ -847,6 +860,15 @@
 			path = CDDTitleRolling;
 			sourceTree = "<group>";
 		};
+		186471762237FAFB00F2C147 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				186471772237FB3600F2C147 /* BaseTableViewCell.h */,
+				186471782237FB3600F2C147 /* BaseTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		188F41A72236125000165142 /* PersonalData(个人资料) */ = {
 			isa = PBXGroup;
 			children = (
@@ -1022,6 +1044,7 @@
 		189CC0962223E81300EB5A64 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				186471762237FAFB00F2C147 /* View */,
 				189CC0972223E81300EB5A64 /* Controller */,
 				189CC09E2223E81300EB5A64 /* Model */,
 			);
@@ -1620,10 +1643,12 @@
 				188F41AF2236181B00165142 /* ZFPersonalCentralTableCell.m in Sources */,
 				180A97A6222E21CD003A12FF /* ZFStartAuctionVC.m in Sources */,
 				189CC0E62223E81300EB5A64 /* HMEmoticonCell.m in Sources */,
+				186471792237FB3600F2C147 /* BaseTableViewCell.m in Sources */,
 				18F8D8952228D22700203E9A /* ZFSelectedCategoriesCell.m in Sources */,
 				180F31B8222FAFD40040718F /* ZFAgreeTableCell.m in Sources */,
 				189CC0D62223E81300EB5A64 /* ZFPhoneLoginVC.m in Sources */,
 				189CC0D02223E81300EB5A64 /* UIImage+WaterMark.m in Sources */,
+				1864717C2238013A00F2C147 /* ZFFootprintVC.m in Sources */,
 				189CC0D32223E81300EB5A64 /* JKCountDownButton.m in Sources */,
 				18F60002222E53D600DE7EF4 /* ZFAssembleVC.m in Sources */,
 				189CC0E72223E81300EB5A64 /* HMEmoticonInputView.m in Sources */,
@@ -1685,6 +1710,7 @@
 				180F31B2222FA6890040718F /* ZFStationNewsVC.m in Sources */,
 				189CC0F02223E81300EB5A64 /* UIImage+HMEmoticon.m in Sources */,
 				1819918A22376BE2004585D8 /* ZFAddressManagementVC.m in Sources */,
+				1864717F2238098800F2C147 /* ZFFootprintFooterView.m in Sources */,
 				189CC0DE2223E81300EB5A64 /* BaseNaviViewController.m in Sources */,
 				1819918722376760004585D8 /* ZFAddressManagementTableCell.m in Sources */,
 				181608D22225292D004CC2D3 /* ZFRegisterVC.m in Sources */,
@@ -1732,7 +1758,7 @@
 				1830DB712232560300C30C90 /* ZFMyOrderHeadView.m in Sources */,
 				18C26BFF222D6AA7004951D9 /* ZFHomeSpikeHeadView.m in Sources */,
 				189CC0DF2223E81300EB5A64 /* BaseTabBarController.m in Sources */,
-				1819919C2237C629004585D8 /* ZFTimeTableCell.m in Sources */,
+				1819919C2237C629004585D8 /* ZFTimeHeadView.m in Sources */,
 				180F31A3222F68610040718F /* ZFAddressTableCell.m in Sources */,
 				180F31B5222FAC1A0040718F /* ZFHarvestAddressTableCell.m in Sources */,
 				189CC0E92223E81300EB5A64 /* HMEmoticonAttachment.m in Sources */,

@@ -95,7 +95,34 @@
 
 -(void)signInButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick:)])
+    {
+        [self.delegate ZFMyHeadViewDidClick:5];
+    }
+}
+
+-(void)commodityButtonDidClick
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick:)])
+    {
+        [self.delegate ZFMyHeadViewDidClick:2];
+    }
+}
+
+-(void)shopButtonDidClick
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick:)])
+    {
+        [self.delegate ZFMyHeadViewDidClick:3];
+    }
+}
+
+-(void)footprintButtonDidClick
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick:)])
+    {
+        [self.delegate ZFMyHeadViewDidClick:4];
+    }
 }
 
 
@@ -121,9 +148,9 @@
 
 - (void)handleSingleTap:(UITouch *)touch
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick:)])
     {
-        [self.delegate ZFMyHeadViewDidClick];
+        [self.delegate ZFMyHeadViewDidClick:1];
     }
 }
 
@@ -160,7 +187,7 @@
         [_signInButton setImage:[UIImage imageNamed:@"QD1"] forState:UIControlStateNormal];
         [_signInButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
         _signInButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_signInButton addTarget:self action:@selector(signInButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_signInButton addTarget:self action:@selector(signInButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _signInButton;
 }
@@ -182,7 +209,7 @@
         _commodityButton.titleLabel.lineBreakMode = 0;
         [_commodityButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
         _commodityButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_commodityButton addTarget:self action:@selector(commodityButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_commodityButton addTarget:self action:@selector(commodityButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _commodityButton;
 }
@@ -194,7 +221,7 @@
         _shopButton.titleLabel.lineBreakMode = 0;
         [_shopButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
         _shopButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_shopButton addTarget:self action:@selector(shopButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_shopButton addTarget:self action:@selector(shopButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _shopButton;
 }
@@ -207,7 +234,7 @@
         _footprintButton.titleLabel.lineBreakMode = 0;
         [_footprintButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
         _footprintButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_footprintButton addTarget:self action:@selector(footprintButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_footprintButton addTarget:self action:@selector(footprintButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _footprintButton;
 }

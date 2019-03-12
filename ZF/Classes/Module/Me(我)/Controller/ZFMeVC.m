@@ -12,6 +12,7 @@
 #import "ZFMyOrderHeadView.h"
 #import "ZFMyOrderCollectionCell.h"
 #import "ZFPersonalVC.h"
+#import "ZFFootprintVC.h"
 
 
 @interface ZFMeVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFMyHeadViewDelegate>
@@ -186,12 +187,22 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 }
 
 
-//我的头部headview被点击
-- (void)ZFMyHeadViewDidClick
+//我的头部headview被点击 1:头像 2:商品关注 3:店关注 4:足迹
+- (void)ZFMyHeadViewDidClick:(int)type
 {
-    //跳转到个人资料
-    ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (type==1)
+    {
+        //跳转到个人资料
+        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (type==4)
+    {
+        //跳转到个人资料
+        ZFFootprintVC* vc = [[ZFFootprintVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 }
 
 

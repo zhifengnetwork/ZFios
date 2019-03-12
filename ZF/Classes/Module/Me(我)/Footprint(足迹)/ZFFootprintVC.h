@@ -1,5 +1,5 @@
 //
-//  ZFTimeTableCell.h
+//  ZFFootprintVC.h
 //  ZF
 //
 //  Created by apple on 2019/3/12.
@@ -10,10 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- 时间显示cell
- */
-@interface ZFTimeTableCell : UITableViewCell
+@interface ZFFootprintVC : UIViewController
 
 @end
 

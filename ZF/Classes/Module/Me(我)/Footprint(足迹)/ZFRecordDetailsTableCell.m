@@ -10,7 +10,6 @@
 
 @interface ZFRecordDetailsTableCell()
 
-@property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIImageView* iconView;
 @property (nonatomic, strong) UILabel* titleLabel;
 @property (nonatomic, strong) UILabel* moneyLabel;
@@ -36,20 +35,12 @@
 - (void)setup
 {
     self.contentView.backgroundColor = TableViewBGColor;
-    [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.iconView];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.moneyLabel];
     [self.contentView addSubview:self.paymentedLabel];
     [self.contentView addSubview:self.evaluateLabel];
     [self.contentView addSubview:self.purchaseButton];
-    
-    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
-        make.top.mas_equalTo(0);
-        make.height.mas_equalTo(191);
-    }];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(25);
@@ -79,22 +70,10 @@
     }];
     
     [_purchaseButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self->_bgView.mas_right).offset(-10);
+        make.right.mas_equalTo(-25);
         make.bottom.equalTo(self->_evaluateLabel.mas_bottom);
     }];
     
-}
-
--(UIView *)bgView
-{
-    if(_bgView==nil)
-    {
-        _bgView = [[UIView alloc]initWithFrame:CGRectZero];
-        _bgView.backgroundColor = RGBColorHex(0xffffff);
-        _bgView.clipsToBounds = YES;
-        _bgView.layer.cornerRadius = 5.0f;
-    }
-    return _bgView;
 }
 
 //- (UILabel *)nameLabel {

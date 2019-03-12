@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ZFMyHeadViewDelegate <NSObject>
 
-//我的头部headview被点击
-- (void)ZFMyHeadViewDidClick;
+//我的头部headview被点击 1:头像 2:商品关注 3:店关注 4:足迹
+- (void)ZFMyHeadViewDidClick:(int)type;
 
 @end
 

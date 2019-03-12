@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  地址标签cell
  */
-@interface ZFAddressTagTableCell : UITableViewCell
+@interface ZFAddressTagTableCell : BaseTableViewCell
 
 @end
 
