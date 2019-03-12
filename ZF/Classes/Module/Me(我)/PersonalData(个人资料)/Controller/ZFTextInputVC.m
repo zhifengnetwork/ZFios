@@ -63,6 +63,7 @@
         make.left.equalTo(self->_textField.mas_left).offset(15);
         make.centerY.equalTo(self->_textField);
     }];
+    _countLabel.hidden = YES;
     
     [_clickButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_textField.mas_bottom).offset(20);
@@ -91,12 +92,16 @@
         self.title = @"修改名称";
         _textView.hidden = YES;
         
+        _textField.text = _text;
+        [_textField becomeFirstResponder];
+        _textField.placeholder = @"4-20字符，可有中英文，数字组成";
+        
         _max_len =20;
-        _countLabel.text = @"4-20字符，可有中英文，数字组成";
-        [_countLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self->_textField.mas_left).offset(15);
-            make.centerY.equalTo(self->_textField);
-        }];
+//        _countLabel.text = @"4-20字符，可有中英文，数字组成";
+//        [_countLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(self->_textField.mas_left).offset(15);
+//            make.centerY.equalTo(self->_textField);
+//        }];
     }
 //    else if (_type==3) {
 //        self.title = @"公司";
@@ -111,12 +116,12 @@
 //    }
     
     
-    if (_type==1)
-    {
-        _textField.text = _text;
-        [_textField becomeFirstResponder];
-        
-    }
+//    if (_type==1)
+//    {
+//        _textField.text = _text;
+//        [_textField becomeFirstResponder];
+//
+//    }
 //    else if (_type==2 || _type==5 || _type==9)
 //    {
 //        _textView.text = _text;
