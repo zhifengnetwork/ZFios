@@ -19,6 +19,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rF-rM-nhx">
                     <rect key="frame" x="30" y="16.5" width="17" height="22"/>
                     <state key="normal" image="option_b"/>
+                    <connections>
+                        <action selector="allSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="m9D-OW-xbi"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全选" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ReO-wf-bsa">
                     <rect key="frame" x="67" y="17" width="37" height="21"/>
@@ -67,7 +70,7 @@
                 <outlet property="allMoneyLabel" destination="cRQ-qb-7zL" id="D0l-ha-lZ1"/>
                 <outlet property="allSelectButton" destination="8rF-rM-nhx" id="bC0-D3-Uru"/>
             </connections>
-            <point key="canvasLocation" x="-12" y="-112"/>
+            <point key="canvasLocation" x="27" y="-116"/>
         </view>
     </objects>
     <resources>
