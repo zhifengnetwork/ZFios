@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UILabel* titleLabel;
-@property (nonatomic, strong) UILabel* nameLabel;
+@property (nonatomic, strong) UITextField* nameTextField;
 
 @end
 
@@ -34,7 +34,7 @@
     self.contentView.backgroundColor = TableViewBGColor;
     [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.nameLabel];
+    [self.contentView addSubview:self.nameTextField];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
@@ -48,9 +48,10 @@
         make.centerY.equalTo(self.contentView);
     }];
     
-    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self->_titleLabel.mas_right).offset(25);
-        make.centerY.equalTo(self.contentView);
+    [_nameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(105);
+        make.right.mas_equalTo(-25);
+        make.top.bottom.equalTo(self.contentView);
     }];
     
     //下面横线
@@ -73,6 +74,13 @@
     _title = title;
     _titleLabel.text = _title;
 }
+
+-(void)setName:(NSString *)name
+{
+    _name = name;
+    _nameTextField.text = _name;
+}
+
 
 
 -(UIView *)bgView
@@ -97,14 +105,15 @@
     return _titleLabel;
 }
 
-- (UILabel *)nameLabel {
-    if (_nameLabel == nil) {
-        _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = RGBColorHex(0x666666);
-        _nameLabel.font = [UIFont systemFontOfSize:14];
-        _nameLabel.text = @"张明";
+- (UITextField *)nameTextField {
+    if (_nameTextField == nil) {
+        _nameTextField = [[UITextField alloc] init];
+        _nameTextField.placeholder = @"";
+        _nameTextField.font = [UIFont systemFontOfSize:14];
+        _nameTextField.textColor = RGBColorHex(0x666666);
+        _nameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     }
-    return _nameLabel;
+    return _nameTextField;
 }
 
 @end

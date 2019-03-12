@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFEditorialHeadTableCell : UITableViewCell
 
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *name;
 
 @end
 

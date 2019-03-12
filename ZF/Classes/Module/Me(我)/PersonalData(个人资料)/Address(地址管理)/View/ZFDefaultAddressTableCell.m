@@ -48,6 +48,11 @@
     
 }
 
+- (void)switchAction:(UISwitch *)sender
+{
+    
+}
+
 
 
 - (UILabel *)titleLabel {
@@ -63,9 +68,8 @@
 -(UISwitch *)switchFunc{
     if(_switchFunc == nil){
         _switchFunc = [[UISwitch alloc]init];
-        [_switchFunc setBackgroundColor:RGBColorHex(0xF22E00)];
-        [_switchFunc setOnTintColor:RGBColorHex(0x99999)];
-        [_switchFunc setThumbTintColor:[UIColor whiteColor]];
+        [_switchFunc setBackgroundColor:RGBColor(255,179,154)];
+        [_switchFunc setOnTintColor:RGBColorHex(0xF22E00)];
         _switchFunc.layer.cornerRadius = 15.5f;
         _switchFunc.layer.masksToBounds = YES;
         [_switchFunc addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];

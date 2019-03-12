@@ -253,7 +253,7 @@ static NSString *const ZFAuctionRulesTableCellID = @"ZFAuctionRulesTableCellID";
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        _collectionView.frame = CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight);
+        _collectionView.frame = CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight-LL_StatusBarAndNavigationBarHeight);
         _collectionView.showsVerticalScrollIndicator = NO;
         //竞拍
         [_collectionView registerClass:[ZFAuctionEndTableCell class] forCellWithReuseIdentifier:ZFAuctionEndTableCellID];

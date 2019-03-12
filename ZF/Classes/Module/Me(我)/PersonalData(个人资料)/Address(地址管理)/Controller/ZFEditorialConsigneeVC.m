@@ -58,7 +58,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     self.tableView.backgroundColor = RGBTableViewBGColor;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.alwaysBounceVertical=NO;
+    self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
     [self.tableView registerClass:[ZFEditorialHeadTableCell class] forCellReuseIdentifier:ZFEditorialHeadTableCellID];
     [self.tableView registerClass:[ZFAddressTagTableCell class] forCellReuseIdentifier:ZFAddressTagTableCellID];
@@ -91,15 +91,19 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
         scell = [[ZFEditorialHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFEditorialHeadTableCellID];
         if (indexPath.row==0) {
             scell.title = @"收货人：";
+            scell.name  = @"张明";
         }
         else if (indexPath.row==1) {
             scell.title = @"手机号码：";
+            scell.name  = @"18620999999";
         }
         else if (indexPath.row==2) {
             scell.title = @"所在地区：";
+            scell.name  = @"广东省广州市白云区";
         }
         else if (indexPath.row==3) {
             scell.title = @"详细地址：";
+            scell.name  = @"桃源彩速包装";
         }
         
         cell = scell;
