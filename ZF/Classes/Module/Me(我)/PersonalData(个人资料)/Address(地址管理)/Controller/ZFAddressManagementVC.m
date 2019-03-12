@@ -11,8 +11,9 @@
 #import "ZFSubmissionTableCell.h"
 #import "ZFTool.h"
 #import "ZFSpikeFooterView.h"
+#import "ZFEditorialConsigneeVC.h"
 
-@interface ZFAddressManagementVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZFAddressManagementVC ()<UITableViewDelegate,UITableViewDataSource,ZFAddressManagementTableCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -97,6 +98,8 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
     {
         ZFAddressManagementTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFAddressManagementTableCellID];
         scell = [[ZFAddressManagementTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAddressManagementTableCellID];
+        scell.delegate = self;
+
         
         cell = scell;
     }
@@ -171,6 +174,14 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
     }
     
     return _footerView;
+}
+
+
+- (void)ZFAddressManagementTableCellDidClick
+{
+    //跳转编辑收货人
+    ZFEditorialConsigneeVC* vc = [[ZFEditorialConsigneeVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

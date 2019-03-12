@@ -117,10 +117,20 @@
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
         _iconView.image = [UIImage imageNamed:@"modify"];
-        _iconView.clipsToBounds = YES;
-        _iconView.layer.cornerRadius = 3.0f;
+        //头像点击事件
+        _iconView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_iconView addGestureRecognizer:singleTap];
     }
     return _iconView;
+}
+
+- (void)handleSingleTap:(UITouch *)touch
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFAddressManagementTableCellDidClick)])
+    {
+        [self.delegate ZFAddressManagementTableCellDidClick];
+    }
 }
 
 

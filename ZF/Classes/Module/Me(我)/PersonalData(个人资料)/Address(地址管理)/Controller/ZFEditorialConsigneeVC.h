@@ -1,5 +1,5 @@
 //
-//  ZFAddressManagementTableCell.h
+//  ZFEditorialConsigneeVC.h
 //  ZF
 //
 //  Created by apple on 2019/3/12.
@@ -11,9 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 地址管理cell
+ 编辑收货人
  */
-@interface ZFAddressManagementTableCell : UITableViewCell
+@interface ZFEditorialConsigneeVC : UITableViewController
 
 @end
 
