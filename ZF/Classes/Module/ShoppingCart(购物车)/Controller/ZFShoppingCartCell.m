@@ -8,6 +8,8 @@
 
 #import "ZFShoppingCartCell.h"
 #import "ZFMenuAlert.h"
+#import "ZFMenuView.h"
+
 @interface ZFShoppingCartCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;//背景层
 @property (weak, nonatomic) IBOutlet UIButton *selectShopButton;//商店选中按钮
@@ -15,7 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *fullSale;//满赠优惠显示
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;//商品图片
 @property (weak, nonatomic) IBOutlet UILabel *goodsLabel;//商品名字
-@property (weak, nonatomic) IBOutlet UIView *menuView;
+@property (strong, nonatomic) IBOutlet ZFMenuView *menuView;//下拉框
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuHeight;
+
 @property (weak, nonatomic) IBOutlet UILabel *goodsCountLabel;//商品数量
 @property (weak, nonatomic) IBOutlet UILabel *goodsPriceLabel;//商品价格
 @property (weak, nonatomic) IBOutlet UILabel *saleLabel;//优惠显示
@@ -29,6 +33,8 @@
     
     [self setUp];
 }
+
+
 - (void)setFrame:(CGRect)frame{
     frame.origin.x = 16;
     frame.size.width -= 2* frame.origin.x;
@@ -41,14 +47,15 @@
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = 8.0;
     
-    ZFMenuAlert * alert =  [[ZFMenuAlert alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    alert.arrMDataSource = @[@"dafd",@"dfasfsa"];
-    alert.backgroundColor = [UIColor redColor];
-    self.menuView = alert;
+    ZFMenuView *view= [[ZFMenuView alloc]init];
+    [view setViewOriginx:10 viewOriginy:0 buttonHeight:22 buttonWeight:100 tableViewHeight:0];
+    view.arr =@[@"官方标配",@"套餐一",@"套餐二"];
     
-    [alert setDidSelectedCallback:^(NSInteger index, NSString *content) {
-        //回调中要实现的功能.
-    }];
+    [view closeTableView];
+    if (view.buttonImageFlag == YES) {
+        self.menuHeight.constant= 400;
+    }
+    [self.menuView addSubview:view];
     
 }
 
