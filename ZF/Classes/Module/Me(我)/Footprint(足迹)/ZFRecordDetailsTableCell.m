@@ -50,17 +50,18 @@
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_iconView.mas_right).offset(15);
+        make.right.mas_equalTo(-20);
         make.top.equalTo(self->_iconView.mas_top);
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_iconView.mas_right).offset(15);
-        make.top.equalTo(self->_titleLabel.mas_bottom).offset(10);
+        make.top.equalTo(self->_titleLabel.mas_bottom).offset(5);
     }];
     
     [_paymentedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_iconView.mas_right).offset(15);
-        make.top.equalTo(self->_moneyLabel.mas_bottom).offset(10);
+        make.top.equalTo(self->_moneyLabel.mas_bottom).offset(5);
         make.bottom.equalTo(self->_iconView.mas_bottom);
     }];
     
@@ -71,60 +72,82 @@
     
     [_purchaseButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-25);
+        make.width.mas_equalTo(47);
+        make.height.mas_equalTo(20);
         make.bottom.equalTo(self->_evaluateLabel.mas_bottom);
     }];
     
 }
 
-//- (UILabel *)nameLabel {
-//    if (_nameLabel == nil) {
-//        _nameLabel = [[UILabel alloc] init];
-//        _nameLabel.textColor = RGBColorHex(0x0f0f0f);
-//        _nameLabel.font = [UIFont systemFontOfSize:15];
-//        _nameLabel.text = @"张三";
-//    }
-//    return _nameLabel;
-//}
-//
-//- (UILabel *)phoneLabel {
-//    if (_phoneLabel == nil) {
-//        _phoneLabel = [[UILabel alloc] init];
-//        _phoneLabel.textColor = RGBColorHex(0x0f0f0f);
-//        _phoneLabel.font = [UIFont systemFontOfSize:15];
-//        _phoneLabel.text = @"18649509302";
-//    }
-//    return _phoneLabel;
-//}
-//
-//- (UILabel *)addressLabel {
-//    if (_addressLabel == nil) {
-//        _addressLabel = [[UILabel alloc] init];
-//        _addressLabel.textColor = RGBColorHex(0x424242);
-//        _addressLabel.font = [UIFont systemFontOfSize:12];
-//        _addressLabel.text = @"广东省广州市白云区";
-//    }
-//    return _addressLabel;
-//}
-
+- (void)purchaseButtonDidClick
+{
+    
+}
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
-        _iconView.image = [UIImage imageNamed:@"modify"];
-        //头像点击事件
-        _iconView.userInteractionEnabled = YES;
-        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-        [_iconView addGestureRecognizer:singleTap];
+        _iconView.image = [UIImage imageNamed:@"image"];
+        _iconView.clipsToBounds = YES;
+        _iconView.layer.cornerRadius = 3.0f;
     }
     return _iconView;
 }
-//
-//- (void)handleSingleTap:(UITouch *)touch
-//{
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFAddressManagementTableCellDidClick)])
-//    {
-//        [self.delegate ZFAddressManagementTableCellDidClick];
-//    }
-//}
+
+- (UILabel *)titleLabel {
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.textColor = RGBColorHex(0x1a1a1a);
+        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.numberOfLines = 0;
+        _titleLabel.text = @"女式花瓣连衣裙女式花瓣连衣裙";
+    }
+    return _titleLabel;
+}
+
+- (UILabel *)moneyLabel {
+    if (_moneyLabel == nil) {
+        _moneyLabel = [[UILabel alloc] init];
+        _moneyLabel.textColor = RGBColorHex(0xe51c23);
+        _moneyLabel.font = [UIFont systemFontOfSize:19];
+        _moneyLabel.text = @"¥ 399.00";
+    }
+    return _moneyLabel;
+}
+
+- (UILabel *)paymentedLabel {
+    if (_paymentedLabel == nil) {
+        _paymentedLabel = [[UILabel alloc] init];
+        _paymentedLabel.textColor = RGBColorHex(0x666666);
+        _paymentedLabel.font = [UIFont systemFontOfSize:12];
+        _paymentedLabel.text = @"已付款6";
+    }
+    return _paymentedLabel;
+}
+
+- (UILabel *)evaluateLabel {
+    if (_evaluateLabel == nil) {
+        _evaluateLabel = [[UILabel alloc] init];
+        _evaluateLabel.textColor = RGBColorHex(0x666666);
+        _evaluateLabel.font = [UIFont systemFontOfSize:12];
+        _evaluateLabel.text = @"已付款10";
+    }
+    return _evaluateLabel;
+}
+
+- (UIButton *)purchaseButton {
+    if (_purchaseButton == nil) {
+        _purchaseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_purchaseButton setTitle:@"购买" forState:UIControlStateNormal];
+        [_purchaseButton setTitleColor:RGBColorHex(0xe51c23) forState:UIControlStateNormal];
+        _purchaseButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        _purchaseButton.layer.borderWidth = 1.0f;
+        _purchaseButton.layer.borderColor = RGBColorHex(0xe51c23).CGColor;
+        _purchaseButton.layer.cornerRadius = 3;
+        _purchaseButton.clipsToBounds = YES;
+        [_purchaseButton addTarget:self action:@selector(purchaseButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _purchaseButton;
+}
 
 @end

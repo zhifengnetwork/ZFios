@@ -31,6 +31,20 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     self.title = @"浏览记录";
     self.view.backgroundColor = TableViewBGColor;
     [self setupTableView];
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton.frame = CGRectMake(0, 0, 50, 20);
+    [rightButton setTitle:@"完成" forState:UIControlStateNormal];
+    [rightButton setBackgroundColor:RGBColorHex(0xff0000)];
+    rightButton.layer.cornerRadius = 3.0f;
+    rightButton.clipsToBounds = YES;
+    [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+}
+
+- (void)rightButtonClick
+{
+
 }
 
 - (void)didReceiveMemoryWarning {
