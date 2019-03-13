@@ -16,9 +16,11 @@
     if (self) {
         self.backgroundColor = RGBColor(249, 249, 249);
         
-        
         self.button = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:_button];
+        
+        self.label = [[UILabel alloc]init];
+        [self addSubview:_label];
     }
     return self;
 }
@@ -34,8 +36,7 @@
     [self.label setText:@"套餐"];
     [self.label setFont:[UIFont systemFontOfSize:9]];
     [self.label setTextColor:RGBColor(153, 153, 153)];
-    _label.frame = CGRectMake(6, 6, 20, 20 );
-    [self addSubview:_label];
+    _label.frame = CGRectMake(6, 0, 20, 20 );
     
     //button的宽度以及tableview的宽度都和view一样
     _button.frame = CGRectMake(CGRectGetMaxX(self.label.frame) + 6, 0, buttonWeight, buttonHeight);
