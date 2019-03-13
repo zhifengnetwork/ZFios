@@ -10,7 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ZFFootprintFooterViewDelegate <NSObject>
+
+//我的底部footview被点击 1:全选 2:删除
+- (void)ZFFootprintFooterViewDidClick:(int)type;
+
+@end
+
 @interface ZFFootprintFooterView : UIView
+
+
+@property (nonatomic, weak) id<ZFFootprintFooterViewDelegate> delegate;
 
 @end
 

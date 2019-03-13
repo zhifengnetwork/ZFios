@@ -13,7 +13,7 @@
 #import "ZFFootprintFooterView.h"
 
 
-@interface ZFFootprintVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZFFootprintVC ()<UITableViewDelegate,UITableViewDataSource,ZFFootprintFooterViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZFFootprintFooterView *footerView;
@@ -33,13 +33,16 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     [self setupTableView];
     
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightButton.frame = CGRectMake(0, 0, 50, 20);
+    rightButton.frame = CGRectMake(0, 0, 50, 27);
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    UIView *rightCustomView = [[UIView alloc] initWithFrame:rightButton.frame];
+    [rightCustomView addSubview:rightButton];
     [rightButton setTitle:@"完成" forState:UIControlStateNormal];
     [rightButton setBackgroundColor:RGBColorHex(0xff0000)];
     rightButton.layer.cornerRadius = 3.0f;
     rightButton.clipsToBounds = YES;
     [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightCustomView];
 }
 
 - (void)rightButtonClick
@@ -131,6 +134,22 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     }
 }
 
+
+//我的底部footview被点击 1:全选 2:删除
+- (void)ZFFootprintFooterViewDidClick:(int)type
+{
+    if (type==1)
+    {
+//        //跳转到个人资料
+//        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (type==2)
+    {
+        
+    }
+    
+}
 
 - (UITableView *)tableView
 {

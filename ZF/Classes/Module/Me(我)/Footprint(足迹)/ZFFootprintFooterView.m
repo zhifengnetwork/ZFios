@@ -10,8 +10,8 @@
 
 @interface ZFFootprintFooterView()
 
-@property (nonatomic, strong) UILabel* nameLabel;
-
+@property (nonatomic, strong) UIButton* allButton;
+@property (nonatomic, strong) UIButton* deleteButton;
 @end
 
 
@@ -28,28 +28,66 @@
 - (void)setup
 {
     self.backgroundColor = RGBColorHex(0xffffff);
-//    [self addSubview:self.nameLabel];
+    [self addSubview:self.allButton];
+    [self addSubview:self.deleteButton];
+
     
-    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(self);
-        make.left.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
+    [_allButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(20);
+        make.centerY.equalTo(self);
+    }];
+    
+    [_deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-25);
+        make.width.mas_equalTo(55);
+        make.height.mas_equalTo(28);
+        make.centerY.equalTo(self);
     }];
     
 }
 
-
-- (UILabel *)nameLabel {
-    if (_nameLabel == nil) {
-        _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = [UIColor whiteColor];
-        _nameLabel.backgroundColor = RGBColorHex(0xff5722);
-        _nameLabel.font = [UIFont systemFontOfSize:18];
-        _nameLabel.textAlignment = NSTextAlignmentCenter;
-        _nameLabel.layer.cornerRadius = 5.0f;
-        _nameLabel.clipsToBounds = YES;
+-(void)allButtonDidClick
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFFootprintFooterViewDidClick:)])
+    {
+        [self.delegate ZFFootprintFooterViewDidClick:1];
     }
-    return _nameLabel;
 }
+
+-(void)deleteButtonDidClick
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFFootprintFooterViewDidClick:)])
+    {
+        [self.delegate ZFFootprintFooterViewDidClick:2];
+    }
+}
+
+- (UIButton *)allButton {
+    if (_allButton == nil) {
+        _allButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_allButton setTitle:@" 全选  " forState:UIControlStateNormal];
+        [_allButton setImage:[UIImage imageNamed:@"option"] forState:UIControlStateNormal];
+        [_allButton setTitleColor:RGBColorHex(0x1a1a1a) forState:UIControlStateNormal];
+        _allButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        [_allButton addTarget:self action:@selector(allButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _allButton;
+}
+
+
+- (UIButton *)deleteButton {
+    if (_deleteButton == nil) {
+        _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _deleteButton.backgroundColor = RGBColorHex(0xe51c23);
+        [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
+        _deleteButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        [_deleteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _deleteButton.layer.cornerRadius = 5;
+        _deleteButton.clipsToBounds = YES;
+        [_deleteButton addTarget:self action:@selector(deleteButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _deleteButton;
+}
+
 
 @end

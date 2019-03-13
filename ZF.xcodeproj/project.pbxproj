@@ -139,6 +139,7 @@
 		53B1093722378B1100F32ABB /* ZFXuXianView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1093622378B1100F32ABB /* ZFXuXianView.m */; };
 		53E525582237C3EF001CD52D /* ZFMenuAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E525562237C3EF001CD52D /* ZFMenuAlert.m */; };
 		69F9943388184D9DFB8EE494 /* libPods-ZF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */; };
+		847A09BE223917FB0021E236 /* ZFDetailsChoiceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */; };
 		ECC88B8EDBFFA9A3D3667654 /* libPods-ZFUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -423,6 +424,8 @@
 		53E525572237C3EF001CD52D /* ZFMenuAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFMenuAlert.h; sourceTree = "<group>"; };
 		5ADF6DFB4E38624F35CBBCA5 /* Pods-ZFTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZFTests/Pods-ZFTests.release.xcconfig"; sourceTree = "<group>"; };
 		5FAC7E4D0704CFD067CBF286 /* Pods-ZFUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZFUITests/Pods-ZFUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		847A09BC223917FB0021E236 /* ZFDetailsChoiceTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsChoiceTableCell.h; sourceTree = "<group>"; };
+		847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsChoiceTableCell.m; sourceTree = "<group>"; };
 		87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZF.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZFUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC5748F8240DC444AA69277 /* Pods-ZF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZF/Pods-ZF.debug.xcconfig"; sourceTree = "<group>"; };
@@ -615,14 +618,16 @@
 		181991992237C5FF004585D8 /* Footprint(足迹) */ = {
 			isa = PBXGroup;
 			children = (
+				1864717A2238013A00F2C147 /* ZFFootprintVC.h */,
+				1864717B2238013A00F2C147 /* ZFFootprintVC.m */,
 				1819919A2237C629004585D8 /* ZFTimeHeadView.h */,
 				1819919B2237C629004585D8 /* ZFTimeHeadView.m */,
 				1819919D2237C781004585D8 /* ZFRecordDetailsTableCell.h */,
 				1819919E2237C781004585D8 /* ZFRecordDetailsTableCell.m */,
-				1864717A2238013A00F2C147 /* ZFFootprintVC.h */,
-				1864717B2238013A00F2C147 /* ZFFootprintVC.m */,
 				1864717D2238098800F2C147 /* ZFFootprintFooterView.h */,
 				1864717E2238098800F2C147 /* ZFFootprintFooterView.m */,
+				847A09BC223917FB0021E236 /* ZFDetailsChoiceTableCell.h */,
+				847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */,
 			);
 			path = "Footprint(足迹)";
 			sourceTree = "<group>";
@@ -1666,6 +1671,7 @@
 				18F60017222E74F300DE7EF4 /* ZFplaceOrderVC.m in Sources */,
 				189CC0E42223E81300EB5A64 /* HMEmoticonManager.m in Sources */,
 				18285F0B222D131A00CBA408 /* ZFAuctionEndTableCell.m in Sources */,
+				847A09BE223917FB0021E236 /* ZFDetailsChoiceTableCell.m in Sources */,
 				181991902237A393004585D8 /* ZFAddressTagTableCell.m in Sources */,
 				18515F8C222FCC9A00F36E26 /* UIView+DCRolling.m in Sources */,
 				180F31AF222FA1B50040718F /* ZFStationNewsTableCell.m in Sources */,
