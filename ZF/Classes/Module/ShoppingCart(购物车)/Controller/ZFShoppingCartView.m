@@ -14,21 +14,21 @@
 @end
 @implementation ZFShoppingCartView
 
-//- (void)awakeFromNib{
-//    [super awakeFromNib];
-//    [self setUp];
-//}
-//- (instancetype)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        [self setUp];
-//    }
-//    return self;
-//}
-//- (void)setUp{
-//
-//}
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self setup];
+}
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+- (void)setup{
+    self.backgroundColor = RGBColor(230, 230, 230);
+}
 + (instancetype)CartView{
     return [[[NSBundle mainBundle] loadNibNamed:@"ZFShoppingCartView" owner:self options:nil]lastObject];
 }

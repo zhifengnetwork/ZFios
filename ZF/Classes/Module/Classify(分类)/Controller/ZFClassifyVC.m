@@ -7,7 +7,6 @@
 //
 
 #import "ZFClassifyVC.h"
-
 @interface ZFClassifyVC ()
 
 @end
@@ -16,7 +15,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 /*

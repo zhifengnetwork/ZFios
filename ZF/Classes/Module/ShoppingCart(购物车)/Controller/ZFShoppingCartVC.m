@@ -27,7 +27,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     [btn setBackgroundImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
     [btn setTitle:@"管理" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [btn sizeToFit];
+//    [btn sizeToFit];        
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
@@ -39,8 +39,14 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     [self.view addSubview:tableView];
     //结算界面
     ZFShoppingCartView *view = [ZFShoppingCartView CartView];
-    view.frame = CGRectMake(0,tableView.frame.size.height - LL_StatusBarAndNavigationBarHeight, LL_ScreenWidth, 55);
     [self.view addSubview:view];
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.width.mas_equalTo(LL_ScreenWidth);
+        make.height.mas_equalTo(44);
+        make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(-48);
+    }];
     
 }
 

@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong)UILabel *label;
 @property (nonatomic, strong)UIButton *button;//点击的按钮
+@property (nonatomic, strong)UIImageView *image;//显示打开关闭的图片
 @property (nonatomic, strong)UITableView *tableview;
 @property (nonatomic, assign)CGFloat buttonWidth;
 
@@ -24,7 +25,7 @@
 @property (nonatomic, assign)bool buttonImageFlag;//判断表格是否打开
 @property (nonatomic, assign)id <ZFMenuViewDelegate>delegate;
 
-- (void)setViewOriginx:(int)originx viewOriginy:(int)originy buttonHeight:(int)buttonHeight buttonWeight:(int)buttonWeight tableViewHeight:(int)tableViewHeight;
+- (void)setButtonHeight:(int)buttonHeight;
 //隐藏数据源
 - (void)reloadataTableView;
 - (void)closeTableView;
