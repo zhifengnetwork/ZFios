@@ -9,6 +9,7 @@
 #import "ZFShoppingCartCell.h"
 #import "ZFMenuAlert.h"
 #import "ZFMenuView.h"
+#import "ZFShoppingItem.h"
 
 @interface ZFShoppingCartCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;//背景层
@@ -17,9 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *fullSale;//满赠优惠显示
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;//商品图片
 @property (weak, nonatomic) IBOutlet UILabel *goodsLabel;//商品名字
-@property (strong, nonatomic) IBOutlet ZFMenuView *menuView;//下拉框
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *menuHeight;
-
+@property (weak, nonatomic) IBOutlet UIButton *increaseButton;//增加按钮
 @property (weak, nonatomic) IBOutlet UILabel *goodsCountLabel;//商品数量
 @property (weak, nonatomic) IBOutlet UILabel *goodsPriceLabel;//商品价格
 @property (weak, nonatomic) IBOutlet UILabel *saleLabel;//优惠显示
@@ -47,15 +46,22 @@
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = 8.0;
     
-    ZFMenuView *view= [[ZFMenuView alloc]init];
-    [view setViewOriginx:10 viewOriginy:0 buttonHeight:22 buttonWeight:100 tableViewHeight:0];
-    view.arr =@[@"官方标配",@"套餐一",@"套餐二"];
+    ZFMenuView *menuView= [[ZFMenuView alloc]init];
+    [self.contentView addSubview:menuView];
+    menuView.arr =@[@"官方标配",@"套餐一",@"套餐二"];
+    [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self->_goodsLabel.mas_bottom).with.offset(10);
+        make.left.equalTo(self->_increaseButton.mas_right).with.offset(10);
+        make.right.equalTo(self.contentView).with.offset(-10);
+//        make.bottom.equalTo(self->_goodsPriceLabel.mas_top).with.offset(-10);
+        make.centerY.equalTo(self->_increaseButton.mas_centerY);
+        make.width.mas_equalTo(@100);
+        make.height.mas_equalTo(@22);
+    }];
+    [menuView setButtonHeight:22];
     
-    [view closeTableView];
-    if (view.buttonImageFlag == YES) {
-        self.menuHeight.constant= 400;
-    }
-    [self.menuView addSubview:view];
+    [menuView closeTableView];
+    
     
 }
 
@@ -65,6 +71,7 @@
 }
 //商品数量的增加与减少
 - (IBAction)reduce:(id)sender {
+    
 }
 - (IBAction)increase:(id)sender {
 }

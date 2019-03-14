@@ -23,27 +23,27 @@
 }
 - (UILabel *)showCarLabel{
     if (!_showCarLabel) {
-        self.showCarLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, (LL_ScreenWidth/2) - 56, 22)];
+        self.backgroundColor = RGBColorHex(0xf9f9f9);
+        
+        self.showCarLabel = [[UILabel alloc]init];
         self.showCarLabel.font = [UIFont systemFontOfSize:12];
         self.showCarLabel.textAlignment = NSTextAlignmentCenter;
         
-        self.lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 22, (LL_ScreenWidth)/2 - 65, 0.5)];
+        self.lineLabel = [[UILabel alloc]init];
         self.lineLabel.backgroundColor = [UIColor blackColor];
         [self.showCarLabel addSubview:_lineLabel];
         
-        self.img = [[UIImageView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(self.showCarLabel.frame)+ 6, 0, 22, 22)];
-        self.img.image = [UIImage imageNamed:@"down"];
-        [self.showCarLabel addSubview:_img];
+        
         
     }
     return _showCarLabel;
 }
 - (void)configureWithStr:(NSString *)Str boundsWidth:(CGFloat)width{
+    
     self.showCarLabel.text = Str;
     self.showCarLabel.frame = CGRectMake(0, 0, width, 22);
     self.lineLabel.frame = CGRectMake(0, 22, width, 0.5);
-    self.img.image =[UIImage imageNamed:@"down_b"];
-    self.img.frame = CGRectMake(CGRectGetMaxX(self.showCarLabel.frame)+ 6, 0, 22, 22);
+
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

@@ -12,7 +12,6 @@
 
 @property (strong, nonatomic)UILabel *showCarLabel;
 @property (strong, nonatomic)UILabel *lineLabel;
-@property (strong, nonatomic)UIImageView *img;
 
 - (void)configureWithStr:(NSString *)Str boundsWidth:(CGFloat)width;
 @end
