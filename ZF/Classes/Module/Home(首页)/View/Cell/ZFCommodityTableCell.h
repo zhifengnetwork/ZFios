@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFCommodityTableCell : UICollectionViewCell
 
+@property (nonatomic, assign) BOOL isShowButton;
+
 @end
 
 NS_ASSUME_NONNULL_END

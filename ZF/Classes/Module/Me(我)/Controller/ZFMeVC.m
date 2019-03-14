@@ -13,6 +13,8 @@
 #import "ZFMyOrderCollectionCell.h"
 #import "ZFPersonalVC.h"
 #import "ZFFootprintVC.h"
+#import "ZFCommodityInforVC.h"
+#import "ZFCommodityWMVC.h"
 
 
 @interface ZFMeVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFMyHeadViewDelegate>
@@ -196,9 +198,25 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    else if (type==2)
+    {
+        //跳转到商品关注
+        ZFCommodityWMVC *cwmVC = [[ZFCommodityWMVC alloc] init];
+        cwmVC.menuViewStyle = WMMenuViewStyleLine;
+        cwmVC.automaticallyCalculatesItemWidths = YES;
+        cwmVC.showOnNavigationBar = NO;
+        cwmVC.menuViewLayoutMode = WMMenuViewLayoutModeCenter;
+        cwmVC.titleColorSelected = RGBColorHex(0x151515);
+        cwmVC.titleColorNormal = RGBColorHex(0x151515);
+        cwmVC.progressColor = RGBColorHex(0xE51C23);
+        cwmVC.titleSizeSelected = 13.0f;
+        cwmVC.titleSizeNormal = 13.0f;
+        cwmVC.itemMargin = 30.0f;
+        [self.navigationController pushViewController:cwmVC animated:YES];
+    }
     else if (type==4)
     {
-        //跳转到个人资料
+        //跳转到足迹
         ZFFootprintVC* vc = [[ZFFootprintVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }

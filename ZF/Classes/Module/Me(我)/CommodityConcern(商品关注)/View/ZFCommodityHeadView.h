@@ -1,5 +1,5 @@
 //
-//  ZFCommodityInforTableCell.h
+//  ZFCommodityHeadView.h
 //  ZF
 //
 //  Created by admin on 2019/3/14.
@@ -11,9 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 商品信息cell
+ 商品title
  */
-@interface ZFCommodityInforTableCell : UITableViewCell
+@interface ZFCommodityHeadView : UICollectionReusableView
 
 @end
 

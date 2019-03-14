@@ -68,15 +68,22 @@
         make.right.equalTo(self->_bgView.mas_right).offset(-15);
         make.top.equalTo(self->_nameLabel.mas_bottom).offset(3);
     }];
-    
    
 }
+
+-(void)setIsShowButton:(BOOL)isShowButton
+{
+    _isShowButton = isShowButton;
+    
+    _evaluateLabel.hidden = !_isShowButton;
+}
+
 
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
-        _iconView.image = [UIImage imageNamed:@"KK"];
+        _iconView.image = [UIImage imageNamed:@"image"];
         _iconView.clipsToBounds = YES;
         _iconView.layer.cornerRadius = 3.0f;
     }
