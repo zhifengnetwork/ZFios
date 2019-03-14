@@ -140,6 +140,8 @@
 		535886862236600A00D7A4B6 /* ZFShoppingCartView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 535886852236600A00D7A4B6 /* ZFShoppingCartView.xib */; };
 		53B1093722378B1100F32ABB /* ZFXuXianView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1093622378B1100F32ABB /* ZFXuXianView.m */; };
 		69F9943388184D9DFB8EE494 /* libPods-ZF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */; };
+		84499BB22239F8FD00A7A988 /* ZFDetailsChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BB12239F8FD00A7A988 /* ZFDetailsChoiceVC.m */; };
+		84499BB8223A08F000A7A988 /* ZFCommodityInforTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BB7223A08F000A7A988 /* ZFCommodityInforTableCell.m */; };
 		847A09BE223917FB0021E236 /* ZFDetailsChoiceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */; };
 		ECC88B8EDBFFA9A3D3667654 /* libPods-ZFUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */; };
 /* End PBXBuildFile section */
@@ -427,6 +429,10 @@
 		53B1093622378B1100F32ABB /* ZFXuXianView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFXuXianView.m; sourceTree = "<group>"; };
 		5ADF6DFB4E38624F35CBBCA5 /* Pods-ZFTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZFTests/Pods-ZFTests.release.xcconfig"; sourceTree = "<group>"; };
 		5FAC7E4D0704CFD067CBF286 /* Pods-ZFUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZFUITests/Pods-ZFUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		84499BB02239F8FD00A7A988 /* ZFDetailsChoiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsChoiceVC.h; sourceTree = "<group>"; };
+		84499BB12239F8FD00A7A988 /* ZFDetailsChoiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsChoiceVC.m; sourceTree = "<group>"; };
+		84499BB6223A08F000A7A988 /* ZFCommodityInforTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFCommodityInforTableCell.h; sourceTree = "<group>"; };
+		84499BB7223A08F000A7A988 /* ZFCommodityInforTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFCommodityInforTableCell.m; sourceTree = "<group>"; };
 		847A09BC223917FB0021E236 /* ZFDetailsChoiceTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsChoiceTableCell.h; sourceTree = "<group>"; };
 		847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsChoiceTableCell.m; sourceTree = "<group>"; };
 		87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZF.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -623,6 +629,8 @@
 			children = (
 				1864717A2238013A00F2C147 /* ZFFootprintVC.h */,
 				1864717B2238013A00F2C147 /* ZFFootprintVC.m */,
+				84499BB02239F8FD00A7A988 /* ZFDetailsChoiceVC.h */,
+				84499BB12239F8FD00A7A988 /* ZFDetailsChoiceVC.m */,
 				1819919A2237C629004585D8 /* ZFTimeHeadView.h */,
 				1819919B2237C629004585D8 /* ZFTimeHeadView.m */,
 				1819919D2237C781004585D8 /* ZFRecordDetailsTableCell.h */,
@@ -785,6 +793,7 @@
 		182E8A0A2224017C005CE5FE /* Me(我) */ = {
 			isa = PBXGroup;
 			children = (
+				84499BB3223A084E00A7A988 /* CommodityConcern(商品关注) */,
 				181991992237C5FF004585D8 /* Footprint(足迹) */,
 				188F41A72236125000165142 /* PersonalData(个人资料) */,
 				18EA50C222266FAE00A2D612 /* Controller */,
@@ -1420,6 +1429,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		84499BB3223A084E00A7A988 /* CommodityConcern(商品关注) */ = {
+			isa = PBXGroup;
+			children = (
+				84499BB5223A088700A7A988 /* Controller */,
+				84499BB4223A088200A7A988 /* View */,
+			);
+			path = "CommodityConcern(商品关注)";
+			sourceTree = "<group>";
+		};
+		84499BB4223A088200A7A988 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				84499BB6223A08F000A7A988 /* ZFCommodityInforTableCell.h */,
+				84499BB7223A08F000A7A988 /* ZFCommodityInforTableCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		84499BB5223A088700A7A988 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		F8A1C7F47DB1A36D36A8EA77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1698,6 +1732,7 @@
 				53B1093722378B1100F32ABB /* ZFXuXianView.m in Sources */,
 				18285F0E222D1CA600CBA408 /* ZFAuctionEndVC.m in Sources */,
 				189CC0EB2223E81300EB5A64 /* HMEmoticonToolbar.m in Sources */,
+				84499BB22239F8FD00A7A988 /* ZFDetailsChoiceVC.m in Sources */,
 				18E3CF9C222A6A8D003C7737 /* ZFSpikeTitleHeadViewl.m in Sources */,
 				189CC0EC2223E81300EB5A64 /* HMInputView.m in Sources */,
 				180F34082226379200EB0449 /* ZFAccountModificationVC.m in Sources */,
@@ -1729,6 +1764,7 @@
 				189CC0F92223EA2400EB5A64 /* http_user.m in Sources */,
 				18EA50C122266F2600A2D612 /* ZFShoppingCartVC.m in Sources */,
 				18F60011222E6A1500DE7EF4 /* ZFPaymentMethodTableCell.m in Sources */,
+				84499BB8223A08F000A7A988 /* ZFCommodityInforTableCell.m in Sources */,
 				189CC0DB2223E81300EB5A64 /* RefreshGifHeader.m in Sources */,
 				18285F08222D072800CBA408 /* ZFAuctionVC.m in Sources */,
 				189CC0E52223E81300EB5A64 /* HMEmoticonButton.m in Sources */,

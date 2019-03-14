@@ -1,27 +1,27 @@
 //
-//  ZFFootprintVC.m
+//  ZFDetailsChoiceVC.m
 //  ZF
 //
-//  Created by apple on 2019/3/12.
+//  Created by admin on 2019/3/14.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFFootprintVC.h"
+#import "ZFDetailsChoiceVC.h"
 #import "ZFTool.h"
 #import "ZFTimeHeadView.h"
-#import "ZFRecordDetailsTableCell.h"
-#import "ZFDetailsChoiceVC.h"
+#import "ZFDetailsChoiceTableCell.h"
+#import "ZFFootprintFooterView.h"
 
-
-@interface ZFFootprintVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZFDetailsChoiceVC ()<UITableViewDelegate,UITableViewDataSource,ZFFootprintFooterViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) ZFFootprintFooterView *footerView;
 
 @end
 
-@implementation ZFFootprintVC
+@implementation ZFDetailsChoiceVC
 
-static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID";
+static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,7 +36,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
     UIView *rightCustomView = [[UIView alloc] initWithFrame:rightButton.frame];
     [rightCustomView addSubview:rightButton];
-    [rightButton setTitle:@"编辑" forState:UIControlStateNormal];
+    [rightButton setTitle:@"完成" forState:UIControlStateNormal];
     [rightButton setBackgroundColor:RGBColorHex(0xff0000)];
     rightButton.layer.cornerRadius = 3.0f;
     rightButton.clipsToBounds = YES;
@@ -46,8 +46,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 
 - (void)rightButtonClick
 {
-    ZFDetailsChoiceVC* vc = [[ZFDetailsChoiceVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,10 +56,16 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 
 - (void)setupTableView
 {
+    [self.view addSubview:self.footerView];
+    [_footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(50);
+    }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
-        make.bottom.equalTo(self.view);
+        make.bottom.equalTo(self->_footerView.mas_top);
     }];
     
     self.tableView.estimatedRowHeight = 0;
@@ -70,7 +75,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [self.tableView registerClass:[ZFRecordDetailsTableCell class] forCellReuseIdentifier:ZFRecordDetailsTableCellID];
+    [self.tableView registerClass:[ZFDetailsChoiceTableCell class] forCellReuseIdentifier:ZFDetailsChoiceTableCellID];
 }
 
 
@@ -90,8 +95,8 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 {
     UITableViewCell *cell = nil;
     
-    ZFRecordDetailsTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFRecordDetailsTableCellID];
-    scell = [[ZFRecordDetailsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFRecordDetailsTableCellID];
+    ZFDetailsChoiceTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFDetailsChoiceTableCellID];
+    scell = [[ZFDetailsChoiceTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDetailsChoiceTableCellID];
     
     cell = scell;
     
@@ -134,9 +139,9 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 {
     if (type==1)
     {
-//        //跳转到个人资料
-//        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
+        //        //跳转到个人资料
+        //        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
+        //        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (type==2)
     {
@@ -158,6 +163,16 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
         
     }
     return _tableView;
+}
+
+-(ZFFootprintFooterView *)footerView
+{
+    if (_footerView==nil)
+    {
+        _footerView = [[ZFFootprintFooterView alloc]init];
+    }
+    
+    return _footerView;
 }
 
 
