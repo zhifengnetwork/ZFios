@@ -8,13 +8,14 @@
 
 #import "ZFCommodityWMVC.h"
 #import "ZFCommodityInforVC.h"
+#import "ZFStoreConcernVC.h"
 #import "ZFTool.h"
 
 
 @interface ZFCommodityWMVC ()
 
 @property (nonatomic, strong) ZFCommodityInforVC *vc1;
-@property (nonatomic, strong) ZFCommodityInforVC *vc2;
+@property (nonatomic, strong) ZFStoreConcernVC *vc2;
 
 @end
 
@@ -121,11 +122,11 @@
     return _vc1;
 }
 
--(ZFCommodityInforVC *)vc2
+-(ZFStoreConcernVC *)vc2
 {
     if (_vc2==nil)
     {
-        _vc2 = [[ZFCommodityInforVC alloc]init];
+        _vc2 = [[ZFStoreConcernVC alloc]init];
         _vc2.type = @"1";
     }
     return _vc2;

@@ -60,6 +60,12 @@
 }
 
 
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    _titleLabel.text = _title;
+}
+
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];

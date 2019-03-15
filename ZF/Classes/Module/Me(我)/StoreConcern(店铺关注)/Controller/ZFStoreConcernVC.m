@@ -1,32 +1,32 @@
 //
-//  ZFCommodityInforVC.m
+//  ZFStoreConcernVC.m
 //  ZF
 //
-//  Created by admin on 2019/3/14.
+//  Created by admin on 2019/3/15.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFCommodityInforVC.h"
-#import "RefreshGifHeader.h"
-#import "ZFCommodityInforViewCell.h"
+#import "ZFStoreConcernVC.h"
+#import "ZFStoreConcernViewCell.h"
+#import "ZFFavoriteShopViewCell.h"
+#import "ZFShopImgeViewCell.h"
 #import "ZFCommodityHeadView.h"
-#import "ZFCommodityTableCell.h"
-#import "ZFClassificationHeadView.h"
+#import "RefreshGifHeader.h"
 
-@interface ZFCommodityInforVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFClassificationHeadViewDelegate>
+@interface ZFStoreConcernVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 /* collectionView */
 @property (strong , nonatomic)UICollectionView *collectionView;
 
 @end
 
-@implementation ZFCommodityInforVC
+@implementation ZFStoreConcernVC
 
 /* cell */
-static NSString *const ZFCommodityInforViewCellID = @"ZFCommodityInforViewCellID";
-static NSString *const ZFCommodityTableCellID = @"ZFCommodityTableCellID";
+static NSString *const ZFStoreConcernViewCellID = @"ZFStoreConcernViewCellID";
+static NSString *const ZFFavoriteShopViewCellID = @"ZFFavoriteShopViewCellID";
+static NSString *const ZFShopImgeViewCellID = @"ZFShopImgeViewCellID";
 /* head */
-static NSString *const ZFClassificationHeadViewID = @"ZFClassificationHeadViewID";
 static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 /* foot */
 
@@ -34,21 +34,10 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//        self.title = @"我的关注";
-//    
-//        UIImage *imgRight = [UIImage imageNamed:@"All"];
-//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(editButtonDidClick)];
-    
     [self setupUI];
     
 }
 
--(void)editButtonDidClick
-{
-    //    LKEditingInformationVC* vc = [[LKEditingInformationVC alloc]init];
-    //    vc.userInfo = self.userInfo;
-    //    [self.navigationController pushViewController:vc animated:YES];
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -69,7 +58,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     self.collectionView.backgroundColor = TableViewBGColor;
     
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-
+    
 }
 
 -(void)loadData
@@ -82,16 +71,20 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 //有多少分组
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (section==0)
     {
-        return 2;
+        return 3;
     }
-    return 5;
+    else if (section==2)
+    {
+        return 4;
+    }
+    return 1;
 }
 
 
@@ -100,25 +93,26 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     UICollectionViewCell *gridcell = nil;
     if (indexPath.section == 0)
     {
-        //关注商品
-        ZFCommodityInforViewCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFCommodityInforViewCellID forIndexPath:indexPath];
+        //关注店铺
+        ZFStoreConcernViewCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFStoreConcernViewCellID forIndexPath:indexPath];
         
         gridcell = oell;
     }
     else if (indexPath.section == 1)
     {
-        //猜您喜欢的商品
-        ZFCommodityTableCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFCommodityTableCellID forIndexPath:indexPath];
-        xell.isShowButton = NO;
+        //猜您喜欢的店铺
+        ZFFavoriteShopViewCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFFavoriteShopViewCellID forIndexPath:indexPath];
         gridcell = xell;
+    }
+    else if (indexPath.section == 2)
+    {
+        //猜您喜欢的店铺图片
+        ZFShopImgeViewCell *kell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFShopImgeViewCellID forIndexPath:indexPath];
+        gridcell = kell;
     }
     return gridcell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 5;
-}
 
 //分组的头部尾部
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -131,12 +125,8 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     {
         if (indexPath.section == 0)
         {
-            ZFClassificationHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassificationHeadViewID forIndexPath:indexPath];
-            reusableview = headerView;
-        }
-        else if (indexPath.section == 1)
-        {
             ZFCommodityHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFCommodityHeadViewID forIndexPath:indexPath];
+            headerView.title = @"猜您喜欢的店铺";
             reusableview = headerView;
         }
         
@@ -159,13 +149,18 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 {
     if (indexPath.section == 0)
     {
-        return CGSizeMake(LL_ScreenWidth, 110);
+        return CGSizeMake(LL_ScreenWidth, 70);
     }
     else if (indexPath.section == 1)
     {
-        return CGSizeMake((LL_ScreenWidth - 4)/2, (LL_ScreenWidth - 4)/2 + 40);
+        return CGSizeMake(LL_ScreenWidth, 70);
     }
-
+    else if (indexPath.section == 2)
+    {
+//        return CGSizeMake((LL_ScreenWidth - 4)/4, (LL_ScreenWidth - 4)/4 + 40);
+        return CGSizeMake(LL_ScreenWidth/4 , LL_ScreenWidth/4 + 10);
+    }
+    
     return CGSizeZero;
 }
 
@@ -194,14 +189,11 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 #pragma mark - head宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return CGSizeMake(LL_ScreenWidth, 40);
-    }
-    else if (section == 1)
+    if (section==0)
     {
         return CGSizeMake(LL_ScreenWidth, 50);
     }
+    
     return CGSizeZero;
 }
 
@@ -247,20 +239,6 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 }
 
 
-//商品关注headview被点击 1:分类 2:有券 3:促销 4:降价 5:有货
-- (void)ZFClassificationHeadViewDidClick:(int)type;
-{
-    if (type==1)
-    {
-        //跳转到分类
-//        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-    }
-    
-}
-
-
-
 - (UICollectionView *)collectionView
 {
     if (!_collectionView) {
@@ -271,16 +249,15 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
         _collectionView.frame = CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight-LL_StatusBarAndNavigationBarHeight);
         _collectionView.showsVerticalScrollIndicator = NO;
         //注册
-        [_collectionView registerClass:[ZFCommodityInforViewCell class] forCellWithReuseIdentifier:ZFCommodityInforViewCellID];
-        [_collectionView registerClass:[ZFCommodityTableCell class] forCellWithReuseIdentifier:ZFCommodityTableCellID];
+        [_collectionView registerClass:[ZFStoreConcernViewCell class] forCellWithReuseIdentifier:ZFStoreConcernViewCellID];
+        [_collectionView registerClass:[ZFFavoriteShopViewCell class] forCellWithReuseIdentifier:ZFFavoriteShopViewCellID];
+        [_collectionView registerClass:[ZFShopImgeViewCell class] forCellWithReuseIdentifier:ZFShopImgeViewCellID];
         
-        [_collectionView registerClass:[ZFClassificationHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassificationHeadViewID];
         [_collectionView registerClass:[ZFCommodityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFCommodityHeadViewID];
         
         [self.view addSubview:_collectionView];
     }
     return _collectionView;
 }
-
 
 @end
