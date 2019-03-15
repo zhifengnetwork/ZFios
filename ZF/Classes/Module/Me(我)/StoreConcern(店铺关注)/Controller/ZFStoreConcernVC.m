@@ -123,7 +123,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     //头部
     if (kind == UICollectionElementKindSectionHeader)
     {
-        if (indexPath.section == 0)
+        if (indexPath.section == 1)
         {
             ZFCommodityHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFCommodityHeadViewID forIndexPath:indexPath];
             headerView.title = @"猜您喜欢的店铺";
@@ -189,7 +189,11 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 #pragma mark - head宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    if (section==0)
+    if (section==1)
+    {
+        return CGSizeMake(LL_ScreenWidth, 50);
+    }
+    else if (section==1)
     {
         return CGSizeMake(LL_ScreenWidth, 50);
     }
@@ -222,7 +226,12 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 #pragma mark - Y间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return (section == 5) ? 4 : 0;
+    if (section==0)
+    {
+        return 5.0f;
+    }
+    
+    return 0;
 }
 
 //点击事件

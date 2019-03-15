@@ -127,7 +127,7 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     if (indexPath.section == 1)
     {
         //个人信息
-        return CGSizeMake((LL_ScreenWidth - 20)/4,100);
+        return CGSizeMake(LL_ScreenWidth/4,100);
     }
     return CGSizeZero;
 }
@@ -211,7 +211,7 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         cwmVC.progressColor = RGBColorHex(0xE51C23);
         cwmVC.titleSizeSelected = 13.0f;
         cwmVC.titleSizeNormal = 13.0f;
-        cwmVC.itemMargin = 30.0f;
+        cwmVC.itemMargin = 100.0f;
         [self.navigationController pushViewController:cwmVC animated:YES];
     }
     else if (type==4)
