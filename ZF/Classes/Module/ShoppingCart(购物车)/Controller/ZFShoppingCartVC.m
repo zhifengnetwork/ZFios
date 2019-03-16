@@ -8,7 +8,7 @@
 
 #import "ZFShoppingCartVC.h"
 #import "ZFShoppingCartCell.h"
-#import "ZFShoppingCartView.h"
+#import "ZFSettlementView.h"
 @interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -38,7 +38,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     tableView.rowHeight = 270;
     [self.view addSubview:tableView];
     //结算界面
-    ZFShoppingCartView *view = [ZFShoppingCartView CartView];
+    ZFSettlementView *view = [ZFSettlementView CartView];
     [self.view addSubview:view];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
