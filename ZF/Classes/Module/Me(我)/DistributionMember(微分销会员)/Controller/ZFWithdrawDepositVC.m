@@ -58,7 +58,7 @@ static NSString *const ZFBannerHeadViewID = @"ZFBannerHeadViewID";
 
 - (void)setupUI
 {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColorHex(0xffffff);
     self.collectionView.backgroundColor = TableViewBGColor;
     
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];

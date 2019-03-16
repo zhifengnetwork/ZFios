@@ -26,7 +26,7 @@
 
 - (void)mySetup
 {
-    self.contentView.backgroundColor = TableViewBGColor;
+    self.contentView.backgroundColor = RGBColorHex(0xffffff);
     [self.contentView addSubview:self.bgView];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -49,9 +49,9 @@
     if(_bgView==nil)
     {
         _bgView = [[UIView alloc]initWithFrame:CGRectZero];
-        _bgView.backgroundColor = RGBColorHex(0xffffff);
+        _bgView.backgroundColor = [UIColor whiteColor];
         _bgView.clipsToBounds = YES;
-        _bgView.layer.cornerRadius = 3.0f;
+        _bgView.layer.cornerRadius = 13.0f;
     }
     return _bgView;
 }

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  提现cell
  */
-@interface ZFWithdrawDepositTableCell : BaseBgviewTableCell
+@interface ZFWithdrawDepositTableCell : UICollectionViewCell
 
 @end
 

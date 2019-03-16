@@ -90,6 +90,7 @@
     if (_upgradeButton == nil) {
         _upgradeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_upgradeButton setTitle:@"升级会员" forState:UIControlStateNormal];
+        [_upgradeButton setImage:[UIImage imageNamed:@"shengji"] forState:UIControlStateNormal];
         [_upgradeButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
         _upgradeButton.titleLabel.font = [UIFont systemFontOfSize:12];
         _upgradeButton.backgroundColor = RGBColorHex(0xf3f5f7);
@@ -103,19 +104,21 @@
     if (_commodityButton == nil) {
         _commodityButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_commodityButton setTitle:@"分润商品" forState:UIControlStateNormal];
+        [_commodityButton setImage:[UIImage imageNamed:@"shangpin"] forState:UIControlStateNormal];
         [_commodityButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
         _commodityButton.titleLabel.font = [UIFont systemFontOfSize:12];
         _commodityButton.backgroundColor = RGBColorHex(0xf3f5f7);
         [_commodityButton setImagePosition:LXMImagePositionTop spacing:11];
         [_commodityButton addTarget:self action:@selector(commodityButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _upgradeButton;
+    return _commodityButton;
 }
 
 - (UIButton *)recommendButton {
     if (_recommendButton == nil) {
         _recommendButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_recommendButton setTitle:@"推荐会员" forState:UIControlStateNormal];
+        [_recommendButton setImage:[UIImage imageNamed:@"huiyuan"] forState:UIControlStateNormal];
         [_recommendButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
         _recommendButton.titleLabel.font = [UIFont systemFontOfSize:12];
         _recommendButton.backgroundColor = RGBColorHex(0xf3f5f7);
@@ -129,6 +132,7 @@
     if (_accountButton == nil) {
         _accountButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_accountButton setTitle:@"账户管理" forState:UIControlStateNormal];
+        [_accountButton setImage:[UIImage imageNamed:@"guanli"] forState:UIControlStateNormal];
         [_accountButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
         _accountButton.titleLabel.font = [UIFont systemFontOfSize:12];
         _accountButton.backgroundColor = RGBColorHex(0xf3f5f7);
