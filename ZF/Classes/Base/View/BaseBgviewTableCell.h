@@ -1,5 +1,5 @@
 //
-//  ZFWithdrawDepositTableCell.h
+//  BaseBgviewTableCell.h
 //  ZF
 //
 //  Created by admin on 2019/3/16.
@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseBgviewTableCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- 提现cell
- */
-@interface ZFWithdrawDepositTableCell : BaseBgviewTableCell
+@interface BaseBgviewTableCell : UICollectionViewCell
+
+@property (nonatomic, strong) UIView *bgView;
+
+- (void)setup;
 
 @end
 

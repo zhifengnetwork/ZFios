@@ -19,6 +19,7 @@
 #import "TYShowAlertView.h"
 #import "ZFCumulativeVC.h"
 #import "ZFOfflinePickupVC.h"
+#import "ZFWithdrawDepositVC.h"
 
 
 @interface ZFMeVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFMyHeadViewDelegate>
@@ -230,8 +231,12 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 //            ZFSignInView* windowView = [[ZFSignInView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
 //            [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
         
-        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+//        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        ZFWithdrawDepositVC* vc = [[ZFWithdrawDepositVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+        
         
     }
     

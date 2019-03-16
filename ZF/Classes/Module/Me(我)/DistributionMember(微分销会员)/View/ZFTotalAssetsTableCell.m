@@ -1,21 +1,21 @@
 //
-//  ZFWithdrawDepositTableCell.m
+//  ZFTotalAssetsTableCell.m
 //  ZF
 //
 //  Created by admin on 2019/3/16.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFWithdrawDepositTableCell.h"
+#import "ZFTotalAssetsTableCell.h"
 
-@interface ZFWithdrawDepositTableCell()
+@interface ZFTotalAssetsTableCell()
 
 @property (nonatomic, strong) UILabel* moneyLabel;
-@property (nonatomic, strong) UIButton *distrButton;
+@property (nonatomic, strong) UILabel* totalMoneyLabel;
 
 @end
 
-@implementation ZFWithdrawDepositTableCell
+@implementation ZFTotalAssetsTableCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -31,14 +31,14 @@
 {
     self.contentView.backgroundColor = TableViewBGColor;
     [self.contentView addSubview:self.moneyLabel];
-    [self.contentView addSubview:self.distrButton];
+    [self.contentView addSubview:self.totalMoneyLabel];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(55);
         make.centerY.equalTo(self.contentView);
     }];
     
-    [_distrButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_totalMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-55);
         make.centerY.equalTo(self.contentView);
     }];
@@ -58,35 +58,25 @@
     
 }
 
-- (void)distrButtonDidClick
-{
-    
-}
-
 
 - (UILabel *)moneyLabel {
     if (_moneyLabel == nil) {
         _moneyLabel = [[UILabel alloc] init];
         _moneyLabel.textColor = RGBColorHex(0x333333);
         _moneyLabel.font = [UIFont systemFontOfSize:12];
-        _moneyLabel.text = @"账户余额¥670元";
+        _moneyLabel.text = @"积累收益¥670元";
     }
     return _moneyLabel;
 }
 
-- (UIButton *)distrButton {
-    if (_distrButton == nil) {
-        _distrButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_distrButton setTitle:@"提现" forState:UIControlStateNormal];
-        [_distrButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
-        _distrButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_distrButton setBackgroundImage:[UIImage imageNamed:@"anniu"] forState:UIControlStateNormal];
-        _distrButton.layer.cornerRadius = 13;
-        _distrButton.clipsToBounds = YES;
-        [_distrButton addTarget:self action:@selector(distrButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+- (UILabel *)totalMoneyLabel {
+    if (_totalMoneyLabel == nil) {
+        _totalMoneyLabel = [[UILabel alloc] init];
+        _totalMoneyLabel.textColor = RGBColorHex(0x333333);
+        _totalMoneyLabel.font = [UIFont systemFontOfSize:12];
+        _totalMoneyLabel.text = @"资产总计¥670(元)";
     }
-    return _distrButton;
+    return _totalMoneyLabel;
 }
-
 
 @end

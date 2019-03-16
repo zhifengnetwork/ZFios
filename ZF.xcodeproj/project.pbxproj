@@ -161,7 +161,10 @@
 		84ED0CD1223CB05700BC13C7 /* ZFCumulativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */; };
 		84ED0CD5223CD8D100BC13C7 /* ZFOfflinePickupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD4223CD8D100BC13C7 /* ZFOfflinePickupVC.m */; };
 		84ED0CDE223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CDD223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m */; };
-		84ED0CE1223CE5C900BC13C7 /* ZFBaseBgviewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE0223CE5C900BC13C7 /* ZFBaseBgviewTableCell.m */; };
+		84ED0CE1223CE5C900BC13C7 /* BaseBgviewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE0223CE5C900BC13C7 /* BaseBgviewTableCell.m */; };
+		84ED0CE4223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE3223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m */; };
+		84ED0CE7223CFB3200BC13C7 /* ZFDistributionMemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE6223CFB3200BC13C7 /* ZFDistributionMemTableCell.m */; };
+		84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE9223CFF8000BC13C7 /* ZFWithdrawDepositVC.m */; };
 		ECC88B8EDBFFA9A3D3667654 /* libPods-ZFUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -490,8 +493,14 @@
 		84ED0CD4223CD8D100BC13C7 /* ZFOfflinePickupVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFOfflinePickupVC.m; sourceTree = "<group>"; };
 		84ED0CDC223CE30000BC13C7 /* ZFWithdrawDepositTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFWithdrawDepositTableCell.h; sourceTree = "<group>"; };
 		84ED0CDD223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFWithdrawDepositTableCell.m; sourceTree = "<group>"; };
-		84ED0CDF223CE5C900BC13C7 /* ZFBaseBgviewTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFBaseBgviewTableCell.h; sourceTree = "<group>"; };
-		84ED0CE0223CE5C900BC13C7 /* ZFBaseBgviewTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFBaseBgviewTableCell.m; sourceTree = "<group>"; };
+		84ED0CDF223CE5C900BC13C7 /* BaseBgviewTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseBgviewTableCell.h; sourceTree = "<group>"; };
+		84ED0CE0223CE5C900BC13C7 /* BaseBgviewTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseBgviewTableCell.m; sourceTree = "<group>"; };
+		84ED0CE2223CF9E700BC13C7 /* ZFTotalAssetsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFTotalAssetsTableCell.h; sourceTree = "<group>"; };
+		84ED0CE3223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFTotalAssetsTableCell.m; sourceTree = "<group>"; };
+		84ED0CE5223CFB3200BC13C7 /* ZFDistributionMemTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDistributionMemTableCell.h; sourceTree = "<group>"; };
+		84ED0CE6223CFB3200BC13C7 /* ZFDistributionMemTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDistributionMemTableCell.m; sourceTree = "<group>"; };
+		84ED0CE8223CFF8000BC13C7 /* ZFWithdrawDepositVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFWithdrawDepositVC.h; sourceTree = "<group>"; };
+		84ED0CE9223CFF8000BC13C7 /* ZFWithdrawDepositVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFWithdrawDepositVC.m; sourceTree = "<group>"; };
 		87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZF.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZFUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC5748F8240DC444AA69277 /* Pods-ZF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZF/Pods-ZF.debug.xcconfig"; sourceTree = "<group>"; };
@@ -948,8 +957,8 @@
 				18482D84223B8742008342C8 /* BaseCollectionHeadView.m */,
 				186471772237FB3600F2C147 /* BaseTableViewCell.h */,
 				186471782237FB3600F2C147 /* BaseTableViewCell.m */,
-				84ED0CDF223CE5C900BC13C7 /* ZFBaseBgviewTableCell.h */,
-				84ED0CE0223CE5C900BC13C7 /* ZFBaseBgviewTableCell.m */,
+				84ED0CDF223CE5C900BC13C7 /* BaseBgviewTableCell.h */,
+				84ED0CE0223CE5C900BC13C7 /* BaseBgviewTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1642,6 +1651,10 @@
 			children = (
 				84ED0CDC223CE30000BC13C7 /* ZFWithdrawDepositTableCell.h */,
 				84ED0CDD223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m */,
+				84ED0CE2223CF9E700BC13C7 /* ZFTotalAssetsTableCell.h */,
+				84ED0CE3223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m */,
+				84ED0CE5223CFB3200BC13C7 /* ZFDistributionMemTableCell.h */,
+				84ED0CE6223CFB3200BC13C7 /* ZFDistributionMemTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1649,6 +1662,8 @@
 		84ED0CD8223CE0D700BC13C7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				84ED0CE8223CFF8000BC13C7 /* ZFWithdrawDepositVC.h */,
+				84ED0CE9223CFF8000BC13C7 /* ZFWithdrawDepositVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1938,6 +1953,7 @@
 				53B1093722378B1100F32ABB /* ZFXuXianView.m in Sources */,
 				18285F0E222D1CA600CBA408 /* ZFAuctionEndVC.m in Sources */,
 				189CC0EB2223E81300EB5A64 /* HMEmoticonToolbar.m in Sources */,
+				84ED0CE4223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m in Sources */,
 				84499BB22239F8FD00A7A988 /* ZFDetailsChoiceVC.m in Sources */,
 				18E3CF9C222A6A8D003C7737 /* ZFSpikeTitleHeadViewl.m in Sources */,
 				189CC0EC2223E81300EB5A64 /* HMInputView.m in Sources */,
@@ -1948,6 +1964,7 @@
 				1808E0D42231191600B9DB1D /* ZFSecondkillMerTableCell.m in Sources */,
 				18482D88223B8743008342C8 /* BaseCollectionCell.m in Sources */,
 				1830DB6B2232181900C30C90 /* ZFEndSpikeHeadView.m in Sources */,
+				84ED0CE7223CFB3200BC13C7 /* ZFDistributionMemTableCell.m in Sources */,
 				182E899B2223BEA2005CE5FE /* main.m in Sources */,
 				180F31A9222F71AF0040718F /* ZFTotalCommodityTableCell.m in Sources */,
 				181991982237AC12004585D8 /* ZFEditorialConsigneeVC.m in Sources */,
@@ -1979,7 +1996,7 @@
 				189CC0E52223E81300EB5A64 /* HMEmoticonButton.m in Sources */,
 				181A421F2232209F008A7014 /* ZFMyHeadView.m in Sources */,
 				189CC0E22223E81300EB5A64 /* HMEmoticonTipView.m in Sources */,
-				84ED0CE1223CE5C900BC13C7 /* ZFBaseBgviewTableCell.m in Sources */,
+				84ED0CE1223CE5C900BC13C7 /* BaseBgviewTableCell.m in Sources */,
 				188F41B5223658E700165142 /* ZFPersonalDataVC.m in Sources */,
 				18381E72222785CF009F176F /* ZFSpikeMerchandiseTableCell.m in Sources */,
 				18515F8B222FCC9A00F36E26 /* DCTitleRolling.m in Sources */,
@@ -2018,6 +2035,7 @@
 				1808E0D72231224E00B9DB1D /* ZFSpikeFooterView.m in Sources */,
 				18381E6F22278115009F176F /* ZFClassificationTableCell.m in Sources */,
 				18381E7C2227F233009F176F /* ZFPicturesDisplayingHeadView.m in Sources */,
+				84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */,
 				188F41B82236666400165142 /* ZFTextInputVC.m in Sources */,
 				189CC0E82223E81300EB5A64 /* NSBundle+HMEmoticon.m in Sources */,
 				1830DB712232560300C30C90 /* ZFMyOrderHeadView.m in Sources */,

@@ -1,27 +1,25 @@
 //
-//  ZFBaseBgviewTableCell.m
+//  BaseBgviewTableCell.m
 //  ZF
 //
 //  Created by admin on 2019/3/16.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFBaseBgviewTableCell.h"
+#import "BaseBgviewTableCell.h"
 
-@interface ZFBaseBgviewTableCell()
+@interface BaseBgviewTableCell()
 
 @end
 
-@implementation ZFBaseBgviewTableCell
+@implementation BaseBgviewTableCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super initWithFrame:frame];
     if (self)
     {
-        [self mySetup];
         [self setup];
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }

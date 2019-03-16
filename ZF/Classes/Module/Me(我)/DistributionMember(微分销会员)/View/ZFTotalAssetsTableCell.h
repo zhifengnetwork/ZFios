@@ -1,5 +1,5 @@
 //
-//  ZFBaseBgviewTableCell.h
+//  ZFTotalAssetsTableCell.h
 //  ZF
 //
 //  Created by admin on 2019/3/16.
@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseBgviewTableCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZFBaseBgviewTableCell : UITableViewCell
-
-@property (nonatomic, strong) UIView *bgView;
-
-- (void)setup;
+/**
+ 资产总计cell
+ */
+@interface ZFTotalAssetsTableCell : BaseBgviewTableCell
 
 @end
 

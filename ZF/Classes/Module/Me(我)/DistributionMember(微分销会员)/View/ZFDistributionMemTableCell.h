@@ -1,5 +1,5 @@
 //
-//  ZFWithdrawDepositTableCell.h
+//  ZFDistributionMemTableCell.h
 //  ZF
 //
 //  Created by admin on 2019/3/16.
@@ -11,10 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**
- 提现cell
- */
-@interface ZFWithdrawDepositTableCell : BaseBgviewTableCell
+
+@interface ZFDistributionMemTableCell : BaseBgviewTableCell
 
 @end
 
