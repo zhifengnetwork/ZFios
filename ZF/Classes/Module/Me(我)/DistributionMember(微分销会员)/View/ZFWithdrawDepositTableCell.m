@@ -10,6 +10,7 @@
 
 @interface ZFWithdrawDepositTableCell()
 
+@property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UILabel* moneyLabel;
 @property (nonatomic, strong) UIButton *distrButton;
 
@@ -30,8 +31,16 @@
 - (void)setup
 {
     self.contentView.backgroundColor = TableViewBGColor;
+    [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.moneyLabel];
     [self.contentView addSubview:self.distrButton];
+    
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-15);
+        make.top.mas_equalTo(10);
+        make.bottom.mas_equalTo(0);
+    }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(55);
@@ -52,7 +61,7 @@
      {
          make.centerX.centerY.equalTo(self.contentView);
          make.width.mas_equalTo(0.5f);
-         make.height.mas_equalTo(60.0f);
+         make.height.mas_equalTo(40.0f);
      }];
     
     
@@ -88,5 +97,16 @@
     return _distrButton;
 }
 
+-(UIView *)bgView
+{
+    if(_bgView==nil)
+    {
+        _bgView = [[UIView alloc]initWithFrame:CGRectZero];
+        _bgView.backgroundColor = [UIColor whiteColor];
+        _bgView.clipsToBounds = YES;
+        _bgView.layer.cornerRadius = 13.0f;
+    }
+    return _bgView;
+}
 
 @end
