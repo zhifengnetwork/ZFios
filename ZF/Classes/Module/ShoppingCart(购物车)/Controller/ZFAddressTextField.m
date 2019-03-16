@@ -25,16 +25,5 @@
 - (void)setup{
     
 }
-//控制placeholder的位置
-- (CGRect)placeholderRectForBounds:(CGRect)bounds{
-    
-}
-//控制显示文本的位置
-- (CGRect)textRectForBounds:(CGRect)bounds{
-    
-}
-//控制编辑文本的位置
-- (CGRect)editingRectForBounds:(CGRect)bounds{
-    
-}
+
 @end

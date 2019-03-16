@@ -1,8 +1,8 @@
 //
-//  ZFCommodityInforTableCell.h
+//  ZFGoShoppingTableCell.h
 //  ZF
 //
-//  Created by admin on 2019/3/14.
+//  Created by admin on 2019/3/15.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
@@ -11,9 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 商品信息cell
+ 选购商品cell
  */
-@interface ZFCommodityInforTableCell : UITableViewCell
+@interface ZFGoShoppingTableCell : UITableViewCell
 
 @end
 
