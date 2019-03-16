@@ -15,6 +15,10 @@
 #import "ZFFootprintVC.h"
 #import "ZFCommodityInforVC.h"
 #import "ZFCommodityWMVC.h"
+#import "ZFSignInView.h"
+#import "TYShowAlertView.h"
+#import "ZFCumulativeVC.h"
+#import "ZFOfflinePickupVC.h"
 
 
 @interface ZFMeVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFMyHeadViewDelegate>
@@ -219,6 +223,16 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         //跳转到足迹
         ZFFootprintVC* vc = [[ZFFootprintVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (type==5)
+    {
+        //跳转到签到
+//            ZFSignInView* windowView = [[ZFSignInView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
+//            [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
+        
+        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
     }
     
 }

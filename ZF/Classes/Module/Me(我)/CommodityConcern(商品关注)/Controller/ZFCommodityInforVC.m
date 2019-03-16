@@ -230,7 +230,12 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 #pragma mark - Y间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return (section == 5) ? 4 : 0;
+    if (section==0)
+    {
+        return 5.0f;
+    }
+    
+    return 0;
 }
 
 //点击事件

@@ -149,7 +149,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 {
     if (indexPath.section == 0)
     {
-        return CGSizeMake(LL_ScreenWidth, 70);
+        return CGSizeMake(LL_ScreenWidth, 80);
     }
     else if (indexPath.section == 1)
     {
@@ -193,10 +193,6 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     {
         return CGSizeMake(LL_ScreenWidth, 50);
     }
-    else if (section==1)
-    {
-        return CGSizeMake(LL_ScreenWidth, 50);
-    }
     
     return CGSizeZero;
 }
@@ -227,6 +223,10 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     if (section==0)
+    {
+        return 5.0f;
+    }
+    else   if (section==1)
     {
         return 5.0f;
     }

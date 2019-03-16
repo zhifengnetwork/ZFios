@@ -172,7 +172,7 @@
         [_goShopButton setImage:[UIImage imageNamed:@"arrow"] forState:UIControlStateNormal];
         [_goShopButton setTitleColor:RGBColorHex(0x151515) forState:UIControlStateNormal];
         _goShopButton.titleLabel.font = [UIFont systemFontOfSize:10];
-        [_goShopButton setImagePosition:LXMImagePositionRight spacing:1];
+        [_goShopButton setImagePosition:LXMImagePositionRight spacing:3];
         [_goShopButton addTarget:self action:@selector(goShopButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _goShopButton;

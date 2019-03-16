@@ -36,7 +36,6 @@
     [_noOrderButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(150);
         make.centerX.equalTo(self.contentView);
-        make.width.height.mas_equalTo(100);
     }];
    
 }
@@ -54,8 +53,8 @@
         [_noOrderButton setTitle:@"您暂时没有订单" forState:UIControlStateNormal];
         [_noOrderButton setImage:[UIImage imageNamed:@"OrderManagement"] forState:UIControlStateNormal];
         [_noOrderButton setTitleColor:RGBColorHex(0x646464) forState:UIControlStateNormal];
-        _noOrderButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_noOrderButton setImagePosition:LXMImagePositionTop spacing:16];
+        _noOrderButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_noOrderButton setImagePosition:LXMImagePositionTop spacing:13];
         [_noOrderButton addTarget:self action:@selector(noOrderButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _noOrderButton;

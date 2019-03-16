@@ -190,8 +190,7 @@
         [_goShopsButton setTitle:@"进入店铺" forState:UIControlStateNormal];
         [_goShopsButton setTitleColor:RGBColorHex(0xf72c0b) forState:UIControlStateNormal];
         _goShopsButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        _goShopsButton.layer.borderWidth = 1.0f;
-        _goShopsButton.layer.borderColor = RGBColorHex(0xffe5e3).CGColor;
+        _goShopsButton.backgroundColor = RGBColorHex(0xffe5e3);
         _goShopsButton.layer.cornerRadius = 11;
         _goShopsButton.clipsToBounds = YES;
         [_goShopsButton addTarget:self action:@selector(goShopsButtonDidClick) forControlEvents:UIControlEventTouchUpInside];

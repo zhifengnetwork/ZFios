@@ -34,7 +34,7 @@
     [self.contentView addSubview:self.goShopButton];
     
     [_goShopButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(152);
+        make.top.mas_equalTo(352);
         make.width.mas_equalTo(355);
         make.height.mas_equalTo(40);
         make.centerX.equalTo(self.contentView);
@@ -51,7 +51,7 @@
         _goShopButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _goShopButton.backgroundColor = RGBColorHex(0xd91c1c);
         [_goShopButton setTitle:@"去选购相关商品" forState:UIControlStateNormal];
-        _goShopButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        _goShopButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_goShopButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _goShopButton.layer.cornerRadius = 3;
         _goShopButton.clipsToBounds = YES;
