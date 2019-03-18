@@ -43,6 +43,7 @@
     //设置弹出界面
     [appWindow addSubview:_contentView];
     
+    
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self);
 
@@ -64,6 +65,7 @@
     [cell setup];
     
 }
+
 - (void)dismissAlert{
     [UIView animateWithDuration:0.3 animations:^{
         self.contentView.transform = CGAffineTransformMakeTranslation(0.01, LL_ScreenWidth);

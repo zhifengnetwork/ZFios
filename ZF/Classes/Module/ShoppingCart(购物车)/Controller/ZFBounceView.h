@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ZFBounceView : UIView
+
 - (void)showAlert;
 - (void)dismissAlert;
+
 @end

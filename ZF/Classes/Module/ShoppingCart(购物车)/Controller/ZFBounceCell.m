@@ -43,7 +43,6 @@
     [self addSubview:addExpress];
     [addExpress setImage:[UIImage imageNamed:@"down_b"] forState:UIControlStateNormal];
     [addExpress setTitle:@"第三方快递" forState:UIControlStateNormal];
-    
     [addExpress setTitleColor:RGBColorHex(0x0f0f0f) forState:UIControlStateNormal];
     addExpress.titleLabel.font = [UIFont systemFontOfSize:14];
     
@@ -225,13 +224,17 @@
     }];
     
 }
+
 - (void)createAddress{
     ZFCreateAddressView *createview = [[ZFCreateAddressView alloc]init];
     [self addSubview:createview];
     [createview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(self);
+        make.left.right.bottom.equalTo(self);
+        make.top.equalTo(self.mas_top).with.offset(- 56);
+
     }];
-    [createview setup];
+//    UITapGestureRecognizer *tap  [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(<#selector#>)]
+//    [createview setup];
 
 }
 - (void)agreeProtocol: (UIButton *)button{
@@ -245,5 +248,6 @@
         self.submit.enabled = NO;
     }
 }
+
 @end
 
