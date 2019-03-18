@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseCollectionCell.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  我订单CollectionViewCell
  */
-@interface ZFMyOrderCollectionCell : UICollectionViewCell
+@interface ZFMyOrderCollectionCell : BaseCollectionCell
 
 //标题
 @property (nonatomic, strong) NSString *title;

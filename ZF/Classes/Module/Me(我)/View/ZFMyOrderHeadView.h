@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseCollectionHeadView.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  我订单HeadView
  */
-@interface ZFMyOrderHeadView : UICollectionReusableView
+@interface ZFMyOrderHeadView : BaseCollectionHeadView
 
 @end
 

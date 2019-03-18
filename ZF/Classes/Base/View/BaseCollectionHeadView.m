@@ -33,7 +33,9 @@
     [self addSubview:self.bgView];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
+        make.top.bottom.equalTo(self);
+        make.left.mas_equalTo(10);
+        make.right.mas_equalTo(-10);
     }];
     
     //切圆角

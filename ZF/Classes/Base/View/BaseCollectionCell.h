@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setup;
 
+//头（左边）
+@property (nonatomic, assign) BOOL isHead;
+//尾（右边）
+@property (nonatomic, assign) BOOL isFoot;
+
 @end
 
 NS_ASSUME_NONNULL_END

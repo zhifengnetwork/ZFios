@@ -35,14 +35,35 @@
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.contentView);
     }];
-    
-    //切圆角
-    _bgView.cornerRadius = 15;
 }
 
 - (void)setup
 {
     
+}
+
+
+-(void)setIsHead:(BOOL)isHead
+{
+    _isHead = isHead;
+    [_bgView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.right.equalTo(self.contentView);
+        make.left.mas_equalTo(10);
+    }];
+    
+    _bgView.roundLeft = YES;
+    _bgView.cornerRadius = 15.0f;
+}
+
+-(void)setIsFoot:(BOOL)isFoot
+{
+    _isFoot = isFoot;
+    [_bgView mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.equalTo(self.contentView);
+        make.right.mas_equalTo(-10);
+    }];
+    _bgView.roundRight = YES;
+    _bgView.cornerRadius = 15.0f;
 }
 
 

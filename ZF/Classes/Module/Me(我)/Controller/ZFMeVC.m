@@ -92,7 +92,14 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     {
         //订单
         ZFMyOrderCollectionCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMyOrderCollectionCellID forIndexPath:indexPath];
-
+        if (indexPath.row==0)
+        {
+            oell.isHead = YES;
+        }
+        else if (indexPath.row==3)
+        {
+            oell.isFoot = YES;
+        }
         gridcell = oell;
     }
     
@@ -131,8 +138,14 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 {
     if (indexPath.section == 1)
     {
-        //个人信息
-        return CGSizeMake(LL_ScreenWidth/4,100);
+        //待付款
+        float width = (LL_ScreenWidth-20)*0.25;
+        if (indexPath.row==0 || indexPath.row==3)
+        {
+            return CGSizeMake(width+10,100);
+        }
+        //待付款...
+        return CGSizeMake(width,100);
     }
     return CGSizeZero;
 }

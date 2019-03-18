@@ -14,7 +14,6 @@
 @property (nonatomic, strong) UIImageView* iconView;
 @property (nonatomic, strong) UILabel* nameLabel;
 @property (nonatomic, strong) UILabel* nuberLabel;
-@property (nonatomic, strong) UIView* bgView;
 
 @end
 
@@ -32,14 +31,9 @@
 
 - (void)setup
 {
-    [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.iconView];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.nuberLabel];
-    
-    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
-    }];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView);
@@ -59,9 +53,6 @@
          make.width.mas_equalTo(0.5f);
          make.height.mas_equalTo(40.0f);
      }];
-    
-    //切圆角
-    _bgView.cornerRadius = 15;
     
 }
 
@@ -100,14 +91,6 @@
         _nuberLabel = [[UILabel alloc] init];
     }
     return _nuberLabel;
-}
-
-- (UIView *)bgView {
-    if (_bgView == nil) {
-        _bgView = [[UIView alloc] init];
-        _bgView.backgroundColor = [UIColor whiteColor];
-    }
-    return _bgView;
 }
 
 @end
