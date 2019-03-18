@@ -8,7 +8,7 @@
 
 #import "ZFMyOrderHeadView.h"
 #import "UIView+HJViewStyle.h"
-
+#import "UIButton+LXMImagePosition.h"
 
 @interface ZFMyOrderHeadView()
 
@@ -51,10 +51,23 @@
     
 }
 
+- (void)setLeftTitle:(NSString *)leftTitle
+{
+    _leftTitle = leftTitle;
+    _nameLabel.text = _leftTitle;
+}
+
+- (void)setRightTitle:(NSString *)rightTitle
+{
+    _rightTitle = rightTitle;
+    [_moreButton setTitle:_rightTitle forState:UIControlStateNormal];
+}
+
 
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
+        _nameLabel.textColor = RGBColorHex(0x151515);
         _nameLabel.font = [UIFont systemFontOfSize:15];
         _nameLabel.text = @"我的订单";
     }
@@ -64,9 +77,11 @@
 - (UIButton *)moreButton {
     if (_moreButton == nil) {
         _moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_moreButton setTitle:@"查看更多订单 >" forState:UIControlStateNormal];
-        [_moreButton setTitleColor:RGBColorHex(0x000000) forState:UIControlStateNormal];
+        [_moreButton setTitle:@"查看更多订单" forState:UIControlStateNormal];
+        [_moreButton setImage:[UIImage imageNamed:@"ZJT"] forState:UIControlStateNormal];
+        [_moreButton setTitleColor:RGBColorHex(0x151515) forState:UIControlStateNormal];
         _moreButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_moreButton setImagePosition:LXMImagePositionRight spacing:6];
         [_moreButton addTarget:self action:@selector(moreButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _moreButton;

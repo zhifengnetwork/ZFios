@@ -10,9 +10,9 @@
 #import "UIImageView+WebCache.h"
 #import "UIButton+LXMImagePosition.h"
 #import "SVProgressHUD.h"
+#import "FSCalendar.h"
 
-
-@interface ZFCumulativeVC ()
+@interface ZFCumulativeVC ()<FSCalendarDataSource,FSCalendarDelegate>
 
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UIButton *signButton;
@@ -20,6 +20,14 @@
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) UILabel *totalDayLabel;
 
+@property (weak, nonatomic) FSCalendar *calendar;
+@property (weak, nonatomic) UIButton *previousButton;
+@property (weak, nonatomic) UIButton *nextButton;
+
+@property (strong, nonatomic) NSCalendar *gregorian;
+
+- (void)previousClicked:(id)sender;
+- (void)nextClicked:(id)sender;
 
 @end
 
@@ -29,6 +37,72 @@
     [super viewDidLoad];
     [self setup];
 }
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.title = @"FSCalendar";
+        self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    }
+    return self;
+}
+
+- (void)loadView
+{
+    UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.view = view;
+    
+    // 450 for iPad and 300 for iPhone
+    CGFloat height = [[UIDevice currentDevice].model hasPrefix:@"iPad"] ? 450 : 300;
+    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(15, 210, 345, 330)];
+    calendar.dataSource = self;
+    calendar.delegate = self;
+    calendar.backgroundColor = [UIColor whiteColor];
+    calendar.layer.borderWidth = 1.0f;
+    calendar.layer.borderColor = RGBColorHex(0x999999).CGColor;
+    calendar.layer.cornerRadius = 5;
+    calendar.clipsToBounds = YES;
+    calendar.appearance.headerMinimumDissolvedAlpha = 0;
+    calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
+    [self.view addSubview:calendar];
+    self.calendar = calendar;
+    
+    UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    previousButton.frame = CGRectMake(0, 64+5, 95, 34);
+    previousButton.backgroundColor = [UIColor whiteColor];
+    previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [previousButton setImage:[UIImage imageNamed:@"zuojiantou"] forState:UIControlStateNormal];
+    [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:previousButton];
+    self.previousButton = previousButton;
+    
+    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    nextButton.frame = CGRectMake(CGRectGetWidth(self.view.frame)-95, 64+5, 95, 34);
+    nextButton.backgroundColor = [UIColor whiteColor];
+    nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [nextButton setImage:[UIImage imageNamed:@"youjiantou"] forState:UIControlStateNormal];
+    [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nextButton];
+    self.nextButton = nextButton;
+    
+}
+
+- (void)previousClicked:(id)sender
+{
+    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *previousMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:-1 toDate:currentMonth options:0];
+    [self.calendar setCurrentPage:previousMonth animated:YES];
+}
+
+- (void)nextClicked:(id)sender
+{
+    NSDate *currentMonth = self.calendar.currentPage;
+    NSDate *nextMonth = [self.gregorian dateByAddingUnit:NSCalendarUnitMonth value:1 toDate:currentMonth options:0];
+    [self.calendar setCurrentPage:nextMonth animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -92,7 +166,7 @@
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
-        _iconView.image = [UIImage imageNamed:@"image"];
+        _iconView.image = [UIImage imageNamed:@"jianbian"];
     }
     return _iconView;
 }
