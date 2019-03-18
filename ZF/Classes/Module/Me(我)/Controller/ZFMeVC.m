@@ -9,8 +9,7 @@
 #import "ZFMeVC.h"
 #import "RefreshGifHeader.h"
 #import "ZFMyHeadView.h"
-#import "ZFMyOrderHeadView.h"
-#import "ZFMyOrderCollectionCell.h"
+#import "ZFMyOrderTableCell.h"
 #import "ZFPersonalVC.h"
 #import "ZFFootprintVC.h"
 #import "ZFCommodityInforVC.h"
@@ -20,23 +19,20 @@
 #import "ZFCumulativeVC.h"
 #import "ZFOfflinePickupVC.h"
 #import "ZFWithdrawDepositVC.h"
-#import "ZFMyWalletControllerCell.h"
 #import "ZFFundAccountControllerCell.h"
 
 
-@interface ZFMeVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFMyHeadViewDelegate>
+@interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate>
 
-@property (strong , nonatomic)UICollectionView *collectionView;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) ZFMyHeadView *headView;
 
 @end
 
 
 @implementation ZFMeVC
 
-static NSString *const ZFMyHeadViewID = @"ZFMyHeadViewID";
-static NSString *const ZFMyOrderHeadViewID = @"ZFMyOrderHeadViewID";
-static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
-static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID";
+static NSString *const ZFMyOrderTableCellID = @"ZFMyOrderTableCellID";
 static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountControllerCellID";
 
 - (void)viewDidLoad {
@@ -59,11 +55,19 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
 
 - (void)setupUI
 {
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.collectionView.backgroundColor = TableViewBGColor;
+    self.tableView.backgroundColor = TableViewBGColor;
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    //自动计算高度
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50;
     
-    self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    [self.tableView registerClass:[ZFMyOrderTableCell class] forCellReuseIdentifier:ZFMyOrderTableCellID];
+    [self.tableView registerClass:[ZFFundAccountControllerCell class] forCellReuseIdentifier:ZFFundAccountControllerCellID];
     
+    self.headView = [[ZFMyHeadView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 130)];
+    _headView.delegate = self;
+    self.tableView.tableHeaderView = self.headView;
 }
 
 -(void)loadData
@@ -73,201 +77,78 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
 
 
 
-#pragma mark - <UICollectionViewDataSource>
-//有多少分组
-- (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+#pragma mark - Table view data source
+//有多少组
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+//每个组有多少行
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section==1) {
-        return 4;
-    }
-    else if (section==2) {
-        return 2;
-    }
-    return 0;
+    return 1;
 }
 
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *gridcell = nil;
-    if (indexPath.section == 1)
-    {
-        //订单
-        ZFMyOrderCollectionCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMyOrderCollectionCellID forIndexPath:indexPath];
-        if (indexPath.row==0)
-        {
-            oell.isHead = YES;
-            oell.title = @"待付款";
-            oell.iconName = @"mm3";
-            
-        }
-        else if (indexPath.row==1)
-        {
-            oell.title = @"待发货";
-            oell.iconName = @"mm2";
-        }
-        else if (indexPath.row==2)
-        {
-            oell.title = @"待收货";
-            oell.iconName = @"mm5";
-        }
-        else if (indexPath.row==3)
-        {
-            oell.title = @"待评价";
-            oell.iconName = @"mm4";
-            oell.isFoot = YES;
-        }
-        gridcell = oell;
-    }
-    else if (indexPath.section == 2)
-    {
-        //钱包
-        ZFMyWalletControllerCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMyWalletControllerCellID forIndexPath:indexPath];
-        if (indexPath.row==0)
-        {
-            xell.isHead = YES;
-            xell.title = @"积分";
-            xell.iconName = @"JF1";
-            
-        }
-        else if (indexPath.row==1)
-        {
-            xell.title = @"优惠券";
-            xell.iconName = @"YHJ1";
-            xell.isFoot = YES;
-        }
-        gridcell = xell;
-    }
-    
-    return gridcell;
-}
-
-
-//分组的头部尾部
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    
-    UICollectionReusableView *reusableview = nil;
-    
-    //头部
-    if (kind == UICollectionElementKindSectionHeader)
-    {
-        if (indexPath.section==0)
-        {
-            ZFMyHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyHeadViewID forIndexPath:indexPath];
-            headerView.delegate = self;
-            reusableview = headerView;
-        }
-        else if (indexPath.section==1)
-        {
-            ZFMyOrderHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyOrderHeadViewID forIndexPath:indexPath];
-            reusableview = headerView;
-        }
-        else if (indexPath.section==2)
-        {
-            ZFMyOrderHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyOrderHeadViewID forIndexPath:indexPath];
-            headerView.leftTitle = @"我的钱包";
-            headerView.rightTitle = @"查看钱包";
-            reusableview = headerView;
-        }
-    }
-    
-    return reusableview;
-}
-
-//这里我为了直观的看出每组的CGSize设置用if 后续我会用简洁的三元表示
-#pragma mark - item宽高
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 1)
-    {
-        //待付款
-        float width = (LL_ScreenWidth-20)*0.25;
-        if (indexPath.row==0 || indexPath.row==3)
-        {
-            return CGSizeMake(width+10,60);
-        }
-        //待付款...
-        return CGSizeMake(width,60);
-    }
-    else if (indexPath.section == 2)
-    {
-        //积分
-        float width = (LL_ScreenWidth-40)*0.4;
-        if (indexPath.row==0 || indexPath.row==1)
-        {
-            return CGSizeMake(width+10,70);
-        }
-        //积分
-        return CGSizeMake(width,70);
-    }
-    
-    return CGSizeZero;
-}
-
-//返回rect中的所有的元素的布局属性
-- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewLayoutAttributes *layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-    if (indexPath.section == 4)
-    {
-        
-    }
-    return layoutAttributes;
-}
-
-#pragma mark - head宽高
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    if (section==0)
-    {
-        return CGSizeMake(LL_ScreenWidth, 130);
-    }
-    else if (section==1)
-    {
-        return CGSizeMake(LL_ScreenWidth, 30);
-    }
-    else if (section==2)
-    {
-        return CGSizeMake(LL_ScreenWidth, 30);
-    }
-    return CGSizeZero;
-}
-
-#pragma mark - foot宽高
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-{
-    return CGSizeZero;
-}
-
-#pragma mark - <UICollectionViewDelegateFlowLayout>
-#pragma mark - X间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return (section == 1) ? 0 : 0;
-}
-
-#pragma mark - Y间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-   return 10.0f;
-}
-
-//点击事件
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//每行使用的Cell是什么
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0)
     {
-        if (indexPath.row==0)
+        ZFMyOrderTableCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFMyOrderTableCellID];
+        if (cell == nil)
         {
-            
+            cell = [[ZFMyOrderTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyOrderTableCellID];
         }
+        return cell;
     }
+    else if (indexPath.section==1)
+    {
+        ZFFundAccountControllerCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFFundAccountControllerCellID];
+        if (cell == nil)
+        {
+            cell = [[ZFFundAccountControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFFundAccountControllerCellID];
+        }
+        return cell;
+    }
+    
+    return nil;
+}
+
+//每行的高度是多少
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section==0)
+    {
+        return 88;
+    }
+    else if (indexPath.section==1)
+    {
+        return 40.0f;
+    }
+    
+    return 44.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *cview = [[UIView alloc]init];
+    cview.backgroundColor = [UIColor clearColor];
+    return cview;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section==1)
+    {
+        
+    }
+    
 }
 
 
@@ -317,25 +198,17 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
 }
 
 
-- (UICollectionView *)collectionView
-{
-    if (!_collectionView) {
-        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.frame = CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight);
-        _collectionView.showsVerticalScrollIndicator = NO;
-        //拼团
-        [_collectionView registerClass:[ZFMyOrderCollectionCell class] forCellWithReuseIdentifier:ZFMyOrderCollectionCellID];
-        [_collectionView registerClass:[ZFMyWalletControllerCell class] forCellWithReuseIdentifier:ZFMyWalletControllerCellID];
-        
-        [_collectionView registerClass:[ZFMyHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyHeadViewID];
-        [_collectionView registerClass:[ZFMyOrderHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyOrderHeadViewID];
-        
-        [self.view addSubview:_collectionView];
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight) style:UITableViewStylePlain];
+        //设置数据源，注意必须实现对应的UITableViewDataSource协议
+        _tableView.dataSource=self;
+        //设置代理
+        _tableView.delegate=self;
+        _tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+        [self.view addSubview:_tableView];
     }
-    return _collectionView;
+    return _tableView;
 }
 
 

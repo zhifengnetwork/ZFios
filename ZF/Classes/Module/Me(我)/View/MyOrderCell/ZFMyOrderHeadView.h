@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  我订单HeadView
  */
-@interface ZFMyOrderHeadView : BaseCollectionHeadView
+@interface ZFMyOrderHeadView : UIView
 
 //左标题
 @property (nonatomic, strong) NSString *leftTitle;

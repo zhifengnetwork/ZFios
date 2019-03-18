@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  我的头部headview
  */
-@interface ZFMyHeadView : UICollectionReusableView
+@interface ZFMyHeadView : UIView
 
 @property (nonatomic, weak) id<ZFMyHeadViewDelegate> delegate;
 

@@ -107,6 +107,7 @@
 		189CC0F42223E81300EB5A64 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC0CC2223E81300EB5A64 /* HttpTool.m */; };
 		189CC0F52223E81300EB5A64 /* ZFTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC0CE2223E81300EB5A64 /* ZFTool.m */; };
 		189CC0F92223EA2400EB5A64 /* http_user.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC0F82223EA2400EB5A64 /* http_user.m */; };
+		18B10A7C223FF584007407E0 /* ZFMyOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B10A7B223FF584007407E0 /* ZFMyOrderTableCell.m */; };
 		18C26BFC222D62BD004951D9 /* ZFAuctionWMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C26BFB222D62BD004951D9 /* ZFAuctionWMVC.m */; };
 		18C26BFF222D6AA7004951D9 /* ZFHomeSpikeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C26BFE222D6AA7004951D9 /* ZFHomeSpikeHeadView.m */; };
 		18C26C02222D6C20004951D9 /* ZFTopLineFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C26C01222D6C20004951D9 /* ZFTopLineFootView.m */; };
@@ -391,6 +392,8 @@
 		189CC0CF2223E81300EB5A64 /* ZFTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFTool.h; sourceTree = "<group>"; };
 		189CC0F72223EA2400EB5A64 /* http_user.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = http_user.h; sourceTree = "<group>"; };
 		189CC0F82223EA2400EB5A64 /* http_user.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = http_user.m; sourceTree = "<group>"; };
+		18B10A7A223FF584007407E0 /* ZFMyOrderTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyOrderTableCell.h; sourceTree = "<group>"; };
+		18B10A7B223FF584007407E0 /* ZFMyOrderTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyOrderTableCell.m; sourceTree = "<group>"; };
 		18C26BFA222D62BD004951D9 /* ZFAuctionWMVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAuctionWMVC.h; sourceTree = "<group>"; };
 		18C26BFB222D62BD004951D9 /* ZFAuctionWMVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAuctionWMVC.m; sourceTree = "<group>"; };
 		18C26BFD222D6AA7004951D9 /* ZFHomeSpikeHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFHomeSpikeHeadView.h; sourceTree = "<group>"; };
@@ -727,12 +730,9 @@
 		181A421B2232203D008A7014 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18B10A79223FF51E007407E0 /* MyOrderCell */,
 				181A421D2232209F008A7014 /* ZFMyHeadView.h */,
 				181A421E2232209F008A7014 /* ZFMyHeadView.m */,
-				1830DB6C2232525200C30C90 /* ZFMyOrderCollectionCell.h */,
-				1830DB6D2232525200C30C90 /* ZFMyOrderCollectionCell.m */,
-				1830DB6F2232560300C30C90 /* ZFMyOrderHeadView.h */,
-				1830DB702232560300C30C90 /* ZFMyOrderHeadView.m */,
 				8498DAE1223FA45A008C47A6 /* ZFMyWalletControllerCell.h */,
 				8498DAE2223FA45A008C47A6 /* ZFMyWalletControllerCell.m */,
 				8498DAE4223FA76A008C47A6 /* ZFFundAccountControllerCell.h */,
@@ -1266,6 +1266,19 @@
 				189CC0F82223EA2400EB5A64 /* http_user.m */,
 			);
 			path = user;
+			sourceTree = "<group>";
+		};
+		18B10A79223FF51E007407E0 /* MyOrderCell */ = {
+			isa = PBXGroup;
+			children = (
+				1830DB6C2232525200C30C90 /* ZFMyOrderCollectionCell.h */,
+				1830DB6D2232525200C30C90 /* ZFMyOrderCollectionCell.m */,
+				1830DB6F2232560300C30C90 /* ZFMyOrderHeadView.h */,
+				1830DB702232560300C30C90 /* ZFMyOrderHeadView.m */,
+				18B10A7A223FF584007407E0 /* ZFMyOrderTableCell.h */,
+				18B10A7B223FF584007407E0 /* ZFMyOrderTableCell.m */,
+			);
+			path = MyOrderCell;
 			sourceTree = "<group>";
 		};
 		18C26C03222D7ECA004951D9 /* CountDown */ = {
@@ -2055,6 +2068,7 @@
 				182E8A082224010B005CE5FE /* LoginTypeView.m in Sources */,
 				189CC0DD2223E81300EB5A64 /* StaticTableCell.m in Sources */,
 				849F8BEA223BA16C00D10E2E /* ZFMyOrderVC.m in Sources */,
+				18B10A7C223FF584007407E0 /* ZFMyOrderTableCell.m in Sources */,
 				18285F11222D20BC00CBA408 /* ZFAuctionPeopleTableCell.m in Sources */,
 				53044DF1223D0D4A0097231E /* ZFAddressTextField.m in Sources */,
 				180A97A3222E1812003A12FF /* ZFConfirmationTableCell.m in Sources */,

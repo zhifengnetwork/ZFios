@@ -22,12 +22,13 @@
 
 @implementation ZFFundAccountControllerCell
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    
-    self = [super initWithFrame:frame];
-    if (self) {
-        
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self)
+    {
         [self setup];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -35,35 +36,35 @@
 
 - (void)setup
 {
-    [self addSubview:self.titleLabel];
-    [self addSubview:self.nameLabel];
-    [self addSubview:self.moneyLabel];
-    [self addSubview:self.yuanLabel];
-    [self addSubview:self.moreButton];
+    [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.nameLabel];
+    [self.contentView addSubview:self.moneyLabel];
+    [self.contentView addSubview:self.yuanLabel];
+    [self.contentView addSubview:self.moreButton];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20);
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self.contentView);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_titleLabel.mas_right).offset(44);
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self.contentView);
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_nameLabel.mas_right).offset(23);
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self.contentView);
     }];
     
     [_yuanLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_moneyLabel.mas_right);
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self.contentView);
     }];
     
     [_moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-20);
-        make.centerY.equalTo(self);
+        make.centerY.equalTo(self.contentView);
     }];
 }
 
