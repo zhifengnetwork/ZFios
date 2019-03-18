@@ -17,6 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFMyOrderHeadView : BaseCollectionHeadView
 
+//左标题
+@property (nonatomic, strong) NSString *leftTitle;
+
+//右标题
+@property (nonatomic, strong) NSString *rightTitle;
+
 @end
 
 NS_ASSUME_NONNULL_END

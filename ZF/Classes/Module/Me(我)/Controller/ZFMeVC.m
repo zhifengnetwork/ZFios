@@ -20,6 +20,8 @@
 #import "ZFCumulativeVC.h"
 #import "ZFOfflinePickupVC.h"
 #import "ZFWithdrawDepositVC.h"
+#import "ZFMyWalletControllerCell.h"
+#import "ZFFundAccountControllerCell.h"
 
 
 @interface ZFMeVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFMyHeadViewDelegate>
@@ -34,6 +36,8 @@
 static NSString *const ZFMyHeadViewID = @"ZFMyHeadViewID";
 static NSString *const ZFMyOrderHeadViewID = @"ZFMyOrderHeadViewID";
 static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
+static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID";
+static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountControllerCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,13 +77,16 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 //有多少分组
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (section==1) {
         return 4;
+    }
+    else if (section==2) {
+        return 2;
     }
     return 0;
 }
@@ -95,12 +102,46 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         if (indexPath.row==0)
         {
             oell.isHead = YES;
+            oell.title = @"待付款";
+            oell.iconName = @"mm3";
+            
+        }
+        else if (indexPath.row==1)
+        {
+            oell.title = @"待发货";
+            oell.iconName = @"mm2";
+        }
+        else if (indexPath.row==2)
+        {
+            oell.title = @"待收货";
+            oell.iconName = @"mm5";
         }
         else if (indexPath.row==3)
         {
+            oell.title = @"待评价";
+            oell.iconName = @"mm4";
             oell.isFoot = YES;
         }
         gridcell = oell;
+    }
+    else if (indexPath.section == 2)
+    {
+        //钱包
+        ZFMyWalletControllerCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMyWalletControllerCellID forIndexPath:indexPath];
+        if (indexPath.row==0)
+        {
+            xell.isHead = YES;
+            xell.title = @"积分";
+            xell.iconName = @"JF1";
+            
+        }
+        else if (indexPath.row==1)
+        {
+            xell.title = @"优惠券";
+            xell.iconName = @"YHJ1";
+            xell.isFoot = YES;
+        }
+        gridcell = xell;
     }
     
     return gridcell;
@@ -127,6 +168,13 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
             ZFMyOrderHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyOrderHeadViewID forIndexPath:indexPath];
             reusableview = headerView;
         }
+        else if (indexPath.section==2)
+        {
+            ZFMyOrderHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyOrderHeadViewID forIndexPath:indexPath];
+            headerView.leftTitle = @"我的钱包";
+            headerView.rightTitle = @"查看钱包";
+            reusableview = headerView;
+        }
     }
     
     return reusableview;
@@ -142,11 +190,23 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         float width = (LL_ScreenWidth-20)*0.25;
         if (indexPath.row==0 || indexPath.row==3)
         {
-            return CGSizeMake(width+10,100);
+            return CGSizeMake(width+10,60);
         }
         //待付款...
-        return CGSizeMake(width,100);
+        return CGSizeMake(width,60);
     }
+    else if (indexPath.section == 2)
+    {
+        //积分
+        float width = (LL_ScreenWidth-40)*0.4;
+        if (indexPath.row==0 || indexPath.row==1)
+        {
+            return CGSizeMake(width+10,70);
+        }
+        //积分
+        return CGSizeMake(width,70);
+    }
+    
     return CGSizeZero;
 }
 
@@ -170,7 +230,11 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     }
     else if (section==1)
     {
-        return CGSizeMake(LL_ScreenWidth, 60);
+        return CGSizeMake(LL_ScreenWidth, 30);
+    }
+    else if (section==2)
+    {
+        return CGSizeMake(LL_ScreenWidth, 30);
     }
     return CGSizeZero;
 }
@@ -191,7 +255,7 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 #pragma mark - Y间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return (section == 5) ? 4 : 0;
+   return 10.0f;
 }
 
 //点击事件
@@ -244,10 +308,7 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 //            ZFSignInView* windowView = [[ZFSignInView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
 //            [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
         
-//        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-        
-        ZFWithdrawDepositVC* vc = [[ZFWithdrawDepositVC alloc]init];
+        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
         
         
@@ -267,6 +328,7 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         _collectionView.showsVerticalScrollIndicator = NO;
         //拼团
         [_collectionView registerClass:[ZFMyOrderCollectionCell class] forCellWithReuseIdentifier:ZFMyOrderCollectionCellID];
+        [_collectionView registerClass:[ZFMyWalletControllerCell class] forCellWithReuseIdentifier:ZFMyWalletControllerCellID];
         
         [_collectionView registerClass:[ZFMyHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyHeadViewID];
         [_collectionView registerClass:[ZFMyOrderHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFMyOrderHeadViewID];

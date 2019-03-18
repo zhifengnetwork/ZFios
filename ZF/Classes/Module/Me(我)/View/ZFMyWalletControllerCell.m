@@ -1,23 +1,23 @@
 //
-//  ZFMyOrderCollectionCell.m
+//  ZFMyWalletControllerCell.m
 //  ZF
 //
-//  Created by apple on 08/03/2019.
+//  Created by admin on 2019/3/18.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFMyOrderCollectionCell.h"
+#import "ZFMyWalletControllerCell.h"
 #import "UIView+HJViewStyle.h"
 
-@interface ZFMyOrderCollectionCell()
+@interface ZFMyWalletControllerCell()
 
 @property (nonatomic, strong) UIImageView* iconView;
 @property (nonatomic, strong) UILabel* nameLabel;
-@property (nonatomic, strong) UILabel* nuberLabel;
+@property (nonatomic, strong) UILabel* numberLabel;
 
 @end
 
-@implementation ZFMyOrderCollectionCell
+@implementation ZFMyWalletControllerCell
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -33,7 +33,7 @@
 {
     [self.contentView addSubview:self.iconView];
     [self.contentView addSubview:self.nameLabel];
-    [self.contentView addSubview:self.nuberLabel];
+    [self.contentView addSubview:self.numberLabel];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView);
@@ -45,13 +45,9 @@
         make.centerX.equalTo(self->_iconView);
     }];
     
-    //竖线
-    [_nuberLabel mas_makeConstraints:^(MASConstraintMaker *make)
-     {
-         make.left.equalTo(self->_iconView.mas_right).offset(25);
-         make.centerY.equalTo(self.contentView);
-         make.width.mas_equalTo(0.5f);
-         make.height.mas_equalTo(40.0f);
+    [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make){
+         make.top.equalTo(self->_nameLabel.mas_bottom).offset(7);
+         make.centerY.equalTo(self->_nameLabel);
      }];
     
 }
@@ -69,10 +65,17 @@
     _iconView.image = [UIImage imageNamed:_iconName];
 }
 
+- (void)setNumber:(NSString *)number
+{
+    _number = number;
+    _numberLabel.text = _number;
+}
+
+
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
-        _iconView.image = [UIImage imageNamed:@"jx"];
+        _iconView.image = [UIImage imageNamed:@"JF1"];
     }
     return _iconView;
 }
@@ -82,16 +85,19 @@
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.font = [UIFont systemFontOfSize:12];
         _nameLabel.textColor = RGBColorHex(0x151515);
-        _nameLabel.text = @"待付款";
+        _nameLabel.text = @"积分";
     }
     return _nameLabel;
 }
 
-- (UILabel *)nuberLabel {
-    if (_nuberLabel == nil) {
-        _nuberLabel = [[UILabel alloc] init];
+- (UILabel *)numberLabel {
+    if (_numberLabel == nil) {
+        _numberLabel = [[UILabel alloc] init];
+        _numberLabel.font = [UIFont systemFontOfSize:15];
+        _numberLabel.textColor = RGBColorHex(0xfe2306);
+        _numberLabel.text = @"3000";
     }
-    return _nuberLabel;
+    return _numberLabel;
 }
 
 @end
