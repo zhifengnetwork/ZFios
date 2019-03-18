@@ -61,6 +61,8 @@
 {
     _rightTitle = rightTitle;
     [_moreButton setTitle:_rightTitle forState:UIControlStateNormal];
+    [_moreButton setImage:[UIImage imageNamed:@"ZJT"] forState:UIControlStateNormal];
+    [_moreButton setImagePosition:LXMImagePositionRight spacing:6];
 }
 
 

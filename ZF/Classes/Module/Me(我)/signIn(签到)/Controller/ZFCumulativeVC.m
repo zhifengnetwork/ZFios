@@ -35,58 +35,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"累计积分";
+    self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     [self setup];
-}
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.title = @"FSCalendar";
-        self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    }
-    return self;
-}
-
-- (void)loadView
-{
-    UIView *view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    self.view = view;
-    
-    // 450 for iPad and 300 for iPhone
-    CGFloat height = [[UIDevice currentDevice].model hasPrefix:@"iPad"] ? 450 : 300;
-    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(15, 210, 345, 330)];
-    calendar.dataSource = self;
-    calendar.delegate = self;
-    calendar.backgroundColor = [UIColor whiteColor];
-    calendar.layer.borderWidth = 1.0f;
-    calendar.layer.borderColor = RGBColorHex(0x999999).CGColor;
-    calendar.layer.cornerRadius = 5;
-    calendar.clipsToBounds = YES;
-    calendar.appearance.headerMinimumDissolvedAlpha = 0;
-    calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
-    [self.view addSubview:calendar];
-    self.calendar = calendar;
-    
-    UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    previousButton.frame = CGRectMake(0, 64+5, 95, 34);
-    previousButton.backgroundColor = [UIColor whiteColor];
-    previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    [previousButton setImage:[UIImage imageNamed:@"zuojiantou"] forState:UIControlStateNormal];
-    [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:previousButton];
-    self.previousButton = previousButton;
-    
-    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(self.view.frame)-95, 64+5, 95, 34);
-    nextButton.backgroundColor = [UIColor whiteColor];
-    nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    [nextButton setImage:[UIImage imageNamed:@"youjiantou"] forState:UIControlStateNormal];
-    [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:nextButton];
-    self.nextButton = nextButton;
-    
 }
 
 - (void)previousClicked:(id)sender
@@ -119,9 +70,6 @@
     [self.view addSubview:self.dayLabel];
     [self.view addSubview:self.totalDayLabel];
     
-    self.title = @"累计积分";
-    
-    
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self.view);
         make.height.mas_equalTo(215);
@@ -149,12 +97,47 @@
         make.centerX.equalTo(self->_iconView);
     }];
     
-//    _bankLabel.text = [_bank bankName];
-//    _numberLabel.text = [_bank bankNumber];
+    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(15, 190, 345, 330)];
+    calendar.dataSource = self;
+    calendar.delegate = self;
+    calendar.backgroundColor = [UIColor whiteColor];
+    calendar.layer.borderWidth = 1.0f;
+    calendar.layer.borderColor = RGBColorHex(0x999999).CGColor;
+    calendar.layer.cornerRadius = 5;
+    calendar.clipsToBounds = YES;
+    calendar.locale = [NSLocale localeWithLocaleIdentifier:@"zh-CN"];
+    calendar.appearance.headerMinimumDissolvedAlpha = 0;
+    calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase;
+    [self.view addSubview:calendar];
+    self.calendar = calendar;
     
-//    [_smallView sd_setImageWithURL:[NSURL URLWithString:_bank.dict_url]];
-//    _iconView.image = [UIImage imageNamed:[NSString stringWithFormat:@"icon_bank%lu",(unsigned long)_bank.dict_colour]];
+    UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    previousButton.frame = CGRectMake(80, 190+5, 95, 34);
+    previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [previousButton setImage:[UIImage imageNamed:@"zuojiantou"] forState:UIControlStateNormal];
+    [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:previousButton];
+    self.previousButton = previousButton;
     
+    UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    nextButton.frame = CGRectMake(CGRectGetWidth(self.view.frame)-95-80, 190+5, 95, 34);
+    nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
+    [nextButton setImage:[UIImage imageNamed:@"youjiantou"] forState:UIControlStateNormal];
+    [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nextButton];
+    self.nextButton = nextButton;
+    
+    //横线
+    UIView *hLineView = [[UIView alloc] init];
+    hLineView.backgroundColor = RGBColorHex(0xcccccc);
+    [self.view addSubview:hLineView];
+    
+    [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.right.equalTo(self.calendar);
+         make.top.equalTo(self.calendar.mas_top).offset(40);
+         make.height.mas_equalTo(1.0f);
+     }];
 }
 
 
