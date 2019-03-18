@@ -8,6 +8,7 @@
 
 #import "ZFSettlementView.h"
 #import "ZFBounceView.h"
+#import "TYAlertController.h"
 @interface ZFSettlementView()
 @property (weak, nonatomic) IBOutlet UIButton *allSelectButton;
 @property (weak, nonatomic) IBOutlet UILabel *allMoneyLabel;
@@ -38,8 +39,12 @@
 }
 
 - (IBAction)buy:(id)sender {
-    ZFBounceView *bounceView = [[ZFBounceView alloc]init];
-    [self addSubview:bounceView];
-    [bounceView showAlert];
+    ZFBounceView *bounceView = [[ZFBounceView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 344)];
+//    ZFHarvestAddressView* addressView = [[ZFHarvestAddressView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
+//
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:bounceView preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
+//    [self presentViewController:alertController animated:YES completion:nil];
+
 }
 @end

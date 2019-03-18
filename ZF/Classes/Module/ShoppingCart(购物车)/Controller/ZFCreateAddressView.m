@@ -12,7 +12,6 @@
 @implementation ZFCreateAddressView
 
 - (void)setup{
-    
     self.layer.cornerRadius = 10;
     self.backgroundColor = RGBColorHex(0xffffff);
     UIButton *back = [[UIButton alloc]init];
@@ -60,9 +59,9 @@
     
     UIButton *addAddress = [[UIButton alloc]init];
     [self addSubview:addAddress];
-    addAddress.titleLabel.textColor = RGBColorHex(0xffffff);
     addAddress.titleLabel.font = [UIFont systemFontOfSize:17];
-    addAddress.titleLabel.text = [NSString stringWithFormat:@"添加地址"];
+    [addAddress setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
+    [addAddress setTitle:@"添加地址" forState:UIControlStateNormal];
     [addAddress setBackgroundImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
     
 #pragma mark --约束
@@ -118,7 +117,11 @@
         make.left.right.bottom.equalTo(self);
         make.height.mas_equalTo(49);
     }];
+    
+
 }
+
+
 - (void)back{
     [self removeFromSuperview];
     

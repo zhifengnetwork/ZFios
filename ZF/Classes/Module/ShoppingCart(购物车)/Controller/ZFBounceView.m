@@ -8,7 +8,7 @@
 
 #import "ZFBounceView.h"
 #import "ZFBounceCell.h"
-@interface ZFBounceView()
+@interface ZFBounceView()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong)UIView *contentView;
 @end
 @implementation ZFBounceView
@@ -43,7 +43,6 @@
     //设置弹出界面
     [appWindow addSubview:_contentView];
     
-    
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self);
 
@@ -59,9 +58,6 @@
     
     ZFBounceCell *cell = [[ZFBounceCell alloc]init];
     [self.contentView addSubview:cell];
-    [cell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(self.contentView);
-    }];
     [cell setup];
     
 }
@@ -75,8 +71,7 @@
         [self removeFromSuperview];
         [self.contentView removeFromSuperview];
     }];
-    
-    
+  
 }
 
 

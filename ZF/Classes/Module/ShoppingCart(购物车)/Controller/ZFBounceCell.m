@@ -9,12 +9,20 @@
 
 #import "ZFBounceCell.h"
 #import "ZFCreateAddressView.h"
+#import "ZFHarvestAddressView.h"
+#import "TYAlertController.h"
+
 @interface ZFBounceCell()
 @property (nonatomic, weak)UIButton *submit;
 @end
 @implementation ZFBounceCell
   
 - (void)setup{
+    
+    [self mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self.superview);
+    }];
+    
     UILabel *address = [[UILabel alloc]init];
     [self addSubview:address];
     address.font = [UIFont systemFontOfSize:14];
@@ -226,14 +234,13 @@
 }
 
 - (void)createAddress{
-    ZFCreateAddressView *createview = [[ZFCreateAddressView alloc]init];
-    [self addSubview:createview];
-    [createview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self);
-        make.top.equalTo(self.mas_top).with.offset(- 56);
-
-    }];
-//    UITapGestureRecognizer *tap  [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(<#selector#>)]
+    
+//    ZFCreateAddressView *createview = [[ZFCreateAddressView alloc]init];
+//    [self addSubview:createview];
+//    [createview mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.top.bottom.equalTo(self);
+////        make.top.mas_equalTo(self.mas_top).with.offset(-56);
+//    }];
 //    [createview setup];
 
 }

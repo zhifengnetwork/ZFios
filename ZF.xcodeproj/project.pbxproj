@@ -1353,6 +1353,7 @@
 		18EA50B122266ECF00A2D612 /* ShoppingCart(购物车) */ = {
 			isa = PBXGroup;
 			children = (
+				53010E88223FAE65008CABE2 /* 提交订单 */,
 				5358867C22360C7A00D7A4B6 /* View */,
 				5358867B22360C6F00D7A4B6 /* Model */,
 				18EA50B222266ECF00A2D612 /* Controller */,
@@ -1365,8 +1366,6 @@
 			children = (
 				18EA50BF22266F2600A2D612 /* ZFShoppingCartVC.h */,
 				18EA50C022266F2600A2D612 /* ZFShoppingCartVC.m */,
-				5358867F22361C1300D7A4B6 /* ZFShoppingCartCell.h */,
-				5358868022361C1300D7A4B6 /* ZFShoppingCartCell.m */,
 				5358868222365F4E00D7A4B6 /* ZFSettlementView.h */,
 				5358868322365F4E00D7A4B6 /* ZFSettlementView.m */,
 				53B1093522378B1100F32ABB /* ZFXuXianView.h */,
@@ -1505,6 +1504,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		53010E88223FAE65008CABE2 /* 提交订单 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "提交订单";
+			sourceTree = "<group>";
+		};
 		5358867B22360C6F00D7A4B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1517,6 +1523,8 @@
 		5358867C22360C7A00D7A4B6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5358867F22361C1300D7A4B6 /* ZFShoppingCartCell.h */,
+				5358868022361C1300D7A4B6 /* ZFShoppingCartCell.m */,
 				5358867D22360CAC00D7A4B6 /* ZFShoppingCartCell.xib */,
 				535886852236600A00D7A4B6 /* ZFSettlementView.xib */,
 			);
