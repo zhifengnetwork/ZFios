@@ -165,7 +165,6 @@
 		84ED0CD1223CB05700BC13C7 /* ZFCumulativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */; };
 		84ED0CD5223CD8D100BC13C7 /* ZFOfflinePickupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD4223CD8D100BC13C7 /* ZFOfflinePickupVC.m */; };
 		84ED0CDE223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CDD223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m */; };
-		84ED0CE1223CE5C900BC13C7 /* BaseBgviewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE0223CE5C900BC13C7 /* BaseBgviewTableCell.m */; };
 		84ED0CE4223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE3223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m */; };
 		84ED0CE7223CFB3200BC13C7 /* ZFDistributionMemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE6223CFB3200BC13C7 /* ZFDistributionMemTableCell.m */; };
 		84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE9223CFF8000BC13C7 /* ZFWithdrawDepositVC.m */; };
@@ -505,8 +504,6 @@
 		84ED0CD4223CD8D100BC13C7 /* ZFOfflinePickupVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFOfflinePickupVC.m; sourceTree = "<group>"; };
 		84ED0CDC223CE30000BC13C7 /* ZFWithdrawDepositTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFWithdrawDepositTableCell.h; sourceTree = "<group>"; };
 		84ED0CDD223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFWithdrawDepositTableCell.m; sourceTree = "<group>"; };
-		84ED0CDF223CE5C900BC13C7 /* BaseBgviewTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseBgviewTableCell.h; sourceTree = "<group>"; };
-		84ED0CE0223CE5C900BC13C7 /* BaseBgviewTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseBgviewTableCell.m; sourceTree = "<group>"; };
 		84ED0CE2223CF9E700BC13C7 /* ZFTotalAssetsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFTotalAssetsTableCell.h; sourceTree = "<group>"; };
 		84ED0CE3223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFTotalAssetsTableCell.m; sourceTree = "<group>"; };
 		84ED0CE5223CFB3200BC13C7 /* ZFDistributionMemTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDistributionMemTableCell.h; sourceTree = "<group>"; };
@@ -969,8 +966,6 @@
 				18482D84223B8742008342C8 /* BaseCollectionHeadView.m */,
 				186471772237FB3600F2C147 /* BaseTableViewCell.h */,
 				186471782237FB3600F2C147 /* BaseTableViewCell.m */,
-				84ED0CDF223CE5C900BC13C7 /* BaseBgviewTableCell.h */,
-				84ED0CE0223CE5C900BC13C7 /* BaseBgviewTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2017,7 +2012,6 @@
 				189CC0E52223E81300EB5A64 /* HMEmoticonButton.m in Sources */,
 				181A421F2232209F008A7014 /* ZFMyHeadView.m in Sources */,
 				189CC0E22223E81300EB5A64 /* HMEmoticonTipView.m in Sources */,
-				84ED0CE1223CE5C900BC13C7 /* BaseBgviewTableCell.m in Sources */,
 				188F41B5223658E700165142 /* ZFPersonalDataVC.m in Sources */,
 				18381E72222785CF009F176F /* ZFSpikeMerchandiseTableCell.m in Sources */,
 				18515F8B222FCC9A00F36E26 /* DCTitleRolling.m in Sources */,

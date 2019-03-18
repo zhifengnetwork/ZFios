@@ -7,14 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseBgviewTableCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
  资产总计cell
  */
-@interface ZFTotalAssetsTableCell : BaseBgviewTableCell
+@interface ZFTotalAssetsTableCell : UICollectionViewCell
 
 @end
 

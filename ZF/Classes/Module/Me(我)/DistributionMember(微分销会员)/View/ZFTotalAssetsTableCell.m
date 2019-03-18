@@ -10,6 +10,7 @@
 
 @interface ZFTotalAssetsTableCell()
 
+@property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UILabel* moneyLabel;
 @property (nonatomic, strong) UILabel* totalMoneyLabel;
 
@@ -30,29 +31,38 @@
 - (void)setup
 {
     self.contentView.backgroundColor = TableViewBGColor;
+    [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.moneyLabel];
     [self.contentView addSubview:self.totalMoneyLabel];
     
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10);
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(5);
+        make.bottom.mas_equalTo(0);
+    }];
+    
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(55);
-        make.centerY.equalTo(self.contentView);
+        make.centerY.equalTo(self.contentView).offset(2);
     }];
     
     [_totalMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-55);
-        make.centerY.equalTo(self.contentView);
+        make.centerY.equalTo(self.contentView).offset(2);
     }];
     
     //竖线
     UIView *hLineView = [[UIView alloc] init];
-    hLineView.backgroundColor = RGBColorHex(0xcccccc);
+    hLineView.backgroundColor = RGBColorHex(0xf5f5f5);
     [self.contentView addSubview:hLineView];
     
     [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
      {
-         make.centerX.centerY.equalTo(self.contentView);
+         make.top.mas_equalTo(10.0f);
+         make.centerX.equalTo(self.contentView);
          make.width.mas_equalTo(0.5f);
-         make.height.mas_equalTo(60.0f);
+         make.height.mas_equalTo(55.0f);
      }];
     
     
@@ -77,6 +87,18 @@
         _totalMoneyLabel.text = @"资产总计¥670(元)";
     }
     return _totalMoneyLabel;
+}
+
+-(UIView *)bgView
+{
+    if(_bgView==nil)
+    {
+        _bgView = [[UIView alloc]initWithFrame:CGRectZero];
+        _bgView.backgroundColor = [UIColor whiteColor];
+        _bgView.clipsToBounds = YES;
+        _bgView.layer.cornerRadius = 13.0f;
+    }
+    return _bgView;
 }
 
 @end

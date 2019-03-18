@@ -11,6 +11,7 @@
 
 @interface ZFDistributionMemTableCell()
 
+@property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIButton *upgradeButton;
 @property (nonatomic, strong) UIButton *commodityButton;
 @property (nonatomic, strong) UIButton *recommendButton;
@@ -33,13 +34,21 @@
 - (void)setup
 {
     self.contentView.backgroundColor = TableViewBGColor;
+    [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.upgradeButton];
     [self.contentView addSubview:self.commodityButton];
     [self.contentView addSubview:self.recommendButton];
     [self.contentView addSubview:self.accountButton];
     
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10);
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(5);
+        make.bottom.mas_equalTo(0);
+    }];
+    
     [_upgradeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
+        make.left.mas_equalTo(17);
         make.centerY.equalTo(self.contentView);
         make.width.height.mas_equalTo(76);
     }];
@@ -142,5 +151,16 @@
     return _accountButton;
 }
 
+-(UIView *)bgView
+{
+    if(_bgView==nil)
+    {
+        _bgView = [[UIView alloc]initWithFrame:CGRectZero];
+        _bgView.backgroundColor = [UIColor whiteColor];
+        _bgView.clipsToBounds = YES;
+        _bgView.layer.cornerRadius = 13.0f;
+    }
+    return _bgView;
+}
 
 @end

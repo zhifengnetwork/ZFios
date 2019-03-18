@@ -36,32 +36,33 @@
     [self.contentView addSubview:self.distrButton];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
-        make.right.mas_equalTo(-15);
+        make.left.mas_equalTo(10);
+        make.right.mas_equalTo(-10);
         make.top.mas_equalTo(10);
         make.bottom.mas_equalTo(0);
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(55);
-        make.centerY.equalTo(self.contentView);
+        make.top.mas_equalTo(33);
     }];
     
     [_distrButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-55);
-        make.centerY.equalTo(self.contentView);
+        make.centerY.equalTo(self.contentView).offset(5);
     }];
     
     //竖线
     UIView *hLineView = [[UIView alloc] init];
-    hLineView.backgroundColor = RGBColorHex(0xcccccc);
+    hLineView.backgroundColor = RGBColorHex(0xf5f5f5);
     [self.contentView addSubview:hLineView];
     
     [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
      {
-         make.centerX.centerY.equalTo(self.contentView);
+         make.top.mas_equalTo(15.0f);
+         make.centerX.equalTo(self.contentView);
          make.width.mas_equalTo(0.5f);
-         make.height.mas_equalTo(40.0f);
+         make.height.mas_equalTo(50.0f);
      }];
     
     

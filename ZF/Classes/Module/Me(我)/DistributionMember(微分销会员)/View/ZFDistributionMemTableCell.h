@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseBgviewTableCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface ZFDistributionMemTableCell : BaseBgviewTableCell
+@interface ZFDistributionMemTableCell : UICollectionViewCell
 
 @end
 
