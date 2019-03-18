@@ -27,6 +27,7 @@ target "ZF" do
     pod 'LBXDataHandler'
     pod 'SDCycleScrollView'
     pod 'PPNumberButton'
+    pod 'FSCalendar'
  
     
     #pod 'UMCShare/UI'
