@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ZFBounceCell : UIView
+
 - (void)setup;
 @end

@@ -11,16 +11,19 @@
 #import "ZFCreateAddressView.h"
 #import "ZFHarvestAddressView.h"
 #import "TYAlertController.h"
+#import "ZFSelectPayView.h"
 
 @interface ZFBounceCell()
 @property (nonatomic, weak)UIButton *submit;
+
 @end
 @implementation ZFBounceCell
   
 - (void)setup{
     
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(self.superview);
+        make.left.right.bottom.mas_equalTo(self.superview);
+        make.height.mas_equalTo(self.frame.size.height);
     }];
     
     UILabel *address = [[UILabel alloc]init];
@@ -127,7 +130,8 @@
     [submit setBackgroundColor:RGBColorHex(0xd9d9d9)];
     [submit setTintColor:RGBColorHex(0xffffff)];
     submit.titleLabel.font = [UIFont systemFontOfSize:17];
-    
+    self.submit.enabled = NO;
+    [submit addTarget:self action:@selector(submitOrder) forControlEvents:UIControlEventTouchUpInside];
     
     
 #pragma mark --设置控件的约束
@@ -232,18 +236,34 @@
     }];
     
 }
-
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
+}
+#pragma mark --按钮方法
+//新建地址
 - (void)createAddress{
     
-//    ZFCreateAddressView *createview = [[ZFCreateAddressView alloc]init];
-//    [self addSubview:createview];
-//    [createview mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.right.top.bottom.equalTo(self);
-////        make.top.mas_equalTo(self.mas_top).with.offset(-56);
-//    }];
-//    [createview setup];
+    ZFCreateAddressView *createview = [[ZFCreateAddressView alloc]initWithFrame:CGRectMake(0,LL_ScreenHeight - 389, LL_ScreenWidth, 389)];
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:createview preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
 
 }
+//同意协议
 - (void)agreeProtocol: (UIButton *)button{
     button.selected = !button.selected;
     if (button.selected == YES) {
@@ -255,6 +275,15 @@
         self.submit.enabled = NO;
     }
 }
-
+//提交订单，调到选择支付方式页面
+- (void)submitOrder{
+    if (self.submit.enabled ) {
+        ZFSelectPayView *payView = [[ZFSelectPayView alloc]initWithFrame:CGRectMake(0, LL_ScreenHeight - 367, LL_ScreenWidth, 367)];
+        TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:payView preferredStyle:TYAlertControllerStyleActionSheet];
+        alertController.backgoundTapDismissEnable = YES;
+        [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
+    }
+    
+}
 @end
 

@@ -10,7 +10,4 @@
 
 @interface ZFBounceView : UIView
 
-- (void)showAlert;
-- (void)dismissAlert;
-
 @end
