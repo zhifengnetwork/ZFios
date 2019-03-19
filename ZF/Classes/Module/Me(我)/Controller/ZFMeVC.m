@@ -21,6 +21,8 @@
 #import "ZFWithdrawDepositVC.h"
 #import "ZFFundAccountControllerCell.h"
 #import "ZFMyIntegralVC.h"
+#import "ZFMyTeamVC.h"
+#import "ZFPublicWelfareVC.h"
 
 
 @interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate>
@@ -191,16 +193,33 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
 //            [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
         
         //签到天数
-        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+//        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
         
         //我的积分
 //        ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
 //        [self.navigationController pushViewController:vc animated:YES];
         
+        //我的团队
+//        ZFMyTeamVC* vc = [[ZFMyTeamVC alloc]init];
+//        [self.navigationController pushViewController:vc  animated:YES];
         
+        ZFPublicWelfareVC* vc = [[ZFPublicWelfareVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
+}
+
+
+#pragma mark - TableViewDelegate
+//点击了哪个cell
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+        if (indexPath.section==1)
+        {
+//            ZFPublicWelfareVC* vc = [[ZFPublicWelfareVC alloc]init];
+//            [self.navigationController pushViewController:vc animated:YES];
+        }
 }
 
 
