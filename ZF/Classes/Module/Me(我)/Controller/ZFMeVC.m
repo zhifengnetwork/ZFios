@@ -149,7 +149,8 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
 {
     if (indexPath.section==1)
     {
-        
+        ZFPublicWelfareVC* vc = [[ZFPublicWelfareVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
 }
@@ -208,18 +209,6 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
         [self.navigationController pushViewController:vc animated:YES];
     }
     
-}
-
-
-#pragma mark - TableViewDelegate
-//点击了哪个cell
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-        if (indexPath.section==1)
-        {
-//            ZFPublicWelfareVC* vc = [[ZFPublicWelfareVC alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
-        }
 }
 
 

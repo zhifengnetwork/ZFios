@@ -76,7 +76,8 @@
 - (UIButton *)moneyButton {
     if (_moneyButton == nil) {
         _moneyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_moneyButton setTitle:@"捐赠金额\n 1234" forState:UIControlStateNormal];
+        [_moneyButton setTitle:@"捐赠金额\n1234" forState:UIControlStateNormal];
+        _moneyButton.titleLabel.lineBreakMode = 0;
         [_moneyButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
         _moneyButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [_moneyButton addTarget:self action:@selector(moneyButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
@@ -87,7 +88,8 @@
 - (UIButton *)timeButton {
     if (_timeButton == nil) {
         _timeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_timeButton setTitle:@"相当于\n 给留守儿童\n 讲睡前故事10天" forState:UIControlStateNormal];
+        [_timeButton setTitle:@"相当于\n给留守儿童\n讲睡前故事10天" forState:UIControlStateNormal];
+        _timeButton.titleLabel.lineBreakMode = 0;
         [_timeButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
         _timeButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [_timeButton addTarget:self action:@selector(timeButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
@@ -99,6 +101,7 @@
     if (_numberButton == nil) {
         _numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_numberButton setTitle:@"爱心次数（笔）\n 12" forState:UIControlStateNormal];
+        _numberButton.titleLabel.lineBreakMode = 0;
         [_numberButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
         _numberButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [_numberButton addTarget:self action:@selector(numberButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
