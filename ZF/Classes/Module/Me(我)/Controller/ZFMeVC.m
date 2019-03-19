@@ -20,6 +20,7 @@
 #import "ZFOfflinePickupVC.h"
 #import "ZFWithdrawDepositVC.h"
 #import "ZFFundAccountControllerCell.h"
+#import "ZFMyIntegralVC.h"
 
 
 @interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate>
@@ -185,12 +186,17 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
     }
     else if (type==5)
     {
-        //跳转到签到
+        //跳转到签到成功
 //            ZFSignInView* windowView = [[ZFSignInView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
 //            [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
         
+        //签到天数
         ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
+        
+        //我的积分
+//        ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
         
         
     }

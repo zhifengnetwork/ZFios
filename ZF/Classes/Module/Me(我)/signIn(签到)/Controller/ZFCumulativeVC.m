@@ -97,7 +97,7 @@
         make.centerX.equalTo(self->_iconView);
     }];
     
-    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(15, 190, 345, 330)];
+    FSCalendar *calendar = [[FSCalendar alloc] initWithFrame:CGRectMake(15, 180, 345, 330)];
     calendar.dataSource = self;
     calendar.delegate = self;
     calendar.backgroundColor = [UIColor whiteColor];
@@ -112,7 +112,7 @@
     self.calendar = calendar;
     
     UIButton *previousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    previousButton.frame = CGRectMake(80, 190+5, 95, 34);
+    previousButton.frame = CGRectMake(80, 180+5, 95, 34);
     previousButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [previousButton setImage:[UIImage imageNamed:@"zuojiantou"] forState:UIControlStateNormal];
     [previousButton addTarget:self action:@selector(previousClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -120,9 +120,9 @@
     self.previousButton = previousButton;
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    nextButton.frame = CGRectMake(CGRectGetWidth(self.view.frame)-95-80, 190+5, 95, 34);
+    nextButton.frame = CGRectMake(CGRectGetWidth(self.view.frame)-95-80, 180+5, 95, 34);
     nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
-    [nextButton setImage:[UIImage imageNamed:@"youjiantou"] forState:UIControlStateNormal];
+    [nextButton setImage:[UIImage imageNamed:@"jiantou"] forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(nextClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:nextButton];
     self.nextButton = nextButton;

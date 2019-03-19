@@ -154,6 +154,9 @@
 		84499BBE223A390900A7A988 /* ZFCommodityInforVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BBD223A390900A7A988 /* ZFCommodityInforVC.m */; };
 		84499BC1223A44E100A7A988 /* ZFCommodityWMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BC0223A44E100A7A988 /* ZFCommodityWMVC.m */; };
 		84499BC4223A57E200A7A988 /* ZFClassificationHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BC3223A57E200A7A988 /* ZFClassificationHeadView.m */; };
+		847547012240938F00B698E6 /* ZFMyIntegralHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847547002240938F00B698E6 /* ZFMyIntegralHeadTableCell.m */; };
+		847547042240998400B698E6 /* ZFMyIntegralTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847547032240998400B698E6 /* ZFMyIntegralTableCell.m */; };
+		8475470722409DC800B698E6 /* ZFMyIntegralVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475470622409DC800B698E6 /* ZFMyIntegralVC.m */; };
 		847A09BE223917FB0021E236 /* ZFDetailsChoiceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */; };
 		8498DAE3223FA45A008C47A6 /* ZFMyWalletControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498DAE2223FA45A008C47A6 /* ZFMyWalletControllerCell.m */; };
 		8498DAE6223FA76A008C47A6 /* ZFFundAccountControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498DAE5223FA76A008C47A6 /* ZFFundAccountControllerCell.m */; };
@@ -485,6 +488,12 @@
 		84499BC0223A44E100A7A988 /* ZFCommodityWMVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFCommodityWMVC.m; sourceTree = "<group>"; };
 		84499BC2223A57E200A7A988 /* ZFClassificationHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassificationHeadView.h; sourceTree = "<group>"; };
 		84499BC3223A57E200A7A988 /* ZFClassificationHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassificationHeadView.m; sourceTree = "<group>"; };
+		847546FF2240938F00B698E6 /* ZFMyIntegralHeadTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyIntegralHeadTableCell.h; sourceTree = "<group>"; };
+		847547002240938F00B698E6 /* ZFMyIntegralHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyIntegralHeadTableCell.m; sourceTree = "<group>"; };
+		847547022240998400B698E6 /* ZFMyIntegralTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyIntegralTableCell.h; sourceTree = "<group>"; };
+		847547032240998400B698E6 /* ZFMyIntegralTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyIntegralTableCell.m; sourceTree = "<group>"; };
+		8475470522409DC800B698E6 /* ZFMyIntegralVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyIntegralVC.h; sourceTree = "<group>"; };
+		8475470622409DC800B698E6 /* ZFMyIntegralVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyIntegralVC.m; sourceTree = "<group>"; };
 		847A09BC223917FB0021E236 /* ZFDetailsChoiceTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsChoiceTableCell.h; sourceTree = "<group>"; };
 		847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsChoiceTableCell.m; sourceTree = "<group>"; };
 		8498DAE1223FA45A008C47A6 /* ZFMyWalletControllerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyWalletControllerCell.h; sourceTree = "<group>"; };
@@ -878,6 +887,7 @@
 		182E8A0A2224017C005CE5FE /* Me(我) */ = {
 			isa = PBXGroup;
 			children = (
+				847546FC2240932500B698E6 /* Integral(积分)   */,
 				84ED0CD6223CE08600BC13C7 /* DistributionMember(微分销会员) */,
 				84ED0CD2223CD86A00BC13C7 /* OfflinePickup(线下取货) */,
 				849F8BEB223BB0B200D10E2E /* signIn(签到) */,
@@ -1587,6 +1597,35 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		847546FC2240932500B698E6 /* Integral(积分)   */ = {
+			isa = PBXGroup;
+			children = (
+				847546FE2240933E00B698E6 /* Controller */,
+				847546FD2240933900B698E6 /* View */,
+			);
+			path = "Integral(积分)  ";
+			sourceTree = "<group>";
+		};
+		847546FD2240933900B698E6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				847546FF2240938F00B698E6 /* ZFMyIntegralHeadTableCell.h */,
+				847547002240938F00B698E6 /* ZFMyIntegralHeadTableCell.m */,
+				847547022240998400B698E6 /* ZFMyIntegralTableCell.h */,
+				847547032240998400B698E6 /* ZFMyIntegralTableCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		847546FE2240933E00B698E6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8475470522409DC800B698E6 /* ZFMyIntegralVC.h */,
+				8475470622409DC800B698E6 /* ZFMyIntegralVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		849F8BEB223BB0B200D10E2E /* signIn(签到) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2022,6 +2061,7 @@
 				189CC0E02223E81300EB5A64 /* TabBarControllerConfig.m in Sources */,
 				1819918D22379C14004585D8 /* ZFEditorialHeadTableCell.m in Sources */,
 				18EA50CD2226874C00A2D612 /* ZFBannerHeadView.m in Sources */,
+				8475470722409DC800B698E6 /* ZFMyIntegralVC.m in Sources */,
 				18F6000E222E692900DE7EF4 /* ZFAmountPayableTableCell.m in Sources */,
 				1808E0CA2230F42600B9DB1D /* ZFHarvestAddressView.m in Sources */,
 				189CC0F52223E81300EB5A64 /* ZFTool.m in Sources */,
@@ -2052,6 +2092,7 @@
 				84ED0CDE223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m in Sources */,
 				189CC0D22223E81300EB5A64 /* UIButton+Ex.m in Sources */,
 				180F31C1222FDB9B0040718F /* ZFClusterWindowTableCell.m in Sources */,
+				847547012240938F00B698E6 /* ZFMyIntegralHeadTableCell.m in Sources */,
 				18EA50C722266FBD00A2D612 /* ZFMeVC.m in Sources */,
 				18482D87223B8743008342C8 /* BaseCollectionHeadView.m in Sources */,
 				189CC0DA2223E81300EB5A64 /* UserInfoModel.m in Sources */,
@@ -2095,6 +2136,7 @@
 				189CC0DF2223E81300EB5A64 /* BaseTabBarController.m in Sources */,
 				84499BC4223A57E200A7A988 /* ZFClassificationHeadView.m in Sources */,
 				1819919C2237C629004585D8 /* ZFTimeHeadView.m in Sources */,
+				847547042240998400B698E6 /* ZFMyIntegralTableCell.m in Sources */,
 				180F31A3222F68610040718F /* ZFAddressTableCell.m in Sources */,
 				180F31B5222FAC1A0040718F /* ZFHarvestAddressTableCell.m in Sources */,
 				189CC0E92223E81300EB5A64 /* HMEmoticonAttachment.m in Sources */,
