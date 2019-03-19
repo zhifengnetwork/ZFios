@@ -10,10 +10,24 @@
 #import "ZFAddressTextField.h"
 #import "ZFBounceView.h"
 @implementation ZFCreateAddressView
-
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self setup];
+    }
+    return self;
+}
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self setup];
+}
 - (void)setup{
+    [self mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self);
+        make.height.mas_equalTo(self.frame.size.height);
+    }];
     self.layer.cornerRadius = 10;
     self.backgroundColor = RGBColorHex(0xffffff);
+    
     UIButton *back = [[UIButton alloc]init];
     [self addSubview:back];
     back.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -121,9 +135,26 @@
 
 }
 
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
+}
 
 - (void)back{
-    [self removeFromSuperview];
+    [[self currentViewController] dismissViewControllerAnimated:YES completion:nil];
     
 }
 @end

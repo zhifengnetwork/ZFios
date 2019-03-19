@@ -37,14 +37,29 @@
 - (IBAction)allSelect:(id)sender {
     
 }
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
+}
 
 - (IBAction)buy:(id)sender {
     ZFBounceView *bounceView = [[ZFBounceView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 344)];
-//    ZFHarvestAddressView* addressView = [[ZFHarvestAddressView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
-//
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:bounceView preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
-//    [self presentViewController:alertController animated:YES completion:nil];
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
 
 }
 @end

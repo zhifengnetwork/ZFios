@@ -9,6 +9,7 @@
 #import "ZFShoppingCartVC.h"
 #import "ZFShoppingCartCell.h"
 #import "ZFSettlementView.h"
+#import "ZFEmptyCartView.h"
 @interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
@@ -31,12 +32,18 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
-    tableView.backgroundColor = RGBColorHex(0xf4f4f4);
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.rowHeight = 270;
-    [self.view addSubview:tableView];
+   //判断购物车是否为空
+    if (/* DISABLES CODE */ (0)) {
+        ZFEmptyCartView *emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
+        [self.view addSubview:emptyCart];
+    }else{
+        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
+        tableView.backgroundColor = RGBColorHex(0xf4f4f4);
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.rowHeight = 270;
+        [self.view addSubview:tableView];
+    }
     //结算界面
     ZFSettlementView *view = [ZFSettlementView CartView];
     [self.view addSubview:view];
@@ -48,6 +55,8 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(-48);
     }];
     
+    
+    
 }
 
 
@@ -57,6 +66,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFShoppingCartTableCellID];
     if (cell == nil) {
+        
         cell = [ZFShoppingCartCell  ShoppingCartCell];
     }
     return cell;

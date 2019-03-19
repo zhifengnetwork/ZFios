@@ -138,6 +138,9 @@
 		5302EDD4223B48860004CD2B /* ZFBounceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5302EDD3223B48860004CD2B /* ZFBounceView.m */; };
 		53044DEE223CFBCA0097231E /* ZFCreateAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53044DED223CFBCA0097231E /* ZFCreateAddressView.m */; };
 		53044DF1223D0D4A0097231E /* ZFAddressTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 53044DF0223D0D4A0097231E /* ZFAddressTextField.m */; };
+		5304891F2240C42B002FAF61 /* ZFEmptyCartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304891E2240C42B002FAF61 /* ZFEmptyCartView.m */; };
+		5304892B2240E03A002FAF61 /* ZFSelectPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304892A2240E03A002FAF61 /* ZFSelectPayView.m */; };
+		5304892E2240E53C002FAF61 /* ZFSelectPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304892C2240E53B002FAF61 /* ZFSelectPayCell.m */; };
 		5309F2162238E74900275D4C /* ZFMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5309F2152238E74900275D4C /* ZFMenuView.m */; };
 		5309F2192238EB5F00275D4C /* ZFMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5309F2182238EB5F00275D4C /* ZFMenuCell.m */; };
 		5309FA7B223A631C0062AA0B /* ZFShoppingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5309FA7A223A631C0062AA0B /* ZFShoppingItem.m */; };
@@ -467,6 +470,12 @@
 		53044DED223CFBCA0097231E /* ZFCreateAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFCreateAddressView.m; sourceTree = "<group>"; };
 		53044DEF223D0D4A0097231E /* ZFAddressTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAddressTextField.h; sourceTree = "<group>"; };
 		53044DF0223D0D4A0097231E /* ZFAddressTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAddressTextField.m; sourceTree = "<group>"; };
+		5304891D2240C42B002FAF61 /* ZFEmptyCartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFEmptyCartView.h; sourceTree = "<group>"; };
+		5304891E2240C42B002FAF61 /* ZFEmptyCartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFEmptyCartView.m; sourceTree = "<group>"; };
+		530489292240E03A002FAF61 /* ZFSelectPayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFSelectPayView.h; sourceTree = "<group>"; };
+		5304892A2240E03A002FAF61 /* ZFSelectPayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFSelectPayView.m; sourceTree = "<group>"; };
+		5304892C2240E53B002FAF61 /* ZFSelectPayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFSelectPayCell.m; sourceTree = "<group>"; };
+		5304892D2240E53B002FAF61 /* ZFSelectPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSelectPayCell.h; sourceTree = "<group>"; };
 		5309F2142238E74900275D4C /* ZFMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMenuView.h; sourceTree = "<group>"; };
 		5309F2152238E74900275D4C /* ZFMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMenuView.m; sourceTree = "<group>"; };
 		5309F2172238EB5F00275D4C /* ZFMenuCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMenuCell.h; sourceTree = "<group>"; };
@@ -1415,7 +1424,8 @@
 		18EA50B122266ECF00A2D612 /* ShoppingCart(购物车) */ = {
 			isa = PBXGroup;
 			children = (
-				53010E88223FAE65008CABE2 /* 提交订单 */,
+				5304891C2240C31D002FAF61 /* 提交订单 */,
+				5304891B22408BDA002FAF61 /* 下拉框 */,
 				5358867C22360C7A00D7A4B6 /* View */,
 				5358867B22360C6F00D7A4B6 /* Model */,
 				18EA50B222266ECF00A2D612 /* Controller */,
@@ -1428,22 +1438,8 @@
 			children = (
 				18EA50BF22266F2600A2D612 /* ZFShoppingCartVC.h */,
 				18EA50C022266F2600A2D612 /* ZFShoppingCartVC.m */,
-				5358868222365F4E00D7A4B6 /* ZFSettlementView.h */,
-				5358868322365F4E00D7A4B6 /* ZFSettlementView.m */,
-				53B1093522378B1100F32ABB /* ZFXuXianView.h */,
-				53B1093622378B1100F32ABB /* ZFXuXianView.m */,
-				5309F2142238E74900275D4C /* ZFMenuView.h */,
-				5309F2152238E74900275D4C /* ZFMenuView.m */,
-				5309F2172238EB5F00275D4C /* ZFMenuCell.h */,
-				5309F2182238EB5F00275D4C /* ZFMenuCell.m */,
-				5302EDD2223B48860004CD2B /* ZFBounceView.h */,
-				5302EDD3223B48860004CD2B /* ZFBounceView.m */,
 				53B6085A223BB08B00A5DFB3 /* ZFBounceCell.h */,
 				53B6085B223BB08B00A5DFB3 /* ZFBounceCell.m */,
-				53044DEC223CFBCA0097231E /* ZFCreateAddressView.h */,
-				53044DED223CFBCA0097231E /* ZFCreateAddressView.m */,
-				53044DEF223D0D4A0097231E /* ZFAddressTextField.h */,
-				53044DF0223D0D4A0097231E /* ZFAddressTextField.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1566,9 +1562,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		53010E88223FAE65008CABE2 /* 提交订单 */ = {
+		5304891B22408BDA002FAF61 /* 下拉框 */ = {
 			isa = PBXGroup;
 			children = (
+				5309F2142238E74900275D4C /* ZFMenuView.h */,
+				5309F2152238E74900275D4C /* ZFMenuView.m */,
+				5309F2172238EB5F00275D4C /* ZFMenuCell.h */,
+				5309F2182238EB5F00275D4C /* ZFMenuCell.m */,
+			);
+			path = "下拉框";
+			sourceTree = "<group>";
+		};
+		5304891C2240C31D002FAF61 /* 提交订单 */ = {
+			isa = PBXGroup;
+			children = (
+				5358868222365F4E00D7A4B6 /* ZFSettlementView.h */,
+				5358868322365F4E00D7A4B6 /* ZFSettlementView.m */,
+				5302EDD2223B48860004CD2B /* ZFBounceView.h */,
+				5302EDD3223B48860004CD2B /* ZFBounceView.m */,
+				53044DEC223CFBCA0097231E /* ZFCreateAddressView.h */,
+				53044DED223CFBCA0097231E /* ZFCreateAddressView.m */,
+				53044DEF223D0D4A0097231E /* ZFAddressTextField.h */,
+				53044DF0223D0D4A0097231E /* ZFAddressTextField.m */,
 			);
 			path = "提交订单";
 			sourceTree = "<group>";
@@ -1585,10 +1600,18 @@
 		5358867C22360C7A00D7A4B6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				53B1093522378B1100F32ABB /* ZFXuXianView.h */,
+				53B1093622378B1100F32ABB /* ZFXuXianView.m */,
 				5358867F22361C1300D7A4B6 /* ZFShoppingCartCell.h */,
 				5358868022361C1300D7A4B6 /* ZFShoppingCartCell.m */,
 				5358867D22360CAC00D7A4B6 /* ZFShoppingCartCell.xib */,
 				535886852236600A00D7A4B6 /* ZFSettlementView.xib */,
+				5304891D2240C42B002FAF61 /* ZFEmptyCartView.h */,
+				5304891E2240C42B002FAF61 /* ZFEmptyCartView.m */,
+				530489292240E03A002FAF61 /* ZFSelectPayView.h */,
+				5304892A2240E03A002FAF61 /* ZFSelectPayView.m */,
+				5304892D2240E53B002FAF61 /* ZFSelectPayCell.h */,
+				5304892C2240E53B002FAF61 /* ZFSelectPayCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2076,6 +2099,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5304891F2240C42B002FAF61 /* ZFEmptyCartView.m in Sources */,
 				188F41AF2236181B00165142 /* ZFPersonalCentralTableCell.m in Sources */,
 				180A97A6222E21CD003A12FF /* ZFStartAuctionVC.m in Sources */,
 				189CC0E62223E81300EB5A64 /* HMEmoticonCell.m in Sources */,
@@ -2164,6 +2188,7 @@
 				1808E0CA2230F42600B9DB1D /* ZFHarvestAddressView.m in Sources */,
 				189CC0F52223E81300EB5A64 /* ZFTool.m in Sources */,
 				5358868422365F4E00D7A4B6 /* ZFSettlementView.m in Sources */,
+				5304892B2240E03A002FAF61 /* ZFSelectPayView.m in Sources */,
 				180F31AC222F75FF0040718F /* ZFFillOrderVC.m in Sources */,
 				189CC0D12223E81300EB5A64 /* UIButton+LXMImagePosition.m in Sources */,
 				180F31B2222FA6890040718F /* ZFStationNewsVC.m in Sources */,
@@ -2233,6 +2258,7 @@
 				84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */,
 				188F41B82236666400165142 /* ZFTextInputVC.m in Sources */,
 				189CC0E82223E81300EB5A64 /* NSBundle+HMEmoticon.m in Sources */,
+				5304892E2240E53C002FAF61 /* ZFSelectPayCell.m in Sources */,
 				1830DB712232560300C30C90 /* ZFMyOrderHeadView.m in Sources */,
 				18C26BFF222D6AA7004951D9 /* ZFHomeSpikeHeadView.m in Sources */,
 				189CC0DF2223E81300EB5A64 /* BaseTabBarController.m in Sources */,
