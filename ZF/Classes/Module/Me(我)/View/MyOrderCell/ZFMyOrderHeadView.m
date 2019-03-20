@@ -36,12 +36,12 @@
     [self addSubview:self.moreButton];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
+        make.left.mas_equalTo(25);
         make.centerY.equalTo(self);
     }];
     
     [_moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-30);
         make.centerY.equalTo(self);
     }];
     
@@ -92,9 +92,9 @@
 - (UIButton *)moreButton {
     if (_moreButton == nil) {
         _moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_moreButton setTitle:@"查看更多订单" forState:UIControlStateNormal];
+        [_moreButton setTitle:@"查看全部订单" forState:UIControlStateNormal];
         [_moreButton setImage:[UIImage imageNamed:@"ZJT"] forState:UIControlStateNormal];
-        [_moreButton setTitleColor:RGBColorHex(0x151515) forState:UIControlStateNormal];
+        [_moreButton setTitleColor:RGBColorHex(0x6C6C6C) forState:UIControlStateNormal];
         _moreButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [_moreButton setImagePosition:LXMImagePositionRight spacing:6];
         [_moreButton addTarget:self action:@selector(moreButtonDidClick) forControlEvents:UIControlEventTouchUpInside];

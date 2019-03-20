@@ -23,6 +23,8 @@
 #import "ZFMyIntegralVC.h"
 #import "ZFMyTeamVC.h"
 #import "ZFPublicWelfareVC.h"
+#import "ZFMyWalletTableCell.h"
+#import "ZFMyColumnTableCell.h"
 
 
 @interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate>
@@ -36,7 +38,9 @@
 @implementation ZFMeVC
 
 static NSString *const ZFMyOrderTableCellID = @"ZFMyOrderTableCellID";
+static NSString *const ZFMyWalletTableCellID = @"ZFMyWalletTableCellID";
 static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountControllerCellID";
+static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -66,7 +70,9 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
     self.tableView.estimatedRowHeight = 50;
     
     [self.tableView registerClass:[ZFMyOrderTableCell class] forCellReuseIdentifier:ZFMyOrderTableCellID];
+    [self.tableView registerClass:[ZFMyWalletTableCell class] forCellReuseIdentifier:ZFMyWalletTableCellID];
     [self.tableView registerClass:[ZFFundAccountControllerCell class] forCellReuseIdentifier:ZFFundAccountControllerCellID];
+    [self.tableView registerClass:[ZFMyColumnTableCell class] forCellReuseIdentifier:ZFMyColumnTableCellID];
     
     self.headView = [[ZFMyHeadView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 130)];
     _headView.delegate = self;
@@ -84,7 +90,7 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
 //有多少组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 4;
 }
 
 //每个组有多少行
@@ -107,10 +113,28 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
     }
     else if (indexPath.section==1)
     {
+        ZFMyWalletTableCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFMyWalletTableCellID];
+        if (cell == nil)
+        {
+            cell = [[ZFMyWalletTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyWalletTableCellID];
+        }
+        return cell;
+    }
+    else if (indexPath.section==2)
+    {
         ZFFundAccountControllerCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFFundAccountControllerCellID];
         if (cell == nil)
         {
             cell = [[ZFFundAccountControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFFundAccountControllerCellID];
+        }
+        return cell;
+    }
+    else if (indexPath.section==3)
+    {
+        ZFMyColumnTableCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFMyColumnTableCellID];
+        if (cell == nil)
+        {
+            cell = [[ZFMyColumnTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyColumnTableCellID];
         }
         return cell;
     }
@@ -127,10 +151,14 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
     }
     else if (indexPath.section==1)
     {
+        return 100.0f;
+    }
+    else if (indexPath.section==2)
+    {
         return 40.0f;
     }
-    
-    return 44.0f;
+
+    return 180.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -147,7 +175,7 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==1)
+    if (indexPath.section==2)
     {
         ZFPublicWelfareVC* vc = [[ZFPublicWelfareVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
@@ -194,8 +222,8 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
 //            [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
         
         //签到天数
-//        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
+        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
         
         //我的积分
 //        ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
@@ -204,9 +232,6 @@ static NSString *const ZFFundAccountControllerCellID = @"ZFFundAccountController
         //我的团队
 //        ZFMyTeamVC* vc = [[ZFMyTeamVC alloc]init];
 //        [self.navigationController pushViewController:vc  animated:YES];
-        
-        ZFPublicWelfareVC* vc = [[ZFPublicWelfareVC alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
     }
     
 }

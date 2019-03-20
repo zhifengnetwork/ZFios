@@ -36,18 +36,18 @@
     [self.contentView addSubview:self.numberLabel];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.contentView);
-        make.top.mas_equalTo(10);
+        make.left.mas_equalTo(70);
+        make.top.mas_equalTo(5);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self->_iconView.mas_bottom).offset(8);
+        make.top.equalTo(self->_iconView.mas_bottom).offset(5);
         make.centerX.equalTo(self->_iconView);
     }];
     
     [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make){
-         make.top.equalTo(self->_nameLabel.mas_bottom).offset(7);
-         make.centerY.equalTo(self->_nameLabel);
+         make.top.equalTo(self->_nameLabel.mas_bottom).offset(5);
+         make.centerX.equalTo(self->_nameLabel);
      }];
     
 }

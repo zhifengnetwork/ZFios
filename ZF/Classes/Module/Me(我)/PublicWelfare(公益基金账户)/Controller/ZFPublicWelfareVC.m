@@ -14,7 +14,7 @@
 #import "ZFTool.h"
 #import "ZFDonationButtonTableCell.h"
 
-@interface ZFPublicWelfareVC ()
+@interface ZFPublicWelfareVC ()<ZFDonationButtonTableCellDelegate>
 
 @end
 
@@ -161,6 +161,15 @@ static NSString *const ZFMyDynamicsTableCellID = @"ZFMyDynamicsTableCellID";
     view.backgroundColor = [UIColor clearColor];
     return view;
 }
+
+
+//公益基金账户被点击 1:捐赠金额 2:睡前故事 3:爱心次数
+- (void)ZFDonationButtonTableCellDidClick:(int)type
+{
+     
+}
+
+
 
 #pragma mark - TableViewDelegate
 //点击了哪个cell

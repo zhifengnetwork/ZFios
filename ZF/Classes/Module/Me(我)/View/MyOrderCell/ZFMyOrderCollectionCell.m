@@ -81,7 +81,7 @@
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.font = [UIFont systemFontOfSize:12];
-        _nameLabel.textColor = RGBColorHex(0x151515);
+        _nameLabel.textColor = RGBColorHex(0x333333);
         _nameLabel.text = @"待付款";
     }
     return _nameLabel;

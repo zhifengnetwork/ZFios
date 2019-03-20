@@ -60,26 +60,39 @@
 
 - (void)moneyButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFDonationButtonTableCellDidClick:)])
+    {
+        [self.delegate ZFDonationButtonTableCellDidClick:1];
+    }
 }
 
 - (void)timeButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFDonationButtonTableCellDidClick:)])
+    {
+        [self.delegate ZFDonationButtonTableCellDidClick:2];
+    }
 }
 
 - (void)numberButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFDonationButtonTableCellDidClick:)])
+    {
+        [self.delegate ZFDonationButtonTableCellDidClick:3];
+    }
 }
 
 - (UIButton *)moneyButton {
     if (_moneyButton == nil) {
         _moneyButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_moneyButton setTitle:@"捐赠金额\n1234" forState:UIControlStateNormal];
+        [_moneyButton setTitle:@"捐赠金额\n   1234" forState:UIControlStateNormal];
         _moneyButton.titleLabel.lineBreakMode = 0;
         [_moneyButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
+        [_moneyButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateSelected];
+        _moneyButton.selected = YES;
         _moneyButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_moneyButton setBackgroundColor:RGBColorHex(0xff944c)];
+        [_moneyButton setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
         [_moneyButton addTarget:self action:@selector(moneyButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _moneyButton;
@@ -88,7 +101,7 @@
 - (UIButton *)timeButton {
     if (_timeButton == nil) {
         _timeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_timeButton setTitle:@"相当于\n给留守儿童\n讲睡前故事10天" forState:UIControlStateNormal];
+        [_timeButton setTitle:@"      相当于\n    给留守儿童\n讲睡前故事10天" forState:UIControlStateNormal];
         _timeButton.titleLabel.lineBreakMode = 0;
         [_timeButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
         _timeButton.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -100,7 +113,7 @@
 - (UIButton *)numberButton {
     if (_numberButton == nil) {
         _numberButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_numberButton setTitle:@"爱心次数（笔）\n 12" forState:UIControlStateNormal];
+        [_numberButton setTitle:@"爱心次数（笔）\n        12" forState:UIControlStateNormal];
         _numberButton.titleLabel.lineBreakMode = 0;
         [_numberButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
         _numberButton.titleLabel.font = [UIFont systemFontOfSize:12];

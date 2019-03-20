@@ -1,17 +1,16 @@
 //
-//  ZFMyOrderTableCell.m
+//  ZFMyWalletTableCell.m
 //  ZF
 //
-//  Created by apple on 2019/3/18.
+//  Created by admin on 2019/3/20.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFMyOrderTableCell.h"
+#import "ZFMyWalletTableCell.h"
 #import "ZFMyOrderHeadView.h"
-#import "ZFMyOrderCollectionCell.h"
+#import "ZFMyWalletControllerCell.h"
 
-
-@interface ZFMyOrderTableCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ZFMyWalletTableCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) ZFMyOrderHeadView* orderHeadView;
 @property (nonatomic, strong) UICollectionView* collectionView;
@@ -19,9 +18,9 @@
 @end
 
 
-@implementation ZFMyOrderTableCell
+@implementation ZFMyWalletTableCell
 
-static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
+static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID";
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -37,6 +36,8 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 
 - (void)setup
 {
+    
+    _collectionView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.orderHeadView];
     [self.contentView addSubview:self.collectionView];
     
@@ -50,7 +51,7 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         make.top.equalTo(self->_orderHeadView.mas_bottom).offset(1);
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-15);
-        make.height.mas_equalTo(60);
+        make.height.mas_equalTo(74);
     }];
 }
 
@@ -59,31 +60,23 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 4;
+    return 2;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZFMyOrderCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMyOrderCollectionCellID forIndexPath:indexPath];
+    ZFMyWalletControllerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMyWalletControllerCellID forIndexPath:indexPath];
     if (indexPath.item==0)
     {
-        cell.title = @"待付款";
-        cell.iconName = @"mm3";
+        cell.iconName = @"JF1";
+        cell.title = @"积分";
+        cell.number = @"3000";
     }
     else if (indexPath.item==1)
     {
-        cell.title = @"待发货";
-        cell.iconName = @"mm2";
-    }
-    else if (indexPath.item==2)
-    {
-        cell.title = @"待收货";
-        cell.iconName = @"mm5";
-    }
-    else if (indexPath.item==3)
-    {
-        cell.title = @"待评价";
-        cell.iconName = @"mm4";
+        cell.iconName = @"YHJ1";
+        cell.title = @"优惠券";
+        cell.number = @"30";
     }
     
     return cell;
@@ -102,6 +95,8 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     if (_orderHeadView==nil)
     {
         _orderHeadView = [[ZFMyOrderHeadView alloc]init];
+        _orderHeadView.leftTitle = @"我的钱包";
+        _orderHeadView.rightTitle = @"查看钱包";
     }
     
     return _orderHeadView;
@@ -111,8 +106,8 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     if (_collectionView == nil)
     {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        float fw = (kScreenWidth-30)*0.25;
-        layout.itemSize = CGSizeMake(fw, 60);
+        float fw = (kScreenWidth-30)/2;
+        layout.itemSize = CGSizeMake(fw, 74);
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -121,9 +116,8 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         
-        [_collectionView registerClass:[ZFMyOrderCollectionCell class] forCellWithReuseIdentifier:ZFMyOrderCollectionCellID];
+        [_collectionView registerClass:[ZFMyWalletControllerCell class] forCellWithReuseIdentifier:ZFMyWalletControllerCellID];
     }
     return _collectionView;
 }
-
 @end

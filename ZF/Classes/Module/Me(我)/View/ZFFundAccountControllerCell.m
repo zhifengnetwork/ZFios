@@ -43,17 +43,17 @@
     [self.contentView addSubview:self.moreButton];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
+        make.left.mas_equalTo(25);
         make.centerY.equalTo(self.contentView);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_titleLabel.mas_right).offset(44);
+        make.left.equalTo(self->_titleLabel.mas_right).offset(30);
         make.centerY.equalTo(self.contentView);
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_nameLabel.mas_right).offset(23);
+        make.left.equalTo(self->_nameLabel.mas_right).offset(20);
         make.centerY.equalTo(self.contentView);
     }];
     
@@ -63,7 +63,7 @@
     }];
     
     [_moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-30);
         make.centerY.equalTo(self.contentView);
     }];
 }
@@ -119,7 +119,7 @@
         _moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_moreButton setTitle:@"查看名单" forState:UIControlStateNormal];
         [_moreButton setImage:[UIImage imageNamed:@"ZJT"] forState:UIControlStateNormal];
-        [_moreButton setTitleColor:RGBColorHex(0x151515) forState:UIControlStateNormal];
+        [_moreButton setTitleColor:RGBColorHex(0x6C6C6C) forState:UIControlStateNormal];
         _moreButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [_moreButton setImagePosition:LXMImagePositionRight spacing:6];
         [_moreButton addTarget:self action:@selector(moreButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
