@@ -12,11 +12,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ZFMyOrderCollectionCellDelegate <NSObject>
+
+@optional
+
+/**
+ 待付款被点击
+ */
+- (void)ZFMyOrderCollectionCellDidClick:(NSIndexPath*)indexPath;
+
+@end
+
 
 /**
  我的订单CollectionViewCell
  */
 @interface ZFMyOrderCollectionCell : BaseCollectionCell
+
+@property (nonatomic, weak) id<ZFMyOrderCollectionCellDelegate> delegate;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 //标题
 @property (nonatomic, strong) NSString *title;

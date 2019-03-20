@@ -28,7 +28,7 @@
 #import "ZFMyOrderVC.h"
 
 
-@interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate,ZFMyWalletTableCellDelegate>
+@interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate,ZFMyWalletTableCellDelegate,ZFMyColumnTableCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZFMyHeadView *headView;
@@ -139,7 +139,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         {
             cell = [[ZFMyColumnTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyColumnTableCellID];
         }
-//        cell.delegate = self;
+        cell.delegate = self;
         return cell;
     }
     
@@ -228,14 +228,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         //签到天数
         ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
-        
-        //我的积分
-//        ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-        
-        //我的团队
-//        ZFMyTeamVC* vc = [[ZFMyTeamVC alloc]init];
-//        [self.navigationController pushViewController:vc  animated:YES];
+
     }
     
 }
@@ -295,6 +288,74 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     else if (indexPath.item==1)
     {
         //优惠券
+    }
+}
+
+
+/**
+ 我的专栏headview被点击
+ */
+- (void)ZFMyColumnHeadViewDidClick
+{
+    
+}
+
+/**
+ 我的专栏cell被点击
+ */
+- (void)ZFMyColumnTableCellDidClick:(NSIndexPath*)indexPath
+{
+    if (indexPath.item==0)
+    {
+        //我的活动
+    }
+    else if (indexPath.item==1)
+    {
+        //奖金体现
+    }
+    else if (indexPath.item==2)
+    {
+        //拍卖
+    }
+    else if (indexPath.item==3)
+    {
+        //拼团
+    }
+    else if (indexPath.item==4)
+    {
+        //我的团队
+        ZFMyTeamVC*vc = [[ZFMyTeamVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.item==5)
+    {
+        //直播
+    }
+    else if (indexPath.item==6)
+    {
+       //小游戏
+    }
+    else if (indexPath.item==7)
+    {
+        //美容专区
+    }
+    else if (indexPath.item==8)
+    {
+        //虚拟币
+    }
+    else if (indexPath.item==9)
+    {
+        //线下取货
+        ZFOfflinePickupVC*vc = [[ZFOfflinePickupVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.item==10)
+    {
+        //切换主题
+    }
+    else if (indexPath.item==11)
+    {
+        //账户明细
     }
 }
 

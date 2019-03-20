@@ -11,10 +11,28 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ZFMyColumnTableCellDelegate <NSObject>
+
+@optional
+
+/**
+ 我的专栏headview被点击
+ */
+- (void)ZFMyColumnHeadViewDidClick;
+
+/**
+ 我的专栏cell被点击
+ */
+- (void)ZFMyColumnTableCellDidClick:(NSIndexPath*)indexPath;
+
+@end
+
 /**
  我的专栏cell
  */
 @interface ZFMyColumnTableCell : BaseTableViewCell
+
+@property (nonatomic, weak) id<ZFMyColumnTableCellDelegate> delegate;
 
 @end
 

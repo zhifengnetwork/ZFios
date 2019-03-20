@@ -73,8 +73,20 @@
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
         _iconView.image = [UIImage imageNamed:@"jx"];
+        //图标点击事件
+        _iconView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_iconView addGestureRecognizer:singleTap];
     }
     return _iconView;
+}
+
+- (void)handleSingleTap:(UITouch *)touch
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyOrderCollectionCellDidClick:)])
+    {
+        [self.delegate ZFMyOrderCollectionCellDidClick:self.indexPath];
+    }
 }
 
 - (UILabel *)nameLabel {
@@ -83,6 +95,10 @@
         _nameLabel.font = [UIFont systemFontOfSize:12];
         _nameLabel.textColor = RGBColorHex(0x333333);
         _nameLabel.text = @"待付款";
+        //Label点击事件
+        _nameLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_nameLabel addGestureRecognizer:singleTap];
     }
     return _nameLabel;
 }

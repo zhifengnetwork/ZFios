@@ -11,7 +11,7 @@
 #import "ZFMyOrderCollectionCell.h"
 
 
-@interface ZFMyColumnTableCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ZFMyColumnTableCell ()<UICollectionViewDelegate, UICollectionViewDataSource,ZFMyOrderCollectionCellDelegate>
 
 @property (nonatomic, strong) ZFMyOrderHeadView* orderHeadView;
 @property (nonatomic, strong) UICollectionView* collectionView;
@@ -127,6 +127,9 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         cell.iconName = @"zhmx1";
     }
     
+    cell.indexPath = indexPath;
+    cell.delegate = self;
+    
     return cell;
 }
 
@@ -137,6 +140,17 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     
 }
 
+/**
+ 待付款被点击
+ */
+- (void)ZFMyOrderCollectionCellDidClick:(NSIndexPath*)indexPath
+{
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(ZFMyColumnTableCellDidClick:)])
+    {
+        [self.delegate ZFMyColumnTableCellDidClick:indexPath];
+    }
+}
+
 
 -(ZFMyOrderHeadView*)orderHeadView
 {
@@ -145,10 +159,23 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         _orderHeadView = [[ZFMyOrderHeadView alloc]init];
         _orderHeadView.leftTitle = @"我的专栏";
         _orderHeadView.rightTitle = @"查看全部专栏";
+        //头部点击事件
+        _orderHeadView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_orderHeadView addGestureRecognizer:singleTap];
     }
     
     return _orderHeadView;
 }
+
+- (void)handleSingleTap:(UITouch *)touch
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyColumnHeadViewDidClick)])
+    {
+        [self.delegate ZFMyColumnHeadViewDidClick];
+    }
+}
+
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil)

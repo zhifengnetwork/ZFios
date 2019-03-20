@@ -11,7 +11,7 @@
 #import "ZFMyOrderCollectionCell.h"
 
 
-@interface ZFMyOrderTableCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ZFMyOrderTableCell ()<UICollectionViewDelegate, UICollectionViewDataSource,ZFMyOrderCollectionCellDelegate>
 
 @property (nonatomic, strong) ZFMyOrderHeadView* orderHeadView;
 @property (nonatomic, strong) UICollectionView* collectionView;
@@ -86,6 +86,9 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
         cell.iconName = @"mm4";
     }
     
+    cell.indexPath = indexPath;
+    cell.delegate = self;
+    
     return cell;
 }
 
@@ -93,12 +96,20 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 //预览cell点击
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+}
+
+
+/**
+ 待付款被点击
+ */
+- (void)ZFMyOrderCollectionCellDidClick:(NSIndexPath*)indexPath
+{
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(ZFMyOrderTableCellDidClick:)])
     {
         [self.delegate ZFMyOrderTableCellDidClick:indexPath];
     }
 }
-
 
 -(ZFMyOrderHeadView*)orderHeadView
 {
