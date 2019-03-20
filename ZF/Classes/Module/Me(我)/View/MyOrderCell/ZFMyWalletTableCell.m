@@ -10,7 +10,7 @@
 #import "ZFMyOrderHeadView.h"
 #import "ZFMyWalletControllerCell.h"
 
-@interface ZFMyWalletTableCell()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface ZFMyWalletTableCell()<UICollectionViewDelegate, UICollectionViewDataSource,ZFMyWalletControllerCellDelegate>
 
 @property (nonatomic, strong) ZFMyOrderHeadView* orderHeadView;
 @property (nonatomic, strong) UICollectionView* collectionView;
@@ -78,6 +78,7 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
         cell.title = @"优惠券";
         cell.number = @"30";
     }
+    cell.indexPath = indexPath;
     cell.delegate = self;
     
     return cell;
@@ -86,6 +87,14 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
 
 //预览cell点击
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+/**
+ 积分被点击
+ */
+- (void)ZFMyWalletControllerCellDidClick:(NSIndexPath*)indexPath
 {
     if (self.delegate != nil && [self.delegate respondsToSelector:@selector(ZFMyWalletTableCellDidClick:)])
     {

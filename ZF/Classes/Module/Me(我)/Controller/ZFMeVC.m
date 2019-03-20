@@ -273,16 +273,6 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 }
 
 /**
- 我的钱包cell被点击
- */
-- (void)ZFMyWalletControllerCellDidClick
-{
-    ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-
-/**
  我的钱包headview被点击
  */
 - (void)ZFMyWalletHeadViewDidClick
@@ -299,8 +289,8 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     if (indexPath.item==0)
     {
         //积分
-//        ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
+        ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.item==1)
     {

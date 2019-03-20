@@ -86,9 +86,9 @@
 
 - (void)handleSingleTap:(UITouch *)touch
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyWalletControllerCellDidClick)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyWalletControllerCellDidClick:)])
     {
-        [self.delegate ZFMyWalletControllerCellDidClick];
+        [self.delegate ZFMyWalletControllerCellDidClick:self.indexPath];
     }
 }
 
@@ -98,6 +98,10 @@
         _nameLabel.font = [UIFont systemFontOfSize:12];
         _nameLabel.textColor = RGBColorHex(0x151515);
         _nameLabel.text = @"积分";
+        //Label点击事件
+        _nameLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_nameLabel addGestureRecognizer:singleTap];
     }
     return _nameLabel;
 }
@@ -108,6 +112,10 @@
         _numberLabel.font = [UIFont systemFontOfSize:15];
         _numberLabel.textColor = RGBColorHex(0xfe2306);
         _numberLabel.text = @"3000";
+        //Label点击事件
+        _numberLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_numberLabel addGestureRecognizer:singleTap];
     }
     return _numberLabel;
 }

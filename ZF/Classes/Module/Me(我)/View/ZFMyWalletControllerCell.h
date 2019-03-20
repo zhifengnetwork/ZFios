@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  积分被点击
  */
-- (void)ZFMyWalletControllerCellDidClick;
+- (void)ZFMyWalletControllerCellDidClick:(NSIndexPath*)indexPath;
 
 @end
 
@@ -29,6 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFMyWalletControllerCell : BaseCollectionCell
 
 @property (nonatomic, weak) id<ZFMyWalletControllerCellDelegate> delegate;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 //标题
 @property (nonatomic, strong) NSString *title;
