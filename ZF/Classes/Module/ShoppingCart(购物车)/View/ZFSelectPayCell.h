@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ZFSelectPayCell;
 
 @interface ZFSelectPayCell : UITableViewCell
-
 @end

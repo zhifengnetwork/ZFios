@@ -9,6 +9,7 @@
 #import "ZFSelectPayView.h"
 #import "ZFSelectPayCell.h"
 @interface ZFSelectPayView()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,assign) NSIndexPath *selIndex;
 @end
 @implementation ZFSelectPayView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -56,7 +57,16 @@
     [self addSubview:explain];
     
     UITableView *tableView = [[UITableView alloc]init];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self addSubview:tableView];
+    
+    UIButton *payBtn = [[UIButton alloc]init];
+    [self addSubview:payBtn];
+    [payBtn setBackgroundImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
+    [payBtn setTitle:@"提交订单" forState:UIControlStateNormal];
+    [payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
     
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self).with.offset(15);
@@ -78,10 +88,16 @@
     }];
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(explain.mas_bottom).with.offset(16);
-        make.left.right.bottom.equalTo(self);
+        make.left.right.equalTo(self);
+        make.bottom.mas_equalTo(self.mas_bottom).with.offset(-49);
+    }];
+    [payBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(tableView.mas_bottom);
+        make.left.bottom.right.equalTo(self);
     }];
 }
 #pragma mark --方法
+//获取当前控制器
 - (UIViewController *)currentViewController{
     UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
     while (1) {
@@ -99,26 +115,53 @@
     }
     return vc;
 }
+//返回
 - (void)backClick{
     [[self currentViewController]dismissViewControllerAnimated:YES completion:nil];
 }
+//付款
+- (void)payClick{
+    
+}
+
 #pragma mark --tableview数据源协议
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //定义一个变量记录每次点击的cell的indexpath
+    ZFSelectPayCell *celled = [tableView cellForRowAtIndexPath:_selIndex];
+    [celled setSelected:NO];
+    celled.accessoryType = UITableViewCellAccessoryNone;
+    _selIndex = indexPath;
+    ZFSelectPayCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell setSelected:YES];
+    
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return 5;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *ID =@"zfselectcell";
-    
+    static NSString* ID = @"ZFSelectPayCell";
     ZFSelectPayCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[ZFSelectPayCell alloc]init];
     }
-    UIView *lineView = [[UIView alloc]init];
-    lineView.frame = CGRectMake(16, 32, 14, 10);
-    lineView.backgroundColor = [UIColor blackColor];
-//    RGBColorHex(0xf5f5f5);
     
-    [cell.contentView addSubview:lineView];
+    if (_selIndex == indexPath) {
+        [cell setSelected:YES];
+    }else{
+        [cell setSelected:NO];
+    }
+    
+    if (indexPath.row == 0) {
+        [cell.textLabel setText:@"银行卡快捷支付"];
+    }else if (indexPath.row == 1) {
+        [cell.textLabel setText:@"网易支付"];
+    }else if (indexPath.row == 2){
+        [cell.textLabel setText:@"支付宝"];
+    }else if (indexPath.row == 3) {
+        [cell.textLabel setText:@"微信支付"];
+    }else {
+        [cell.textLabel setText:@"余额"];
+    }
     
     return cell;
 }
