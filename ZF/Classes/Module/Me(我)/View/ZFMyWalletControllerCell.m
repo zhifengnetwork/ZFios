@@ -76,8 +76,20 @@
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
         _iconView.image = [UIImage imageNamed:@"JF1"];
+        //图标点击事件
+        _iconView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_iconView addGestureRecognizer:singleTap];
     }
     return _iconView;
+}
+
+- (void)handleSingleTap:(UITouch *)touch
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyWalletControllerCellDidClick)])
+    {
+        [self.delegate ZFMyWalletControllerCellDidClick];
+    }
 }
 
 - (UILabel *)nameLabel {

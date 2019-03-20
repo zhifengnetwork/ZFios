@@ -98,6 +98,7 @@
         _moreButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [_moreButton setImagePosition:LXMImagePositionRight spacing:6];
         [_moreButton addTarget:self action:@selector(moreButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+        _moreButton.userInteractionEnabled = NO;
     }
     return _moreButton;
 }

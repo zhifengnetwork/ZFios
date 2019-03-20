@@ -25,9 +25,10 @@
 #import "ZFPublicWelfareVC.h"
 #import "ZFMyWalletTableCell.h"
 #import "ZFMyColumnTableCell.h"
+#import "ZFMyOrderVC.h"
 
 
-@interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate>
+@interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate,ZFMyWalletTableCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZFMyHeadView *headView;
@@ -119,6 +120,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         {
             cell = [[ZFMyWalletTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyWalletTableCellID];
         }
+        cell.delegate = self;
         return cell;
     }
     else if (indexPath.section==2)
@@ -137,6 +139,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         {
             cell = [[ZFMyColumnTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyColumnTableCellID];
         }
+//        cell.delegate = self;
         return cell;
     }
     
@@ -237,6 +240,14 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     
 }
 
+/**
+ 我的订单headview被点击
+ */
+- (void)ZFMyOrderHeadViewDidClick
+{
+    ZFMyOrderVC* vc = [[ZFMyOrderVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 /**
  我的订单cell被点击
@@ -250,6 +261,50 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     else if (indexPath.item==1)
     {
         //待发货
+    }
+    else if (indexPath.item==2)
+    {
+        //待收货
+    }
+    else if (indexPath.item==3)
+    {
+        //待评价
+    }
+}
+
+/**
+ 我的钱包cell被点击
+ */
+- (void)ZFMyWalletControllerCellDidClick
+{
+    ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+/**
+ 我的钱包headview被点击
+ */
+- (void)ZFMyWalletHeadViewDidClick
+{
+    ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+/**
+ 我的钱包cell被点击
+ */
+- (void)ZFMyWalletTableCellDidClick:(NSIndexPath*)indexPath
+{
+    if (indexPath.item==0)
+    {
+        //积分
+//        ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (indexPath.item==1)
+    {
+        //优惠券
     }
 }
 

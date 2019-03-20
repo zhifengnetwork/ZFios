@@ -11,10 +11,28 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ZFMyWalletTableCellDelegate <NSObject>
+
+@optional
+
+/**
+ 我的钱包headview被点击
+ */
+- (void)ZFMyWalletHeadViewDidClick;
+
+/**
+ 我的钱包cell被点击
+ */
+- (void)ZFMyWalletTableCellDidClick:(NSIndexPath*)indexPath;
+
+@end
+
 /**
  我的钱包cell
  */
 @interface ZFMyWalletTableCell : BaseTableViewCell
+
+@property (nonatomic, weak) id<ZFMyWalletTableCellDelegate> delegate;
 
 @end
 

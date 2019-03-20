@@ -78,6 +78,7 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
         cell.title = @"优惠券";
         cell.number = @"30";
     }
+    cell.delegate = self;
     
     return cell;
 }
@@ -86,7 +87,10 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
 //预览cell点击
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(ZFMyWalletTableCellDidClick:)])
+    {
+        [self.delegate ZFMyWalletTableCellDidClick:indexPath];
+    }
 }
 
 
@@ -97,9 +101,21 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
         _orderHeadView = [[ZFMyOrderHeadView alloc]init];
         _orderHeadView.leftTitle = @"我的钱包";
         _orderHeadView.rightTitle = @"查看钱包";
+        //头部点击事件
+        _orderHeadView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_orderHeadView addGestureRecognizer:singleTap];
     }
     
     return _orderHeadView;
+}
+
+- (void)handleSingleTap:(UITouch *)touch
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyWalletHeadViewDidClick)])
+    {
+        [self.delegate ZFMyWalletHeadViewDidClick];
+    }
 }
 
 - (UICollectionView *)collectionView {

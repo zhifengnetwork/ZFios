@@ -14,8 +14,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ZFMyOrderTableCellDelegate <NSObject>
 
-
 @optional
+
+/**
+ 我的订单headview被点击
+ */
+- (void)ZFMyOrderHeadViewDidClick;
+
 /**
  我的订单cell被点击
  */

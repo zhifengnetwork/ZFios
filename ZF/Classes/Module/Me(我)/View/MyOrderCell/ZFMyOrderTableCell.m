@@ -105,10 +105,24 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     if (_orderHeadView==nil)
     {
         _orderHeadView = [[ZFMyOrderHeadView alloc]init];
+        //头部点击事件
+        _orderHeadView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_orderHeadView addGestureRecognizer:singleTap];
     }
     
     return _orderHeadView;
 }
+
+
+- (void)handleSingleTap:(UITouch *)touch
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyOrderHeadViewDidClick)])
+    {
+        [self.delegate ZFMyOrderHeadViewDidClick];
+    }
+}
+
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil)

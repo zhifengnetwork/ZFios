@@ -11,10 +11,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ZFMyWalletControllerCellDelegate <NSObject>
+
+@optional
+
+/**
+ 积分被点击
+ */
+- (void)ZFMyWalletControllerCellDidClick;
+
+@end
+
+
 /**
  我的钱包CollectionViewCell
  */
 @interface ZFMyWalletControllerCell : BaseCollectionCell
+
+@property (nonatomic, weak) id<ZFMyWalletControllerCellDelegate> delegate;
 
 //标题
 @property (nonatomic, strong) NSString *title;
