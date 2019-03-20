@@ -1448,8 +1448,6 @@
 			children = (
 				18EA50BF22266F2600A2D612 /* ZFShoppingCartVC.h */,
 				18EA50C022266F2600A2D612 /* ZFShoppingCartVC.m */,
-				53B6085A223BB08B00A5DFB3 /* ZFBounceCell.h */,
-				53B6085B223BB08B00A5DFB3 /* ZFBounceCell.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1590,10 +1588,16 @@
 				5358868322365F4E00D7A4B6 /* ZFSettlementView.m */,
 				5302EDD2223B48860004CD2B /* ZFBounceView.h */,
 				5302EDD3223B48860004CD2B /* ZFBounceView.m */,
+				53B6085A223BB08B00A5DFB3 /* ZFBounceCell.h */,
+				53B6085B223BB08B00A5DFB3 /* ZFBounceCell.m */,
 				53044DEC223CFBCA0097231E /* ZFCreateAddressView.h */,
 				53044DED223CFBCA0097231E /* ZFCreateAddressView.m */,
 				53044DEF223D0D4A0097231E /* ZFAddressTextField.h */,
 				53044DF0223D0D4A0097231E /* ZFAddressTextField.m */,
+				530489292240E03A002FAF61 /* ZFSelectPayView.h */,
+				5304892A2240E03A002FAF61 /* ZFSelectPayView.m */,
+				5304892D2240E53B002FAF61 /* ZFSelectPayCell.h */,
+				5304892C2240E53B002FAF61 /* ZFSelectPayCell.m */,
 			);
 			path = "提交订单";
 			sourceTree = "<group>";
@@ -1618,10 +1622,6 @@
 				535886852236600A00D7A4B6 /* ZFSettlementView.xib */,
 				5304891D2240C42B002FAF61 /* ZFEmptyCartView.h */,
 				5304891E2240C42B002FAF61 /* ZFEmptyCartView.m */,
-				530489292240E03A002FAF61 /* ZFSelectPayView.h */,
-				5304892A2240E03A002FAF61 /* ZFSelectPayView.m */,
-				5304892D2240E53B002FAF61 /* ZFSelectPayCell.h */,
-				5304892C2240E53B002FAF61 /* ZFSelectPayCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

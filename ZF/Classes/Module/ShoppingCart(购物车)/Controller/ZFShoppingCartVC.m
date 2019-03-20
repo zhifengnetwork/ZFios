@@ -11,7 +11,7 @@
 #import "ZFSettlementView.h"
 #import "ZFEmptyCartView.h"
 @interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
-
+@property (nonatomic, weak)UITableView *shoppingCart;
 @end
 
 @implementation ZFShoppingCartVC
@@ -28,7 +28,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     [btn setBackgroundImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
     [btn setTitle:@"管理" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [btn sizeToFit];        
+    [btn addTarget:self action:@selector(editCell:) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
@@ -42,6 +42,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.rowHeight = 270;
+        self.shoppingCart = tableView;
         [self.view addSubview:tableView];
     }
     //结算界面
@@ -58,8 +59,11 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     
     
 }
-
-
+- (void)editCell: (UIButton *)button{
+    button.selected = !button.selected;
+    self.shoppingCart.editing = button.selected;
+}
+#pragma mark --tableview的协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 2;
 }

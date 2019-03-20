@@ -13,6 +13,8 @@
 @interface ZFShoppingCartCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;//背景层
 @property (weak, nonatomic) IBOutlet UIButton *selectShopButton;//商店选中按钮
+@property (weak, nonatomic) IBOutlet UIButton *selectGoodButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *storeLabel;//商店名字
 @property (weak, nonatomic) IBOutlet UILabel *fullSale;//满赠优惠显示
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;//商品图片
@@ -45,7 +47,7 @@
     self.backgroundColor = RGBColorHex(0xffffff);
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = 8.0;
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     ZFMenuView *menuView= [[ZFMenuView alloc]init];
     [self.contentView addSubview:menuView];
     menuView.arr =@[@"官方标配",@"套餐一",@"套餐二"];
@@ -60,7 +62,6 @@
     [menuView setButtonHeight:22];
     
     [menuView closeTableView];
-    
     
 }
 
@@ -81,9 +82,16 @@
     
 }
 
+- (IBAction)selectGood {
+    self.selectGoodButton.selected = !self.selectGoodButton.selected;
+}
+
+
+
 
 /*点击进入店铺 */
 - (IBAction)goStore:(id)sender {
+    NSLog(@"点击进入店铺");
 }
 //进入满赠界面
 - (IBAction)goSale:(id)sender {

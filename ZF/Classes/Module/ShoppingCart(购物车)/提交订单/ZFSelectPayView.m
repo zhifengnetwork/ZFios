@@ -59,6 +59,7 @@
     UITableView *tableView = [[UITableView alloc]init];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.scrollEnabled = NO;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self addSubview:tableView];
     
@@ -139,18 +140,7 @@
     return 5;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString* ID = @"ZFSelectPayCell";
-    ZFSelectPayCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[ZFSelectPayCell alloc]init];
-    }
-    
-    if (_selIndex == indexPath) {
-        [cell setSelected:YES];
-    }else{
-        [cell setSelected:NO];
-    }
-    
+    ZFSelectPayCell *cell = [[ZFSelectPayCell alloc]init];
     if (indexPath.row == 0) {
         [cell.textLabel setText:@"银行卡快捷支付"];
     }else if (indexPath.row == 1) {

@@ -119,7 +119,7 @@
     
     UILabel *protocol = [[UILabel alloc]init];
     [self addSubview:protocol];
-    protocol.text = [NSString stringWithFormat:@"本人同意并接受以下协议"];
+    protocol.text = [NSString stringWithFormat:@"本人同意并接受协议"];
     protocol.font = [UIFont systemFontOfSize:12];
     protocol.textColor = RGBColorHex(0x858585);
     

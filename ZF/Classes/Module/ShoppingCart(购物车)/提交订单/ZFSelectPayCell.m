@@ -48,7 +48,7 @@
 }
 - (void)setSelected:(BOOL)selected{
     [super setSelected:selected];
-    [_selectedBtn setSelected:selected];
+    _selectedBtn.selected = selected;
 }
 - (UIButton *)selectedBtn{
     if (!_selectedBtn) {
