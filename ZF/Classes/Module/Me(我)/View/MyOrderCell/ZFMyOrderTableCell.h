@@ -12,11 +12,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ZFMyOrderTableCellDelegate <NSObject>
+
+
+@optional
+/**
+ 我的订单cell被点击
+ */
+- (void)ZFMyOrderTableCellDidClick:(NSIndexPath*)indexPath;
+
+@end
+
 
 /**
  我的订单cell
  */
 @interface ZFMyOrderTableCell : BaseTableViewCell
+
+@property (nonatomic, weak) id<ZFMyOrderTableCellDelegate> delegate;
 
 @end
 

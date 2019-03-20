@@ -93,7 +93,10 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 //预览cell点击
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(ZFMyOrderTableCellDidClick:)])
+    {
+        [self.delegate ZFMyOrderTableCellDidClick:indexPath];
+    }
 }
 
 

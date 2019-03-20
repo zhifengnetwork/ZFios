@@ -27,7 +27,7 @@
 #import "ZFMyColumnTableCell.h"
 
 
-@interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate>
+@interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZFMyHeadView *headView;
@@ -109,6 +109,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         {
             cell = [[ZFMyOrderTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyOrderTableCellID];
         }
+        cell.delegate = self;
         return cell;
     }
     else if (indexPath.section==1)
@@ -234,6 +235,22 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 //        [self.navigationController pushViewController:vc  animated:YES];
     }
     
+}
+
+
+/**
+ 我的订单cell被点击
+ */
+- (void)ZFMyOrderTableCellDidClick:(NSIndexPath*)indexPath
+{
+    if (indexPath.item==0)
+    {
+        //待付款
+    }
+    else if (indexPath.item==1)
+    {
+        //待发货
+    }
 }
 
 
