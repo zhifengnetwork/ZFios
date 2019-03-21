@@ -26,6 +26,8 @@
 #import "ZFMyWalletTableCell.h"
 #import "ZFMyColumnTableCell.h"
 #import "ZFMyOrderVC.h"
+#import "ZFMyWalletVC.h"
+#import "ZFCouponCenterVC.h"
 
 
 @interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate,ZFMyWalletTableCellDelegate,ZFMyColumnTableCellDelegate>
@@ -270,7 +272,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
  */
 - (void)ZFMyWalletHeadViewDidClick
 {
-    ZFMyIntegralVC* vc = [[ZFMyIntegralVC alloc]init];
+    ZFMyWalletVC* vc = [[ZFMyWalletVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -288,6 +290,8 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     else if (indexPath.item==1)
     {
         //优惠券
+        ZFCouponCenterVC *vc = [[ZFCouponCenterVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
