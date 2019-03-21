@@ -70,6 +70,7 @@
 		186471792237FB3600F2C147 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186471782237FB3600F2C147 /* BaseTableViewCell.m */; };
 		1864717C2238013A00F2C147 /* ZFFootprintVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864717B2238013A00F2C147 /* ZFFootprintVC.m */; };
 		1864717F2238098800F2C147 /* ZFFootprintFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864717E2238098800F2C147 /* ZFFootprintFooterView.m */; };
+		1866F4FC22437C25006ED7F1 /* ZFClassifyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1866F4FB22437C25006ED7F1 /* ZFClassifyTableCell.m */; };
 		188F41AC223612A100165142 /* ZFPersonalHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */; };
 		188F41AF2236181B00165142 /* ZFPersonalCentralTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AE2236181B00165142 /* ZFPersonalCentralTableCell.m */; };
 		188F41B2223619DE00165142 /* ZFPersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41B1223619DE00165142 /* ZFPersonalVC.m */; };
@@ -341,6 +342,8 @@
 		1864717B2238013A00F2C147 /* ZFFootprintVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFFootprintVC.m; sourceTree = "<group>"; };
 		1864717D2238098800F2C147 /* ZFFootprintFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFFootprintFooterView.h; sourceTree = "<group>"; };
 		1864717E2238098800F2C147 /* ZFFootprintFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFFootprintFooterView.m; sourceTree = "<group>"; };
+		1866F4FA22437C25006ED7F1 /* ZFClassifyTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyTableCell.h; sourceTree = "<group>"; };
+		1866F4FB22437C25006ED7F1 /* ZFClassifyTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyTableCell.m; sourceTree = "<group>"; };
 		188F41AA223612A100165142 /* ZFPersonalHeadTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalHeadTableCell.h; sourceTree = "<group>"; };
 		188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalHeadTableCell.m; sourceTree = "<group>"; };
 		188F41AD2236181B00165142 /* ZFPersonalCentralTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalCentralTableCell.h; sourceTree = "<group>"; };
@@ -1501,6 +1504,8 @@
 		18EA50B822266ECF00A2D612 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1866F4FA22437C25006ED7F1 /* ZFClassifyTableCell.h */,
+				1866F4FB22437C25006ED7F1 /* ZFClassifyTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2222,6 +2227,7 @@
 				84499BBE223A390900A7A988 /* ZFCommodityInforVC.m in Sources */,
 				189CC0E42223E81300EB5A64 /* HMEmoticonManager.m in Sources */,
 				18285F0B222D131A00CBA408 /* ZFAuctionEndTableCell.m in Sources */,
+				1866F4FC22437C25006ED7F1 /* ZFClassifyTableCell.m in Sources */,
 				53044DEE223CFBCA0097231E /* ZFCreateAddressView.m in Sources */,
 				847A09BE223917FB0021E236 /* ZFDetailsChoiceTableCell.m in Sources */,
 				181991902237A393004585D8 /* ZFAddressTagTableCell.m in Sources */,
