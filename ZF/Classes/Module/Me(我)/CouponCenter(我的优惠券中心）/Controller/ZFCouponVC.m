@@ -19,8 +19,8 @@
     [self setup];
 }
 - (void)setup{
-    
-    self.tableView.rowHeight = 200;
+    self.tableView.backgroundColor = RGBColorHex(0xf5f5f5);
+    self.tableView.rowHeight = 186;
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -31,10 +31,10 @@
     ZFCouponCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[ZFCouponCell alloc]init];
+        [cell setCellType:_type];
     }
     return cell;
 }
-
 
 
 @end

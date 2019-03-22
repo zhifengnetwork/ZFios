@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ZFCouponVC : UITableViewController
-
+@property (nonatomic, assign)NSInteger type;
 @end

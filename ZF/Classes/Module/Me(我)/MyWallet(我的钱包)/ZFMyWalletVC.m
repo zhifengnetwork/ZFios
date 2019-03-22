@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的钱包";
+    self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"Back"];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
     self.view.backgroundColor = RGBColorHex(0xf5f5f5);
     [self setup];
     

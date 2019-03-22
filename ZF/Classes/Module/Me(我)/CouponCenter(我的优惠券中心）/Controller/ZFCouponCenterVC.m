@@ -16,22 +16,22 @@
 @property (nonatomic, strong) ZFCouponVC *vc1;
 @property (nonatomic, strong) ZFCouponVC *vc2;
 @property (nonatomic, strong) ZFCouponVC *vc3;
-
+//@property (nonatomic, strong) UIView *lineView;
 @end
 
 @implementation ZFCouponCenterVC
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     self.title = @"优惠券";
     
+    self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"Back"];
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
 //    UIImage *imgRight = [UIImage imageNamed:@"icon_more"];
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonDidClick)];
-    
 }
-
+- (WMMenuViewStyle)menuViewStyle{
+    return WMMenuViewStyleLine;
+}
 
 - (void)rightButtonDidClick
 {
@@ -47,7 +47,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    
+    self.menuViewStyle = WMMenuViewStyleLine;
 //    [LKTool isHiddenNavigationBarSeparatorLine:NO vc:self];
     [self.vc1 addObserver:self forKeyPath:@"ccount" options:NSKeyValueObservingOptionNew context:nil];
     [self.vc2 addObserver:self forKeyPath:@"ccount" options:NSKeyValueObservingOptionNew context:nil];
@@ -72,6 +73,8 @@
 {
     if (index==0)
     {
+        
+
         return @"未使用";
     }
     else if (index==1)
@@ -85,7 +88,6 @@
     
     return @"";
 }
-
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index
 {
     if (index==0)
@@ -112,6 +114,7 @@
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView
 {
+    
     CGFloat leftMargin = 0;
     CGFloat originY = 0;
     return CGRectMake(leftMargin, originY, self.view.frame.size.width - 2*leftMargin, 44);
@@ -128,7 +131,7 @@
     if (_vc1==nil)
     {
         _vc1 = [[ZFCouponVC alloc]init];
-//        _vc1.type = @"0";
+        _vc1.type = 0;
     }
     return _vc1;
 }
@@ -138,7 +141,7 @@
     if (_vc2==nil)
     {
         _vc2 = [[ZFCouponVC alloc]init];
-//        _vc2.type = @"1";
+        _vc2.type = 1;
     }
     return _vc2;
 }
@@ -148,10 +151,11 @@
     if (_vc3==nil)
     {
         _vc3 = [[ZFCouponVC alloc]init];
-//        _vc3.type = @"2";
+        _vc3.type = 2;
     }
     return _vc3;
 }
+
 
 //当key路径对应的属性值发生改变时，监听器就会回调自身的监听方法，如下
 //- (void)observeValueForKeyPath:(NSString *)keyPath
