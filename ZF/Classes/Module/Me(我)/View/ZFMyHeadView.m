@@ -63,8 +63,9 @@
     }];
     
     [_memberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_bjIconView.mas_left).offset(12);
-        make.top.equalTo(self->_nameLabel.mas_bottom).offset(5);
+//        make.left.equalTo(self->_bjIconView.mas_left).offset(12);
+        make.top.equalTo(self->_nameLabel.mas_bottom).offset(10);
+        make.centerX.equalTo(self->_iconView);
     }];
     
     [_signInButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -137,7 +138,7 @@
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
-        _iconView.image = [UIImage imageNamed:@"hd"];
+        _iconView.image = [UIImage imageNamed:@"w12"];
         //头像点击事件
         _iconView.userInteractionEnabled = YES;
         UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -171,9 +172,9 @@
         _memberLabel.textColor = RGBColorHex(0x151515);
         _memberLabel.font = [UIFont systemFontOfSize:12];
         _memberLabel.backgroundColor = [UIColor whiteColor];
-        _memberLabel.layer.cornerRadius = 8.0f;
+        _memberLabel.layer.cornerRadius = 7.0f;
         _memberLabel.clipsToBounds = YES;
-        _memberLabel.text = @" 尊贵会员 ";
+        _memberLabel.text = @"  尊贵会员  ";
         
     }
     return _memberLabel;
