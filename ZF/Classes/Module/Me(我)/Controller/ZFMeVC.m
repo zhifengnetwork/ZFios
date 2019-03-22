@@ -25,9 +25,10 @@
 #import "ZFPublicWelfareVC.h"
 #import "ZFMyWalletTableCell.h"
 #import "ZFMyColumnTableCell.h"
-#import "ZFMyOrderVC.h"
+#import "ZFMyOrderEmptyVC.h"
 #import "ZFMyWalletVC.h"
 #import "ZFCouponCenterVC.h"
+#import "ZFZFMyOrderVC.h"
 
 
 @interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate,ZFMyWalletTableCellDelegate,ZFMyColumnTableCellDelegate>
@@ -77,7 +78,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     [self.tableView registerClass:[ZFFundAccountControllerCell class] forCellReuseIdentifier:ZFFundAccountControllerCellID];
     [self.tableView registerClass:[ZFMyColumnTableCell class] forCellReuseIdentifier:ZFMyColumnTableCellID];
     
-    self.headView = [[ZFMyHeadView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 130)];
+    self.headView = [[ZFMyHeadView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 135)];
     _headView.delegate = self;
     self.tableView.tableHeaderView = self.headView;
 }
@@ -240,7 +241,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
  */
 - (void)ZFMyOrderHeadViewDidClick
 {
-    ZFMyOrderVC* vc = [[ZFMyOrderVC alloc]init];
+    ZFMyOrderEmptyVC* vc = [[ZFMyOrderEmptyVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -256,6 +257,8 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     else if (indexPath.item==1)
     {
         //待发货
+        ZFZFMyOrderVC* vc = [[ZFZFMyOrderVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.item==2)
     {

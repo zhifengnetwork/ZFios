@@ -42,12 +42,12 @@
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
-        make.top.mas_equalTo(12);
+        make.bottom.mas_equalTo(-40);
     }];
     
     [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_nameLabel.mas_right).offset(115);
-        make.top.mas_equalTo(12);
+        make.left.equalTo(self->_nameLabel.mas_right).offset(155);
+        make.centerY.equalTo(self->_nameLabel);
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,12 +57,16 @@
     
     [_deliverButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_numberLabel.mas_bottom).offset(8);
-        make.right.equalTo(self->_orderButton.mas_right).offset(13);
+        make.right.equalTo(self->_orderButton.mas_left).offset(-13);
+        make.width.mas_equalTo(60);
+        make.height.mas_equalTo(20);
     }];
     
     [_orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-20);
         make.top.equalTo(self->_moneyLabel.mas_bottom).offset(8);
+        make.width.mas_equalTo(60);
+        make.height.mas_equalTo(20);
     }];
     
 }

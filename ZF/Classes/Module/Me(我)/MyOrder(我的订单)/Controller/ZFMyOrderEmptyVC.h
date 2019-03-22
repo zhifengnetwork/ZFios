@@ -1,5 +1,5 @@
 //
-//  ZFMyOrderVC.h
+//  ZFMyOrderEmptyVC.h
 //  ZF
 //
 //  Created by admin on 2019/3/15.
@@ -11,9 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 我的订单
+ 我的订单为空
  */
-@interface ZFMyOrderVC : UITableViewController
+@interface ZFMyOrderEmptyVC : UITableViewController
 
 @end
 

@@ -49,7 +49,7 @@
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-10);
-        make.centerY.equalTo(self.contentView);
+        make.bottom.equalTo(self->_titleLabel.mas_bottom);
     }];
     
     //下面横线

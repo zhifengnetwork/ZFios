@@ -84,7 +84,7 @@
      {
          make.left.equalTo(self->_iconView.mas_left);
          make.right.equalTo(self->_seeButton.mas_right);
-         make.bottom.equalTo(self.contentView);
+         make.top.equalTo(self->_iconView.mas_bottom).offset(5);
          make.height.mas_equalTo(0.5f);
      }];
     
@@ -141,7 +141,7 @@
 - (UILabel *)moneyLabel {
     if (_moneyLabel == nil) {
         _moneyLabel = [[UILabel alloc] init];
-        _moneyLabel.textColor = RGBColorHex(0xfa0505);
+        _moneyLabel.textColor = RGBColorHex(0x646464);
         _moneyLabel.font = [UIFont systemFontOfSize:15];
         _moneyLabel.text = @"¥ 399 × 2";
     }

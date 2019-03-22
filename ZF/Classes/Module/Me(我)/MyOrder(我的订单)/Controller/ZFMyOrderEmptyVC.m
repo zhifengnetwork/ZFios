@@ -1,21 +1,21 @@
 //
-//  ZFMyOrderVC.m
+//  ZFMyOrderEmptyVC.m
 //  ZF
 //
 //  Created by admin on 2019/3/15.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFMyOrderVC.h"
+#import "ZFMyOrderEmptyVC.h"
 #import "ZFOrderEmptyTableCell.h"
 #import "ZFGoShoppingTableCell.h"
 #import "ZFTool.h"
 
-@interface ZFMyOrderVC ()
+@interface ZFMyOrderEmptyVC ()
 
 @end
 
-@implementation ZFMyOrderVC
+@implementation ZFMyOrderEmptyVC
 
 static NSString *const ZFOrderEmptyTableCellID = @"ZFOrderEmptyTableCellID";
 static NSString *const ZFGoShoppingTableCellID = @"ZFGoShoppingTableCellID";
