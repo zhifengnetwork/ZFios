@@ -12,6 +12,9 @@
 		1808E0D42231191600B9DB1D /* ZFSecondkillMerTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808E0D32231191600B9DB1D /* ZFSecondkillMerTableCell.m */; };
 		1808E0D72231224E00B9DB1D /* ZFSpikeFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808E0D52231224D00B9DB1D /* ZFSpikeFooterView.m */; };
 		1808E0DA2231241A00B9DB1D /* ZFEndSpikeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808E0D82231241A00B9DB1D /* ZFEndSpikeVC.m */; };
+		180935A92244D93800AEBB02 /* ZFClassifyCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180935A82244D93800AEBB02 /* ZFClassifyCollectionCell.m */; };
+		180935AC2244DB2500AEBB02 /* ZFClassifyHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180935AB2244DB2500AEBB02 /* ZFClassifyHeadView.m */; };
+		180935AF2244DEA700AEBB02 /* ZFClassifyTopToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180935AE2244DEA700AEBB02 /* ZFClassifyTopToolView.m */; };
 		180A97A3222E1812003A12FF /* ZFConfirmationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A97A2222E1812003A12FF /* ZFConfirmationTableCell.m */; };
 		180A97A6222E21CD003A12FF /* ZFStartAuctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A97A5222E21CD003A12FF /* ZFStartAuctionVC.m */; };
 		180A97AD222E32F4003A12FF /* ZFAssembleCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A97AC222E32F4003A12FF /* ZFAssembleCollectionCell.m */; };
@@ -229,6 +232,12 @@
 		1808E0D62231224D00B9DB1D /* ZFSpikeFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSpikeFooterView.h; sourceTree = "<group>"; };
 		1808E0D82231241A00B9DB1D /* ZFEndSpikeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFEndSpikeVC.m; sourceTree = "<group>"; };
 		1808E0D92231241A00B9DB1D /* ZFEndSpikeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFEndSpikeVC.h; sourceTree = "<group>"; };
+		180935A72244D93800AEBB02 /* ZFClassifyCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyCollectionCell.h; sourceTree = "<group>"; };
+		180935A82244D93800AEBB02 /* ZFClassifyCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyCollectionCell.m; sourceTree = "<group>"; };
+		180935AA2244DB2500AEBB02 /* ZFClassifyHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyHeadView.h; sourceTree = "<group>"; };
+		180935AB2244DB2500AEBB02 /* ZFClassifyHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyHeadView.m; sourceTree = "<group>"; };
+		180935AD2244DEA700AEBB02 /* ZFClassifyTopToolView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyTopToolView.h; sourceTree = "<group>"; };
+		180935AE2244DEA700AEBB02 /* ZFClassifyTopToolView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyTopToolView.m; sourceTree = "<group>"; };
 		180A97A1222E1812003A12FF /* ZFConfirmationTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFConfirmationTableCell.h; sourceTree = "<group>"; };
 		180A97A2222E1812003A12FF /* ZFConfirmationTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFConfirmationTableCell.m; sourceTree = "<group>"; };
 		180A97A4222E21CD003A12FF /* ZFStartAuctionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFStartAuctionVC.h; sourceTree = "<group>"; };
@@ -1518,6 +1527,12 @@
 			children = (
 				1866F4FA22437C25006ED7F1 /* ZFClassifyTableCell.h */,
 				1866F4FB22437C25006ED7F1 /* ZFClassifyTableCell.m */,
+				180935A72244D93800AEBB02 /* ZFClassifyCollectionCell.h */,
+				180935A82244D93800AEBB02 /* ZFClassifyCollectionCell.m */,
+				180935AA2244DB2500AEBB02 /* ZFClassifyHeadView.h */,
+				180935AB2244DB2500AEBB02 /* ZFClassifyHeadView.m */,
+				180935AD2244DEA700AEBB02 /* ZFClassifyTopToolView.h */,
+				180935AE2244DEA700AEBB02 /* ZFClassifyTopToolView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2243,6 +2258,8 @@
 				18E3CF92222A2437003C7737 /* ZFHomePageTitleHeadView.m in Sources */,
 				18EA50BB22266EFE00A2D612 /* ZFHomeVC.m in Sources */,
 				180A97AD222E32F4003A12FF /* ZFAssembleCollectionCell.m in Sources */,
+				180935A92244D93800AEBB02 /* ZFClassifyCollectionCell.m in Sources */,
+				180935AF2244DEA700AEBB02 /* ZFClassifyTopToolView.m in Sources */,
 				18C26C06222D7ECA004951D9 /* CountDown.m in Sources */,
 				849ABEA722437DB4008B089F /* ZFOrderDetailsTableCell.m in Sources */,
 				18F60017222E74F300DE7EF4 /* ZFplaceOrderVC.m in Sources */,
@@ -2347,6 +2364,7 @@
 				189CC0E32223E81300EB5A64 /* NSString+HMEmoji.m in Sources */,
 				18515F85222FC4F000F36E26 /* ZFStationNewsHeadView.m in Sources */,
 				181991952237A990004585D8 /* ZFDefaultAddressTableCell.m in Sources */,
+				180935AC2244DB2500AEBB02 /* ZFClassifyHeadView.m in Sources */,
 				53B6085C223BB08B00A5DFB3 /* ZFBounceCell.m in Sources */,
 				18285F14222D32A400CBA408 /* ZFAuctionRulesTableCell.m in Sources */,
 				182E8A072224010B005CE5FE /* LoginPhoneView.m in Sources */,

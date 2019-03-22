@@ -8,6 +8,9 @@
 
 #import "ZFClassifyVC.h"
 #import "ZFClassifyTableCell.h"
+#import "ZFClassifyCollectionCell.h"
+#import "ZFClassifyHeadView.h"
+#import "ZFClassifyTopToolView.h"
 
 
 @interface ZFClassifyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -16,12 +19,17 @@
 @property (strong , nonatomic)UITableView *tableView;
 /* collectionViw */
 @property (strong , nonatomic)UICollectionView *collectionView;
+/* 顶部工具View */
+@property (nonatomic, strong) ZFClassifyTopToolView *topToolView;
 
 @end
 
 @implementation ZFClassifyVC
 
 static NSString *const ZFClassifyTableCellID = @"ZFClassifyTableCellID";
+static NSString *const ZFClassifyCollectionCellID = @"ZFClassifyCollectionCellID";
+static NSString *const ZFClassifyHeadViewID = @"ZFClassifyHeadViewID";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,6 +45,28 @@ static NSString *const ZFClassifyTableCellID = @"ZFClassifyTableCellID";
     self.tableView.backgroundColor = TableViewBGColor;
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = [UIView new];
+    
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -10;
+    
+    UIButton *button = [[UIButton alloc] init];
+    [button setImage:[UIImage imageNamed:@"news"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"news"] forState:UIControlStateHighlighted];
+    button.frame = CGRectMake(0, 0, 44, 44);
+    [button addTarget:self action:@selector(messButtonBarItemClick) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
+    
+    _topToolView = [[ZFClassifyTopToolView alloc] init];
+    _topToolView.frame = CGRectMake(0, 0, LL_ScreenWidth, 44);
+    self.navigationItem.titleView = _topToolView;
+}
+
+#pragma mark - 消息点击
+- (void)messButtonBarItemClick
+{
+    
 }
 
 
@@ -68,68 +98,41 @@ static NSString *const ZFClassifyTableCellID = @"ZFClassifyTableCellID";
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 0;
+    return 10;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 0;
+    return 3;
 }
 
 #pragma mark - <UICollectionViewDelegate>
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *gridcell = nil;
-//    if ([_mainItem[_mainItem.count - 1].title isEqualToString:@"热门品牌"])
-//    {
-//        if (indexPath.section == _mainItem.count - 1) {//品牌
-//            DCBrandSortCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCBrandSortCellID forIndexPath:indexPath];
-//            cell.subItem = _mainItem[indexPath.section].goods[indexPath.row];
-//            gridcell = cell;
-//        }
-//        else
-//        {//商品
-//            DCGoodsSortCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCGoodsSortCellID forIndexPath:indexPath];
-//            cell.subItem = _mainItem[indexPath.section].goods[indexPath.row];
-//            gridcell = cell;
-//        }
-//    }else
-//    {//商品
-//        DCGoodsSortCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:DCGoodsSortCellID forIndexPath:indexPath];
-//        cell.subItem = _mainItem[indexPath.section].goods[indexPath.row];
-//        gridcell = cell;
-//    }
+    //商品
+    ZFClassifyCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFClassifyCollectionCellID forIndexPath:indexPath];
+    gridcell = cell;
     
     return gridcell;
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionReusableView *reusableview = nil;
-//    if (kind == UICollectionElementKindSectionHeader)
-//    {
-//
-//        DCBrandsSortHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCBrandsSortHeadViewID forIndexPath:indexPath];
-//        headerView.headTitle = _mainItem[indexPath.section];
-//        reusableview = headerView;
-//    }
+    if (kind == UICollectionElementKindSectionHeader)
+    {
+
+        ZFClassifyHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassifyHeadViewID forIndexPath:indexPath];
+        reusableview = headerView;
+    }
     return reusableview;
 }
 #pragma mark - item宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if ([_mainItem[_mainItem.count - 1].title isEqualToString:@"热门品牌"])
-//    {
-//        if (indexPath.section == _mainItem.count - 1)
-//        {//品牌
-//            return CGSizeMake((LL_ScreenWidth - 100 - 6 - 15)/3, 60);
-//        }else
-//        {//商品
-//            return CGSizeMake((LL_ScreenWidth - 100 - 6 - 15)/3, (LL_ScreenWidth - 100 - 6 - 15)/3 + 20);
-//        }
-//    }else
-//    {
-//        return CGSizeMake((LL_ScreenWidth - 100 - 6 - 15)/3, (LL_ScreenWidth - 100 - 6 - 15)/3 + 20);
-//    }
+
+    return CGSizeMake((LL_ScreenWidth - 100 - 6 - 15)/3, (LL_ScreenWidth - 100 - 6 - 15)/3 + 20);
+    
     return CGSizeZero;
 }
 
@@ -183,11 +186,10 @@ static NSString *const ZFClassifyTableCellID = @"ZFClassifyTableCellID";
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.alwaysBounceVertical = YES;
         _collectionView.frame = CGRectMake(100, 0, LL_ScreenWidth-100,LL_ScreenHeight);
-//        //注册Cell
-//        [_collectionView registerClass:[DCGoodsSortCell class] forCellWithReuseIdentifier:DCGoodsSortCellID];
-//        [_collectionView registerClass:[DCBrandSortCell class] forCellWithReuseIdentifier:DCBrandSortCellID];
-//        //注册Header
-//        [_collectionView registerClass:[DCBrandsSortHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:DCBrandsSortHeadViewID];
+        //注册Cell
+        [_collectionView registerClass:[ZFClassifyCollectionCell class] forCellWithReuseIdentifier:ZFClassifyCollectionCellID];
+        //注册Header
+        [_collectionView registerClass:[ZFClassifyHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassifyHeadViewID];
     }
     return _collectionView;
 }
