@@ -16,7 +16,7 @@
 - (void)decrease: (ZFShoppingCartCell *)cell;
 @end
 @interface ZFShoppingCartCell : UITableViewCell
-@property (assign, nonatomic)id <ZFShoppingCartCellDelegate>delegate;
+@property (weak, nonatomic)id <ZFShoppingCartCellDelegate>delegate;
 @property (strong, nonatomic)ZFShoppingItem *model;
 + (instancetype)ShoppingCartCell;
 @end

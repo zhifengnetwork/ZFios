@@ -12,6 +12,7 @@
 #import "ZFEmptyCartView.h"
 @interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak)UITableView *shoppingCart;
+@property (nonatomic, weak)ZFSettlementView *settleView;
 @end
 
 @implementation ZFShoppingCartVC
@@ -44,24 +45,29 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         tableView.rowHeight = 270;
         self.shoppingCart = tableView;
         [self.view addSubview:tableView];
+        //结算界面
+        ZFSettlementView *settleView = [ZFSettlementView CartView];
+        [self.view addSubview:settleView];
+        self.settleView = settleView;
+        [settleView setPrice];
+        [settleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.right.mas_equalTo(0);
+            make.width.mas_equalTo(LL_ScreenWidth);
+            make.height.mas_equalTo(44);
+            make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(-48);
+        }];
     }
-    //结算界面
-    ZFSettlementView *view = [ZFSettlementView CartView];
-    [self.view addSubview:view];
-    [view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(0);
-        make.right.mas_equalTo(0);
-        make.width.mas_equalTo(LL_ScreenWidth);
-        make.height.mas_equalTo(44);
-        make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(-48);
-    }];
-    
-    
-    
 }
+//判断settleview的按钮状态
 - (void)editCell: (UIButton *)button{
-    button.selected = !button.selected;
-    self.shoppingCart.editing = button.selected;
+    [self.shoppingCart setEditing:!self.shoppingCart.isEditing animated:YES];
+    if (self.shoppingCart.isEditing) {
+        [self.settleView setEditing];
+    }else{
+        [self.settleView setPrice];
+    }
+    
 }
 #pragma mark --tableview的协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
