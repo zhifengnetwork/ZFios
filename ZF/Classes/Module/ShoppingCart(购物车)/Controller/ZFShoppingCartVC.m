@@ -24,10 +24,15 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"购物车";
+    self.navigationController.navigationBar.translucent  = YES; // 导航栏透明
+    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    [self.navigationController.navigationBar setBackgroundColor:RGBColorHex(0x747474)];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     //右边按钮
     UIButton * btn = [[UIButton alloc]init];
     [btn setBackgroundImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
     [btn setTitle:@"管理" forState:UIControlStateNormal];
+    [btn setTitle:@"取消" forState:UIControlStateSelected];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(editCell:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -37,7 +42,9 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     if (/* DISABLES CODE */ (0)) {
         ZFEmptyCartView *emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
         [self.view addSubview:emptyCart];
+        btn.hidden = YES;
     }else{
+        btn.hidden = NO;
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
         tableView.backgroundColor = RGBColorHex(0xf4f4f4);
         tableView.delegate = self;
@@ -45,6 +52,8 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         tableView.rowHeight = 270;
         self.shoppingCart = tableView;
         [self.view addSubview:tableView];
+        
+        tableView.allowsMultipleSelectionDuringEditing = YES;
         //结算界面
         ZFSettlementView *settleView = [ZFSettlementView CartView];
         [self.view addSubview:settleView];
@@ -61,6 +70,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 }
 //判断settleview的按钮状态
 - (void)editCell: (UIButton *)button{
+    button.selected = !button.selected;
     [self.shoppingCart setEditing:!self.shoppingCart.isEditing animated:YES];
     if (self.shoppingCart.isEditing) {
         [self.settleView setEditing];
@@ -70,8 +80,14 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     
 }
 #pragma mark --tableview的协议
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
+    return NO;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFShoppingCartTableCellID];

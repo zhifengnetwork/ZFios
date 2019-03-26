@@ -64,8 +64,9 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="allMoneyLabel" destination="cRQ-qb-7zL" id="D0l-ha-lZ1"/>
+                <outlet property="allMoneyLabel" destination="H8f-KU-zCD" id="f5K-Nw-FFQ"/>
                 <outlet property="allSelectButton" destination="8rF-rM-nhx" id="bC0-D3-Uru"/>
+                <outlet property="moneyLabel" destination="cRQ-qb-7zL" id="FhZ-sa-vjX"/>
                 <outlet property="settleButton" destination="hQ4-El-sSB" id="K75-IC-Awe"/>
             </connections>
             <point key="canvasLocation" x="27" y="-116"/>

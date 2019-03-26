@@ -257,10 +257,10 @@
 //新建地址
 - (void)createAddress{
     
-    ZFCreateAddressView *createview = [[ZFCreateAddressView alloc]initWithFrame:CGRectMake(0,LL_ScreenHeight - 389, LL_ScreenWidth, 389)];
-    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:createview preferredStyle:TYAlertControllerStyleActionSheet];
-    alertController.backgoundTapDismissEnable = YES;
-    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
+//    ZFCreateAddressView *createview = [[ZFCreateAddressView alloc]initWithFrame:CGRectMake(0,LL_ScreenHeight - 389, LL_ScreenWidth, 389)];
+//    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:createview preferredStyle:TYAlertControllerStyleActionSheet];
+//    alertController.backgoundTapDismissEnable = YES;
+//    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
 
 }
 //同意协议

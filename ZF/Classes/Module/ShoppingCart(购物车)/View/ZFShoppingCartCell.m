@@ -34,7 +34,24 @@
     
     [self setUp];
 }
-
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated{
+    [super setEditing:editing animated:animated];
+    [self setShowsReorderControl:NO];
+    for (UIControl *control in self.subviews) {
+        if ([control isMemberOfClass:NSClassFromString(@"UITableViewCellEditControl")]) {
+            [control removeFromSuperview];
+            
+        }
+    }
+}
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
+    [super setSelected:selected animated:animated];
+    if (selected) {
+        self.selectGoodButton.selected = YES;
+    }else{
+        self.selectGoodButton.selected = NO;
+    }
+}
 
 - (void)setFrame:(CGRect)frame{
     frame.origin.x = 16;
@@ -47,6 +64,7 @@
     self.backgroundColor = RGBColorHex(0xffffff);
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = 8.0;
+
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     ZFMenuView *menuView= [[ZFMenuView alloc]init];
     [self.contentView addSubview:menuView];
@@ -82,11 +100,6 @@
     
 }
 
-- (IBAction)selectGood {
-    self.selectGoodButton.selected = !self.selectGoodButton.selected;
-}
-
-
 
 
 /*点击进入店铺 */
@@ -102,5 +115,6 @@
 //修改套餐
 - (IBAction)revise:(id)sender {
 }
+
 
 @end
