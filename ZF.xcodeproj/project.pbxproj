@@ -163,6 +163,9 @@
 		53B6085C223BB08B00A5DFB3 /* ZFBounceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B6085B223BB08B00A5DFB3 /* ZFBounceCell.m */; };
 		69F9943388184D9DFB8EE494 /* libPods-ZF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */; };
 		84213542224482D100B5EE8B /* ZFZFMyOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84213541224482D100B5EE8B /* ZFZFMyOrderVC.m */; };
+		842C0B2B2248CEC20058206F /* ZFCommDetHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C0B2A2248CEC20058206F /* ZFCommDetHeadView.m */; };
+		842C0B2E2248D6350058206F /* ZFDetailsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C0B2D2248D6350058206F /* ZFDetailsPageVC.m */; };
+		842C0B312248E6B30058206F /* ZFDetCommInformationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C0B302248E6B30058206F /* ZFDetCommInformationTableCell.m */; };
 		842EDEE12240C8FB00B53E45 /* ZFCityAgentTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842EDEE02240C8FB00B53E45 /* ZFCityAgentTableCell.m */; };
 		842EDEE42240CCB500B53E45 /* ZFMyTeamVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842EDEE32240CCB500B53E45 /* ZFMyTeamVC.m */; };
 		842EDEEA2240E64E00B53E45 /* ZFPublicHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842EDEE92240E64E00B53E45 /* ZFPublicHeadTableCell.m */; };
@@ -535,6 +538,12 @@
 		5FAC7E4D0704CFD067CBF286 /* Pods-ZFUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZFUITests/Pods-ZFUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		84213540224482D100B5EE8B /* ZFZFMyOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFZFMyOrderVC.h; sourceTree = "<group>"; };
 		84213541224482D100B5EE8B /* ZFZFMyOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFZFMyOrderVC.m; sourceTree = "<group>"; };
+		842C0B292248CEC20058206F /* ZFCommDetHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFCommDetHeadView.h; sourceTree = "<group>"; };
+		842C0B2A2248CEC20058206F /* ZFCommDetHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFCommDetHeadView.m; sourceTree = "<group>"; };
+		842C0B2C2248D6350058206F /* ZFDetailsPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsPageVC.h; sourceTree = "<group>"; };
+		842C0B2D2248D6350058206F /* ZFDetailsPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsPageVC.m; sourceTree = "<group>"; };
+		842C0B2F2248E6B30058206F /* ZFDetCommInformationTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetCommInformationTableCell.h; sourceTree = "<group>"; };
+		842C0B302248E6B30058206F /* ZFDetCommInformationTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetCommInformationTableCell.m; sourceTree = "<group>"; };
 		842EDEDF2240C8FB00B53E45 /* ZFCityAgentTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFCityAgentTableCell.h; sourceTree = "<group>"; };
 		842EDEE02240C8FB00B53E45 /* ZFCityAgentTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFCityAgentTableCell.m; sourceTree = "<group>"; };
 		842EDEE22240CCB500B53E45 /* ZFMyTeamVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyTeamVC.h; sourceTree = "<group>"; };
@@ -1440,6 +1449,7 @@
 		18EA50AD22266ECF00A2D612 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				842C0B262248CE5B0058206F /* CommodityDetails(商品详情页) */,
 				18515F82222FBBB300F36E26 /* StationNews(站内消息) */,
 				18285EFF222CE21D00CBA408 /* Auction(竞拍) */,
 				180A97A7222E3286003A12FF /* Assemble(拼团) */,
@@ -1739,6 +1749,35 @@
 				5304891E2240C42B002FAF61 /* ZFEmptyCartView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		842C0B262248CE5B0058206F /* CommodityDetails(商品详情页) */ = {
+			isa = PBXGroup;
+			children = (
+				842C0B282248CE960058206F /* Controller */,
+				842C0B272248CE900058206F /* View */,
+			);
+			path = "CommodityDetails(商品详情页)";
+			sourceTree = "<group>";
+		};
+		842C0B272248CE900058206F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				842C0B292248CEC20058206F /* ZFCommDetHeadView.h */,
+				842C0B2A2248CEC20058206F /* ZFCommDetHeadView.m */,
+				842C0B2F2248E6B30058206F /* ZFDetCommInformationTableCell.h */,
+				842C0B302248E6B30058206F /* ZFDetCommInformationTableCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		842C0B282248CE960058206F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				842C0B2C2248D6350058206F /* ZFDetailsPageVC.h */,
+				842C0B2D2248D6350058206F /* ZFDetailsPageVC.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		842EDEE52240E5F600B53E45 /* PublicWelfare(公益基金账户) */ = {
@@ -2274,6 +2313,7 @@
 				1866F4FC22437C25006ED7F1 /* ZFClassifyTableCell.m in Sources */,
 				53044DEE223CFBCA0097231E /* ZFCreateAddressView.m in Sources */,
 				847A09BE223917FB0021E236 /* ZFDetailsChoiceTableCell.m in Sources */,
+				842C0B2E2248D6350058206F /* ZFDetailsPageVC.m in Sources */,
 				181991902237A393004585D8 /* ZFAddressTagTableCell.m in Sources */,
 				18515F8C222FCC9A00F36E26 /* UIView+DCRolling.m in Sources */,
 				180F31AF222FA1B50040718F /* ZFStationNewsTableCell.m in Sources */,
@@ -2328,6 +2368,7 @@
 				18EA50CD2226874C00A2D612 /* ZFBannerHeadView.m in Sources */,
 				8475470722409DC800B698E6 /* ZFMyIntegralVC.m in Sources */,
 				18F6000E222E692900DE7EF4 /* ZFAmountPayableTableCell.m in Sources */,
+				842C0B312248E6B30058206F /* ZFDetCommInformationTableCell.m in Sources */,
 				1808E0CA2230F42600B9DB1D /* ZFHarvestAddressView.m in Sources */,
 				189CC0F52223E81300EB5A64 /* ZFTool.m in Sources */,
 				5358868422365F4E00D7A4B6 /* ZFSettlementView.m in Sources */,
@@ -2366,6 +2407,7 @@
 				189CC0DA2223E81300EB5A64 /* UserInfoModel.m in Sources */,
 				5325B2502243804300AFD00F /* ZFCouponVC.m in Sources */,
 				849F956D223B7B31001824B9 /* ZFStoreConcernVC.m in Sources */,
+				842C0B2B2248CEC20058206F /* ZFCommDetHeadView.m in Sources */,
 				189CC0E32223E81300EB5A64 /* NSString+HMEmoji.m in Sources */,
 				18515F85222FC4F000F36E26 /* ZFStationNewsHeadView.m in Sources */,
 				181991952237A990004585D8 /* ZFDefaultAddressTableCell.m in Sources */,

@@ -21,6 +21,7 @@
 #import "ZFTopLineFootView.h"
 #import "CountDown.h"
 #import "ZFStationNewsVC.h"
+#import "ZFDetailsPageVC.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -358,7 +359,8 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         }
         else if (indexPath.row==2)
         {
-            
+            ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==3)
         {
