@@ -43,7 +43,7 @@
     
     [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self->_cycleScrollView.mas_right).offset(-15);
-        make.bottom.equalTo(self->_cycleScrollView.mas_bottom).offset(-7);
+        make.bottom.equalTo(self->_cycleScrollView.mas_bottom).offset(-17);
         make.width.mas_equalTo(42);
         make.height.mas_equalTo(20);
     }];

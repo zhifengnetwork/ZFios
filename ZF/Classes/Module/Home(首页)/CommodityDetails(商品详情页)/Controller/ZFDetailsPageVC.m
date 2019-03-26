@@ -10,6 +10,13 @@
 #import "ZFCommDetHeadView.h"
 #import "ZFTool.h"
 #import "ZFDetCommInformationTableCell.h"
+#import "ZFDeliveryTableCell.h"
+#import "ZFExplainTableCell.h"
+#import "ZFevaluationHeadTableCell.h"
+#import "ZFCommodityEvaluationTableCell.h"
+#import "ZFAskEveryoneHeadTableCell.h"
+#import "ZFAskEveryoneTableCell.h"
+#import "ZFMerchandiseSaleHeadTableCell.h"
 
 
 @interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -28,6 +35,13 @@
 @implementation ZFDetailsPageVC
 
 static NSString *const ZFDetCommInformationTableCelllD = @"ZFDetCommInformationTableCelllD";
+static NSString *const ZFDeliveryTableCelllD = @"ZFDeliveryTableCelllD";
+static NSString *const ZFExplainTableCelllD = @"ZFExplainTableCelllD";
+static NSString *const ZFevaluationHeadTableCelllD = @"ZFevaluationHeadTableCelllD";
+static NSString *const ZFCommodityEvaluationTableCelllD = @"ZFCommodityEvaluationTableCelllD";
+static NSString *const ZFAskEveryoneHeadTableCelllD = @"ZFAskEveryoneHeadTableCelllD";
+static NSString *const ZFAskEveryoneTableCelllD = @"ZFAskEveryoneTableCelllD";
+static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHeadTableCelllD";
 
 
 - (void)viewDidLoad {
@@ -95,6 +109,13 @@ static NSString *const ZFDetCommInformationTableCelllD = @"ZFDetCommInformationT
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerClass:[ZFDetCommInformationTableCell class] forCellReuseIdentifier:ZFDetCommInformationTableCelllD];
+    [self.tableView registerClass:[ZFDeliveryTableCell class] forCellReuseIdentifier:ZFDeliveryTableCelllD];
+    [self.tableView registerClass:[ZFExplainTableCell class] forCellReuseIdentifier:ZFExplainTableCelllD];
+    [self.tableView registerClass:[ZFevaluationHeadTableCell class] forCellReuseIdentifier:ZFevaluationHeadTableCelllD];
+    [self.tableView registerClass:[ZFCommodityEvaluationTableCell class] forCellReuseIdentifier:ZFCommodityEvaluationTableCelllD];
+    [self.tableView registerClass:[ZFAskEveryoneHeadTableCell class] forCellReuseIdentifier:ZFAskEveryoneHeadTableCelllD];
+    [self.tableView registerClass:[ZFAskEveryoneTableCell class] forCellReuseIdentifier:ZFAskEveryoneTableCelllD];
+    [self.tableView registerClass:[ZFMerchandiseSaleHeadTableCell class] forCellReuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
     
 }
 
@@ -103,11 +124,15 @@ static NSString *const ZFDetCommInformationTableCelllD = @"ZFDetCommInformationT
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 8;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section==1)
+    {
+        return 2;
+    }
     return 1;
 }
 
@@ -122,6 +147,58 @@ static NSString *const ZFDetCommInformationTableCelllD = @"ZFDetCommInformationT
         //        dcell.delegate = self;
         cell = dcell;
     }
+    else if (indexPath.section==1)
+    {
+        ZFDeliveryTableCell* ocell  = [tableView dequeueReusableCellWithIdentifier:ZFDeliveryTableCelllD];
+        ocell = [[ZFDeliveryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDeliveryTableCelllD];
+        if (indexPath.row==0)
+        {
+            ocell.name = @"配送";
+            ocell.title = @"至 广州荔湾区";
+        }
+        else if (indexPath.row==1)
+        {
+            ocell.name = @"运费";
+            ocell.title = @"免运费";
+        }
+        cell = ocell;
+    }
+    else if (indexPath.section==2)
+    {
+        ZFExplainTableCell* xcell = [tableView dequeueReusableCellWithIdentifier:ZFExplainTableCelllD];
+        xcell = [[ZFExplainTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFExplainTableCelllD];
+        cell = xcell;
+    }
+    else if (indexPath.section==3)
+    {
+        ZFevaluationHeadTableCell* qcell = [tableView dequeueReusableCellWithIdentifier:ZFevaluationHeadTableCelllD];
+        qcell = [[ZFevaluationHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFevaluationHeadTableCelllD];
+        cell = qcell;
+    }
+    else if (indexPath.section==4)
+    {
+        ZFCommodityEvaluationTableCell* acell = [tableView dequeueReusableCellWithIdentifier:ZFCommodityEvaluationTableCelllD];
+        acell = [[ZFCommodityEvaluationTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFCommodityEvaluationTableCelllD];
+        cell = acell;
+    }
+    else if (indexPath.section==5)
+    {
+        ZFAskEveryoneHeadTableCell* ncell = [tableView dequeueReusableCellWithIdentifier:ZFAskEveryoneHeadTableCelllD];
+        ncell = [[ZFAskEveryoneHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAskEveryoneHeadTableCelllD];
+        cell = ncell;
+    }
+    else if (indexPath.section==6)
+    {
+        ZFAskEveryoneTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFAskEveryoneTableCelllD];
+        vcell = [[ZFAskEveryoneTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAskEveryoneTableCelllD];
+        cell = vcell;
+    }
+    else if (indexPath.section==7)
+    {
+        ZFMerchandiseSaleHeadTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFMerchandiseSaleHeadTableCelllD];
+        vcell = [[ZFMerchandiseSaleHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
+        cell = vcell;
+    }
     
     return cell;
 }
@@ -129,11 +206,37 @@ static NSString *const ZFDetCommInformationTableCelllD = @"ZFDetCommInformationT
 //每行的高度是多少
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150.0f;
+    if (indexPath.section==0)
+    {
+        return UITableViewAutomaticDimension;
+    }
+    else if (indexPath.section==1)
+    {
+        return 40;
+    }
+    else if (indexPath.section==2)
+    {
+        return 50;
+    }
+    else if (indexPath.section==4)
+    {
+        return 130;
+    }
+    else if (indexPath.section==7)
+    {
+        return 265;
+    }
+    return 35;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (section==3) {
+        return 20;
+    }
+    else if (section==7) {
+        return 20;
+    }
     return 0;
 }
 
