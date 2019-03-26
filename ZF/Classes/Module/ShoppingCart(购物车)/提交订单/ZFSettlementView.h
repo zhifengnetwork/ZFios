@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//@class ZFSettlementView;
+//@protocol ZFSettlementViewDelegate <NSObject>
+//@optional
+//- (void)deleteClick;
+//- (void)buyClick;
+//@end
 @interface ZFSettlementView : UIView
 + (instancetype)CartView;
+//@property (nonatomic, weak)id <ZFSettlementViewDelegate>delegate;
+- (void)setEditing;
+- (void)setPrice;
 @end
