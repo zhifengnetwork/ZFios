@@ -40,8 +40,8 @@
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = RGBColorHex(0x434343);
-        _nameLabel.font = [UIFont systemFontOfSize:12];
+        _nameLabel.textColor = RGBColorHex(0x101010);
+        _nameLabel.font = [UIFont systemFontOfSize:16];
         _nameLabel.text = @"精选品牌";
     }
     return _nameLabel;
