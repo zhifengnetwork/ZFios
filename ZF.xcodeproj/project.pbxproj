@@ -2346,10 +2346,7 @@
 				189CC0E42223E81300EB5A64 /* HMEmoticonManager.m in Sources */,
 				18285F0B222D131A00CBA408 /* ZFAuctionEndTableCell.m in Sources */,
 				1866F4FC22437C25006ED7F1 /* ZFClassifyTableCell.m in Sources */,
-<<<<<<< HEAD
-=======
 				840BE909224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.m in Sources */,
->>>>>>> 210436f2be401224f51019b61ec3ed2329fe188c
 				847A09BE223917FB0021E236 /* ZFDetailsChoiceTableCell.m in Sources */,
 				842C0B2E2248D6350058206F /* ZFDetailsPageVC.m in Sources */,
 				181991902237A393004585D8 /* ZFAddressTagTableCell.m in Sources */,
