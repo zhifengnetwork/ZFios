@@ -71,7 +71,7 @@
 - (UILabel *)titleLabel{
     if (_titleLabel ==nil) {
         _titleLabel = [[UILabel alloc]init];
-        [_titleLabel setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:15]];
+        [_titleLabel setFont:[UIFont boldSystemFontOfSize:15]];
         [_titleLabel setTextColor:RGBColorHex(0x1a1a1a)];
         [_titleLabel setText:@"删除"];
     }
@@ -104,7 +104,7 @@
     if (_cancelButton == nil) {
         _cancelButton = [[UIButton alloc]init];
         [_cancelButton setTitleColor:RGBColorHex(0x1a1a1a) forState:UIControlStateNormal];
-        _cancelButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size:15];
+        _cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
         [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
         [_cancelButton addTarget:self action:@selector(cancelClick) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -114,7 +114,7 @@
     if (_deleteButton == nil) {
         _deleteButton = [[UIButton alloc]init];
         [_deleteButton setTitleColor:RGBColorHex(0xff5454) forState:UIControlStateNormal];
-        _deleteButton.titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Bold" size:15];
+        _deleteButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
         [_deleteButton setTitle:@"删除" forState:UIControlStateNormal];
         [_deleteButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
     }

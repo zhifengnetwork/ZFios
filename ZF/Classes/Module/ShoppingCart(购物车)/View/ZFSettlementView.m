@@ -37,7 +37,7 @@
     
 }
 + (instancetype)CartView{
-    return [[[NSBundle mainBundle] loadNibNamed:@"ZFSettlement" owner:self options:nil]lastObject];
+    return [[[NSBundle mainBundle] loadNibNamed:@"ZFSettlementView" owner:self options:nil]lastObject];
 }
 - (IBAction)allSelect:(id)sender {
     
@@ -61,7 +61,6 @@
 }
 - (void)buyClick{
     ZFConfirmOrderVC *vc = [[ZFConfirmOrderVC alloc]init];
-    
     [[self currentViewController].navigationController pushViewController:vc animated:YES];
 }
 

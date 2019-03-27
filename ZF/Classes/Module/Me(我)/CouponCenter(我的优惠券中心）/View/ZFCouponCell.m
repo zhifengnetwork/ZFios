@@ -111,7 +111,7 @@
     if (_reduceLabel == nil) {
         _reduceLabel = [[UILabel alloc]init];
         [_reduceLabel setText:@"8"];
-        [_reduceLabel setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:32]];
+        [_reduceLabel setFont:[UIFont boldSystemFontOfSize:32]];
         [_reduceLabel setTextColor:RGBColorHex(0xff5722)];
     }
     return _reduceLabel;

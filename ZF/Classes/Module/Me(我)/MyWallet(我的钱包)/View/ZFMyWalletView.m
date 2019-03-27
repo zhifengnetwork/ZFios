@@ -32,7 +32,7 @@
     [self addSubview:titleLabel];
     UILabel *balanceLabel = [[UILabel alloc]init];
     [balanceLabel setText:@"30000"];
-    [balanceLabel setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:22]];
+    [balanceLabel setFont:[UIFont boldSystemFontOfSize:22]];
     [balanceLabel setTextColor:RGBColorHex(0xff5600)];
     [self addSubview:balanceLabel];
     UIView *lineView = [[UIView alloc]init];

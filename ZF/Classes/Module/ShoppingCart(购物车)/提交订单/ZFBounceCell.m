@@ -103,7 +103,7 @@
     
     UILabel *price = [[UILabel alloc]init];
     [self addSubview:price];
-    price.font = [UIFont fontWithName:@"PingFang-SC-Bold" size:18];
+    price.font = [UIFont boldSystemFontOfSize:18];
     price.text = [NSString stringWithFormat:@"￥ 1476.00"];
     price.textColor = RGBColorHex(0xee4141);
     

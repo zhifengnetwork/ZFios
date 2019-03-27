@@ -23,10 +23,13 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setup];
+}
+- (void)setup{
     self.title = @"购物车";
     self.navigationController.navigationBar.translucent  = YES; // 导航栏透明
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    [self.navigationController.navigationBar setBackgroundColor:RGBColorHex(0x747474)];
+    [self.navigationController.navigationBar setBackgroundColor:RGBColorHex(0xf4f4f4)];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     //右边按钮
     UIButton * btn = [[UIButton alloc]init];
@@ -38,14 +41,14 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
-   //判断购物车是否为空
+    //判断购物车是否为空
     if (/* DISABLES CODE */ (0)) {
         ZFEmptyCartView *emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
         [self.view addSubview:emptyCart];
         btn.hidden = YES;
     }else{
         btn.hidden = NO;
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,LL_StatusBarAndNavigationBarHeight, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
         tableView.backgroundColor = RGBColorHex(0xf4f4f4);
         tableView.delegate = self;
         tableView.dataSource = self;

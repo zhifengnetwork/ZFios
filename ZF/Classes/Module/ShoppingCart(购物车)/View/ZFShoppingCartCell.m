@@ -64,14 +64,14 @@
     self.backgroundColor = RGBColorHex(0xffffff);
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = 8.0;
-
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     ZFMenuView *menuView= [[ZFMenuView alloc]init];
     [self.contentView addSubview:menuView];
     menuView.arr =@[@"官方标配",@"套餐一",@"套餐二"];
     [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_goodsLabel.mas_bottom).with.offset(10);
-        make.left.equalTo(self->_increaseButton.mas_right).with.offset(10);
+        make.left.equalTo(self->_increaseButton.mas_right).with.offset(55);
         make.right.equalTo(self.contentView).with.offset(-10);
         make.centerY.equalTo(self->_increaseButton.mas_centerY);
         make.width.mas_equalTo(100);

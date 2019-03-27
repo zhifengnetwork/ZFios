@@ -33,7 +33,7 @@
     }];
     UILabel *title = [[UILabel alloc]init];
     [title setText:@"请选择支付方式"];
-    [title setFont:[UIFont fontWithName:@"PingFang-SC-Bold" size:17]];
+    [title setFont:[UIFont boldSystemFontOfSize:17]];
     [title setTextColor:RGBColorHex(0x0f0f0f)];
     [self addSubview:title];
     

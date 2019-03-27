@@ -43,13 +43,14 @@
     [self.label setTextColor:RGBColor(153, 153, 153)];
     _label.frame = CGRectMake(0, 0, 20, 20);
     
-    //button的宽度以及tableview的宽度都和view一样
+    
     [_button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.label.mas_right).with.offset(6);
         make.centerY.equalTo(self.label.mas_centerY);
         make.height.equalTo(@22);
     }];
-    self.buttonWidth = 88;
+    //button的宽度以及tableview的宽度都和view一样
+    self.buttonWidth = 100;
     [_button addTarget:self action:@selector(tableShowAndHide:) forControlEvents:UIControlEventTouchUpInside];
     [_button setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     _button.titleLabel.font = [UIFont systemFontOfSize:12];
