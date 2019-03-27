@@ -36,9 +36,8 @@
     [self.contentView addSubview:self.moneyLabel];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.top.mas_equalTo(10);
-        make.width.height.mas_equalTo(95);
+        make.top.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(100);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -47,7 +46,7 @@
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self->_nameLabel.mas_bottom).offset(30);
+        make.top.equalTo(self->_nameLabel.mas_bottom).offset(20);
         make.centerX.equalTo(self->_iconView);
     }];
     

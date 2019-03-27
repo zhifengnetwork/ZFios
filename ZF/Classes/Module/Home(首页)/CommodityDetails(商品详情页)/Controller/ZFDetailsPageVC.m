@@ -17,6 +17,7 @@
 #import "ZFAskEveryoneHeadTableCell.h"
 #import "ZFAskEveryoneTableCell.h"
 #import "ZFMerchandiseSaleHeadTableCell.h"
+#import "ZFDetailsPageFooterView.h"
 
 
 @interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -24,6 +25,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) ZFCommDetHeadView *headView;
+@property (nonatomic, strong) ZFDetailsPageFooterView *footerView;
 
 @property (nonatomic, strong) UIImage *AvatarImage;
 @property (nonatomic, assign) BOOL isUploadAvatar;
@@ -99,6 +101,17 @@ static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHea
 
 - (void)setupTableView
 {
+    [self.view addSubview:self.footerView];
+    [_footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.height.mas_equalTo(50);
+    }];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.equalTo(self.view);
+        make.bottom.equalTo(self->_footerView.mas_top);
+    }];
+    
     //自动计算高度
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 100;
@@ -285,6 +298,21 @@ static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHea
     return _tableView;
 }
 
+-(ZFDetailsPageFooterView *)footerView
+{
+    if (_footerView==nil)
+    {
+        _footerView = [[ZFDetailsPageFooterView alloc]init];
+        _footerView.backgroundColor = RGBColorHex(0xffffff);
+        
+        //UIView增加点击事件
+        _footerView.userInteractionEnabled = YES;
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [_footerView addGestureRecognizer:singleTap];
+    }
+    
+    return _footerView;
+}
 
 
 @end

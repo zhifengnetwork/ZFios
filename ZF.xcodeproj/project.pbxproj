@@ -207,6 +207,7 @@
 		849F956D223B7B31001824B9 /* ZFStoreConcernVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F956C223B7B31001824B9 /* ZFStoreConcernVC.m */; };
 		849F9573223B8786001824B9 /* ZFOrderEmptyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F9572223B8786001824B9 /* ZFOrderEmptyTableCell.m */; };
 		849F9576223B8B65001824B9 /* ZFGoShoppingTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F9575223B8B65001824B9 /* ZFGoShoppingTableCell.m */; };
+		84C1D77D224B241F009048C7 /* ZFDetailsPageFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */; };
 		84ED0CD1223CB05700BC13C7 /* ZFCumulativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */; };
 		84ED0CD5223CD8D100BC13C7 /* ZFOfflinePickupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD4223CD8D100BC13C7 /* ZFOfflinePickupVC.m */; };
 		84ED0CDE223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CDD223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m */; };
@@ -634,6 +635,8 @@
 		849F9572223B8786001824B9 /* ZFOrderEmptyTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFOrderEmptyTableCell.m; sourceTree = "<group>"; };
 		849F9574223B8B65001824B9 /* ZFGoShoppingTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFGoShoppingTableCell.h; sourceTree = "<group>"; };
 		849F9575223B8B65001824B9 /* ZFGoShoppingTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFGoShoppingTableCell.m; sourceTree = "<group>"; };
+		84C1D77B224B241F009048C7 /* ZFDetailsPageFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsPageFooterView.h; sourceTree = "<group>"; };
+		84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsPageFooterView.m; sourceTree = "<group>"; };
 		84ED0CCF223CB05700BC13C7 /* ZFCumulativeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFCumulativeVC.h; sourceTree = "<group>"; };
 		84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFCumulativeVC.m; sourceTree = "<group>"; };
 		84ED0CD3223CD8D100BC13C7 /* ZFOfflinePickupVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFOfflinePickupVC.h; sourceTree = "<group>"; };
@@ -1812,6 +1815,8 @@
 				840BE905224A2E7D00568B11 /* ZFMerchandiseSaleHeadTableCell.m */,
 				840BE907224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.h */,
 				840BE908224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.m */,
+				84C1D77B224B241F009048C7 /* ZFDetailsPageFooterView.h */,
+				84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2407,6 +2412,7 @@
 				84ED0CE7223CFB3200BC13C7 /* ZFDistributionMemTableCell.m in Sources */,
 				182E899B2223BEA2005CE5FE /* main.m in Sources */,
 				180F31A9222F71AF0040718F /* ZFTotalCommodityTableCell.m in Sources */,
+				84C1D77D224B241F009048C7 /* ZFDetailsPageFooterView.m in Sources */,
 				181991982237AC12004585D8 /* ZFEditorialConsigneeVC.m in Sources */,
 				189CC0E12223E81300EB5A64 /* BaseListModel.m in Sources */,
 				849F9564223B4E54001824B9 /* ZFStoreConcernViewCell.m in Sources */,

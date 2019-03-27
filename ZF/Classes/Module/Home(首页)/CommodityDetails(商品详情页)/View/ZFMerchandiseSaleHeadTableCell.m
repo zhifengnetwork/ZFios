@@ -49,7 +49,7 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.width.height.mas_equalTo(55);
-        make.centerY.equalTo(self.contentView);
+        make.top.mas_equalTo(15);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -64,7 +64,15 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
     
     [_goShopButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-15);
-        make.centerY.equalTo(self.contentView);
+        make.centerY.equalTo(self.iconView);
+    }];
+    
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self->_iconView.mas_bottom).offset(20);
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-15);
+        make.height.mas_equalTo(160);
     }];
     
     //下面横线
@@ -132,7 +140,7 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 1;
+    return 10;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -154,15 +162,17 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
     if (_collectionView == nil)
     {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        float fw = (kScreenWidth-30)*0.25;
-        layout.itemSize = CGSizeMake(fw, 60);
-        layout.minimumLineSpacing = 0;
-        layout.minimumInteritemSpacing = 0;
+        float fw = (kScreenWidth-30-10*3)*0.25;
+        layout.itemSize = CGSizeMake(fw, 160);
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 10;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.showsHorizontalScrollIndicator = NO;
         
         [_collectionView registerClass:[ZFMerchandiseSaleCollectionCell class] forCellWithReuseIdentifier:ZFMerchandiseSaleCollectionCellID];
     }
