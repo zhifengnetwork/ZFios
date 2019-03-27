@@ -28,6 +28,7 @@ target "ZF" do
     pod 'SDCycleScrollView'
     pod 'PPNumberButton'
     pod 'FSCalendar'
+    pod 'JXPagingView/Pager'
  
     
     #pod 'UMCShare/UI'
