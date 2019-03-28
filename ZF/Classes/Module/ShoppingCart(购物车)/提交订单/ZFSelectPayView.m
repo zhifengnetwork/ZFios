@@ -8,8 +8,12 @@
 
 #import "ZFSelectPayView.h"
 #import "ZFSelectPayCell.h"
+#import "ZFAddCardVC.h"
 @interface ZFSelectPayView()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic,assign) NSIndexPath *selIndex;
+@property (nonatomic, strong)UILabel *explainLabel;
+@property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, strong)UIButton *payBtn;
+@property (nonatomic, assign) NSIndexPath *selIndex;
 @end
 @implementation ZFSelectPayView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -46,28 +50,28 @@
     lineView.backgroundColor = RGBColorHex(0xf5f5f5);
     [self addSubview:lineView];
     
-    UILabel *explain = [[UILabel alloc]init];
-    [explain setFont:[UIFont systemFontOfSize:13]];
-    explain.textColor = RGBColorHex(0x666666);
+    _explainLabel = [[UILabel alloc]init];
+    [_explainLabel setFont:[UIFont systemFontOfSize:13]];
+    _explainLabel.textColor = RGBColorHex(0x666666);
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:@"请在0小时30分钟内完成支付 金额 ￥1476.00元"];
     NSRange range = [[str string]rangeOfString:@"￥1476.00"];
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:238/225 green:65/225 blue:65/225 alpha:1] range:range];
 
-    explain.attributedText = str;
-    [self addSubview:explain];
+    _explainLabel.attributedText = str;
+    [self addSubview:self.explainLabel];
     
-    UITableView *tableView = [[UITableView alloc]init];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.scrollEnabled = NO;
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self addSubview:tableView];
+    _tableView = [[UITableView alloc]init];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.scrollEnabled = NO;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self addSubview:self.tableView];
     
-    UIButton *payBtn = [[UIButton alloc]init];
-    [self addSubview:payBtn];
-    [payBtn setBackgroundImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
-    [payBtn setTitle:@"提交订单" forState:UIControlStateNormal];
-    [payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
+    _payBtn = [[UIButton alloc]init];
+    [self addSubview:self.payBtn];
+    [_payBtn setBackgroundImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
+    [_payBtn setTitle:@"提交订单" forState:UIControlStateNormal];
+    [_payBtn addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
     
     [title mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self).with.offset(15);
@@ -83,17 +87,17 @@
         make.right.equalTo(self).with.offset(-16);
         make.height.mas_equalTo(1);
     }];
-    [explain mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_explainLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(lineView.mas_bottom).with.offset(16);
         make.left.mas_equalTo(self).with.offset(16);
     }];
-    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(explain.mas_bottom).with.offset(16);
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.explainLabel.mas_bottom).with.offset(16);
         make.left.right.equalTo(self);
         make.bottom.mas_equalTo(self.mas_bottom).with.offset(-49);
     }];
-    [payBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(tableView.mas_bottom);
+    [_payBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.tableView.mas_bottom);
         make.left.bottom.right.equalTo(self);
     }];
 }
@@ -122,7 +126,11 @@
 }
 //付款
 - (void)payClick{
-    
+    //跳转到添加银行卡
+    if ([self.tableView indexPathForSelectedRow].row== 0&&[self.tableView indexPathForSelectedRow]!=nil) {
+        ZFAddCardVC *vc = [[ZFAddCardVC alloc]init];
+        [[self currentViewController]presentViewController:vc animated:YES completion:nil];
+    }
 }
 
 #pragma mark --tableview数据源协议

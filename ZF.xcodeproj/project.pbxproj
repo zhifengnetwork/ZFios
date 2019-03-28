@@ -152,6 +152,9 @@
 		531658CD2243872500CBD060 /* ZFCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 531658CC2243872500CBD060 /* ZFCouponCell.m */; };
 		5325B24D22437CCE00AFD00F /* ZFCouponCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5325B24B22437CCD00AFD00F /* ZFCouponCenterVC.m */; };
 		5325B2502243804300AFD00F /* ZFCouponVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5325B24F2243804300AFD00F /* ZFCouponVC.m */; };
+		533BA180224C821F00FAFFF8 /* ZFOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 533BA17F224C821F00FAFFF8 /* ZFOrderView.m */; };
+		533BA183224C9EA500FAFFF8 /* ZFExpressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 533BA182224C9EA500FAFFF8 /* ZFExpressView.m */; };
+		533BA186224CC3FE00FAFFF8 /* ZFAddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 533BA185224CC3FE00FAFFF8 /* ZFAddCardVC.m */; };
 		533DC81D2248AC54005A73DA /* ZFDeleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DC81C2248AC54005A73DA /* ZFDeleteView.m */; };
 		534D1BA82244BD8D0013C0B4 /* ZFQRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 534D1BA72244BD8D0013C0B4 /* ZFQRCodeView.m */; };
 		5358867E22360CAC00D7A4B6 /* ZFShoppingCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5358867D22360CAC00D7A4B6 /* ZFShoppingCartCell.xib */; };
@@ -526,6 +529,12 @@
 		5325B24C22437CCE00AFD00F /* ZFCouponCenterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFCouponCenterVC.h; sourceTree = "<group>"; };
 		5325B24E2243804300AFD00F /* ZFCouponVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFCouponVC.h; sourceTree = "<group>"; };
 		5325B24F2243804300AFD00F /* ZFCouponVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFCouponVC.m; sourceTree = "<group>"; };
+		533BA17E224C821F00FAFFF8 /* ZFOrderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFOrderView.h; sourceTree = "<group>"; };
+		533BA17F224C821F00FAFFF8 /* ZFOrderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFOrderView.m; sourceTree = "<group>"; };
+		533BA181224C9EA500FAFFF8 /* ZFExpressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFExpressView.h; sourceTree = "<group>"; };
+		533BA182224C9EA500FAFFF8 /* ZFExpressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFExpressView.m; sourceTree = "<group>"; };
+		533BA184224CC3FE00FAFFF8 /* ZFAddCardVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAddCardVC.h; sourceTree = "<group>"; };
+		533BA185224CC3FE00FAFFF8 /* ZFAddCardVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAddCardVC.m; sourceTree = "<group>"; };
 		533DC81B2248AC54005A73DA /* ZFDeleteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDeleteView.h; sourceTree = "<group>"; };
 		533DC81C2248AC54005A73DA /* ZFDeleteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDeleteView.m; sourceTree = "<group>"; };
 		534D1BA62244BD8D0013C0B4 /* ZFQRCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFQRCodeView.h; sourceTree = "<group>"; };
@@ -1529,10 +1538,12 @@
 		18EA50B222266ECF00A2D612 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				530ACAB5224A2887005541E2 /* ZFConfirmOrderVC.h */,
-				530ACAB4224A2886005541E2 /* ZFConfirmOrderVC.m */,
 				18EA50BF22266F2600A2D612 /* ZFShoppingCartVC.h */,
 				18EA50C022266F2600A2D612 /* ZFShoppingCartVC.m */,
+				530ACAB5224A2887005541E2 /* ZFConfirmOrderVC.h */,
+				530ACAB4224A2886005541E2 /* ZFConfirmOrderVC.m */,
+				533BA184224CC3FE00FAFFF8 /* ZFAddCardVC.h */,
+				533BA185224CC3FE00FAFFF8 /* ZFAddCardVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1714,6 +1725,10 @@
 		5304891C2240C31D002FAF61 /* 提交订单 */ = {
 			isa = PBXGroup;
 			children = (
+				533BA17E224C821F00FAFFF8 /* ZFOrderView.h */,
+				533BA17F224C821F00FAFFF8 /* ZFOrderView.m */,
+				533BA181224C9EA500FAFFF8 /* ZFExpressView.h */,
+				533BA182224C9EA500FAFFF8 /* ZFExpressView.m */,
 				53B6085A223BB08B00A5DFB3 /* ZFBounceCell.h */,
 				53B6085B223BB08B00A5DFB3 /* ZFBounceCell.m */,
 				530489292240E03A002FAF61 /* ZFSelectPayView.h */,
@@ -2378,6 +2393,7 @@
 				18C26BFC222D62BD004951D9 /* ZFAuctionWMVC.m in Sources */,
 				1819919F2237C781004585D8 /* ZFRecordDetailsTableCell.m in Sources */,
 				849F9576223B8B65001824B9 /* ZFGoShoppingTableCell.m in Sources */,
+				533BA180224C821F00FAFFF8 /* ZFOrderView.m in Sources */,
 				5325B24D22437CCE00AFD00F /* ZFCouponCenterVC.m in Sources */,
 				18EA50D022268E4500A2D612 /* ZFCommodityTableCell.m in Sources */,
 				18F8D89B2229128D00203E9A /* ZFSelectedTitleHeadView.m in Sources */,
@@ -2406,6 +2422,7 @@
 				842EDEE12240C8FB00B53E45 /* ZFCityAgentTableCell.m in Sources */,
 				180F340B22263D4000EB0449 /* ZFResetPasswordVC.m in Sources */,
 				842EDEF32240EFFA00B53E45 /* ZFMyDynamicsTableCell.m in Sources */,
+				533BA186224CC3FE00FAFFF8 /* ZFAddCardVC.m in Sources */,
 				1808E0D42231191600B9DB1D /* ZFSecondkillMerTableCell.m in Sources */,
 				18482D88223B8743008342C8 /* BaseCollectionCell.m in Sources */,
 				1830DB6B2232181900C30C90 /* ZFEndSpikeHeadView.m in Sources */,
@@ -2455,6 +2472,7 @@
 				18515F8B222FCC9A00F36E26 /* DCTitleRolling.m in Sources */,
 				84ED0CD1223CB05700BC13C7 /* ZFCumulativeVC.m in Sources */,
 				84ED0CDE223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m in Sources */,
+				533BA183224C9EA500FAFFF8 /* ZFExpressView.m in Sources */,
 				189CC0D22223E81300EB5A64 /* UIButton+Ex.m in Sources */,
 				180F31C1222FDB9B0040718F /* ZFClusterWindowTableCell.m in Sources */,
 				847547012240938F00B698E6 /* ZFMyIntegralHeadTableCell.m in Sources */,

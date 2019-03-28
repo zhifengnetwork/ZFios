@@ -18,31 +18,20 @@
 
 @end
 @implementation ZFBounceCell
-  
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
 - (void)setup{
     
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self.superview);
         make.height.mas_equalTo(self.frame.size.height);
     }];
-    
-    UILabel *address = [[UILabel alloc]init];
-    [self addSubview:address];
-    address.font = [UIFont systemFontOfSize:14];
-    address.text = [NSString stringWithFormat:@"收货地址"];
-    address.textColor = RGBColorHex(0x0f0f0f);
-    
-    UIButton *addAddress = [[UIButton alloc]init];
-    [self addSubview:addAddress];
-    [addAddress setImage:[UIImage imageNamed:@"down_r"] forState:UIControlStateNormal];
-    [addAddress setTitle:@"请添加收货地址" forState:UIControlStateNormal];
-    [addAddress setTitleColor:RGBColorHex(0xee4141) forState:UIControlStateNormal];
-    addAddress.titleLabel.font = [UIFont systemFontOfSize:14];
-    [addAddress addTarget:self action:@selector(createAddress) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIView *view1 = [[UIView alloc]init];
-    [self addSubview:view1];
-    view1.backgroundColor = RGBColorHex(0xf5f5f5);
     
     UILabel *express = [[UILabel alloc]init];
     [self addSubview:express];
@@ -135,72 +124,7 @@
     
     
 #pragma mark --设置控件的约束
-    [address mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.equalTo(self).with.offset(16);
-    }];
-    [addAddress mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).with.offset(16);
-        make.right.equalTo(self).with.offset(-16);
-    }];
-    //设置按钮里面控件的位置
-    [addAddress setTitleEdgeInsets:UIEdgeInsetsMake(0,  -addAddress.imageView.frame.size.width - 12, 0, addAddress.imageView.frame.size.width + 12)];
-    [addAddress setImageEdgeInsets:UIEdgeInsetsMake(0 , addAddress.titleLabel.bounds.size.width, 0,
-                                                    -  addAddress.titleLabel.bounds.size.width)];
     
-    
-    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(address.mas_bottom).with.offset(16);
-        make.left.mas_equalTo(self).with.offset(16);
-        make.right.mas_equalTo(self).with.offset(-16);
-        make.height.mas_equalTo(1);
-    }];
-    [express mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(address.mas_left);
-        make.top.equalTo(view1.mas_bottom).with.offset(16);
-    }];
-    
-    [addExpress mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(view1.mas_bottom).with.offset(16);
-        make.right.equalTo(self).with.offset(-16);
-    }];
-    [addExpress setTitleEdgeInsets:UIEdgeInsetsMake(0,  -addExpress.imageView.frame.size.width - 12, 0, addExpress.imageView.frame.size.width + 12)];
-    [addExpress setImageEdgeInsets:UIEdgeInsetsMake(0 , addExpress.titleLabel.bounds.size.width, 0,
-                                                    -  addExpress.titleLabel.bounds.size.width)];
-    
-    [view2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(express.mas_bottom).with.offset(16);
-        make.left.mas_equalTo(self).with.offset(16);
-        make.right.mas_equalTo(self).with.offset(-16);
-        make.height.mas_equalTo(1);
-    }];
-    [coupon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(address.mas_left);
-        make.top.equalTo(view2.mas_bottom).with.offset(16);
-    }];
-    [addCoupon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(view2.mas_bottom).with.offset(16);
-        make.right.equalTo(self).with.offset(-16);
-    }];
-    [addCoupon setTitleEdgeInsets:UIEdgeInsetsMake(0,  -addCoupon.imageView.frame.size.width - 12, 0, addCoupon.imageView.frame.size.width + 12)];
-    [addCoupon setImageEdgeInsets:UIEdgeInsetsMake(0 , addCoupon.titleLabel.bounds.size.width, 0,
-                                                    -  addCoupon.titleLabel.bounds.size.width)];
-    [view3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(coupon.mas_bottom).with.offset(16);
-        make.left.mas_equalTo(self).with.offset(16);
-        make.right.mas_equalTo(self).with.offset(-16);
-        make.height.mas_equalTo(1);
-    }];
-    [redPacket mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(address.mas_left);
-        make.top.equalTo(view3.mas_bottom).with.offset(16);
-    }];
-    [addRedPacket mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(view3.mas_bottom).with.offset(16);
-        make.right.equalTo(self).with.offset(-16);
-    }];
-    [addRedPacket setTitleEdgeInsets:UIEdgeInsetsMake(0,  -addRedPacket.imageView.frame.size.width - 12, 0, addRedPacket.imageView.frame.size.width + 12)];
-    [addRedPacket setImageEdgeInsets:UIEdgeInsetsMake(0 , addRedPacket.titleLabel.bounds.size.width, 0,
-                                                   -  addRedPacket.titleLabel.bounds.size.width)];
     [view4 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(redPacket.mas_bottom).with.offset(16);
         make.left.mas_equalTo(self).with.offset(16);
@@ -208,7 +132,7 @@
         make.height.mas_equalTo(1);
     }];
     [totalPayNumber mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(address.mas_left);
+        make.left.top.equalTo(self).with.offset(16);
         make.top.equalTo(view4.mas_bottom).with.offset(16);
     }];
     [price mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -222,7 +146,7 @@
         make.height.mas_equalTo(1);
     }];
     [agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(address.mas_left);
+        make.left.top.equalTo(self).with.offset(16);
         make.top.equalTo(view5.mas_bottom).with.offset(16);
     }];
     [protocol mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -254,36 +178,6 @@
     return vc;
 }
 #pragma mark --按钮方法
-//新建地址
-- (void)createAddress{
-    
-//    ZFCreateAddressView *createview = [[ZFCreateAddressView alloc]initWithFrame:CGRectMake(0,LL_ScreenHeight - 389, LL_ScreenWidth, 389)];
-//    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:createview preferredStyle:TYAlertControllerStyleActionSheet];
-//    alertController.backgoundTapDismissEnable = YES;
-//    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
 
-}
-//同意协议
-- (void)agreeProtocol: (UIButton *)button{
-    button.selected = !button.selected;
-    if (button.selected == YES) {
-        [self.submit setBackgroundImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
-        self.submit.enabled = YES;
-    }else{
-        [self.submit setBackgroundImage:nil forState:UIControlStateNormal];
-//        [self.submit setBackgroundColor:RGBColorHex(0xd9d9d9)];
-        self.submit.enabled = NO;
-    }
-}
-//提交订单，调到选择支付方式页面
-- (void)submitOrder{
-    if (self.submit.enabled ) {
-        ZFSelectPayView *payView = [[ZFSelectPayView alloc]initWithFrame:CGRectMake(0, LL_ScreenHeight - 367, LL_ScreenWidth, 367)];
-        TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:payView preferredStyle:TYAlertControllerStyleActionSheet];
-        alertController.backgoundTapDismissEnable = YES;
-        [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
-    }
-    
-}
 @end
 

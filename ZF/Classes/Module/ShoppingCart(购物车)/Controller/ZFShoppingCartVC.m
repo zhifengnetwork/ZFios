@@ -27,7 +27,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 }
 - (void)setup{
     self.title = @"购物车";
-    self.navigationController.navigationBar.translucent  = YES; // 导航栏透明
+//    self.navigationController.navigationBar.translucent  = YES; // 导航栏透明
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     [self.navigationController.navigationBar setBackgroundColor:RGBColorHex(0xf4f4f4)];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
@@ -48,7 +48,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         btn.hidden = YES;
     }else{
         btn.hidden = NO;
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,LL_StatusBarAndNavigationBarHeight, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
+        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
         tableView.backgroundColor = RGBColorHex(0xf4f4f4);
         tableView.delegate = self;
         tableView.dataSource = self;

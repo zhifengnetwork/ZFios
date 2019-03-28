@@ -8,27 +8,27 @@
 
 #import "ZFConfirmOrderVC.h"
 #import "ZFAddressManagementVC.h"
+#import "ZFXuXianView.h"
+#import "ZFOrderView.h"
+#import "ZFExpressView.h"
+#import "ZFSelectPayView.h"
+#import "TYAlertController.h"
 @interface ZFConfirmOrderVC ()
 //收货地址
 @property (nonatomic, strong)UIView *addressView;
 @property (nonatomic, strong)UILabel *emptyAddressLabel;
 @property (nonatomic, strong)UIImageView *jumpImageView;
 @property (nonatomic, strong)UIButton *reviseButton;
-//商品信息
-@property (nonatomic, strong)UIView *orderView;
-@property (nonatomic, strong)UILabel *shopNameLabel;
-@property (nonatomic, strong)UIImageView *jumpImageView2;
-@property (nonatomic, strong)UIButton *shopButton;
-@property (nonatomic, strong)UILabel *disCountLabel;
-@property (nonatomic, strong)UILabel *detailDisCountLabel;
-@property (nonatomic, strong)UIImageView *jumpImageView3;
-@property (nonatomic, strong)UIButton *disCountButton;
-@property (nonatomic, strong)UIImageView *pictureImageView;
 @property (nonatomic, strong)UILabel *nameLabel;
-@property (nonatomic, strong)UILabel *priceLabel;
-@property (nonatomic, strong)UIView *lineView;
+@property (nonatomic, strong)UILabel *phoneNumberLabel;
+@property (nonatomic, strong)UILabel *addressLabel;
+//商品信息
+@property (nonatomic, strong)ZFOrderView *orderView;
 //订单信息
-@property (nonatomic, strong)UIView *otherView;
+@property (nonatomic, strong)ZFExpressView *expressView;
+@property (nonatomic, strong)UILabel *totalLabel;
+@property (nonatomic, strong)UILabel *priceLabel;
+@property (nonatomic, strong)UIButton *submitButton;
 @end
 
 @implementation ZFConfirmOrderVC
@@ -45,30 +45,25 @@
 //    self.navigationController.navigationBar.translucent  = YES; // 导航栏透明
 //    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     [self.navigationController.navigationBar setBackgroundColor:RGBColorHex(0xf4f4f4)];
-    //添加view里面的控件
     self.view.backgroundColor = RGBColorHex(0xf4f4f4);
+    //添加view里面的控件
     [self.view addSubview:self.addressView];
     [self.addressView addSubview:self.emptyAddressLabel];
     [self.addressView addSubview:self.jumpImageView];
     [self.addressView addSubview:self.reviseButton];
+    [self.addressView addSubview:self.nameLabel];
+    [self.addressView addSubview:self.phoneNumberLabel];
+    [self.addressView addSubview:self.addressLabel];
     [self.view addSubview:self.orderView];
-    [self.orderView addSubview:self.shopNameLabel];
-    [self.orderView addSubview:self.jumpImageView2];
-    [self.orderView addSubview:self.shopButton];
-    [self.orderView addSubview:self.disCountLabel];
-    [self.orderView addSubview:self.detailDisCountLabel];
-    [self.orderView addSubview:self.jumpImageView3];
-    [self.orderView addSubview:self.disCountButton];
-    [self.orderView addSubview:self.pictureImageView];
-    [self.orderView addSubview:self.nameLabel];
-    [self.orderView addSubview:self.priceLabel];
-    [self.orderView addSubview:self.lineView];
-    [self.view addSubview:self.otherView];
+    [self.view addSubview:self.expressView];
+    [self.view addSubview:self.totalLabel];
+    [self.view addSubview:self.priceLabel];
+    [self.view addSubview:self.submitButton];
     [_addressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).with.offset(84);
+        make.top.equalTo(self.view).with.offset(20);
         make.left.equalTo(self.view).with.offset(16);
         make.right.equalTo(self.view).with.offset(-16);
-        make.height.mas_equalTo(66);
+        make.height.mas_equalTo(77);
     }];
     [_emptyAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.addressView.mas_centerY);
@@ -81,47 +76,59 @@
     [_reviseButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.addressView).insets(UIEdgeInsetsZero);
     }];
+    [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.addressView).with.offset(10);
+        make.top.equalTo(self.addressView).with.offset(17);
+    }];
+    [_phoneNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.nameLabel.mas_right).with.offset(15);
+        make.top.equalTo(self.addressView).with.offset(17);
+    }];
+    [_addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.addressView).with.offset(10);
+        make.top.equalTo(self.nameLabel.mas_bottom).with.offset(12);
+        make.bottom.equalTo(self.addressView).with.offset(-15);
+    }];
     [_orderView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.addressView.mas_bottom).with.offset(20);
         make.left.equalTo(self.view).with.offset(16);
         make.right.equalTo(self.view).with.offset(-16);
         make.height.mas_equalTo(199);
     }];
-    [_shopNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.orderView).with.offset(12);
-        make.left.equalTo(self.orderView).with.offset(10);
+    [_expressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.orderView.mas_bottom).with.offset(20);
+        make.left.equalTo(self.view).with.offset(16);
+        make.right.equalTo(self.view).with.offset(-16);
+        make.height.mas_equalTo(130);
     }];
-    [_jumpImageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.shopNameLabel.mas_right).with.offset(35);
-        make.centerY.equalTo(self.shopNameLabel.mas_centerY);
+    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.expressView.mas_bottom).with.offset(20);
+        make.right.equalTo(self.view).with.offset(-26);
     }];
-    [_shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.shopNameLabel.mas_left);
-        make.right.equalTo(self.jumpImageView2.mas_right);
-        make.bottom.equalTo(self.shopNameLabel.mas_bottom);
-        make.height.equalTo(self.shopNameLabel.mas_height);
+    [_totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.priceLabel.mas_left);
+        make.top.equalTo(self.expressView.mas_bottom).with.offset(20);
     }];
-    [_disCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.orderView).with.offset(10);
-        make.top.equalTo(self.shopButton.mas_bottom).with.offset(14);
+    [_submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self.view);
+        make.height.mas_equalTo(44);
     }];
-    [_detailDisCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.disCountLabel.mas_right).with.offset(12);
-        make.centerY.equalTo(self.disCountLabel.mas_centerY);
-    }];
-    [_jumpImageView3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.disCountLabel.mas_centerY);
-        make.right.equalTo(self.orderView).with.offset(-10);
-    }];
-    [_disCountButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.disCountLabel.mas_left);
-        make.right.equalTo(self.jumpImageView3.mas_right);
-        make.bottom.equalTo(self.detailDisCountLabel.mas_bottom);
-        make.height.equalTo(self.detailDisCountLabel.mas_height);
-    }];
-//    [_pictureImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        <#code#>
-//    }]
+    
+    if (/* DISABLES CODE */ (1)) {
+        self.emptyAddressLabel.hidden = YES;
+    }else{
+        self.nameLabel.hidden = YES;
+        self.phoneNumberLabel.hidden = YES;
+        self.addressLabel.hidden = YES;
+    }
+    if (self.emptyAddressLabel.hidden == NO) {
+        self.submitButton.enabled = NO;
+        [self.submitButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.submitButton setBackgroundColor:RGBColorHex(0xe6e6e6)];
+    }else{
+        self.submitButton.enabled = YES;
+        [self.submitButton setBackgroundImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
+    }
 }
 - (UIView *)addressView{
     if (_addressView == nil) {
@@ -156,69 +163,76 @@
     }
     return _reviseButton;
 }
+- (UILabel *)nameLabel{
+    if (_nameLabel == nil) {
+        _nameLabel = [[UILabel alloc]init];
+        _nameLabel.font = [UIFont boldSystemFontOfSize:15];
+        _nameLabel.textColor = RGBColorHex(0x0f0f0f);
+        _nameLabel.text = [NSString stringWithFormat:@"张**"];
+    }
+    return _nameLabel;
+}
+- (UILabel *)phoneNumberLabel{
+    if (_phoneNumberLabel == nil) {
+        _phoneNumberLabel = [[UILabel alloc]init];
+        _phoneNumberLabel.font = [UIFont boldSystemFontOfSize:15];
+        _phoneNumberLabel.textColor = RGBColorHex(0x0f0f0f);
+        _phoneNumberLabel.text = [NSString stringWithFormat:@"186****0486"];
+    }
+    return _phoneNumberLabel;
+}
+- (UILabel *)addressLabel{
+    if (_addressLabel == nil) {
+        _addressLabel = [[UILabel alloc]init];
+        _addressLabel.font = [UIFont systemFontOfSize:12];
+        _addressLabel.textColor = RGBColorHex(0x424242);
+        _addressLabel.text = [NSString stringWithFormat:@"广东省广州市白云区"];
+    }
+    return _addressLabel;
+}
 - (UIView *)orderView{
     if (_orderView == nil) {
-        _orderView = [[UIView alloc]init];
+        _orderView = [[ZFOrderView alloc]init];
         _orderView.layer.cornerRadius = 9;
         _orderView.backgroundColor = RGBColorHex(0xffffff);
     }
     return _orderView;
 }
-- (UILabel *)shopNameLabel{
-    if (_shopNameLabel == nil) {
-        _shopNameLabel = [[UILabel alloc]init];
-        _shopNameLabel.font = [UIFont boldSystemFontOfSize:14];
-        _shopNameLabel.textColor = RGBColorHex(0x333333);
-        _shopNameLabel.text = [NSString stringWithFormat:@"ZF智丰自营旗舰店"];
+- (ZFExpressView *)expressView{
+    if (_expressView == nil) {
+        _expressView = [[ZFExpressView alloc]init];
+        _expressView.layer.cornerRadius = 9;
+        _expressView.backgroundColor = RGBColorHex(0xffffff);
     }
-    return _shopNameLabel;
+    return _expressView;
 }
-- (UIImageView *)jumpImageView2{
-    if (_jumpImageView2 == nil) {
-        _jumpImageView2 = [[UIImageView alloc]init];
-        [_jumpImageView2 setImage:[UIImage imageNamed:@"arrow"]];
+- (UILabel *)priceLabel{
+    if (_priceLabel == nil) {
+        _priceLabel = [[UILabel alloc]init];
+        _priceLabel.font = [UIFont systemFontOfSize:15];
+        _priceLabel.textColor = RGBColorHex(0xf05050);
+        _priceLabel.text = [NSString stringWithFormat:@"￥4900.00"];
     }
-    return _jumpImageView2;
+    return _priceLabel;
 }
-- (UIButton *)shopButton{
-    if (_shopButton == nil) {
-        _shopButton = [[UIButton alloc]init];
-        [_shopButton addTarget:self action:@selector(jumpShop) forControlEvents:UIControlEventTouchUpInside];
+- (UILabel *)totalLabel{
+    if (_totalLabel == nil) {
+        _totalLabel = [[UILabel alloc]init];
+        _totalLabel.font = [UIFont systemFontOfSize:15];
+        _totalLabel.textColor = RGBColorHex(0x0f0f0f);
+        _totalLabel.text = [NSString stringWithFormat:@"合计:"];
     }
-    return _shopButton;
+    return _totalLabel;
 }
-- (UILabel *)disCountLabel{
-    if (_disCountLabel == nil) {
-        _disCountLabel = [[UILabel alloc]init];
-        _disCountLabel.font = [UIFont systemFontOfSize:10];
-        _disCountLabel.textColor = RGBColorHex(0xe51c23);
-        _disCountLabel.text = [NSString stringWithFormat:@"满赠"];
+- (UIButton *)submitButton{
+    if (_submitButton == nil) {
+        _submitButton = [[UIButton alloc]init];
+        [_submitButton setTitle:@"确认订单" forState:UIControlStateNormal];
+        [_submitButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
+        _submitButton.titleLabel.font = [UIFont systemFontOfSize:17];
+        [_submitButton addTarget:self action:@selector(submitClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _disCountLabel;
-}
-- (UILabel *)detailDisCountLabel{
-    if (_detailDisCountLabel == nil) {
-        _detailDisCountLabel = [[UILabel alloc]init];
-        _detailDisCountLabel.font = [UIFont systemFontOfSize:11];
-        _detailDisCountLabel.textColor = RGBColorHex(0x4d4d4d);
-        _detailDisCountLabel.text = [NSString stringWithFormat:@"已购物4500.00元，可领取赠品"];
-    }
-    return _detailDisCountLabel;
-}
-- (UIImageView *)jumpImageView3{
-    if (_jumpImageView3 == nil) {
-        _jumpImageView3 = [[UIImageView alloc]init];
-        [_jumpImageView3 setImage:[UIImage imageNamed:@"arrow"]];
-    }
-    return _jumpImageView3;
-}
-- (UIButton *)disCountButton{
-    if (_disCountButton == nil) {
-        _disCountButton = [[UIButton alloc]init];
-        [_disCountButton addTarget:self action:@selector(jumpDisCount) forControlEvents:UIControlEventTouchUpInside];
-        
-    }
-    return _disCountButton;
+    return _submitButton;
 }
 #pragma mark --方法
 //选择地址
@@ -226,12 +240,14 @@
     ZFAddressManagementVC* vc = [[ZFAddressManagementVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
-//跳转到店铺界面
-- (void)jumpShop{
-    
-}
-//领取赠品
-- (void)jumpDisCount{
+//提交订单，调到选择支付方式页面
+- (void)submitClick{
+    if (self.submitButton.enabled ) {
+        ZFSelectPayView *payView = [[ZFSelectPayView alloc]initWithFrame:CGRectMake(0, LL_ScreenHeight - 367, LL_ScreenWidth, 367)];
+        TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:payView preferredStyle:TYAlertControllerStyleActionSheet];
+        alertController.backgoundTapDismissEnable = YES;
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
     
 }
 @end
