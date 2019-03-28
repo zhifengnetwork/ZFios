@@ -18,6 +18,10 @@
 #import "ZFAskEveryoneTableCell.h"
 #import "ZFMerchandiseSaleHeadTableCell.h"
 #import "ZFDetailsPageFooterView.h"
+#import "ZFSimilarRecommendTableCell.h"
+#import "ZFDetailsImageTextHeadView.h"
+#import "ZFDetailsImageTextFootView.h"
+#import "ZFDetailsImageTextTableCell.h"
 
 
 @interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -44,6 +48,8 @@ static NSString *const ZFCommodityEvaluationTableCelllD = @"ZFCommodityEvaluatio
 static NSString *const ZFAskEveryoneHeadTableCelllD = @"ZFAskEveryoneHeadTableCelllD";
 static NSString *const ZFAskEveryoneTableCelllD = @"ZFAskEveryoneTableCelllD";
 static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHeadTableCelllD";
+static NSString *const ZFSimilarRecommendTableCelllD = @"ZFSimilarRecommendTableCelllD";
+static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTableCelllD";
 
 
 - (void)viewDidLoad {
@@ -129,6 +135,8 @@ static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHea
     [self.tableView registerClass:[ZFAskEveryoneHeadTableCell class] forCellReuseIdentifier:ZFAskEveryoneHeadTableCelllD];
     [self.tableView registerClass:[ZFAskEveryoneTableCell class] forCellReuseIdentifier:ZFAskEveryoneTableCelllD];
     [self.tableView registerClass:[ZFMerchandiseSaleHeadTableCell class] forCellReuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
+    [self.tableView registerClass:[ZFSimilarRecommendTableCell class] forCellReuseIdentifier:ZFSimilarRecommendTableCelllD];
+    [self.tableView registerClass:[ZFDetailsImageTextTableCell class] forCellReuseIdentifier:ZFDetailsImageTextTableCelllD];
     
 }
 
@@ -137,7 +145,7 @@ static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHea
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 8;
+    return 10;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -145,6 +153,10 @@ static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHea
     if (section==1)
     {
         return 2;
+    }
+    else if (section==9)
+    {
+        return 5;
     }
     return 1;
 }
@@ -212,6 +224,18 @@ static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHea
         vcell = [[ZFMerchandiseSaleHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
         cell = vcell;
     }
+    else if (indexPath.section==8)
+    {
+        ZFSimilarRecommendTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFSimilarRecommendTableCelllD];
+        vcell = [[ZFSimilarRecommendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSimilarRecommendTableCelllD];
+        cell = vcell;
+    }
+    else if (indexPath.section==9)
+    {
+        ZFDetailsImageTextTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFDetailsImageTextTableCelllD];
+        vcell = [[ZFDetailsImageTextTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDetailsImageTextTableCelllD];
+        cell = vcell;
+    }
     
     return cell;
 }
@@ -239,6 +263,10 @@ static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHea
     {
         return 265;
     }
+    else if (indexPath.section==8)
+    {
+        return 385;
+    }
     return 35;
 }
 
@@ -250,7 +278,52 @@ static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHea
     else if (section==7) {
         return 20;
     }
+    else if (section==8) {
+        return 20;
+    }
+    else if (section==9) {
+        return 130;
+    }
     return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section==8)
+    {
+        return 20;
+    }
+    else if (section==9)
+    {
+        return 35;
+    }
+    
+    return 0;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section==9)
+    {
+        ZFDetailsImageTextHeadView* headView = [[ZFDetailsImageTextHeadView alloc]init];
+        return headView;
+    }
+    UIView* view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section==9)
+    {
+        ZFDetailsImageTextFootView* footView = [[ZFDetailsImageTextFootView alloc]init];
+        return footView;
+    }
+    
+    UIView* view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
 
 
