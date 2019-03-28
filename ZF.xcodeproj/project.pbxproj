@@ -74,6 +74,10 @@
 		1864717C2238013A00F2C147 /* ZFFootprintVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864717B2238013A00F2C147 /* ZFFootprintVC.m */; };
 		1864717F2238098800F2C147 /* ZFFootprintFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1864717E2238098800F2C147 /* ZFFootprintFooterView.m */; };
 		1866F4FC22437C25006ED7F1 /* ZFClassifyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1866F4FB22437C25006ED7F1 /* ZFClassifyTableCell.m */; };
+		188EFD6A224CAF0200C90070 /* ZFSimilarRecommendTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188EFD69224CAF0200C90070 /* ZFSimilarRecommendTableCell.m */; };
+		188EFD6D224CC8B300C90070 /* ZFDetailsImageTextHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188EFD6C224CC8B300C90070 /* ZFDetailsImageTextHeadView.m */; };
+		188EFD70224CC8C400C90070 /* ZFDetailsImageTextFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 188EFD6F224CC8C400C90070 /* ZFDetailsImageTextFootView.m */; };
+		188EFD73224CCCD900C90070 /* ZFDetailsImageTextTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188EFD72224CCCD900C90070 /* ZFDetailsImageTextTableCell.m */; };
 		188F41AC223612A100165142 /* ZFPersonalHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */; };
 		188F41AF2236181B00165142 /* ZFPersonalCentralTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41AE2236181B00165142 /* ZFPersonalCentralTableCell.m */; };
 		188F41B2223619DE00165142 /* ZFPersonalVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 188F41B1223619DE00165142 /* ZFPersonalVC.m */; };
@@ -369,6 +373,14 @@
 		1864717E2238098800F2C147 /* ZFFootprintFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFFootprintFooterView.m; sourceTree = "<group>"; };
 		1866F4FA22437C25006ED7F1 /* ZFClassifyTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyTableCell.h; sourceTree = "<group>"; };
 		1866F4FB22437C25006ED7F1 /* ZFClassifyTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyTableCell.m; sourceTree = "<group>"; };
+		188EFD68224CAF0200C90070 /* ZFSimilarRecommendTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFSimilarRecommendTableCell.h; sourceTree = "<group>"; };
+		188EFD69224CAF0200C90070 /* ZFSimilarRecommendTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFSimilarRecommendTableCell.m; sourceTree = "<group>"; };
+		188EFD6B224CC8B300C90070 /* ZFDetailsImageTextHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsImageTextHeadView.h; sourceTree = "<group>"; };
+		188EFD6C224CC8B300C90070 /* ZFDetailsImageTextHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsImageTextHeadView.m; sourceTree = "<group>"; };
+		188EFD6E224CC8C400C90070 /* ZFDetailsImageTextFootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsImageTextFootView.h; sourceTree = "<group>"; };
+		188EFD6F224CC8C400C90070 /* ZFDetailsImageTextFootView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsImageTextFootView.m; sourceTree = "<group>"; };
+		188EFD71224CCCD900C90070 /* ZFDetailsImageTextTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsImageTextTableCell.h; sourceTree = "<group>"; };
+		188EFD72224CCCD900C90070 /* ZFDetailsImageTextTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsImageTextTableCell.m; sourceTree = "<group>"; };
 		188F41AA223612A100165142 /* ZFPersonalHeadTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalHeadTableCell.h; sourceTree = "<group>"; };
 		188F41AB223612A100165142 /* ZFPersonalHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPersonalHeadTableCell.m; sourceTree = "<group>"; };
 		188F41AD2236181B00165142 /* ZFPersonalCentralTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPersonalCentralTableCell.h; sourceTree = "<group>"; };
@@ -1817,6 +1829,14 @@
 				840BE908224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.m */,
 				84C1D77B224B241F009048C7 /* ZFDetailsPageFooterView.h */,
 				84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */,
+				188EFD68224CAF0200C90070 /* ZFSimilarRecommendTableCell.h */,
+				188EFD69224CAF0200C90070 /* ZFSimilarRecommendTableCell.m */,
+				188EFD6B224CC8B300C90070 /* ZFDetailsImageTextHeadView.h */,
+				188EFD6C224CC8B300C90070 /* ZFDetailsImageTextHeadView.m */,
+				188EFD6E224CC8C400C90070 /* ZFDetailsImageTextFootView.h */,
+				188EFD6F224CC8C400C90070 /* ZFDetailsImageTextFootView.m */,
+				188EFD71224CCCD900C90070 /* ZFDetailsImageTextTableCell.h */,
+				188EFD72224CCCD900C90070 /* ZFDetailsImageTextTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2385,6 +2405,7 @@
 				840BE8F42249DBC100568B11 /* ZFDeliveryTableCell.m in Sources */,
 				18EA50BE22266F1600A2D612 /* ZFClassifyVC.m in Sources */,
 				18285F05222CFB8800CBA408 /* ZFAuctionTableCell.m in Sources */,
+				188EFD6A224CAF0200C90070 /* ZFSimilarRecommendTableCell.m in Sources */,
 				189CC0EE2223E81300EB5A64 /* HMEmoticonPackage.m in Sources */,
 				1808E0DA2231241A00B9DB1D /* ZFEndSpikeVC.m in Sources */,
 				180F31BB222FB1D30040718F /* ZFSubmitTableCell.m in Sources */,
@@ -2394,6 +2415,7 @@
 				843521012241E39E005DA298 /* ZFMyWalletTableCell.m in Sources */,
 				18285F0E222D1CA600CBA408 /* ZFAuctionEndVC.m in Sources */,
 				842EDEEA2240E64E00B53E45 /* ZFPublicHeadTableCell.m in Sources */,
+				188EFD6D224CC8B300C90070 /* ZFDetailsImageTextHeadView.m in Sources */,
 				189CC0EB2223E81300EB5A64 /* HMEmoticonToolbar.m in Sources */,
 				84ED0CE4223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m in Sources */,
 				84499BB22239F8FD00A7A988 /* ZFDetailsChoiceVC.m in Sources */,
@@ -2427,6 +2449,7 @@
 				189CC0F52223E81300EB5A64 /* ZFTool.m in Sources */,
 				5358868422365F4E00D7A4B6 /* ZFSettlementView.m in Sources */,
 				5304892B2240E03A002FAF61 /* ZFSelectPayView.m in Sources */,
+				188EFD70224CC8C400C90070 /* ZFDetailsImageTextFootView.m in Sources */,
 				180F31AC222F75FF0040718F /* ZFFillOrderVC.m in Sources */,
 				189CC0D12223E81300EB5A64 /* UIButton+LXMImagePosition.m in Sources */,
 				840BE8FA224A027A00568B11 /* ZFevaluationHeadTableCell.m in Sources */,
@@ -2476,6 +2499,7 @@
 				189CC0DC2223E81300EB5A64 /* StaticTableViewCell.m in Sources */,
 				840BE8F72249FDA300568B11 /* ZFExplainTableCell.m in Sources */,
 				849F9573223B8786001824B9 /* ZFOrderEmptyTableCell.m in Sources */,
+				188EFD73224CCCD900C90070 /* ZFDetailsImageTextTableCell.m in Sources */,
 				182E8A082224010B005CE5FE /* LoginTypeView.m in Sources */,
 				189CC0DD2223E81300EB5A64 /* StaticTableCell.m in Sources */,
 				5301146F2243352D00C36D42 /* ZFMyWalletVC.m in Sources */,
