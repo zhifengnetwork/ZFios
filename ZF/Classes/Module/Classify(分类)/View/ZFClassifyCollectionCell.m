@@ -49,7 +49,7 @@
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
-        _iconView.image = [UIImage imageNamed:@"shop_tag"];
+        _iconView.image = [UIImage imageNamed:@"huazhuang"];
     }
     return _iconView;
 }

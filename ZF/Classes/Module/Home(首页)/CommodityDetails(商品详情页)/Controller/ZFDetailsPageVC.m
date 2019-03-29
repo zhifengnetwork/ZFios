@@ -156,7 +156,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (section==9)
     {
-        return 5;
+        return 6;
     }
     return 1;
 }

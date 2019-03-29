@@ -79,7 +79,7 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
     
     //下面横线
     UIView *hLineView = [[UIView alloc] init];
-    hLineView.backgroundColor = RGBColorHex(0xcccccc);
+    hLineView.backgroundColor = RGBColorHex(0xE8E8E8);
     [self addSubview:hLineView];
     
     [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
