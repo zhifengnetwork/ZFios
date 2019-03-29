@@ -11,6 +11,8 @@
 #import "ZFClassifyCollectionCell.h"
 #import "ZFClassifyHeadView.h"
 #import "ZFClassifyTopToolView.h"
+#import "ZFClassifyFootView.h"
+#import "ZFClassifyBannerHeadView.h"
 
 
 @interface ZFClassifyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -22,6 +24,9 @@
 /* 顶部工具View */
 @property (nonatomic, strong) ZFClassifyTopToolView *topToolView;
 
+//
+@property (strong , nonatomic)NSMutableArray *imageUrls;
+
 @end
 
 @implementation ZFClassifyVC
@@ -29,6 +34,8 @@
 static NSString *const ZFClassifyTableCellID = @"ZFClassifyTableCellID";
 static NSString *const ZFClassifyCollectionCellID = @"ZFClassifyCollectionCellID";
 static NSString *const ZFClassifyHeadViewID = @"ZFClassifyHeadViewID";
+static NSString *const ZFClassifyFootViewID = @"ZFClassifyFootViewID";
+static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID";
 
 
 - (void)viewDidLoad {
@@ -103,7 +110,10 @@ static NSString *const ZFClassifyHeadViewID = @"ZFClassifyHeadViewID";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 3;
+    if (section==0) {
+        return 0;
+    }
+    return 6;
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -121,9 +131,24 @@ static NSString *const ZFClassifyHeadViewID = @"ZFClassifyHeadViewID";
     UICollectionReusableView *reusableview = nil;
     if (kind == UICollectionElementKindSectionHeader)
     {
-
-        ZFClassifyHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassifyHeadViewID forIndexPath:indexPath];
-        reusableview = headerView;
+        if (indexPath.section==0)
+        {
+            ZFClassifyBannerHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassifyBannerHeadViewID forIndexPath:indexPath];
+            headerView.imageUrls = self.imageUrls;
+            reusableview = headerView;
+        }
+        else
+        {
+            ZFClassifyHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassifyHeadViewID forIndexPath:indexPath];
+            reusableview = headerView;
+        }
+        
+    }
+    else if (kind == UICollectionElementKindSectionFooter)
+    {
+        
+        ZFClassifyFootView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ZFClassifyFootViewID forIndexPath:indexPath];
+        reusableview = footerView;
     }
     return reusableview;
 }
@@ -139,13 +164,16 @@ static NSString *const ZFClassifyHeadViewID = @"ZFClassifyHeadViewID";
 #pragma mark - head宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
+    if (section==0) {
+        return CGSizeMake(LL_ScreenWidth, 110);
+    }
     return CGSizeMake(LL_ScreenWidth, 25);
 }
 
 #pragma mark - foot宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-    return CGSizeZero;
+    return CGSizeMake(LL_ScreenWidth, 15);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -190,8 +218,24 @@ static NSString *const ZFClassifyHeadViewID = @"ZFClassifyHeadViewID";
         [_collectionView registerClass:[ZFClassifyCollectionCell class] forCellWithReuseIdentifier:ZFClassifyCollectionCellID];
         //注册Header
         [_collectionView registerClass:[ZFClassifyHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassifyHeadViewID];
+        [_collectionView registerClass:[ZFClassifyBannerHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassifyBannerHeadViewID];
+        //注册Footer
+        [_collectionView registerClass:[ZFClassifyFootView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ZFClassifyFootViewID];
     }
     return _collectionView;
+}
+
+-(NSMutableArray*)imageUrls
+{
+    if (_imageUrls==nil) {
+        _imageUrls = [[NSMutableArray alloc]init];
+        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1obZ_BmLT1RCvBVdK.jpg"];
+        [_imageUrls addObject:@"http://gfs9.gomein.net.cn/T1C3J_B5LT1RCvBVdK.jpg"];
+        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1CwYjBCCT1RCvBVdK.jpg"];
+        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1u8V_B4ET1RCvBVdK.jpg"];
+        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1zODgB5CT1RCvBVdK.jpg"];
+    }
+    return _imageUrls;
 }
 
 @end

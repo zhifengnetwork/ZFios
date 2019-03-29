@@ -30,7 +30,7 @@
 
 - (void)setup
 {
-    self.contentView.backgroundColor = RGBColorHex(0xf3f5f7);;
+    self.contentView.backgroundColor = RGBColorHex(0xffffff);
     [self.contentView addSubview:self.iconView];
     [self.contentView addSubview:self.nameLabel];
     
@@ -49,7 +49,7 @@
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
-        _iconView.image = [UIImage imageNamed:@"shop_tag"];
+        _iconView.image = [UIImage imageNamed:@"huazhuang"];
     }
     return _iconView;
 }

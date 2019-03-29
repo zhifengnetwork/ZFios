@@ -67,7 +67,7 @@
     
     //竖线
     UIView *hLineView1 = [[UIView alloc] init];
-    hLineView1.backgroundColor = RGBColorHex(0xcccccc);
+    hLineView1.backgroundColor = RGBColorHex(0xbbbbbb);
     [self addSubview:hLineView1];
     
     [hLineView1 mas_makeConstraints:^(MASConstraintMaker *make)
@@ -79,7 +79,7 @@
     
     //竖线
     UIView *hLineView = [[UIView alloc] init];
-    hLineView.backgroundColor = RGBColorHex(0xcccccc);
+    hLineView.backgroundColor = RGBColorHex(0xbbbbbb);
     [self addSubview:hLineView];
     
     [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
@@ -91,7 +91,7 @@
     
     //竖线
     UIView *hLineView2 = [[UIView alloc] init];
-    hLineView2.backgroundColor = RGBColorHex(0xcccccc);
+    hLineView2.backgroundColor = RGBColorHex(0xbbbbbb);
     [self addSubview:hLineView2];
     
     [hLineView2 mas_makeConstraints:^(MASConstraintMaker *make)
@@ -106,8 +106,8 @@
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = RGBColorHex(0x7C7C7C);
-        _nameLabel.font = [UIFont systemFontOfSize:12];
+        _nameLabel.textColor = RGBColorHex(0xbbbbbb);
+        _nameLabel.font = [UIFont systemFontOfSize:13];
         _nameLabel.text = @"质地";
     }
     return _nameLabel;
@@ -116,7 +116,7 @@
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.textColor = RGBColorHex(0x000000);
+        _titleLabel.textColor = RGBColorHex(0x0f0f0f);
         _titleLabel.font = [UIFont systemFontOfSize:13];
         _titleLabel.text = @"玻璃材质";
     }
@@ -126,7 +126,7 @@
 - (UIView *)line1View {
     if (_line1View == nil) {
         _line1View = [[UIView alloc] init];
-        _line1View.backgroundColor = [UIColor blackColor];
+        _line1View.backgroundColor = RGBColorHex(0xbbbbbb);
     }
     return _line1View;
 }
@@ -134,7 +134,7 @@
 - (UIView *)line2View {
     if (_line2View == nil) {
         _line2View = [[UIView alloc] init];
-        _line1View.backgroundColor = [UIColor blackColor];
+        _line2View.backgroundColor = RGBColorHex(0xbbbbbb);
     }
     return _line2View;
 }

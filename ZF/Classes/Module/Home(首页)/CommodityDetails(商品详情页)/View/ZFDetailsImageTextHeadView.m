@@ -103,9 +103,9 @@
     {
         _segmentedControl = [[UISegmentedControl alloc] initWithItems:self.types];
         [_segmentedControl setSelectedSegmentIndex:0];
-        _segmentedControl.tintColor = RGBColor(208,107,34);
+        _segmentedControl.tintColor = RGBColorHex(0x262626);
         //设置普通状态下(未选中)状态下的文字颜色和字体
-        [_segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName: RGBColor(208,107,34)} forState:UIControlStateNormal];
+        [_segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName: RGBColorHex(0x262626)} forState:UIControlStateNormal];
         //设置选中状态下的文字颜色和字体
         [_segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateSelected];
         //添加监听
