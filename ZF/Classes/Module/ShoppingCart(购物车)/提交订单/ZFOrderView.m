@@ -123,7 +123,7 @@
         _shopNameLabel = [[UILabel alloc]init];
         _shopNameLabel.font = [UIFont boldSystemFontOfSize:14];
         _shopNameLabel.textColor = RGBColorHex(0x333333);
-        _shopNameLabel.text = [NSString stringWithFormat:@"ZF智丰自营旗舰店"];
+        _shopNameLabel.text = @"ZF智丰自营旗舰店";
     }
     return _shopNameLabel;
 }
@@ -146,7 +146,7 @@
         _disCountLabel = [[UILabel alloc]init];
         _disCountLabel.font = [UIFont systemFontOfSize:10];
         _disCountLabel.textColor = RGBColorHex(0xe51c23);
-        _disCountLabel.text = [NSString stringWithFormat:@"满赠"];
+        _disCountLabel.text = @"满赠";
     }
     return _disCountLabel;
 }
@@ -155,7 +155,7 @@
         _detailDisCountLabel = [[UILabel alloc]init];
         _detailDisCountLabel.font = [UIFont systemFontOfSize:11];
         _detailDisCountLabel.textColor = RGBColorHex(0x4d4d4d);
-        _detailDisCountLabel.text = [NSString stringWithFormat:@"已购物4500.00元，可领取赠品"];
+        _detailDisCountLabel.text = @"已购物4500.00元，可领取赠品";
     }
     return _detailDisCountLabel;
 }
@@ -184,7 +184,7 @@
         _nameLabel = [[UILabel alloc]init];
         _nameLabel.font = [UIFont systemFontOfSize:11];
         _nameLabel.textColor = RGBColorHex(0x4d4d4d);
-        _nameLabel.text = [NSString stringWithFormat:@"Apple iphone XS 128G 金色 移动联通电信4G手机  旗舰店专营"];
+        _nameLabel.text = @"Apple iphone XS 128G 金色 移动联通电信4G手机  旗舰店专营";
         _nameLabel.lineBreakMode = 0;
         _nameLabel.numberOfLines = 0;
     }
@@ -195,7 +195,7 @@
         _priceLabel = [[UILabel alloc]init];
         _priceLabel.font = [UIFont boldSystemFontOfSize:13];
         _priceLabel.textColor = RGBColorHex(0x1a1a1a);
-        _priceLabel.text = [NSString stringWithFormat:@"￥4900.00"];
+        _priceLabel.text = @"￥4900.00";
     }
     return _priceLabel;
 }
@@ -217,7 +217,7 @@
         _nameLabel2 = [[UILabel alloc]init];
         _nameLabel2.font = [UIFont systemFontOfSize:11];
         _nameLabel2.textColor = RGBColorHex(0x4d4d4d);
-        _nameLabel2.text = [NSString stringWithFormat:@"Apple iphone XS 128G 金色 移动联通电信4G手机  旗舰店专营"];
+        _nameLabel2.text = @"Apple iphone XS 128G 金色 移动联通电信4G手机  旗舰店专营";
         _nameLabel2.lineBreakMode = 0;
         _nameLabel2.numberOfLines = 0;
     }
@@ -228,7 +228,7 @@
         _priceLabel2 = [[UILabel alloc]init];
         _priceLabel2.font = [UIFont boldSystemFontOfSize:13];
         _priceLabel2.textColor = RGBColorHex(0x1a1a1a);
-        _priceLabel2.text = [NSString stringWithFormat:@"￥4900.00"];
+        _priceLabel2.text = @"￥4900.00";
     }
     return _priceLabel2;
 }

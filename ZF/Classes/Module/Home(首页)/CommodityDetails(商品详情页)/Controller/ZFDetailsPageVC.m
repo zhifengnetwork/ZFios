@@ -22,6 +22,8 @@
 #import "ZFDetailsImageTextHeadView.h"
 #import "ZFDetailsImageTextFootView.h"
 #import "ZFDetailsImageTextTableCell.h"
+#import "TYAlertController.h"
+#import "ZFShareView.h"
 
 
 @interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -68,7 +70,11 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 
 -(void)shareButtonDidClick
 {
+    ZFShareView *shareView = [[ZFShareView alloc]initWithFrame:CGRectMake(0, LL_ScreenHeight - 125, LL_ScreenWidth, 299)];
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:shareView preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
     
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

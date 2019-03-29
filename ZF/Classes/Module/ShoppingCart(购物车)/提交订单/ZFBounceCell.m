@@ -36,7 +36,7 @@
     UILabel *express = [[UILabel alloc]init];
     [self addSubview:express];
     express.font = [UIFont systemFontOfSize:14];
-    express.text = [NSString stringWithFormat:@"配送"];
+    express.text = @"配送";
     express.textColor = RGBColorHex(0x0f0f0f);
     
     UIButton *addExpress = [[UIButton alloc]init];
@@ -53,7 +53,7 @@
     UILabel *coupon = [[UILabel alloc]init];
     [self addSubview:coupon];
     coupon.font = [UIFont systemFontOfSize:14];
-    coupon.text = [NSString stringWithFormat:@"优惠券"];
+    coupon.text = @"优惠券";
     coupon.textColor = RGBColorHex(0x0f0f0f);
     
     UIButton *addCoupon = [[UIButton alloc]init];
@@ -70,7 +70,7 @@
     UILabel *redPacket = [[UILabel alloc]init];
     [self addSubview:redPacket];
     redPacket.font = [UIFont systemFontOfSize:14];
-    redPacket.text = [NSString stringWithFormat:@"红包"];
+    redPacket.text = @"红包";
     redPacket.textColor = RGBColorHex(0x0f0f0f);
     
     UIButton *addRedPacket = [[UIButton alloc]init];
@@ -87,13 +87,13 @@
     UILabel *totalPayNumber = [[UILabel alloc]init];
     [self addSubview:totalPayNumber];
     totalPayNumber.font = [UIFont systemFontOfSize:14];
-    totalPayNumber.text = [NSString stringWithFormat:@"应付总额"];
+    totalPayNumber.text = @"应付总额";
     totalPayNumber.textColor = RGBColorHex(0x0f0f0f);
     
     UILabel *price = [[UILabel alloc]init];
     [self addSubview:price];
     price.font = [UIFont boldSystemFontOfSize:18];
-    price.text = [NSString stringWithFormat:@"￥ 1476.00"];
+    price.text = @"￥ 1476.00";
     price.textColor = RGBColorHex(0xee4141);
     
     UIView *view5 = [[UIView alloc]init];

@@ -89,7 +89,7 @@
     if (_expressLabel == nil) {
         _expressLabel = [[UILabel alloc]init];
         _expressLabel.font = [UIFont systemFontOfSize:14];
-        _expressLabel.text = [NSString stringWithFormat:@"配送"];
+        _expressLabel.text = @"配送";
         _expressLabel.textColor = RGBColorHex(0x0f0f0f);
     }
     return _expressLabel;
@@ -115,7 +115,7 @@
     if (_couponLabel == nil) {
         _couponLabel= [[UILabel alloc]init];
         _couponLabel.font = [UIFont systemFontOfSize:14];
-        _couponLabel.text = [NSString stringWithFormat:@"优惠券"];
+        _couponLabel.text = @"优惠券";
         _couponLabel.textColor = RGBColorHex(0x0f0f0f);
         
     }
@@ -142,7 +142,7 @@
     if (_redPacketLabel == nil) {
         _redPacketLabel = [[UILabel alloc]init];
         _redPacketLabel.font = [UIFont systemFontOfSize:14];
-        _redPacketLabel.text = [NSString stringWithFormat:@"红包"];
+        _redPacketLabel.text = @"红包";
         _redPacketLabel.textColor = RGBColorHex(0x0f0f0f);
     }
     return _redPacketLabel;

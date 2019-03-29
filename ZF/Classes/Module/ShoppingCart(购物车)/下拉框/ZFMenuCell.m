@@ -28,6 +28,7 @@
         self.showCarLabel = [[UILabel alloc]init];
         self.showCarLabel.font = [UIFont systemFontOfSize:12];
         self.showCarLabel.textAlignment = NSTextAlignmentCenter;
+        self.showCarLabel.textColor = RGBColorHex(0x666666);
         
         self.lineLabel = [[UILabel alloc]init];
         self.lineLabel.backgroundColor = [UIColor blackColor];

@@ -168,7 +168,7 @@
         _nameLabel = [[UILabel alloc]init];
         _nameLabel.font = [UIFont boldSystemFontOfSize:15];
         _nameLabel.textColor = RGBColorHex(0x0f0f0f);
-        _nameLabel.text = [NSString stringWithFormat:@"张**"];
+        _nameLabel.text = @"张**";
     }
     return _nameLabel;
 }
@@ -177,7 +177,7 @@
         _phoneNumberLabel = [[UILabel alloc]init];
         _phoneNumberLabel.font = [UIFont boldSystemFontOfSize:15];
         _phoneNumberLabel.textColor = RGBColorHex(0x0f0f0f);
-        _phoneNumberLabel.text = [NSString stringWithFormat:@"186****0486"];
+        _phoneNumberLabel.text = @"186****0486";
     }
     return _phoneNumberLabel;
 }
@@ -186,7 +186,7 @@
         _addressLabel = [[UILabel alloc]init];
         _addressLabel.font = [UIFont systemFontOfSize:12];
         _addressLabel.textColor = RGBColorHex(0x424242);
-        _addressLabel.text = [NSString stringWithFormat:@"广东省广州市白云区"];
+        _addressLabel.text = @"广东省广州市白云区";
     }
     return _addressLabel;
 }
@@ -211,7 +211,7 @@
         _priceLabel = [[UILabel alloc]init];
         _priceLabel.font = [UIFont systemFontOfSize:15];
         _priceLabel.textColor = RGBColorHex(0xf05050);
-        _priceLabel.text = [NSString stringWithFormat:@"￥4900.00"];
+        _priceLabel.text = @"￥4900.00";
     }
     return _priceLabel;
 }
@@ -220,7 +220,7 @@
         _totalLabel = [[UILabel alloc]init];
         _totalLabel.font = [UIFont systemFontOfSize:15];
         _totalLabel.textColor = RGBColorHex(0x0f0f0f);
-        _totalLabel.text = [NSString stringWithFormat:@"合计:"];
+        _totalLabel.text = @"合计:";
     }
     return _totalLabel;
 }

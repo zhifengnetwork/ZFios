@@ -7,7 +7,7 @@
 //
 
 #import "ZFDeleteView.h"
-#import "UIView+TYAlertView.h""
+#import "UIView+TYAlertView.h"
 @interface ZFDeleteView()
 @property (nonatomic, strong)UILabel *titleLabel;
 @property (nonatomic, strong)UILabel *detailLabel;

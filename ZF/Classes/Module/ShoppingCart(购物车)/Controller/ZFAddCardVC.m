@@ -14,6 +14,8 @@
 @property (nonatomic, strong)UILabel *titleLabel;
 @property (nonatomic, strong)UIView *cardView;
 @property (nonatomic, strong)UILabel *cardLabel;
+@property (nonatomic, strong)UITextField *cardNumberTF;
+@property (nonatomic, strong)UIButton *addButton;
 @end
 
 @implementation ZFAddCardVC
@@ -30,6 +32,8 @@
     [self.titleView addSubview:self.titleLabel];
     [self.view addSubview:self.cardView];
     [self.cardView addSubview:self.cardLabel];
+    [self.cardView addSubview:self.cardNumberTF];
+    [self.view addSubview:self.addButton];
     [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).with.offset(0);
         make.left.right.equalTo(self.view);
@@ -51,7 +55,18 @@
     }];
     [_cardLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.cardView).with.offset(15);
+        make.width.mas_equalTo(30);
         make.centerY.equalTo(self.cardView.mas_centerY);
+    }];
+    [_cardNumberTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.cardLabel.mas_right).with.offset(15);
+        make.top.bottom.right.equalTo(self.cardView);
+    }];
+    [_addButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.cardView.mas_bottom).with.offset(20);
+        make.left.equalTo(self.view).with.offset(16);
+        make.right.equalTo(self.view).with.offset(-16);
+        make.height.mas_equalTo(40);
     }];
 }
 - (UIView *)titleView{
@@ -74,7 +89,7 @@
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.font = [UIFont boldSystemFontOfSize:19];
         _titleLabel.textColor = RGBColorHex(0x0f0f0f);
-        _titleLabel.text = [NSString stringWithFormat:@"添加银行卡"];
+        _titleLabel.text = @"添加银行卡";
     }
     return _titleLabel;
 }
@@ -91,13 +106,36 @@
         _cardLabel = [[UILabel alloc]init];
         _cardLabel.font = [UIFont systemFontOfSize:12];
         _cardLabel.textColor = RGBColorHex(0x333333);
-        _cardLabel.text = [NSString stringWithFormat:@"卡号"];
+        _cardLabel.text = @"卡号";
     }
     return _cardLabel;
+}
+- (UITextField *)cardNumberTF{
+    if (_cardNumberTF == nil) {
+        _cardNumberTF = [[UITextField alloc]init];
+        _cardNumberTF.placeholder = @"请输入银行卡号";
+        [_cardNumberTF setValue:RGBColorHex(0xb3b3b3) forKeyPath:@"_placeholderLabel.textColor"];
+        [_cardNumberTF setValue:[UIFont systemFontOfSize:12] forKeyPath:@"_placeholderLabel.font"];
+    }
+    return _cardNumberTF;
+}
+- (UIButton *)addButton{
+    if (_addButton == nil) {
+        _addButton = [[UIButton alloc]init];
+        _addButton.layer.cornerRadius = 5;
+        _addButton.backgroundColor = RGBColorHex(0xe51c23);
+        _addButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        [_addButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
+        [_addButton setTitle:@"点击添加" forState:UIControlStateNormal];
+        [_addButton addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _addButton;
 }
 #pragma mark -- 方法
 - (void)back{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+- (void)add{
+    
+}
 @end

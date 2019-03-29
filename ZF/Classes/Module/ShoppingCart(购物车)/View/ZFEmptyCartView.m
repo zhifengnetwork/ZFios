@@ -30,13 +30,13 @@
     [self addSubview:imageView];
     
     UILabel *label = [[UILabel alloc]init];
-    label.text = [NSString stringWithFormat:@"购物车还空着呢！"];
+    label.text = @"购物车还空着呢！";
     [label setTextColor:RGBColorHex(0xcccccc)];
     [label setFont:[UIFont systemFontOfSize:12]];
     [self addSubview:label];
     
     UILabel *label2 = [[UILabel alloc]init];
-    label2.text = [NSString stringWithFormat:@"快去挑选自己心仪的物品吧~"];
+    label2.text = @"快去挑选自己心仪的物品吧~";
     [label2 setTextColor:RGBColorHex(0xcccccc)];
     [label2 setFont:[UIFont systemFontOfSize:12]];
     [self addSubview:label2];
