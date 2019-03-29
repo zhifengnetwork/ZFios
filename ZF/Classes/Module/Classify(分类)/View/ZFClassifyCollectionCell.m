@@ -30,7 +30,7 @@
 
 - (void)setup
 {
-    self.contentView.backgroundColor = RGBColorHex(0xf3f5f7);;
+    self.contentView.backgroundColor = RGBColorHex(0xffffff);
     [self.contentView addSubview:self.iconView];
     [self.contentView addSubview:self.nameLabel];
     

@@ -143,6 +143,8 @@
 		18F8D8982228D7DE00203E9A /* ZFSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D8972228D7DE00203E9A /* ZFSelectedVC.m */; };
 		18F8D89B2229128D00203E9A /* ZFSelectedTitleHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D89A2229128D00203E9A /* ZFSelectedTitleHeadView.m */; };
 		18F8D89E222918EC00203E9A /* ZFNewProductsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D89D222918EC00203E9A /* ZFNewProductsTableCell.m */; };
+		18F93EF6224E1A9C006ED290 /* ZFClassifyFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F93EF5224E1A9C006ED290 /* ZFClassifyFootView.m */; };
+		18F93EF9224E1B07006ED290 /* ZFClassifyBannerHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F93EF8224E1B07006ED290 /* ZFClassifyBannerHeadView.m */; };
 		5301146F2243352D00C36D42 /* ZFMyWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5301146E2243352D00C36D42 /* ZFMyWalletVC.m */; };
 		530114742243363700C36D42 /* ZFMyWalletButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 530114732243363700C36D42 /* ZFMyWalletButton.m */; };
 		53011477224336AC00C36D42 /* ZFMyWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53011476224336AC00C36D42 /* ZFMyWalletView.m */; };
@@ -514,6 +516,10 @@
 		18F8D89A2229128D00203E9A /* ZFSelectedTitleHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFSelectedTitleHeadView.m; sourceTree = "<group>"; };
 		18F8D89C222918EC00203E9A /* ZFNewProductsTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFNewProductsTableCell.h; sourceTree = "<group>"; };
 		18F8D89D222918EC00203E9A /* ZFNewProductsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFNewProductsTableCell.m; sourceTree = "<group>"; };
+		18F93EF4224E1A9C006ED290 /* ZFClassifyFootView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyFootView.h; sourceTree = "<group>"; };
+		18F93EF5224E1A9C006ED290 /* ZFClassifyFootView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyFootView.m; sourceTree = "<group>"; };
+		18F93EF7224E1B07006ED290 /* ZFClassifyBannerHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyBannerHeadView.h; sourceTree = "<group>"; };
+		18F93EF8224E1B07006ED290 /* ZFClassifyBannerHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyBannerHeadView.m; sourceTree = "<group>"; };
 		35B60207C013D37496B67DF4 /* Pods-ZF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZF.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZF/Pods-ZF.release.xcconfig"; sourceTree = "<group>"; };
 		5301146D2243352D00C36D42 /* ZFMyWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyWalletVC.h; sourceTree = "<group>"; };
 		5301146E2243352D00C36D42 /* ZFMyWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyWalletVC.m; sourceTree = "<group>"; };
@@ -1597,6 +1603,10 @@
 				180935AB2244DB2500AEBB02 /* ZFClassifyHeadView.m */,
 				180935AD2244DEA700AEBB02 /* ZFClassifyTopToolView.h */,
 				180935AE2244DEA700AEBB02 /* ZFClassifyTopToolView.m */,
+				18F93EF4224E1A9C006ED290 /* ZFClassifyFootView.h */,
+				18F93EF5224E1A9C006ED290 /* ZFClassifyFootView.m */,
+				18F93EF7224E1B07006ED290 /* ZFClassifyBannerHeadView.h */,
+				18F93EF8224E1B07006ED290 /* ZFClassifyBannerHeadView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2381,6 +2391,7 @@
 				18D9160922301BE3003B113A /* ZFClusterWindowView.m in Sources */,
 				84499BBB223A357100A7A988 /* ZFCommodityHeadView.m in Sources */,
 				189CC0F42223E81300EB5A64 /* HttpTool.m in Sources */,
+				18F93EF9224E1B07006ED290 /* ZFClassifyBannerHeadView.m in Sources */,
 				8498DAE3223FA45A008C47A6 /* ZFMyWalletControllerCell.m in Sources */,
 				182E89902223BEA0005CE5FE /* ViewController.m in Sources */,
 				84ED0CD5223CD8D100BC13C7 /* ZFOfflinePickupVC.m in Sources */,
@@ -2514,6 +2525,7 @@
 				18285F14222D32A400CBA408 /* ZFAuctionRulesTableCell.m in Sources */,
 				182E8A072224010B005CE5FE /* LoginPhoneView.m in Sources */,
 				5309F2192238EB5F00275D4C /* ZFMenuCell.m in Sources */,
+				18F93EF6224E1A9C006ED290 /* ZFClassifyFootView.m in Sources */,
 				189CC0DC2223E81300EB5A64 /* StaticTableViewCell.m in Sources */,
 				840BE8F72249FDA300568B11 /* ZFExplainTableCell.m in Sources */,
 				849F9573223B8786001824B9 /* ZFOrderEmptyTableCell.m in Sources */,
