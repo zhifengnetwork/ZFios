@@ -23,6 +23,7 @@
 #import "ZFStationNewsVC.h"
 #import "ZFDetailsPageVC.h"
 #import "ZFSearchVC.h"
+#import "PYSearchViewController.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -108,8 +109,18 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     };
     
     _topToolView.searchButtonClickBlock = ^{
-        ZFSearchVC *vc = [[ZFSearchVC alloc]init];
-        [weakSelf.navigationController pushViewController:vc animated:YES];
+        // 1. 创建热门搜索数组
+        NSArray *hotSeaches = @[@"周大福", @"新款连衣裙", @"连衣裙"];
+        // 2. 创建搜索控制器
+        PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"商品 店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+            // 开始(点击)搜索时执行以下代码
+            // 如：跳转到指定控制器
+            [searchViewController.navigationController pushViewController:[[ZFSearchVC alloc] init] animated:YES];
+        }];
+        [searchViewController setSearchHistoryTitle:@"搜索历史"];
+        
+        // 3. 跳转到搜索控制器
+        [weakSelf.navigationController pushViewController:searchViewController animated:YES];
     };
     [self.view addSubview:_topToolView];
 }

@@ -10,6 +10,7 @@
 
 #define PYRectangleTagMaxCol 3
 #define PYTextColor PYSEARCH_COLOR(113, 113, 113)
+#define RGBColorHex(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define PYSEARCH_COLORPolRandomColor self.colorPol[arc4random_uniform((uint32_t)self.colorPol.count)]
 
 @interface PYSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, PYSearchSuggestionViewDataSource, UIGestureRecognizerDelegate> {
@@ -174,8 +175,10 @@
                 searchBar.py_x = PYSEARCH_MARGIN - navigationBarLayoutMargins.left;
             }
         }
-        searchBar.py_height = self.view.py_width > self.view.py_height ? 24 : 30;
-        searchBar.py_width = self.view.py_width - adaptWidth - PYSEARCH_MARGIN;
+        searchBar.py_height = 35;
+//        self.view.py_width > self.view.py_height ? 24 : 30;
+        searchBar.py_width = 300;
+//        self.view.py_width - adaptWidth - PYSEARCH_MARGIN;
         searchField.frame = searchBar.bounds;
         cancelButton.py_width = self.cancelButtonWidth;
     } else {
@@ -400,9 +403,10 @@
     self.baseSearchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navigationController.navigationBar.backIndicatorImage = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
-    UIButton *cancleButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    cancleButton.titleLabel.font = [UIFont systemFontOfSize:17];
-    [cancleButton setTitle:[NSBundle py_localizedStringForKey:PYSearchCancelButtonText] forState:UIControlStateNormal];
+    UIButton *cancleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    cancleButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    [cancleButton setTitleColor:RGBColorHex(0x272727) forState:UIControlStateNormal];
+    [cancleButton setTitle:@"取消" forState:UIControlStateNormal];
     [cancleButton addTarget:self action:@selector(cancelDidClick)  forControlEvents:UIControlEventTouchUpInside];
     cancleButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     cancleButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
@@ -410,14 +414,14 @@
     cancleButton.py_width += PYSEARCH_MARGIN;
     self.cancelButton = cancleButton;
     self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancleButton];
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    UIImage *backImage = [NSBundle py_imageNamed:@"back"];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *backImage = [UIImage imageNamed:@"Back"];
     backButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [backButton setTitle:[NSBundle py_localizedStringForKey:PYSearchBackButtonText] forState:UIControlStateNormal];
     [backButton setImage:backImage forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backDidClick)  forControlEvents:UIControlEventTouchUpInside];
     backButton.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     [backButton.imageView sizeToFit];
     backButton.contentEdgeInsets = UIEdgeInsetsMake(0, -ceil(backImage.size.width / 2.0), 0, 0);
     backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -442,7 +446,7 @@
     self.showSearchResultWhenSearchBarRefocused = NO;
     self.showKeyboardWhenReturnSearchResult = YES;
     self.removeSpaceOnSearchString = YES;
-    self.searchBarCornerRadius = 0.0;
+    self.searchBarCornerRadius = 5;
 
     UIView *titleView = [[UIView alloc] init];
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:titleView.bounds];
@@ -464,7 +468,9 @@
     for (UIView *subView in [[searchBar.subviews lastObject] subviews]) {
         if ([[subView class] isSubclassOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField *)subView;
-            textField.font = [UIFont systemFontOfSize:16];
+            [textField setTextColor:[UIColor colorWithRed:133/255 green:133/255 blue:133/255 alpha:1]];
+            textField.font = [UIFont systemFontOfSize:12];
+            textField.backgroundColor =RGBColorHex(0xf2f2f2);
             _searchTextField = textField;
             break;
         }
@@ -478,7 +484,7 @@
     hotSearchView.py_x = PYSEARCH_MARGIN * 1.5;
     hotSearchView.py_width = headerView.py_width - hotSearchView.py_x * 2;
     hotSearchView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    UILabel *titleLabel = [self setupTitleLabel:[NSBundle py_localizedStringForKey:PYSearchHotSearchText]];
+    UILabel *titleLabel = [self setupTitleLabel:@"热门搜索"];
     self.hotSearchHeader = titleLabel;
     [hotSearchView addSubview:titleLabel];
     UIView *hotSearchTagsContentView = [[UIView alloc] init];
@@ -498,7 +504,7 @@
     emptySearchHistoryLabel.textColor = [UIColor darkGrayColor];
     emptySearchHistoryLabel.font = [UIFont systemFontOfSize:13];
     emptySearchHistoryLabel.userInteractionEnabled = YES;
-    emptySearchHistoryLabel.text = [NSBundle py_localizedStringForKey:PYSearchEmptySearchHistoryText];
+    emptySearchHistoryLabel.text = @"清空搜索历史";
     emptySearchHistoryLabel.textAlignment = NSTextAlignmentCenter;
     emptySearchHistoryLabel.py_height = 49;
     [emptySearchHistoryLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(emptySearchHistoryDidClick)]];
@@ -516,9 +522,9 @@
 {
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.text = title;
-    titleLabel.font = [UIFont systemFontOfSize:13];
+    titleLabel.font = [UIFont boldSystemFontOfSize:16];
     titleLabel.tag = 1;
-    titleLabel.textColor = PYTextColor;
+    titleLabel.textColor = RGBColorHex(0x111111);
     [titleLabel sizeToFit];
     titleLabel.py_x = 0;
     titleLabel.py_y = 0;
@@ -590,6 +596,7 @@
     for (int i = 0; i < self.hotSearches.count; i++) {
         UIView *rankView = [[UIView alloc] init];
         rankView.py_height = 40;
+        rankView.backgroundColor = RGBColorHex(0xeeeeee);
         rankView.py_width = (self.baseSearchTableView.py_width - PYSEARCH_MARGIN * 3) * 0.5;
         rankView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [contentView addSubview:rankView];
@@ -605,15 +612,15 @@
         rankTag.py_y = (rankView.py_height - rankTag.py_height) * 0.5;
         [rankView addSubview:rankTag];
         [rankTagM addObject:rankTag];
-        // rank text
         UILabel *rankTextLabel = [[UILabel alloc] init];
         rankTextLabel.text = self.hotSearches[i];
         rankTextLabel.userInteractionEnabled = YES;
         [rankTextLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagDidCLick:)]];
         rankTextLabel.textAlignment = NSTextAlignmentLeft;
         rankTextLabel.backgroundColor = [UIColor clearColor];
-        rankTextLabel.textColor = PYTextColor;
-        rankTextLabel.font = [UIFont systemFontOfSize:14];
+        rankTextLabel.textColor = RGBColorHex(0x646464);
+
+        rankTextLabel.font = [UIFont systemFontOfSize:13];
         rankTextLabel.py_x = CGRectGetMaxX(rankTag.frame) + PYSEARCH_MARGIN;
         rankTextLabel.py_width = (self.baseSearchTableView.py_width - PYSEARCH_MARGIN * 3) * 0.5 - rankTextLabel.py_x;
         rankTextLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -654,7 +661,7 @@
     self.rankTextLabels = rankTextLabelsM;
     self.rankTags = rankTagM;
     self.rankViews = rankViewM;
-
+    
     for (int i = 0; i < self.rankViews.count; i++) { // default is two column
         UIView *rankView = self.rankViews[i];
         rankView.py_x = (PYSEARCH_MARGIN + rankView.py_width) * (i % 2);
@@ -684,13 +691,16 @@
     self.searchHistoryTagsContentView.py_y = CGRectGetMaxY(self.emptyButton.frame) + PYSEARCH_MARGIN;
     self.searchHistoryTags = [self addAndLayoutTagsWithTagsContentView:self.searchHistoryTagsContentView tagTexts:[self.searchHistories copy]];
 }
-
+#pragma mark --加载热门搜索文字
 - (NSArray *)addAndLayoutTagsWithTagsContentView:(UIView *)contentView tagTexts:(NSArray<NSString *> *)tagTexts;
 {
     [contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     NSMutableArray *tagsM = [NSMutableArray array];
     for (int i = 0; i < tagTexts.count; i++) {
         UILabel *label = [self labelWithTitle:tagTexts[i]];
+        if (i == 0) {
+            label.textColor = RGBColorHex(0xf7612c);
+        }
         [label addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tagDidCLick:)]];
         [contentView addSubview:label];
         [tagsM addObject:label];
@@ -775,12 +785,12 @@
 - (void)setSearchHistoryTitle:(NSString *)searchHistoryTitle
 {
     _searchHistoryTitle = [searchHistoryTitle copy];
-
     if (PYSearchHistoryStyleCell == self.searchHistoryStyle) {
         [self.baseSearchTableView reloadData];
     } else {
         self.searchHistoryHeader.text = _searchHistoryTitle;
     }
+    
 }
 
 - (void)setShowSearchResultWhenSearchTextChanged:(BOOL)showSearchResultWhenSearchTextChanged
@@ -1012,8 +1022,8 @@
         [self.delegate didClickCancel:self];
         return;
     }
-
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (void)backDidClick
@@ -1080,10 +1090,10 @@
 {
     UILabel *label = [[UILabel alloc] init];
     label.userInteractionEnabled = YES;
-    label.font = [UIFont systemFontOfSize:12];
+    label.font = [UIFont systemFontOfSize:13];
     label.text = title;
-    label.textColor = [UIColor grayColor];
-    label.backgroundColor = [UIColor py_colorWithHexString:@"#fafafa"];
+    label.textColor = RGBColorHex(0x646464);
+    label.backgroundColor = [UIColor py_colorWithHexString:@"#eeeeee"];
     label.layer.cornerRadius = 3;
     label.clipsToBounds = YES;
     label.textAlignment = NSTextAlignmentCenter;
@@ -1253,8 +1263,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.textLabel.textColor = PYTextColor;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.textLabel.textColor = RGBColorHex(0x646464);
+        cell.textLabel.font = [UIFont systemFontOfSize:13];
         cell.backgroundColor = [UIColor clearColor];
 
         UIButton *closetButton = [[UIButton alloc] init];
