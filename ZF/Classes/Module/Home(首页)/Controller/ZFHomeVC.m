@@ -22,6 +22,7 @@
 #import "CountDown.h"
 #import "ZFStationNewsVC.h"
 #import "ZFDetailsPageVC.h"
+#import "ZFSearchVC.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -105,8 +106,10 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         ZFStationNewsVC *vc = [[ZFStationNewsVC alloc]init];
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
+    
     _topToolView.searchButtonClickBlock = ^{
-        NSLog(@"点击了首页搜索");
+        ZFSearchVC *vc = [[ZFSearchVC alloc]init];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     [self.view addSubview:_topToolView];
 }

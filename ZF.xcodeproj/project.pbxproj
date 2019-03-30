@@ -165,6 +165,7 @@
 		533BA186224CC3FE00FAFFF8 /* ZFAddCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 533BA185224CC3FE00FAFFF8 /* ZFAddCardVC.m */; };
 		533DC81D2248AC54005A73DA /* ZFDeleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 533DC81C2248AC54005A73DA /* ZFDeleteView.m */; };
 		534D1BA82244BD8D0013C0B4 /* ZFQRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 534D1BA72244BD8D0013C0B4 /* ZFQRCodeView.m */; };
+		534F181F224F0E03006A08A4 /* ZFSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 534F181E224F0E03006A08A4 /* ZFSearchVC.m */; };
 		5358867E22360CAC00D7A4B6 /* ZFShoppingCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5358867D22360CAC00D7A4B6 /* ZFShoppingCartCell.xib */; };
 		5358868122361C1300D7A4B6 /* ZFShoppingCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5358868022361C1300D7A4B6 /* ZFShoppingCartCell.m */; };
 		5358868422365F4E00D7A4B6 /* ZFSettlementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5358868322365F4E00D7A4B6 /* ZFSettlementView.m */; };
@@ -562,6 +563,8 @@
 		533DC81C2248AC54005A73DA /* ZFDeleteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDeleteView.m; sourceTree = "<group>"; };
 		534D1BA62244BD8D0013C0B4 /* ZFQRCodeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFQRCodeView.h; sourceTree = "<group>"; };
 		534D1BA72244BD8D0013C0B4 /* ZFQRCodeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFQRCodeView.m; sourceTree = "<group>"; };
+		534F181D224F0E03006A08A4 /* ZFSearchVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFSearchVC.h; sourceTree = "<group>"; };
+		534F181E224F0E03006A08A4 /* ZFSearchVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFSearchVC.m; sourceTree = "<group>"; };
 		5358867D22360CAC00D7A4B6 /* ZFShoppingCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZFShoppingCartCell.xib; sourceTree = "<group>"; };
 		5358867F22361C1300D7A4B6 /* ZFShoppingCartCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFShoppingCartCell.h; sourceTree = "<group>"; };
 		5358868022361C1300D7A4B6 /* ZFShoppingCartCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFShoppingCartCell.m; sourceTree = "<group>"; };
@@ -1505,6 +1508,7 @@
 		18EA50AD22266ECF00A2D612 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				534F181A224F0D01006A08A4 /* Search(首页搜索） */,
 				842C0B262248CE5B0058206F /* CommodityDetails(商品详情页) */,
 				18515F82222FBBB300F36E26 /* StationNews(站内消息) */,
 				18285EFF222CE21D00CBA408 /* Auction(竞拍) */,
@@ -1800,6 +1804,31 @@
 				531658CC2243872500CBD060 /* ZFCouponCell.m */,
 				534D1BA62244BD8D0013C0B4 /* ZFQRCodeView.h */,
 				534D1BA72244BD8D0013C0B4 /* ZFQRCodeView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		534F181A224F0D01006A08A4 /* Search(首页搜索） */ = {
+			isa = PBXGroup;
+			children = (
+				534F181C224F0DDB006A08A4 /* View */,
+				534F181B224F0DD1006A08A4 /* Controller */,
+			);
+			path = "Search(首页搜索）";
+			sourceTree = "<group>";
+		};
+		534F181B224F0DD1006A08A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				534F181D224F0E03006A08A4 /* ZFSearchVC.h */,
+				534F181E224F0E03006A08A4 /* ZFSearchVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		534F181C224F0DDB006A08A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2474,6 +2503,7 @@
 				1830DB6B2232181900C30C90 /* ZFEndSpikeHeadView.m in Sources */,
 				84ED0CE7223CFB3200BC13C7 /* ZFDistributionMemTableCell.m in Sources */,
 				182E899B2223BEA2005CE5FE /* main.m in Sources */,
+				534F181F224F0E03006A08A4 /* ZFSearchVC.m in Sources */,
 				180F31A9222F71AF0040718F /* ZFTotalCommodityTableCell.m in Sources */,
 				84C1D77D224B241F009048C7 /* ZFDetailsPageFooterView.m in Sources */,
 				181991982237AC12004585D8 /* ZFEditorialConsigneeVC.m in Sources */,

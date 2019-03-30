@@ -205,6 +205,7 @@
     }
     return vc;
 }
+//先设置qq可以分享
 - (void)jumpQQ{
     [self cancelClick];
     ZFShareSuccessView *view = [[ZFShareSuccessView alloc]initWithFrame:CGRectMake(10, 150, 280, 296)];

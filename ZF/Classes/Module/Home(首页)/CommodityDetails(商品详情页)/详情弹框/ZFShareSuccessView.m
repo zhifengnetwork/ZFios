@@ -7,6 +7,7 @@
 //
 
 #import "ZFShareSuccessView.h"
+#import "UIView+TYAlertView.h"
 @interface ZFShareSuccessView()
 @property (nonatomic, strong)UIImageView *ribbonImageView;
 @property (nonatomic, strong)UIImageView *picImageView;
@@ -110,7 +111,13 @@
         _ensureButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
         [_ensureButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
         [_ensureButton setTitle:@"确定" forState:UIControlStateNormal];
+        [_ensureButton addTarget:self action:@selector(ensureClick) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return _ensureButton;
+}
+#pragma mark 方法
+- (void)ensureClick{
+    [self hideInWindow];
 }
 @end
