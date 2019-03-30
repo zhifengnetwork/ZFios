@@ -91,8 +91,8 @@
     UserInfoModel* userInfo = [UserInfoModel readUserInfo];
     if (kObjectIsEmpty(userInfo))
     {
-        [self to_HomeVC];
-        //[self to_LoginVC];
+        //[self to_HomeVC];
+        [self to_LoginVC];
     }
     else
     {

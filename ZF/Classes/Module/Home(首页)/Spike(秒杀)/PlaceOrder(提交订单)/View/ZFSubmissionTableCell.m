@@ -61,6 +61,8 @@
         [_submissionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _submissionButton.layer.cornerRadius = 5;
         _submissionButton.clipsToBounds = YES;
+        //不接受点击事件
+        _submissionButton.userInteractionEnabled = NO;
         [_submissionButton addTarget:self action:@selector(submissionButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submissionButton;

@@ -29,12 +29,19 @@
 #import "ZFMyWalletVC.h"
 #import "ZFCouponCenterVC.h"
 #import "ZFZFMyOrderVC.h"
+#import "UserInfoModel.h"
+#import "http_user.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "UserInfoModel.h"
 
 
 @interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate,ZFMyWalletTableCellDelegate,ZFMyColumnTableCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZFMyHeadView *headView;
+
+@property (nonatomic, strong) UserInfoModel *userInfo;
 
 @end
 
@@ -56,6 +63,9 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    //用户信息
+    [self loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -83,10 +93,35 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     self.tableView.tableHeaderView = self.headView;
 }
 
+//加载数据
 -(void)loadData
 {
-    
+    ZWeakSelf
+    [http_user userinfo:^(id responseObject)
+     {
+         [weakSelf loadData_ok:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
 }
+
+//加载数据完成
+-(void)loadData_ok:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    //jsonToModel
+    self.userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
+    //刷新数据
+    self.headView.userInfo = self.userInfo;
+    [self.tableView reloadData];
+}
+
 
 
 

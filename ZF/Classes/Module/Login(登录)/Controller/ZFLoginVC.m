@@ -14,6 +14,10 @@
 #import "ZFRegisterVC.h"
 #import "ZFAccountModificationVC.h"
 #import "ZFTool.h"
+#import "http_user.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "UserInfoModel.h"
 
 
 @interface ZFLoginVC ()<LoginTypeViewDelegate>
@@ -43,6 +47,8 @@
 @property (nonatomic, strong) UIButton *zcButton;
 
 @property (nonatomic, strong) LoginTypeView *typeView;
+
+@property (nonatomic, strong) UIButton *testButton;
 
 @end
 
@@ -223,6 +229,16 @@
         make.height.mas_equalTo(100);
     }];
     
+#ifdef APP_TEST
+    [self.view addSubview:self.testButton];
+    [_testButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(50);
+        make.right.mas_equalTo(-20);
+    }];
+#else
+    
+#endif
+    
 }
 
 
@@ -246,6 +262,44 @@
     ZFRegisterVC* vc = [[ZFRegisterVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
+- (void)testButtonDidClick
+{
+    NSString* username = @"13322222222";
+    NSString* passwd = @"123456";
+    [self toLogin:username password:passwd];
+}
+
+//登录
+-(void)toLogin:(NSString*)username password:(NSString*)password
+{
+    ZWeakSelf
+    [SVProgressHUD showWithStatus:@"正在登录"];
+    [http_user login:username password:password success:^(id responseObject)
+     {
+         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+         [weakSelf toLogin_ok:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)toLogin_ok:(id)responseObject
+{
+    if(kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    UserInfoModel* user = [UserInfoModel mj_objectWithKeyValues:responseObject];
+    [user saveUserInfo];
+    
+    //登录成功通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:UserLoginRegisterNotification object:self];
+    
+}
+
+
 
 - (UILabel *)phoneLabel {
     if (_phoneLabel == nil) {
@@ -483,5 +537,15 @@
 //
 //    return _vcodeButton;
 //}
+
+- (UIButton *)testButton {
+    if (_testButton == nil) {
+        _testButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_testButton setTitle:@"测试账号" forState:UIControlStateNormal];
+        [_testButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [_testButton addTarget:self action:@selector(testButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _testButton;
+}
 
 @end

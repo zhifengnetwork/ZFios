@@ -21,14 +21,6 @@
 @end
 
 
-@implementation MemberModel
-
-MJCodingImplementation
-
-
-@end
-
-
 @implementation UserInfoModel
 
 //userDefaults
@@ -42,16 +34,6 @@ MJCodingImplementation
     return @{
              @"ID":@"id"
              };
-}
-
--(MemberModel*)member
-{
-    if (_member==nil)
-    {
-        _member = [[MemberModel alloc]init];
-    }
-    
-    return _member;
 }
 
 //获取性别名称

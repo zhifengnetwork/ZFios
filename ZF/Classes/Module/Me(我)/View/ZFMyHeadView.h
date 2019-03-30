@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserInfoModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -24,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFMyHeadView : UIView
 
 @property (nonatomic, weak) id<ZFMyHeadViewDelegate> delegate;
+
+@property (nonatomic, strong) UserInfoModel *userInfo;
 
 @end
 

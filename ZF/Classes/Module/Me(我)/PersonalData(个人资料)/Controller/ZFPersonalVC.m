@@ -12,6 +12,9 @@
 #import "ZFSubmissionTableCell.h"
 #import "ZFPersonalDataVC.h"
 #import "ZFAddressManagementVC.h"
+#import "AppDelegate.h"
+#import "UserInfoModel.h"
+
 
 @interface ZFPersonalVC ()
 
@@ -175,6 +178,44 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
         }
         
     }
+    else if (indexPath.section==2)
+    {
+        ZWeakSelf;
+        NSString* message = [NSString stringWithFormat:@"确定退出软件？"];
+        UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle:nil
+                                            message:message
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *action1 =
+        [UIAlertAction actionWithTitle:@"取消"
+                                 style:UIAlertActionStyleDefault
+                               handler:nil];
+        
+        [alert addAction:action1];
+        
+        UIAlertAction *action =
+        [UIAlertAction actionWithTitle:@"确定"
+                                 style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * _Nonnull action) {
+                                   
+                                   [weakSelf toExit];
+                               }];
+        
+        [alert addAction:action];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+
+
+-(void)toExit
+{
+    //归档清空
+    [UserInfoModel removeUserInfo];
+    AppDelegate* app = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    [app to_LoginVC];
 }
 
 

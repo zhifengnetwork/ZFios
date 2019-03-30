@@ -47,7 +47,7 @@
     
     if ( !kStringIsEmpty(username) )
     {
-        [parameters setObject:username forKey:@"username"];
+        [parameters setObject:username forKey:@"mobile"];
     }
     
     if ( !kStringIsEmpty(password) )
@@ -58,7 +58,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"api/signin"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/login"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -86,7 +86,7 @@
 }
 
 //获取会员基本信息
-+(void)member:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
++(void)userinfo:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 {
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
@@ -94,75 +94,9 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"api/member"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/userinfo"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
-//获取收藏图片
-+(void)memberOpusLove:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
-{
-    HttpTool *http = [HttpTool sharedManager];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
-    
-    if ( page<=0 )
-    {
-        page = 1;
-    }
-    
-    [parameters setObject:[NSString stringWithFormat:@"%ld",page] forKey:@"page"];
-    
-    NSDictionary* dic = [http hanldeSign:parameters];
-    
-    NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"api/memberOpusLove"];
-    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
-}
-
-//获取收藏视频
-+(void)memberVideoLove:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
-{
-    HttpTool *http = [HttpTool sharedManager];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
-    
-    if ( page<=0 )
-    {
-        page = 1;
-    }
-    
-    [parameters setObject:[NSString stringWithFormat:@"%ld",page] forKey:@"page"];
-    
-    NSDictionary* dic = [http hanldeSign:parameters];
-    
-    NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"api/memberVideoLove"];
-    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
-}
-
-//获取VIP价格表
-+(void)vip:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
-{
-    HttpTool *http = [HttpTool sharedManager];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
-    
-    NSDictionary* dic = [http hanldeSign:parameters];
-    
-    NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"api/vip"];
-    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
-}
-
-//激活卡激活VIP
-+(void)activate:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
-{
-    HttpTool *http = [HttpTool sharedManager];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
-    [parameters setObject:code forKey:@"code"];
-    
-    NSDictionary* dic = [http hanldeSign:parameters];
-    
-    NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"api/activate"];
-    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
-}
 
 @end

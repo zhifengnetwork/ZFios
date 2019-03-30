@@ -18,34 +18,26 @@
 @end
 
 
-
-@interface MemberModel : NSObject<NSCoding>
-
-@property (nonatomic, copy) NSString *nickname;
-@property (nonatomic, copy) NSString *level;
-@property (nonatomic, copy) NSString *vip_expires;
-@property (nonatomic, copy) NSString *headimg;
-@property (nonatomic, copy) NSString *balance;
-@property (nonatomic, copy) NSString *points;
-
-@end
-
-
 /**
  用户信息model
  */
 @interface UserInfoModel : NSObject<NSCoding>
 
 //用户ID
-@property (nonatomic, copy) NSString *ID;
+@property (nonatomic, copy) NSString *user_id;
 //
 @property (nonatomic, copy) NSString *token;
-//
-@property (nonatomic, strong) MemberModel *member;
 //手机号
-@property (nonatomic, copy) NSString *phone;
+@property (nonatomic, copy) NSString *mobile;
 //用户头像
-@property (nonatomic, copy) NSString *head_url;
+@property (nonatomic, copy) NSString *head_pic;
+@property (nonatomic, copy) NSString *nickname;
+@property (nonatomic, copy) NSString *user_money;
+@property (nonatomic, copy) NSString *agent_user;
+@property (nonatomic, copy) NSString *first_leader;
+@property (nonatomic, copy) NSString *realname;
+@property (nonatomic, copy) NSString *is_distribut;
+@property (nonatomic, copy) NSString *is_agent;
 //省
 @property (nonatomic, copy) NSString *province;
 //市

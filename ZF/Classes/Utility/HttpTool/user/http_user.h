@@ -24,19 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)sendCode:(NSString*)mobile type:(NSString*)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //获取会员基本信息
-+(void)member:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
-
-//获取收藏图片
-+(void)memberOpusLove:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
-
-//获取收藏视频
-+(void)memberVideoLove:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
-
-//获取VIP价格表
-+(void)vip:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
-
-//激活卡激活VIP
-+(void)activate:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++(void)userinfo:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 
 @end
