@@ -11,7 +11,7 @@
 #import "UserInfoModel.h"
 
 //HTTP响应三要素
-#define RESCODE @"code"
+#define RESCODE @"status"
 #define RESMSG  @"msg"
 #define RESDATA @"data"
 
@@ -412,7 +412,7 @@ static int invalidtoken_code = 1005;
     m_manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
     
     //如果报接受类型不一致请替换一致text/html或别的
-    m_manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    m_manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     if (kObjectIsEmpty(m_dicHeader))
     {
@@ -454,7 +454,9 @@ static int invalidtoken_code = 1005;
     UserInfoModel* userInfo = [UserInfoModel readUserInfo];
     if (kStringIsEmpty(userInfo.token)==NO)
     {
-        [parameters setObject:userInfo.token forKey:@"token"];
+        NSMutableDictionary* dic = [[NSMutableDictionary alloc]init];
+        [dic setObject:userInfo.token forKey:@"Token"];
+        [self setRequestHeader:dic];
     }
     
     return parameters;

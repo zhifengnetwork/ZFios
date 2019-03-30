@@ -7,6 +7,8 @@
 //
 
 #import "ZFMyHeadView.h"
+#import "UIImageView+WebCache.h"
+
 
 @interface ZFMyHeadView()
 
@@ -93,6 +95,17 @@
         make.centerY.equalTo(self->_shopButton);
     }];
 }
+
+
+-(void)setUserInfo:(UserInfoModel *)userInfo
+{
+    _userInfo = userInfo;
+    
+    //显示头像
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:_userInfo.head_pic]];
+    _nameLabel.text = _userInfo.nickname;
+}
+
 
 -(void)signInButtonDidClick
 {
