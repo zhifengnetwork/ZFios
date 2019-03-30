@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C07927A050C8325E82C8FE2CF94CB648"
+               BlueprintIdentifier = "2C74CD90A69921FB2EAEA066E3A60029"
                BuildableName = "libUITableView-BMTemplateLayoutCell.a"
                BlueprintName = "UITableView-BMTemplateLayoutCell"
                ReferencedContainer = "container:Pods.xcodeproj">
