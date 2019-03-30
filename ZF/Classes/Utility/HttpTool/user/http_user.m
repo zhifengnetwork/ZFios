@@ -85,7 +85,7 @@
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
-//获取会员基本信息
+//获取用户基本信息
 +(void)userinfo:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 {
     HttpTool *http = [HttpTool sharedManager];
@@ -98,5 +98,81 @@
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
+/**
+ 订单列表
+ 
+ @param type 0所有 1:待支付(非货到付款) 2:部分发货(非货到付款) 3:待收货 4:待评价
+ 5:已取消 6:已完成 7:已作废 8:待发货’,货到付款 9:待发货’,货到付款
+ @param ReqSuccess <#ReqSuccess description#>
+ @param ReqFailure <#ReqFailure description#>
+ */
++(void)order_list:(NSInteger)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    if (type==0)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list"];
+    }
+    else if (type==1)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/WAITPAY"];
+    }
+    else if (type==2)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/PORTIONSEND"];
+    }
+    else if (type==3)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/WAITRECEIVE"];
+    }
+    else if (type==4)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/WAITCCOMMENT"];
+    }
+    else if (type==5)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/CANCEL"];
+    }
+    else if (type==6)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/FINISH"];
+    }
+    else if (type==7)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/CANCELLED"];
+    }
+    else if (type==8)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/WAITSEND"];
+    }
+    else if (type==9)
+    {
+        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/WAITSEND"];
+    }
+    
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+/**
+ 订单详情
+ */
++(void)order_detail:(NSString *)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    [parameters setObject:ID forKey:@"id"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_detail"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
 
 @end
