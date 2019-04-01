@@ -117,6 +117,7 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
             // 如：跳转到指定控制器
             [searchViewController.navigationController pushViewController:[[ZFSearchVC alloc] init] animated:YES];
         }];
+        
         [searchViewController setSearchHistoryTitle:@"搜索历史"];
         
         // 3. 跳转到搜索控制器

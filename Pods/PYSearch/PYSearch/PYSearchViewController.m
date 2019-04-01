@@ -177,7 +177,7 @@
         }
         searchBar.py_height = 35;
 //        self.view.py_width > self.view.py_height ? 24 : 30;
-        searchBar.py_width = 300;
+        searchBar.py_width = 261;
 //        self.view.py_width - adaptWidth - PYSEARCH_MARGIN;
         searchField.frame = searchBar.bounds;
         cancelButton.py_width = self.cancelButtonWidth;
@@ -400,6 +400,7 @@
 - (void)setup
 {
     self.view.backgroundColor = [UIColor whiteColor];
+   
     self.baseSearchTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.navigationController.navigationBar.backIndicatorImage = nil;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
@@ -415,7 +416,7 @@
     self.cancelButton = cancleButton;
     self.cancelBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cancleButton];
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *backImage = [UIImage imageNamed:@"Back"];
+    UIImage *backImage = [UIImage imageNamed:@"back"];
     backButton.titleLabel.font = [UIFont systemFontOfSize:17];
     [backButton setTitle:[NSBundle py_localizedStringForKey:PYSearchBackButtonText] forState:UIControlStateNormal];
     [backButton setImage:backImage forState:UIControlStateNormal];
@@ -429,7 +430,6 @@
     backButton.py_width += 3;
     self.backButton = backButton;
     self.backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-
     /**
      * Initialize settings
      */
@@ -721,8 +721,8 @@
             currentX = subView.py_width;
             countRow = 1;
         } else {
-            subView.py_x = (currentX += subView.py_width) - subView.py_width + PYSEARCH_MARGIN * countRow;
-            subView.py_y = currentY + PYSEARCH_MARGIN * countCol;
+            subView.py_x = (currentX += subView.py_width) - subView.py_width + (PYSEARCH_MARGIN *1.5) * countRow;
+            subView.py_y = currentY + (PYSEARCH_MARGIN *1.5) * countCol;
             countRow ++;
         }
     }
@@ -742,10 +742,10 @@
     [self.baseSearchTableView setTableHeaderView:self.baseSearchTableView.tableHeaderView];
     return [tagsM copy];
 }
-
+#pragma mark --热门搜索的高度
 - (void)layoutForDemand {
     if (NO == self.swapHotSeachWithSearchHistory) {
-        self.hotSearchView.py_y = PYSEARCH_MARGIN * 2;
+        self.hotSearchView.py_y = 34;
         self.searchHistoryView.py_y = self.hotSearches.count > 0 && self.showHotSearch ? CGRectGetMaxY(self.hotSearchView.frame) : PYSEARCH_MARGIN * 1.5;
     } else { // swap popular search whith search history
         self.searchHistoryView.py_y = PYSEARCH_MARGIN * 1.5;
@@ -1016,6 +1016,10 @@
 
 - (void)cancelDidClick
 {
+    if (self.searchBar.text.length >0) {
+        [self searchBarSearchButtonClicked:self.searchBar];
+        return;
+    }
     [self.searchBar resignFirstResponder];
 
     if ([self.delegate respondsToSelector:@selector(didClickCancel:)]) {
@@ -1083,6 +1087,7 @@
             [self searchBarSearchButtonClicked:self.searchBar];
         }
     }
+    [self.cancelButton setTitle:@"搜索" forState:UIControlStateNormal];
     PYSEARCH_LOG(@"Search %@", label.text);
 }
 
@@ -1207,6 +1212,12 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    //设置右边按钮文字
+    if (searchText.length >0) {
+        [self.cancelButton setTitle:@"搜索" forState:UIControlStateNormal];
+    }else{
+        [self.cancelButton setTitle:@"取消" forState:UIControlStateNormal];
+    }
     if (PYSearchResultShowModeEmbed == self.searchResultShowMode && self.showSearchResultWhenSearchTextChanged) {
         [self handleSearchResultShow];
         self.searchResultController.view.hidden = 0 == searchText.length;
@@ -1245,6 +1256,7 @@
     [NSKeyedArchiver archiveRootObject:self.searchHistories toFile:self.searchHistoriesCachePath];
     [self.baseSearchTableView reloadData];
 }
+
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
