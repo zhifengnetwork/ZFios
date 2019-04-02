@@ -67,7 +67,7 @@
     }];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_phoneLabel.mas_bottom).offset(40);
+        make.top.equalTo(self->_phoneLabel.mas_bottom).offset(40);
         make.left.equalTo(self).offset(25);
         make.right.equalTo(self).offset(-25);
         make.height.mas_equalTo(50);
@@ -75,7 +75,7 @@
     
     
     [_bg1View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bgView.mas_bottom).offset(20);
+        make.top.equalTo(self->_bgView.mas_bottom).offset(20);
         make.left.equalTo(self).offset(25);
         make.right.equalTo(self).offset(-25);
         make.height.mas_equalTo(50);
@@ -103,19 +103,19 @@
     //    }];
     
     [_phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_bg1View).offset(15);
-        make.top.bottom.equalTo(_bg1View);
-        make.right.equalTo(_vcodeButton.mas_left).offset(-1);
+        make.left.equalTo(self->_bg1View).offset(15);
+        make.top.bottom.equalTo(self->_bg1View);
+        make.right.equalTo(self->_vcodeButton.mas_left).offset(-1);
     }];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(30);
-        make.top.bottom.equalTo(_bg1View);
+        make.top.bottom.equalTo(self->_bg1View);
     }];
     
     [_vcodeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_bg1View);
-        make.top.bottom.equalTo(_bg1View);
+        make.right.equalTo(self->_bg1View);
+        make.top.bottom.equalTo(self->_bg1View);
         make.width.mas_equalTo(110);
     }];
     
@@ -127,22 +127,22 @@
     //    }];
     
     [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_bg1View).offset(15);
-        make.top.bottom.equalTo(_bg1View);
-        make.right.equalTo(_vcodeButton.mas_left).offset(-1);
+        make.left.equalTo(self->_bg1View).offset(15);
+        make.top.bottom.equalTo(self->_bg1View);
+        make.right.equalTo(self->_vcodeButton.mas_left).offset(-1);
     }];
     
     [_vcodeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_bg1View).offset(15);
-        make.top.bottom.equalTo(_bg1View);
-        make.right.equalTo(_vcodeButton.mas_left).offset(-1);
+        make.left.equalTo(self->_bg1View).offset(15);
+        make.top.bottom.equalTo(self->_bg1View);
+        make.right.equalTo(self->_vcodeButton.mas_left).offset(-1);
         //        make.bottom.equalTo(_bg1View);
         //        make.top.equalTo(_centerLine);
     }];
     
     [_icon2View mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(30);
-        make.top.bottom.equalTo(_bg1View);
+        make.top.bottom.equalTo(self->_bg1View);
     }];
     
 }

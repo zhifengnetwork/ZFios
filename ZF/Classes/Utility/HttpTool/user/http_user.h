@@ -31,10 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  订单列表
  
- @param type 0所有 1:待支付(非货到付款) 2:部分发货(非货到付款) 3:待收货 4:待评价
- 5:已取消 6:已完成 7:已作废 8:待发货’,货到付款 9:待发货’,货到付款
- @param ReqSuccess <#ReqSuccess description#>
- @param ReqFailure <#ReqFailure description#>
+ @param type 0全部订单 1:待支付 2:待收货 3:待评价 4:待发货
  */
 +(void)order_list:(NSInteger)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 

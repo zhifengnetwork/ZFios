@@ -49,7 +49,7 @@
     }];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_passwordLabel.mas_bottom).offset(40);
+        make.top.equalTo(self->_passwordLabel.mas_bottom).offset(40);
         make.left.equalTo(self.view).offset(10);
         make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
@@ -57,7 +57,7 @@
     
     
     [_bg1View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bgView.mas_bottom).offset(20);
+        make.top.equalTo(self->_bgView.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(10);
         make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
@@ -76,7 +76,7 @@
     }];
     
     [_nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_twoPasswordTextField.mas_bottom).offset(30);
+        make.top.equalTo(self->_twoPasswordTextField.mas_bottom).offset(30);
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
         make.height.mas_equalTo(50);

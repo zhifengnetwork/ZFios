@@ -180,6 +180,8 @@
 		840BE903224A26FF00568B11 /* ZFAskEveryoneTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BE902224A26FF00568B11 /* ZFAskEveryoneTableCell.m */; };
 		840BE906224A2E7D00568B11 /* ZFMerchandiseSaleHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BE905224A2E7D00568B11 /* ZFMerchandiseSaleHeadTableCell.m */; };
 		840BE909224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BE908224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.m */; };
+		8412DF7A2251EE5C00476690 /* http_shopping.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412DF792251EE5C00476690 /* http_shopping.m */; };
+		8412DF7D2251F28200476690 /* ZFShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412DF7C2251F28200476690 /* ZFShoppingModel.m */; };
 		84213542224482D100B5EE8B /* ZFZFMyOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84213541224482D100B5EE8B /* ZFZFMyOrderVC.m */; };
 		842C0B2B2248CEC20058206F /* ZFCommDetHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C0B2A2248CEC20058206F /* ZFCommDetHeadView.m */; };
 		842C0B2E2248D6350058206F /* ZFDetailsPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 842C0B2D2248D6350058206F /* ZFDetailsPageVC.m */; };
@@ -593,6 +595,10 @@
 		840BE905224A2E7D00568B11 /* ZFMerchandiseSaleHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMerchandiseSaleHeadTableCell.m; sourceTree = "<group>"; };
 		840BE907224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMerchandiseSaleCollectionCell.h; sourceTree = "<group>"; };
 		840BE908224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMerchandiseSaleCollectionCell.m; sourceTree = "<group>"; };
+		8412DF782251EE5C00476690 /* http_shopping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_shopping.h; sourceTree = "<group>"; };
+		8412DF792251EE5C00476690 /* http_shopping.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_shopping.m; sourceTree = "<group>"; };
+		8412DF7B2251F28200476690 /* ZFShoppingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFShoppingModel.h; sourceTree = "<group>"; };
+		8412DF7C2251F28200476690 /* ZFShoppingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFShoppingModel.m; sourceTree = "<group>"; };
 		84213540224482D100B5EE8B /* ZFZFMyOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFZFMyOrderVC.h; sourceTree = "<group>"; };
 		84213541224482D100B5EE8B /* ZFZFMyOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFZFMyOrderVC.m; sourceTree = "<group>"; };
 		842C0B292248CEC20058206F /* ZFCommDetHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFCommDetHeadView.h; sourceTree = "<group>"; };
@@ -1314,12 +1320,12 @@
 		189CC08F2223E81300EB5A64 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				189CC0902223E81300EB5A64 /* RefreshGifHeader.m */,
-				189CC0912223E81300EB5A64 /* StaticTableViewCell.m */,
-				189CC0922223E81300EB5A64 /* StaticTableCell.m */,
 				189CC0932223E81300EB5A64 /* RefreshGifHeader.h */,
+				189CC0902223E81300EB5A64 /* RefreshGifHeader.m */,
 				189CC0942223E81300EB5A64 /* StaticTableViewCell.h */,
+				189CC0912223E81300EB5A64 /* StaticTableViewCell.m */,
 				189CC0952223E81300EB5A64 /* StaticTableCell.h */,
+				189CC0922223E81300EB5A64 /* StaticTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1436,6 +1442,8 @@
 			children = (
 				189CC0F72223EA2400EB5A64 /* http_user.h */,
 				189CC0F82223EA2400EB5A64 /* http_user.m */,
+				8412DF782251EE5C00476690 /* http_shopping.h */,
+				8412DF792251EE5C00476690 /* http_shopping.m */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -1841,6 +1849,8 @@
 			children = (
 				5309FA79223A631C0062AA0B /* ZFShoppingItem.h */,
 				5309FA7A223A631C0062AA0B /* ZFShoppingItem.m */,
+				8412DF7B2251F28200476690 /* ZFShoppingModel.h */,
+				8412DF7C2251F28200476690 /* ZFShoppingModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2442,6 +2452,7 @@
 				18E3CF99222A5ED2003C7737 /* ZFSpikeDetailsTableCell.m in Sources */,
 				843521042241EAC7005DA298 /* ZFMyColumnTableCell.m in Sources */,
 				188F41AC223612A100165142 /* ZFPersonalHeadTableCell.m in Sources */,
+				8412DF7A2251EE5C00476690 /* http_shopping.m in Sources */,
 				5309F2162238E74900275D4C /* ZFMenuView.m in Sources */,
 				188F41B2223619DE00165142 /* ZFPersonalVC.m in Sources */,
 				53011477224336AC00C36D42 /* ZFMyWalletView.m in Sources */,
@@ -2605,6 +2616,7 @@
 				189CC0EA2223E81300EB5A64 /* HMEmoticon.m in Sources */,
 				189CC0D52223E81300EB5A64 /* ZFLoginVC.m in Sources */,
 				842EDEF62240F37E00B53E45 /* ZFPublicWelfareVC.m in Sources */,
+				8412DF7D2251F28200476690 /* ZFShoppingModel.m in Sources */,
 				180F262C22364B6800B688E9 /* UIView+HJViewStyle.m in Sources */,
 				182E898D2223BEA0005CE5FE /* AppDelegate.m in Sources */,
 				842EDEED2240EDA100B53E45 /* ZFPublicTitleTableCell.m in Sources */,

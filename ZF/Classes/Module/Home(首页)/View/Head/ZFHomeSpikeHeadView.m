@@ -57,37 +57,37 @@
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
-        make.left.equalTo(_iconView.mas_right).offset(24);
+        make.left.equalTo(self->_iconView.mas_right).offset(24);
     }];
     
     [_iconView2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
-        make.left.equalTo(_timeLabel.mas_right).offset(12);
+        make.left.equalTo(self->_timeLabel.mas_right).offset(12);
     }];
     
     [_hourLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
-        make.left.equalTo(_iconView2.mas_right).offset(8);
+        make.left.equalTo(self->_iconView2.mas_right).offset(8);
     }];
     
     [_minuteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
-        make.left.equalTo(_hourLabel.mas_right).offset(5);
+        make.left.equalTo(self->_hourLabel.mas_right).offset(5);
     }];
     
     [_secondLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
-        make.left.equalTo(_minuteLabel.mas_right).offset(5);
+        make.left.equalTo(self->_minuteLabel.mas_right).offset(5);
     }];
     
     [_mLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
-        make.left.equalTo(_hourLabel.mas_right);
+        make.left.equalTo(self->_hourLabel.mas_right);
     }];
     
     [_sLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
-        make.left.equalTo(_minuteLabel.mas_right);
+        make.left.equalTo(self->_minuteLabel.mas_right);
     }];
     
     [_moreButton mas_makeConstraints:^(MASConstraintMaker *make) {

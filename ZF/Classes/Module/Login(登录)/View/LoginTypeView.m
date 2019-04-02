@@ -47,16 +47,16 @@
     }];
     
     [_leftLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_titleLabel);
-        make.right.equalTo(_titleLabel.mas_left).offset(-10);
+        make.centerY.equalTo(self->_titleLabel);
+        make.right.equalTo(self->_titleLabel.mas_left).offset(-10);
         make.left.mas_equalTo(10);
         make.width.mas_equalTo(111);
         make.height.mas_equalTo(0.5);
     }];
     
     [_rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_titleLabel);
-        make.left.equalTo(_titleLabel.mas_right).offset(5);
+        make.centerY.equalTo(self->_titleLabel);
+        make.left.equalTo(self->_titleLabel.mas_right).offset(5);
         make.right.mas_equalTo(-10);
         make.width.mas_equalTo(111);
         make.height.mas_equalTo(0.5);
@@ -64,23 +64,23 @@
     
     [_qqButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.top.equalTo(_titleLabel.mas_bottom).offset(20);
+        make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
         make.width.mas_equalTo(42);
         make.height.mas_equalTo(42);
     }];
     
     [_wxButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_qqButton.mas_left).offset(-33);
+        make.right.equalTo(self->_qqButton.mas_left).offset(-33);
 //        make.centerX.equalTo(self);
-        make.centerY.equalTo(_qqButton);
-        make.top.equalTo(_titleLabel.mas_bottom).offset(20);
+        make.centerY.equalTo(self->_qqButton);
+        make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
         make.width.mas_equalTo(42);
         make.height.mas_equalTo(42);
     }];
     
     [_sinaButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_qqButton.mas_right).offset(33);
-        make.top.equalTo(_titleLabel.mas_bottom).offset(20);
+        make.left.equalTo(self->_qqButton.mas_right).offset(33);
+        make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
         make.width.mas_equalTo(42);
         make.height.mas_equalTo(42);
     }];
@@ -96,23 +96,23 @@
         
         [_qqButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.top.equalTo(_titleLabel.mas_bottom).offset(20);
+            make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
             make.width.mas_equalTo(42);
             make.height.mas_equalTo(42);
         }];
         
         [_wxButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(_qqButton.mas_left).offset(-33);
+            make.right.equalTo(self->_qqButton.mas_left).offset(-33);
 //            make.centerX.equalTo(self);
-            make.centerY.equalTo(_qqButton);
-            make.top.equalTo(_titleLabel.mas_bottom).offset(20);
+            make.centerY.equalTo(self->_qqButton);
+            make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
             make.width.mas_equalTo(42);
             make.height.mas_equalTo(42);
         }];
         
         [_sinaButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_qqButton.mas_right).offset(33);
-            make.top.equalTo(_titleLabel.mas_bottom).offset(20);
+            make.left.equalTo(self->_qqButton.mas_right).offset(33);
+            make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
             make.width.mas_equalTo(42);
             make.height.mas_equalTo(42);
         }];

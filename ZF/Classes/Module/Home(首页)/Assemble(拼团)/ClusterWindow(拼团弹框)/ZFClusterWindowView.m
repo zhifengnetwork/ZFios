@@ -54,7 +54,7 @@ static NSString *const ZFSpellNumberTableCellID = @"ZFSpellNumberTableCellID";
     }];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_titleLabel.mas_bottom).offset(8);
+        make.top.equalTo(self->_titleLabel.mas_bottom).offset(8);
         make.left.right.bottom.equalTo(self);
     }];
     

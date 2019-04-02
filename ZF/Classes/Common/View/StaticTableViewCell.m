@@ -62,7 +62,7 @@
     _iconView.hidden =  YES;
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_iconView.mas_right).offset(10);
+        make.left.equalTo(self->_iconView.mas_right).offset(10);
         make.centerY.equalTo(self.contentView);
     }];
     
@@ -79,7 +79,7 @@
     _iconViewRight.hidden = YES;
     
     [_titleLeftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_titleLabel.mas_right).offset(10);
+        make.left.equalTo(self->_titleLabel.mas_right).offset(10);
         make.centerY.equalTo(self.contentView);
     }];
     _titleLeftLabel.hidden = YES;
@@ -102,7 +102,7 @@
      }];
     
     [_redDotLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_titleRightLabel.mas_left).offset(-20);
+        make.right.equalTo(self->_titleRightLabel.mas_left).offset(-20);
         make.width.height.mas_equalTo(10);
         make.centerY.equalTo(self.contentView);
     }];
@@ -125,7 +125,7 @@
     else
     {
         [_titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(_iconView.mas_right).offset(10);
+            make.left.equalTo(self->_iconView.mas_right).offset(10);
             make.centerY.equalTo(self.contentView);
         }];
     }
@@ -166,7 +166,7 @@
     else
     {
         [_titleRightLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(_iconViewRight.mas_left).offset(-10);
+            make.right.equalTo(self->_iconViewRight.mas_left).offset(-10);
             make.centerY.equalTo(self.contentView);
         }];
     }

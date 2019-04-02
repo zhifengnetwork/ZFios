@@ -37,7 +37,7 @@
 - (void)touched:(JKCountDownButton*)sender{
     if (_touchedCountDownButtonHandler) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            _touchedCountDownButtonHandler(sender,sender.tag);
+            self->_touchedCountDownButtonHandler(sender,sender.tag);
         });
     }
 }
@@ -74,7 +74,7 @@
         if (_countDownChanging)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSString *title = _countDownChanging(self,_second);
+                NSString *title = self->_countDownChanging(self,_second);
                 [self setTitle:title forState:UIControlStateNormal];
                 [self setTitle:title forState:UIControlStateDisabled];
             });

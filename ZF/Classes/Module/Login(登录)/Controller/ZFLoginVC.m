@@ -114,7 +114,7 @@
     }];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_phoneLabel.mas_bottom).offset(40);
+        make.top.equalTo(self->_phoneLabel.mas_bottom).offset(40);
         make.left.equalTo(self.view).offset(10);
         make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
@@ -122,14 +122,14 @@
     
     
     [_bg1View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bgView.mas_bottom).offset(20);
+        make.top.equalTo(self->_bgView.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(10);
         make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
     }];
     
     [_bg2View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bg1View.mas_bottom).offset(20);
+        make.top.equalTo(self->_bg1View.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(10);
         make.width.mas_equalTo(200);
         make.height.mas_equalTo(50);
@@ -207,7 +207,7 @@
     }];
     
     [_loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_vcodeTextField.mas_bottom).offset(30);
+        make.top.equalTo(self->_vcodeTextField.mas_bottom).offset(30);
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
         make.height.mas_equalTo(50);
@@ -215,12 +215,12 @@
     
     [_wmButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(40);
-        make.top.equalTo(_loginButton.mas_bottom).offset(5);
+        make.top.equalTo(self->_loginButton.mas_bottom).offset(5);
     }];
     
     [_zcButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-35);
-        make.top.equalTo(_loginButton.mas_bottom).offset(5);
+        make.top.equalTo(self->_loginButton.mas_bottom).offset(5);
     }];
     
     [_typeView mas_makeConstraints:^(MASConstraintMaker *make) {

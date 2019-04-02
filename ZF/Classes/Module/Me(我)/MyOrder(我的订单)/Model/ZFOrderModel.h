@@ -109,6 +109,15 @@ NS_ASSUME_NONNULL_BEGIN
 //用户假删除标识,1:删除,0未删除
 @property (nonatomic , assign) NSInteger deleted;
 
+//商品名称
+@property (nonatomic , copy) NSString *goods_name;
+//规格对应的中文名字
+@property (nonatomic , copy) NSString *spec_key_name;
+//购买数量
+@property (nonatomic , assign) NSInteger goods_num;
+//商品上传原始图
+@property (nonatomic , copy) NSString *original_img;
+
 @end
 
 NS_ASSUME_NONNULL_END

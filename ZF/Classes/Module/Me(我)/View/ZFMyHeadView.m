@@ -65,8 +65,7 @@
     }];
     
     [_memberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self->_bjIconView.mas_left).offset(12);
-        make.top.equalTo(self->_nameLabel.mas_bottom).offset(10);
+        make.top.equalTo(self->_iconView.mas_bottom).offset(-5);
         make.centerX.equalTo(self->_iconView);
     }];
     
@@ -152,6 +151,8 @@
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
         _iconView.image = [UIImage imageNamed:@"w12"];
+        _iconView.layer.cornerRadius = 25.0f;
+        _iconView.clipsToBounds = YES;
         //头像点击事件
         _iconView.userInteractionEnabled = YES;
         UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];

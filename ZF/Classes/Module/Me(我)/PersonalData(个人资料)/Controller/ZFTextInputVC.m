@@ -55,7 +55,7 @@
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(30);
         make.right.mas_equalTo(-30);
-        make.centerY.equalTo(_bgView);
+        make.centerY.equalTo(self->_bgView);
     }];
     
     [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -100,60 +100,60 @@
     
     [_zhLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(42);
-        make.centerY.equalTo(_bgView);
+        make.centerY.equalTo(self->_bgView);
     }];
     
     [_sjhLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(24);
-        make.centerY.equalTo(_bg1View);
+        make.centerY.equalTo(self->_bg1View);
     }];
     
     [_yzmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(24);
-        make.centerY.equalTo(_bg2View);
+        make.centerY.equalTo(self->_bg2View);
 
     }];
     
     [_mimaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(42);
-        make.centerY.equalTo(_bg3View);
+        make.centerY.equalTo(self->_bg3View);
     }];
     
     [_zmimaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(8);
-        make.centerY.equalTo(_bg4View);
+        make.centerY.equalTo(self->_bg4View);
     }];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_zhuceLabel.mas_bottom).offset(25);
+        make.top.equalTo(self->_zhuceLabel.mas_bottom).offset(25);
         make.left.equalTo(self.view).offset(90);
         make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
     }];
     
     [_bg1View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bgView.mas_bottom).offset(30);
+        make.top.equalTo(self->_bgView.mas_bottom).offset(30);
         make.left.equalTo(self.view).offset(90);
         make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
     }];
     
     [_bg2View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bg1View.mas_bottom).offset(20);
+        make.top.equalTo(self->_bg1View.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(90);
         make.width.mas_equalTo(158);
         make.height.mas_equalTo(50);
     }];
     
     [_bg3View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bg2View.mas_bottom).offset(20);
+        make.top.equalTo(self->_bg2View.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(90);
         make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
     }];
     
     [_bg4View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_bg3View.mas_bottom).offset(20);
+        make.top.equalTo(self->_bg3View.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(90);
         make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
@@ -200,20 +200,20 @@
     }];
     
     [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_zPasswordTextField.mas_bottom).offset(30);
+        make.top.equalTo(self->_zPasswordTextField.mas_bottom).offset(30);
         make.left.equalTo(self.view).offset(112);
         make.right.equalTo(self.view).offset(-45);
     }];
     
     [_mAgreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_agreeButton.mas_bottom).offset(27);
+        make.top.equalTo(self->_agreeButton.mas_bottom).offset(27);
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
         make.height.mas_equalTo(50);
     }];
     
     [_returnLoginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_mAgreeButton.mas_bottom).offset(10);
+        make.top.equalTo(self->_mAgreeButton.mas_bottom).offset(10);
         make.centerX.mas_equalTo(self.view);
     }];
     

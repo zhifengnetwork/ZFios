@@ -88,7 +88,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     [self.tableView registerClass:[ZFFundAccountControllerCell class] forCellReuseIdentifier:ZFFundAccountControllerCellID];
     [self.tableView registerClass:[ZFMyColumnTableCell class] forCellReuseIdentifier:ZFMyColumnTableCellID];
     
-    self.headView = [[ZFMyHeadView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 135)];
+    self.headView = [[ZFMyHeadView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 138)];
     _headView.delegate = self;
     self.tableView.tableHeaderView = self.headView;
 }

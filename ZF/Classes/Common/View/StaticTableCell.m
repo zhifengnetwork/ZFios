@@ -45,7 +45,7 @@
     _leftLabel.hidden =  YES;
     
     [_left2Label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(_leftIconView.mas_right).offset(10);
+        make.left.equalTo(self->_leftIconView.mas_right).offset(10);
         make.centerY.equalTo(self.contentView);
     }];
     _left2Label.hidden =  YES;
@@ -69,7 +69,7 @@
     _rightLabel.hidden = YES;
     
     [_right2Label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(_rightIconView.mas_left).offset(-10);
+        make.right.equalTo(self->_rightIconView.mas_left).offset(-10);
         make.centerY.equalTo(self.contentView);
     }];
     _right2Label.hidden = YES;

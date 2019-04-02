@@ -54,7 +54,7 @@
     }];
     
     [_emojiButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(_sendButton.mas_leading).offset(-5);
+        make.trailing.equalTo(self->_sendButton.mas_leading).offset(-5);
         make.size.mas_equalTo(CGSizeMake(50, 28));
     }];
     
@@ -63,11 +63,11 @@
         make.height.mas_equalTo(34);
         //        make.bottom.equalTo(self).offset(-5);
         make.centerY.equalTo(self);
-        make.trailing.equalTo(_emojiButton.mas_leading).offset(-5);
+        make.trailing.equalTo(self->_emojiButton.mas_leading).offset(-5);
     }];
     
     [@[_sendButton, _emojiButton] mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(_inputerView);
+        make.centerY.equalTo(self->_inputerView);
     }];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(inputerViewDidChange) name:UITextViewTextDidChangeNotification object:_inputerView];
