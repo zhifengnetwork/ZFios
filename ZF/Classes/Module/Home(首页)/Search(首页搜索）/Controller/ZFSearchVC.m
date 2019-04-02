@@ -9,18 +9,23 @@
 #import "ZFSearchVC.h"
 #import "ZFTitleView.h"
 #import "ZFSearchTableViewCell.h"
-@interface ZFSearchVC ()<UITableViewDelegate,UITableViewDataSource>
+#import "ZFSearchCollectionViewCell.h"
+@interface ZFSearchVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong)UIView *screenView;
 @property (nonatomic, strong)UIButton *multipleBtn;
 @property (nonatomic, strong)UIButton *salesBtn;
 @property (nonatomic, strong)UIButton *priceBtn;
 @property (nonatomic, strong)UIButton *ProductBtn;
 @property (nonatomic, strong)UIButton *filterBtn;
+@property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, strong)UICollectionView *collectionView;
+@property (nonatomic, strong)UIImageView *loadImageView;
+@property (nonatomic, strong)UILabel *loadLabel;
 @end
 
 @implementation ZFSearchVC
 static NSString *const ZFSearchTableViewCellID = @"ZFSearchTableViewCellID";
-
+static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
@@ -29,15 +34,20 @@ static NSString *const ZFSearchTableViewCellID = @"ZFSearchTableViewCellID";
 - (void)setup{
     self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"Back"];
     UIButton *btn = [[UIButton alloc]init];
-    [btn setImage:[UIImage imageNamed:@"listing"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(cellControl) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:@"listing_o"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"listing"] forState:UIControlStateSelected];
+    [btn addTarget:self action:@selector(cellControl:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
     ZFTitleView *titleView = [[ZFTitleView alloc] initWithFrame:CGRectMake(0, 0, 261, 35)];
     titleView.intrinsicContentSize = CGSizeMake(261, 35);
     titleView.backgroundColor = RGBColorHex(0xf2f2f2);
     titleView.layer.cornerRadius = 5;
+    titleView.userInteractionEnabled = YES;
     self.navigationItem.titleView = titleView;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickTitle)];
+    [tapGesture setNumberOfTapsRequired:1];
+    [titleView addGestureRecognizer:tapGesture];
     
     [self.view addSubview:self.screenView];
     [self.screenView addSubview:self.multipleBtn];
@@ -79,17 +89,42 @@ static NSString *const ZFSearchTableViewCellID = @"ZFSearchTableViewCellID";
     [_filterBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,  -_filterBtn.imageView.frame.size.width - 4, 0, _filterBtn.imageView.frame.size.width + 4)];
     [_filterBtn setImageEdgeInsets:UIEdgeInsetsMake(0 , _filterBtn.titleLabel.bounds.size.width , 0,
                                                    -_filterBtn.titleLabel.bounds.size.width )];
-    UITableView *tableView = [[UITableView alloc]init];
-    [self.view addSubview:tableView];
-    tableView.dataSource = self;
-    tableView.delegate = self;
-    tableView.rowHeight = 121;
-    [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+    _tableView = [[UITableView alloc]init];
+    [self.view addSubview:self.tableView];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.rowHeight = 121;
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.screenView.mas_bottom).with.offset(5);
         make.left.equalTo(self.view).with.offset(16);
         make.right.equalTo(self.view).with.offset(-16);
-        make.height.mas_equalTo(400);
+        make.bottom.equalTo(self.view);
     }];
+    UIView *footerView =[[UIView alloc]initWithFrame:CGRectMake(0,0,0,100)];
+    [_tableView setTableFooterView:footerView];
+    [footerView addSubview:self.loadImageView];
+    [footerView addSubview:self.loadLabel];
+    [_loadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(footerView).with.offset(25);
+        make.left.equalTo(footerView).with.offset(150);
+    }];
+    [_loadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.loadImageView.mas_right).with.offset(15);
+        make.centerY.equalTo(self.loadImageView.mas_centerY);
+    }];
+    
+    
+    [self.view addSubview:self.collectionView];
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.screenView.mas_bottom).with.offset(5);
+        make.left.equalTo(self.view).with.offset(16);
+        make.right.equalTo(self.view).with.offset(-16);
+        make.bottom.equalTo(self.view);
+    }];
+    _collectionView.hidden = YES;
+    
 }
 - (UIView *)screenView{
     if (_screenView == nil) {
@@ -153,9 +188,54 @@ static NSString *const ZFSearchTableViewCellID = @"ZFSearchTableViewCellID";
     }
     return _filterBtn;
 }
+- (UIImageView *)loadImageView{
+    if (_loadImageView == nil) {
+        _loadImageView = [[UIImageView alloc]init];
+        [_loadImageView setImage:[UIImage imageNamed:@"loading"]];
+        
+    }
+    return _loadImageView;
+}
+- (UILabel *)loadLabel{
+    if (_loadLabel == nil) {
+        _loadLabel = [[UILabel alloc]init];
+        _loadLabel.font = [UIFont systemFontOfSize:13];
+        _loadLabel.textColor = RGBColorHex(0xb3b3b3);
+        _loadLabel.text = @"正在加载..";
+    }
+    return _loadLabel;
+}
+- (UICollectionView *)collectionView{
+    if (_collectionView == nil) {
+        UICollectionViewFlowLayout *fl = [[UICollectionViewFlowLayout alloc]init];
+        fl.minimumLineSpacing = 15;
+        fl.minimumInteritemSpacing = 19;
+        fl.scrollDirection = UICollectionViewScrollDirectionVertical;
+        fl.itemSize = CGSizeMake((LL_ScreenWidth -60)/2, 285);
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 100) collectionViewLayout:fl];
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
+        [_collectionView registerClass:[ZFSearchCollectionViewCell class] forCellWithReuseIdentifier:ZFSearchCollectViewCellID];
+    }
+    return _collectionView;
+}
+
+#pragma mark --方法
+//点击titleview
+- (void)clickTitle{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 //控制显示列表还是块
-- (void)cellControl{
-    
+- (void)cellControl: (UIButton *)btn{
+    btn.selected = !btn.selected;
+    if (btn.selected == NO) {
+        self.tableView.hidden = NO;
+        self.collectionView.hidden = YES;
+    }else{
+        self.tableView.hidden = YES;
+        self.collectionView.hidden = NO;
+    }
 }
 #pragma mark --协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -169,5 +249,22 @@ static NSString *const ZFSearchTableViewCellID = @"ZFSearchTableViewCellID";
     }
     return cell;
 }
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+        return 4;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    ZFSearchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFSearchCollectViewCellID forIndexPath:indexPath];
+    if (cell ==nil) {
+        cell = [[ZFSearchCollectionViewCell alloc]init];
+    }
+    
+    return cell;
+}
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    //点击跳转
+}
 @end

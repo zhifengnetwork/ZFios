@@ -1,13 +1,13 @@
 //
-//  ZFSearchTableViewCell.m
+//  ZFSearchCollectionViewCell.m
 //  ZF
 //
-//  Created by weiming zhang on 2019/4/1.
+//  Created by weiming zhang on 2019/4/2.
 //  Copyright © 2019年 hyy. All rights reserved.
 //
 
-#import "ZFSearchTableViewCell.h"
-@interface ZFSearchTableViewCell()
+#import "ZFSearchCollectionViewCell.h"
+@interface ZFSearchCollectionViewCell()
 @property (nonatomic, strong)UIImageView *iconimageView;
 @property (nonatomic, strong)UILabel *nameLabel;
 @property (nonatomic, strong)UILabel *priceLabel;
@@ -15,14 +15,8 @@
 @property (nonatomic, strong)UILabel *commentsLabel;
 @property (nonatomic, strong)UILabel *salesLabel;
 @property (nonatomic, strong)UILabel *paymentLabel;
-@property (nonatomic, strong)UIView *lineView;
 @end
-@implementation ZFSearchTableViewCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self setup];
-}
+@implementation ZFSearchCollectionViewCell
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -32,6 +26,8 @@
     return self;
 }
 - (void)setup{
+    self.contentView.backgroundColor =RGBColorHex(0xfafafa);
+    self.contentView.layer.cornerRadius =4;
     [self.contentView addSubview:self.iconimageView];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.priceLabel];
@@ -39,50 +35,46 @@
     [self.contentView addSubview:self.commentsLabel];
     [self.contentView addSubview:self.salesLabel];
     [self.contentView addSubview:self.paymentLabel];
-    [self.contentView addSubview:self.lineView];
+
     [_iconimageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).with.offset(10);
-        make.left.equalTo(self);
-        make.width.height.mas_equalTo(100);
+        make.top.left.equalTo(self.contentView).with.offset(7);
+        make.right.equalTo(self.contentView).with.offset(-7);
+        make.height.mas_equalTo(150);
     }];
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.iconimageView.mas_top);
-        make.left.equalTo(self.iconimageView.mas_right).with.offset(15);
-        make.right.equalTo(self).with.offset(-16);
+        make.top.equalTo(self.iconimageView.mas_bottom).with.offset(10);
+        make.left.equalTo(self.contentView).with.offset(7);
+        make.right.equalTo(self.contentView).with.offset(-7);
     }];
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.nameLabel.mas_bottom).with.offset(8);
-        make.left.equalTo(self.iconimageView.mas_right).with.offset(15);
+        make.top.equalTo(self.nameLabel.mas_bottom).with.offset(10);
+        make.left.equalTo(self.contentView).with.offset(7);
     }];
     [_shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.priceLabel.mas_bottom).with.offset(8);
-        make.left.equalTo(self.iconimageView.mas_right).with.offset(15);
+        make.top.equalTo(self.priceLabel.mas_bottom).with.offset(10);
+        make.left.equalTo(self.contentView).with.offset(7);
         make.width.mas_equalTo(105);
     }];
     [_shopButton setTitleEdgeInsets:UIEdgeInsetsMake(0,  -_shopButton.imageView.frame.size.width - 10, 0, _shopButton.imageView.frame.size.width + 10)];
     [_shopButton setImageEdgeInsets:UIEdgeInsetsMake(0 , _shopButton.titleLabel.bounds.size.width , 0,
-                                                    -_shopButton.titleLabel.bounds.size.width )];
+                                                     -_shopButton.titleLabel.bounds.size.width )];
     [_commentsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.iconimageView.mas_bottom);
-        make.left.equalTo(self.iconimageView.mas_right).with.offset(15);
+        make.top.equalTo(self.shopButton.mas_bottom).with.offset(10);
+        make.left.equalTo(self.contentView).with.offset(7);
     }];
     [_salesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.iconimageView.mas_bottom);
-        make.left.equalTo(self.commentsLabel.mas_right).with.offset(20);
+        make.left.equalTo(self.commentsLabel.mas_right).with.offset(8);
+        make.bottom.equalTo(self.commentsLabel.mas_bottom);
     }];
     [_paymentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.iconimageView.mas_bottom);
-        make.left.equalTo(self.salesLabel.mas_right).with.offset(20);
-    }];
-    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self);
-        make.height.mas_equalTo(1);
+        make.left.equalTo(self.salesLabel.mas_right).with.offset(8);
+        make.bottom.equalTo(self.commentsLabel.mas_bottom);
     }];
 }
 - (UIImageView *)iconimageView{
     if (_iconimageView == nil) {
         _iconimageView = [[UIImageView alloc]init];
-        _iconimageView.layer.cornerRadius = 3;
+        _iconimageView.layer.cornerRadius = 4;
         
     }
     return _iconimageView;
@@ -124,7 +116,7 @@
 - (UILabel *)commentsLabel{
     if (_commentsLabel == nil) {
         _commentsLabel = [[UILabel alloc]init];
-        _commentsLabel.font = [UIFont boldSystemFontOfSize:10];
+        _commentsLabel.font = [UIFont boldSystemFontOfSize:8];
         _commentsLabel.textColor = RGBColorHex(0x4d4d4d);
         _commentsLabel.text = @"90.8%好评";
     }
@@ -133,7 +125,7 @@
 - (UILabel *)salesLabel{
     if (_salesLabel == nil) {
         _salesLabel = [[UILabel alloc]init];
-        _salesLabel.font = [UIFont boldSystemFontOfSize:10];
+        _salesLabel.font = [UIFont boldSystemFontOfSize:8];
         _salesLabel.textColor = RGBColorHex(0x4d4d4d);
         _salesLabel.text = @"销量：10万";
     }
@@ -142,17 +134,10 @@
 - (UILabel *)paymentLabel{
     if (_paymentLabel == nil) {
         _paymentLabel = [[UILabel alloc]init];
-        _paymentLabel.font = [UIFont boldSystemFontOfSize:10];
+        _paymentLabel.font = [UIFont boldSystemFontOfSize:8];
         _paymentLabel.textColor = RGBColorHex(0x4d4d4d);
         _paymentLabel.text = @"已付款：4200+";
     }
     return _paymentLabel;
-}
-- (UIView *)lineView{
-    if (_lineView == nil) {
-        _lineView = [[UIView alloc]init];
-        _lineView.backgroundColor = RGBColorHex(0xf5f5f5);
-    }
-    return _lineView;
 }
 @end
