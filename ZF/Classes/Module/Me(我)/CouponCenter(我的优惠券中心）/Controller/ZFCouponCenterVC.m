@@ -73,8 +73,6 @@
 {
     if (index==0)
     {
-        
-
         return @"未使用";
     }
     else if (index==1)
@@ -88,6 +86,7 @@
     
     return @"";
 }
+
 - (UIViewController *)pageController:(WMPageController *)pageController viewControllerAtIndex:(NSInteger)index
 {
     if (index==0)
