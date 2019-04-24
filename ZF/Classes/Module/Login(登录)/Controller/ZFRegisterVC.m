@@ -361,6 +361,7 @@
         _passwordTextField.textColor = RGBColorHex(0x757575);
         _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordTextField.keyboardType = UIKeyboardTypeNumberPad;
+        _passwordTextField.secureTextEntry = YES;
     }
     return _passwordTextField;
 }
@@ -373,6 +374,7 @@
         _zPasswordTextField.textColor = RGBColorHex(0x757575);
         _zPasswordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _zPasswordTextField.keyboardType = UIKeyboardTypeNumberPad;
+        _zPasswordTextField.secureTextEntry = YES;
     }
     return _zPasswordTextField;
 }

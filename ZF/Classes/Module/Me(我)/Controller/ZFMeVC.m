@@ -29,7 +29,6 @@
 #import "ZFMyWalletVC.h"
 #import "ZFCouponCenterVC.h"
 #import "ZFZFMyOrderVC.h"
-#import "UserInfoModel.h"
 #import "http_user.h"
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
