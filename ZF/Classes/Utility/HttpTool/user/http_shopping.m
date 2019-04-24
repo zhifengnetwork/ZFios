@@ -37,7 +37,7 @@
     
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/cart/delcart"];
-    [http GetRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
 @end

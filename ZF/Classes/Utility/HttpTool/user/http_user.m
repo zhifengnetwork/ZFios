@@ -149,7 +149,7 @@
     
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_detail"];
-    [http GetRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
 @end
