@@ -27,7 +27,16 @@ NS_ASSUME_NONNULL_BEGIN
 //selected   是否选中（1为选中）
 +(void)AsyncUpdateCart:(NSInteger)ID selected:(NSString*)selected success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+/**
+ 购物车加减
+ @param ID 当前商品购物车id
+ @param goods_num 数量
+ */
++(void)changeNum:(NSInteger)ID goods_num:(NSInteger)goods_num success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//购物车全选或取消全选
+//all_flag  标识 1全选 2不全选
++(void)selectedOrAll:(NSInteger)all_flag success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 @end
 
 NS_ASSUME_NONNULL_END
