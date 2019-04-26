@@ -119,4 +119,47 @@
     strUrl = [strUrl stringByAppendingPathComponent:@"/api/auction/auction_detail"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
+
+/**
+ //竞拍出价
+ @param auction_id 竞拍ID
+ @param price 出价
+ */
++ (void)offerPrice:(NSInteger)auction_id price:(NSString*)price success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str1 = [NSString stringWithFormat:@"%ld",auction_id];
+    [parameters setObject:str1 forKey:@"auction_id"];
+    
+    if (!kStringIsEmpty(price)) {
+        [parameters setObject:price forKey:@"price"];
+    }
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"/api/auction/offerPrice"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+//获取最新竞拍接口
+//前端每N秒获取一次竞拍结果,报名人数，出价条数，最高出价信息
+//aid   竞拍活动ID
+//num   获取最高的竞价条数，默认前5
++ (void)GetAucMaxPrice:(NSInteger)aid num:(NSInteger)num success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",aid];
+    [parameters setObject:str forKey:@"aid"];
+    
+    NSString *str1 = [NSString stringWithFormat:@"%ld",num];
+    [parameters setObject:str1 forKey:@"num"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"/api/auction/GetAucMaxPrice"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
 @end
