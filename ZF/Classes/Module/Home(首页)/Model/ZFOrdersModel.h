@@ -1,5 +1,5 @@
 //
-//  ZFOrderModel.h
+//  ZFOrdersModel.h
 //  ZF
 //
 //  Created by weiming zhang on 2019/4/26.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZFOrderModel : NSObject
+@interface ZFOrdersModel : NSObject
 @property (nonatomic, copy)NSString *address_id;
 @property (nonatomic, copy)NSString *invoice_title;
 @property (nonatomic, copy)NSString *taxpayer;
@@ -29,8 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *consignee;
 @property (nonatomic, copy)NSString *mobile;
 @property (nonatomic, assign)NSInteger act;
-
-
 @end
 
 NS_ASSUME_NONNULL_END

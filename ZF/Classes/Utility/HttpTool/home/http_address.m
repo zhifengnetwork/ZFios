@@ -90,4 +90,69 @@
     strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/edit_address"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
+
+/**
+ 用户添加地址接口
+ @param consignee 收货人
+ @param mobile 手机号
+ @param province 省份
+ @param city 城市
+ @param district 地区
+ @param address 详细地址
+ */
++ (void)add_address:(NSString*)consignee mobile:(NSString*)mobile province:(NSInteger)province city:(NSInteger)city district:(NSInteger)district address:(NSString*)address addressModel:(ZFAddressModel*)addressModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    if (!kStringIsEmpty(consignee)) {
+        [parameters setObject:consignee forKey:@"consignee"];
+    }
+    
+    if (!kStringIsEmpty(mobile)) {
+        [parameters setObject:mobile forKey:@"mobile"];
+    }
+    
+    NSString *str2 = [NSString stringWithFormat:@"%ld",province];
+    [parameters setObject:str2 forKey:@"province"];
+    
+    NSString *str3 = [NSString stringWithFormat:@"%ld",city];
+    [parameters setObject:str3 forKey:@"city"];
+    
+    NSString *str4 = [NSString stringWithFormat:@"%ld",district];
+    [parameters setObject:str4 forKey:@"district"];
+    
+    if (!kStringIsEmpty(address)) {
+        [parameters setObject:address forKey:@"address"];
+    }
+    
+    if (!kStringIsEmpty(addressModel.label)) {
+        [parameters setObject:addressModel.label forKey:@"label"];
+    }
+    
+    NSString *str5 = [NSString stringWithFormat:@"%ld",addressModel.is_default];
+    [parameters setObject:str5 forKey:@"is_default"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/add_address"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+//三级联动接口
+//ID    父级ID
++ (void)get_region:(ZFAddressModel *)addressModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    if (!kStringIsEmpty(addressModel.ID)) {
+        [parameters setObject:addressModel.ID forKey:@"id"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"/api/region/get_region"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
 @end

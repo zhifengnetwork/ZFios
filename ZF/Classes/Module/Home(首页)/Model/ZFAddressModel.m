@@ -9,5 +9,9 @@
 #import "ZFAddressModel.h"
 
 @implementation ZFAddressModel
-
++ (NSDictionary *)mj_replacedKeyFromPropertyName{
+    return @{
+             @"ID":@"id"
+             };
+}
 @end

@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
  @param region_id 配送地区ID
  */
 + (void)dispatching:(NSInteger)goods_id region_id:(NSInteger)region_id goodModel:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//分类列表接口
++ (void)categoryList:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 @end
 
 NS_ASSUME_NONNULL_END

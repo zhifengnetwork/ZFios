@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 //购物车全选或取消全选
 //all_flag  标识 1全选 2不全选
 +(void)selectedOrAll:(NSInteger)all_flag success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

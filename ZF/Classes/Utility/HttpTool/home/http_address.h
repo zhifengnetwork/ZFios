@@ -31,6 +31,21 @@ NS_ASSUME_NONNULL_BEGIN
  @param address 详细地址
  */
 + (void)edit_address:(NSInteger)ID consignee:(NSString*)consignee mobile:(NSString*)mobile province:(NSInteger)province city:(NSInteger)city district:(NSInteger)district address:(NSString*)address addressModel:(ZFAddressModel*)addressModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+/**
+ 用户添加地址接口
+ @param consignee 收货人
+ @param mobile 手机号
+ @param province 省份
+ @param city 城市
+ @param district 地区
+ @param address 详细地址
+ */
++ (void)add_address:(NSString*)consignee mobile:(NSString*)mobile province:(NSInteger)province city:(NSInteger)city district:(NSInteger)district address:(NSString*)address addressModel:(ZFAddressModel*)addressModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//三级联动接口
+//ID    父级ID
++ (void)get_region:(ZFAddressModel*)addressModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 @end
 
 NS_ASSUME_NONNULL_END
