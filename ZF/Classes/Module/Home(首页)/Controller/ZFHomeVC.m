@@ -7,7 +7,6 @@
 //
 
 #import "ZFHomeVC.h"
-#import "RefreshGifHeader.h"
 #import "ZFBannerHeadView.h"
 #import "ZFCommodityTableCell.h"
 #import "ZFClassificationTableCell.h"
@@ -24,6 +23,11 @@
 #import "ZFDetailsPageVC.h"
 #import "ZFSearchVC.h"
 #import "PYSearchViewController.h"
+#import "http_home.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "RefreshGifHeader.h"
+#import "ZFHomeModel.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -39,6 +43,8 @@
 
 //秒杀倒计时
 @property (strong, nonatomic) CountDown *countDown;
+
+@property (strong , nonatomic)ZFHomeDataModel *homeDataModel;
 
 @end
 
@@ -72,6 +78,8 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     [self.countDown countDownWithPER_SECBlock:^{
         [weakSelf updateTimeInVisibleCells];
     }];
+    
+    [self setupUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -96,6 +104,9 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    
+    [self.collectionView.mj_header beginRefreshing];
+    
     
     _topToolView = [[ZFHomeTopToolView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 64)];
     ZWeakSelf
@@ -128,8 +139,37 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
 
 -(void)loadData
 {
-    
+    ZWeakSelf
+    [http_home Products:^(id responseObject)
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.collectionView.mj_header endRefreshing];
+     }];
 }
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.homeDataModel = [ZFHomeDataModel mj_objectWithKeyValues:responseObject];
+    
+    [self.imageUrls removeAllObjects];
+//    for (int i=0; i<self.homeDataModel.slide.count; i++)
+//    {
+//        ZFADModel* ad = [self.homeDataModel.slide objectAtIndex:i];
+//        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,ad.thumb];
+//        [self.imageUrls addObject:str];
+//    }
+    
+    [self.collectionView reloadData];
+}
+
 
 
 
