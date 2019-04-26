@@ -22,6 +22,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(void)delcart:(NSString *)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//勾选购物车商品，并返回计算结果
+//ID  商品id
+//selected   是否选中（1为选中）
++(void)AsyncUpdateCart:(NSInteger)ID selected:(NSString*)selected success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
