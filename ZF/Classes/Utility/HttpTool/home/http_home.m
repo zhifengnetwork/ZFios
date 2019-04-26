@@ -12,9 +12,11 @@
 
 //列表产品
 //分类列表产品接口
-+ (void)Products:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)Products:(NSString *)cat_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    [parameters setObject:@"110" forKey:@"cat_id"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
@@ -81,7 +83,7 @@
     
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"/api/Goods/goodsList"];
-    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+    [http GetRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
 //上传头像接口

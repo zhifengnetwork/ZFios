@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFHomeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
 
 /**
  商品显示cell
@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFCommodityTableCell : UICollectionViewCell
 
 @property (nonatomic, assign) BOOL isShowButton;
+
+@property (nonatomic,strong)ZFHomeModel *homeModel;
 
 @end
 
