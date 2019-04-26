@@ -36,6 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 //竞拍列表
 + (void)auction_list:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//竞拍详情
+//用户注册接口
++ (void)auction_detail:(NSInteger)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 @end
 
 NS_ASSUME_NONNULL_END

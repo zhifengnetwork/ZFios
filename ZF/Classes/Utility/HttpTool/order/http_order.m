@@ -11,7 +11,7 @@
 @implementation http_order
 
 //提交订单接口
-+ (void)post_order:(ZFOrderModel*)orderModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)post_order:(ZFOrdersModel*)orderModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     

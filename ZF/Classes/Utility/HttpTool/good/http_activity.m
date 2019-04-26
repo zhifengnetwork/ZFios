@@ -103,4 +103,20 @@
     strUrl = [strUrl stringByAppendingPathComponent:@"/api/activity/auction_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
+
+//竞拍详情
+//用户注册接口
++ (void)auction_detail:(NSInteger)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str1 = [NSString stringWithFormat:@"%ld",ID];
+    [parameters setObject:str1 forKey:@"id"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"/api/auction/auction_detail"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
 @end

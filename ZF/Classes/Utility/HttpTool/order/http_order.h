@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface http_order : NSObject
 
 //提交订单接口
-+ (void)post_order:(ZFOrderModel*)orderModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)post_order:(ZFOrdersModel*)orderModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 /**
  //获取支付方式
