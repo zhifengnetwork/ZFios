@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ZFHomeDataModel : NSObject
+@interface ZFHomeDataModel : BaseListModel
 
 @property (nonatomic , strong) NSMutableArray * slide;
 @property (nonatomic , strong) NSMutableArray * notice;

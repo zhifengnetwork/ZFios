@@ -7,6 +7,7 @@
 //
 
 #import "ZFAssembleCollectionCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZFAssembleCollectionCell()
 
@@ -76,6 +77,16 @@
     }];
     
 }
+
+-(void)setAssembleModel:(ZFAssembleModel *)assembleModel
+{
+    _assembleModel = assembleModel;
+    
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:_assembleModel.original_img]];
+    _nameLabel.text = [NSString stringWithFormat:@"%ld",(long)_assembleModel.goods_name];
+    _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",_assembleModel.group_price];
+}
+
 
 
 - (UIImageView *)iconView {

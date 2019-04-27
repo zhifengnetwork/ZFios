@@ -1,14 +1,14 @@
 //
-//  http_ groupbuy.m
+//  http_groupbuy.m
 //  ZF
 //
 //  Created by weiming zhang on 2019/4/26.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "http_ groupbuy.h"
+#import "http_groupbuy.h"
 
-@implementation http__groupbuy
+@implementation http_groupbuy
 //拼团详情
 //团购商品详情接口
 // order_id   拼团活动ID
@@ -27,15 +27,14 @@
 }
 
 //拼团列表接口
-+ (void)grouplist:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)grouplist:(NSInteger)page num:(NSInteger)num success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    NSString *str = [NSString stringWithFormat:@"%ld",goodModel.page];
-    [parameters setObject:str forKey:@"page"];
+    [parameters setObject:[NSString stringWithFormat:@"%lu",(unsigned long)page] forKey:@"page"];
     
-    NSString *str2 = [NSString stringWithFormat:@"%ld",goodModel.num];
-    [parameters setObject:str2 forKey:@"num"];
+    [parameters setObject:[NSString stringWithFormat:@"%lu",(unsigned long)num] forKey:@"num"];
 
     NSDictionary* dic = [http hanldeSign:parameters];
     

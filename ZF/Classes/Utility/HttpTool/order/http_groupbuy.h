@@ -1,5 +1,5 @@
 //
-//  http_ groupbuy.h
+//  http_groupbuy.h
 //  ZF
 //
 //  Created by weiming zhang on 2019/4/26.
@@ -12,14 +12,14 @@
 #import "ZFAddressModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface http__groupbuy : NSObject
+@interface http_groupbuy : NSObject
 //拼团详情
 //团购商品详情接口
 // order_id   拼团活动ID
 + (void)detail:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //拼团列表接口
-+ (void)grouplist:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)grouplist:(NSInteger)page num:(NSInteger)num success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 /**
  提交拼团订单

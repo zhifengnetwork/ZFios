@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFAssembleModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  拼团cell
  */
 @interface ZFAssembleCollectionCell : UICollectionViewCell
+
+@property (nonatomic,strong)ZFAssembleModel *assembleModel;
 
 @end
 

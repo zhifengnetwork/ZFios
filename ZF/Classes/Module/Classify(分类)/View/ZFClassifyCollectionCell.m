@@ -7,6 +7,7 @@
 //
 
 #import "ZFClassifyCollectionCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZFClassifyCollectionCell ()
 
@@ -45,6 +46,13 @@
     }];
 }
 
+- (void)setHomeModel:(ZFHomeModel *)homeModel
+{
+    _homeModel = homeModel;
+    //显示头像
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:_homeModel.original_img]];
+    _nameLabel.text = [NSString stringWithFormat:@"%ld",(long)_homeModel.goods_name];
+}
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {

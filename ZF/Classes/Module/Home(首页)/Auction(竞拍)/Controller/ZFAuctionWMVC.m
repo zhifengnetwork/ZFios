@@ -81,7 +81,7 @@
     }
     else if (index==1)
     {
-        ZFEndSpikeVC *vc = [[ZFEndSpikeVC alloc]init];
+        ZFAssembleVC *vc = [[ZFAssembleVC alloc]init];
         return vc;
     }
     else if (index==2)

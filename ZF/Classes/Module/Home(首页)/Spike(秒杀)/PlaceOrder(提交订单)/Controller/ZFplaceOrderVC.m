@@ -15,6 +15,7 @@
 #import "MJExtension.h"
 #import "SVProgressHUD.h"
 #import "ZFTool.h"
+#import "ZFFillOrderVC.h"
 
 @interface ZFplaceOrderVC ()<ZFPaymentMethodTableCellDelegate>
 
@@ -190,6 +191,11 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     {
         self.lastIndexPath = indexPath;
         [tableView reloadData];
+    }
+    else if (indexPath.section==4)
+    {
+        ZFFillOrderVC* vc = [[ZFFillOrderVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

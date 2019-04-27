@@ -14,6 +14,7 @@
 #import "MJExtension.h"
 #import "SVProgressHUD.h"
 #import "ZFTool.h"
+#import "ZFEditorialConsigneeVC.h"
 
 
 @interface ZFFillOrderVC ()
@@ -164,9 +165,10 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 //点击了哪个cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==3)
+    if (indexPath.section==0)
     {
-        
+        ZFEditorialConsigneeVC* vc = [[ZFEditorialConsigneeVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
