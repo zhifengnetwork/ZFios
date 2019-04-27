@@ -22,7 +22,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/groupbuy/detail"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/groupbuy/detail"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -40,7 +40,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/groupbuy/grouplist"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/groupbuy/grouplist"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -96,7 +96,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/groupbuy/falceOrder"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/groupbuy/falceOrder"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -112,7 +112,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/groupbuy/getTeamFive"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/groupbuy/getTeamFive"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 @end

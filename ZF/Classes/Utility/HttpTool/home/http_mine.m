@@ -18,8 +18,9 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/my_wallet"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/my_wallet"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+    
 }
 
 //我的页面
@@ -30,7 +31,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/myIndex"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/myIndex"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -43,7 +44,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/collect_list"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/collect_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -55,7 +56,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/visit_log"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/visit_log"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -70,7 +71,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/del_visit_log"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/del_visit_log"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -82,7 +83,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/clear_visit_log"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/clear_visit_log"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -98,7 +99,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/Activity/coupon_list"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/Activity/coupon_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -111,7 +112,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/distribut_index"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/distribut_index"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -123,7 +124,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/team_list"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/team_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 @end

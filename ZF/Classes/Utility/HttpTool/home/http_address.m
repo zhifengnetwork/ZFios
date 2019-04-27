@@ -18,7 +18,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/user/address_list"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/address_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -34,7 +34,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/del_address"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/del_address"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -87,7 +87,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/edit_address"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/edit_address"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -135,7 +135,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/User/add_address"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/User/add_address"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -152,7 +152,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/region/get_region"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/region/get_region"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 @end

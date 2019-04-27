@@ -23,6 +23,22 @@
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
++(void)cartlist:(NSInteger)page num:(NSInteger)num success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",page];
+    [parameters setObject:str forKey:@"page"];
+    
+    NSString *str2 = [NSString stringWithFormat:@"%ld",num];
+    [parameters setObject:str2 forKey:@"num"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/cart/cartlist"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
 /**
  删除购物车的商品
  */
@@ -56,7 +72,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/Cart/AsyncUpdateCart"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/Cart/AsyncUpdateCart"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -78,7 +94,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/Cart/changeNum"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/Cart/changeNum"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -94,7 +110,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/Cart/selectedOrAll"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/Cart/selectedOrAll"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 @end

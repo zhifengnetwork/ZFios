@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 //购物车列表
 +(void)cartlist:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
-
++(void)cartlist:(NSInteger)page num:(NSInteger)num success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 /**
  删除购物车的商品
  */

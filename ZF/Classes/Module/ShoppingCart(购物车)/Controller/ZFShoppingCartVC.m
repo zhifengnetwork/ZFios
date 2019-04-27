@@ -10,6 +10,12 @@
 #import "ZFShoppingCartCell.h"
 #import "ZFSettlementView.h"
 #import "ZFEmptyCartView.h"
+//#import "ZFTool.h"
+#import "SVProgressHUD.h"
+#import "http_shopping.h"
+#import "UserInfoModel.h"
+#import "MJExtension.h"
+
 @interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak)UITableView *shoppingCart;
 @property (nonatomic, weak)ZFSettlementView *settleView;
@@ -42,11 +48,9 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
     //判断购物车是否为空
-    if (/* DISABLES CODE */ (0)) {
-        ZFEmptyCartView *emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
-        [self.view addSubview:emptyCart];
-        btn.hidden = YES;
-    }else{
+//    ZFEmptyCartView *emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
+//    [self.view addSubview:emptyCart];
+//    btn.hidden = YES;
         btn.hidden = NO;
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
         tableView.backgroundColor = RGBColorHex(0xf4f4f4);
@@ -69,8 +73,32 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
             make.height.mas_equalTo(44);
             make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(-48);
         }];
-    }
+    
+    ZWeakSelf
+    [http_shopping cartlist:^(id responseObject)
+     {
+         [weakSelf showData:responseObject];
+         
+     } failure:^(NSError *error)
+     {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+
+    
 }
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    UserInfoModel* userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
+    [userInfo saveUserInfo];
+
+}
+
 //判断settleview的按钮状态
 - (void)editCell: (UIButton *)button{
     button.selected = !button.selected;

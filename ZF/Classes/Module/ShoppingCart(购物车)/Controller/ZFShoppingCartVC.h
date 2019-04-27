@@ -13,9 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ZFShoppingCartVCDelegate <NSObject>
 - (void)setEditing;
 @end
-/**
- 购物车
- */
+
+ //购物车
 @interface ZFShoppingCartVC : UIViewController
 @property (nonatomic, weak)id <ZFShoppingCartVCDelegate>delegate;
 @end

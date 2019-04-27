@@ -9,6 +9,8 @@
 #import "ZFMyWalletVC.h"
 #import "ZFMyWalletView.h"
 #import "ZFMyWalletButton.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
 @interface ZFMyWalletVC ()
 
 @end
@@ -66,9 +68,34 @@
         make.height.mas_equalTo(45);
     }];
     [myAlipayBtn buttonWithString:@"我的支付宝" WithString2:@"已添加" WithState:YES];
+    ZWeakSelf
+    [http_mine my_wallet:^(id responseObject)
+     {
+         [weakSelf showData:responseObject];
+         
+     } failure:^(NSError *error)
+     {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
     
+
+
+
     
 }
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+//    UserInfoModel* userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
+//    [userInfo saveUserInfo];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

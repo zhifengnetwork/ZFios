@@ -33,7 +33,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/activity/flash_sale_list"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/activity/flash_sale_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -45,7 +45,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/activity/get_flash_sale_time"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/activity/get_flash_sale_time"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -60,7 +60,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/activity/flash_sale_info"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/activity/flash_sale_info"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -82,7 +82,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/activity/post_flash_sale"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/activity/post_flash_sale"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -100,7 +100,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/activity/auction_list"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/activity/auction_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -116,7 +116,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/auction/auction_detail"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/auction/auction_detail"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -138,7 +138,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/auction/offerPrice"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/auction/offerPrice"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -159,7 +159,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/auction/GetAucMaxPrice"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/auction/GetAucMaxPrice"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 @end
