@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface http_home : NSObject
 //列表产品
 //分类列表产品接口
-+ (void)Products:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)Products:(NSString *)cat_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //首页点击[看相似]根据分类id跳转至商品列表页
 + (void)goodsList:(ZFGoodModel*)goodmodel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;

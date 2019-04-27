@@ -28,6 +28,7 @@
 #import "MJExtension.h"
 #import "RefreshGifHeader.h"
 #import "ZFHomeModel.h"
+#import "ZFADModel.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -140,7 +141,7 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
 -(void)loadData
 {
     ZWeakSelf
-    [http_home Products:^(id responseObject)
+    [http_home Products:@"110" success:^(id responseObject) 
      {
          [self.collectionView.mj_header endRefreshing];
          [weakSelf showData:responseObject];
@@ -160,12 +161,12 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     self.homeDataModel = [ZFHomeDataModel mj_objectWithKeyValues:responseObject];
     
     [self.imageUrls removeAllObjects];
-//    for (int i=0; i<self.homeDataModel.slide.count; i++)
-//    {
-//        ZFADModel* ad = [self.homeDataModel.slide objectAtIndex:i];
+    for (int i=0; i<self.homeDataModel.slide.count; i++)
+    {
+        ZFADModel* ad = [self.homeDataModel.slide objectAtIndex:i];
 //        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,ad.thumb];
 //        [self.imageUrls addObject:str];
-//    }
+    }
     
     [self.collectionView reloadData];
 }
