@@ -42,7 +42,8 @@
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_iconView.mas_bottom);
-        make.centerX.equalTo(self->_iconView);
+        make.left.mas_equalTo(5);
+        make.right.mas_equalTo(-5);
     }];
 }
 
@@ -51,7 +52,7 @@
     _homeModel = homeModel;
     //显示头像
     [_iconView sd_setImageWithURL:[NSURL URLWithString:_homeModel.original_img]];
-    _nameLabel.text = [NSString stringWithFormat:@"%ld",(long)_homeModel.goods_name];
+    _nameLabel.text = _homeModel.goods_name;
 }
 
 - (UIImageView *)iconView {
@@ -68,6 +69,7 @@
         _nameLabel.textColor = RGBColorHex(0x434343);
         _nameLabel.font = [UIFont systemFontOfSize:12];
         _nameLabel.text = @"精选";
+        _nameLabel.numberOfLines = 2;
     }
     return _nameLabel;
 }

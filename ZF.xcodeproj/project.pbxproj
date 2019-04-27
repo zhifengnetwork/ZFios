@@ -116,6 +116,7 @@
 		189CC0F52223E81300EB5A64 /* ZFTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC0CE2223E81300EB5A64 /* ZFTool.m */; };
 		189CC0F92223EA2400EB5A64 /* http_user.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC0F82223EA2400EB5A64 /* http_user.m */; };
 		18B10A7C223FF584007407E0 /* ZFMyOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B10A7B223FF584007407E0 /* ZFMyOrderTableCell.m */; };
+		18C0ABAD227492B900B0D5A7 /* ZFClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0ABAC227492B900B0D5A7 /* ZFClassifyModel.m */; };
 		18C26BFC222D62BD004951D9 /* ZFAuctionWMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C26BFB222D62BD004951D9 /* ZFAuctionWMVC.m */; };
 		18C26BFF222D6AA7004951D9 /* ZFHomeSpikeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C26BFE222D6AA7004951D9 /* ZFHomeSpikeHeadView.m */; };
 		18C26C02222D6C20004951D9 /* ZFTopLineFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C26C01222D6C20004951D9 /* ZFTopLineFootView.m */; };
@@ -486,6 +487,8 @@
 		189CC0F82223EA2400EB5A64 /* http_user.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = http_user.m; sourceTree = "<group>"; };
 		18B10A7A223FF584007407E0 /* ZFMyOrderTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyOrderTableCell.h; sourceTree = "<group>"; };
 		18B10A7B223FF584007407E0 /* ZFMyOrderTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyOrderTableCell.m; sourceTree = "<group>"; };
+		18C0ABAB227492B900B0D5A7 /* ZFClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyModel.h; sourceTree = "<group>"; };
+		18C0ABAC227492B900B0D5A7 /* ZFClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyModel.m; sourceTree = "<group>"; };
 		18C26BFA222D62BD004951D9 /* ZFAuctionWMVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAuctionWMVC.h; sourceTree = "<group>"; };
 		18C26BFB222D62BD004951D9 /* ZFAuctionWMVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAuctionWMVC.m; sourceTree = "<group>"; };
 		18C26BFD222D6AA7004951D9 /* ZFHomeSpikeHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFHomeSpikeHeadView.h; sourceTree = "<group>"; };
@@ -1518,6 +1521,15 @@
 			path = MyOrderCell;
 			sourceTree = "<group>";
 		};
+		18C0ABAA2274929400B0D5A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C0ABAB227492B900B0D5A7 /* ZFClassifyModel.h */,
+				18C0ABAC227492B900B0D5A7 /* ZFClassifyModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		18C26C03222D7ECA004951D9 /* CountDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -1633,8 +1645,8 @@
 		18EA50B522266ECF00A2D612 /* Classify(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				18C0ABAA2274929400B0D5A7 /* Model */,
 				18EA50B622266ECF00A2D612 /* Controller */,
-				18EA50B722266ECF00A2D612 /* Model */,
 				18EA50B822266ECF00A2D612 /* View */,
 			);
 			path = "Classify(分类)";
@@ -1647,13 +1659,6 @@
 				18EA50BD22266F1600A2D612 /* ZFClassifyVC.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		18EA50B722266ECF00A2D612 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		18EA50B822266ECF00A2D612 /* View */ = {
@@ -2748,6 +2753,7 @@
 				5307E463224DC8D100F93A11 /* ZFShareView.m in Sources */,
 				18285F11222D20BC00CBA408 /* ZFAuctionPeopleTableCell.m in Sources */,
 				8475470D2240C45700B698E6 /* ZFMyTeamTableCell.m in Sources */,
+				18C0ABAD227492B900B0D5A7 /* ZFClassifyModel.m in Sources */,
 				180A97A3222E1812003A12FF /* ZFConfirmationTableCell.m in Sources */,
 				18F60014222E6DE500DE7EF4 /* ZFSubmissionTableCell.m in Sources */,
 				189CC0EA2223E81300EB5A64 /* HMEmoticon.m in Sources */,

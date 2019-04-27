@@ -53,7 +53,7 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
 -(void)loadData
 {
     ZWeakSelf
-    [http_groupbuy grouplist:1 num:1 success:^(id responseObject)
+    [http_groupbuy grouplist:1 num:6 success:^(id responseObject)
      {
          [self.collectionView.mj_header endRefreshing];
          [weakSelf showData:responseObject];
@@ -80,26 +80,24 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
 //有多少分组
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return self.assembleListModel.result.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.assembleListModel.result.count;
+    return 1;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *gridcell = nil;
-    if (indexPath.section == 0)
-    {
-        //拼团
-        ZFAssembleCollectionCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFAssembleCollectionCellID forIndexPath:indexPath];
-        ZFAssembleModel *assembleModel = [self.assembleListModel.result objectAtIndex:indexPath.section];
-        oell.assembleModel = assembleModel;
-        gridcell = oell;
-    }
+    
+    //拼团
+    ZFAssembleCollectionCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFAssembleCollectionCellID forIndexPath:indexPath];
+    ZFAssembleModel *assembleModel = [self.assembleListModel.result objectAtIndex:indexPath.section];
+    oell.assembleModel = assembleModel;
+    gridcell = oell;
     
     return gridcell;
 }
