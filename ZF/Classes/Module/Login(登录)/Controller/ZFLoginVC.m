@@ -18,6 +18,7 @@
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
 #import "UserInfoModel.h"
+#import "PooCodeView.h"
 
 
 @interface ZFLoginVC ()<LoginTypeViewDelegate>
@@ -28,7 +29,6 @@
 @property (nonatomic, strong) UIView *phoneView;
 @property (nonatomic, strong) UIView *centerLine;
 
-@property (nonatomic, strong) UIImageView* vcodeView;
 @property (nonatomic, strong) UIImageView* bjIconView;
 @property (nonatomic, strong) UIImageView* iconView;
 @property (nonatomic, strong) UIImageView* icon2View;
@@ -49,6 +49,7 @@
 @property (nonatomic, strong) LoginTypeView *typeView;
 
 @property (nonatomic, strong) UIButton *testButton;
+@property (nonatomic, strong) PooCodeView *codeView;
 
 @end
 
@@ -93,15 +94,14 @@
     [self.view addSubview:self.center2Line];
     [self.view addSubview:self.center3Line];
     [self.view addSubview:self.centerLine];
-//    [self.view addSubview:self.vcodeButton];
     [self.view addSubview:self.iconView];
     [self.view addSubview:self.icon2View];
-    [self.view addSubview:self.vcodeView];
     
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.wmButton];
     [self.view addSubview:self.zcButton];
     [self.view addSubview:self.typeView];
+    [self.view addSubview:self.codeView];
     
     [_bjIconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -158,7 +158,7 @@
         make.right.mas_equalTo(-165);
     }];
     
-    [_vcodeView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_codeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_vcodeTextField.mas_right).offset(5);
         make.top.bottom.equalTo(self->_bg2View);
         make.right.mas_equalTo(-15);
@@ -212,6 +212,43 @@
 {
     NSString* username = _phoneTextField.text;
     NSString* passwd = _passwordTextField.text;
+    NSString* code = _vcodeTextField.text;
+    NSString *codeTwo = _codeView.changeString;
+    
+    if (kStringIsEmpty(username))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入手机号"];
+        return;
+    }
+    if ( [ZFTool isPhoneNumber:username]==NO )
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
+        return;
+    }
+    
+    if (kStringIsEmpty(passwd))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入您的登录密码"];
+        return;
+    }
+    if (kStringIsEmpty(code))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入验证码"];
+        return;
+    }
+    
+    //都转成大写后再比较
+    NSString* codeD = [code uppercaseString];
+    NSString *codeTwoD = [codeTwo uppercaseString];
+    
+    if( [codeD isEqualToString: codeTwoD]==NO)
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的验证码"];
+        //刷新
+        [self.codeView changeCode];
+        return;
+    }
+    
     [self toLogin:username password:passwd];
 }
 
@@ -415,18 +452,6 @@
     return _icon2View;
 }
 
-- (UIImageView *)vcodeView {
-    if (_vcodeView == nil) {
-        _vcodeView = [[UIImageView alloc] init];
-        _vcodeView.layer.borderWidth = 1.0f;
-        _vcodeView.layer.borderColor = RGBColorHex(0xBBBBBB).CGColor;
-        _vcodeView.image = [UIImage imageNamed:@"icon_login_bgk"];
-        _vcodeView.clipsToBounds = YES;
-        _vcodeView.layer.cornerRadius = 3.0f;
-    }
-    return _vcodeView;
-}
-
 - (UIButton *)loginButton {
     if (_loginButton == nil) {
         _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -513,6 +538,15 @@
         [_testButton addTarget:self action:@selector(testButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _testButton;
+}
+
+-(PooCodeView *)codeView
+{
+    if (_codeView==nil) {
+        _codeView = [[PooCodeView alloc]initWithFrame:CGRectMake(0, 0, 120, 50) andChangeArray:nil];
+    }
+    
+    return _codeView;
 }
 
 @end
