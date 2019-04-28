@@ -244,6 +244,7 @@
 		849F9573223B8786001824B9 /* ZFOrderEmptyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F9572223B8786001824B9 /* ZFOrderEmptyTableCell.m */; };
 		849F9576223B8B65001824B9 /* ZFGoShoppingTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F9575223B8B65001824B9 /* ZFGoShoppingTableCell.m */; };
 		84C1D77D224B241F009048C7 /* ZFDetailsPageFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */; };
+		84D879F622758709005B375B /* PooCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D879F422758709005B375B /* PooCodeView.m */; };
 		84ED0CD1223CB05700BC13C7 /* ZFCumulativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */; };
 		84ED0CD5223CD8D100BC13C7 /* ZFOfflinePickupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD4223CD8D100BC13C7 /* ZFOfflinePickupVC.m */; };
 		84ED0CDE223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CDD223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m */; };
@@ -745,6 +746,8 @@
 		849F9575223B8B65001824B9 /* ZFGoShoppingTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFGoShoppingTableCell.m; sourceTree = "<group>"; };
 		84C1D77B224B241F009048C7 /* ZFDetailsPageFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsPageFooterView.h; sourceTree = "<group>"; };
 		84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsPageFooterView.m; sourceTree = "<group>"; };
+		84D879F422758709005B375B /* PooCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PooCodeView.m; sourceTree = "<group>"; };
+		84D879F522758709005B375B /* PooCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PooCodeView.h; sourceTree = "<group>"; };
 		84ED0CCF223CB05700BC13C7 /* ZFCumulativeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFCumulativeVC.h; sourceTree = "<group>"; };
 		84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFCumulativeVC.m; sourceTree = "<group>"; };
 		84ED0CD3223CD8D100BC13C7 /* ZFOfflinePickupVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFOfflinePickupVC.h; sourceTree = "<group>"; };
@@ -1429,6 +1432,7 @@
 		189CC0A12223E81300EB5A64 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				84D879F322758709005B375B /* PooCodeView */,
 				180F262922364B6800B688E9 /* HJViewStyle */,
 				18515F86222FCC9A00F36E26 /* CDDTitleRolling */,
 				18C26C03222D7ECA004951D9 /* CountDown */,
@@ -2264,6 +2268,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		84D879F322758709005B375B /* PooCodeView */ = {
+			isa = PBXGroup;
+			children = (
+				84D879F422758709005B375B /* PooCodeView.m */,
+				84D879F522758709005B375B /* PooCodeView.h */,
+			);
+			path = PooCodeView;
+			sourceTree = "<group>";
+		};
 		84DD71E9223B473300F32754 /* StoreConcern(店铺关注) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2694,6 +2707,7 @@
 				1819918D22379C14004585D8 /* ZFEditorialHeadTableCell.m in Sources */,
 				537D560122754AE200384C19 /* ZFEvaluationVC.m in Sources */,
 				18EA50CD2226874C00A2D612 /* ZFBannerHeadView.m in Sources */,
+				84D879F622758709005B375B /* PooCodeView.m in Sources */,
 				8475470722409DC800B698E6 /* ZFMyIntegralVC.m in Sources */,
 				533DC81D2248AC54005A73DA /* ZFDeleteView.m in Sources */,
 				18F6000E222E692900DE7EF4 /* ZFAmountPayableTableCell.m in Sources */,
@@ -2973,8 +2987,8 @@
 			baseConfigurationReference = BAC5748F8240DC444AA69277 /* Pods-ZF.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5NV395828N;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZF/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2988,8 +3002,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zf.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zf.appx1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2999,8 +3014,8 @@
 			baseConfigurationReference = 35B60207C013D37496B67DF4 /* Pods-ZF.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5NV395828N;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZF/PrefixHeader.pch";
 				INFOPLIST_FILE = ZF/Info.plist;
@@ -3009,8 +3024,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.zf.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zf.appx1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

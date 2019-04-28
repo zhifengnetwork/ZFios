@@ -38,8 +38,12 @@
 
 @interface JXPagerListContainerView : UIView
 
+/**
+ 需要和self.categoryView.defaultSelectedIndex保持一致
+ */
+@property (nonatomic, assign) NSInteger defaultSelectedIndex;
+
 @property (nonatomic, strong, readonly) JXPagerListContainerCollectionView *collectionView;
-@property (nonatomic, weak) id<JXPagerListContainerViewDelegate> delegate;
 @property (nonatomic, weak) JXPagerMainTableView *mainTableView;
 
 - (instancetype)initWithDelegate:(id<JXPagerListContainerViewDelegate>)delegate NS_DESIGNATED_INITIALIZER;

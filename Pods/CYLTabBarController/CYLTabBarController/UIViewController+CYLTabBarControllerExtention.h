@@ -2,13 +2,15 @@
 //  UIViewController+CYLTabBarControllerExtention.h
 //  CYLTabBarController
 //
-//  v1.16.0 Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 16/2/26.
+//  v1.21.x Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 16/2/26.
 //  Copyright © 2018年 https://github.com/ChenYilong .All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "CYLBadgeProtocol.h"
 #import "CYLConstants.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^CYLPopSelectTabBarChildViewControllerCompletion)(__kindof UIViewController *selectedTabBarChildViewController);
 
@@ -156,3 +158,5 @@ typedef void (^CYLPushOrPopCallback)(NSArray<__kindof UIViewController *> *viewC
 @property (nonatomic, assign, setter=cyl_setTabBadgePointViewOffset:, getter=cyl_tabBadgePointViewOffset) UIOffset cyl_tabBadgePointViewOffset CYL_DEPRECATED("Deprecated in 1.19.0. Use method in <CYLBadgeProtocol> instead.");
 
 @end
+
+NS_ASSUME_NONNULL_END

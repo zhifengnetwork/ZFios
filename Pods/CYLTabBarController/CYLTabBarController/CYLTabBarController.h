@@ -2,7 +2,7 @@
 //  CYLTabBarController.h
 //  CYLTabBarController
 //
-//  v1.16.0 Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 10/20/15.
+//  v1.21.x Created by 微博@iOS程序犭袁 ( http://weibo.com/luohanchenyilong/ ) on 10/20/15.
 //  Copyright © 2018 https://github.com/ChenYilong . All rights reserved.
 //
 
@@ -15,10 +15,12 @@
 #import "CYLBaseViewController.h"
 #import "CYLBaseTableViewController.h"
 #import "CYLBaseNavigationController.h"
-#import "UITabBar+CYLTabBarControllerExtention.h"
+#import "CYLTabBar+CYLTabBarControllerExtention.h"
 #import "UITabBarItem+CYLBadgeExtention.h"
 #import "UIBarButtonItem+CYLBadgeExtention.h"
 #import "UIView+CYLBadgeExtention.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @class CYLTabBarController;
 typedef void(^CYLViewDidLayoutSubViewsBlock)(CYLTabBarController *tabBarController);
@@ -26,6 +28,8 @@ typedef void(^CYLViewDidLayoutSubViewsBlock)(CYLTabBarController *tabBarControll
 FOUNDATION_EXTERN NSString *const CYLTabBarItemTitle;
 FOUNDATION_EXTERN NSString *const CYLTabBarItemImage;
 FOUNDATION_EXTERN NSString *const CYLTabBarItemSelectedImage;
+FOUNDATION_EXTERN NSString *const CYLTabBarLottieURL;
+FOUNDATION_EXTERN NSString *const CYLTabBarLottieSize;
 FOUNDATION_EXTERN NSString *const CYLTabBarItemImageInsets;
 FOUNDATION_EXTERN NSString *const CYLTabBarItemTitlePositionAdjustment;
 FOUNDATION_EXTERN NSUInteger CYLTabbarItemsCount;
@@ -33,6 +37,7 @@ FOUNDATION_EXTERN NSUInteger CYLPlusButtonIndex;
 FOUNDATION_EXTERN CGFloat CYLPlusButtonWidth;
 FOUNDATION_EXTERN CGFloat CYLTabBarItemWidth;
 FOUNDATION_EXTERN CGFloat CYLTabBarHeight;
+
 
 @protocol CYLTabBarControllerDelegate <NSObject>
 @optional
@@ -70,6 +75,8 @@ FOUNDATION_EXTERN CGFloat CYLTabBarHeight;
  * default is UIEdgeInsetsZero.
  */
 @property (nonatomic, readonly, assign) UIEdgeInsets imageInsets;
+
+@property (nonatomic, strong) CYLTabBar *tabBar;
 
 /*! 
  * To set both UIBarItem label text attributes in the tabBar,
@@ -143,3 +150,4 @@ FOUNDATION_EXTERN CGFloat CYLTabBarHeight;
 
 FOUNDATION_EXTERN NSString *const CYLTabBarItemWidthDidChangeNotification;
 
+NS_ASSUME_NONNULL_END

@@ -10,8 +10,10 @@
 #import "JXPagerMainTableView.h"
 
 @interface JXPagerListContainerView() <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@property (nonatomic, weak) id<JXPagerListContainerViewDelegate> delegate;
 @property (nonatomic, strong) JXPagerListContainerCollectionView *collectionView;
 @property (nonatomic, strong) NSIndexPath *selectedIndexPath;
+@property (nonatomic, assign) BOOL isFirstLayoutSubviews;
 @end
 
 @implementation JXPagerListContainerView
@@ -20,6 +22,7 @@
     self = [super initWithFrame:CGRectZero];
     if (self) {
         _delegate = delegate;
+        _isFirstLayoutSubviews = YES;
         [self initializeViews];
     }
     return self;
@@ -55,6 +58,10 @@
     self.collectionView.frame = self.bounds;
     if (self.selectedIndexPath != nil && [self.delegate numberOfRowsInListContainerView:self] >= self.selectedIndexPath.item + 1) {
         [self.collectionView scrollToItemAtIndexPath:self.selectedIndexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+    }
+    if (self.isFirstLayoutSubviews) {
+        self.isFirstLayoutSubviews = NO;
+        [self.collectionView setContentOffset:CGPointMake(self.collectionView.bounds.size.width*self.defaultSelectedIndex, 0) animated:NO];
     }
 }
 
