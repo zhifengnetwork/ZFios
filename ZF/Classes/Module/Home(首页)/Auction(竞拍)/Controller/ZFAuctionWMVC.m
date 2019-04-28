@@ -76,7 +76,7 @@
 {
     if (index==0)
     {
-        ZFStartAuctionVC *vc = [[ZFStartAuctionVC alloc]init];
+        ZFAuctionVC *vc = [[ZFAuctionVC alloc]init];
         return vc;
     }
     else if (index==1)

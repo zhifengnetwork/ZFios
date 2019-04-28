@@ -21,7 +21,7 @@
 #import "ZFHomeModel.h"
 #import "ZFADModel.h"
 #import "ZFClassifyModel.h"
-
+#import "ZFPlantingModel.h"
 
 @interface ZFClassifyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -37,6 +37,8 @@
 
 @property (strong , nonatomic)NSMutableArray *lists;
 @property (strong , nonatomic)NSMutableArray *lists2;
+
+@property (strong , nonatomic)ZFPlantingListModel *plantingLisModel;
 
 @end
 
@@ -93,6 +95,40 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
     
 }
 
+-(void)loadData3
+{
+    ZWeakSelf
+    [http_home index:9 cat_id:15 name:nil success:^(id responseObject)
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData3:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.collectionView.mj_header endRefreshing];
+     }];
+}
+
+-(void)showData3:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.plantingLisModel = [ZFPlantingListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.imageUrls removeAllObjects];
+    for (int i=0; i<self.plantingLisModel.adlist.count; i++)
+    {
+        ZFADModel* ad = [self.plantingLisModel.adlist objectAtIndex:i];
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,ad.ad_code];
+        [self.imageUrls addObject:str];
+    }
+    
+    [self.collectionView reloadData];
+}
+
+
 -(void)loadData
 {
     ZWeakSelf
@@ -120,6 +156,8 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
         ZFClassifyModel* model = [self.lists objectAtIndex:0];
         [self loadData2:model.ID];
     }
+    
+    [self loadData3];
 }
 
 -(void)loadData2:(NSString*)ID
@@ -304,11 +342,6 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 {
     if (_imageUrls==nil) {
         _imageUrls = [[NSMutableArray alloc]init];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1obZ_BmLT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs9.gomein.net.cn/T1C3J_B5LT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1CwYjBCCT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1u8V_B4ET1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1zODgB5CT1RCvBVdK.jpg"];
     }
     return _imageUrls;
 }

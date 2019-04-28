@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)post_flash_sale:(NSInteger)ID address_id:(NSInteger)address_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //竞拍列表
-+ (void)auction_list:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)auction_list:(NSInteger)page num:(NSInteger)num success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //竞拍详情
 //用户注册接口

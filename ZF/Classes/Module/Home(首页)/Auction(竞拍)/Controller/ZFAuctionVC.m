@@ -9,8 +9,15 @@
 #import "ZFAuctionVC.h"
 #import "ZFAuctionTableCell.h"
 #import "MJExtension.h"
+#import "http_activity.h"
+#import "SVProgressHUD.h"
+#import "RefreshGifHeader.h"
+#import "ZFHomeModel.h"
+#import "ZFAuctionModel.h"
 
 @interface ZFAuctionVC ()
+
+@property(nonatomic, strong) ZFAuctionListModel *listModel;
 
 @end
 
@@ -27,7 +34,7 @@ static NSString *const ZFAuctionTableCellID = @"ZFAuctionTableCellID";
                                                               style:UIBarButtonItemStylePlain target:self action:@selector(assembleButtonDidClick)];
     UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"秒杀"
                                                               style:UIBarButtonItemStylePlain target:self action:@selector(spikeButtonDidClick)];
-    
+
     //设置图片与按钮间距
     [item2 setImageInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
     self.navigationItem.rightBarButtonItems = @[item1,item2,item3];
@@ -69,29 +76,57 @@ static NSString *const ZFAuctionTableCellID = @"ZFAuctionTableCellID";
     [self.tableView registerClass:[ZFAuctionTableCell class] forCellReuseIdentifier:ZFAuctionTableCellID];
     
     //自定义刷新动画
-//    ZWeakSelf
-//    self.tableView.mj_header = [LKRefreshGifHeader headerWithRefreshingBlock:^{
-//
-//        [weakSelf get_supply_info];
-//    }];
-//    [self.tableView.mj_header beginRefreshing];
-//
-//    // 上拉刷新
-//    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//
+    ZWeakSelf
+    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+    [self.tableView.mj_header beginRefreshing];
+
+    // 上拉刷新
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+
 //        [weakSelf.demanList setNextPage];
 //        [weakSelf get_supply_info];
-//    }];
+    }];
     
 }
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_activity auction_list:1 num:6 success:^(id responseObject)
+     {
+         [self.tableView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [self.tableView.mj_header endRefreshing];
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.listModel = [ZFAuctionListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.tableView reloadData];
+}
+
 
 
 #pragma mark - Table view data source
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return self.demanList.resultList.count;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.listModel.list.count;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -101,12 +136,11 @@ static NSString *const ZFAuctionTableCellID = @"ZFAuctionTableCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = nil;
+    ZFAuctionTableCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFAuctionTableCellID];
+    //取数据
+    ZFAuctionModel* model = [self.listModel.list objectAtIndex:indexPath.section];
     
-//    LKSupplyDemandModel* model = [self.demanList.resultList objectAtIndex:indexPath.section];
-    ZFAuctionTableCell* dcell = [tableView dequeueReusableCellWithIdentifier:ZFAuctionTableCellID];
-    
-    cell = dcell;
+    cell.auctionModel = model;
     
     return cell;
 }
@@ -114,7 +148,7 @@ static NSString *const ZFAuctionTableCellID = @"ZFAuctionTableCellID";
 //每行的高度是多少
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewAutomaticDimension;
+    return 300;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

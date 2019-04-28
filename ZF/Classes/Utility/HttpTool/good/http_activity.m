@@ -87,14 +87,15 @@
 }
 
 //竞拍列表
-+ (void)auction_list:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)auction_list:(NSInteger)page num:(NSInteger)num success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    NSString *str1 = [NSString stringWithFormat:@"%ld",goodModel.page];
+    NSString *str1 = [NSString stringWithFormat:@"%ld",page];
     [parameters setObject:str1 forKey:@"page"];
     
-    NSString *str2 = [NSString stringWithFormat:@"%ld",goodModel.num];
+    NSString *str2 = [NSString stringWithFormat:@"%ld",num];
     [parameters setObject:str2 forKey:@"num"];
     
     NSDictionary* dic = [http hanldeSign:parameters];

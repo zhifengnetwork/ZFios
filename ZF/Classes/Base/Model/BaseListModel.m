@@ -101,4 +101,14 @@
     return _result;
 }
 
+-(NSMutableArray*)list
+{
+    if (_list==nil)
+    {
+        _list = [[NSMutableArray alloc]init];
+    }
+    
+    return _list;
+}
+
 @end

@@ -17,14 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFADModel : NSObject
 
 @property (nonatomic , copy) NSString              * ID;
-@property (nonatomic , copy) NSString              * uniacid;
-@property (nonatomic , copy) NSString              * advname;
-@property (nonatomic , copy) NSString              * link;
-@property (nonatomic , copy) NSString              * thumb;
-@property (nonatomic , copy) NSString              * displayorder;
-@property (nonatomic , copy) NSString              * enabled;
-@property (nonatomic , copy) NSString              * shopid;
-@property (nonatomic , copy) NSString              * iswxapp;
+@property (nonatomic , copy) NSString              * ad_link;
+@property (nonatomic , copy) NSString              * ad_code;
+@property (nonatomic , copy) NSString              * bgcolor;
+@property (nonatomic , copy) NSString              * goods_id;
 
 @end
 

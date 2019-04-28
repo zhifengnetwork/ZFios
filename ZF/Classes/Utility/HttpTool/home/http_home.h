@@ -15,6 +15,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface http_home : NSObject
+
+/**
+ 轮播-秒杀-头条接口
+
+ @param pid 广告pid,默认9：banner轮播
+ @param cat_id 文章类型ID, 默认15：智丰头条
+ @param name  昵称
+ */
++ (void)index:(NSInteger)pid cat_id:(NSInteger)cat_id name:(NSString *)name success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 //列表产品
 //分类列表产品接口
 + (void)Products:(NSString *)cat_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;

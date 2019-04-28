@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFAuctionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  竞拍cell
  */
 @interface ZFAuctionTableCell : UITableViewCell
+
+@property(nonatomic, strong) ZFAuctionModel *auctionModel;
 
 @end
 
