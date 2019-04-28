@@ -13,6 +13,7 @@
 #import "TYShowAlertView.h"
 #import "ZFHarvestAddressView.h"
 #import "TYAlertController.h"
+#import "ZFGoodDetailVC.h"
 #import "http_groupbuy.h"
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
@@ -80,7 +81,8 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
 //有多少分组
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 5;
+    return 4;
+//    return self.assembleListModel.result.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -171,6 +173,9 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
     {
         if (indexPath.row==0)
         {
+            ZFGoodDetailVC *vc = [[ZFGoodDetailVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
 //            ZFSelectedVC* vc = [[ZFSelectedVC alloc]init];
 //            [self.navigationController pushViewController:vc animated:YES];
         }
