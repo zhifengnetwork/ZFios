@@ -80,7 +80,7 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
 //有多少分组
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return self.assembleListModel.result.count;
+    return 5;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

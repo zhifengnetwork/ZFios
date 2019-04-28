@@ -82,13 +82,8 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-<<<<<<< HEAD
     strUrl = [strUrl stringByAppendingPathComponent:@"api/Goods/goodsList"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
-=======
-    strUrl = [strUrl stringByAppendingPathComponent:@"/api/Goods/goodsList"];
-    [http GetRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
->>>>>>> 482bd7ddf7a2d9a56ccb8d5c7d260e56245a6d47
 }
 
 //上传头像接口
