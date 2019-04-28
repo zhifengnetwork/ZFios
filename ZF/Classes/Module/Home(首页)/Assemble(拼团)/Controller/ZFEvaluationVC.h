@@ -1,5 +1,5 @@
 //
-//  ZFGoodDetailVC.h
+//  ZFEvaluationVC.h
 //  ZF
 //
 //  Created by weiming zhang on 2019/4/28.
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-//商品详情
+//商品评价
 
-@interface ZFGoodDetailVC : UIViewController
+@interface ZFEvaluationVC : UIViewController
 
 @end
 

@@ -175,6 +175,7 @@
 		5358868422365F4E00D7A4B6 /* ZFSettlementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5358868322365F4E00D7A4B6 /* ZFSettlementView.m */; };
 		5360BE7C224B1647007F8DA0 /* ZFSettlementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5360BE7B224B1647007F8DA0 /* ZFSettlementView.xib */; };
 		537D55FE227549AB00384C19 /* ZFGoodDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D55FD227549AB00384C19 /* ZFGoodDetailVC.m */; };
+		537D560122754AE200384C19 /* ZFEvaluationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D560022754AE100384C19 /* ZFEvaluationVC.m */; };
 		537D8CA82272FFF8002FB76B /* ZFOrdersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 537D8CA72272FFF8002FB76B /* ZFOrdersModel.m */; };
 		53B1093722378B1100F32ABB /* ZFXuXianView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53B1093622378B1100F32ABB /* ZFXuXianView.m */; };
 		53C27A0122707ACE00C17DAB /* http_home.m in Sources */ = {isa = PBXBuildFile; fileRef = 53C27A0022707ACE00C17DAB /* http_home.m */; };
@@ -606,6 +607,8 @@
 		5360BE7B224B1647007F8DA0 /* ZFSettlementView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZFSettlementView.xib; sourceTree = "<group>"; };
 		537D55FC227549AB00384C19 /* ZFGoodDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFGoodDetailVC.h; sourceTree = "<group>"; };
 		537D55FD227549AB00384C19 /* ZFGoodDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFGoodDetailVC.m; sourceTree = "<group>"; };
+		537D55FF22754AE100384C19 /* ZFEvaluationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFEvaluationVC.h; sourceTree = "<group>"; };
+		537D560022754AE100384C19 /* ZFEvaluationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFEvaluationVC.m; sourceTree = "<group>"; };
 		537D8CA62272FFF8002FB76B /* ZFOrdersModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFOrdersModel.h; sourceTree = "<group>"; };
 		537D8CA72272FFF8002FB76B /* ZFOrdersModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFOrdersModel.m; sourceTree = "<group>"; };
 		53B1093522378B1100F32ABB /* ZFXuXianView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFXuXianView.h; sourceTree = "<group>"; };
@@ -836,6 +839,7 @@
 			isa = PBXGroup;
 			children = (
 				840A21582274634F00CF8B72 /* Model */,
+				537D560222754AFB00384C19 /* ChooseStyle(选择样式弹框) */,
 				1808E0CC223108CF00B9DB1D /* ClusterWindow(拼团弹框) */,
 				180A97AA222E32B7003A12FF /* Controller */,
 				180A97A8222E32A9003A12FF /* View */,
@@ -859,6 +863,8 @@
 				18F60001222E53D600DE7EF4 /* ZFAssembleVC.m */,
 				537D55FC227549AB00384C19 /* ZFGoodDetailVC.h */,
 				537D55FD227549AB00384C19 /* ZFGoodDetailVC.m */,
+				537D55FF22754AE100384C19 /* ZFEvaluationVC.h */,
+				537D560022754AE100384C19 /* ZFEvaluationVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1936,6 +1942,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		537D560222754AFB00384C19 /* ChooseStyle(选择样式弹框) */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "ChooseStyle(选择样式弹框)";
+			sourceTree = "<group>";
+		};
 		53E90CFA2272E4290063A237 /* good */ = {
 			isa = PBXGroup;
 			children = (
@@ -2679,6 +2692,7 @@
 				849F9564223B4E54001824B9 /* ZFStoreConcernViewCell.m in Sources */,
 				189CC0E02223E81300EB5A64 /* TabBarControllerConfig.m in Sources */,
 				1819918D22379C14004585D8 /* ZFEditorialHeadTableCell.m in Sources */,
+				537D560122754AE200384C19 /* ZFEvaluationVC.m in Sources */,
 				18EA50CD2226874C00A2D612 /* ZFBannerHeadView.m in Sources */,
 				8475470722409DC800B698E6 /* ZFMyIntegralVC.m in Sources */,
 				533DC81D2248AC54005A73DA /* ZFDeleteView.m in Sources */,
