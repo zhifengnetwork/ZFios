@@ -8,6 +8,8 @@
 
 #import "ZFAuctionTableCell.h"
 #import "UIImageView+WebCache.h"
+#import "ZFTool.h"
+
 
 @interface ZFAuctionTableCell()
 
@@ -97,7 +99,7 @@
     _auctionModel = auctionModel;
     NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_auctionModel.original_img];
     [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
-    _timeLabel.text = _auctionModel.start_time;
+    _timeLabel.text = [ZFTool dateTextJP:_auctionModel.start_time];
     _nameLabel.text = _auctionModel.goods_name;
     _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",_auctionModel.start_price];
 }

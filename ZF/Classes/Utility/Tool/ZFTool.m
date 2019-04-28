@@ -94,6 +94,48 @@
     return date.timeAgoSinceNow;
 }
 
+//竟拍日期
++(NSString*)dateTextJP:(NSString*)dateline
+{
+    if (kStringIsEmpty(dateline))
+    {
+        return nil;
+    }
+    
+    NSString* str = nil;
+    long long lltime = [dateline longLongValue];
+    if (lltime==0)
+    {
+        return str;
+    }
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:lltime];
+    str = [date formattedDateWithFormat:@"MM月dd日 HH:mm:ss准时开拍"];
+    
+    return str;
+}
+
+//日期
++(NSString*)dateText:(NSString*)dateline
+{
+    if (kStringIsEmpty(dateline))
+    {
+        return nil;
+    }
+    
+    NSString* str = nil;
+    long long lltime = [dateline longLongValue];
+    if (lltime==0)
+    {
+        return str;
+    }
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:lltime];
+    str = [date formattedDateWithFormat:@"yyyy-MM-dd HH:mm:ss"];//2019年04-28 11:10:10
+    
+    return str;
+}
+
 
 //将图片字符串转换为URL
 +(NSURL *)IconStringToUrl:(NSString*)iconString

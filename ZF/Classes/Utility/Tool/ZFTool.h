@@ -57,6 +57,12 @@ NS_ASSUME_NONNULL_BEGIN
 //获取时间显示字符串
 + (NSString*)dateTimeAgoText:(NSString*)datelineString;
 
+//竟拍日期
++(NSString*)dateTextJP:(NSString*)dateline;
+
+//日期
++(NSString*)dateText:(NSString*)dateline;
+
 
 //将图片字符串转换为URL
 +(NSURL *)IconStringToUrl:(NSString*)iconString;
