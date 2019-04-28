@@ -42,6 +42,7 @@
 @property (nonatomic, strong) BasePageModel* page;
 //结果集存放List
 @property (nonatomic, strong) NSMutableArray *result;
+@property (nonatomic, strong) NSMutableArray *list;
 
 //追加一页数据
 -(void)addModel:(BaseListModel*)model;

@@ -30,6 +30,7 @@
 #import "ZFHomeModel.h"
 #import "ZFADModel.h"
 #import "ZFCumulativeVC.h"
+#import "ZFPlantingModel.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -46,7 +47,7 @@
 //秒杀倒计时
 @property (strong, nonatomic) CountDown *countDown;
 
-@property (strong , nonatomic)ZFHomeDataModel *homeDataModel;
+@property (strong , nonatomic)ZFPlantingListModel *plantingLisModel;
 
 @end
 
@@ -142,7 +143,7 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
 -(void)loadData
 {
     ZWeakSelf
-    [http_home Products:@"110" success:^(id responseObject) 
+    [http_home index:9 cat_id:15 name:nil success:^(id responseObject)
      {
          [self.collectionView.mj_header endRefreshing];
          [weakSelf showData:responseObject];
@@ -159,14 +160,14 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         return;
     }
     
-    self.homeDataModel = [ZFHomeDataModel mj_objectWithKeyValues:responseObject];
+    self.plantingLisModel = [ZFPlantingListModel mj_objectWithKeyValues:responseObject];
     
     [self.imageUrls removeAllObjects];
-    for (int i=0; i<self.homeDataModel.slide.count; i++)
+    for (int i=0; i<self.plantingLisModel.adlist.count; i++)
     {
-        ZFADModel* ad = [self.homeDataModel.slide objectAtIndex:i];
-//        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,ad.thumb];
-//        [self.imageUrls addObject:str];
+        ZFADModel* ad = [self.plantingLisModel.adlist objectAtIndex:i];
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,ad.ad_code];
+        [self.imageUrls addObject:str];
     }
     
     [self.collectionView reloadData];
@@ -572,11 +573,6 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
 {
     if (_imageUrls==nil) {
         _imageUrls = [[NSMutableArray alloc]init];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1obZ_BmLT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs9.gomein.net.cn/T1C3J_B5LT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1CwYjBCCT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1u8V_B4ET1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1zODgB5CT1RCvBVdK.jpg"];
     }
     return _imageUrls;
 }

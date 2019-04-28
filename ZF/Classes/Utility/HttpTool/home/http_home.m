@@ -10,6 +10,36 @@
 
 @implementation http_home
 
+
+/**
+ 轮播-秒杀-头条接口
+ 
+ @param pid 广告pid,默认9：banner轮播
+ @param cat_id 文章类型ID, 默认15：智丰头条
+ @param name  昵称
+ */
++ (void)index:(NSInteger)pid cat_id:(NSInteger)cat_id name:(NSString *)name success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    [parameters setObject:[NSString stringWithFormat:@"%lu",(unsigned long)pid] forKey:@"pid"];
+    
+    [parameters setObject:[NSString stringWithFormat:@"%lu",(unsigned long)cat_id] forKey:@"cat_id"];
+    
+    if ( !kStringIsEmpty(name) )
+    {
+        [parameters setObject:name forKey:@"name"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/index/index"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+
 //列表产品
 //分类列表产品接口
 + (void)Products:(NSString *)cat_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{

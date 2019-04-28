@@ -92,6 +92,16 @@
     
 }
 
+- (void)setAuctionModel:(ZFAuctionModel *)auctionModel
+{
+    _auctionModel = auctionModel;
+    NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_auctionModel.original_img];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    _timeLabel.text = _auctionModel.start_time;
+    _nameLabel.text = _auctionModel.goods_name;
+    _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",_auctionModel.start_price];
+}
+
 - (void)auctionButtonDidClick
 {
     
