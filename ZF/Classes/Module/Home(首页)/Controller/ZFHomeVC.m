@@ -29,6 +29,7 @@
 #import "RefreshGifHeader.h"
 #import "ZFHomeModel.h"
 #import "ZFADModel.h"
+#import "ZFCumulativeVC.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -261,6 +262,8 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     {
         //推荐
         ZFCommodityTableCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFCommodityTableCellID forIndexPath:indexPath];
+//        ZFHomeModel *homeModel = [self.homeDataModel.result objectAtIndex:indexPath.section];
+//        cell.homeModel = homeModel;
         gridcell = cell;
     }
     return gridcell;
@@ -410,12 +413,13 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         }
         else if (indexPath.row==1)
         {
-            ZFFillOrderVC* vc = [[ZFFillOrderVC alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+//            ZFFillOrderVC* vc = [[ZFFillOrderVC alloc]init];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==2)
         {
-            ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+            //签到天数
+            ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==3)
@@ -426,6 +430,11 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     else if (indexPath.section==1)
     {
         [self toAuctionWMVC];
+    }
+    else if (indexPath.section==2)
+    {
+        ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

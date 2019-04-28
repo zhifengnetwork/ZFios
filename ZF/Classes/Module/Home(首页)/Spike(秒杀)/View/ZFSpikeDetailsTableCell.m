@@ -206,6 +206,7 @@
         [_grabOnceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _grabOnceButton.layer.cornerRadius = 4;
         _grabOnceButton.clipsToBounds = YES;
+        _grabOnceButton.userInteractionEnabled = NO;
         [_grabOnceButton addTarget:self action:@selector(grabOnceButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _grabOnceButton;

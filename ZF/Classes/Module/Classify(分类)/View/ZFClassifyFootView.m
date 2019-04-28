@@ -26,7 +26,7 @@
 
 - (void)setupUI
 {
-    self.backgroundColor = TableViewBGColor;
+    self.backgroundColor = RGBColorHex(0xffffff);
     
 }
 

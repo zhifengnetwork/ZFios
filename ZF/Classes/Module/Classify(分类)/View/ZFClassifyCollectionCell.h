@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFHomeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  分类CollectionViewCell
  */
 @interface ZFClassifyCollectionCell : UICollectionViewCell
+
+@property (nonatomic,strong)ZFHomeModel *homeModel;
 
 @end
 

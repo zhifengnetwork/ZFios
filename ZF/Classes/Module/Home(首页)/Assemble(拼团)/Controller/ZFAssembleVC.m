@@ -13,11 +13,17 @@
 #import "TYShowAlertView.h"
 #import "ZFHarvestAddressView.h"
 #import "TYAlertController.h"
-
+#import "http_groupbuy.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "RefreshGifHeader.h"
+#import "ZFAssembleModel.h"
 
 @interface ZFAssembleVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (strong , nonatomic)UICollectionView *collectionView;
+
+@property (strong , nonatomic)ZFAssembleListModel *assembleListModel;
 
 @end
 
@@ -29,33 +35,7 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *item1 = [[UIBarButtonItem alloc]  initWithTitle:@"竞拍"
-                                                               style:UIBarButtonItemStylePlain target:self action:@selector(auctionButtonDidClick)];
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"拼团"
-                                                              style:UIBarButtonItemStylePlain target:self action:@selector(assembleButtonDidClick)];
-    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"秒杀"
-                                                              style:UIBarButtonItemStylePlain target:self action:@selector(spikeButtonDidClick)];
-    
-    //设置图片与按钮间距
-    [item2 setImageInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
-    self.navigationItem.rightBarButtonItems = @[item1,item2,item3];
-    
     [self setupUI];
-}
-
-- (void)auctionButtonDidClick
-{
-    
-}
-
-- (void)assembleButtonDidClick
-{
-    
-}
-
-- (void)spikeButtonDidClick
-{
-    
 }
 
 - (void)setupUI
@@ -66,39 +46,58 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    [self.collectionView.mj_header beginRefreshing];
 
 }
 
 -(void)loadData
 {
-    
+    ZWeakSelf
+    [http_groupbuy grouplist:1 num:6 success:^(id responseObject)
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.collectionView.mj_header endRefreshing];
+     }];
 }
 
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.assembleListModel = [ZFAssembleListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.collectionView reloadData];
+}
 
 
 #pragma mark - <UICollectionViewDataSource>
 //有多少分组
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return self.assembleListModel.result.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return 1;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *gridcell = nil;
-    if (indexPath.section == 0)
-    {
-        //拼团
-        ZFAssembleCollectionCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFAssembleCollectionCellID forIndexPath:indexPath];
-        
-        gridcell = oell;
-    }
+    
+    //拼团
+    ZFAssembleCollectionCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFAssembleCollectionCellID forIndexPath:indexPath];
+    ZFAssembleModel *assembleModel = [self.assembleListModel.result objectAtIndex:indexPath.section];
+    oell.assembleModel = assembleModel;
+    gridcell = oell;
     
     return gridcell;
 }

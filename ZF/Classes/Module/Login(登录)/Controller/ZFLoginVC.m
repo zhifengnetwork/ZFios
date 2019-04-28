@@ -135,27 +135,6 @@
         make.height.mas_equalTo(50);
     }];
     
-    //    [_phoneView mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.top.equalTo(_phoneLabel.mas_bottom).offset(30);
-    //        make.left.equalTo(self).offset(25);
-    //        make.right.equalTo(self).offset(-25);
-    //        make.height.mas_equalTo(90);
-    //    }];
-    
-    //    [_centerLine mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.centerY.equalTo(_phoneView);
-    //        make.left.right.equalTo(_phoneView);
-    //        make.height.mas_equalTo(0.5f);
-    //    }];
-    
-    
-    //    [_center2Line mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.centerY.equalTo(_areaLabel);
-    //        make.left.equalTo(_areaLabel.mas_right).offset(7);
-    //        make.height.mas_equalTo(25);
-    //        make.width.mas_equalTo(0.5f);
-    //    }];
-    
     [_phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bgView).offset(30);
         make.top.bottom.equalTo(self->_bgView);
@@ -166,19 +145,6 @@
         make.left.mas_equalTo(15);
         make.centerY.equalTo(self->_bgView);
     }];
-    
-//    [_vcodeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.equalTo(_bg1View);
-//        make.top.bottom.equalTo(_bg1View);
-//        make.width.mas_equalTo(110);
-//    }];
-    
-    //    [_center3Line mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.centerY.equalTo(_vcodeButton);
-    //        make.right.equalTo(_vcodeButton.mas_left);
-    //        make.height.mas_equalTo(25);
-    //        make.width.mas_equalTo(0.5f);
-    //    }];
     
     [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bg1View).offset(30);
@@ -241,12 +207,12 @@
     
 }
 
-
 //登录按钮被点击
 - (void)loginButtonDidClick
 {
-    //模拟登录成功
-    [[NSNotificationCenter defaultCenter] postNotificationName:UserLoginRegisterNotification object:nil userInfo:nil];
+    NSString* username = _phoneTextField.text;
+    NSString* passwd = _passwordTextField.text;
+    [self toLogin:username password:passwd];
 }
 
 //忘记密码按钮被点击

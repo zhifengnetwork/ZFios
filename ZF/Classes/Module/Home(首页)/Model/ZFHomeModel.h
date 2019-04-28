@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseListModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,13 +18,13 @@ NS_ASSUME_NONNULL_BEGIN
 //商品id
 @property (nonatomic, assign)NSInteger goods_id;
 //商品名称
-@property (nonatomic, assign)NSInteger goods_name;
+@property (nonatomic, copy)NSString *goods_name;
 //商品上传原始图
 @property (nonatomic, copy)NSString *original_img;
 
 @end
 
-@interface ZFHomeDataModel : NSObject
+@interface ZFHomeDataModel : BaseListModel
 
 @property (nonatomic , strong) NSMutableArray * slide;
 @property (nonatomic , strong) NSMutableArray * notice;

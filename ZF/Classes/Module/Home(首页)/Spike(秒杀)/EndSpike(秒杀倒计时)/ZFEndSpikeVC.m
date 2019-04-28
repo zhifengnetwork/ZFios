@@ -10,6 +10,7 @@
 #import "ZFSecondkillMerTableCell.h"
 #import "ZFSpikeFooterView.h"
 #import "ZFEndSpikeHeadView.h"
+#import "ZFplaceOrderVC.h"
 
 
 @interface ZFEndSpikeVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -196,7 +197,8 @@ static NSString *const ZFSecondkillMerTableCelllD = @"ZFSecondkillMerTableCelllD
 
 - (void)handleSingleTap:(UITouch *)touch
 {
-    
+    ZFplaceOrderVC* vc = [[ZFplaceOrderVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

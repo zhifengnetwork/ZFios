@@ -29,6 +29,7 @@
 
 - (void)setupUI
 {
+    self.backgroundColor = RGBColorHex(0xffffff);
     [self addSubview:self.nameLabel];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {

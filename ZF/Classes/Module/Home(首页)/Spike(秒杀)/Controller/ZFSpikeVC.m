@@ -12,6 +12,7 @@
 #import "ZFSpikeTitleHeadView.h"
 #import "ZFSpikeMerchandiseTableViewCell.h"
 #import "ZFBannerHeadView.h"
+#import "ZFEndSpikeVC.h"
 
 @interface ZFSpikeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -287,14 +288,8 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
 //点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0)
-    {
-//        if (indexPath.row==0)
-//        {
-//            ZFSelectedVC* vc = [[ZFSelectedVC alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-    }
+    ZFEndSpikeVC* vc = [[ZFEndSpikeVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

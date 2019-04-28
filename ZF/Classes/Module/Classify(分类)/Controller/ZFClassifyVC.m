@@ -13,6 +13,14 @@
 #import "ZFClassifyTopToolView.h"
 #import "ZFClassifyFootView.h"
 #import "ZFClassifyBannerHeadView.h"
+#import "http_home.h"
+#import "http_good.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "RefreshGifHeader.h"
+#import "ZFHomeModel.h"
+#import "ZFADModel.h"
+#import "ZFClassifyModel.h"
 
 
 @interface ZFClassifyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -26,6 +34,9 @@
 
 //
 @property (strong , nonatomic)NSMutableArray *imageUrls;
+
+@property (strong , nonatomic)NSMutableArray *lists;
+@property (strong , nonatomic)NSMutableArray *lists2;
 
 @end
 
@@ -49,9 +60,15 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 {
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.tableView.backgroundColor = TableViewBGColor;
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.tableView.tableFooterView = [UIView new];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    
+    [self.collectionView.mj_header beginRefreshing];
     
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -10;
@@ -76,16 +93,72 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
     
 }
 
+-(void)loadData
+{
+    ZWeakSelf
+    [http_good categoryList:^(id responseObject)
+    {
+        [self.collectionView.mj_header endRefreshing];
+        [weakSelf showData:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+        [self.collectionView.mj_header endRefreshing];
+    }];
+}
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.lists = [ZFClassifyModel mj_objectArrayWithKeyValuesArray:responseObject];
+    [self.tableView reloadData];
+    if (self.lists.count>0)
+    {
+        ZFClassifyModel* model = [self.lists objectAtIndex:0];
+        [self loadData2:model.ID];
+    }
+}
+
+-(void)loadData2:(NSString*)ID
+{
+    ZWeakSelf
+    [http_home Products:ID success:^(id responseObject)
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData2:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.collectionView.mj_header endRefreshing];
+     }];
+}
+
+-(void)showData2:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.lists2 = [ZFHomeModel mj_objectArrayWithKeyValuesArray:responseObject];
+    
+    [self.collectionView reloadData];
+}
+
 
 #pragma mark - <UITableViewDataSource>
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    return self.lists.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZFClassifyTableCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFClassifyTableCellID forIndexPath:indexPath];
+    ZFClassifyModel* model = [self.lists objectAtIndex:indexPath.row];
+    cell.title = model.name;
     return cell;
 }
 
@@ -97,15 +170,15 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    _mainItem = [DCClassMianItem mj_objectArrayWithFilename:_titleItem[indexPath.row].fileName];
-    [self.collectionView reloadData];
+    ZFClassifyModel* model = [self.lists objectAtIndex:indexPath.row];
+    [self loadData2:model.ID];
 }
 
 
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 10;
+    return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -113,7 +186,7 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
     if (section==0) {
         return 0;
     }
-    return 6;
+    return self.lists2.count;
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -122,6 +195,8 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
     UICollectionViewCell *gridcell = nil;
     //商品
     ZFClassifyCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFClassifyCollectionCellID forIndexPath:indexPath];
+    ZFHomeModel *homeModel = [self.lists2 objectAtIndex:indexPath.item];
+    cell.homeModel = homeModel;
     gridcell = cell;
     
     return gridcell;
@@ -156,7 +231,7 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    return CGSizeMake((LL_ScreenWidth - 100 - 6 - 15)/3, (LL_ScreenWidth - 100 - 6 - 15)/3 + 20);
+    return CGSizeMake((LL_ScreenWidth - 100 - 6 - 15)/3, (LL_ScreenWidth - 100 - 6 - 15)/3 + 40);
     
     return CGSizeZero;
 }
@@ -236,6 +311,22 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
         [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1zODgB5CT1RCvBVdK.jpg"];
     }
     return _imageUrls;
+}
+
+-(NSMutableArray *)lists
+{
+    if (_lists==nil) {
+        _lists = [[NSMutableArray alloc]init];
+    }
+    return _lists;
+}
+
+-(NSMutableArray *)lists2
+{
+    if (_lists2==nil) {
+        _lists2 = [[NSMutableArray alloc]init];
+    }
+    return _lists2;
 }
 
 @end

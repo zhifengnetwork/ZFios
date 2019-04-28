@@ -16,7 +16,7 @@
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    [parameters setObject:@"110" forKey:@"cat_id"];
+    [parameters setObject:cat_id forKey:@"cat_id"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

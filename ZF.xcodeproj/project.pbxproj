@@ -116,6 +116,7 @@
 		189CC0F52223E81300EB5A64 /* ZFTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC0CE2223E81300EB5A64 /* ZFTool.m */; };
 		189CC0F92223EA2400EB5A64 /* http_user.m in Sources */ = {isa = PBXBuildFile; fileRef = 189CC0F82223EA2400EB5A64 /* http_user.m */; };
 		18B10A7C223FF584007407E0 /* ZFMyOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B10A7B223FF584007407E0 /* ZFMyOrderTableCell.m */; };
+		18C0ABAD227492B900B0D5A7 /* ZFClassifyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C0ABAC227492B900B0D5A7 /* ZFClassifyModel.m */; };
 		18C26BFC222D62BD004951D9 /* ZFAuctionWMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C26BFB222D62BD004951D9 /* ZFAuctionWMVC.m */; };
 		18C26BFF222D6AA7004951D9 /* ZFHomeSpikeHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C26BFE222D6AA7004951D9 /* ZFHomeSpikeHeadView.m */; };
 		18C26C02222D6C20004951D9 /* ZFTopLineFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C26C01222D6C20004951D9 /* ZFTopLineFootView.m */; };
@@ -183,13 +184,14 @@
 		53E90CF52272DF5E0063A237 /* http_order.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90CF42272DF5E0063A237 /* http_order.m */; };
 		53E90CFF2272E81F0063A237 /* http_address.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90CFE2272E81F0063A237 /* http_address.m */; };
 		53E90D022272EA5B0063A237 /* ZFAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D012272EA5B0063A237 /* ZFAddressModel.m */; };
-		53E90D072272F0CB0063A237 /* http_ groupbuy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D062272F0CB0063A237 /* http_ groupbuy.m */; };
+		53E90D072272F0CB0063A237 /* http_groupbuy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D062272F0CB0063A237 /* http_groupbuy.m */; };
 		53E90D0A2272F7420063A237 /* http_activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D092272F7420063A237 /* http_activity.m */; };
 		53E90D0D2272FAC60063A237 /* http_mine.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D0C2272FAC60063A237 /* http_mine.m */; };
 		69F9943388184D9DFB8EE494 /* libPods-ZF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */; };
 		8408F9672272EED700C55F45 /* ZFADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F9662272EED700C55F45 /* ZFADModel.m */; };
 		8408F96A2272F0AF00C55F45 /* ZFHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F9692272F0AF00C55F45 /* ZFHomeModel.m */; };
 		8408F96D2272F21F00C55F45 /* ZFNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F96B2272F21F00C55F45 /* ZFNoticeModel.m */; };
+		840A215B2274634F00CF8B72 /* ZFAssembleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840A215A2274634F00CF8B72 /* ZFAssembleModel.m */; };
 		840BE8F42249DBC100568B11 /* ZFDeliveryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BE8F32249DBC100568B11 /* ZFDeliveryTableCell.m */; };
 		840BE8F72249FDA300568B11 /* ZFExplainTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BE8F62249FDA300568B11 /* ZFExplainTableCell.m */; };
 		840BE8FA224A027A00568B11 /* ZFevaluationHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BE8F9224A027A00568B11 /* ZFevaluationHeadTableCell.m */; };
@@ -485,6 +487,8 @@
 		189CC0F82223EA2400EB5A64 /* http_user.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = http_user.m; sourceTree = "<group>"; };
 		18B10A7A223FF584007407E0 /* ZFMyOrderTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyOrderTableCell.h; sourceTree = "<group>"; };
 		18B10A7B223FF584007407E0 /* ZFMyOrderTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyOrderTableCell.m; sourceTree = "<group>"; };
+		18C0ABAB227492B900B0D5A7 /* ZFClassifyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyModel.h; sourceTree = "<group>"; };
+		18C0ABAC227492B900B0D5A7 /* ZFClassifyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyModel.m; sourceTree = "<group>"; };
 		18C26BFA222D62BD004951D9 /* ZFAuctionWMVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAuctionWMVC.h; sourceTree = "<group>"; };
 		18C26BFB222D62BD004951D9 /* ZFAuctionWMVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAuctionWMVC.m; sourceTree = "<group>"; };
 		18C26BFD222D6AA7004951D9 /* ZFHomeSpikeHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFHomeSpikeHeadView.h; sourceTree = "<group>"; };
@@ -619,8 +623,8 @@
 		53E90CFE2272E81F0063A237 /* http_address.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_address.m; sourceTree = "<group>"; };
 		53E90D002272EA5B0063A237 /* ZFAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZFAddressModel.h; path = "ZF/Classes/Module/Home(首页)/Model/ZFAddressModel.h"; sourceTree = SOURCE_ROOT; };
 		53E90D012272EA5B0063A237 /* ZFAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZFAddressModel.m; path = "ZF/Classes/Module/Home(首页)/Model/ZFAddressModel.m"; sourceTree = SOURCE_ROOT; };
-		53E90D052272F0CB0063A237 /* http_ groupbuy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "http_ groupbuy.h"; sourceTree = "<group>"; };
-		53E90D062272F0CB0063A237 /* http_ groupbuy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "http_ groupbuy.m"; sourceTree = "<group>"; };
+		53E90D052272F0CB0063A237 /* http_groupbuy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_groupbuy.h; sourceTree = "<group>"; };
+		53E90D062272F0CB0063A237 /* http_groupbuy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_groupbuy.m; sourceTree = "<group>"; };
 		53E90D082272F7420063A237 /* http_activity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_activity.h; sourceTree = "<group>"; };
 		53E90D092272F7420063A237 /* http_activity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_activity.m; sourceTree = "<group>"; };
 		53E90D0B2272FAC60063A237 /* http_mine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_mine.h; sourceTree = "<group>"; };
@@ -633,6 +637,8 @@
 		8408F9692272F0AF00C55F45 /* ZFHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFHomeModel.m; sourceTree = "<group>"; };
 		8408F96B2272F21F00C55F45 /* ZFNoticeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFNoticeModel.m; sourceTree = "<group>"; };
 		8408F96C2272F21F00C55F45 /* ZFNoticeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFNoticeModel.h; sourceTree = "<group>"; };
+		840A21592274634F00CF8B72 /* ZFAssembleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFAssembleModel.h; sourceTree = "<group>"; };
+		840A215A2274634F00CF8B72 /* ZFAssembleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFAssembleModel.m; sourceTree = "<group>"; };
 		840BE8F22249DBC100568B11 /* ZFDeliveryTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDeliveryTableCell.h; sourceTree = "<group>"; };
 		840BE8F32249DBC100568B11 /* ZFDeliveryTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDeliveryTableCell.m; sourceTree = "<group>"; };
 		840BE8F52249FDA300568B11 /* ZFExplainTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFExplainTableCell.h; sourceTree = "<group>"; };
@@ -826,9 +832,9 @@
 		180A97A7222E3286003A12FF /* Assemble(拼团) */ = {
 			isa = PBXGroup;
 			children = (
+				840A21582274634F00CF8B72 /* Model */,
 				1808E0CC223108CF00B9DB1D /* ClusterWindow(拼团弹框) */,
 				180A97AA222E32B7003A12FF /* Controller */,
-				180A97A9222E32AF003A12FF /* Model */,
 				180A97A8222E32A9003A12FF /* View */,
 			);
 			path = "Assemble(拼团)";
@@ -841,13 +847,6 @@
 				180A97AC222E32F4003A12FF /* ZFAssembleCollectionCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		180A97A9222E32AF003A12FF /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		180A97AA222E32B7003A12FF /* Controller */ = {
@@ -1522,6 +1521,15 @@
 			path = MyOrderCell;
 			sourceTree = "<group>";
 		};
+		18C0ABAA2274929400B0D5A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18C0ABAB227492B900B0D5A7 /* ZFClassifyModel.h */,
+				18C0ABAC227492B900B0D5A7 /* ZFClassifyModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		18C26C03222D7ECA004951D9 /* CountDown */ = {
 			isa = PBXGroup;
 			children = (
@@ -1637,8 +1645,8 @@
 		18EA50B522266ECF00A2D612 /* Classify(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				18C0ABAA2274929400B0D5A7 /* Model */,
 				18EA50B622266ECF00A2D612 /* Controller */,
-				18EA50B722266ECF00A2D612 /* Model */,
 				18EA50B822266ECF00A2D612 /* View */,
 			);
 			path = "Classify(分类)";
@@ -1651,13 +1659,6 @@
 				18EA50BD22266F1600A2D612 /* ZFClassifyVC.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		18EA50B722266ECF00A2D612 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		18EA50B822266ECF00A2D612 /* View */ = {
@@ -1946,8 +1947,8 @@
 			children = (
 				53E90CF32272DF5E0063A237 /* http_order.h */,
 				53E90CF42272DF5E0063A237 /* http_order.m */,
-				53E90D052272F0CB0063A237 /* http_ groupbuy.h */,
-				53E90D062272F0CB0063A237 /* http_ groupbuy.m */,
+				53E90D052272F0CB0063A237 /* http_groupbuy.h */,
+				53E90D062272F0CB0063A237 /* http_groupbuy.m */,
 			);
 			path = order;
 			sourceTree = "<group>";
@@ -1987,6 +1988,16 @@
 			);
 			path = Model;
 			sourceTree = "<group>";
+		};
+		840A21582274634F00CF8B72 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				840A21592274634F00CF8B72 /* ZFAssembleModel.h */,
+				840A215A2274634F00CF8B72 /* ZFAssembleModel.m */,
+			);
+			name = Model;
+			path = "ZF/Classes/Module/Home(首页)/Assemble(拼团)/Model";
+			sourceTree = SOURCE_ROOT;
 		};
 		842C0B262248CE5B0058206F /* CommodityDetails(商品详情页) */ = {
 			isa = PBXGroup;
@@ -2685,6 +2696,7 @@
 				1819918722376760004585D8 /* ZFAddressManagementTableCell.m in Sources */,
 				530D0B9D22535A1800F8E8E7 /* ZFSearchCollectionViewCell.m in Sources */,
 				181608D22225292D004CC2D3 /* ZFRegisterVC.m in Sources */,
+				840A215B2274634F00CF8B72 /* ZFAssembleModel.m in Sources */,
 				189CC0F92223EA2400EB5A64 /* http_user.m in Sources */,
 				18EA50C122266F2600A2D612 /* ZFShoppingCartVC.m in Sources */,
 				849F956A223B6169001824B9 /* ZFShopImgeViewCell.m in Sources */,
@@ -2741,6 +2753,7 @@
 				5307E463224DC8D100F93A11 /* ZFShareView.m in Sources */,
 				18285F11222D20BC00CBA408 /* ZFAuctionPeopleTableCell.m in Sources */,
 				8475470D2240C45700B698E6 /* ZFMyTeamTableCell.m in Sources */,
+				18C0ABAD227492B900B0D5A7 /* ZFClassifyModel.m in Sources */,
 				180A97A3222E1812003A12FF /* ZFConfirmationTableCell.m in Sources */,
 				18F60014222E6DE500DE7EF4 /* ZFSubmissionTableCell.m in Sources */,
 				189CC0EA2223E81300EB5A64 /* HMEmoticon.m in Sources */,
@@ -2770,7 +2783,7 @@
 				189CC0DF2223E81300EB5A64 /* BaseTabBarController.m in Sources */,
 				84499BC4223A57E200A7A988 /* ZFClassificationHeadView.m in Sources */,
 				1819919C2237C629004585D8 /* ZFTimeHeadView.m in Sources */,
-				53E90D072272F0CB0063A237 /* http_ groupbuy.m in Sources */,
+				53E90D072272F0CB0063A237 /* http_groupbuy.m in Sources */,
 				847547042240998400B698E6 /* ZFMyIntegralTableCell.m in Sources */,
 				849ABEA422436905008B089F /* ZFMyOrderHeadTableCell.m in Sources */,
 				180F31A3222F68610040718F /* ZFAddressTableCell.m in Sources */,
