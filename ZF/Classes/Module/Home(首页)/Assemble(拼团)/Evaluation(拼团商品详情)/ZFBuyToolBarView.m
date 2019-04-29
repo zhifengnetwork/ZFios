@@ -7,6 +7,9 @@
 //
 
 #import "ZFBuyToolBarView.h"
+#import "ZFSelectTypeView.h"
+#import "TYAlertController.h"
+
 @interface ZFBuyToolBarView()
 @property (nonatomic, strong)UIButton *collectButton;
 @property (nonatomic, strong)UIButton *customerServiceButton;
@@ -90,6 +93,7 @@
         _onlyBuyButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [_onlyBuyButton setTitle:@" ￥279\n单独购买" forState:UIControlStateNormal];
         [_onlyBuyButton setTitleColor:RGBColor(255, 255, 255) forState:UIControlStateNormal];
+        [_onlyBuyButton addTarget:self action:@selector(selectType) forControlEvents:UIControlEventTouchUpInside];
     }return _onlyBuyButton;
 }
 
@@ -102,5 +106,32 @@
         [_spellListButton setTitle:@" ￥139\n发起拼单" forState:UIControlStateNormal];
         [_spellListButton setTitleColor:RGBColor(255, 255, 255) forState:UIControlStateNormal];
     }return _spellListButton;
+}
+
+#pragma mark -- 跳转
+//选择款式
+- (void)selectType{
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
+    
+}
+//获取当前控制器
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
 }
 @end
