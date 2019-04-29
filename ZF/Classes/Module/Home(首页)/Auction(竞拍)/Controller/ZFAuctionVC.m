@@ -14,8 +14,12 @@
 #import "RefreshGifHeader.h"
 #import "ZFHomeModel.h"
 #import "ZFAuctionModel.h"
+#import "ZFStartAuctionVC.h"
+#import "ZFTool.h"
+#import "ZFAuctionEndVC.h"
 
-@interface ZFAuctionVC ()
+
+@interface ZFAuctionVC ()<ZFAuctionTableCellDelegate>
 
 @property(nonatomic, strong) ZFAuctionListModel *listModel;
 
@@ -82,8 +86,6 @@ static NSString *const ZFAuctionTableCellID = @"ZFAuctionTableCellID";
         [weakSelf loadData];
     }];
     [self.tableView.mj_header beginRefreshing];
-    
-    [self.tableView.mj_header beginRefreshing];
 
     // 上拉刷新
     self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
@@ -141,6 +143,7 @@ static NSString *const ZFAuctionTableCellID = @"ZFAuctionTableCellID";
     ZFAuctionModel* model = [self.listModel.list objectAtIndex:indexPath.section];
     
     cell.auctionModel = model;
+    cell.delegate = self;
     
     return cell;
 }
@@ -162,5 +165,30 @@ static NSString *const ZFAuctionTableCellID = @"ZFAuctionTableCellID";
     view.backgroundColor = [UIColor clearColor];
     return view;
 }
+
+/**
+ 参与竞拍
+ */
+- (void)ZFAuctionTableCellDidClick:(ZFAuctionModel *)auctionModel
+{
+    //如果当前时间超过了结束时间，结束了
+    NSString* str = [ZFTool UnixTimeString];
+    //1556532674
+    //1556589600
+    if (str.longLongValue > auctionModel.end_time.longLongValue)
+    {
+        ZFAuctionEndVC* vc = [[ZFAuctionEndVC alloc]init];
+        vc.ID = auctionModel.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else
+    {
+        ZFStartAuctionVC* vc = [[ZFStartAuctionVC alloc]init];
+        vc.ID = auctionModel.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+}
+
 
 @end

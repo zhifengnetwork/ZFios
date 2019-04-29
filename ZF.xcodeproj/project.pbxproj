@@ -237,6 +237,10 @@
 		849ABEA422436905008B089F /* ZFMyOrderHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849ABEA322436905008B089F /* ZFMyOrderHeadTableCell.m */; };
 		849ABEA722437DB4008B089F /* ZFOrderDetailsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849ABEA622437DB4008B089F /* ZFOrderDetailsTableCell.m */; };
 		849ABEAA224389A3008B089F /* ZFBottomOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849ABEA9224389A3008B089F /* ZFBottomOrderTableCell.m */; };
+		849CB3972276AB2D00386882 /* ZFdetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CB3962276AB2D00386882 /* ZFdetailsModel.m */; };
+		849CB39B2277080F00386882 /* JX_GCDTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CB39A2277080F00386882 /* JX_GCDTimerManager.m */; };
+		849CB39E2277091E00386882 /* ZFStartAuctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CB39D2277091E00386882 /* ZFStartAuctionModel.m */; };
+		849CB3A2227720A600386882 /* ZFSpikeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CB3A1227720A600386882 /* ZFSpikeModel.m */; };
 		849F8BEA223BA16C00D10E2E /* ZFMyOrderEmptyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F8BE9223BA16C00D10E2E /* ZFMyOrderEmptyVC.m */; };
 		849F8BEF223BB0CE00D10E2E /* ZFSignInView.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F8BEE223BB0CE00D10E2E /* ZFSignInView.m */; };
 		849F9564223B4E54001824B9 /* ZFStoreConcernViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F9563223B4E54001824B9 /* ZFStoreConcernViewCell.m */; };
@@ -736,6 +740,14 @@
 		849ABEA622437DB4008B089F /* ZFOrderDetailsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFOrderDetailsTableCell.m; sourceTree = "<group>"; };
 		849ABEA8224389A3008B089F /* ZFBottomOrderTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFBottomOrderTableCell.h; sourceTree = "<group>"; };
 		849ABEA9224389A3008B089F /* ZFBottomOrderTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFBottomOrderTableCell.m; sourceTree = "<group>"; };
+		849CB3952276AB2D00386882 /* ZFdetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFdetailsModel.h; sourceTree = "<group>"; };
+		849CB3962276AB2D00386882 /* ZFdetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFdetailsModel.m; sourceTree = "<group>"; };
+		849CB3992277080F00386882 /* JX_GCDTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JX_GCDTimerManager.h; sourceTree = "<group>"; };
+		849CB39A2277080F00386882 /* JX_GCDTimerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JX_GCDTimerManager.m; sourceTree = "<group>"; };
+		849CB39C2277091E00386882 /* ZFStartAuctionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFStartAuctionModel.h; sourceTree = "<group>"; };
+		849CB39D2277091E00386882 /* ZFStartAuctionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFStartAuctionModel.m; sourceTree = "<group>"; };
+		849CB3A0227720A600386882 /* ZFSpikeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFSpikeModel.h; sourceTree = "<group>"; };
+		849CB3A1227720A600386882 /* ZFSpikeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFSpikeModel.m; sourceTree = "<group>"; };
 		849F8BE8223BA16C00D10E2E /* ZFMyOrderEmptyVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyOrderEmptyVC.h; sourceTree = "<group>"; };
 		849F8BE9223BA16C00D10E2E /* ZFMyOrderEmptyVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyOrderEmptyVC.m; sourceTree = "<group>"; };
 		849F8BED223BB0CE00D10E2E /* ZFSignInView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFSignInView.h; sourceTree = "<group>"; };
@@ -1441,6 +1453,7 @@
 		189CC0A12223E81300EB5A64 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				849CB3982277080F00386882 /* JX_GCDTimer */,
 				84D879F322758709005B375B /* PooCodeView */,
 				180F262922364B6800B688E9 /* HJViewStyle */,
 				18515F86222FCC9A00F36E26 /* CDDTitleRolling */,
@@ -1566,11 +1579,11 @@
 		18E3CF93222A5E55003C7737 /* Spike(秒杀) */ = {
 			isa = PBXGroup;
 			children = (
+				849CB39F2277208D00386882 /* Model */,
 				1808E0D12231188600B9DB1D /* EndSpike(秒杀倒计时) */,
 				180F319E222F67DC0040718F /* FillOrder(填写订单) */,
 				18F60003222E606300DE7EF4 /* PlaceOrder(提交订单) */,
 				18E3CF96222A5EA6003C7737 /* Controller */,
-				18E3CF95222A5E94003C7737 /* Model */,
 				18E3CF94222A5E88003C7737 /* View */,
 			);
 			path = "Spike(秒杀)";
@@ -1587,13 +1600,6 @@
 				18E3CF9E222A7175003C7737 /* ZFSpikeMerchandiseTableViewCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		18E3CF95222A5E94003C7737 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		18E3CF96222A5EA6003C7737 /* Controller */ = {
@@ -2223,6 +2229,24 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		849CB3982277080F00386882 /* JX_GCDTimer */ = {
+			isa = PBXGroup;
+			children = (
+				849CB3992277080F00386882 /* JX_GCDTimerManager.h */,
+				849CB39A2277080F00386882 /* JX_GCDTimerManager.m */,
+			);
+			path = JX_GCDTimer;
+			sourceTree = "<group>";
+		};
+		849CB39F2277208D00386882 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				849CB3A0227720A600386882 /* ZFSpikeModel.h */,
+				849CB3A1227720A600386882 /* ZFSpikeModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		849F8BEB223BB0B200D10E2E /* signIn(签到) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2293,6 +2317,10 @@
 			children = (
 				84D879FB2275C16F005B375B /* ZFAuctionModel.h */,
 				84D879FC2275C16F005B375B /* ZFAuctionModel.m */,
+				849CB3952276AB2D00386882 /* ZFdetailsModel.h */,
+				849CB3962276AB2D00386882 /* ZFdetailsModel.m */,
+				849CB39C2277091E00386882 /* ZFStartAuctionModel.h */,
+				849CB39D2277091E00386882 /* ZFStartAuctionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2618,6 +2646,7 @@
 				186471792237FB3600F2C147 /* BaseTableViewCell.m in Sources */,
 				18F8D8952228D22700203E9A /* ZFSelectedCategoriesCell.m in Sources */,
 				180F31B8222FAFD40040718F /* ZFAgreeTableCell.m in Sources */,
+				849CB3A2227720A600386882 /* ZFSpikeModel.m in Sources */,
 				189CC0D62223E81300EB5A64 /* ZFPhoneLoginVC.m in Sources */,
 				189CC0D02223E81300EB5A64 /* UIImage+WaterMark.m in Sources */,
 				1864717C2238013A00F2C147 /* ZFFootprintVC.m in Sources */,
@@ -2709,6 +2738,7 @@
 				842EDEE12240C8FB00B53E45 /* ZFCityAgentTableCell.m in Sources */,
 				180F340B22263D4000EB0449 /* ZFResetPasswordVC.m in Sources */,
 				842EDEF32240EFFA00B53E45 /* ZFMyDynamicsTableCell.m in Sources */,
+				849CB39E2277091E00386882 /* ZFStartAuctionModel.m in Sources */,
 				53E90D0A2272F7420063A237 /* http_activity.m in Sources */,
 				533BA186224CC3FE00FAFFF8 /* ZFAddCardVC.m in Sources */,
 				1808E0D42231191600B9DB1D /* ZFSecondkillMerTableCell.m in Sources */,
@@ -2739,6 +2769,7 @@
 				5358868422365F4E00D7A4B6 /* ZFSettlementView.m in Sources */,
 				5304892B2240E03A002FAF61 /* ZFSelectPayView.m in Sources */,
 				188EFD70224CC8C400C90070 /* ZFDetailsImageTextFootView.m in Sources */,
+				849CB3972276AB2D00386882 /* ZFdetailsModel.m in Sources */,
 				180F31AC222F75FF0040718F /* ZFFillOrderVC.m in Sources */,
 				189CC0D12223E81300EB5A64 /* UIButton+LXMImagePosition.m in Sources */,
 				53D153AB2275B51D00013DE1 /* ZFSpellListHeaderView.m in Sources */,
@@ -2792,6 +2823,7 @@
 				8408F96D2272F21F00C55F45 /* ZFNoticeModel.m in Sources */,
 				180935AC2244DB2500AEBB02 /* ZFClassifyHeadView.m in Sources */,
 				18285F14222D32A400CBA408 /* ZFAuctionRulesTableCell.m in Sources */,
+				849CB39B2277080F00386882 /* JX_GCDTimerManager.m in Sources */,
 				182E8A072224010B005CE5FE /* LoginPhoneView.m in Sources */,
 				5309F2192238EB5F00275D4C /* ZFMenuCell.m in Sources */,
 				18F93EF6224E1A9C006ED290 /* ZFClassifyFootView.m in Sources */,

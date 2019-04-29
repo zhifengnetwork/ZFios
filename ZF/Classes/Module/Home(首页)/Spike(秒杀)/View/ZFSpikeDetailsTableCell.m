@@ -121,9 +121,25 @@
 
 - (void)grabOnceButtonDidClick
 {
-    
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(ZFSpikeDetailsTableCellDidClick:)])
+    {
+        [self.delegate ZFSpikeDetailsTableCellDidClick:self.spikeModel];
+    }
 }
 
+- (void)setSpikeModel:(ZFSpikeModel *)spikeModel
+{
+    _spikeModel = spikeModel;
+    NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_spikeModel.original_img];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+//    _timeLabel.text = [ZFTool dateTextJP:_auctionModel.start_time];
+    _nameLabel.text = _spikeModel.goods_name;
+    _titleLabel.text = _spikeModel.goods_content;
+    _discountLabel.text = _spikeModel.disc;
+    _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_spikeModel.disc];
+    _numberLabel.text = [NSString stringWithFormat:@"仅剩%ld件",(long)_spikeModel.store_count];
+    
+}
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {

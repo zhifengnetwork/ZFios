@@ -194,8 +194,8 @@ static int invalidtoken_code = 1005;
     }
     else
     {
-        id msg = [dic objectForKey:RESDATA];
-        //id msg = [dic objectForKey:RESMSG];
+        //id msg = [dic objectForKey:RESDATA];
+        id msg = [dic objectForKey:RESMSG];
         NSString* str = nil;
         if ( [msg isKindOfClass:[NSString class]] )
         {

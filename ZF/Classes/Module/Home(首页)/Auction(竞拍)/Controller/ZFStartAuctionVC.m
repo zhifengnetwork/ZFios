@@ -12,11 +12,22 @@
 #import "RefreshGifHeader.h"
 #import "ZFAuctionRulesTableCell.h"
 #import "ZFConfirmationTableCell.h"
+#import "MJExtension.h"
+#import "SVProgressHUD.h"
+#import "RefreshGifHeader.h"
+#import "http_activity.h"
+#import "ZFdetailsModel.h"
+#import "ZFTool.h"
+#import "JX_GCDTimerManager.h"
+#import "ZFStartAuctionModel.h"
 
-@interface ZFStartAuctionVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface ZFStartAuctionVC()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ETHAmountInvesTableCellDelegate>
 
 /* collectionView */
 @property (strong , nonatomic)UICollectionView *collectionView;
+
+@property (nonatomic, strong) ZFdetailListModel *detailList;
+@property (nonatomic, strong) ZFStartAuctionModel *startAuction;
 
 @end
 
@@ -29,19 +40,19 @@ static NSString *const ZFAuctionRulesTableCellID = @"ZFAuctionRulesTableCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UIBarButtonItem *item1 = [[UIBarButtonItem alloc]  initWithTitle:@"竞拍"
-                                                               style:UIBarButtonItemStylePlain target:self action:@selector(auctionButtonDidClick)];
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"拼团"
-                                                              style:UIBarButtonItemStylePlain target:self action:@selector(assembleButtonDidClick)];
-    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"秒杀"
-                                                              style:UIBarButtonItemStylePlain target:self action:@selector(spikeButtonDidClick)];
-    
-    //设置图片与按钮间距
-    [item2 setImageInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
-    self.navigationItem.rightBarButtonItems = @[item1,item2,item3];
+    self.title = @"开始竞拍";
     
     [self setupUI];
+    //start
+    __weak typeof(self) weakSelf = self;
+    [[JX_GCDTimerManager sharedInstance] scheduledDispatchTimerWithName:@"myTime_hash"
+                                                           timeInterval:5.0
+                                                                  queue:dispatch_get_main_queue()
+                                                                repeats:YES
+                                                          fireInstantly:NO
+                                                                 action:^{
+                                                                     [weakSelf loadDatanew];
+                                                                 }];
     
 }
 
@@ -68,12 +79,37 @@ static NSString *const ZFAuctionRulesTableCellID = @"ZFAuctionRulesTableCellID";
     
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     
+    [self.collectionView.mj_header beginRefreshing];
+    
 }
 
 -(void)loadData
 {
-    
+    ZWeakSelf
+    [http_activity auction_detail:self.ID success:^(id responseObject)
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.collectionView.mj_header endRefreshing];
+     }];
 }
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.detailList = [ZFdetailListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.collectionView reloadData];
+}
+
+
+
 
 
 #pragma mark - <UICollectionViewDataSource>
@@ -87,7 +123,7 @@ static NSString *const ZFAuctionRulesTableCellID = @"ZFAuctionRulesTableCellID";
 {
     if (section==1)
     {
-        return 5;
+        return self.detailList.bondUser.count;
     }
     return 1;
 }
@@ -100,16 +136,26 @@ static NSString *const ZFAuctionRulesTableCellID = @"ZFAuctionRulesTableCellID";
     {
         ZFAuctionEndTableCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFAuctionEndTableCellID forIndexPath:indexPath];
         
+        oell.detailsModel = self.detailList.auction;
+        if (self.detailList.bondUser.count>0) {
+            ZFBondUserModel* model = [self.detailList.bondUser objectAtIndex:indexPath.section];
+            oell.bondUserModel = model;
+        }
+        oell.startAuctionModel = self.startAuction;
+        
         gridcell = oell;
     }
     else if (indexPath.section == 1)
     {
         ZFAuctionPeopleTableCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFAuctionPeopleTableCellID forIndexPath:indexPath];
+        ZFBondUserModel* model = [self.detailList.bondUser objectAtIndex:indexPath.item];
+        xell.bondUserModel = model;
         gridcell = xell;
     }
     else if (indexPath.section == 2)
     {
         ZFConfirmationTableCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFConfirmationTableCellID forIndexPath:indexPath];
+        xell.delegate = self;
         gridcell = xell;
     }
     else if(indexPath.section==3)
@@ -159,7 +205,7 @@ static NSString *const ZFAuctionRulesTableCellID = @"ZFAuctionRulesTableCellID";
     }
     else if (indexPath.section == 1)
     {
-        return CGSizeMake(LL_ScreenWidth/5 , LL_ScreenWidth/5 + 25);
+        return CGSizeMake(LL_ScreenWidth/5 , LL_ScreenWidth/5 + 20);
     }
     else if (indexPath.section == 2)
     {
@@ -266,6 +312,57 @@ static NSString *const ZFAuctionRulesTableCellID = @"ZFAuctionRulesTableCellID";
     return _collectionView;
 }
 
+
+//正在输入中
+-(void)ETHAmountInvesTableCellInputing:(NSString*)text indexPath:(NSIndexPath*)indexPath
+{
+//    self.tz.creditmy = text;
+}
+
+- (void)ZFConfirmationTableCellDidClick
+{
+    ZWeakSelf
+    [http_activity offerPrice:1 price:nil success:^(id responseObject)
+     {
+         [weakSelf confirm_ok:responseObject];
+
+     } failure:^(NSError *error) {
+
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+-(void)confirm_ok:(id)responseObject
+{
+//    self.detailList = [ZFdetailListModel mj_objectWithKeyValues:responseObject];
+
+    // 初始化对话框
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"竟拍成功" message:@"24小时内付款" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    // 弹出对话框
+    [self presentViewController:alert animated:YES completion:nil];
+
+}
+
+//获取最新竞拍
+- (void)loadDatanew
+{
+    ZWeakSelf
+    [http_activity GetAucMaxPrice:1 num:5 success:^(id responseObject)
+     {
+         [weakSelf loadDatanew_ok:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+-(void)loadDatanew_ok:(id)responseObject
+{
+    self.startAuction = [ZFStartAuctionModel mj_objectWithKeyValues:responseObject];
+    [self.collectionView reloadData];
+}
 
 
 @end

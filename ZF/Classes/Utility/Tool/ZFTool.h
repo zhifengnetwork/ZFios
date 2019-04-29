@@ -54,11 +54,17 @@ NS_ASSUME_NONNULL_BEGIN
 //时间戳转日期
 + (NSDate*)UnixTimeToDate:(long long)lTime;
 
+//获取当前时间戳
++(NSString*)UnixTimeString;
+
 //获取时间显示字符串
 + (NSString*)dateTimeAgoText:(NSString*)datelineString;
 
 //竟拍日期
 +(NSString*)dateTextJP:(NSString*)dateline;
+
+//开始竞拍日期
++(NSString*)startDate:(NSString*)dateline;
 
 //日期
 +(NSString*)dateText:(NSString*)dateline;

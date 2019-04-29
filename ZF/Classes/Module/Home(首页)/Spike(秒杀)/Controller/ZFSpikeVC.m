@@ -13,13 +13,25 @@
 #import "ZFSpikeMerchandiseTableViewCell.h"
 #import "ZFBannerHeadView.h"
 #import "ZFEndSpikeVC.h"
+#import "http_home.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "RefreshGifHeader.h"
+#import "ZFPlantingModel.h"
+#import "ZFADModel.h"
+#import "http_activity.h"
+#import "ZFSpikeModel.h"
 
-@interface ZFSpikeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface ZFSpikeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFSpikeDetailsTableCellDelegate>
 
 /* collectionView */
 @property (strong , nonatomic)UICollectionView *collectionView;
 
 @property (strong , nonatomic)NSMutableArray *imageUrls;
+
+@property (strong , nonatomic)ZFPlantingListModel *plantingLisModel;
+
+@property (strong , nonatomic)ZFSpikeModel *spikeModel;
 
 @end
 
@@ -94,29 +106,67 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
     self.collectionView.backgroundColor = TableViewBGColor;
     
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-//
-//    self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-//
-//    _topToolView = [[ZFHomeTopToolView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 64)];
-//    ZWeakSelf
-//    _topToolView.leftItemClickBlock = ^{
-//        NSLog(@"点击了首页扫一扫");
-//    };
-//    _topToolView.rightItemClickBlock = ^{
-//        NSLog(@"点击了首页分类");
-//    };
-//    _topToolView.searchButtonClickBlock = ^{
-//        NSLog(@"点击了首页搜索");
-//    };
-//    [self.view addSubview:_topToolView];
+     [self.collectionView.mj_header beginRefreshing];
 }
 
 -(void)loadData
 {
-    
+    ZWeakSelf
+    [http_home index:9 cat_id:15 name:nil success:^(id responseObject)
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.collectionView.mj_header endRefreshing];
+     }];
 }
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.plantingLisModel = [ZFPlantingListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.imageUrls removeAllObjects];
+    for (int i=0; i<self.plantingLisModel.adlist.count; i++)
+    {
+        ZFADModel* ad = [self.plantingLisModel.adlist objectAtIndex:i];
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,ad.ad_code];
+        [self.imageUrls addObject:str];
+    }
+    
+    [self.collectionView reloadData];
+}
+
+-(void)loadData2
+{
+    ZWeakSelf
+    [http_activity flash_sale_list:1 num:6 start_time:1 end_time:1 success:^(id responseObject)
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData2:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.collectionView.mj_header endRefreshing];
+     }];
+}
+
+-(void)showData2:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.spikeModel = [ZFSpikeModel mj_objectWithKeyValues:responseObject];
+    
+    [self.collectionView reloadData];
+}
+
 
 
 #pragma mark - <UICollectionViewDataSource>
@@ -318,13 +368,16 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
 {
     if (_imageUrls==nil) {
         _imageUrls = [[NSMutableArray alloc]init];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1obZ_BmLT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs9.gomein.net.cn/T1C3J_B5LT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1CwYjBCCT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1u8V_B4ET1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1zODgB5CT1RCvBVdK.jpg"];
     }
     return _imageUrls;
+}
+
+/**
+ 马上抢
+ */
+- (void)ZFSpikeDetailsTableCellDidClick:(ZFSpikeModel *)spikeModel
+{
+    
 }
 
 @end

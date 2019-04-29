@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFdetailsModel.h"
+#import "ZFStartAuctionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
  竞拍结束头部cell
  */
 @interface ZFAuctionEndTableCell : UICollectionViewCell
+
+@property (nonatomic, strong) NSString *title;
+
+@property(nonatomic, strong) ZFdetailsModel *detailsModel;
+
+@property(nonatomic, strong) ZFBondUserModel *bondUserModel;
+
+@property(nonatomic, strong) ZFStartAuctionModel *startAuctionModel;
 
 @end
 

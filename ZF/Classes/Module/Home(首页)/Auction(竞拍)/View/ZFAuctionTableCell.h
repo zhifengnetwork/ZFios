@@ -11,10 +11,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ZFAuctionTableCellDelegate <NSObject>
+
+@optional
+
+/**
+ 参与竞拍
+ */
+- (void)ZFAuctionTableCellDidClick:(ZFAuctionModel *)auctionModel;
+
+@end
+
 /**
  竞拍cell
  */
 @interface ZFAuctionTableCell : UITableViewCell
+
+
+@property (nonatomic, weak) id<ZFAuctionTableCellDelegate> delegate;
 
 @property(nonatomic, strong) ZFAuctionModel *auctionModel;
 
