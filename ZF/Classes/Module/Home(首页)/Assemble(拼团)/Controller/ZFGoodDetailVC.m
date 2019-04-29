@@ -10,6 +10,8 @@
 #import <SDCycleScrollView.h>
 #import "ZFSpellListCell.h"
 #import "ZFSpellListHeaderView.h"
+#import "ZFEvaluationVC.h"
+#import "ZFBuyToolBarView.h"
 
 @interface ZFGoodDetailVC ()<SDCycleScrollViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UIScrollView *scrollView;
@@ -51,10 +53,6 @@
 
 @property (nonatomic, strong)UITableView *tableView;
 
-@property (nonatomic, strong)UIButton *collectButton;
-@property (nonatomic, strong)UIButton *customerServiceButton;
-@property (nonatomic, strong)UIButton *onlyBuyButton;
-@property (nonatomic, strong)UIButton *spellListButton;
 
 @end
 
@@ -114,17 +112,13 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     UIView *lineView4 = [[UIView alloc]init];
     lineView4.backgroundColor = RGBColor(245, 245, 245);
     [self.scrollView addSubview:lineView4];
-    
     [self.scrollView addSubview:self.tableView];
-    [self.view addSubview:self.collectButton];
-    [self.view addSubview:self.customerServiceButton];
-    [self.view addSubview:self.onlyBuyButton];
-    [self.view addSubview:self.spellListButton];
-    
     
     ZFSpellListHeaderView *headerView = [[ZFSpellListHeaderView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 35)];
     self.tableView.tableHeaderView = headerView;
     
+    ZFBuyToolBarView *toolView = [[ZFBuyToolBarView alloc]init];
+    [self.view addSubview:toolView];
     
     [_backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.cycleScrollView).with.offset(27.5);
@@ -314,13 +308,12 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView4.mas_bottom);
         make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(200);
+        make.height.mas_equalTo(150);
     }];
     
-    [_collectButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [toolView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.scrollView.mas_bottom);
-        make.left.bottom.equalTo(self.view);
-        make.width.mas_equalTo(51);
+        make.left.right.bottom.equalTo(self.view);
     }];
     
 }
@@ -328,7 +321,8 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight-47)];
         _scrollView.delegate = self;
-        _scrollView.contentSize = CGSizeMake(0,1000);
+        _scrollView.contentSize = CGSizeMake(0,970);
+        _scrollView.showsVerticalScrollIndicator = NO;
     }return _scrollView;
 }
 
@@ -483,6 +477,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         _praiseButton.titleLabel.font = [UIFont systemFontOfSize:10];
         [_praiseButton setTitle:@"好评(200+)" forState:UIControlStateNormal];
         [_praiseButton setTitleColor:RGBColor(153, 153, 153) forState:UIControlStateNormal];
+        [_praiseButton addTarget:self action:@selector(jumpEvaluation) forControlEvents:UIControlEventTouchUpInside];
     }return _praiseButton;
 }
 
@@ -493,6 +488,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         _mediumReviewButton.titleLabel.font = [UIFont systemFontOfSize:10];
         [_mediumReviewButton setTitle:@"中评(0)" forState:UIControlStateNormal];
         [_mediumReviewButton setTitleColor:RGBColor(153, 153, 153) forState:UIControlStateNormal];
+        [_mediumReviewButton addTarget:self action:@selector(jumpEvaluation) forControlEvents:UIControlEventTouchUpInside];
     }return _mediumReviewButton;
 }
 
@@ -503,6 +499,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         _badReviewButton.titleLabel.font = [UIFont systemFontOfSize:10];
         [_badReviewButton setTitle:@"差评(0)" forState:UIControlStateNormal];
         [_badReviewButton setTitleColor:RGBColor(153, 153, 153) forState:UIControlStateNormal];
+        [_badReviewButton addTarget:self action:@selector(jumpEvaluation) forControlEvents:UIControlEventTouchUpInside];
     }return _badReviewButton;
 }
 
@@ -513,6 +510,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         _baskInButton.titleLabel.font = [UIFont systemFontOfSize:10];
         [_baskInButton setTitle:@"差评(0)" forState:UIControlStateNormal];
         [_baskInButton setTitleColor:RGBColor(153, 153, 153) forState:UIControlStateNormal];
+        [_baskInButton addTarget:self action:@selector(jumpEvaluation) forControlEvents:UIControlEventTouchUpInside];
     }return _baskInButton;
 }
 
@@ -605,6 +603,8 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     }return _tableView;
 }
 
+
+
 #pragma mark - 点击图片Bannar跳转
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
@@ -656,12 +656,22 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = NO;
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBar.hidden = YES;
+}
+
 - (void)shareClick{
-    
+    //分享界面
 }
 
 - (void)jumpEvaluation{
-    
+    //跳到评价界面
+    ZFEvaluationVC *vc = [[ZFEvaluationVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark --tableview协议
