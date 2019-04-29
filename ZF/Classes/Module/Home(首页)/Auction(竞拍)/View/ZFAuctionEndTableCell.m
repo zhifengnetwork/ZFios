@@ -7,6 +7,8 @@
 //
 
 #import "ZFAuctionEndTableCell.h"
+#import "UIImageView+WebCache.h"
+#import "ZFTool.h"
 
 @interface ZFAuctionEndTableCell()
 
@@ -69,7 +71,7 @@
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_tradeNameLabel.mas_left);
+        make.left.equalTo(self->_tradeNameLabel.mas_left).offset(-10);
         make.top.equalTo(self->_tradeNameLabel.mas_bottom).offset(50);
     }];
     
@@ -79,7 +81,7 @@
     }];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(210);
+        make.width.mas_equalTo(180);
         make.height.mas_equalTo(60);
         make.right.equalTo(self->_iconView.mas_right);
         make.top.equalTo(self->_tradeNameLabel.mas_bottom).offset(12);
@@ -88,7 +90,7 @@
     
     [_headView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bgView.mas_left).offset(5);
-        make.width.height.mas_equalTo(50);
+        make.width.height.mas_equalTo(40);
         make.centerY.mas_equalTo(self->_bgView);
     }];
     
@@ -116,6 +118,42 @@
      }];
     
 }
+
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    _titleLabel.text = _title;
+}
+
+- (void)setDetailsModel:(ZFdetailsModel *)detailsModel
+{
+    _detailsModel = detailsModel;
+    NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_detailsModel.original_img];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    _tradeNameLabel.text = _detailsModel.goods_name;
+    _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_detailsModel.start_price];
+    _titleLabel.text = [ZFTool startDate:_detailsModel.end_time];
+
+}
+
+-(void)setBondUserModel:(ZFBondUserModel *)bondUserModel
+{
+    _bondUserModel = bondUserModel;
+    //显示头像
+    [_headView sd_setImageWithURL:[NSURL URLWithString:_bondUserModel.head_pic]];
+    _highestLabel.text = [NSString stringWithFormat:@"当前最高¥ %@",_bondUserModel.offer_price];
+}
+
+- (void)setStartAuctionModel:(ZFStartAuctionModel *)startAuctionModel
+{
+    _startAuctionModel = startAuctionModel;
+    
+    //显示头像
+//    [_headView sd_setImageWithURL:[NSURL URLWithString:_startAuctionModel.head_pic]];
+//    _highestLabel.text = [NSString stringWithFormat:@"当前最高¥ %@",_startAuctionModel.offer_price];
+    
+}
+
 
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
@@ -173,6 +211,8 @@
     if (_headView == nil) {
         _headView = [[UIImageView alloc] init];
         _headView.image = [UIImage imageNamed:@"weixi"];
+        _headView.layer.cornerRadius = 20;
+        _headView.clipsToBounds = YES;
     }
     return _headView;
 }
@@ -181,7 +221,7 @@
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.textColor = RGBColorHex(0x333333);
-        _nameLabel.font = [UIFont systemFontOfSize:15];
+        _nameLabel.font = [UIFont systemFontOfSize:13];
         _nameLabel.text = @"张三";
     }
     return _nameLabel;
@@ -191,7 +231,7 @@
     if (_highestLabel == nil) {
         _highestLabel = [[UILabel alloc] init];
         _highestLabel.textColor = RGBColorHex(0x333333);
-        _highestLabel.font = [UIFont systemFontOfSize:15];
+        _highestLabel.font = [UIFont systemFontOfSize:13];
         _highestLabel.text = @"当前最高¥ 90";
     }
     return _highestLabel;

@@ -15,21 +15,22 @@
  @param start_time 开始时间
  @param end_time 结束时间
  */
-+ (void)flash_sale_list:(NSInteger)start_time end_time:(NSInteger)end_time goodModel:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)flash_sale_list:(NSInteger)page num:(NSInteger)num start_time:(NSInteger)start_time end_time:(NSInteger)end_time  success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str3 = [NSString stringWithFormat:@"%ld",page];
+    [parameters setObject:str3 forKey:@"page"];
+    
+    NSString *str4 = [NSString stringWithFormat:@"%ld",num];
+    [parameters setObject:str4 forKey:@"num"];
     
     NSString *str = [NSString stringWithFormat:@"%ld",start_time];
     [parameters setObject:str forKey:@"start_time"];
     
     NSString *str2 = [NSString stringWithFormat:@"%ld",end_time];
     [parameters setObject:str2 forKey:@"end_time"];
-    
-    NSString *str3 = [NSString stringWithFormat:@"%ld",goodModel.page];
-    [parameters setObject:str3 forKey:@"page"];
-    
-    NSString *str4 = [NSString stringWithFormat:@"%ld",goodModel.num];
-    [parameters setObject:str4 forKey:@"num"];
+
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
@@ -107,12 +108,11 @@
 
 //竞拍详情
 //用户注册接口
-+ (void)auction_detail:(NSInteger)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)auction_detail:(NSString*)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    NSString *str1 = [NSString stringWithFormat:@"%ld",ID];
-    [parameters setObject:str1 forKey:@"id"];
+    [parameters setObject:ID forKey:@"id"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

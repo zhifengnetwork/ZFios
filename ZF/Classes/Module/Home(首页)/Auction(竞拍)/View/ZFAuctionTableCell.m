@@ -56,7 +56,7 @@
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(198);
+        make.width.mas_equalTo(215);
         make.height.mas_equalTo(50);
         make.top.mas_equalTo(15);
         make.centerX.mas_equalTo(self.contentView);
@@ -101,14 +101,16 @@
     [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
     _timeLabel.text = [ZFTool dateTextJP:_auctionModel.start_time];
     _nameLabel.text = _auctionModel.goods_name;
-    _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",_auctionModel.start_price];
+    _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_auctionModel.start_price];
 }
 
 - (void)auctionButtonDidClick
 {
-    
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(ZFAuctionTableCellDidClick:)])
+    {
+        [self.delegate ZFAuctionTableCellDidClick:self.auctionModel];
+    }
 }
-
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {

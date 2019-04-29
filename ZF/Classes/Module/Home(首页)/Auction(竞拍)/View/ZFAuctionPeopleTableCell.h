@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFdetailsModel.h"
+#import "ZFStartAuctionModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
  竞拍人cell
  */
 @interface ZFAuctionPeopleTableCell : UICollectionViewCell
+
+@property(nonatomic, strong) ZFBondUserModel *bondUserModel;
+
+@property(nonatomic, strong) ZFStartAuctionModel *startAuctionModel;
 
 @end
 

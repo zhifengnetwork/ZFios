@@ -7,13 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFSpikeModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol ZFSpikeDetailsTableCellDelegate <NSObject>
+
+@optional
+
+/**
+ 马上抢
+ */
+- (void)ZFSpikeDetailsTableCellDidClick:(ZFSpikeModel *)spikeModel;
+
+@end
 
 /**
  秒杀详情cell
  */
 @interface ZFSpikeDetailsTableCell : UICollectionViewCell
+
+@property (nonatomic, weak) id<ZFSpikeDetailsTableCellDelegate> delegate;
+
+@property(nonatomic, strong) ZFSpikeModel *spikeModel;
 
 @end
 

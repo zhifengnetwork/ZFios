@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param start_time 开始时间
  @param end_time 结束时间
  */
-+ (void)flash_sale_list:(NSInteger)start_time end_time:(NSInteger)end_time goodModel:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)flash_sale_list:(NSInteger)page num:(NSInteger)num start_time:(NSInteger)start_time end_time:(NSInteger)end_time  success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //获取抢购活动时间列表
 + (void)get_flash_sale_time:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 //竞拍详情
 //用户注册接口
 //id    竞拍活动ID
-+ (void)auction_detail:(NSInteger)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)auction_detail:(NSString*)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 /**
  //竞拍出价

@@ -11,7 +11,13 @@
 #import "ZFSpikeFooterView.h"
 #import "ZFEndSpikeHeadView.h"
 #import "ZFplaceOrderVC.h"
-
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "RefreshGifHeader.h"
+#import "ZFPlantingModel.h"
+#import "ZFADModel.h"
+#import "http_activity.h"
+#import "ZFSpikeModel.h"
 
 @interface ZFEndSpikeVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -24,6 +30,8 @@
 @property (nonatomic, assign) BOOL isUploadAvatar;
 
 @property (strong , nonatomic)NSMutableArray *imageUrls;
+
+@property (strong , nonatomic)ZFSpikeModel *spikeModel;
 
 @end
 
@@ -39,7 +47,13 @@ static NSString *const ZFSecondkillMerTableCelllD = @"ZFSecondkillMerTableCelllD
     [self setupUI];
     [self setupTableView];
     
-    // Do any additional setup after loading the view.
+    //自定义刷新动画
+    ZWeakSelf
+    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 //    [self loadData];
 }
 
@@ -102,6 +116,32 @@ static NSString *const ZFSecondkillMerTableCelllD = @"ZFSecondkillMerTableCelllD
     _headView = [[ZFEndSpikeHeadView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 435)];
     _headView.imageUrls = self.imageUrls;
     self.tableView.tableHeaderView = _headView;
+}
+
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_activity flash_sale_info:self.ID success:^(id responseObject)
+     {
+         [self.tableView.mj_header endRefreshing];
+         [weakSelf showData_ok:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.tableView.mj_header endRefreshing];
+     }];
+}
+
+-(void)showData_ok:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.spikeModel = [ZFSpikeModel mj_objectWithKeyValues:responseObject];
+    
+    [self.tableView reloadData];
 }
 
 

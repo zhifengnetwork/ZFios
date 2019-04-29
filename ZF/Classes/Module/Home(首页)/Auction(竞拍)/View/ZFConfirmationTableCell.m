@@ -7,12 +7,11 @@
 //
 
 #import "ZFConfirmationTableCell.h"
+#import "PPNumberButton.h"
 
-@interface ZFConfirmationTableCell()
+@interface ZFConfirmationTableCell()<PPNumberButtonDelegate>
 
-@property (nonatomic, strong) UIImageView* reduceView;
-@property (nonatomic, strong) UILabel* numberLabel;
-@property (nonatomic, strong) UIImageView* plusView;
+@property (nonatomic, strong) PPNumberButton* numberButton;
 @property (nonatomic, strong) UIButton *confirButton;
 
 @end
@@ -32,24 +31,14 @@
 - (void)setup
 {
     self.contentView.backgroundColor = RGBColorHex(0xffffff);
-    [self.contentView addSubview:self.reduceView];
-    [self.contentView addSubview:self.numberLabel];
-    [self.contentView addSubview:self.plusView];
+    [self.contentView addSubview:self.numberButton];
     [self.contentView addSubview:self.confirButton];
     
-    [_reduceView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_numberButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.centerY.equalTo(self.contentView);
-    }];
-    
-    [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_reduceView.mas_right).offset(7);
-        make.centerY.equalTo(self->_reduceView);
-    }];
-    
-    [_plusView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_numberLabel.mas_right).offset(7);
-        make.centerY.equalTo(self.contentView);
+        make.width.mas_equalTo(70);
+        make.height.mas_equalTo(20);
     }];
     
     [_confirButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -74,36 +63,61 @@
     
 }
 
-- (void)confirButtonDidClick
+
+- (void)setStartAuctionModel:(ZFStartAuctionModel *)startAuctionModel
 {
+    _startAuctionModel = startAuctionModel;
     
 }
 
-
-- (UIImageView *)reduceView {
-    if (_reduceView == nil) {
-        _reduceView = [[UIImageView alloc] init];
-        _reduceView.image = [UIImage imageNamed:@"jian"];
+- (void)confirButtonDidClick
+{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFConfirmationTableCellDidClick)])
+    {
+        [self.delegate ZFConfirmationTableCellDidClick];
     }
-    return _reduceView;
 }
 
-- (UILabel *)numberLabel {
-    if (_numberLabel == nil) {
-        _numberLabel = [[UILabel alloc] init];
-        _numberLabel.textColor = RGBColorHex(0x333333);
-        _numberLabel.font = [UIFont systemFontOfSize:15];
-        _numberLabel.text = @"1";
+-(PPNumberButton* )numberButton
+{
+    if (_numberButton==nil)
+    {
+        _numberButton = [PPNumberButton numberButtonWithFrame:CGRectMake(0, 0, 110, 30)];
+        // 开启抖动动画
+        _numberButton.shakeAnimation = YES;
+        _numberButton.currentNumber = 0;
+        // 设置最小值
+        _numberButton.minValue = 0;
+        // 设置最大值
+        _numberButton.maxValue = 1000;
+        // 设置输入框中的字体大小
+        _numberButton.inputFieldFont = 12;
+        _numberButton.increaseTitle = @"＋";
+        _numberButton.decreaseTitle = @"－";
+        _numberButton.delegate = self;
     }
-    return _numberLabel;
+    
+    return _numberButton;
 }
 
-- (UIImageView *)plusView {
-    if (_plusView == nil) {
-        _plusView = [[UIImageView alloc] init];
-        _plusView.image = [UIImage imageNamed:@"jia"];
+/**
+ 加减代理回调
+ 
+ @param numberButton 按钮
+ @param number 结果
+ @param increaseStatus 是否为加状态
+ */
+- (void)pp_numberButton:(PPNumberButton *)numberButton number:(NSInteger)number increaseStatus:(BOOL)increaseStatus
+{
+    if ([self.delegate respondsToSelector:@selector(ETHAmountInvesTableCellInputing: indexPath:)])
+    {
+        [self.delegate ETHAmountInvesTableCellInputing:[NSString stringWithFormat:@"%ld",number] indexPath:nil];
     }
-    return _plusView;
+}
+
+-(NSString*)getAmountText
+{
+    return [NSString stringWithFormat:@"%f",_numberButton.currentNumber];
 }
 
 - (UIButton *)confirButton {

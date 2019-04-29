@@ -7,6 +7,7 @@
 //
 
 #import "ZFAuctionPeopleTableCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZFAuctionPeopleTableCell()
 
@@ -66,11 +67,32 @@
     
 }
 
+-(void)setBondUserModel:(ZFBondUserModel *)bondUserModel
+{
+    _bondUserModel = bondUserModel;
+    //显示头像
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:_bondUserModel.head_pic]];
+    _nameLabel.text =_bondUserModel.user_name;
+    _moneyLabel.text = [NSString stringWithFormat:@"出价¥ %@",_bondUserModel.offer_price];
+}
+
+- (void)setStartAuctionModel:(ZFStartAuctionModel *)startAuctionModel
+{
+    _startAuctionModel = startAuctionModel;
+    
+    //显示头像
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:_bondUserModel.head_pic]];
+    _nameLabel.text =_bondUserModel.user_name;
+    _moneyLabel.text = [NSString stringWithFormat:@"出价¥ %@",_bondUserModel.offer_price];
+    
+}
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
         _iconView.image = [UIImage imageNamed:@"haibao4"];
+        _iconView.layer.cornerRadius = 25;
+        _iconView.clipsToBounds = YES;
     }
     return _iconView;
 }
