@@ -70,11 +70,19 @@
     
 }
 
+-(void)setMinValue:(NSInteger)minValue
+{
+    _minValue = minValue;
+    // 设置最小值
+    _numberButton.minValue = _minValue;
+    _numberButton.currentNumber = _minValue;
+}
+
 - (void)confirButtonDidClick
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFConfirmationTableCellDidClick)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFConfirmationTableCellDidClick:)])
     {
-        [self.delegate ZFConfirmationTableCellDidClick];
+        [self.delegate ZFConfirmationTableCellDidClick:(NSInteger)_numberButton.currentNumber];
     }
 }
 

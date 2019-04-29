@@ -140,6 +140,7 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
     }
     
     [self.collectionView reloadData];
+    [self loadData2];
 }
 
 -(void)loadData2
@@ -180,16 +181,16 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
 {
     if (section==0)
     {
-        return 2;
+        return self.plantingLisModel.flash_sale_goods.count;
     }
     else if (section==1)
     {
         return 3;
     }
-    return 1;
+    return 0;
 }
 
-
+//哪一行显示哪个cell
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *gridcell = nil;
@@ -197,6 +198,8 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
     {
         //秒杀商品
         ZFSpikeDetailsTableCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFSpikeDetailsTableCellID forIndexPath:indexPath];
+        ZFSpikeModel* model = [self.plantingLisModel.flash_sale_goods objectAtIndex:indexPath.item];
+        oell.spikeModel = model;
         
         gridcell = oell;
     }
@@ -338,8 +341,13 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
 //点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZFEndSpikeVC* vc = [[ZFEndSpikeVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.item<self.plantingLisModel.flash_sale_goods)
+    {
+        ZFSpikeModel* model = [self.plantingLisModel.flash_sale_goods objectAtIndex:indexPath.item];
+        ZFEndSpikeVC* vc = [[ZFEndSpikeVC alloc]init];
+        vc.ID = model.ID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 

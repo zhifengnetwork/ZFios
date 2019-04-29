@@ -155,6 +155,7 @@ static NSString *const ZFAuctionRulesTableCellID = @"ZFAuctionRulesTableCellID";
     else if (indexPath.section == 2)
     {
         ZFConfirmationTableCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFConfirmationTableCellID forIndexPath:indexPath];
+        xell.minValue = self.detailList.auction.start_price.integerValue;
         xell.delegate = self;
         gridcell = xell;
     }
@@ -319,10 +320,11 @@ static NSString *const ZFAuctionRulesTableCellID = @"ZFAuctionRulesTableCellID";
 //    self.tz.creditmy = text;
 }
 
-- (void)ZFConfirmationTableCellDidClick
+- (void)ZFConfirmationTableCellDidClick:(NSInteger)number
 {
     ZWeakSelf
-    [http_activity offerPrice:1 price:nil success:^(id responseObject)
+    NSString* str = [NSString stringWithFormat:@"%ld",number];
+    [http_activity offerPrice:self.ID.integerValue price:str success:^(id responseObject)
      {
          [weakSelf confirm_ok:responseObject];
 

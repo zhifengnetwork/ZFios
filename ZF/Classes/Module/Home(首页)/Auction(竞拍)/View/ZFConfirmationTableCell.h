@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 //正在输入中
 -(void)ETHAmountInvesTableCellInputing:(NSString*)text indexPath:(NSIndexPath*)indexPath;
 
-- (void)ZFConfirmationTableCellDidClick;
+- (void)ZFConfirmationTableCellDidClick:(NSInteger)number;
 
 @end
 
@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<ETHAmountInvesTableCellDelegate> delegate;
 
 @property(nonatomic, strong) ZFStartAuctionModel *startAuctionModel;
+
+@property(nonatomic, assign) NSInteger minValue;
 
 -(NSString*)getAmountText;
 
