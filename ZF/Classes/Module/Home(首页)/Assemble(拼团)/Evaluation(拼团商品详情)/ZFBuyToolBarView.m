@@ -109,10 +109,11 @@
 }
 
 #pragma mark -- 跳转
-//选择款式
+//弹出选择款式窗口
 - (void)selectType{
     ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
     
 }

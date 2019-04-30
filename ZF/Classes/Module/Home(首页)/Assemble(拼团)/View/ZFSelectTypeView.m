@@ -30,6 +30,7 @@
 @property (nonatomic, strong)UIButton *agreeButton;
 @end
 @implementation ZFSelectTypeView
+NSInteger count = 1;//存储购物车的数量
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -97,62 +98,62 @@
     }];
     
     [_typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lineView.mas_bottom).with.offset(12.5);
+        make.top.equalTo(lineView.mas_bottom).with.offset(13);
         make.left.equalTo(self).with.offset(20);
     }];
     
     [_typeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(35);
-        make.height.mas_equalTo(15);
+        make.width.mas_equalTo(62);
+        make.height.mas_equalTo(26);
         make.top.equalTo(self.typeLabel.mas_bottom).with.offset(20);
         make.left.equalTo(self).with.offset(20);
     }];
     
     [_typeButton1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(35);
-        make.height.mas_equalTo(15);
+        make.width.mas_equalTo(62);
+        make.height.mas_equalTo(26);
         make.top.equalTo(self.typeButton.mas_top);
         make.left.equalTo(self.typeButton.mas_right).with.offset(30);
     }];
     
     [_typeButton2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(35);
-        make.height.mas_equalTo(15);
+        make.width.mas_equalTo(62);
+        make.height.mas_equalTo(26);
         make.top.equalTo(self.typeButton.mas_top);
         make.left.equalTo(self.typeButton1.mas_right).with.offset(30);
     }];
     
     [_typeButton3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(35);
-        make.height.mas_equalTo(15);
+        make.width.mas_equalTo(62);
+        make.height.mas_equalTo(26);
         make.top.equalTo(self.typeButton.mas_top);
         make.left.equalTo(self.typeButton2.mas_right).with.offset(30);
     }];
     
     [_typeButton4 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(35);
-        make.height.mas_equalTo(15);
-        make.top.equalTo(self.typeButton.mas_bottom).with.offset(22.5);
+        make.width.mas_equalTo(62);
+        make.height.mas_equalTo(26);
+        make.top.equalTo(self.typeButton.mas_bottom).with.offset(23);
         make.left.equalTo(self).with.offset(20);
     }];
     
     [_typeButton5 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(35);
-        make.height.mas_equalTo(15);
+        make.width.mas_equalTo(62);
+        make.height.mas_equalTo(26);
         make.top.equalTo(self.typeButton4.mas_top);
         make.left.equalTo(self.typeButton4.mas_right).with.offset(30);
     }];
     
     [_typeButton6 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(35);
-        make.height.mas_equalTo(15);
+        make.width.mas_equalTo(62);
+        make.height.mas_equalTo(26);
         make.top.equalTo(self.typeButton4.mas_top);
         make.left.equalTo(self.typeButton5.mas_right).with.offset(30);
     }];
     
     [_typeButton7 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(35);
-        make.height.mas_equalTo(15);
+        make.width.mas_equalTo(62);
+        make.height.mas_equalTo(26);
         make.top.equalTo(self.typeButton4.mas_top);
         make.left.equalTo(self.typeButton6.mas_right).with.offset(30);
     }];
@@ -165,7 +166,31 @@
     
     [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).with.offset(20);
-        make.top.equalTo(lineView1).with.offset(12.5);
+        make.top.equalTo(lineView1).with.offset(13);
+    }];
+    
+    [_increaseButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView1.mas_bottom).with.offset(10);
+        make.right.equalTo(self).with.offset(-20);
+        make.width.height.mas_equalTo(18);
+    }];
+
+    [_numberButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.increaseButton.mas_left).with.offset(-1);
+        make.top.equalTo(self.increaseButton.mas_top);
+        make.width.mas_equalTo(35);
+        make.height.mas_equalTo(18);
+    }];
+
+    [_decreaseButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.increaseButton.mas_top);
+        make.right.equalTo(self.numberButton.mas_left).with.offset(-1);
+        make.width.height.mas_equalTo(18);
+    }];
+
+    [_agreeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self);
+        make.height.mas_equalTo(46);
     }];
 }
 
@@ -217,10 +242,10 @@
         _typeButton.titleLabel.font = [UIFont systemFontOfSize:12];
         _typeButton.layer.borderWidth = 1;
         _typeButton.tag = 1;
-        _typeButton.layer.borderColor = RGBColor(204, 204, 204).CGColor;
+        _typeButton.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
         [_typeButton setTitle:@"红色" forState:UIControlStateNormal];
         [_typeButton setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
-        [_typeButton setTitleColor:RGBColor(232, 47, 92) forState:UIControlStateSelected];
+        [_typeButton setTitleColor:RGBColorHex(0xe82f5c) forState:UIControlStateSelected];
         [_typeButton addTarget:self action:@selector(typeChange:) forControlEvents:UIControlEventTouchUpInside];
     }return _typeButton;
 }
@@ -231,10 +256,10 @@
         _typeButton1.titleLabel.font = [UIFont systemFontOfSize:12];
         _typeButton1.layer.borderWidth = 1;
         _typeButton1.tag = 2;
-        _typeButton1.layer.borderColor = RGBColor(204, 204, 204).CGColor;
+        _typeButton1.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
         [_typeButton1 setTitle:@"黑色" forState:UIControlStateNormal];
         [_typeButton1 setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
-        [_typeButton1 setTitleColor:RGBColor(232, 47, 92) forState:UIControlStateSelected];
+        [_typeButton1 setTitleColor:RGBColorHex(0xe82f5c) forState:UIControlStateSelected];
         [_typeButton1 addTarget:self action:@selector(typeChange:) forControlEvents:UIControlEventTouchUpInside];
     }return _typeButton1;
 }
@@ -245,10 +270,10 @@
         _typeButton2.titleLabel.font = [UIFont systemFontOfSize:12];
         _typeButton2.layer.borderWidth = 1;
         _typeButton2.tag = 3;
-        _typeButton2.layer.borderColor = RGBColor(204, 204, 204).CGColor;
+        _typeButton2.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
         [_typeButton2 setTitle:@"蓝色" forState:UIControlStateNormal];
         [_typeButton2 setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
-        [_typeButton2 setTitleColor:RGBColor(232, 47, 92) forState:UIControlStateSelected];
+        [_typeButton2 setTitleColor:RGBColorHex(0xe82f5c) forState:UIControlStateSelected];
         [_typeButton2 addTarget:self action:@selector(typeChange:) forControlEvents:UIControlEventTouchUpInside];
     }return _typeButton2;
 }
@@ -259,10 +284,10 @@
         _typeButton3.titleLabel.font = [UIFont systemFontOfSize:12];
         _typeButton3.layer.borderWidth = 1;
         _typeButton3.tag = 4;
-        _typeButton3.layer.borderColor = RGBColor(204, 204, 204).CGColor;
+        _typeButton3.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
         [_typeButton3 setTitle:@"黄色" forState:UIControlStateNormal];
         [_typeButton3 setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
-        [_typeButton3 setTitleColor:RGBColor(232, 47, 92) forState:UIControlStateSelected];
+        [_typeButton3 setTitleColor:RGBColorHex(0xe82f5c) forState:UIControlStateSelected];
         [_typeButton3 addTarget:self action:@selector(typeChange:) forControlEvents:UIControlEventTouchUpInside];
     }return _typeButton3;
 }
@@ -273,10 +298,10 @@
         _typeButton4.titleLabel.font = [UIFont systemFontOfSize:12];
         _typeButton4.layer.borderWidth = 1;
         _typeButton4.tag = 5;
-        _typeButton4.layer.borderColor = RGBColor(204, 204, 204).CGColor;
+        _typeButton4.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
         [_typeButton4 setTitle:@"红色" forState:UIControlStateNormal];
         [_typeButton4 setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
-        [_typeButton4 setTitleColor:RGBColor(232, 47, 92) forState:UIControlStateSelected];
+        [_typeButton4 setTitleColor:RGBColorHex(0xe82f5c) forState:UIControlStateSelected];
         [_typeButton4 addTarget:self action:@selector(typeChange:) forControlEvents:UIControlEventTouchUpInside];
     }return _typeButton4;
 }
@@ -287,10 +312,10 @@
         _typeButton5.titleLabel.font = [UIFont systemFontOfSize:12];
         _typeButton5.layer.borderWidth = 1;
         _typeButton5.tag = 6;
-        _typeButton5.layer.borderColor = RGBColor(204, 204, 204).CGColor;
+        _typeButton5.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
         [_typeButton5 setTitle:@"红色" forState:UIControlStateNormal];
         [_typeButton5 setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
-        [_typeButton5 setTitleColor:RGBColor(232, 47, 92) forState:UIControlStateSelected];
+        [_typeButton5 setTitleColor:RGBColorHex(0xe82f5c) forState:UIControlStateSelected];
         [_typeButton5 addTarget:self action:@selector(typeChange:) forControlEvents:UIControlEventTouchUpInside];
     }return _typeButton5;
 }
@@ -301,10 +326,10 @@
         _typeButton6.titleLabel.font = [UIFont systemFontOfSize:12];
         _typeButton6.layer.borderWidth = 1;
         _typeButton6.tag = 7;
-        _typeButton6.layer.borderColor = RGBColor(204, 204, 204).CGColor;
+        _typeButton6.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
         [_typeButton6 setTitle:@"红色" forState:UIControlStateNormal];
         [_typeButton6 setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
-        [_typeButton6 setTitleColor:RGBColor(232, 47, 92) forState:UIControlStateSelected];
+        [_typeButton6 setTitleColor:RGBColorHex(0xe82f5c) forState:UIControlStateSelected];
         [_typeButton6 addTarget:self action:@selector(typeChange:) forControlEvents:UIControlEventTouchUpInside];
     }return _typeButton6;
 }
@@ -314,25 +339,93 @@
         _typeButton7 = [[UIButton alloc]init];
         _typeButton7.titleLabel.font = [UIFont systemFontOfSize:12];
         _typeButton7.layer.borderWidth = 1;
-        _typeButton7.tag = 7;
-        _typeButton7.layer.borderColor = RGBColor(204, 204, 204).CGColor;
+        _typeButton7.tag = 8;
+        _typeButton7.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
         [_typeButton7 setTitle:@"红色" forState:UIControlStateNormal];
         [_typeButton7 setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
-        [_typeButton7 setTitleColor:RGBColor(232, 47, 92) forState:UIControlStateSelected];
+        [_typeButton7 setTitleColor:RGBColorHex(0xe82f5c) forState:UIControlStateSelected];
         [_typeButton7 addTarget:self action:@selector(typeChange:) forControlEvents:UIControlEventTouchUpInside];
     }return _typeButton7;
+}
+
+- (UILabel *)numberLabel{
+    if (_numberLabel == nil) {
+        _numberLabel = [[UILabel alloc]init];
+        _numberLabel.font = [UIFont systemFontOfSize:12];
+        _numberLabel.textColor = RGBColorHex(0x333333);
+        _numberLabel.text = @"数量";
+    }return _numberLabel;
+}
+
+- (UIButton *)decreaseButton{
+    if (_decreaseButton == nil) {
+        _decreaseButton = [[UIButton alloc]init];
+        _decreaseButton.backgroundColor = RGBColorHex(0xf5f5f5);
+        _decreaseButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_decreaseButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
+        [_decreaseButton setTitle:@"-" forState:UIControlStateNormal];
+        [_decreaseButton addTarget:self action:@selector(NumberChange:) forControlEvents:UIControlEventTouchUpInside];
+    }return _decreaseButton;
+}
+
+- (UIButton *)numberButton{
+    if (_numberButton == nil) {
+        _numberButton = [[UIButton alloc]init];
+        _numberButton.backgroundColor = RGBColorHex(0xeaeaea);
+        _numberButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_numberButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
+        [_numberButton setTitle:@"1" forState:UIControlStateNormal];
+    }return _numberButton;
+}
+
+- (UIButton *)increaseButton{
+    if (_increaseButton == nil) {
+        _increaseButton = [[UIButton alloc]init];
+        _increaseButton.backgroundColor = RGBColorHex(0xeaeaea);
+        _increaseButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_increaseButton setTitleColor:RGBColorHex(0x333333) forState:UIControlStateNormal];
+        [_increaseButton setTitle:@"+" forState:UIControlStateNormal];
+        [_increaseButton addTarget:self action:@selector(NumberChange:) forControlEvents:UIControlEventTouchUpInside];
+    }return _increaseButton;
+}
+
+- (UIButton *)agreeButton{
+    if (_agreeButton == nil) {
+        _agreeButton = [[UIButton alloc]init];
+        [_agreeButton setBackgroundImage:[UIImage imageNamed:@"agree"] forState:UIControlStateNormal];
+        _agreeButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_agreeButton setTitle:@"确认" forState:UIControlStateNormal];
+        [_agreeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_agreeButton addTarget:self action:@selector(agreeClick) forControlEvents:UIControlEventTouchUpInside];
+    }return _agreeButton;
 }
 #pragma mark --方法
 
 - (void)typeChange: (UIButton *)btn{
+    btn.selected = YES;
+    btn.layer.borderColor = RGBColorHex(0xe82f5c).CGColor;
+    
     if (_oldButton.tag !=btn.tag) {
-        _oldButton.layer.borderColor = RGBColor(204, 204, 204).CGColor;
-        
+        _oldButton.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
+        _oldButton.selected = NO;
+        _oldButton = btn;
+    }else{
+        _oldButton = btn;
     }
-    if (btn.tag == 1) {
-        btn.layer.borderColor = RGBColor(232, 47, 92).CGColor;
-        
+    
+}
+
+- (void)NumberChange: (UIButton *)btn{
+    
+    if (btn == self.decreaseButton) {
+        count--;
+        if (count <= 0) {
+            count = 0;
+        }
+    }else{
+        count++;
     }
+    [self.numberButton setTitle:[NSString stringWithFormat:@"%ld",(long)count] forState:UIControlStateNormal];
 }
 
 //获取当前控制器
@@ -356,5 +449,9 @@
 
 - (void)cancelClick{
     [[self currentViewController]dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)agreeClick{
+    //确认
 }
 @end
