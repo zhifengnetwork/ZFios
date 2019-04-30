@@ -12,30 +12,67 @@
 @implementation http_user
 
 //用户注册
-+(void)signup:(NSString*)username password:(NSString*)password code:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
++(void)userReg:(UserInfoModel*)userInfo success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 {
     HttpTool *http = [HttpTool sharedManager];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:3];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:4];
     
-    if ( !kStringIsEmpty(username) )
+    if ( !kStringIsEmpty(userInfo.nickname) )
     {
-        [parameters setObject:username forKey:@"username"];
+        [parameters setObject:userInfo.nickname forKey:@"nickname"];
     }
     
-    if ( !kStringIsEmpty(password) )
+    if ( !kStringIsEmpty(userInfo.mobile) )
     {
-        [parameters setObject:password forKey:@"password"];
+        [parameters setObject:userInfo.mobile forKey:@"username"];
     }
     
-    if ( !kStringIsEmpty(code) )
+    if ( !kStringIsEmpty(userInfo.password) )
     {
-        [parameters setObject:code forKey:@"code"];
+        [parameters setObject:userInfo.password forKey:@"password"];
+    }
+    
+    if ( !kStringIsEmpty(userInfo.password2) )
+    {
+        [parameters setObject:userInfo.password2 forKey:@"password2"];
+    }
+    if ( !kStringIsEmpty(userInfo.code) )
+    {
+        [parameters setObject:userInfo.code forKey:@"code"];
     }
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"api/signup"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/reg"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+//发送短信
++(void)validateCode:(NSString*)type scene:(NSString*)scene mobile:(NSString*)mobile success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:4];
+    
+    if ( !kStringIsEmpty(type) )
+    {
+        [parameters setObject:type forKey:@"type"];
+    }
+    
+    if ( !kStringIsEmpty(scene) )
+    {
+        [parameters setObject:scene forKey:@"scene"];
+    }
+    
+    if ( !kStringIsEmpty(mobile) )
+    {
+        [parameters setObject:mobile forKey:@"mobile"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"home/Api/app_send_validate_code"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -149,6 +186,81 @@
     
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_detail"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+/**
+ 找回密码验证码比对
+ */
++(void)FindPwdCheckSms:(NSString*)mobile code:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    if ( !kStringIsEmpty(mobile) )
+    {
+        [parameters setObject:mobile forKey:@"mobile"];
+    }
+    
+    if ( !kStringIsEmpty(code) )
+    {
+        [parameters setObject:code forKey:@"code"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/FindPwdCheckSms"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+/**
+ 找回密码
+ */
++(void)FindPwd:(NSString*)mobile password:(NSString*)password password2:(NSString*)password2 success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    if ( !kStringIsEmpty(mobile) )
+    {
+        [parameters setObject:mobile forKey:@"mobile"];
+    }
+    
+    if ( !kStringIsEmpty(password) )
+    {
+        [parameters setObject:password forKey:@"password"];
+    }
+    
+    if ( !kStringIsEmpty(password2) )
+    {
+        [parameters setObject:password2 forKey:@"password2"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/FindPwd"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+/**
+ 找回密码
+ */
++(void)weixin_login:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    if ( !kStringIsEmpty(code) )
+    {
+        [parameters setObject:code forKey:@"code"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/weixin_login"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 

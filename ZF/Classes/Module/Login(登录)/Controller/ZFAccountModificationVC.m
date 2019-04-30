@@ -9,6 +9,13 @@
 #import "ZFAccountModificationVC.h"
 #import "JKCountDownButton.h"
 #import "ZFResetPasswordVC.h"
+#import "ZFTool.h"
+#import "http_user.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "UserInfoModel.h"
+#import "CQCountDownButton.h"
+#import "CQCountDownButton.h"
 
 @interface ZFAccountModificationVC ()
 
@@ -26,6 +33,7 @@
 
 @property (nonatomic, strong) UIButton *loginButton;
 
+@property (nonatomic, strong) CQCountDownButton* vcodeButton;
 
 @end
 
@@ -48,13 +56,14 @@
     [self.view addSubview:self.bg2View];
     [self.view addSubview:self.phoneLabel];
     [self.view addSubview:self.phoneTextField];
-     [self.view addSubview:self.vcodeTextField];
+    [self.view addSubview:self.vcodeTextField];
     [self.view addSubview:self.verificationTextField];
    
     [self.view addSubview:self.iconView];
     [self.view addSubview:self.vcodeView];
     
     [self.view addSubview:self.loginButton];
+    [self.view addSubview:self.vcodeButton];
     
     [_phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view);
@@ -74,7 +83,7 @@
     [_bg1View mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_bgView.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(10);
-        make.right.equalTo(self.view).offset(-10);
+        make.width.mas_equalTo(230);
         make.height.mas_equalTo(50);
     }];
     
@@ -99,7 +108,16 @@
     [_vcodeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bg1View).offset(10);
         make.top.bottom.equalTo(self->_bg1View);
-        make.right.mas_equalTo(-15);
+        make.width.mas_equalTo(154);
+        make.height.mas_equalTo(40);
+    }];
+    
+    [_vcodeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self->_vcodeTextField.mas_right).offset(5);
+        make.top.bottom.equalTo(self->_bg1View);
+        make.right.mas_equalTo(-10);
+        make.width.mas_equalTo(110);
+        make.height.mas_equalTo(40);
     }];
     
     [_verificationTextField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -125,15 +143,6 @@
     }];
     
 }
-
-
-//提交按钮被点击
-- (void)loginButtonDidClick
-{
-    ZFResetPasswordVC* vc = [[ZFResetPasswordVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 
 - (UILabel *)phoneLabel {
     if (_phoneLabel == nil) {
@@ -257,35 +266,110 @@
 }
 
 
-//- (JKCountDownButton *)vcodeButton {
-//    if (_vcodeButton == nil) {
-//        _vcodeButton = [JKCountDownButton buttonWithType:UIButtonTypeCustom];
-//        [_vcodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-//        _vcodeButton.titleLabel.font = [UIFont systemFontOfSize:14];
-//        [_vcodeButton setTitleColor:RGBColorHex(0x101010) forState:UIControlStateNormal];
-//
-//        //点击
-//        ZWeakSelf
-//        [_vcodeButton countDownButtonHandler:^(JKCountDownButton*sender, NSInteger tag) {
-//
-//            sender.enabled = NO;
-//            [sender startCountDownWithSecond:60];
-//
-//            [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
-//                NSString *title = [NSString stringWithFormat:@"剩余%zd秒",second];
-//                return title;
-//            }];
-//            [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
-//                countDownButton.enabled = YES;
-//                return @"点击重新获取";
-//
-//            }];
-//
-//        }];
-//
-//    }
-//
-//    return _vcodeButton;
-//}
+- (void)loginButtonDidClick
+{
+    NSString* phone = _phoneTextField.text;
+    NSString* vcode = _vcodeTextField.text;
+    
+    if (kStringIsEmpty(phone))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入手机号"];
+        return;
+    }
+    
+    if ( [ZFTool isPhoneNumber:phone]==NO )
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
+        return;
+    }
+    
+    if (kStringIsEmpty(vcode))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入验证码"];
+        return;
+    }
+    
+    ZWeakSelf
+    [http_user FindPwdCheckSms:phone code:vcode success:^(id responseObject)
+     {
+         [weakSelf sdData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)sdData:(id)responseObject
+{
+    ZFResetPasswordVC* vc = [[ZFResetPasswordVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+
+- (void)vcodeButtonDidClick
+{
+    NSString* phone = _phoneTextField.text;
+    
+    ZWeakSelf
+    [http_user validateCode:nil scene:@"1" mobile:phone success:^(id responseObject)
+     {
+         [weakSelf verifycode_ok:responseObject];
+         
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)verifycode_ok:(id)responseObject
+{
+    [SVProgressHUD showSuccessWithStatus:@"发送成功"];
+    
+}
+
+- (CQCountDownButton *)vcodeButton
+{
+    if (_vcodeButton == nil) {
+        _vcodeButton = [CQCountDownButton buttonWithType:UIButtonTypeCustom];
+        [_vcodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        _vcodeButton.backgroundColor = RGBColorHex(0x646464);
+        [_vcodeButton setTitleColor:RGBColorHex(0xFFFFFF) forState:UIControlStateNormal];
+        _vcodeButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        _vcodeButton.layer.cornerRadius = 3.0f;
+        _vcodeButton.clipsToBounds = YES;
+        //        [_vcodeButton addTarget:self action:@selector(vcodeButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        [_vcodeButton configDuration:60 buttonClicked:^{
+            //========== 按钮点击 ==========//
+            if ( kStringIsEmpty(weakSelf.phoneTextField.text) )
+            {
+                [SVProgressHUD showInfoWithStatus:@"请输入手机号码"];
+                weakSelf.vcodeButton.enabled = YES;
+                return;
+            }
+            
+            if ( [ZFTool isPhoneNumber:weakSelf.phoneTextField.text]==NO )
+            {
+                [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
+                weakSelf.vcodeButton.enabled = YES;
+                return;
+            }
+            
+            [weakSelf.vcodeButton startCountDown];
+            [weakSelf vcodeButtonDidClick];
+        } countDownStart:^{
+            //========== 倒计时开始 ==========//
+            NSLog(@"倒计时开始");
+        } countDownUnderway:^(NSInteger restCountDownNum) {
+            //========== 倒计时进行中 ==========//
+            NSString *title = [NSString stringWithFormat:@"%ldS", restCountDownNum];
+            [weakSelf.vcodeButton setTitle:title forState:UIControlStateNormal];
+        } countDownCompletion:^{
+            //========== 倒计时结束 ==========//
+            [weakSelf.vcodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+            NSLog(@"倒计时结束");
+        }];
+    }
+    return _vcodeButton;
+}
+
 
 @end

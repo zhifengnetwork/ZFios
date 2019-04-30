@@ -8,14 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "HttpTool.h"
-
+#import "UserInfoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface http_user : NSObject
 
 //用户注册
-+(void)signup:(NSString*)username password:(NSString*)password code:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++(void)userReg:(UserInfoModel*)userInfo success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//发送短信
++(void)validateCode:(NSString*)type scene:(NSString*)scene mobile:(NSString*)mobile success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //用户登录
 +(void)login:(NSString*)username password:(NSString*)password success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
@@ -40,6 +43,24 @@ NS_ASSUME_NONNULL_BEGIN
  订单详情
  */
 +(void)order_detail:(NSString *)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+
+/**
+ 找回密码验证码比对
+ */
++(void)FindPwdCheckSms:(NSString*)mobile code:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+/**
+ 找回密码
+ */
++(void)FindPwd:(NSString*)mobile password:(NSString*)password password2:(NSString*)password2 success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+
+/**
+ 微信登录
+ */
++(void)weixin_login:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 
 @end
 

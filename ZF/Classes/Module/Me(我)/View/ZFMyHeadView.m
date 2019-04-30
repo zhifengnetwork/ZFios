@@ -101,7 +101,11 @@
     _userInfo = userInfo;
     
     //显示头像
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:_userInfo.head_pic]];
+    if (!kStringIsEmpty(_userInfo.head_pic))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_userInfo.head_pic];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
     _nameLabel.text = _userInfo.nickname;
 }
 

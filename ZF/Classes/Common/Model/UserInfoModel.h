@@ -23,15 +23,25 @@
  */
 @interface UserInfoModel : NSObject<NSCoding>
 
+//注册
+@property (nonatomic, copy) NSString *nickname;
+@property (nonatomic, copy) NSString *username;
+@property (nonatomic, copy) NSString *password;
+@property (nonatomic, copy) NSString *password2;
+@property (nonatomic, copy) NSString *code;
+
+//发送短信
+@property (nonatomic, copy) NSString *userid;
+@property (nonatomic, copy) NSString *mobile;
+@property (nonatomic, copy) NSString *temp;
+@property (nonatomic, copy) NSString *imgcode;
+
 //用户ID
 @property (nonatomic, copy) NSString *user_id;
 //
 @property (nonatomic, copy) NSString *token;
-//手机号
-@property (nonatomic, copy) NSString *mobile;
 //用户头像
 @property (nonatomic, copy) NSString *head_pic;
-@property (nonatomic, copy) NSString *nickname;
 @property (nonatomic, copy) NSString *user_money;
 @property (nonatomic, copy) NSString *agent_user;
 @property (nonatomic, copy) NSString *first_leader;

@@ -223,6 +223,8 @@
 		842EDEF92240FEF000B53E45 /* ZFDonationButtonTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842EDEF82240FEF000B53E45 /* ZFDonationButtonTableCell.m */; };
 		843521012241E39E005DA298 /* ZFMyWalletTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843521002241E39E005DA298 /* ZFMyWalletTableCell.m */; };
 		843521042241EAC7005DA298 /* ZFMyColumnTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843521032241EAC7005DA298 /* ZFMyColumnTableCell.m */; };
+		8444CC852277FBA700934E96 /* CQCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8444CC822277FBA700934E96 /* CQCountDownButton.m */; };
+		8444CC862277FBA700934E96 /* NSTimer+CQBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8444CC832277FBA700934E96 /* NSTimer+CQBlockSupport.m */; };
 		84499BB22239F8FD00A7A988 /* ZFDetailsChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BB12239F8FD00A7A988 /* ZFDetailsChoiceVC.m */; };
 		84499BB8223A08F000A7A988 /* ZFCommodityInforViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BB7223A08F000A7A988 /* ZFCommodityInforViewCell.m */; };
 		84499BBB223A357100A7A988 /* ZFCommodityHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BBA223A357100A7A988 /* ZFCommodityHeadView.m */; };
@@ -715,6 +717,10 @@
 		843521002241E39E005DA298 /* ZFMyWalletTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyWalletTableCell.m; sourceTree = "<group>"; };
 		843521022241EAC7005DA298 /* ZFMyColumnTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyColumnTableCell.h; sourceTree = "<group>"; };
 		843521032241EAC7005DA298 /* ZFMyColumnTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyColumnTableCell.m; sourceTree = "<group>"; };
+		8444CC812277FBA700934E96 /* NSTimer+CQBlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+CQBlockSupport.h"; sourceTree = "<group>"; };
+		8444CC822277FBA700934E96 /* CQCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCountDownButton.m; sourceTree = "<group>"; };
+		8444CC832277FBA700934E96 /* NSTimer+CQBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+CQBlockSupport.m"; sourceTree = "<group>"; };
+		8444CC842277FBA700934E96 /* CQCountDownButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQCountDownButton.h; sourceTree = "<group>"; };
 		84499BB02239F8FD00A7A988 /* ZFDetailsChoiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsChoiceVC.h; sourceTree = "<group>"; };
 		84499BB12239F8FD00A7A988 /* ZFDetailsChoiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsChoiceVC.m; sourceTree = "<group>"; };
 		84499BB6223A08F000A7A988 /* ZFCommodityInforViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFCommodityInforViewCell.h; sourceTree = "<group>"; };
@@ -1462,6 +1468,7 @@
 		189CC0A12223E81300EB5A64 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				8444CC802277FBA700934E96 /* CQCountDownButton */,
 				849CB3982277080F00386882 /* JX_GCDTimer */,
 				84D879F322758709005B375B /* PooCodeView */,
 				180F262922364B6800B688E9 /* HJViewStyle */,
@@ -2144,6 +2151,17 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		8444CC802277FBA700934E96 /* CQCountDownButton */ = {
+			isa = PBXGroup;
+			children = (
+				8444CC812277FBA700934E96 /* NSTimer+CQBlockSupport.h */,
+				8444CC822277FBA700934E96 /* CQCountDownButton.m */,
+				8444CC832277FBA700934E96 /* NSTimer+CQBlockSupport.m */,
+				8444CC842277FBA700934E96 /* CQCountDownButton.h */,
+			);
+			path = CQCountDownButton;
+			sourceTree = "<group>";
+		};
 		84499BB3223A084E00A7A988 /* CommodityConcern(商品关注) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2657,6 +2675,7 @@
 				188F41AF2236181B00165142 /* ZFPersonalCentralTableCell.m in Sources */,
 				180A97A6222E21CD003A12FF /* ZFStartAuctionVC.m in Sources */,
 				849ABEAA224389A3008B089F /* ZFBottomOrderTableCell.m in Sources */,
+				8444CC852277FBA700934E96 /* CQCountDownButton.m in Sources */,
 				189CC0E62223E81300EB5A64 /* HMEmoticonCell.m in Sources */,
 				186471792237FB3600F2C147 /* BaseTableViewCell.m in Sources */,
 				18F8D8952228D22700203E9A /* ZFSelectedCategoriesCell.m in Sources */,
@@ -2847,6 +2866,7 @@
 				189CC0DC2223E81300EB5A64 /* StaticTableViewCell.m in Sources */,
 				840BE8F72249FDA300568B11 /* ZFExplainTableCell.m in Sources */,
 				849F9573223B8786001824B9 /* ZFOrderEmptyTableCell.m in Sources */,
+				8444CC862277FBA700934E96 /* NSTimer+CQBlockSupport.m in Sources */,
 				188EFD73224CCCD900C90070 /* ZFDetailsImageTextTableCell.m in Sources */,
 				182E8A082224010B005CE5FE /* LoginTypeView.m in Sources */,
 				189CC0DD2223E81300EB5A64 /* StaticTableCell.m in Sources */,
