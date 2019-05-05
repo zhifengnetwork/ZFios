@@ -24,7 +24,7 @@
 
 @property (strong , nonatomic)UICollectionView *collectionView;
 
-@property (strong , nonatomic)ZFAssembleListModel *assembleListModel;
+@property (nonatomic, strong)  NSMutableArray * datas;
 
 @end
 
@@ -71,7 +71,7 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
         return;
     }
     
-    self.assembleListModel = [ZFAssembleListModel mj_objectWithKeyValues:responseObject];
+    self.datas = [ZFAssembleModel mj_objectArrayWithKeyValuesArray:responseObject];
     
     [self.collectionView reloadData];
 }
@@ -81,8 +81,8 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
 //有多少分组
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 4;
-//    return self.assembleListModel.result.count;
+//    return 4;
+    return self.datas.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -97,7 +97,7 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
     
     //拼团
     ZFAssembleCollectionCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFAssembleCollectionCellID forIndexPath:indexPath];
-    ZFAssembleModel *assembleModel = [self.assembleListModel.result objectAtIndex:indexPath.section];
+    ZFAssembleModel *assembleModel = [self.datas objectAtIndex:indexPath.section];
     oell.assembleModel = assembleModel;
     gridcell = oell;
     
@@ -206,6 +206,15 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
         [self.view addSubview:_collectionView];
     }
     return _collectionView;
+}
+
+-(NSMutableArray * )datas
+{
+    if (_datas==nil) {
+        _datas = [[NSMutableArray alloc]init];
+    }
+    
+    return _datas;
 }
 
 @end

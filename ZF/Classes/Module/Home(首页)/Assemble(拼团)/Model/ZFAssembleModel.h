@@ -48,8 +48,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ZFAssembleListModel : BaseListModel
-@property (nonatomic, strong)  NSMutableArray * data;
-@end
-
 NS_ASSUME_NONNULL_END

@@ -21,7 +21,7 @@
 @interface ZFFootprintVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) ZFAssembleListModel *listModel;
+@property (nonatomic, strong)  NSMutableArray * datas;
 
 @end
 
@@ -77,7 +77,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
         return;
     }
     
-    self.listModel.data = [ZFAssembleListModel mj_objectArrayWithKeyValuesArray:responseObject];
+    self.datas = [ZFAssembleModel mj_objectArrayWithKeyValuesArray:responseObject];
     
     [self.tableView reloadData];
 }
@@ -116,7 +116,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.listModel.data.count;
+    return self.datas.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -130,7 +130,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     
     ZFRecordDetailsTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFRecordDetailsTableCellID];
     scell = [[ZFRecordDetailsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFRecordDetailsTableCellID];
-    ZFAssembleModel *detailModel = [self.listModel.data objectAtIndex:indexPath.section];
+    ZFAssembleModel *detailModel = [self.datas objectAtIndex:indexPath.section];
     scell.detailModel = detailModel;
     
     cell = scell;
@@ -142,7 +142,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ZFTimeHeadView* view = [[ZFTimeHeadView alloc]init];
-    ZFAssembleModel *model = [self.listModel.list objectAtIndex:section];
+    ZFAssembleModel *model = [self.datas objectAtIndex:section];
     view.date = model.date;
     return view;
 }
@@ -200,6 +200,16 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
         
     }
     return _tableView;
+}
+
+
+-(NSMutableArray * )datas
+{
+    if (_datas==nil) {
+        _datas = [[NSMutableArray alloc]init];
+    }
+    
+    return _datas;
 }
 
 

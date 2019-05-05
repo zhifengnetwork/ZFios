@@ -13,14 +13,4 @@
 @end
 
 
-@implementation ZFAssembleListModel
-
-+ (NSDictionary *)mj_objectClassInArray
-{
-    return @{
-             @"data" : @"ZFAssembleModel"
-             };
-}
- 
-@end
 
