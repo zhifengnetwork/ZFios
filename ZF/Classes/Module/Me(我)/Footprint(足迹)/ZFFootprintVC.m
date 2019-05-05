@@ -77,7 +77,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
         return;
     }
     
-    self.listModel = [ZFAssembleListModel mj_objectWithKeyValues:responseObject];
+    self.listModel.data = [ZFAssembleListModel mj_objectArrayWithKeyValuesArray:responseObject];
     
     [self.tableView reloadData];
 }
