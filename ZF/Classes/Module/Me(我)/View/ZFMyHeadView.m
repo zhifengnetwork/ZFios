@@ -99,7 +99,6 @@
 -(void)setUserInfo:(UserInfoModel *)userInfo
 {
     _userInfo = userInfo;
-    
     //显示头像
     if (!kStringIsEmpty(_userInfo.head_pic))
     {
@@ -107,6 +106,9 @@
         [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
     }
     _nameLabel.text = _userInfo.nickname;
+    [_commodityButton setTitle:[NSString stringWithFormat:@"        %ld\n  商品关注",(long)_userInfo.goods_collect_num] forState:UIControlStateNormal];
+    [_shopButton setTitle:[NSString stringWithFormat:@"       %ld\n  店铺关注",(long)_userInfo.seller_goods_num] forState:UIControlStateNormal];
+    [_footprintButton setTitle:[NSString stringWithFormat:@"  %ld\n足迹",(long)_userInfo.goods_visit_num] forState:UIControlStateNormal];
 }
 
 

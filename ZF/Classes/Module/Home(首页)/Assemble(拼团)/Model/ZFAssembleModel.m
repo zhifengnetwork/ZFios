@@ -11,17 +11,16 @@
 @implementation ZFAssembleModel
 
 @end
-@implementation ZFFootPrintListModel
+
+
+@implementation ZFAssembleListModel
+
 + (NSDictionary *)mj_objectClassInArray
 {
     return @{
              @"data" : @"ZFAssembleModel"
              };
 }
-@end
-
-
-@implementation ZFAssembleListModel
-
+ 
 @end
 

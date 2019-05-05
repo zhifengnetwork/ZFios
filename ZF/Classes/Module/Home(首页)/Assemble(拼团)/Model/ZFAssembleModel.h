@@ -46,15 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 //足迹id
 @property (nonatomic, assign)NSInteger visit_id;
 
-
 @end
 
-@interface ZFFootPrintListModel : NSObject
-@property (nonatomic, strong)NSArray *data;
-
-@end
 @interface ZFAssembleListModel : BaseListModel
-
+@property (nonatomic, strong)  NSMutableArray * data;
 @end
 
 NS_ASSUME_NONNULL_END

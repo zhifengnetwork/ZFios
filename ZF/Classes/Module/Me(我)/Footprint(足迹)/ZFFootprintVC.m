@@ -21,7 +21,7 @@
 @interface ZFFootprintVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong)ZFFootPrintListModel *listModel;
+@property (nonatomic, strong) ZFAssembleListModel *listModel;
 
 @end
 
@@ -77,7 +77,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
         return;
     }
     
-    self.listModel = [ZFFootPrintListModel mj_objectWithKeyValues:responseObject];
+    self.listModel = [ZFAssembleListModel mj_objectWithKeyValues:responseObject];
     
     [self.tableView reloadData];
 }
@@ -130,7 +130,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     
     ZFRecordDetailsTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFRecordDetailsTableCellID];
     scell = [[ZFRecordDetailsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFRecordDetailsTableCellID];
-    ZFAssembleModel *detailModel = [self.listModel.data objectAtIndex:indexPath.row];
+    ZFAssembleModel *detailModel = [self.listModel.data objectAtIndex:indexPath.section];
     scell.detailModel = detailModel;
     
     cell = scell;
@@ -142,7 +142,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ZFTimeHeadView* view = [[ZFTimeHeadView alloc]init];
-    ZFAssembleModel *model = [self.listModel.data objectAtIndex:section];
+    ZFAssembleModel *model = [self.listModel.list objectAtIndex:section];
     view.date = model.date;
     return view;
 }

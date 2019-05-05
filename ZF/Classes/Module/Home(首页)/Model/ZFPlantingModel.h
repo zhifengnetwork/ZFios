@@ -65,6 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFPlantingListModel : BaseListModel
 
+
 @property (nonatomic , strong) NSMutableArray * adlist;
 @property (nonatomic , strong) NSMutableArray * articlelist;
 @property (nonatomic , strong) NSMutableArray * flash_sale_goods;
