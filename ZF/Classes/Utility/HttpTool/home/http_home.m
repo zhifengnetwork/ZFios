@@ -176,19 +176,21 @@
 
 //商品搜索列表页
 // q    搜索关键字
-+ (void)search:(NSString*)q searchModel:(ZFSearchModel*)searchModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)search:(ZFSearchModel*)searchModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    if (!kStringIsEmpty(q)) {
-        [parameters setObject:q forKey:@"q"];
+    if (!kStringIsEmpty(searchModel.q)) {
+        [parameters setObject:searchModel.q forKey:@"q"];
     }
     
-    NSString *str = [NSString stringWithFormat:@"%ld",searchModel.ID];
-    [parameters setObject:str forKey:@"id"];
+    if (!kStringIsEmpty(searchModel.ID)) {
+        [parameters setObject:searchModel.ID forKey:@"id"];
+    }
     
-    NSString *str2 = [NSString stringWithFormat:@"%ld",searchModel.brand_id];
-    [parameters setObject:str2 forKey:@"brand_id"];
+    if (!kStringIsEmpty(searchModel.brand_id)) {
+        [parameters setObject:searchModel.brand_id forKey:@"brand_id"];
+    }
     
     if (!kStringIsEmpty(searchModel.sort)) {
         [parameters setObject:searchModel.sort forKey:@"sort"];
@@ -229,4 +231,19 @@
     strUrl = [strUrl stringByAppendingPathComponent:@"api/Search/search"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
+
+//获取热门搜索词汇
++ (void)getHotKeywords:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/search/getHotKeywords"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+
 @end

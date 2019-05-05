@@ -245,7 +245,7 @@
 }
 
 /**
- 找回密码
+ 微信登录
  */
 +(void)weixin_login:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 {
