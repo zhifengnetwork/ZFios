@@ -186,7 +186,6 @@
 		53E90CE92272A74D0063A237 /* ZFGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90CE82272A74D0063A237 /* ZFGoodModel.m */; };
 		53E90CEC2272B5390063A237 /* ZFUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90CEB2272B5390063A237 /* ZFUserModel.m */; };
 		53E90CEF2272B7A30063A237 /* http_good.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90CEE2272B7A30063A237 /* http_good.m */; };
-		53E90CF22272B82E0063A237 /* ZFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90CF12272B82E0063A237 /* ZFSearchModel.m */; };
 		53E90CF52272DF5E0063A237 /* http_order.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90CF42272DF5E0063A237 /* http_order.m */; };
 		53E90CFF2272E81F0063A237 /* http_address.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90CFE2272E81F0063A237 /* http_address.m */; };
 		53E90D022272EA5B0063A237 /* ZFAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D012272EA5B0063A237 /* ZFAddressModel.m */; };
@@ -242,6 +241,7 @@
 		849ABEA422436905008B089F /* ZFMyOrderHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849ABEA322436905008B089F /* ZFMyOrderHeadTableCell.m */; };
 		849ABEA722437DB4008B089F /* ZFOrderDetailsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849ABEA622437DB4008B089F /* ZFOrderDetailsTableCell.m */; };
 		849ABEAA224389A3008B089F /* ZFBottomOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849ABEA9224389A3008B089F /* ZFBottomOrderTableCell.m */; };
+		849B97A3227EE8DF00840880 /* ZFSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 849B97A2227EE8DF00840880 /* ZFSearchModel.m */; };
 		849CB3972276AB2D00386882 /* ZFdetailsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CB3962276AB2D00386882 /* ZFdetailsModel.m */; };
 		849CB39B2277080F00386882 /* JX_GCDTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CB39A2277080F00386882 /* JX_GCDTimerManager.m */; };
 		849CB39E2277091E00386882 /* ZFStartAuctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 849CB39D2277091E00386882 /* ZFStartAuctionModel.m */; };
@@ -643,8 +643,6 @@
 		53E90CEB2272B5390063A237 /* ZFUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZFUserModel.m; path = "ZF/Classes/Module/Home(首页)/Model/ZFUserModel.m"; sourceTree = SOURCE_ROOT; };
 		53E90CED2272B7A30063A237 /* http_good.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_good.h; sourceTree = "<group>"; };
 		53E90CEE2272B7A30063A237 /* http_good.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_good.m; sourceTree = "<group>"; };
-		53E90CF02272B82E0063A237 /* ZFSearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZFSearchModel.h; path = "ZF/Classes/Module/Home(首页)/Model/ZFSearchModel.h"; sourceTree = SOURCE_ROOT; };
-		53E90CF12272B82E0063A237 /* ZFSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ZFSearchModel.m; path = "ZF/Classes/Module/Home(首页)/Model/ZFSearchModel.m"; sourceTree = SOURCE_ROOT; };
 		53E90CF32272DF5E0063A237 /* http_order.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_order.h; sourceTree = "<group>"; };
 		53E90CF42272DF5E0063A237 /* http_order.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_order.m; sourceTree = "<group>"; };
 		53E90CFD2272E81F0063A237 /* http_address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_address.h; sourceTree = "<group>"; };
@@ -755,6 +753,8 @@
 		849ABEA622437DB4008B089F /* ZFOrderDetailsTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFOrderDetailsTableCell.m; sourceTree = "<group>"; };
 		849ABEA8224389A3008B089F /* ZFBottomOrderTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFBottomOrderTableCell.h; sourceTree = "<group>"; };
 		849ABEA9224389A3008B089F /* ZFBottomOrderTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFBottomOrderTableCell.m; sourceTree = "<group>"; };
+		849B97A1227EE8DF00840880 /* ZFSearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFSearchModel.h; sourceTree = "<group>"; };
+		849B97A2227EE8DF00840880 /* ZFSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFSearchModel.m; sourceTree = "<group>"; };
 		849CB3952276AB2D00386882 /* ZFdetailsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFdetailsModel.h; sourceTree = "<group>"; };
 		849CB3962276AB2D00386882 /* ZFdetailsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFdetailsModel.m; sourceTree = "<group>"; };
 		849CB3992277080F00386882 /* JX_GCDTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JX_GCDTimerManager.h; sourceTree = "<group>"; };
@@ -1919,6 +1919,7 @@
 		534F181A224F0D01006A08A4 /* Search(首页搜索） */ = {
 			isa = PBXGroup;
 			children = (
+				849B97A0227EE8C100840880 /* Model */,
 				534F181C224F0DDB006A08A4 /* View */,
 				534F181B224F0DD1006A08A4 /* Controller */,
 			);
@@ -2038,8 +2039,6 @@
 				53E90CE82272A74D0063A237 /* ZFGoodModel.m */,
 				53E90CEA2272B5390063A237 /* ZFUserModel.h */,
 				53E90CEB2272B5390063A237 /* ZFUserModel.m */,
-				53E90CF02272B82E0063A237 /* ZFSearchModel.h */,
-				53E90CF12272B82E0063A237 /* ZFSearchModel.m */,
 				53E90D002272EA5B0063A237 /* ZFAddressModel.h */,
 				53E90D012272EA5B0063A237 /* ZFAddressModel.m */,
 				537D8CA62272FFF8002FB76B /* ZFOrdersModel.h */,
@@ -2260,6 +2259,15 @@
 				842EDEE32240CCB500B53E45 /* ZFMyTeamVC.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		849B97A0227EE8C100840880 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				849B97A1227EE8DF00840880 /* ZFSearchModel.h */,
+				849B97A2227EE8DF00840880 /* ZFSearchModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		849CB3982277080F00386882 /* JX_GCDTimer */ = {
@@ -2789,6 +2797,7 @@
 				181991982237AC12004585D8 /* ZFEditorialConsigneeVC.m in Sources */,
 				189CC0E12223E81300EB5A64 /* BaseListModel.m in Sources */,
 				849F9564223B4E54001824B9 /* ZFStoreConcernViewCell.m in Sources */,
+				849B97A3227EE8DF00840880 /* ZFSearchModel.m in Sources */,
 				189CC0E02223E81300EB5A64 /* TabBarControllerConfig.m in Sources */,
 				1819918D22379C14004585D8 /* ZFEditorialHeadTableCell.m in Sources */,
 				537D560122754AE200384C19 /* ZFEvaluationVC.m in Sources */,
@@ -2886,7 +2895,6 @@
 				18F60014222E6DE500DE7EF4 /* ZFSubmissionTableCell.m in Sources */,
 				189CC0EA2223E81300EB5A64 /* HMEmoticon.m in Sources */,
 				189CC0D52223E81300EB5A64 /* ZFLoginVC.m in Sources */,
-				53E90CF22272B82E0063A237 /* ZFSearchModel.m in Sources */,
 				842EDEF62240F37E00B53E45 /* ZFPublicWelfareVC.m in Sources */,
 				8412DF7D2251F28200476690 /* ZFShoppingModel.m in Sources */,
 				180F262C22364B6800B688E9 /* UIView+HJViewStyle.m in Sources */,

@@ -10,6 +10,14 @@
 #import "ZFTitleView.h"
 #import "ZFSearchTableViewCell.h"
 #import "ZFSearchCollectionViewCell.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "RefreshGifHeader.h"
+#import "ZFPlantingModel.h"
+#import "ZFADModel.h"
+#import "http_home.h"
+#import "ZFSpikeModel.h"
+
 @interface ZFSearchVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong)UIView *screenView;
 @property (nonatomic, strong)UIButton *multipleBtn;
@@ -267,4 +275,43 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //点击跳转
 }
+
+-(void)loadData
+{
+    if (kStringIsEmpty(self.text))
+    {
+        // 拿到当前的下拉刷新控件，结束刷新状态
+        [self.tableView.mj_header endRefreshing];
+        return;
+    }
+    
+    ZWeakSelf
+    [http_home search:self.searchModel success:^(id responseObject)
+     {
+         // 拿到当前的下拉刷新控件，结束刷新状态
+         [weakSelf.tableView.mj_header endRefreshing];
+         [weakSelf loadData_success:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         // 拿到当前的下拉刷新控件，结束刷新状态
+         [weakSelf.tableView.mj_header endRefreshing];
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+-(void)loadData_success:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+//    NSDictionary *dictf = [responseObject objectForKey:@"userList"];
+//    self.userListDataList = [LKSearchModel mj_objectArrayWithKeyValuesArray:dictf];
+    
+    [self.tableView reloadData];
+}
+
+
 @end

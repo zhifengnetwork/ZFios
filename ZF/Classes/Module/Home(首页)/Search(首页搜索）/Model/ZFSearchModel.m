@@ -2,7 +2,7 @@
 //  ZFSearchModel.m
 //  ZF
 //
-//  Created by weiming zhang on 2019/4/26.
+//  Created by admin on 2019/5/5.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
@@ -15,4 +15,5 @@
              @"ID":@"id"
              };
 }
+
 @end

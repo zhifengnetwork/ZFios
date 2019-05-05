@@ -15,7 +15,6 @@
 #import "MJExtension.h"
 #import "UserInfoModel.h"
 #import "CQCountDownButton.h"
-#import "CQCountDownButton.h"
 
 @interface ZFAccountModificationVC ()
 
@@ -310,7 +309,7 @@
     NSString* phone = _phoneTextField.text;
     
     ZWeakSelf
-    [http_user validateCode:nil scene:@"1" mobile:phone success:^(id responseObject)
+    [http_user validateCode:nil scene:@"2" mobile:phone success:^(id responseObject)
      {
          [weakSelf verifycode_ok:responseObject];
          

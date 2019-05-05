@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ZFSearchModel;
 
 @interface ZFSearchVC : UIViewController
+
+@property (nonatomic, strong) NSString *text;
+
+@property (nonatomic, strong) ZFSearchModel* searchModel;
 
 @end

@@ -42,7 +42,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 //商品搜索列表页
 // q    搜索关键字
-+ (void)search:(NSString*)q searchModel:(ZFSearchModel*)searchModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)search:(ZFSearchModel*)searchModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//获取热门搜索词汇
++ (void)getHotKeywords:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 @end
 
 NS_ASSUME_NONNULL_END

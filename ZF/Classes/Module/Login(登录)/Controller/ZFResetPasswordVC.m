@@ -7,6 +7,11 @@
 //
 
 #import "ZFResetPasswordVC.h"
+#import "ZFTool.h"
+#import "http_user.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "UserInfoModel.h"
 
 @interface ZFResetPasswordVC ()
 
@@ -85,14 +90,6 @@
 }
 
 
-//登录按钮被点击
-- (void)nextButtonDidClick
-{
-    //    ZFRegisterVC* vc = [[ZFRegisterVC alloc]init];
-    //    [self.navigationController pushViewController:vc animated:YES];
-}
-
-
 - (UILabel *)passwordLabel {
     if (_passwordLabel == nil) {
         _passwordLabel = [[UILabel alloc] init];
@@ -166,5 +163,42 @@
     return _nextButton;
 }
 
+- (void)nextButtonDidClick
+{
+    NSString* password = _passwordTextField.text;
+    NSString* twoPassword = _twoPasswordTextField.text;
+    
+    if (kStringIsEmpty(password))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入密码"];
+        return;
+    }
+    
+    if (kStringIsEmpty(twoPassword))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请再输入密码"];
+        return;
+    }
+    
+    if ([password isEqualToString:twoPassword]==NO)
+    {
+        [SVProgressHUD showInfoWithStatus:@"两次密码不一致"];
+        return;
+    }
+    
+    ZWeakSelf
+    [http_user FindPwd:nil password:password password2:twoPassword success:^(id responseObject)
+     {
+         [weakSelf sdData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)sdData:(id)responseObject
+{
+    [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end
