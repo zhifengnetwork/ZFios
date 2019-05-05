@@ -13,6 +13,14 @@
 #import "LoginTypeView.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+LXMImagePosition.h"
+#import "ZFTool.h"
+#import "http_user.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "UserInfoModel.h"
+#import "CQCountDownButton.h"
+#import "ZFLoginVC.h"
+#import "ZFHomeVC.h"
 
 
 @interface ZFRegisterVC ()<LoginTypeViewDelegate>
@@ -40,14 +48,12 @@
 @property (nonatomic, strong) UITextField *vcodeTextField;
 @property (nonatomic, strong) UITextField *passwordTextField;
 @property (nonatomic, strong) UITextField *zPasswordTextField;
-//@property (nonatomic, strong) JKCountDownButton *vcodeButton;
 
-
-@property (nonatomic, strong) UIButton *vcodeButton;
 @property (nonatomic, strong) UIButton *agreeButton;
 @property (nonatomic, strong) UIButton *mAgreeButton;
 @property (nonatomic, strong) UIButton *returnLoginButton;
 
+@property (nonatomic, strong) CQCountDownButton* vcodeButton;
 
 @end
 
@@ -227,10 +233,6 @@
     sender.selected = !sender.isSelected;
     
 }
--(void)mAgreeButtonDidClick
-{
-    
-}
 
 -(void)zcButtonDidClick
 {
@@ -239,12 +241,8 @@
 
 -(void)returnLoginButtonDidClick
 {
-    
-}
-
--(void)vcodeButtonDidClick
-{
-    
+    ZFLoginVC* vc = [[ZFLoginVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UILabel *)zhuceLabel {
@@ -449,20 +447,6 @@
     return _bjIconView;
 }
 
-- (UIButton *)vcodeButton {
-    if (_vcodeButton == nil) {
-        _vcodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _vcodeButton.backgroundColor = RGBColorHex(0x646464);
-        [_vcodeButton setTitle:@"发送验证码" forState:UIControlStateNormal];
-        _vcodeButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_vcodeButton setTitleColor:RGBColorHex(0xFFFFFF) forState:UIControlStateNormal];
-        _vcodeButton.layer.cornerRadius = 3;
-        _vcodeButton.clipsToBounds = YES;
-        [_vcodeButton addTarget:self action:@selector(vcodeButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _vcodeButton;
-}
-
 - (UIButton *)agreeButton {
     if (_agreeButton == nil) {
         _agreeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -503,37 +487,173 @@
     return _returnLoginButton;
 }
 
+- (void)mAgreeButtonDidClick
+{
+    NSString* name = _numberTextField.text;
+    NSString* phone = _phoneTextField.text;
+    NSString* vcode = _vcodeTextField.text;
+    NSString* password = _passwordTextField.text;
+    NSString* twoPassword = _zPasswordTextField.text;
+    
+    if (kStringIsEmpty(name))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入账号"];
+        return;
+    }
+    
+    if (kStringIsEmpty(phone))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入手机号"];
+        return;
+    }
+    
+    if ( [ZFTool isPhoneNumber:phone]==NO )
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
+        return;
+    }
+    
+    if (kStringIsEmpty(vcode))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入验证码"];
+        return;
+    }
+    
+    if (kStringIsEmpty(password))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入密码"];
+        return;
+    }
+    
+    if (kStringIsEmpty(twoPassword))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请再输入密码"];
+        return;
+    }
+    
+    if ([password isEqualToString:twoPassword]==NO)
+    {
+        [SVProgressHUD showInfoWithStatus:@"两次密码不一致"];
+        return;
+    }
+    
+    ZWeakSelf
+    [SVProgressHUD showWithStatus:@"正在注册"];
+    self.userInfo = [[UserInfoModel alloc]init];
+    self.userInfo.nickname = name;
+    self.userInfo.mobile = phone;
+    self.userInfo.password = password;
+    self.userInfo.password2 = twoPassword;
+    self.userInfo.code = vcode;
+    [http_user userReg:self.userInfo success:^(id responseObject)
+     {
+         [weakSelf sdData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)sdData:(id)responseObject
+{
+    [SVProgressHUD showSuccessWithStatus:@"注册成功"];
+    
+    [self toLogin:self.userInfo.mobile password:self.userInfo.password];
+}
 
 
-//- (JKCountDownButton *)vcodeButton {
-//    if (_vcodeButton == nil) {
-//        _vcodeButton = [JKCountDownButton buttonWithType:UIButtonTypeCustom];
-//        [_vcodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-//        _vcodeButton.titleLabel.font = [UIFont systemFontOfSize:14];
-//        [_vcodeButton setTitleColor:RGBColorHex(0x101010) forState:UIControlStateNormal];
-//
-//        //点击
-//        ZWeakSelf
-//        [_vcodeButton countDownButtonHandler:^(JKCountDownButton*sender, NSInteger tag) {
-//
-//            sender.enabled = NO;
-//            [sender startCountDownWithSecond:60];
-//
-//            [sender countDownChanging:^NSString *(JKCountDownButton *countDownButton,NSUInteger second) {
-//                NSString *title = [NSString stringWithFormat:@"剩余%zd秒",second];
-//                return title;
-//            }];
-//            [sender countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
-//                countDownButton.enabled = YES;
-//                return @"点击重新获取";
-//
-//            }];
-//
-//        }];
-//
-//    }
-//
-//    return _vcodeButton;
-//}
+- (void)vcodeButtonDidClick
+{
+    NSString* phone = _phoneTextField.text;
+    
+    ZWeakSelf
+    [http_user validateCode:nil scene:@"1" mobile:phone success:^(id responseObject)
+     {
+         [weakSelf verifycode_ok:responseObject];
+         
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)verifycode_ok:(id)responseObject
+{
+    [SVProgressHUD showSuccessWithStatus:@"发送成功"];
+    
+}
+
+- (CQCountDownButton *)vcodeButton
+{
+    if (_vcodeButton == nil) {
+        _vcodeButton = [CQCountDownButton buttonWithType:UIButtonTypeCustom];
+        [_vcodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        _vcodeButton.backgroundColor = RGBColorHex(0x646464);
+        [_vcodeButton setTitleColor:RGBColorHex(0xFFFFFF) forState:UIControlStateNormal];
+        _vcodeButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        _vcodeButton.layer.cornerRadius = 3.0f;
+        _vcodeButton.clipsToBounds = YES;
+        //        [_vcodeButton addTarget:self action:@selector(vcodeButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) weakSelf = self;
+        [_vcodeButton configDuration:60 buttonClicked:^{
+            //========== 按钮点击 ==========//
+            if ( kStringIsEmpty(weakSelf.phoneTextField.text) )
+            {
+                [SVProgressHUD showInfoWithStatus:@"请输入手机号码"];
+                weakSelf.vcodeButton.enabled = YES;
+                return;
+            }
+            
+            if ( [ZFTool isPhoneNumber:weakSelf.phoneTextField.text]==NO )
+            {
+                [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
+                weakSelf.vcodeButton.enabled = YES;
+                return;
+            }
+            
+            [weakSelf.vcodeButton startCountDown];
+            [weakSelf vcodeButtonDidClick];
+        } countDownStart:^{
+            //========== 倒计时开始 ==========//
+            NSLog(@"倒计时开始");
+        } countDownUnderway:^(NSInteger restCountDownNum) {
+            //========== 倒计时进行中 ==========//
+            NSString *title = [NSString stringWithFormat:@"%ldS", restCountDownNum];
+            [weakSelf.vcodeButton setTitle:title forState:UIControlStateNormal];
+        } countDownCompletion:^{
+            //========== 倒计时结束 ==========//
+            [weakSelf.vcodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+            NSLog(@"倒计时结束");
+        }];
+    }
+    return _vcodeButton;
+}
+
+//登录
+-(void)toLogin:(NSString*)username password:(NSString*)password
+{
+    ZWeakSelf
+    [SVProgressHUD showWithStatus:@"正在登录"];
+    [http_user login:username password:password success:^(id responseObject)
+     {
+         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+         [weakSelf toLogin_ok:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)toLogin_ok:(id)responseObject
+{
+    if(kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    UserInfoModel* user = [UserInfoModel mj_objectWithKeyValues:responseObject];
+    [user saveUserInfo];
+    
+    //登录成功通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:UserLoginRegisterNotification object:self];
+    
+}
 
 @end

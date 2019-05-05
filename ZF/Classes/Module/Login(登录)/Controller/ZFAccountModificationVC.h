@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class UserInfoModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  账号修改
  */
 @interface ZFAccountModificationVC : UIViewController
+
+@property (nonatomic, strong) UserInfoModel* userInfo;
 
 @end
 
