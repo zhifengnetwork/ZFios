@@ -10,4 +10,5 @@
 
 @interface ZFQRCodeView : UIView
 
+@property (nonatomic, copy)NSString *coupon_code;
 @end

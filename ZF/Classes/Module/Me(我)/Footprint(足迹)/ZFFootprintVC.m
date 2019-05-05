@@ -15,7 +15,7 @@
 #import "SVProgressHUD.h"
 #import "RefreshGifHeader.h"
 #import "MJExtension.h"
-#import "ZFAssembleModel.h"
+#import "ZFGoodModel.h"
 
 
 @interface ZFFootprintVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -77,7 +77,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
         return;
     }
     
-    self.datas = [ZFAssembleModel mj_objectArrayWithKeyValuesArray:responseObject];
+    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
     
     [self.tableView reloadData];
 }
@@ -130,7 +130,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     
     ZFRecordDetailsTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFRecordDetailsTableCellID];
     scell = [[ZFRecordDetailsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFRecordDetailsTableCellID];
-    ZFAssembleModel *detailModel = [self.datas objectAtIndex:indexPath.section];
+    ZFGoodModel *detailModel = [self.datas objectAtIndex:indexPath.section];
     scell.detailModel = detailModel;
     
     cell = scell;
@@ -142,7 +142,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ZFTimeHeadView* view = [[ZFTimeHeadView alloc]init];
-    ZFAssembleModel *model = [self.datas objectAtIndex:section];
+    ZFGoodModel *model = [self.datas objectAtIndex:section];
     view.date = model.date;
     return view;
 }

@@ -11,11 +11,18 @@
 #import "ZFTimeHeadView.h"
 #import "ZFDetailsChoiceTableCell.h"
 #import "ZFFootprintFooterView.h"
+#import "ZFGoodModel.h"
+#import "http_mine.h"
+#import "RefreshGifHeader.h"
+#import "MJExtension.h"
+#import "SVProgressHUD.h"
 
 @interface ZFDetailsChoiceVC ()<UITableViewDelegate,UITableViewDataSource,ZFFootprintFooterViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZFFootprintFooterView *footerView;
+
+@property (nonatomic, strong)  NSMutableArray * datas;
 
 @end
 
@@ -42,11 +49,43 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
     rightButton.clipsToBounds = YES;
     [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightCustomView];
+    ZWeakSelf
+    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_mine visit_log:^(id responseObject)
+     {
+         [self.tableView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [self.tableView.mj_header endRefreshing];
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
+    
+    [self.tableView reloadData];
 }
 
 - (void)rightButtonClick
 {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +122,7 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return self.datas.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -97,7 +136,8 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
     
     ZFDetailsChoiceTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFDetailsChoiceTableCellID];
     scell = [[ZFDetailsChoiceTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDetailsChoiceTableCellID];
-    
+    ZFGoodModel *detailModel = [self.datas objectAtIndex:indexPath.section];
+    scell.detailModel = detailModel;
     cell = scell;
     
     return cell;
@@ -107,6 +147,8 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ZFTimeHeadView* view = [[ZFTimeHeadView alloc]init];
+    ZFGoodModel *model = [self.datas objectAtIndex:section];
+    view.date = model.date;
     return view;
 }
 
@@ -126,11 +168,8 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
 //点击了哪个cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0)
-    {
-        //        ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
-        //        [self.navigationController pushViewController:vc animated:YES];
-    }
+    ZFDetailsChoiceTableCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell selectionButtonDidClick];
 }
 
 
@@ -139,13 +178,54 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
 {
     if (type==1)
     {
-        //        //跳转到个人资料
-        //        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
-        //        [self.navigationController pushViewController:vc animated:YES];
+        NSInteger i =0;
+        for (i=0; i<self.datas.count; i++) {
+            ZFGoodModel * model = self.datas[i];
+            model.selected = YES;
+            [self.tableView reloadData];
+        }
+        
+       
     }
     else if (type==2)
     {
         
+        NSInteger i =0;
+        //判断是否全选
+        NSInteger type = 0;
+        for (i=0; i<self.datas.count; i++) {
+            ZFGoodModel * model = self.datas[i];
+            if (model.selected == NO) {
+                type = 0;//有一个未选中
+            }else{
+                type = 1;//全选
+            }
+        }
+            //清空
+        if (type == 1) {
+            [http_mine clear_visit_log:^(id responseObject)
+             {
+                 [SVProgressHUD showSuccessWithStatus:@"清空成功"];
+                 
+             } failure:^(NSError *error) {
+                 [SVProgressHUD showErrorWithStatus:error.domain];
+             }];
+        }else{
+            //未全选，所以一个一个删除
+        for (ZFGoodModel *model in self.datas) {
+            if (model.selected == YES) {
+                
+                [http_mine del_visit_log:model.visit_id success:^(id responseObject)
+                 {
+                     [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                     
+                 } failure:^(NSError *error) {
+                     [SVProgressHUD showErrorWithStatus:error.domain];
+                 }];
+                }
+            }
+        }
+    [self.tableView reloadData];
     }
     
 }
@@ -170,6 +250,7 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
     if (_footerView==nil)
     {
         _footerView = [[ZFFootprintFooterView alloc]init];
+        _footerView.delegate = self;
     }
     
     return _footerView;

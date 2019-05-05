@@ -38,6 +38,10 @@
     
 }
 
+- (void)setDate:(NSString *)date{
+    _date = date;
+    _timeLabel.text = [NSString stringWithFormat:@"%@",date];
+}
 
 - (UILabel *)timeLabel {
     if (_timeLabel == nil) {

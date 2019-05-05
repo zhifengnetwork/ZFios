@@ -43,8 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger comment_count;
 //时间
 @property (nonatomic, copy)NSString *date;
-//足迹id
-@property (nonatomic, assign)NSInteger visit_id;
+
 
 @end
 

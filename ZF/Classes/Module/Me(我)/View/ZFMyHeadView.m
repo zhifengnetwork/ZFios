@@ -102,8 +102,8 @@
     //显示头像
     if (!kStringIsEmpty(_userInfo.head_pic))
     {
-        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_userInfo.head_pic];
-        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+//        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_userInfo.head_pic];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:userInfo.head_pic]];
     }
     _nameLabel.text = _userInfo.nickname;
     [_commodityButton setTitle:[NSString stringWithFormat:@"        %ld\n  商品关注",(long)_userInfo.goods_collect_num] forState:UIControlStateNormal];

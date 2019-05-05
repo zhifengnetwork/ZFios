@@ -55,4 +55,9 @@
     }
     return _QRImageView;
 }
+
+- (void)setCoupon_code:(NSString *)coupon_code{
+    _coupon_code = coupon_code;
+    _QRLabel.text = [NSString stringWithFormat:@"%@",_coupon_code];
+}
 @end

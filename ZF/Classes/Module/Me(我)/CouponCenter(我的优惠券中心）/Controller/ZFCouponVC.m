@@ -12,13 +12,14 @@
 #import "SVProgressHUD.h"
 #import "RefreshGifHeader.h"
 #import "MJExtension.h"
+#import "ZFUserModel.h"
 
 @interface ZFCouponVC ()
-
+@property (nonatomic, strong)NSMutableArray *list;
 @end
 
 @implementation ZFCouponVC
-
+    static NSString* const ZFCouponCellID = @"ZFCouponCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
@@ -27,7 +28,7 @@
     self.tableView.backgroundColor = RGBColorHex(0xf5f5f5);
     self.tableView.rowHeight = 186;
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
-    
+    [self.tableView registerClass:[ZFCouponCell class] forCellReuseIdentifier:ZFCouponCellID];
     ZWeakSelf
     self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingBlock:^{
         
@@ -57,22 +58,20 @@
         return;
     }
     
-//    self.listModel = [ETHBetRecordListModel mj_objectWithKeyValues:responseObject];
+    self.list = [ZFUserModel mj_objectArrayWithKeyValuesArray:responseObject];
     
     [self.tableView reloadData];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return self.list.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString* ID = @"ZFCouponCell";
-    ZFCouponCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[ZFCouponCell alloc]init];
-        [cell setCellType:_type];
-    }
+
+    ZFCouponCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFCouponCellID];
+    [cell setCellType:_type];
+    cell.couponModel = [self.list objectAtIndex:indexPath.row];
     return cell;
 }
 

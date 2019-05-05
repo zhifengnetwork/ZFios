@@ -7,6 +7,7 @@
 //
 
 #import "ZFRecordDetailsTableCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZFRecordDetailsTableCell()
 
@@ -79,9 +80,17 @@
     
 }
 
-- (void)purchaseButtonDidClick
-{
-    
+- (void)setDetailModel:(ZFGoodModel *)detailModel{
+    _detailModel = detailModel;
+    if (!kStringIsEmpty(detailModel.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,detailModel.original_img];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _titleLabel.text = [NSString stringWithFormat:@"%@",detailModel.goods_name];
+    _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",detailModel.shop_price];
+    _paymentedLabel.text = [NSString stringWithFormat:@"已付款%ld",(long)detailModel.sales_sum];
+    _evaluateLabel.text = [NSString stringWithFormat:@"已评价%ld",(long)detailModel.comment_count];
 }
 
 - (UIImageView *)iconView {
@@ -148,6 +157,11 @@
         [_purchaseButton addTarget:self action:@selector(purchaseButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _purchaseButton;
+}
+#pragma mark -- 购买
+- (void)purchaseButtonDidClick
+{
+    
 }
 
 @end

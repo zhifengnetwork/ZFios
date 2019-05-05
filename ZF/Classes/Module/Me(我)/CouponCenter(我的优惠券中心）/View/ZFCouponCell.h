@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFUserModel.h"
 
 @interface ZFCouponCell : UITableViewCell
 - (void)setCellType: (NSInteger )type;
+
+//@property (nonatomic, assign)NSInteger type;
+@property (nonatomic, strong)ZFUserModel *couponModel;
 @end

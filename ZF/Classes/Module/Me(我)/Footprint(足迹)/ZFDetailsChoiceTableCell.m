@@ -7,6 +7,7 @@
 //
 
 #import "ZFDetailsChoiceTableCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZFDetailsChoiceTableCell()
 
@@ -87,8 +88,25 @@
     
 }
 
-- (void)purchaseButtonDidClick
-{
+
+
+- (void)setDetailModel:(ZFGoodModel *)detailModel{
+    _detailModel = detailModel;
+    if (!kStringIsEmpty(_detailModel.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_detailModel.original_img];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _titleLabel.text = [NSString stringWithFormat:@"%@",_detailModel.goods_name];
+    _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",_detailModel.shop_price];
+    _paymentedLabel.text = [NSString stringWithFormat:@"已付款%ld",(long)_detailModel.sales_sum];
+    _evaluateLabel.text = [NSString stringWithFormat:@"已评价%ld",(long)_detailModel.comment_count];
+    
+    if (detailModel.selected == YES) {
+        self.selectionButton.selected = YES;
+    }else{
+        self.selectionButton.selected = NO;
+    }
     
 }
 
@@ -96,7 +114,8 @@
     if (_selectionButton == nil) {
         _selectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_selectionButton setImage:[UIImage imageNamed:@"option"] forState:UIControlStateNormal];
-        [_selectionButton addTarget:self action:@selector(purchaseButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+        [_selectionButton setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
+        [_selectionButton addTarget:self action:@selector(selectionButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _selectionButton;
 }
@@ -166,6 +185,19 @@
     }
     return _purchaseButton;
 }
+#pragma mark -- 方法
+- (void)purchaseButtonDidClick
+{
+    
+}
 
+- (void)selectionButtonDidClick{
+    _selectionButton.selected = !_selectionButton.selected;
+    if (_selectionButton.selected == YES) {
+        _detailModel.selected = YES;
+    }else{
+        _detailModel.selected = NO;
+    }
+}
 
 @end

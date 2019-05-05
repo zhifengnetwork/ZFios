@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewCell.h"
-#import "ZFAssembleModel.h"
+#import "ZFGoodModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFRecordDetailsTableCell : BaseTableViewCell
 
-@property (nonatomic, strong)ZFAssembleModel *detailModel;
+@property (nonatomic, strong)ZFGoodModel *detailModel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -51,8 +51,11 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(ZFFootprintFooterViewDidClick:)])
     {
         [self.delegate ZFFootprintFooterViewDidClick:1];
+        self.allButton.selected = YES;
     }
 }
+
+
 
 -(void)deleteButtonDidClick
 {
@@ -67,6 +70,7 @@
         _allButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_allButton setTitle:@" 全选  " forState:UIControlStateNormal];
         [_allButton setImage:[UIImage imageNamed:@"option"] forState:UIControlStateNormal];
+        [_allButton setImage:[UIImage imageNamed:@"selected"] forState:UIControlStateSelected];
         [_allButton setTitleColor:RGBColorHex(0x1a1a1a) forState:UIControlStateNormal];
         _allButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [_allButton addTarget:self action:@selector(allButtonDidClick) forControlEvents:UIControlEventTouchUpInside];

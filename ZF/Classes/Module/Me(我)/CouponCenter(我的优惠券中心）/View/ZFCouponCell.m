@@ -53,7 +53,7 @@
     }];
     [_currencylabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).with.offset(85);
-        make.left.equalTo(self).with.offset(73);
+        make.left.equalTo(self).with.offset(40);
     }];
     [_reduceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_currencylabel.mas_right).with.offset(4);
@@ -206,6 +206,18 @@
             break;
     }
 }
+
+- (void)setCouponModel:(ZFUserModel *)couponModel{
+    _couponModel = couponModel;
+    _kindLabel.text = [NSString stringWithFormat:@"%@",_couponModel.name];
+    _reduceLabel.text = [NSString stringWithFormat:@"%@",_couponModel.money];
+    _requireLabel.text = [NSString stringWithFormat:@"满%@元可用",_couponModel.condition];
+    NSString* str = [NSString stringWithFormat:@"使用时间:%ld-%ld",(long)_couponModel.use_start_time,(long)_couponModel.use_end_time];
+     [_lastTimeLabel setText:str];
+    _detailKindLabel.text = [NSString stringWithFormat:@"%@",_couponModel.use_scope];
+}
+
+
 - (UITableViewController *)viewController
 {
     for (UIView *next = [self superview]; next; next = next.superview) {
@@ -216,10 +228,11 @@
     }
     return nil;
 }
+
 //使用优惠券
 - (void)useClick{
     ZFQRCodeView *view = [[ZFQRCodeView alloc]init];
-    
+    view.coupon_code = _couponModel.coupon_code;
     [TYShowAlertView showAlertViewWithView:view backgoundTapDismissEnable:YES];
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(view.superview).with.offset(189);

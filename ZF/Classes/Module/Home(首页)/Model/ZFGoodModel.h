@@ -28,8 +28,25 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *price;
 @property (nonatomic, copy)NSString *start_price;
 @property (nonatomic, copy)NSString *end_price;
-
-
+//商品id
+@property (nonatomic, assign)NSInteger visittime;
+//足迹id
+@property (nonatomic, assign)NSInteger visit_id;
+//商品名称
+@property (nonatomic, copy)NSString *goods_name;
+//商品价格
+@property (nonatomic, copy)NSString *shop_price;
+@property (nonatomic, assign)NSInteger cat_id;
+//评论数量
+@property (nonatomic, assign)NSInteger comment_count;
+//购买数量
+@property (nonatomic, assign)NSInteger sales_sum;
+//商品图片
+@property (nonatomic, copy)NSString *original_img;
+//时间
+@property (nonatomic, copy)NSString *date;
+//是否选中
+@property (nonatomic, getter=isSelected) BOOL selected;
 @end
 
 NS_ASSUME_NONNULL_END
