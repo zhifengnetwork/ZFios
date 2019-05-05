@@ -79,6 +79,15 @@
         make.height.mas_equalTo(1);
     }];
 }
+
+- (void)setSearchModel:(ZFSearchModel *)searchModel
+{
+    _searchModel = searchModel;
+    
+}
+
+
+
 - (UIImageView *)iconimageView{
     if (_iconimageView == nil) {
         _iconimageView = [[UIImageView alloc]init];

@@ -24,8 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *end_price;
 
 
-//商品列表
-@property (nonatomic, strong) NSArray* goods_list;
+@property (nonatomic, copy)NSString *goods_id;
+@property (nonatomic, copy)NSString *goods_name;
+@property (nonatomic, copy)NSString *shop_price;
+@property (nonatomic, copy)NSString *seller_id;
+@property (nonatomic, copy)NSString *value;
+@property (nonatomic, copy)NSString *href;
 //好评数量
 @property (nonatomic, copy) NSString* comment_count;
 //已销售数量
@@ -33,15 +37,26 @@ NS_ASSUME_NONNULL_BEGIN
 //商家名称
 @property (nonatomic, copy) NSString* seller_name;
 //商品图片
-@property (nonatomic, strong) NSArray* goods_images;
-//筛选分类
-@property (nonatomic, strong) NSArray* filter_menu;
-//筛选品牌
-@property (nonatomic, strong) NSArray* filter_brand;
-//筛选价格
-@property (nonatomic, strong) NSArray* filter_price;
-//筛选参数
-@property (nonatomic, strong) NSArray* filter_param;
+@property (nonatomic, strong) NSMutableArray* goods_images;
+
+@end
+
+@interface ZFSearchListModel :NSObject
+
+@property (nonatomic, strong) NSMutableArray* goods_list;
+@property (nonatomic, strong) NSMutableArray* filter_menu;
+@property (nonatomic, strong) NSMutableArray* filter_brand;
+@property (nonatomic, strong) NSMutableArray* filter_price;
+@property (nonatomic, strong) ZFSearchModel* filter_param;
+@property (nonatomic, copy) NSString* sort_asc;
+
+@end
+
+@interface ZFGoodsImageModel :NSObject
+
+@property (nonatomic, copy) NSString* img_id;
+@property (nonatomic, copy) NSString* goods_id;
+@property (nonatomic, copy) NSString* image_url;
 
 @end
 

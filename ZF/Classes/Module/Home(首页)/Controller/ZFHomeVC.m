@@ -129,7 +129,9 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"商品 店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
             // 开始(点击)搜索时执行以下代码
             // 如：跳转到指定控制器
-            [searchViewController.navigationController pushViewController:[[ZFSearchVC alloc] init] animated:YES];
+            ZFSearchVC* vc = [[ZFSearchVC alloc] init];
+            vc.text = searchText;
+            [searchViewController.navigationController pushViewController:vc animated:YES];
         }];
         
         [searchViewController setSearchHistoryTitle:@"搜索历史"];

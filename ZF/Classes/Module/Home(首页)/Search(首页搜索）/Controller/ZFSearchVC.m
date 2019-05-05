@@ -17,6 +17,7 @@
 #import "ZFADModel.h"
 #import "http_home.h"
 #import "ZFSpikeModel.h"
+#import "ZFSearchModel.h"
 
 @interface ZFSearchVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong)UIView *screenView;
@@ -27,8 +28,9 @@
 @property (nonatomic, strong)UIButton *filterBtn;
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)UICollectionView *collectionView;
-@property (nonatomic, strong)UIImageView *loadImageView;
-@property (nonatomic, strong)UILabel *loadLabel;
+
+@property (nonatomic, strong)ZFSearchListModel *searchListModel;
+
 @end
 
 @implementation ZFSearchVC
@@ -38,6 +40,9 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     [super viewDidLoad];
     [self setup];
     
+    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    
+    [self.tableView.mj_header beginRefreshing];
 }
 - (void)setup{
     self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"Back"];
@@ -111,16 +116,6 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     }];
     UIView *footerView =[[UIView alloc]initWithFrame:CGRectMake(0,0,0,100)];
     [_tableView setTableFooterView:footerView];
-    [footerView addSubview:self.loadImageView];
-    [footerView addSubview:self.loadLabel];
-    [_loadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(footerView).with.offset(25);
-        make.left.equalTo(footerView).with.offset(150);
-    }];
-    [_loadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.loadImageView.mas_right).with.offset(15);
-        make.centerY.equalTo(self.loadImageView.mas_centerY);
-    }];
     
     
     [self.view addSubview:self.collectionView];
@@ -134,6 +129,23 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     _collectionView.hidden = YES;
     
 }
+
+
+-(void)salesBtnDidClick
+{
+    //销量
+    if (_salesBtn.isSelected)
+    {
+        _salesBtn.selected = NO;
+    }
+    else
+    {
+        _salesBtn.selected = YES;
+        self.searchModel.sort = @"sales_sum";
+    }
+}
+
+
 - (UIView *)screenView{
     if (_screenView == nil) {
         _screenView = [[UIView alloc]init];
@@ -160,7 +172,9 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
         _salesBtn = [[UIButton alloc]init];
         _salesBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [_salesBtn setTitleColor:RGBColorHex(0x484848) forState:UIControlStateNormal];
+        [_salesBtn setTitleColor:RGBColorHex(0xff0000) forState:UIControlStateSelected];
         [_salesBtn setTitle:@"销量" forState:UIControlStateNormal];
+        [_salesBtn addTarget:self action:@selector(salesBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _salesBtn;
 }
@@ -196,23 +210,7 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     }
     return _filterBtn;
 }
-- (UIImageView *)loadImageView{
-    if (_loadImageView == nil) {
-        _loadImageView = [[UIImageView alloc]init];
-        [_loadImageView setImage:[UIImage imageNamed:@"loading"]];
-        
-    }
-    return _loadImageView;
-}
-- (UILabel *)loadLabel{
-    if (_loadLabel == nil) {
-        _loadLabel = [[UILabel alloc]init];
-        _loadLabel.font = [UIFont systemFontOfSize:13];
-        _loadLabel.textColor = RGBColorHex(0xb3b3b3);
-        _loadLabel.text = @"正在加载..";
-    }
-    return _loadLabel;
-}
+
 - (UICollectionView *)collectionView{
     if (_collectionView == nil) {
         UICollectionViewFlowLayout *fl = [[UICollectionViewFlowLayout alloc]init];
@@ -247,14 +245,14 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
 }
 #pragma mark --协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.searchListModel.goods_list.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFSearchTableViewCellID];
-    if (cell ==nil) {
-        cell = [[ZFSearchTableViewCell alloc]init];
-    }
+    ZFSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFSearchTableViewCellID];
+    
+    ZFSearchModel* model = [self.searchListModel.goods_list objectAtIndex:indexPath.row];
+    cell.searchModel = model;
     return cell;
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -286,6 +284,7 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     }
     
     ZWeakSelf
+    self.searchModel.q = self.text;
     [http_home search:self.searchModel success:^(id responseObject)
      {
          // 拿到当前的下拉刷新控件，结束刷新状态
@@ -307,10 +306,18 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
         return;
     }
     
-//    NSDictionary *dictf = [responseObject objectForKey:@"userList"];
-//    self.userListDataList = [LKSearchModel mj_objectArrayWithKeyValuesArray:dictf];
+    self.searchListModel = [ZFSearchListModel mj_objectWithKeyValues:responseObject];
     
     [self.tableView reloadData];
+}
+
+-(ZFSearchModel* )searchModel
+{
+    if (_searchModel==nil) {
+        _searchModel = [[ZFSearchModel alloc]init];
+    }
+    
+    return _searchModel;
 }
 
 
