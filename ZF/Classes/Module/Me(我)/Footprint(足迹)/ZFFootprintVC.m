@@ -11,11 +11,17 @@
 #import "ZFTimeHeadView.h"
 #import "ZFRecordDetailsTableCell.h"
 #import "ZFDetailsChoiceVC.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
+#import "RefreshGifHeader.h"
+#import "MJExtension.h"
+#import "ZFAssembleModel.h"
 
 
 @interface ZFFootprintVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong)ZFFootPrintListModel *listModel;
 
 @end
 
@@ -42,6 +48,38 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     rightButton.clipsToBounds = YES;
     [rightButton addTarget:self action:@selector(rightButtonClick) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightCustomView];
+    ZWeakSelf
+    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_mine visit_log:^(id responseObject)
+     {
+         [self.tableView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [self.tableView.mj_header endRefreshing];
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.listModel = [ZFFootPrintListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.tableView reloadData];
 }
 
 - (void)rightButtonClick
@@ -78,7 +116,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return self.listModel.data.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -92,6 +130,8 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     
     ZFRecordDetailsTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFRecordDetailsTableCellID];
     scell = [[ZFRecordDetailsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFRecordDetailsTableCellID];
+    ZFAssembleModel *detailModel = [self.listModel.data objectAtIndex:indexPath.row];
+    scell.detailModel = detailModel;
     
     cell = scell;
     
@@ -102,6 +142,8 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ZFTimeHeadView* view = [[ZFTimeHeadView alloc]init];
+    ZFAssembleModel *model = [self.listModel.data objectAtIndex:section];
+    view.date = model.date;
     return view;
 }
 

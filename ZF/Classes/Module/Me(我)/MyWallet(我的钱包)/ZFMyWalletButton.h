@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ZFMyWalletButton : UIButton
+
 - (void)buttonWithString: (NSString *)string1 WithString2: (NSString *)string2 WithState: (BOOL)isAdd;
+
+- (void)changeType: (NSInteger)type;
 @end

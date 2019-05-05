@@ -38,6 +38,9 @@
 @property (nonatomic, copy) NSString *realname;
 @property (nonatomic, copy) NSString *is_distribut;
 @property (nonatomic, copy) NSString *is_agent;
+@property (nonatomic, copy) NSString *pay_points;
+@property (nonatomic, copy) NSString *coupon_num;
+
 //省
 @property (nonatomic, copy) NSString *province;
 //市

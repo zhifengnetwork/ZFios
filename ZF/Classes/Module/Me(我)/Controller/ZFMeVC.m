@@ -33,7 +33,7 @@
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
 #import "UserInfoModel.h"
-
+#import "http_mine.h"
 
 @interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate,ZFMyWalletTableCellDelegate,ZFMyColumnTableCellDelegate>
 
@@ -96,7 +96,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 -(void)loadData
 {
     ZWeakSelf
-    [http_user userinfo:^(id responseObject)
+    [http_mine myIndex:^(id responseObject)
      {
          [weakSelf loadData_ok:responseObject];
          
@@ -118,10 +118,10 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     self.userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
     //刷新数据
     self.headView.userInfo = self.userInfo;
+    
     [self.tableView reloadData];
+    
 }
-
-
 
 
 #pragma mark - Table view data source
@@ -158,6 +158,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
             cell = [[ZFMyWalletTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyWalletTableCellID];
         }
         cell.delegate = self;
+        cell.userInfo = self.userInfo;
         return cell;
     }
     else if (indexPath.section==2)
@@ -167,6 +168,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         {
             cell = [[ZFFundAccountControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFFundAccountControllerCellID];
         }
+        cell.userInfo = self.userInfo;
         return cell;
     }
     else if (indexPath.section==3)

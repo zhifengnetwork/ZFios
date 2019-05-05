@@ -12,6 +12,11 @@
 #import "ZFCommodityHeadView.h"
 #import "ZFCommodityTableCell.h"
 #import "ZFClassificationHeadView.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
+#import "RefreshGifHeader.h"
+#import "MJExtension.h"
+
 
 @interface ZFCommodityInforVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFClassificationHeadViewDelegate>
 
@@ -69,14 +74,33 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     self.collectionView.backgroundColor = TableViewBGColor;
     
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-
+    [self loadData];
 }
 
 -(void)loadData
 {
+    ZWeakSelf
+    
+    [http_mine collect_list:^(id responseObject) {
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
     
 }
 
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+//    self.listModel = [ETHBetRecordListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.collectionView reloadData];
+}
 
 #pragma mark - <UICollectionViewDataSource>
 //有多少分组

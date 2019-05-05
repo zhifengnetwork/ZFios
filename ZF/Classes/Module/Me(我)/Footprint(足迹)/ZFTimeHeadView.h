@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFTimeHeadView : UIView
 
+@property (nonatomic, strong)NSString *date;
 @end
 
 NS_ASSUME_NONNULL_END

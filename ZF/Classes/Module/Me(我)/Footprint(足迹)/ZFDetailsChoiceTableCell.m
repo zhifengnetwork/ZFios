@@ -147,7 +147,7 @@
         _evaluateLabel = [[UILabel alloc] init];
         _evaluateLabel.textColor = RGBColorHex(0x666666);
         _evaluateLabel.font = [UIFont systemFontOfSize:12];
-        _evaluateLabel.text = @"已付款10";
+        _evaluateLabel.text = @"已评价10";
     }
     return _evaluateLabel;
 }

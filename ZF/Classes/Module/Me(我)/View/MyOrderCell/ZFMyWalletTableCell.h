@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseTableViewCell.h"
+#import "UserInfoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) id<ZFMyWalletTableCellDelegate> delegate;
 
+@property (nonatomic, strong) UserInfoModel *userInfo;
 @end
 
 NS_ASSUME_NONNULL_END

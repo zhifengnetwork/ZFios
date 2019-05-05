@@ -7,7 +7,11 @@
 //
 
 #import "ZFMyWalletView.h"
-
+@interface ZFMyWalletView()
+@property (nonatomic, strong)UILabel *balanceLabel;
+@property (nonatomic, strong)UILabel *integralLabel;
+@property (nonatomic, strong)UILabel *preferentialLabel;
+@end
 @implementation ZFMyWalletView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -30,11 +34,11 @@
     [titleLabel setFont:[UIFont systemFontOfSize:16]];
     [titleLabel setTextColor:RGBColorHex(0x000000)];
     [self addSubview:titleLabel];
-    UILabel *balanceLabel = [[UILabel alloc]init];
-    [balanceLabel setText:@"30000"];
-    [balanceLabel setFont:[UIFont boldSystemFontOfSize:22]];
-    [balanceLabel setTextColor:RGBColorHex(0xff5600)];
-    [self addSubview:balanceLabel];
+    _balanceLabel = [[UILabel alloc]init];
+    [_balanceLabel setText:@"30000"];
+    [_balanceLabel setFont:[UIFont boldSystemFontOfSize:22]];
+    [_balanceLabel setTextColor:RGBColorHex(0xff5600)];
+    [self addSubview:_balanceLabel];
     UIView *lineView = [[UIView alloc]init];
     lineView.backgroundColor = RGBColorHex(0xf5f5f5);
     [self addSubview:lineView];
@@ -45,11 +49,11 @@
     [integrationBtn setTitleColor:RGBColorHex(0xd81e06) forState:UIControlStateNormal];
     [integrationBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 5)];
     [self addSubview:integrationBtn];
-    UILabel *integralLabel = [[UILabel alloc]init];
-    [integralLabel setFont:[UIFont systemFontOfSize:15]];
-    [integralLabel setTextColor:RGBColorHex(0x0f0f0f)];
-    [integralLabel setText:@"36200分"];
-    [self addSubview:integralLabel];
+    _integralLabel = [[UILabel alloc]init];
+    [_integralLabel setFont:[UIFont systemFontOfSize:15]];
+    [_integralLabel setTextColor:RGBColorHex(0x0f0f0f)];
+    [_integralLabel setText:@"36200分"];
+    [self addSubview:_integralLabel];
     
     UIButton *preferentialBtn = [[UIButton alloc]init];
     [preferentialBtn setImage:[UIImage imageNamed:@"preferential"] forState:UIControlStateNormal];
@@ -58,22 +62,22 @@
     [preferentialBtn setTitleColor:RGBColorHex(0xd81e06) forState:UIControlStateNormal];
     [preferentialBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -5, 0, 5)];
     [self addSubview:preferentialBtn];
-    UILabel *preferentialLabel = [[UILabel alloc]init];
-    [preferentialLabel setFont:[UIFont systemFontOfSize:15]];
-    [preferentialLabel setTextColor:RGBColorHex(0x0f0f0f)];
-    [preferentialLabel setText:@"3张"];
-    [self addSubview:preferentialLabel];
+    _preferentialLabel = [[UILabel alloc]init];
+    [_preferentialLabel setFont:[UIFont systemFontOfSize:15]];
+    [_preferentialLabel setTextColor:RGBColorHex(0x0f0f0f)];
+    [_preferentialLabel setText:@"3张"];
+    [self addSubview:_preferentialLabel];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).with.offset(15);
         make.centerX.equalTo(self.mas_centerX);
     }];
-    [balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(titleLabel.mas_bottom).with.offset(15);
         make.centerX.equalTo(self.mas_centerX);
     }];
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(balanceLabel.mas_bottom).with.offset(15);
+        make.top.equalTo(self->_balanceLabel.mas_bottom).with.offset(15);
         make.left.equalTo(self).with.offset(20);
         make.right.equalTo(self).with.offset(-20);
         make.height.mas_equalTo(1);
@@ -82,19 +86,23 @@
         make.top.equalTo(lineView.mas_bottom).with.offset(15);
         make.left.equalTo(self).with.offset(44);
     }];
-    [integralLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_integralLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(integrationBtn.mas_right).with.offset(6);
         make.centerY.equalTo(integrationBtn.mas_centerY);
     }];
     [preferentialBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView.mas_bottom).with.offset(15);
-        make.left.equalTo(integralLabel.mas_right).with.offset(24);
+        make.left.equalTo(self->_integralLabel.mas_right).with.offset(24);
     }];
-    [preferentialLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_preferentialLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(preferentialBtn.mas_right).with.offset(6);
         make.centerY.equalTo(integrationBtn.mas_centerY);
     }];
     
 }
-
+- (void)setOrderModel:(ZFOrdersModel *)orderModel{
+    _balanceLabel.text = orderModel.user_money;
+    _integralLabel.text = [NSString stringWithFormat:@"%ld分",(long)orderModel.pay_points];
+    _preferentialLabel.text = [NSString stringWithFormat:@"%ld张",(long)orderModel.coupon_num];
+}
 @end

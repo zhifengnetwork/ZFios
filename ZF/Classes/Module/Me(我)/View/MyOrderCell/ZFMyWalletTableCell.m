@@ -70,13 +70,16 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
     {
         cell.iconName = @"JF1";
         cell.title = @"积分";
-        cell.number = @"3000";
+//        cell.number = @"3000";
+        cell.number = [NSString stringWithFormat:@"%@",_userInfo.pay_points];
     }
     else if (indexPath.item==1)
     {
         cell.iconName = @"YHJ1";
         cell.title = @"优惠券";
-        cell.number = @"30";
+//        cell.number = @"30";
+        cell.number = [NSString stringWithFormat:@"%@",_userInfo.coupon_num];
+        
     }
     cell.indexPath = indexPath;
     cell.delegate = self;
@@ -84,6 +87,10 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
     return cell;
 }
 
+- (void)setUserInfo:(UserInfoModel *)userInfo{
+    _userInfo = userInfo;
+    [_collectionView reloadData];
+}
 
 //预览cell点击
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath

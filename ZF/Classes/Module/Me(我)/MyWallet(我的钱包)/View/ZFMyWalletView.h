@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFOrdersModel.h"
 
 @interface ZFMyWalletView : UIView
-
+@property (nonatomic, strong)ZFOrdersModel *orderModel;
 @end

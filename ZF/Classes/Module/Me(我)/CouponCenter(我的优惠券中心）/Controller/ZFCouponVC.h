@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ZFCouponVC : UITableViewController
+//优惠券页面
 @property (nonatomic, assign)NSInteger type;
 @end

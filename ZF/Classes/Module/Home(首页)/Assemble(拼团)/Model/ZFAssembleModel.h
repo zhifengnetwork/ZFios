@@ -39,9 +39,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *market_price;
 //商品上传原始图
 @property (nonatomic, copy)NSString *original_img;
+//评论数量
+@property (nonatomic, assign)NSInteger comment_count;
+//时间
+@property (nonatomic, copy)NSString *date;
+//足迹id
+@property (nonatomic, assign)NSInteger visit_id;
+
 
 @end
 
+@interface ZFFootPrintListModel : NSObject
+@property (nonatomic, strong)NSArray *data;
+
+@end
 @interface ZFAssembleListModel : BaseListModel
 
 @end

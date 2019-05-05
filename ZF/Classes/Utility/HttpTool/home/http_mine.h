@@ -16,10 +16,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 //我的页面
 + (void)myIndex:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+//余额明细接口
+//type    类型，全部all，赚取plus，消费minus；默认all
++ (void)account_list:(NSString*)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//充值记录接口
++ (void)recharge_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//提现记录接口
++ (void)withdrawals_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //我的关注
 //我关注的商品
 + (void)collect_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//点击关注商品
+//good_id    商品id
++ (void)collect_goods:(NSInteger)goods_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//删除关注商品
+//good_id    商品id
++ (void)del_collect_goods:(NSInteger)goods_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //我的足迹
 + (void)visit_log:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;

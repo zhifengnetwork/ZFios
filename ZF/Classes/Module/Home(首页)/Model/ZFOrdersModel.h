@@ -29,6 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *consignee;
 @property (nonatomic, copy)NSString *mobile;
 @property (nonatomic, assign)NSInteger act;
+@property (nonatomic, assign)NSInteger coupon_num;
+@property (nonatomic, copy)NSString *alipay;
+@property (nonatomic, copy)NSString *bank_name;
+@property (nonatomic, copy)NSString *bank_card;
 @end
 
 NS_ASSUME_NONNULL_END
