@@ -62,6 +62,17 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)weixin_login:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 
+/**
+ 签到
+ */
++(void)AppSign:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+
+/**
+ 获取签到的日期列表
+ */
++(void)AppGetSignDay:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 @end
 
 NS_ASSUME_NONNULL_END
