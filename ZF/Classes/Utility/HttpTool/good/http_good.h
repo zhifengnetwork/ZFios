@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取商品评论接口
 //goods_id  商品ID
-+ (void)getGoodsComment:(NSInteger)goods_id goodModel:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)getGoodsComment:(NSInteger)goods_id commentType:(NSInteger)commentType success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //获取商品属性接口
 //goods_id     商品ID

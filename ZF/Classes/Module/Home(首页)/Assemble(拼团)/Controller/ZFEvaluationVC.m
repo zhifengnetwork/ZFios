@@ -9,6 +9,12 @@
 #import "ZFEvaluationVC.h"
 #import "ZFBuyToolBarView.h"
 #import "ZFEvaluationCell.h"
+#import "http_good.h"
+#import "SVProgressHUD.h"
+#import "RefreshGifHeader.h"
+#import "MJExtension.h"
+#import "ZFGoodCommentModel.h"
+
 
 @interface ZFEvaluationVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UIButton *allButton;
@@ -18,11 +24,14 @@
 @property (nonatomic, strong)UIButton *baskInButton;
 @property (nonatomic, strong)UIView *lineView;
 @property (nonatomic, strong)UITableView *tableView;
+
+
 @end
 
 @implementation ZFEvaluationVC
 
 static NSString *const ZFEvaluationCellID = @"ZFEvaluationCellID";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -94,8 +103,84 @@ static NSString *const ZFEvaluationCellID = @"ZFEvaluationCellID";
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(toolView.mas_top);
     }];
+    ZWeakSelf
+    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+
+-(void)loadData
+{
+//    评论类型(1 全部 2好评 3 中评 4差评,5晒单)
+    if (_allButton.selected == YES) {
+        ZWeakSelf
+        [http_good getGoodsComment:_goods_id commentType:1 success:^(id responseObject)
+         {
+             [self.tableView.mj_header endRefreshing];
+             [weakSelf showData:responseObject];
+         } failure:^(NSError *error) {
+             [self.tableView.mj_header endRefreshing];
+             [SVProgressHUD showErrorWithStatus:error.domain];
+         }];
+    }else if (_praiseButton.selected == YES){
+        ZWeakSelf
+        [http_good getGoodsComment:_goods_id commentType:2 success:^(id responseObject)
+         {
+             [self.tableView.mj_header endRefreshing];
+             [weakSelf showData:responseObject];
+         } failure:^(NSError *error) {
+             [self.tableView.mj_header endRefreshing];
+             [SVProgressHUD showErrorWithStatus:error.domain];
+         }];
+    }else if (_mediumReviewButton.selected == YES){
+         ZWeakSelf
+        [http_good getGoodsComment:_goods_id commentType:3 success:^(id responseObject)
+         {
+             [self.tableView.mj_header endRefreshing];
+             [weakSelf showData:responseObject];
+         } failure:^(NSError *error) {
+             [self.tableView.mj_header endRefreshing];
+             [SVProgressHUD showErrorWithStatus:error.domain];
+         }];
+    }else if (_badReviewButton.selected == YES){
+        ZWeakSelf
+        [http_good getGoodsComment:_goods_id commentType:4 success:^(id responseObject)
+         {
+             [self.tableView.mj_header endRefreshing];
+             [weakSelf showData:responseObject];
+         } failure:^(NSError *error) {
+             [self.tableView.mj_header endRefreshing];
+             [SVProgressHUD showErrorWithStatus:error.domain];
+         }];
+    }else{
+        ZWeakSelf
+        [http_good getGoodsComment:_goods_id commentType:5 success:^(id responseObject)
+         {
+             [self.tableView.mj_header endRefreshing];
+             [weakSelf showData:responseObject];
+         } failure:^(NSError *error) {
+             [self.tableView.mj_header endRefreshing];
+             [SVProgressHUD showErrorWithStatus:error.domain];
+         }];
+    }
     
 }
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+//    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
+    
+    [self.tableView reloadData];
+}
+
 
 - (UIButton *)allButton{
     if (_allButton == nil) {
@@ -188,6 +273,7 @@ static NSString *const ZFEvaluationCellID = @"ZFEvaluationCellID";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFEvaluationCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFEvaluationCellID forIndexPath:indexPath];
+    
     return cell;
 }
 

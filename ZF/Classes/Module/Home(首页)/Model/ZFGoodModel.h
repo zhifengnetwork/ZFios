@@ -58,7 +58,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger store_count;
 //关注总数
 @property (nonatomic, copy)NSString *count;
-
+//规格主名
+@property (nonatomic, copy)NSString *name;
+//规格次名
+@property (nonatomic, copy)NSString *item;
 @end
 
 @interface ZFGoodListModel : BaseListModel

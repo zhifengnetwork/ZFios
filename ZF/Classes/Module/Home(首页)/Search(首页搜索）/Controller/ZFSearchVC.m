@@ -93,7 +93,7 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
         make.centerY.equalTo(self.screenView.mas_centerY);
     }];
     [_priceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.salesBtn.mas_right).with.offset(47);
+        make.centerX.equalTo(self.screenView.mas_centerX);
         make.centerY.equalTo(self.screenView.mas_centerY);
     }];
     [_priceBtn setTitleEdgeInsets:UIEdgeInsetsMake(0,  -_priceBtn.imageView.frame.size.width - 4, 0, _priceBtn.imageView.frame.size.width + 4)];

@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
  详情页底部view
  */
 @interface ZFDetailsPageFooterView : UIView
-
+//商品ID
 @property (nonatomic, assign)NSInteger goodID;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

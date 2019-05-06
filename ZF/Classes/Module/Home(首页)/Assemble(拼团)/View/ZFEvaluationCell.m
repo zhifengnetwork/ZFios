@@ -204,4 +204,8 @@
     }return _typeLabel;
 }
 
+- (void)setCommentmodel:(ZFGoodCommentModel *)commentmodel{
+    _nameLabel.text = [NSString stringWithFormat:@"%@",commentmodel.username];
+    _titleLabel.text = [NSString stringWithFormat:@"%@",commentmodel.content];
+}
 @end

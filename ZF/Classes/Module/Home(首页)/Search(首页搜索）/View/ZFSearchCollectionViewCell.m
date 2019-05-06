@@ -55,11 +55,10 @@
     [_shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.priceLabel.mas_bottom).with.offset(10);
         make.left.equalTo(self.contentView).with.offset(7);
-        make.width.mas_equalTo(105);
     }];
-    [_shopButton setTitleEdgeInsets:UIEdgeInsetsMake(0,  -_shopButton.imageView.frame.size.width - 10, 0, _shopButton.imageView.frame.size.width + 10)];
-    [_shopButton setImageEdgeInsets:UIEdgeInsetsMake(0 , _shopButton.titleLabel.bounds.size.width , 0,
-                                                     -_shopButton.titleLabel.bounds.size.width )];
+    [_shopButton setTitleEdgeInsets:UIEdgeInsetsMake(0,  -_shopButton.imageView.frame.size.width, 0, 0)];
+    [_shopButton setImageEdgeInsets:UIEdgeInsetsMake(0 , _shopButton.titleLabel.bounds.size.width-10 , 0,
+                                                     -_shopButton.titleLabel.bounds.size.width+10 )];
     [_commentsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.shopButton.mas_bottom).with.offset(10);
         make.left.equalTo(self.contentView).with.offset(7);
@@ -139,7 +138,7 @@
 - (UILabel *)commentsLabel{
     if (_commentsLabel == nil) {
         _commentsLabel = [[UILabel alloc]init];
-        _commentsLabel.font = [UIFont boldSystemFontOfSize:8];
+        _commentsLabel.font = [UIFont boldSystemFontOfSize:9];
         _commentsLabel.textColor = RGBColorHex(0x4d4d4d);
         _commentsLabel.text = @"90.8%好评";
     }
@@ -148,7 +147,7 @@
 - (UILabel *)salesLabel{
     if (_salesLabel == nil) {
         _salesLabel = [[UILabel alloc]init];
-        _salesLabel.font = [UIFont boldSystemFontOfSize:8];
+        _salesLabel.font = [UIFont boldSystemFontOfSize:9];
         _salesLabel.textColor = RGBColorHex(0x4d4d4d);
         _salesLabel.text = @"销量：10万";
     }
@@ -157,7 +156,7 @@
 - (UILabel *)paymentLabel{
     if (_paymentLabel == nil) {
         _paymentLabel = [[UILabel alloc]init];
-        _paymentLabel.font = [UIFont boldSystemFontOfSize:8];
+        _paymentLabel.font = [UIFont boldSystemFontOfSize:9];
         _paymentLabel.textColor = RGBColorHex(0x4d4d4d);
         _paymentLabel.text = @"已付款：4200+";
     }

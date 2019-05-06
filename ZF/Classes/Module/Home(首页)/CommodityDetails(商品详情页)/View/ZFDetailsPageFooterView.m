@@ -9,8 +9,11 @@
 #import "ZFDetailsPageFooterView.h"
 #import "UIButton+LXMImagePosition.h"
 #import "http_mine.h"
+#import "http_good.h"
 #import "SVProgressHUD.h"
 #import "ZFUserModel.h"
+#import "ZFSelectTypeView.h"
+#import "TYAlertController.h"
 
 @interface ZFDetailsPageFooterView()
 
@@ -19,6 +22,7 @@
 @property (nonatomic, strong) UIButton* addCartButton;
 @property (nonatomic, strong) UIButton* immediatePurButton;
 
+@property (nonatomic, strong)ZFGoodModel *goodModel;
 @end
 
 @implementation ZFDetailsPageFooterView
@@ -104,14 +108,64 @@
 
 - (void)addCartButtonDidClick
 {
+    ZWeakSelf
+    [http_good goodsSpec:_goodID success:^(id responseObject)
+     {
+        [weakSelf loadData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
     
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
+    //
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
+}
+
+-(void)loadData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    //
 }
 
 - (void)immediatePurButtonDidClick
 {
+    ZWeakSelf
+    [http_good goodsSpec:_goodID success:^(id responseObject)
+     {
+         [weakSelf loadData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
     
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
+//获取当前控制器
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
+}
 
 - (UIButton *)collectionButton {
     if (_collectionButton == nil) {
@@ -164,4 +218,5 @@
     }
     return _immediatePurButton;
 }
+
 @end

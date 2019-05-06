@@ -193,6 +193,7 @@
 		53E90D0A2272F7420063A237 /* http_activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D092272F7420063A237 /* http_activity.m */; };
 		53E90D0D2272FAC60063A237 /* http_mine.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D0C2272FAC60063A237 /* http_mine.m */; };
 		53F1A46F22802ECF007B6FF4 /* ZFShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F1A46E22802ECE007B6FF4 /* ZFShopModel.m */; };
+		53F1A47222805807007B6FF4 /* ZFGoodCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F1A47122805807007B6FF4 /* ZFGoodCommentModel.m */; };
 		53F1B7E12276CF13000F2996 /* ZFBuyToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F1B7E02276CF13000F2996 /* ZFBuyToolBarView.m */; };
 		69F9943388184D9DFB8EE494 /* libPods-ZF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */; };
 		8408F9672272EED700C55F45 /* ZFADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F9662272EED700C55F45 /* ZFADModel.m */; };
@@ -673,6 +674,8 @@
 		53E90D0C2272FAC60063A237 /* http_mine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_mine.m; sourceTree = "<group>"; };
 		53F1A46D22802ECE007B6FF4 /* ZFShopModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFShopModel.h; sourceTree = "<group>"; };
 		53F1A46E22802ECE007B6FF4 /* ZFShopModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFShopModel.m; sourceTree = "<group>"; };
+		53F1A47022805807007B6FF4 /* ZFGoodCommentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFGoodCommentModel.h; sourceTree = "<group>"; };
+		53F1A47122805807007B6FF4 /* ZFGoodCommentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFGoodCommentModel.m; sourceTree = "<group>"; };
 		53F1B7DF2276CF13000F2996 /* ZFBuyToolBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFBuyToolBarView.h; sourceTree = "<group>"; };
 		53F1B7E02276CF13000F2996 /* ZFBuyToolBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFBuyToolBarView.m; sourceTree = "<group>"; };
 		5ADF6DFB4E38624F35CBBCA5 /* Pods-ZFTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZFTests/Pods-ZFTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2097,6 +2100,8 @@
 				84D879F82275ABD3005B375B /* ZFPlantingModel.m */,
 				53F1A46D22802ECE007B6FF4 /* ZFShopModel.h */,
 				53F1A46E22802ECE007B6FF4 /* ZFShopModel.m */,
+				53F1A47022805807007B6FF4 /* ZFGoodCommentModel.h */,
+				53F1A47122805807007B6FF4 /* ZFGoodCommentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2829,6 +2834,7 @@
 				188F41AC223612A100165142 /* ZFPersonalHeadTableCell.m in Sources */,
 				8412DF7A2251EE5C00476690 /* http_shopping.m in Sources */,
 				5309F2162238E74900275D4C /* ZFMenuView.m in Sources */,
+				53F1A47222805807007B6FF4 /* ZFGoodCommentModel.m in Sources */,
 				188F41B2223619DE00165142 /* ZFPersonalVC.m in Sources */,
 				53011477224336AC00C36D42 /* ZFMyWalletView.m in Sources */,
 				18D9160922301BE3003B113A /* ZFClusterWindowView.m in Sources */,

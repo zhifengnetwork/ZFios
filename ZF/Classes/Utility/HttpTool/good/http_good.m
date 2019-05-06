@@ -28,21 +28,16 @@
 
 //获取商品评论接口
 //goods_id  商品ID
-+ (void)getGoodsComment:(NSInteger)goods_id goodModel:(ZFGoodModel*)goodModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)getGoodsComment:(NSInteger)goods_id commentType:(NSInteger)commentType success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
     NSString *str = [NSString stringWithFormat:@"%ld",goods_id];
     [parameters setObject:str forKey:@"goods_id"];
     
-    NSString *str2 = [NSString stringWithFormat:@"%ld",goodModel.commentType];
+    NSString *str2 = [NSString stringWithFormat:@"%ld",commentType];
     [parameters setObject:str2 forKey:@"commentType"];
     
-    NSString *str3 = [NSString stringWithFormat:@"%ld",goodModel.page];
-    [parameters setObject:str3 forKey:@"page"];
-    
-    NSString *str4 = [NSString stringWithFormat:@"%ld",goodModel.num];
-    [parameters setObject:str4 forKey:@"num"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 拼团弹框
+ 拼团cell
  */
 @interface ZFClusterWindowTableCell : UITableViewCell
 

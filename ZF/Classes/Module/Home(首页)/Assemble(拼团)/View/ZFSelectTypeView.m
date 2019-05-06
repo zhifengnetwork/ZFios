@@ -399,6 +399,11 @@ NSInteger count = 1;//存储购物车的数量
         [_agreeButton addTarget:self action:@selector(agreeClick) forControlEvents:UIControlEventTouchUpInside];
     }return _agreeButton;
 }
+
+- (void)setGoodModel:(ZFGoodModel *)goodModel{
+   
+}
+
 #pragma mark --方法
 
 - (void)typeChange: (UIButton *)btn{

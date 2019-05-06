@@ -8,12 +8,14 @@
 //
 
 #import "ZFevaluationHeadTableCell.h"
+#import "ZFEvaluationVC.h"
 
 @interface ZFevaluationHeadTableCell()
 
 @property (nonatomic, strong) UILabel* evaluateLabel;
 @property (nonatomic, strong) UILabel* praiseLabel;
 @property (nonatomic, strong) UIImageView* iconView;
+@property (nonatomic, strong)UIButton *jumpButton;
 
 @end
 
@@ -36,7 +38,7 @@
     [self.contentView addSubview:self.evaluateLabel];
     [self.contentView addSubview:self.praiseLabel];
     [self.contentView addSubview:self.iconView];
-    
+    [self.contentView addSubview:self.jumpButton];
     [_evaluateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.centerY.equalTo(self.contentView);
@@ -52,6 +54,11 @@
         make.centerY.equalTo(self.contentView);
     }];
     
+    [_jumpButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.praiseLabel.mas_left);
+        make.right.equalTo(self.praiseLabel.mas_right);
+        make.centerY.equalTo(self.contentView);
+    }];
 }
 
 - (UILabel *)evaluateLabel {
@@ -82,4 +89,35 @@
     return _iconView;
 }
 
+- (UIButton *)jumpButton{
+    if (_jumpButton == nil) {
+        _jumpButton = [[UIButton alloc]init];
+        [_jumpButton addTarget:self action:@selector(jumpClick) forControlEvents:UIControlEventTouchUpInside];
+    }return _jumpButton;
+}
+
+#pragma mark -- 方法
+- (void)jumpClick{
+    ZFEvaluationVC *vc = [[ZFEvaluationVC alloc]init];
+    [[self currentViewController].navigationController pushViewController:vc animated:YES];
+}
+
+//获取当前控制器
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
+}
 @end

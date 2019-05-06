@@ -58,11 +58,10 @@
     [_shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.priceLabel.mas_bottom).with.offset(8);
         make.left.equalTo(self.iconimageView.mas_right).with.offset(15);
-        make.width.mas_equalTo(105);
     }];
-    [_shopButton setTitleEdgeInsets:UIEdgeInsetsMake(0,  -_shopButton.imageView.frame.size.width - 10, 0, _shopButton.imageView.frame.size.width + 10)];
+    [_shopButton setTitleEdgeInsets:UIEdgeInsetsMake(0,  -_shopButton.imageView.frame.size.width, 0, 0)];
     [_shopButton setImageEdgeInsets:UIEdgeInsetsMake(0 , _shopButton.titleLabel.bounds.size.width , 0,
-                                                    -_shopButton.titleLabel.bounds.size.width )];
+                                                     -_shopButton.titleLabel.bounds.size.width )];
     [_commentsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.iconimageView.mas_bottom);
         make.left.equalTo(self.iconimageView.mas_right).with.offset(15);
