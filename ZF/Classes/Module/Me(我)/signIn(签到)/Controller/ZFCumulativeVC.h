@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFSignInModel.h"
 
 /**
  累计积分
  */
 @interface ZFCumulativeVC : UIViewController
+
+@property (nonatomic, strong) ZFSignInModel* signInModel;
 
 @end

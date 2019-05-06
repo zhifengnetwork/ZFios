@@ -11,6 +11,10 @@
 #import "UIButton+LXMImagePosition.h"
 #import "SVProgressHUD.h"
 #import "FSCalendar.h"
+#import "MJExtension.h"
+#import "RefreshGifHeader.h"
+#import "UserInfoModel.h"
+#import "http_user.h"
 
 @interface ZFCumulativeVC ()<FSCalendarDataSource,FSCalendarDelegate>
 
@@ -25,6 +29,7 @@
 @property (weak, nonatomic) UIButton *nextButton;
 
 @property (strong, nonatomic) NSCalendar *gregorian;
+@property (nonatomic, strong)UITableView *tableView;
 
 - (void)previousClicked:(id)sender;
 - (void)nextClicked:(id)sender;
@@ -38,6 +43,10 @@
     self.title = @"累计积分";
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     [self setup];
+    
+    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)previousClicked:(id)sender
@@ -205,6 +214,34 @@
     }
     return _totalDayLabel;
 }
+
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_user AppGetSignDay:^(id responseObject)
+     {
+         [weakSelf.tableView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         
+         [weakSelf.tableView.mj_header endRefreshing];
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)showData:(id)responseObject
+{
+    if(kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.signInModel = [ZFSignInModel mj_objectWithKeyValues:responseObject];
+    
+    [self.tableView reloadData];
+}
+
 
 
 @end
