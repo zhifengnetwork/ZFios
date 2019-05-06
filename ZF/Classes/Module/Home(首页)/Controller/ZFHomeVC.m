@@ -31,6 +31,7 @@
 #import "ZFADModel.h"
 #import "ZFCumulativeVC.h"
 #import "ZFPlantingModel.h"
+#import "ZFTool.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -48,6 +49,8 @@
 @property (strong, nonatomic) CountDown *countDown;
 
 @property (strong , nonatomic)ZFPlantingListModel *plantingLisModel;
+
+@property (strong , nonatomic)NSMutableArray *hots;
 
 @end
 
@@ -106,7 +109,7 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
-    self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData2)];
     
     [self.collectionView.mj_header beginRefreshing];
     
@@ -124,9 +127,9 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     
     _topToolView.searchButtonClickBlock = ^{
         // 1. 创建热门搜索数组
-        NSArray *hotSeaches = @[@"周大福", @"新款连衣裙", @"连衣裙"];
+        //NSArray *hotSeaches = @[@"周大福", @"新款连衣裙", @"连衣裙"];
         // 2. 创建搜索控制器
-        PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:hotSeaches searchBarPlaceholder:@"商品 店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:self.hots searchBarPlaceholder:@"商品 店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
             // 开始(点击)搜索时执行以下代码
             // 如：跳转到指定控制器
             ZFSearchVC* vc = [[ZFSearchVC alloc] init];
@@ -140,6 +143,38 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         [weakSelf.navigationController pushViewController:searchViewController animated:YES];
     };
     [self.view addSubview:_topToolView];
+}
+
+-(void)loadData2
+{
+    ZWeakSelf
+    [http_home getHotKeywords:^(id responseObject)
+     {
+         // 拿到当前的下拉刷新控件，结束刷新状态
+         [weakSelf.collectionView.mj_header endRefreshing];
+         [weakSelf loadData2_success:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         // 拿到当前的下拉刷新控件，结束刷新状态
+         [weakSelf.collectionView.mj_header endRefreshing];
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+-(void)loadData2_success:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    NSString* str = responseObject;
+    
+    self.hots = [ZFTool strToArr:str Separator:@"|"];
+
+    [self.collectionView reloadData];
+    [self loadData];
 }
 
 -(void)loadData
@@ -578,5 +613,14 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     }
     return _imageUrls;
 }
+
+-(NSMutableArray*)hots
+{
+    if (_hots==nil) {
+        _hots = [[NSMutableArray alloc]init];
+    }
+    return _hots;
+}
+
 
 @end

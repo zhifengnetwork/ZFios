@@ -18,8 +18,10 @@
 #import "http_home.h"
 #import "ZFSpikeModel.h"
 #import "ZFSearchModel.h"
+#import "GHDropMenu.h"
+#import "GHDropMenuModel.h"
 
-@interface ZFSearchVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface ZFSearchVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,GHDropMenuDelegate>
 @property (nonatomic, strong)UIView *screenView;
 @property (nonatomic, strong)UIButton *multipleBtn;
 @property (nonatomic, strong)UIButton *salesBtn;
@@ -30,6 +32,11 @@
 @property (nonatomic, strong)UICollectionView *collectionView;
 
 @property (nonatomic, strong)ZFSearchListModel *searchListModel;
+
+@property (nonatomic , strong) GHDropMenu *dropMenu;
+@property (nonatomic , strong) GHDropMenuModel *configuration;
+
+@property (nonatomic , strong) UIButton *btn;
 
 @end
 
@@ -46,11 +53,11 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
 }
 - (void)setup{
     self.navigationItem.leftBarButtonItem.image = [UIImage imageNamed:@"Back"];
-    UIButton *btn = [[UIButton alloc]init];
-    [btn setImage:[UIImage imageNamed:@"listing_o"] forState:UIControlStateNormal];
-    [btn setImage:[UIImage imageNamed:@"listing"] forState:UIControlStateSelected];
-    [btn addTarget:self action:@selector(cellControl:) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    self.btn = [[UIButton alloc]init];
+    [self.btn setImage:[UIImage imageNamed:@"listing_o"] forState:UIControlStateNormal];
+    [self.btn setImage:[UIImage imageNamed:@"listing"] forState:UIControlStateSelected];
+    [self.btn addTarget:self action:@selector(cellControl:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.btn];
     
     ZFTitleView *titleView = [[ZFTitleView alloc] initWithFrame:CGRectMake(0, 0, 261, 35)];
     titleView.intrinsicContentSize = CGSizeMake(261, 35);
@@ -266,6 +273,7 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
         [_filterBtn setTitleColor:RGBColorHex(0x484848) forState:UIControlStateNormal];
         [_filterBtn setTitle:@"筛选" forState:UIControlStateNormal];
         [_filterBtn setImage:[UIImage imageNamed:@"screen"] forState:UIControlStateNormal];
+        [_filterBtn addTarget:self action:@selector(filterBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _filterBtn;
 }
@@ -297,9 +305,11 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     if (btn.selected == NO) {
         self.tableView.hidden = NO;
         self.collectionView.hidden = YES;
+        [self.tableView reloadData];
     }else{
         self.tableView.hidden = YES;
         self.collectionView.hidden = NO;
+        [self.collectionView reloadData];
     }
 }
 #pragma mark --协议
@@ -321,15 +331,18 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     return 1;
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-        return 4;
+        return self.searchListModel.goods_list.count;
 }
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    ZFSearchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFSearchCollectViewCellID forIndexPath:indexPath];
-    if (cell ==nil) {
-        cell = [[ZFSearchCollectionViewCell alloc]init];
-    }
     
+    ZFSearchCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFSearchCollectViewCellID forIndexPath:indexPath];
+    
+    ZFSearchModel* model = [self.searchListModel.goods_list objectAtIndex:indexPath.item];
+    cell.searchModel = model;
+
     return cell;
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -342,6 +355,7 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     {
         // 拿到当前的下拉刷新控件，结束刷新状态
         [self.tableView.mj_header endRefreshing];
+        [self.collectionView.mj_header endRefreshing];
         return;
     }
     
@@ -351,12 +365,14 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
      {
          // 拿到当前的下拉刷新控件，结束刷新状态
          [weakSelf.tableView.mj_header endRefreshing];
+         [self.collectionView.mj_header endRefreshing];
          [weakSelf loadData_success:responseObject];
          
      } failure:^(NSError *error) {
          
          // 拿到当前的下拉刷新控件，结束刷新状态
          [weakSelf.tableView.mj_header endRefreshing];
+         [self.collectionView.mj_header endRefreshing];
          [SVProgressHUD showInfoWithStatus:error.domain];
      }];
 }
@@ -370,7 +386,14 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     
     self.searchListModel = [ZFSearchListModel mj_objectWithKeyValues:responseObject];
     
-    [self.tableView reloadData];
+    if (self.btn.isSelected)
+    {
+        [self.collectionView reloadData];
+    }
+    else
+    {
+        [self.tableView reloadData];
+    }
 }
 
 -(ZFSearchModel* )searchModel
@@ -380,6 +403,64 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     }
     
     return _searchModel;
+}
+
+-(void)filterBtnDidClick
+{
+    GHDropMenuModel *configuration = [[GHDropMenuModel alloc]init];
+    
+    configuration.titles = [configuration creaFilterDropMenuDatamy];
+    /** 配置筛选菜单是否记录用户选中 默认NO */
+    configuration.recordSeleted = NO;
+    self.configuration = configuration;
+    
+    weakself(self);
+    GHDropMenu *dropMenu = [GHDropMenu creatDropFilterMenuWidthConfiguration:self.configuration dropMenuTagArrayBlock:^(NSArray * _Nonnull tagArray) {
+        [weakSelf getStrWith:tagArray];
+        
+    }];
+    dropMenu.titleSeletedImageName = @"up_normal";
+    dropMenu.titleNormalImageName = @"down_normal";
+    dropMenu.delegate = self;
+    dropMenu.durationTime = 0.5;
+    self.dropMenu = dropMenu;
+    [dropMenu show];
+}
+
+#pragma mark - 代理方法
+- (void)dropMenu:(GHDropMenu *)dropMenu dropMenuTitleModel:(GHDropMenuModel *)dropMenuTitleModel {
+    self.navigationItem.title = [NSString stringWithFormat:@"筛选结果: %@",dropMenuTitleModel.title];
+    
+    //结果处理
+    self.searchModel.sel = @"all";
+    [self loadData];
+}
+
+- (void)dropMenu:(GHDropMenu *)dropMenu tagArray:(NSArray *)tagArray {
+    [self getStrWith:tagArray];
+}
+
+- (void)getStrWith: (NSArray *)tagArray {
+    NSMutableString *string = [NSMutableString string];
+    if (tagArray.count) {
+        for (GHDropMenuModel *dropMenuTagModel in tagArray) {
+            if (dropMenuTagModel.tagSeleted) {
+                if (dropMenuTagModel.tagName.length) {
+                    [string appendFormat:@"%@",dropMenuTagModel.tagName];
+                }
+            }
+            if (dropMenuTagModel.maxPrice.length) {
+                [string appendFormat:@"最大价格%@",dropMenuTagModel.maxPrice];
+            }
+            if (dropMenuTagModel.minPrice.length) {
+                [string appendFormat:@"最小价格%@",dropMenuTagModel.minPrice];
+            }
+            if (dropMenuTagModel.singleInput.length) {
+                [string appendFormat:@"%@",dropMenuTagModel.singleInput];
+            }
+        }
+    }
+    self.navigationItem.title = [NSString stringWithFormat:@"筛选结果: %@",string];
 }
 
 

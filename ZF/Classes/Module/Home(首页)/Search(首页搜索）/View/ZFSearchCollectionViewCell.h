@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFSearchModel.h"
 
 @interface ZFSearchCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, strong) ZFSearchModel* searchModel;
 
 @end
