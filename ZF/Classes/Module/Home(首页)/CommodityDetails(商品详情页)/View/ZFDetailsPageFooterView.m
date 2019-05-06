@@ -8,6 +8,9 @@
 
 #import "ZFDetailsPageFooterView.h"
 #import "UIButton+LXMImagePosition.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
+#import "ZFUserModel.h"
 
 @interface ZFDetailsPageFooterView()
 
@@ -75,6 +78,22 @@
 
 - (void)collectionButtonDidClick
 {
+    _collectionButton.selected = !_collectionButton.selected;
+    if (_collectionButton.selected == YES) {
+        [http_mine collect_goods:_goodID success:^(id responseObject)
+         {
+             [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+         } failure:^(NSError *error) {
+             [SVProgressHUD showErrorWithStatus:error.domain];
+         }];
+    }else{
+        [http_mine del_collect_goods:_goodID success:^(id responseObject)
+         {
+             [SVProgressHUD showSuccessWithStatus:@"删除收藏成功"];
+         } failure:^(NSError *error) {
+             [SVProgressHUD showErrorWithStatus:error.domain];
+         }];
+    }
     
 }
 
@@ -99,6 +118,7 @@
         _collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_collectionButton setTitle:@"收藏" forState:UIControlStateNormal];
         [_collectionButton setImage:[UIImage imageNamed:@"collect_default"] forState:UIControlStateNormal];
+        [_collectionButton setImage:[UIImage imageNamed:@"collect_click"] forState:UIControlStateSelected];
         [_collectionButton setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
         _collectionButton.titleLabel.font = [UIFont systemFontOfSize:11];
         [_collectionButton setImagePosition:LXMImagePositionTop spacing:6];

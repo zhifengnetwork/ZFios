@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 //列表类型（1商品 2店铺 ）
 @property (nonatomic, strong) NSString *type;
 
+-(void)editButtonDidClick;
 @end
 
 NS_ASSUME_NONNULL_END

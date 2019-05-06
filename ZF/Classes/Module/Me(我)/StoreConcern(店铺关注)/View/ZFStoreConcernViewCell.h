@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFShopModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFStoreConcernViewCell : UICollectionViewCell
 
+@property (nonatomic, strong)ZFShopModel *shopModel;
 @end
 
 NS_ASSUME_NONNULL_END

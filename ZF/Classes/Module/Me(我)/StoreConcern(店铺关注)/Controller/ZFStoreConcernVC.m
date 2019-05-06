@@ -12,12 +12,18 @@
 #import "ZFShopImgeViewCell.h"
 #import "ZFCommodityHeadView.h"
 #import "RefreshGifHeader.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
+#import "RefreshGifHeader.h"
+#import "MJExtension.h"
+#import "ZFShopModel.h"
 
 @interface ZFStoreConcernVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 /* collectionView */
 @property (strong , nonatomic)UICollectionView *collectionView;
 
+@property (nonatomic, strong)ZFShopListModel *listModel;
 @end
 
 @implementation ZFStoreConcernVC
@@ -58,12 +64,31 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     self.collectionView.backgroundColor = TableViewBGColor;
     
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    
+    [self loadData];
 }
 
 -(void)loadData
 {
+    ZWeakSelf
+    [http_mine getSellerCollect:^(id responseObject) {
+        [weakSelf showData:responseObject];
+    } failure:^(NSError *error) {
+        
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
     
+}
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+        self.listModel = [ZFShopListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.collectionView reloadData];
 }
 
 
@@ -78,7 +103,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 {
     if (section==0)
     {
-        return 3;
+        return self.listModel.list.count;
     }
     else if (section==2)
     {
@@ -95,7 +120,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     {
         //关注店铺
         ZFStoreConcernViewCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFStoreConcernViewCellID forIndexPath:indexPath];
-        
+        oell.shopModel = [self.listModel.list objectAtIndex:indexPath.row];
         gridcell = oell;
     }
     else if (indexPath.section == 1)
