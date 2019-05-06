@@ -15,6 +15,9 @@
 #import "RefreshGifHeader.h"
 #import "UserInfoModel.h"
 #import "http_user.h"
+#import <DateTools.h>
+#import "ZFSignInView.h"
+#import "TYShowAlertView.h"
 
 @interface ZFCumulativeVC ()<FSCalendarDataSource,FSCalendarDelegate>
 
@@ -29,7 +32,6 @@
 @property (weak, nonatomic) UIButton *nextButton;
 
 @property (strong, nonatomic) NSCalendar *gregorian;
-@property (nonatomic, strong)UITableView *tableView;
 
 - (void)previousClicked:(id)sender;
 - (void)nextClicked:(id)sender;
@@ -44,9 +46,7 @@
     self.gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     [self setup];
     
-    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
-    
-    [self.tableView.mj_header beginRefreshing];
+    [self loadData];
 }
 
 - (void)previousClicked:(id)sender
@@ -221,11 +221,9 @@
     ZWeakSelf
     [http_user AppGetSignDay:^(id responseObject)
      {
-         [weakSelf.tableView.mj_header endRefreshing];
          [weakSelf showData:responseObject];
      } failure:^(NSError *error) {
          
-         [weakSelf.tableView.mj_header endRefreshing];
          [SVProgressHUD showErrorWithStatus:error.domain];
      }];
 }
@@ -239,7 +237,50 @@
     
     self.signInModel = [ZFSignInModel mj_objectWithKeyValues:responseObject];
     
-    [self.tableView reloadData];
+    self.dayLabel.text = [NSString stringWithFormat:@"已连续签到：%@天",self.signInModel.continue_sign];
+    
+    if (self.signInModel.today_sign==NO)
+    {
+        [self loadData2];
+    }
+}
+
+-(void)loadData2
+{
+    ZWeakSelf
+    [http_user AppSign:^(id responseObject)
+     {
+         [weakSelf showData2:responseObject];
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)showData2:(id)responseObject
+{
+    //跳转到签到成功
+    ZFSignInView* windowView = [[ZFSignInView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
+    [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
+}
+
+/**
+ * Asks the dataSource for an image for the specific date.
+ */
+- (nullable UIImage *)calendar:(FSCalendar *)calendar imageForDate:(NSDate *)date
+{
+    NSString* str = [date formattedDateWithFormat:@"yyyy/M/dd"];
+    
+    for (int i= 0; i<self.signInModel.date.count; i++) {
+        
+        NSString* date2 = [self.signInModel.date objectAtIndex:i];
+        if( [str isEqualToString:date2])
+        {
+            return [UIImage imageNamed:@"button_click"];
+        }
+    }
+    
+    return nil;
 }
 
 

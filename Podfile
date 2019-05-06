@@ -32,10 +32,10 @@ target "ZF" do
     pod "PYSearch"
  
     
-    #pod 'UMCShare/UI'
-    #pod 'UMCShare/Social/ReducedWeChat'
-    #pod 'UMCShare/Social/ReducedQQ'
-    #pod 'UMCShare/Social/ReducedSina'
+    pod 'UMCShare/UI'
+    pod 'UMCShare/Social/ReducedWeChat'
+    pod 'UMCShare/Social/ReducedQQ'
+    pod 'UMCShare/Social/ReducedSina'
     
     #pod 'Pgyer'
     #pod 'PgyUpdate'
