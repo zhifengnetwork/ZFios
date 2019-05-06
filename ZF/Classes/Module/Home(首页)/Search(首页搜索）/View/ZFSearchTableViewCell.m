@@ -7,6 +7,8 @@
 //
 
 #import "ZFSearchTableViewCell.h"
+#import "UIImageView+WebCache.h"
+
 @interface ZFSearchTableViewCell()
 @property (nonatomic, strong)UIImageView *iconimageView;
 @property (nonatomic, strong)UILabel *nameLabel;
@@ -19,18 +21,17 @@
 @end
 @implementation ZFSearchTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self setup];
-}
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
-    if (self) {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self)
+    {
         [self setup];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
+
 - (void)setup{
     [self.contentView addSubview:self.iconimageView];
     [self.contentView addSubview:self.nameLabel];
@@ -83,10 +84,22 @@
 - (void)setSearchModel:(ZFSearchModel *)searchModel
 {
     _searchModel = searchModel;
+
+    _nameLabel.text = _searchModel.goods_name;
+    _priceLabel.text = [NSString stringWithFormat:@"¥ %@",_searchModel.shop_price];
+    [_shopButton setTitle:_searchModel.seller_name forState:UIControlStateNormal];
+    _commentsLabel.text = [NSString stringWithFormat:@"%@%%好评",_searchModel.comment_count];
+    _salesLabel.text = [NSString stringWithFormat:@"销量：%@",_searchModel.sales_sum];
+    _paymentLabel.text = [NSString stringWithFormat:@"已付款：%@+",_searchModel.sale_total];
+    
+    //显示图片
+    if (_searchModel.goods_images.count>0) {
+        ZFGoodsImageModel *imageModel = [_searchModel.goods_images objectAtIndex:0];
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,imageModel.image_url];
+        [_iconimageView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
     
 }
-
-
 
 - (UIImageView *)iconimageView{
     if (_iconimageView == nil) {

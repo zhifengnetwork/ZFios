@@ -61,6 +61,7 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickTitle)];
     [tapGesture setNumberOfTapsRequired:1];
     [titleView addGestureRecognizer:tapGesture];
+    titleView.titleLabel.text = self.text;
     
     [self.view addSubview:self.screenView];
     [self.screenView addSubview:self.multipleBtn];
@@ -130,6 +131,23 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     
 }
 
+-(void)multipleBtnDidClick
+{
+    //综合
+    if (_multipleBtn.isSelected)
+    {
+        _multipleBtn.selected = NO;
+    }
+    else
+    {
+        _multipleBtn.selected = YES;
+        _salesBtn.selected = NO;
+        _priceBtn.selected = NO;
+        _ProductBtn.selected = NO;
+        self.searchModel.sort = @"comment_count";
+    }
+    [self loadData];
+}
 
 -(void)salesBtnDidClick
 {
@@ -141,10 +159,47 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
     else
     {
         _salesBtn.selected = YES;
+        _priceBtn.selected = NO;
+        _ProductBtn.selected = NO;
         self.searchModel.sort = @"sales_sum";
     }
+    [self loadData];
 }
 
+-(void)priceBtnDidClick
+{
+    //价格
+    if (_priceBtn.isSelected)
+    {
+        _priceBtn.selected = NO;
+    }
+    else
+    {
+        _priceBtn.selected = YES;
+        _salesBtn.selected = NO;
+        _ProductBtn.selected = NO;
+        self.searchModel.sort = @"shop_price";
+    }
+    [self loadData];
+}
+
+
+-(void)productBtnDidClick
+{
+    //新品
+    if (_ProductBtn.isSelected)
+    {
+        _ProductBtn.selected = NO;
+    }
+    else
+    {
+        _ProductBtn.selected = YES;
+        _salesBtn.selected = NO;
+        _priceBtn.selected = NO;
+        self.searchModel.sort = @"is_new";
+    }
+    [self loadData];
+}
 
 - (UIView *)screenView{
     if (_screenView == nil) {
@@ -161,7 +216,7 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
         [_multipleBtn setTitleColor:RGBColorHex(0xe73339) forState:UIControlStateNormal];
         [_multipleBtn setTitle:@"综合" forState:UIControlStateNormal];
         [_multipleBtn setImage:[UIImage imageNamed:@"down_r"] forState:UIControlStateNormal];
-        
+        [_multipleBtn addTarget:self action:@selector(multipleBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
         
     }
     return _multipleBtn;
@@ -184,8 +239,10 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
         _priceBtn = [[UIButton alloc]init];
         _priceBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [_priceBtn setTitleColor:RGBColorHex(0x484848) forState:UIControlStateNormal];
+        [_priceBtn setTitleColor:RGBColorHex(0xff0000) forState:UIControlStateSelected];
         [_priceBtn setTitle:@"价格" forState:UIControlStateNormal];
         [_priceBtn setImage:[UIImage imageNamed:@"arrow_r"] forState:UIControlStateNormal];
+        [_priceBtn addTarget:self action:@selector(priceBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _priceBtn;
 }
@@ -195,7 +252,9 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
         _ProductBtn = [[UIButton alloc]init];
         _ProductBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [_ProductBtn setTitleColor:RGBColorHex(0x484848) forState:UIControlStateNormal];
+        [_ProductBtn setTitleColor:RGBColorHex(0xff0000) forState:UIControlStateSelected];
         [_ProductBtn setTitle:@"新品" forState:UIControlStateNormal];
+        [_ProductBtn addTarget:self action:@selector(productBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _ProductBtn;
 }
@@ -250,6 +309,9 @@ static NSString *const ZFSearchCollectViewCellID = @"ZFSearchCollectViewCellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     ZFSearchTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFSearchTableViewCellID];
+    if (cell==nil) {
+        cell = [[ZFSearchTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSearchTableViewCellID];
+    }
     
     ZFSearchModel* model = [self.searchListModel.goods_list objectAtIndex:indexPath.row];
     cell.searchModel = model;

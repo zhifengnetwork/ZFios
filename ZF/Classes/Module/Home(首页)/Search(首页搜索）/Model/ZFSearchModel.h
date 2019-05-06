@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString* sales_sum;
 //商家名称
 @property (nonatomic, copy) NSString* seller_name;
+@property (nonatomic, copy) NSString* sale_total;
 //商品图片
 @property (nonatomic, strong) NSMutableArray* goods_images;
 
