@@ -16,17 +16,19 @@
 #import "SVProgressHUD.h"
 #import "RefreshGifHeader.h"
 #import "MJExtension.h"
+#import "ZFGoodModel.h"
 
 
 @interface ZFCommodityInforVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFClassificationHeadViewDelegate>
 
 /* collectionView */
 @property (strong , nonatomic)UICollectionView *collectionView;
+@property (nonatomic, strong)ZFGoodListModel *listModel;
 
 @end
 
 @implementation ZFCommodityInforVC
-
+static NSInteger type = 1;
 /* cell */
 static NSString *const ZFCommodityInforViewCellID = @"ZFCommodityInforViewCellID";
 static NSString *const ZFCommodityTableCellID = @"ZFCommodityTableCellID";
@@ -50,6 +52,22 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 
 -(void)editButtonDidClick
 {
+    if (type == 0) {
+        for (int i = 0; i<self.listModel.list.count; i++) {
+            ZFCommodityInforViewCell *cell = (ZFCommodityInforViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            [cell setDelete:NO];
+        }
+        type = 1;
+    }else{
+        for (int i = 0; i<self.listModel.list.count; i++) {
+            ZFCommodityInforViewCell *cell = (ZFCommodityInforViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            [cell setDelete:YES];
+        }
+        type = 0;
+    }
+    
+    
+    
     //    LKEditingInformationVC* vc = [[LKEditingInformationVC alloc]init];
     //    vc.userInfo = self.userInfo;
     //    [self.navigationController pushViewController:vc animated:YES];
@@ -97,7 +115,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
         return;
     }
     
-//    self.listModel = [ETHBetRecordListModel mj_objectWithKeyValues:responseObject];
+    self.listModel = [ZFGoodListModel mj_objectWithKeyValues:responseObject];
     
     [self.collectionView reloadData];
 }
@@ -113,7 +131,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 {
     if (section==0)
     {
-        return 2;
+        return self.listModel.list.count;
     }
     return 5;
 }
@@ -126,8 +144,9 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     {
         //关注商品
         ZFCommodityInforViewCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFCommodityInforViewCellID forIndexPath:indexPath];
-        
+        oell.commodityModel = [self.listModel.list objectAtIndex:indexPath.row];
         gridcell = oell;
+
     }
     else if (indexPath.section == 1)
     {
@@ -138,6 +157,9 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     }
     return gridcell;
 }
+
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {

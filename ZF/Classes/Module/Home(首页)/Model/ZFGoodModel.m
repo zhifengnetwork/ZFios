@@ -17,3 +17,14 @@
 }
 
 @end
+@implementation ZFGoodListModel
+
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             @"list" : @"ZFGoodModel"
+             };
+}
+
+
+@end

@@ -252,6 +252,22 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         cwmVC.itemMargin = 100.0f;
         [self.navigationController pushViewController:cwmVC animated:YES];
     }
+    else if (type==3)
+    {
+        //跳转到店铺关注
+        ZFCommodityWMVC *cwmVC = [[ZFCommodityWMVC alloc] init];
+        cwmVC.menuViewStyle = WMMenuViewStyleLine;
+        cwmVC.automaticallyCalculatesItemWidths = YES;
+        cwmVC.showOnNavigationBar = NO;
+        cwmVC.menuViewLayoutMode = WMMenuViewLayoutModeCenter;
+        cwmVC.titleColorSelected = RGBColorHex(0x151515);
+        cwmVC.titleColorNormal = RGBColorHex(0x151515);
+        cwmVC.progressColor = RGBColorHex(0xE51C23);
+        cwmVC.titleSizeSelected = 13.0f;
+        cwmVC.titleSizeNormal = 13.0f;
+        cwmVC.itemMargin = 100.0f;
+        [self.navigationController pushViewController:cwmVC animated:YES];
+    }
     else if (type==4)
     {
         //跳转到足迹

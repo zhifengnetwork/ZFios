@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "BaseListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFGoodModel : NSObject
@@ -47,6 +47,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *date;
 //是否选中
 @property (nonatomic, getter=isSelected) BOOL selected;
+
+//关注id
+@property (nonatomic, assign)NSInteger collect_id;
+//收藏时间
+@property (nonatomic, assign)NSInteger add_time;
+// 市场价
+@property (nonatomic, copy)NSString *market_price;
+//库存数量
+@property (nonatomic, assign)NSInteger store_count;
+//关注总数
+@property (nonatomic, copy)NSString *count;
+
+@end
+
+@interface ZFGoodListModel : BaseListModel
+
 @end
 
 NS_ASSUME_NONNULL_END

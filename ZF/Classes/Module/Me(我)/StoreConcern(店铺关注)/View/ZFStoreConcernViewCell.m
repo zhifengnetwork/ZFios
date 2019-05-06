@@ -178,4 +178,14 @@
     return _goShopButton;
 }
 
+- (void)setShopModel:(ZFShopModel *)shopModel{
+    _shopModel = shopModel;
+    _nameLabel.text = [NSString stringWithFormat:@"%@",_shopModel.seller_name];
+    if (!kStringIsEmpty(_shopModel.avatar))
+    {
+//        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_userInfo.head_pic];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:_shopModel.avatar]];
+    }
+}
+
 @end

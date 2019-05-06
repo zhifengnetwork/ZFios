@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFDetailsPageFooterView : UIView
 
+@property (nonatomic, assign)NSInteger goodID;
 @end
 
 NS_ASSUME_NONNULL_END

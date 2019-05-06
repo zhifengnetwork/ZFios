@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFGoodModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFCommodityInforViewCell : UICollectionViewCell
 
+@property (nonatomic, strong)ZFGoodModel *commodityModel;
+
+- (void)setDelete: (BOOL)isHidden;
 @end
 
 NS_ASSUME_NONNULL_END

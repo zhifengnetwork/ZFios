@@ -28,14 +28,14 @@
     
     UIImage *imgRight = [UIImage imageNamed:@"All"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(editButtonDidClick)];
-    
+    self.scrollEnable = NO;
 }
 
 
 - (void)editButtonDidClick
 {
     //更多
-    
+    [self.vc1 editButtonDidClick];
 }
 
 

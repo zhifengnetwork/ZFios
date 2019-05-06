@@ -199,4 +199,55 @@
     strUrl = [strUrl stringByAppendingPathComponent:@"api/User/team_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
+
+//店铺关注列表
++ (void)getSellerCollect:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/getSellerCollect"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+/**
+ 添加/取消店铺关注
+ 
+ @param type 操作类型，1添加，0删除，默认1
+ @param seller_id 店铺ID，type=1必须
+ @param collect_id 关注ID，type=0必须
+ */
++ (void)add_seller_collect:(NSInteger)type seller_id:(NSInteger)seller_id collect_id:(NSInteger)collect_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",type];
+    [parameters setObject:str forKey:@"type"];
+    
+    NSString *str2 = [NSString stringWithFormat:@"%ld",seller_id];
+    [parameters setObject:str2 forKey:@"seller_id"];
+    
+    NSString *str3 = [NSString stringWithFormat:@"%ld",collect_id];
+    [parameters setObject:str3 forKey:@"collect_id"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/add_seller_collect"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+//店铺列表
++ (void)GetSellerList:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/seller/GetSellerList"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
 @end

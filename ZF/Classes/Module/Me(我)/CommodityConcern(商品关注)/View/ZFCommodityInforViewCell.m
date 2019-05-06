@@ -8,6 +8,8 @@
 
 #import "ZFCommodityInforViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
 
 @interface ZFCommodityInforViewCell()
 
@@ -18,6 +20,7 @@
 @property (nonatomic, strong) UILabel* moneyLabel;
 @property (nonatomic, strong) UILabel* money2Label;
 @property (nonatomic, strong) UIButton *seeButton;
+@property (nonatomic, strong)UIButton *deleteButton;
 
 @end
 
@@ -43,6 +46,7 @@
     [self.contentView addSubview:self.moneyLabel];
     [self.contentView addSubview:self.money2Label];
     [self.contentView addSubview:self.seeButton];
+    [self.contentView addSubview:self.deleteButton];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
@@ -83,6 +87,11 @@
         make.bottom.equalTo(self->_iconView.mas_bottom);
     }];
     
+    [_deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-20);
+        make.centerY.equalTo(self.mas_centerY);
+    }];
+    
     //横线
     UIView *hLine2View = [[UIView alloc] init];
     hLine2View.backgroundColor = RGBColorHex(0x999999);
@@ -95,6 +104,19 @@
          make.height.mas_equalTo(0.5);
      }];
     
+}
+- (void)setDelete:(BOOL)isHidden{
+    _deleteButton.hidden = isHidden;
+}
+
+- (void)deleteClick{
+    //删除cell
+    [http_mine del_collect_goods:_commodityModel.goods_id success:^(id responseObject) {
+        [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+    } failure:^(NSError *error) {
+        
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
 }
 
 - (void)seeButtonDidClick
@@ -180,5 +202,26 @@
     return _seeButton;
 }
 
+- (UIButton *)deleteButton{
+    if (_deleteButton == nil) {
+        _deleteButton = [[UIButton alloc]init];
+        [_deleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+        [_deleteButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
+    }return _deleteButton;
+}
+
+- (void)setCommodityModel:(ZFGoodModel *)commodityModel{
+    _commodityModel = commodityModel;
+    _titleLabel.text = [NSString stringWithFormat:@"%@",_commodityModel.goods_name];
+    _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",_commodityModel.shop_price];
+    if (!kStringIsEmpty(_commodityModel.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_commodityModel.original_img];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _money2Label.text = [NSString stringWithFormat:@"¥ %@",_commodityModel.market_price];
+    
+    
+}
 
 @end
