@@ -93,7 +93,7 @@
     
     //组装自己的userInfo
     UserInfoModel* userInfo = [[UserInfoModel alloc]init];
-//    userInfo.uuid = resp.uid;
+    userInfo.wxcode = resp.uid;
 //    userInfo.account_type = [NSString stringWithFormat:@"%d",type];
 //    userInfo.nickname = resp.name;
 //    userInfo.head_url = resp.iconurl;
@@ -132,7 +132,7 @@
 +(void)to_getByUuid:(UserInfoModel*)userInfo srcVC:(UIViewController*)vc
 {
     //[SVProgressHUD showWithStatus:@"正在加载"];
-    [http_user weixin_login:nil success:^(id responseObject)
+    [http_user weixin_login:userInfo.wxcode success:^(id responseObject)
      {
          // [SVProgressHUD showSuccessWithStatus:@"认证成功"];
          [ZFJumpVCTool getByUuid_success:responseObject srcVC:vc];
@@ -148,9 +148,9 @@
     //第三方uuid登录成功
     UserInfoModel* userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
     
-        [userInfo saveUserInfo];
-        //进入领客青年
-//        [[NSNotificationCenter defaultCenter] postNotificationName:UserInfoSuccessNotification object:self];
+    [userInfo saveUserInfo];
+    //进入领客青年
+    [[NSNotificationCenter defaultCenter] postNotificationName:UserLoginRegisterNotification object:self];
     
 }
 

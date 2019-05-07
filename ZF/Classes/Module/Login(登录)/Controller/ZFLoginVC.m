@@ -19,6 +19,7 @@
 #import "MJExtension.h"
 #import "UserInfoModel.h"
 #import "PooCodeView.h"
+#import "ZFJumpVCTool.h"
 
 
 @interface ZFLoginVC ()<LoginTypeViewDelegate>
@@ -497,6 +498,16 @@
     }
     
     return _typeView;
+}
+
+/**
+ 登录类型view按扭被点击
+ 
+ @param type 2:微信 1:QQ 3:新浪 4:手机
+ */
+- (void)LoginTypeViewDidClick:(int)type
+{
+    [ZFJumpVCTool to_ThirdpartyLogin:type srcVC:self];
 }
 
 //- (JKCountDownButton *)vcodeButton {

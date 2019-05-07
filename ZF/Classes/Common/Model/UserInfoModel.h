@@ -29,6 +29,7 @@
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSString *password2;
 @property (nonatomic, copy) NSString *code;
+@property (nonatomic, copy) NSString *wxcode;
 
 //发送短信
 @property (nonatomic, copy) NSString *userid;
