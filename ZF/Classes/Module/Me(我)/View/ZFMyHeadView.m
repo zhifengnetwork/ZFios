@@ -19,7 +19,6 @@
 @property (nonatomic, strong) UIButton* signInButton;
 @property (nonatomic, strong) UILabel* giftLabel;
 @property (nonatomic, strong) UIButton* commodityButton;
-@property (nonatomic, strong) UIButton* shopButton;
 @property (nonatomic, strong) UIButton* footprintButton;
 
 @end
@@ -46,7 +45,6 @@
     [self addSubview:self.signInButton];
     [self addSubview:self.giftLabel];
     [self addSubview:self.commodityButton];
-    [self addSubview:self.shopButton];
     [self addSubview:self.footprintButton];
     
     [_bjIconView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -62,6 +60,7 @@
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_iconView.mas_right).offset(10);
         make.centerY.equalTo(self->_iconView).offset(-5);
+        make.right.mas_equalTo(-220);
     }];
     
     [_memberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -80,18 +79,13 @@
     }];
     
     [_commodityButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_bjIconView.mas_left).offset(35);
-        make.top.equalTo(self->_memberLabel.mas_bottom).offset(5);
-    }];
-    
-    [_shopButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self->_bjIconView);
-        make.centerY.equalTo(self->_commodityButton);
+        make.left.equalTo(self->_bjIconView.mas_left).offset(70);
+        make.top.equalTo(self->_memberLabel.mas_bottom);
     }];
     
     [_footprintButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self->_bjIconView.mas_right).offset(-55);
-        make.centerY.equalTo(self->_shopButton);
+        make.right.equalTo(self->_bjIconView.mas_right).offset(-80);
+        make.centerY.equalTo(self->_commodityButton);
     }];
 }
 
@@ -107,7 +101,6 @@
     }
     _nameLabel.text = _userInfo.nickname;
     [_commodityButton setTitle:[NSString stringWithFormat:@"        %ld\n  商品关注",(long)_userInfo.goods_collect_num] forState:UIControlStateNormal];
-    [_shopButton setTitle:[NSString stringWithFormat:@"       %ld\n  店铺关注",(long)_userInfo.seller_goods_num] forState:UIControlStateNormal];
     [_footprintButton setTitle:[NSString stringWithFormat:@"  %ld\n足迹",(long)_userInfo.goods_visit_num] forState:UIControlStateNormal];
 }
 
@@ -125,14 +118,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick:)])
     {
         [self.delegate ZFMyHeadViewDidClick:2];
-    }
-}
-
--(void)shopButtonDidClick
-{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick:)])
-    {
-        [self.delegate ZFMyHeadViewDidClick:3];
     }
 }
 
@@ -234,19 +219,6 @@
     }
     return _commodityButton;
 }
-
-- (UIButton *)shopButton {
-    if (_shopButton == nil) {
-        _shopButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_shopButton setTitle:@"       10\n  店铺关注" forState:UIControlStateNormal];
-        _shopButton.titleLabel.lineBreakMode = 0;
-        [_shopButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
-        _shopButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_shopButton addTarget:self action:@selector(shopButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _shopButton;
-}
-
 
 - (UIButton *)footprintButton {
     if (_footprintButton == nil) {

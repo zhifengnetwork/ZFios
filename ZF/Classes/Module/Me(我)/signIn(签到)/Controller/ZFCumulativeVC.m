@@ -210,7 +210,7 @@
         _totalDayLabel.textColor = RGBColorHex(0xffffff);
         _totalDayLabel.font = [UIFont systemFontOfSize:14];
         [_totalDayLabel sizeToFit];
-        _totalDayLabel.text = @"积累签到：22天";
+        _totalDayLabel.text = @"累积签到：22天";
     }
     return _totalDayLabel;
 }
@@ -237,7 +237,10 @@
     
     self.signInModel = [ZFSignInModel mj_objectWithKeyValues:responseObject];
     
+    self.integralLabel.text = [NSString stringWithFormat:@"+%@积分",self.signInModel.add_point];
     self.dayLabel.text = [NSString stringWithFormat:@"已连续签到：%@天",self.signInModel.continue_sign];
+    self.totalDayLabel.text = [NSString stringWithFormat:@"累积签到：%@天",self.signInModel.accumulate_day];
+    
     
     if (self.signInModel.today_sign==NO)
     {
@@ -276,7 +279,7 @@
         NSString* date2 = [self.signInModel.date objectAtIndex:i];
         if( [str isEqualToString:date2])
         {
-            return [UIImage imageNamed:@"button_click"];
+            return [UIImage imageNamed:@"qiandao1"];
         }
     }
     

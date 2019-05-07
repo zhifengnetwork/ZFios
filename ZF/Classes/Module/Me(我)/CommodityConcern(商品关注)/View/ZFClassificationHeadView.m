@@ -72,19 +72,6 @@
         make.centerY.equalTo(self);
     }];
     
-    //下面横线
-    UIView *hLineView = [[UIView alloc] init];
-    hLineView.backgroundColor = RGBColorHex(0xcccccc);
-    [self addSubview:hLineView];
-    
-    [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
-     {
-         make.left.mas_equalTo(0);
-         make.right.mas_equalTo(-0);
-         make.bottom.equalTo(self->_classButton.mas_top).offset(-5);
-         make.height.mas_equalTo(0.5f);
-     }];
-    
 }
 
 -(void)classButtonDidClick

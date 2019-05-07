@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFSignInModel.h"
 
 /**
  签到成功弹框
  */
 @interface ZFSignInView : UIView
+
+@property (nonatomic, strong) ZFSignInModel* signInModel;
 
 @end

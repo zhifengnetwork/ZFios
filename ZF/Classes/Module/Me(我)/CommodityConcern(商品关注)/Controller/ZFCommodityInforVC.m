@@ -41,8 +41,8 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//        self.title = @"我的关注";
-//    
+        self.title = @"我的关注";
+//
 //        UIImage *imgRight = [UIImage imageNamed:@"All"];
 //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(editButtonDidClick)];
     

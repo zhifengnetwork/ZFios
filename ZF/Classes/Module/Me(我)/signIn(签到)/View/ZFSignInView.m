@@ -84,6 +84,14 @@
     
 }
 
+-(void)setSignInModel:(ZFSignInModel *)signInModel
+{
+    _signInModel = signInModel;
+    
+    _scoreLabel.text = [NSString stringWithFormat:@"总积分：%@",_signInModel.points];
+    _dayLabel.text = [NSString stringWithFormat:@"已经连续签到%@天",_signInModel.continue_sign];
+    _integralLabel.text = [NSString stringWithFormat:@"+%@积分",self.signInModel.add_point];
+}
 
 - (void)deleteButtonDidClick:(UIButton *)sender
 {
