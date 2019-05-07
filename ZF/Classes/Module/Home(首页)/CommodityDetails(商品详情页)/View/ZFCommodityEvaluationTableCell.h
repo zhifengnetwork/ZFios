@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFGoodCommentModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFCommodityEvaluationTableCell : UITableViewCell
 
-
+@property (nonatomic, strong)ZFGoodCommentModel *commentModel;
 @end
 
 NS_ASSUME_NONNULL_END

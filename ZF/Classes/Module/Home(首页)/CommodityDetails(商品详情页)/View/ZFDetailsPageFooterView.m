@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UIButton* addCartButton;
 @property (nonatomic, strong) UIButton* immediatePurButton;
 
-@property (nonatomic, strong)ZFGoodModel *goodModel;
+
 @end
 
 @implementation ZFDetailsPageFooterView
@@ -108,41 +108,20 @@
 
 - (void)addCartButtonDidClick
 {
-    ZWeakSelf
-    [http_good goodsSpec:_goodID success:^(id responseObject)
-     {
-        [weakSelf loadData:responseObject];
-     } failure:^(NSError *error) {
-         [SVProgressHUD showErrorWithStatus:error.domain];
-     }];
-    
-    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
-    //
+
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 320)];
+//    view.goodID
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
--(void)loadData:(id)responseObject
-{
-    if (kObjectIsEmpty(responseObject))
-    {
-        return;
-    }
-    //
-}
+
 
 - (void)immediatePurButtonDidClick
 {
-    ZWeakSelf
-    [http_good goodsSpec:_goodID success:^(id responseObject)
-     {
-         [weakSelf loadData:responseObject];
-     } failure:^(NSError *error) {
-         [SVProgressHUD showErrorWithStatus:error.domain];
-     }];
     
-    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 320)];
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];

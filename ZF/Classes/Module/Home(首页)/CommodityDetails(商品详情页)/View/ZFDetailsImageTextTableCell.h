@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFGoodModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) BOOL isShowTopLine;
 @property (nonatomic, assign) BOOL isShowBottomLine;
+
+@property (nonatomic, strong)ZFGoodModel *model;
 
 @end
 

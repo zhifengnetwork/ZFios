@@ -62,6 +62,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *name;
 //规格次名
 @property (nonatomic, copy)NSString *item;
+//商品规格大项
+@property (nonatomic, strong)NSArray *goods_attribute;
+//attr_name（值）
+@property (nonatomic, assign)NSInteger attr_id;
+//商品规格小项 （通过attr_id对应上面goods_attribute中的attr_id）
+@property (nonatomic, strong)NSArray *goods_attr_list;
+//规格小项ID
+@property (nonatomic, assign)NSInteger goods_attr_id;
+//属性值
+@property (nonatomic, assign)NSInteger attr_value;
+
 @end
 
 @interface ZFGoodListModel : BaseListModel

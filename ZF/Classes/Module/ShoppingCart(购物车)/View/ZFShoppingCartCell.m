@@ -9,19 +9,19 @@
 #import "ZFShoppingCartCell.h"
 #import "ZFMenuView.h"
 #import "ZFShoppingItem.h"
+#import "PPNumberButton.h"
 
 @interface ZFShoppingCartCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;//背景层
-@property (weak, nonatomic) IBOutlet UIButton *selectShopButton;//商店选中按钮
+
 @property (weak, nonatomic) IBOutlet UIButton *selectGoodButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *storeLabel;//商店名字
+
 @property (weak, nonatomic) IBOutlet UILabel *fullSale;//满赠优惠显示
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;//商品图片
 @property (weak, nonatomic) IBOutlet UILabel *goodsLabel;//商品名字
-@property (weak, nonatomic) IBOutlet UIButton *reduceButton;
-@property (weak, nonatomic) IBOutlet UIButton *increaseButton;//增加按钮
-@property (weak, nonatomic) IBOutlet UILabel *goodsCountLabel;//商品数量
+
+@property (weak, nonatomic) IBOutlet PPNumberButton *numberButton;
 @property (weak, nonatomic) IBOutlet UILabel *goodsPriceLabel;//商品价格
 @property (weak, nonatomic) IBOutlet UILabel *saleLabel;//优惠显示
 
@@ -71,9 +71,9 @@
     menuView.arr =@[@"官方标配",@"套餐一",@"套餐二"];
     [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_goodsLabel.mas_bottom).with.offset(10);
-        make.left.equalTo(self->_increaseButton.mas_right).with.offset(55);
+        make.left.equalTo(self->_numberButton.mas_right).with.offset(55);
         make.right.equalTo(self.contentView).with.offset(-10);
-        make.centerY.equalTo(self->_increaseButton.mas_centerY);
+        make.centerY.equalTo(self->_numberButton.mas_centerY);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(22);
     }];
@@ -87,18 +87,7 @@
     
     return [[[NSBundle mainBundle] loadNibNamed:@"ZFShoppingCartCell" owner:self options:nil]lastObject];
 }
-//商品数量的增加与减少
-- (IBAction)reduce:(id)sender {
-    if (self.goodsCountLabel == 0) {
-        
-        [self.reduceButton setUserInteractionEnabled:NO];
-    }else{
-        [self.reduceButton setUserInteractionEnabled:NO];
-    }
-}
-- (IBAction)increase:(id)sender {
-    
-}
+
 
 
 

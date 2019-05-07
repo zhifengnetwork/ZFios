@@ -24,6 +24,9 @@
 #import "ZFDetailsImageTextTableCell.h"
 #import "TYAlertController.h"
 #import "ZFShareView.h"
+#import "ZFGoodModel.h"
+#import "http_good.h"
+#import "SVProgressHUD.h"
 
 
 @interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -202,14 +205,45 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (indexPath.section==3)
     {
+        //获取评价头部信息
+        [http_good getGoodsComment:_goods_id commentType:1 success:^(id responseObject)
+         {
+             if (kObjectIsEmpty(responseObject))
+             {
+                 return;
+             }
+             
+             //    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
+             
+         }
+                           failure:^(NSError *error) {
+                               [SVProgressHUD showErrorWithStatus:error.domain];
+                           }];
         ZFevaluationHeadTableCell* qcell = [tableView dequeueReusableCellWithIdentifier:ZFevaluationHeadTableCelllD];
         qcell = [[ZFevaluationHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFevaluationHeadTableCelllD];
+//        qcell.titleModel
         cell = qcell;
     }
     else if (indexPath.section==4)
     {
+        //获取好评评论
+        [http_good getGoodsComment:_goods_id commentType:2 success:^(id responseObject)
+         {
+            if (kObjectIsEmpty(responseObject))
+            {
+                return;
+            }
+                 
+            //    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
+
+             }
+        failure:^(NSError *error) {
+             [SVProgressHUD showErrorWithStatus:error.domain];
+        }];
+        
         ZFCommodityEvaluationTableCell* acell = [tableView dequeueReusableCellWithIdentifier:ZFCommodityEvaluationTableCelllD];
         acell = [[ZFCommodityEvaluationTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFCommodityEvaluationTableCelllD];
+//        acell.commentModel =
         cell = acell;
     }
     else if (indexPath.section==5)
@@ -238,8 +272,24 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (indexPath.section==9)
     {
+        //商品属性
+        [http_good goodsAttr:_goods_id success:^(id responseObject)
+         {
+             if (kObjectIsEmpty(responseObject))
+             {
+                 return;
+             }
+             
+             //    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
+             
+         }
+                           failure:^(NSError *error) {
+                               [SVProgressHUD showErrorWithStatus:error.domain];
+                           }];
+        
         ZFDetailsImageTextTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFDetailsImageTextTableCelllD];
         vcell = [[ZFDetailsImageTextTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDetailsImageTextTableCelllD];
+//        vcell.model
         cell = vcell;
     }
     

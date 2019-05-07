@@ -96,6 +96,13 @@
     }return _jumpButton;
 }
 
+- (void)setTitleModel:(ZFGoodCommentModel *)titleModel{
+    _titleModel = titleModel;
+    _evaluateLabel.text = [NSString stringWithFormat:@"商品评价 (%ld)",(long)_titleModel.total_sum];
+    _praiseLabel.text = [NSString stringWithFormat:@"好评 %ld",(long)_titleModel.high_rate];
+    
+}
+
 #pragma mark -- 方法
 - (void)jumpClick{
     ZFEvaluationVC *vc = [[ZFEvaluationVC alloc]init];

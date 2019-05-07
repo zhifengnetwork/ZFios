@@ -56,7 +56,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         tableView.backgroundColor = RGBColorHex(0xf4f4f4);
         tableView.delegate = self;
         tableView.dataSource = self;
-        tableView.rowHeight = 270;
+        tableView.rowHeight = 200;
         self.shoppingCart = tableView;
         [self.view addSubview:tableView];
         
