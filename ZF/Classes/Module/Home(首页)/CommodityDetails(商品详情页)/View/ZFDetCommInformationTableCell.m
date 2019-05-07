@@ -218,4 +218,9 @@
     return _stockLabel;
 }
 
+- (void)setInformationModel:(ZFGoodModel *)informationModel{
+    _informationModel = informationModel;
+    _nameLabel.text = [NSString stringWithFormat:@"%@",_informationModel.goods_name];
+    
+}
 @end

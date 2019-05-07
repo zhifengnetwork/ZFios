@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFGoodModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFDetCommInformationTableCell : UITableViewCell
 
+@property (nonatomic, strong)ZFGoodModel *informationModel;
 @end
 
 NS_ASSUME_NONNULL_END

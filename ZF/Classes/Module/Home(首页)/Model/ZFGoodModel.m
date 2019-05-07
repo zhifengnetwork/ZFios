@@ -7,7 +7,9 @@
 //
 
 #import "ZFGoodModel.h"
+@implementation ZFdetailGoodModel
 
+@end
 @implementation ZFGoodModel
 
 + (NSDictionary *)mj_replacedKeyFromPropertyName{
@@ -15,6 +17,16 @@
              @"ID":@"id"
              };
 }
+
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             
+             @"goods":@"ZFdetailGoodModel",
+             @"comment_fr":@"ZFGoodCommentModel"
+             };
+}
+
 
 @end
 @implementation ZFGoodListModel

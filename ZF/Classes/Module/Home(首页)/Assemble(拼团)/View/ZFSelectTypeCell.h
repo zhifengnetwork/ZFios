@@ -9,10 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "ZFGoodModel.h"
 NS_ASSUME_NONNULL_BEGIN
+@class ZFSelectTypeCell;
+@protocol ZFSelectTypeCellDelegate <NSObject>
 
+- (void)selectKeyID:(UIButton*)btn;
+
+@end
 @interface ZFSelectTypeCell : UITableViewCell
 
 @property (nonatomic, strong)NSMutableArray *type;
+@property (nonatomic, weak) id<ZFSelectTypeCellDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

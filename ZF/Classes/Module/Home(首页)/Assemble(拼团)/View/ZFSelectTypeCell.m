@@ -273,8 +273,7 @@
         ZFGoodModel *model = type[7];
         [_typeButton7 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
     }
-    
-    
+   
     
     
 }
@@ -294,7 +293,7 @@
     NSInteger i = btn.tag;
     ZFGoodModel *model = self.type[i];
     btn.tag = model.ID;
-    
+    [self.delegate selectKeyID:btn];
 }
 
 @end

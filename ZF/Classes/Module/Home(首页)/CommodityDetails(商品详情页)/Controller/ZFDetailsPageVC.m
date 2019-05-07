@@ -68,7 +68,25 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     
     UIImage *imgRight = [UIImage imageNamed:@"share"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(shareButtonDidClick)];
+    ZWeakSelf
+    [http_good goodsInfo:_goods_id success:^(id responseObject)
+     {
+         [weakSelf loadData:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+-(void)loadData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
     
+   
 }
 
 -(void)shareButtonDidClick
@@ -183,6 +201,18 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (indexPath.section==1)
     {
+//        获取地址id
+        [http_good dispatching:_goods_id region_id:_region_id buy_num:1 success:^(id responseObject) {
+            if (kObjectIsEmpty(responseObject))
+            {
+                return;
+            }
+            //获取运费  
+            //    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
+        } failure:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.domain];
+        }];
+        
         ZFDeliveryTableCell* ocell  = [tableView dequeueReusableCellWithIdentifier:ZFDeliveryTableCelllD];
         ocell = [[ZFDeliveryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDeliveryTableCelllD];
         if (indexPath.row==0)

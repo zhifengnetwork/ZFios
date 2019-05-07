@@ -12,7 +12,7 @@
 #import "SVProgressHUD.h"
 #import "ZFGoodModel.h"
 
-@interface ZFSelectTypeView()<UITableViewDelegate,UITableViewDataSource>
+@interface ZFSelectTypeView()<UITableViewDelegate,UITableViewDataSource,ZFSelectTypeCellDelegate>
 @property (nonatomic, strong)UIImageView *iconImageView;
 @property (nonatomic, strong)UILabel *priceLabel;
 @property (nonatomic, strong)UILabel *promptLabel;
@@ -262,7 +262,23 @@ NSInteger count = 1;//存储购物车的数量
     return cell;
 }
 #pragma mark --方法
-
+static NSInteger *i = 0;
+- (void)selectKeyID:(UIButton *)btn{
+    //计算有多少个主规格，然后拼凑起来
+    NSString *key = [NSString stringWithFormat:@"%ld",(long)btn.tag];
+    i++;
+    //
+    [http_good getPricePic:key goods_id:_goodID success:^(id responseObject) {
+        if (kObjectIsEmpty(responseObject))
+        {
+            return;
+        }
+        //
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+    
+}
 
 - (void)NumberChange: (UIButton *)btn{
     

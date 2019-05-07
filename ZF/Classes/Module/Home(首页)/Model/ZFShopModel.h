@@ -13,6 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 //商品id
 @property (nonatomic , assign) NSInteger             goods_id;
+@property (nonatomic , assign) NSInteger             store_id;
+@property (nonatomic , assign) NSInteger             store_name;
+@property (nonatomic , assign) NSInteger             avatar;
+@property (nonatomic , assign) NSInteger             num;
+@property (nonatomic , assign) NSInteger             is_collect;
+@property (nonatomic , assign) NSInteger             is_cart;
 //商品名称
 @property (nonatomic , copy) NSString              * goods_name;
 //本店价

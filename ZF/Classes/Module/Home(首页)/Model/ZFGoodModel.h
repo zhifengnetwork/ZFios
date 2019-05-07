@@ -9,7 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "BaseListModel.h"
 NS_ASSUME_NONNULL_BEGIN
+@interface ZFdetailGoodModel : NSObject
+@property (nonatomic, assign)NSInteger goods_id;
+@property (nonatomic, copy)NSString *goods_name;
+@property (nonatomic, copy)NSString *shop_price;
+@property (nonatomic, copy)NSString *original_img;
 
+@end
 @interface ZFGoodModel : NSObject
 
 @property (nonatomic, assign)NSInteger ID;
@@ -72,6 +78,50 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger goods_attr_id;
 //属性值
 @property (nonatomic, assign)NSInteger attr_value;
+
+//商品详情
+@property (nonatomic, assign)NSInteger seller_id;
+@property (nonatomic, assign)NSInteger extend_cat_id;
+@property (nonatomic, copy)NSString *goods_sn;
+@property (nonatomic, assign)NSInteger click_count;
+@property (nonatomic, assign)NSInteger weight;
+@property (nonatomic, copy)NSString *volume;
+@property (nonatomic, copy)NSString *price_ladder;
+@property (nonatomic, copy)NSString *keywords;
+@property (nonatomic, copy)NSString *goods_remark;
+@property (nonatomic, copy)NSString *goods_content;
+@property (nonatomic, copy)NSString *mobile_content;
+
+@property (nonatomic, assign)NSInteger is_virtual;
+@property (nonatomic, assign)NSInteger is_distribut;
+@property (nonatomic, assign)NSInteger is_agent;
+@property (nonatomic, assign)NSInteger virtual_indate;
+@property (nonatomic, assign)NSInteger virtual_limit;
+@property (nonatomic, assign)NSInteger virtual_refund;
+@property (nonatomic, assign)NSInteger virtual_sales_sum;
+@property (nonatomic, assign)NSInteger virtual_collect_sum;
+
+@property (nonatomic, assign)NSInteger collect_sum;
+@property (nonatomic, assign)NSInteger is_on_sale;
+@property (nonatomic, assign)NSInteger is_free_shipping;
+@property (nonatomic, assign)NSInteger is_recommend;
+@property (nonatomic, assign)NSInteger is_new;
+@property (nonatomic, assign)NSInteger is_hot;
+@property (nonatomic, assign)NSInteger last_update;
+@property (nonatomic, assign)NSInteger goods_type;
+@property (nonatomic, assign)NSInteger give_integral;
+@property (nonatomic, assign)NSInteger exchange_integral;
+@property (nonatomic, assign)NSInteger suppliers_id;
+@property (nonatomic, assign)NSInteger prom_id;
+@property (nonatomic, assign)NSInteger prom_type;
+@property (nonatomic, copy)NSString *commission;
+@property (nonatomic, copy)NSString *video;
+@property (nonatomic, assign)NSInteger sign_free_receive;
+@property (nonatomic, assign)NSInteger buy_super_nsign;
+
+@property (nonatomic, strong)NSArray *seller_info;
+@property (nonatomic, strong)NSArray *goods;
+@property (nonatomic, strong)NSArray *comment_fr;
 
 @end
 
