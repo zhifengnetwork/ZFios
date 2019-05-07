@@ -70,6 +70,15 @@
     
 }
 
+- (void)setAddressEditModel:(ZFAddressEditModel *)addressEditModel
+{
+    _addressEditModel = addressEditModel;
+    
+    _nameLabel.text = _addressEditModel.consignee;
+    _phoneLabel.text = _addressEditModel.mobile;
+    _addressLabel.text = _addressEditModel.address;
+}
+
 -(UIView *)bgView
 {
     if(_bgView==nil)

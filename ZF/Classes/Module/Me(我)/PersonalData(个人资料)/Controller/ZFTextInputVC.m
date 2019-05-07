@@ -105,12 +105,7 @@
     
 }
 
-- (void)clickButtonDidClick
-{
-    
-}
-
-- (void)rightBarButtonDidClick{
+- (void)clickButtonDidClick{
     
     if (_type==1)
     {
@@ -129,17 +124,6 @@
     }
     
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
 }
 
 //是否为合法输入

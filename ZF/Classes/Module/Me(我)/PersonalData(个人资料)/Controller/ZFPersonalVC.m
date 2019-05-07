@@ -49,7 +49,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [self.tableView reloadData];
 }
 
 - (void)setupTableView

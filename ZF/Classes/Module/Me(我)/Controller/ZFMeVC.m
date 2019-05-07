@@ -41,6 +41,7 @@
 @property (nonatomic, strong) ZFMyHeadView *headView;
 
 @property (nonatomic, strong) UserInfoModel *userInfo;
+@property (nonatomic, strong) UserInfoModel *userInfo2;
 
 @end
 
@@ -65,6 +66,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     
     //用户信息
     [self loadData];
+    [self loadData2];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -123,6 +125,34 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     
 }
 
+-(void)loadData2
+{
+    ZWeakSelf
+    [http_user userinfo:^(id responseObject)
+     {
+         [weakSelf loadData2_ok:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+//加载数据完成
+-(void)loadData2_ok:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    //jsonToModel
+    self.userInfo2 = [UserInfoModel mj_objectWithKeyValues:responseObject];
+    
+    [self.tableView reloadData];
+    
+}
+
 
 #pragma mark - Table view data source
 //有多少组
@@ -168,7 +198,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         {
             cell = [[ZFFundAccountControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFFundAccountControllerCellID];
         }
-        cell.userInfo = self.userInfo;
+        cell.userInfo = self.userInfo2;
         return cell;
     }
     else if (indexPath.section==3)
@@ -234,7 +264,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     {
         //跳转到个人资料
         ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
-        vc.userInfo = self.userInfo;
+        vc.userInfo = self.userInfo2;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (type==2)

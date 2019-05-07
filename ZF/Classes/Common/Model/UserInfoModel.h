@@ -24,27 +24,32 @@
 @interface UserInfoModel : NSObject<NSCoding>
 
 //注册
-@property (nonatomic, copy) NSString *nickname;
-@property (nonatomic, copy) NSString *username;
+@property (nonatomic, strong) NSString *nickname;
+@property (nonatomic, strong) NSString *username;
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSString *password2;
 @property (nonatomic, copy) NSString *code;
 @property (nonatomic, copy) NSString *wxcode;
 
 //发送短信
-@property (nonatomic, copy) NSString *userid;
-@property (nonatomic, copy) NSString *mobile;
+@property (nonatomic, strong) NSString *userid;
+@property (nonatomic, strong) NSString *mobile;
 @property (nonatomic, copy) NSString *temp;
 @property (nonatomic, copy) NSString *imgcode;
 
+@property (nonatomic, copy)NSString *birthyear;
+@property (nonatomic, copy)NSString *birthmonth;
+@property (nonatomic, copy)NSString *birthday;
+@property (nonatomic, strong)NSString *date_birth;
+
 //用户ID
-@property (nonatomic, copy) NSString *user_id;
+@property (nonatomic, strong) NSString *user_id;
 //
 @property (nonatomic, copy) NSString *token;
 //用户头像
 @property (nonatomic, copy) NSString *image;
-@property (nonatomic, copy) NSString *head_pic;
-@property (nonatomic, copy) NSString *user_money;
+@property (nonatomic, strong) NSString *head_pic;
+@property (nonatomic, strong) NSString *user_money;
 @property (nonatomic, copy) NSString *agent_user;
 @property (nonatomic, copy) NSString *first_leader;
 @property (nonatomic, copy) NSString *realname;

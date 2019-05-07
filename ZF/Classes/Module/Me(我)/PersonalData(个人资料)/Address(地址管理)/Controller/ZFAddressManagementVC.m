@@ -12,12 +12,19 @@
 #import "ZFTool.h"
 #import "ZFSpikeFooterView.h"
 #import "ZFEditorialConsigneeVC.h"
+#import "http_address.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "RefreshGifHeader.h"
+#import "ZFAddressEditModel.h"
 
 @interface ZFAddressManagementVC ()<UITableViewDelegate,UITableViewDataSource,ZFAddressManagementTableCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) ZFSpikeFooterView *footerView;
+
+@property (nonatomic, strong)  NSMutableArray * datas;
 
 @end
 
@@ -75,14 +82,45 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
     self.tableView.alwaysBounceVertical=NO;
     
     [self.tableView registerClass:[ZFAddressManagementTableCell class] forCellReuseIdentifier:ZFAddressManagementTableCellID];
+    
+    //自定义刷新动画
+    ZWeakSelf
+    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
+-(void)loadData
+{
+    ZWeakSelf
+    [http_address address_list:^(id responseObject)
+     {
+         [self.tableView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [self.tableView.mj_header endRefreshing];
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
 
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.datas = [ZFAddressEditModel mj_objectArrayWithKeyValuesArray:responseObject];
+    
+    [self.tableView reloadData];
+}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 1+self.datas.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -98,8 +136,9 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
     {
         ZFAddressManagementTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFAddressManagementTableCellID];
         scell = [[ZFAddressManagementTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAddressManagementTableCellID];
+        ZFAddressEditModel *addressModel = [self.datas objectAtIndex:indexPath.section-1];
+        scell.addressEditModel = addressModel;
         scell.delegate = self;
-
         
         cell = scell;
     }
@@ -184,5 +223,13 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+-(NSMutableArray * )datas
+{
+    if (_datas==nil) {
+        _datas = [[NSMutableArray alloc]init];
+    }
+    
+    return _datas;
+}
 
 @end

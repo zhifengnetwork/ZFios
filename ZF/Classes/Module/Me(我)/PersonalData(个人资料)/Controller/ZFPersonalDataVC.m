@@ -13,8 +13,9 @@
 #import "http_home.h"
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
+#import "UUPickerView.h"
 
-@interface ZFPersonalDataVC ()
+@interface ZFPersonalDataVC ()<ZFTextInputVCDelegate,UUPickerViewDelegate>
 
 @end
 
@@ -91,7 +92,8 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
             pcell.title = @"用户名";
             pcell.isShowTitleButton = YES;
             pcell.isShowNextButton = NO;
-            pcell.name = @"12446655";
+            UserInfoModel* u = [UserInfoModel readUserInfo];
+            pcell.name = u.user_id;
         }
         else if (indexPath.row==2) {
             pcell.title = @"名称";
@@ -101,12 +103,20 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
         else if (indexPath.row==3) {
             pcell.title = @"性别";
             pcell.isShowTitleButton = YES;
-            pcell.name = @"保密";
+            pcell.name = [self.userInfo getSexText];
         }
         else if (indexPath.row==4) {
             pcell.title = @"出生日期";
             pcell.isShowTitleButton = YES;
-            pcell.name = @"2018-3-2";
+            if (self.userInfo.date_birth!=nil)
+            {
+                pcell.name = self.userInfo.date_birth;
+            }
+            else
+            {
+                pcell.name = [NSString stringWithFormat:@"%@-%@-%@",self.userInfo.birthyear,self.userInfo.birthmonth,self.userInfo.birthday];
+            }
+            
             pcell.roundBottom = YES;
         }
         
@@ -148,10 +158,113 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
         else if (indexPath.row==2) {
             ZFTextInputVC* vc = [[ZFTextInputVC alloc]init];
             vc.type = 1;
+            vc.text = self.userInfo.nickname;
+            vc.delegate = self;
             [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (indexPath.row==3)
+        {
+            //性别
+            UUPickerView* pv = [[UUPickerView alloc ]initPickerViewWithArray:@[@[@"保密",@"男", @"女"]] title:@"性别"];
+            pv.delegate = self;
+            pv.tag = indexPath.row;
+            [pv pickerViewSelectRow:self.userInfo.sex inComponent:0];
+            [pv show];
+        }
+        else if (indexPath.row==4)
+        {
+            //日期
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+            [formatter setDateFormat:@"yyyy-MM-dd"];
+            NSString* str = @"1990-01-01";
+            NSDate *date=[formatter dateFromString:str];
+            
+            UUPickerView* pv = [[UUPickerView alloc ]initDatePickerWithDate:date datePickerMode:UIDatePickerModeDate title:@"出生日期"];
+            pv.delegate = self;
+            pv.tag = indexPath.row;
+            [pv show];
         }
     }
         
+}
+
+//如果是datePicker返回的数组第一个值是选择的时间
+- (void)pickerViewClick:(UUPickerView *)pickerView rowArray:(NSArray *)rowArray
+{
+    if (pickerView.tag==3)
+    {
+        //
+        NSNumber *index = [rowArray objectAtIndex:0];
+        //调接口修改
+        ZFUserModel* m = [[ZFUserModel alloc]init];
+        m.sex = index.integerValue;
+        [self edit:m];
+    }
+    else if (pickerView.tag==4)
+    {
+        //
+        NSDate *date = [rowArray objectAtIndex:0];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy"];
+        NSString *strDate1 = [dateFormatter stringFromDate:date];
+        [dateFormatter setDateFormat:@"MM"];
+        NSString *strDate2 = [dateFormatter stringFromDate:date];
+        [dateFormatter setDateFormat:@"dd"];
+        NSString *strDate3 = [dateFormatter stringFromDate:date];
+        
+        //调接口修改
+        ZFUserModel* m = [[ZFUserModel alloc]init];
+        m.birthyear = strDate1;
+        m.birthmonth = strDate2;
+        m.birthday = strDate3;
+        [self edit:m];
+    }
+}
+
+//点击了昵称、简介修改界面的保存
+- (void)ZFTextInputVCDidSave:(NSString *)text type:(int)type
+{
+    if (type==1)
+    {
+        if (kStringIsEmpty(text))
+        {
+            [SVProgressHUD showInfoWithStatus:@"姓名不能为空"];
+            return;
+        }
+        //调接口修改
+        ZFUserModel* m = [[ZFUserModel alloc]init];
+        m.nickname = text;
+        [self edit:m];
+    }
+}
+
+-(void)edit:(ZFUserModel*)m
+{
+    //调接口修改
+    ZWeakSelf
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    [http_home update_username:m success:^(id responseObject)
+     {
+         [SVProgressHUD dismiss];
+         [weakSelf edit_success:responseObject];
+         
+     } failure:^(NSError *error)
+     {
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+     }];
+}
+
+-(void)edit_success:(id)responseObject
+{
+    UserInfoModel* u = [UserInfoModel mj_objectWithKeyValues:responseObject];
+    self.userInfo.head_pic = u.head_pic;
+    self.userInfo.nickname = u.nickname;
+    self.userInfo.sex = u.sex;
+    self.userInfo.birthyear = u.birthyear;
+    self.userInfo.birthmonth = u.birthmonth;
+    self.userInfo.birthday = u.birthday;
+    self.userInfo.date_birth = [NSString stringWithFormat:@"%@-%@-%@",self.userInfo.birthyear,self.userInfo.birthmonth,self.userInfo.birthday];
+    [self.tableView reloadData];
 }
 
 #pragma mark -- 方法
