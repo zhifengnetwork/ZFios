@@ -9,6 +9,10 @@
 #import "ZFPersonalDataVC.h"
 #import "ZFPersonalCentralTableCell.h"
 #import "ZFTextInputVC.h"
+#import "TZImagePickerController.h"
+#import "http_home.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
 
 @interface ZFPersonalDataVC ()
 
@@ -81,6 +85,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
             pcell.title = @"头像";
             pcell.isShowButton = YES;
             pcell.roundTop = YES;
+            pcell.userInfo = self.userInfo;
         }
         else if (indexPath.row==1) {
             pcell.title = @"用户名";
@@ -91,7 +96,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
         else if (indexPath.row==2) {
             pcell.title = @"名称";
             pcell.isShowTitleButton = YES;
-            pcell.name = @"Tony";
+            pcell.name = self.userInfo.nickname;
         }
         else if (indexPath.row==3) {
             pcell.title = @"性别";
@@ -137,7 +142,10 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
 {
     if (indexPath.section==0)
     {
-        if (indexPath.row==2) {
+        if (indexPath.row==0) {
+            [self changeIcon];
+        }
+        else if (indexPath.row==2) {
             ZFTextInputVC* vc = [[ZFTextInputVC alloc]init];
             vc.type = 1;
             [self.navigationController pushViewController:vc animated:YES];
@@ -145,5 +153,68 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
     }
         
 }
+
+#pragma mark -- 方法
+- (void)changeIcon{
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
+    
+    // You can get the photos by block, the same as by delegate.
+    // 你可以通过block或者代理，来得到用户选择的照片.
+    ZWeakSelf
+    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto)
+     {
+         [weakSelf saveClick:[photos firstObject]];
+     }];
+    [self presentViewController:imagePickerVc animated:YES completion:nil];
+}
+
+- (void)saveClick:(UIImage*)image{
+    
+    ZWeakSelf
+    [http_home update_head_pic:image success:^(id responseObject)
+     {
+         [weakSelf face_ok:responseObject];
+     } failure:^(NSError *error)
+     {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)face_ok:(id)responseObject
+{
+    //解析需要的数据
+    NSError *error = nil;
+    NSDictionary *dcattributes = nil;
+    //判断是否需要转换
+    if (![responseObject isKindOfClass:[NSDictionary class]])
+    {
+        dcattributes =[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+    }
+    else
+    {
+        dcattributes = responseObject;
+    }
+    
+    id dicdata = [dcattributes objectForKey:@"data"];
+    id dicstatus = [dcattributes objectForKey:@"status"];
+    
+    if ( dicstatus!=0 )
+    {
+        if (dicdata!=nil)
+        {
+            [SVProgressHUD showErrorWithStatus:dicdata];
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:@"上传失败"];
+        }
+        return;
+    }
+    
+    NSString* str = dicdata;
+    self.userInfo.head_pic = str;
+    [self.tableView reloadData];
+}
+
 
 @end

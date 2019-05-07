@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserInfoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  个人资料
  */
 @interface ZFPersonalVC : UITableViewController
+
+@property (nonatomic, strong) UserInfoModel *userInfo;
 
 @end
 

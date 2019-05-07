@@ -7,6 +7,9 @@
 //
 
 #import "http_home.h"
+#import <AFNetworking.h>
+#import "UserInfoModel.h"
+
 
 @implementation http_home
 
@@ -118,19 +121,54 @@
 
 //上传头像接口
 //image 头像
-+ (void)update_head_pic:(NSString*)image success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)update_head_pic:(UIImage*)image success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    if (!kStringIsEmpty(image)) {
-        [parameters setObject:image forKey:@"image"];
-    }
-    
-    NSDictionary* dic = [http hanldeSign:parameters];
-    
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/user/update_head_pic"];
-    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+    
+    AFHTTPSessionManager* manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
+    
+    //如果报接受类型不一致请替换一致text/html或别的
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    //设置超时
+    manager.requestSerializer.timeoutInterval = 30.0f;
+    
+    NSData* data = UIImageJPEGRepresentation(image, 1.0);
+    NSMutableDictionary *dicParameters = nil;
+    
+    UserInfoModel* userInfo = [UserInfoModel readUserInfo];
+    [manager.requestSerializer setValue:userInfo.token forHTTPHeaderField:@"token"];
+    
+    NSURLSessionTask *session = [manager POST:strUrl parameters:dicParameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData)
+                                 {
+                                     NSString* mimeType = @"image/jpeg";
+                                     
+                                     [formData appendPartWithFileData:data name:@"image" fileName:@"image.jpg" mimeType:mimeType];
+                                 }
+                                     progress:^(NSProgress * _Nonnull uploadProgress)
+                                 {
+                                     
+                                 }
+                                      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+                                 {
+                                     if (ReqSuccess)
+                                     {
+                                         ReqSuccess(responseObject);
+                                     }
+                                 }
+                                      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+                                 {
+                                     if (ReqFailure)
+                                     {
+                                         ReqFailure(error);
+                                     }
+                                 }];
+    
+    [session resume];
 }
 
 //个人信息修改

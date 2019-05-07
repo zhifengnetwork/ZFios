@@ -234,6 +234,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     {
         //跳转到个人资料
         ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
+        vc.userInfo = self.userInfo;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (type==2)
