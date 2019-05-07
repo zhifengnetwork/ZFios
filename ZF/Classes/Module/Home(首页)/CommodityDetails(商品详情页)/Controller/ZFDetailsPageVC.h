@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFDetailsPageVC : UIViewController
 
+@property (nonatomic, assign)NSInteger goods_id;
 @end
 
 NS_ASSUME_NONNULL_END
