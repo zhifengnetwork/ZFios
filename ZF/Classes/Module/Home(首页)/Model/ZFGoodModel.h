@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseListModel.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface ZFdetailGoodModel : NSObject
+@interface ZFdetailsGoodModel : NSObject
 @property (nonatomic, assign)NSInteger goods_id;
 @property (nonatomic, copy)NSString *goods_name;
 @property (nonatomic, copy)NSString *shop_price;
@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 //商品详情
 @property (nonatomic, assign)NSInteger seller_id;
 @property (nonatomic, assign)NSInteger extend_cat_id;
-@property (nonatomic, copy)NSString *goods_sn;
+@property (nonatomic, copy)NSString *prom_type;
 @property (nonatomic, assign)NSInteger click_count;
 @property (nonatomic, assign)NSInteger weight;
 @property (nonatomic, copy)NSString *volume;
@@ -113,7 +113,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger exchange_integral;
 @property (nonatomic, assign)NSInteger suppliers_id;
 @property (nonatomic, assign)NSInteger prom_id;
-@property (nonatomic, assign)NSInteger prom_type;
 @property (nonatomic, copy)NSString *commission;
 @property (nonatomic, copy)NSString *video;
 @property (nonatomic, assign)NSInteger sign_free_receive;

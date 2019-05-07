@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)NSInteger goods_id;
 @property (nonatomic, assign)NSInteger region_id;
+
 @end
 
 NS_ASSUME_NONNULL_END

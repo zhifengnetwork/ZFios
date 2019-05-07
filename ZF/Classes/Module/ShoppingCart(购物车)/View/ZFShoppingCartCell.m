@@ -10,6 +10,7 @@
 #import "ZFMenuView.h"
 #import "ZFShoppingItem.h"
 #import "PPNumberButton.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZFShoppingCartCell()
 @property (weak, nonatomic) IBOutlet UIView *bgView;//背景层
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *goodsLabel;//商品名字
 
 @property (weak, nonatomic) IBOutlet PPNumberButton *numberButton;
+@property (weak, nonatomic) UIButton *mealButton;
 @property (weak, nonatomic) IBOutlet UILabel *goodsPriceLabel;//商品价格
 @property (weak, nonatomic) IBOutlet UILabel *saleLabel;//优惠显示
 
@@ -66,10 +68,10 @@
     self.layer.cornerRadius = 8.0;
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    ZFMenuView *menuView= [[ZFMenuView alloc]init];
-    [self.contentView addSubview:menuView];
-    menuView.arr =@[@"官方标配",@"套餐一",@"套餐二"];
-    [menuView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+    [self.contentView addSubview:self.mealButton];
+    
+    [_mealButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_goodsLabel.mas_bottom).with.offset(10);
         make.left.equalTo(self->_numberButton.mas_right).with.offset(55);
         make.right.equalTo(self.contentView).with.offset(-10);
@@ -77,9 +79,7 @@
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(22);
     }];
-    [menuView setButtonHeight:22];
     
-    [menuView closeTableView];
     
 }
 
@@ -87,7 +87,21 @@
     
     return [[[NSBundle mainBundle] loadNibNamed:@"ZFShoppingCartCell" owner:self options:nil]lastObject];
 }
-
+- (void)setModel:(ZFGoodModel *)model{
+    _model = model;
+    if (model.selected == 0) {
+        self.selectGoodButton.selected = NO;
+    }else{
+        self.selectGoodButton.selected = YES;
+    }
+    self.goodsLabel.text = [NSString stringWithFormat:@"%@",_model.goods_name];
+    if (!kStringIsEmpty(_model.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_model.original_img];
+        [_goodsImageView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    
+}
 
 
 

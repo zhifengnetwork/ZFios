@@ -10,15 +10,17 @@
 #import "ZFShoppingCartCell.h"
 #import "ZFSettlementView.h"
 #import "ZFEmptyCartView.h"
-//#import "ZFTool.h"
+#import "ZFTool.h"
 #import "SVProgressHUD.h"
 #import "http_shopping.h"
-#import "UserInfoModel.h"
+#import "ZFGoodModel.h"
 #import "MJExtension.h"
 
 @interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak)UITableView *shoppingCart;
 @property (nonatomic, weak)ZFSettlementView *settleView;
+
+@property (nonatomic, weak)ZFGoodListModel *listModel;
 @end
 
 @implementation ZFShoppingCartVC
@@ -58,15 +60,16 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         tableView.dataSource = self;
         tableView.rowHeight = 200;
         self.shoppingCart = tableView;
+    [tableView registerClass:[ZFShoppingCartCell class] forCellReuseIdentifier:ZFShoppingCartTableCellID];
         [self.view addSubview:tableView];
         
         tableView.allowsMultipleSelectionDuringEditing = YES;
         //结算界面
-        ZFSettlementView *settleView = [ZFSettlementView CartView];
-        [self.view addSubview:settleView];
-        self.settleView = settleView;
-        [settleView setPrice];
-        [settleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        self.settleView = [ZFSettlementView CartView];
+        [self.view addSubview:self.settleView];
+    
+        [_settleView setPrice];
+        [_settleView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(0);
             make.right.mas_equalTo(0);
             make.width.mas_equalTo(LL_ScreenWidth);
@@ -94,8 +97,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         return;
     }
     
-    UserInfoModel* userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
-    [userInfo saveUserInfo];
+    self.listModel = [ZFGoodListModel mj_objectWithKeyValues:responseObject];
 
 }
 
@@ -112,7 +114,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 }
 #pragma mark --tableview的协议
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return self.listModel.list.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
@@ -122,10 +124,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFShoppingCartTableCellID];
-    if (cell == nil) {
-        
-        cell = [ZFShoppingCartCell  ShoppingCartCell];
-    }
+    cell.model = [self.listModel.list objectAtIndex:indexPath.section];
     return cell;
 }
 @end

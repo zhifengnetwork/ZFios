@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZFShoppingItem.h"
+#import "ZFGoodModel.h"
 @class ZFShoppingCartCell;
 @protocol ZFShoppingCartCellDelegate <NSObject>
 @optional
@@ -17,6 +17,6 @@
 @end
 @interface ZFShoppingCartCell : UITableViewCell
 @property (weak, nonatomic)id <ZFShoppingCartCellDelegate>delegate;
-@property (strong, nonatomic)ZFShoppingItem *model;
+@property (strong, nonatomic)ZFGoodModel *model;
 + (instancetype)ShoppingCartCell;
 @end
