@@ -15,6 +15,7 @@
 #import "ZFTool.h"
 #import "UserInfoModel.h"
 #import <SDWebImage/SDWebImageManager.h>
+#import "UMSocialTool.h"
 
 
 @interface AppDelegate ()
@@ -41,6 +42,9 @@
     
     [self to_MainVC];
     [self BaseSetup];
+    
+    // U-Share 平台设置
+    [[UMSocialTool sharedManager] initSDK];
     
     return YES;
 }
@@ -145,6 +149,58 @@
     //进入主界面
     [self to_HomeVC];
 }
+
+
+// 支持所有iOS系统
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    BOOL result = [[UMSocialTool sharedManager]setCallbackWithOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+//    //　先调用友盟，然后调用微信清册信息
+//    /****************       注册微信支付信息    *****************/
+//    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+//    /****************       注册支付宝支付信息    *****************/
+//    if ([url.host isEqualToString:@"safepay"]) {
+//        //跳转支付宝钱包进行支付，处理支付结果
+//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+//            NSLog(@"result = %@",resultDic);
+//        }];
+//    }
+    else if([url.host isEqualToString:@"assoc"])
+    {
+        [self to_MainVC];
+    }
+    return result;
+}
+
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+//    if ([url.host isEqualToString:@"safepay"]) {
+//        //跳转支付宝钱包进行支付，处理支付结果
+//        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+//            NSLog(@"result = %@",resultDic);
+//        }];
+//    }
+//    else if([url.host isEqualToString:@"assoc"])
+//    {
+//        [self to_MainVC];
+//    }
+//    else
+    {
+        BOOL result = [[UMSocialTool sharedManager] setCallbackWithHandleOpenURL:url options:options];
+        if (!result) {
+            // 其他如支付等SDK的回调
+        }
+    }
+    return YES;
+    
+//    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+}
+
 
 
 @end
