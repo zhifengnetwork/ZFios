@@ -272,6 +272,8 @@
 		849F956D223B7B31001824B9 /* ZFStoreConcernVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F956C223B7B31001824B9 /* ZFStoreConcernVC.m */; };
 		849F9573223B8786001824B9 /* ZFOrderEmptyTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F9572223B8786001824B9 /* ZFOrderEmptyTableCell.m */; };
 		849F9576223B8B65001824B9 /* ZFGoShoppingTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 849F9575223B8B65001824B9 /* ZFGoShoppingTableCell.m */; };
+		84B96728228140D000BB2F4D /* UMSocialTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B96724228140D000BB2F4D /* UMSocialTool.m */; };
+		84B96729228140D000BB2F4D /* ZFJumpVCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B96725228140D000BB2F4D /* ZFJumpVCTool.m */; };
 		84C1D77D224B241F009048C7 /* ZFDetailsPageFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */; };
 		84D879F622758709005B375B /* PooCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D879F422758709005B375B /* PooCodeView.m */; };
 		84D879F92275ABD3005B375B /* ZFPlantingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D879F82275ABD3005B375B /* ZFPlantingModel.m */; };
@@ -834,6 +836,10 @@
 		849F9572223B8786001824B9 /* ZFOrderEmptyTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFOrderEmptyTableCell.m; sourceTree = "<group>"; };
 		849F9574223B8B65001824B9 /* ZFGoShoppingTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFGoShoppingTableCell.h; sourceTree = "<group>"; };
 		849F9575223B8B65001824B9 /* ZFGoShoppingTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFGoShoppingTableCell.m; sourceTree = "<group>"; };
+		84B96724228140D000BB2F4D /* UMSocialTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSocialTool.m; sourceTree = "<group>"; };
+		84B96725228140D000BB2F4D /* ZFJumpVCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFJumpVCTool.m; sourceTree = "<group>"; };
+		84B96726228140D000BB2F4D /* UMSocialTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialTool.h; sourceTree = "<group>"; };
+		84B96727228140D000BB2F4D /* ZFJumpVCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFJumpVCTool.h; sourceTree = "<group>"; };
 		84C1D77B224B241F009048C7 /* ZFDetailsPageFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsPageFooterView.h; sourceTree = "<group>"; };
 		84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsPageFooterView.m; sourceTree = "<group>"; };
 		84D879F422758709005B375B /* PooCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PooCodeView.m; sourceTree = "<group>"; };
@@ -1596,6 +1602,10 @@
 		189CC0CD2223E81300EB5A64 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				84B96727228140D000BB2F4D /* ZFJumpVCTool.h */,
+				84B96725228140D000BB2F4D /* ZFJumpVCTool.m */,
+				84B96726228140D000BB2F4D /* UMSocialTool.h */,
+				84B96724228140D000BB2F4D /* UMSocialTool.m */,
 				189CC0CE2223E81300EB5A64 /* ZFTool.m */,
 				189CC0CF2223E81300EB5A64 /* ZFTool.h */,
 			);
@@ -2847,6 +2857,7 @@
 				842CE8402280165C004D73C0 /* UILabel+GHome.m in Sources */,
 				843521042241EAC7005DA298 /* ZFMyColumnTableCell.m in Sources */,
 				188F41AC223612A100165142 /* ZFPersonalHeadTableCell.m in Sources */,
+				84B96729228140D000BB2F4D /* ZFJumpVCTool.m in Sources */,
 				8412DF7A2251EE5C00476690 /* http_shopping.m in Sources */,
 				5309F2162238E74900275D4C /* ZFMenuView.m in Sources */,
 				53F1A47222805807007B6FF4 /* ZFGoodCommentModel.m in Sources */,
@@ -3034,6 +3045,7 @@
 				840BE8F72249FDA300568B11 /* ZFExplainTableCell.m in Sources */,
 				849F9573223B8786001824B9 /* ZFOrderEmptyTableCell.m in Sources */,
 				8444CC862277FBA700934E96 /* NSTimer+CQBlockSupport.m in Sources */,
+				84B96728228140D000BB2F4D /* UMSocialTool.m in Sources */,
 				188EFD73224CCCD900C90070 /* ZFDetailsImageTextTableCell.m in Sources */,
 				182E8A082224010B005CE5FE /* LoginTypeView.m in Sources */,
 				189CC0DD2223E81300EB5A64 /* StaticTableCell.m in Sources */,
