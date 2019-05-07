@@ -42,6 +42,7 @@
 //
 @property (nonatomic, copy) NSString *token;
 //用户头像
+@property (nonatomic, copy) NSString *image;
 @property (nonatomic, copy) NSString *head_pic;
 @property (nonatomic, copy) NSString *user_money;
 @property (nonatomic, copy) NSString *agent_user;

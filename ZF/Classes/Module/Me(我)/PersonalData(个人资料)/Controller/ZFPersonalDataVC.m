@@ -9,6 +9,10 @@
 #import "ZFPersonalDataVC.h"
 #import "ZFPersonalCentralTableCell.h"
 #import "ZFTextInputVC.h"
+#import "TZImagePickerController.h"
+#import "http_home.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
 
 @interface ZFPersonalDataVC ()
 
@@ -137,7 +141,10 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
 {
     if (indexPath.section==0)
     {
-        if (indexPath.row==2) {
+        if (indexPath.row==0) {
+            [self changeIcon];
+        }
+        else if (indexPath.row==2) {
             ZFTextInputVC* vc = [[ZFTextInputVC alloc]init];
             vc.type = 1;
             [self.navigationController pushViewController:vc animated:YES];
@@ -145,5 +152,44 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
     }
         
 }
+
+#pragma mark -- 方法
+- (void)changeIcon{
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
+    
+    // You can get the photos by block, the same as by delegate.
+    // 你可以通过block或者代理，来得到用户选择的照片.
+    ZWeakSelf
+    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto)
+     {
+         [weakSelf saveClick:[photos firstObject]];
+     }];
+    [self presentViewController:imagePickerVc animated:YES completion:nil];
+}
+
+- (void)saveClick:(UIImage*)image{
+    
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
+    //NSDataBase64EncodingEndLineWithLineFeed这个枚举值是base64串不换行
+    //NSString *imageBase64Str = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+    //不转base64
+    NSString * str =[[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
+    
+    ZWeakSelf
+    [http_home update_head_pic:str success:^(id responseObject)
+     {
+         [weakSelf face_ok:responseObject];
+     } failure:^(NSError *error)
+     {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)face_ok:(id)responseObject
+{
+    //    [SVProgressHUD showSuccessWithStatus:@"保存成功"];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end

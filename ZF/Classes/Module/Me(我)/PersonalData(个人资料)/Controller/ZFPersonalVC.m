@@ -168,6 +168,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     if (indexPath.section==0)
     {
         ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
+        vc.userInfo = nil;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.section==1)
