@@ -8,6 +8,8 @@
 
 #import "ZFPersonalHeadTableCell.h"
 #import "UIView+HJViewStyle.h"
+#import "UIImageView+WebCache.h"
+
 
 @interface ZFPersonalHeadTableCell()
 
@@ -72,6 +74,14 @@
     //切圆角
     _bgView.cornerRadius = 10;
     
+}
+
+-(void)setUserInfo:(UserInfoModel *)userInfo
+{
+    _userInfo = userInfo;
+    
+    //显示头像
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:_userInfo.head_pic]];
 }
 
 -(UIView *)bgView

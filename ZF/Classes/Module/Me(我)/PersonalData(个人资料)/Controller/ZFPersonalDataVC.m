@@ -85,6 +85,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
             pcell.title = @"头像";
             pcell.isShowButton = YES;
             pcell.roundTop = YES;
+            pcell.userInfo = self.userInfo;
         }
         else if (indexPath.row==1) {
             pcell.title = @"用户名";
@@ -95,7 +96,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
         else if (indexPath.row==2) {
             pcell.title = @"名称";
             pcell.isShowTitleButton = YES;
-            pcell.name = @"Tony";
+            pcell.name = self.userInfo.nickname;
         }
         else if (indexPath.row==3) {
             pcell.title = @"性别";
@@ -169,14 +170,8 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
 
 - (void)saveClick:(UIImage*)image{
     
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
-    //NSDataBase64EncodingEndLineWithLineFeed这个枚举值是base64串不换行
-    //NSString *imageBase64Str = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
-    //不转base64
-    NSString * str =[[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
-    
     ZWeakSelf
-    [http_home update_head_pic:str success:^(id responseObject)
+    [http_home update_head_pic:image success:^(id responseObject)
      {
          [weakSelf face_ok:responseObject];
      } failure:^(NSError *error)
@@ -187,8 +182,38 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
 
 -(void)face_ok:(id)responseObject
 {
-    //    [SVProgressHUD showSuccessWithStatus:@"保存成功"];
-    [self.navigationController popViewControllerAnimated:YES];
+    //解析需要的数据
+    NSError *error = nil;
+    NSDictionary *dcattributes = nil;
+    //判断是否需要转换
+    if (![responseObject isKindOfClass:[NSDictionary class]])
+    {
+        dcattributes =[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+    }
+    else
+    {
+        dcattributes = responseObject;
+    }
+    
+    id dicdata = [dcattributes objectForKey:@"data"];
+    id dicstatus = [dcattributes objectForKey:@"status"];
+    
+    if ( dicstatus!=0 )
+    {
+        if (dicdata!=nil)
+        {
+            [SVProgressHUD showErrorWithStatus:dicdata];
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:@"上传失败"];
+        }
+        return;
+    }
+    
+    NSString* str = dicdata;
+    self.userInfo.head_pic = str;
+    [self.tableView reloadData];
 }
 
 

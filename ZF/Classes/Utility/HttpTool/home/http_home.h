@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //上传头像接口
 //image 头像
-+ (void)update_head_pic:(NSString*)image success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)update_head_pic:(UIImage*)image success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //个人信息修改
 //修改名称

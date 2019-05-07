@@ -90,6 +90,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     {
         ZFPersonalHeadTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFPersonalHeadTableCellID];
         scell = [[ZFPersonalHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFPersonalHeadTableCellID];
+        scell.userInfo = self.userInfo;
         
         cell = scell;
     }
@@ -168,7 +169,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     if (indexPath.section==0)
     {
         ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
-        vc.userInfo = nil;
+        vc.userInfo = self.userInfo;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.section==1)

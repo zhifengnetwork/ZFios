@@ -8,6 +8,7 @@
 
 #import "ZFPersonalCentralTableCell.h"
 #import "UIView+HJViewStyle.h"
+#import "UIImageView+WebCache.h"
 
 
 @interface ZFPersonalCentralTableCell()
@@ -98,6 +99,13 @@
 {
     _name = name;
     _titleLabel.text = _name;
+}
+
+-(void)setUserInfo:(UserInfoModel *)userInfo
+{
+    _userInfo = userInfo;
+    //显示头像
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:_userInfo.head_pic]];
 }
 
 -(void)setRoundTop:(BOOL)roundTop
