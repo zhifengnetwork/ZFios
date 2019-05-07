@@ -14,6 +14,7 @@
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
 #import "UUPickerView.h"
+#import "ZFTool.h"
 
 @interface ZFPersonalDataVC ()<ZFTextInputVCDelegate,UUPickerViewDelegate>
 
@@ -283,9 +284,12 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
 
 - (void)saveClick:(UIImage*)image{
     
+    UIImage* image2 = [ZFTool handleImage:image ShowSize:400 FileSize:100];
     ZWeakSelf
-    [http_home update_head_pic:image success:^(id responseObject)
+    [SVProgressHUD showWithStatus:@"正在上传"];
+    [http_home update_head_pic:image2 success:^(id responseObject)
      {
+         [SVProgressHUD dismiss];
          [weakSelf face_ok:responseObject];
      } failure:^(NSError *error)
      {
@@ -309,9 +313,9 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
     }
     
     id dicdata = [dcattributes objectForKey:@"data"];
-    id dicstatus = [dcattributes objectForKey:@"status"];
+    NSNumber* dicstatus = [dcattributes objectForKey:@"status"];
     
-    if ( dicstatus!=0 )
+    if ( dicstatus.intValue !=0 )
     {
         if (dicdata!=nil)
         {

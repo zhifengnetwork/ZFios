@@ -136,9 +136,9 @@
 
 - (void)handleSingleTap:(UITouch *)touch
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFAddressManagementTableCellDidClick)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFAddressManagementTableCellDidClick:)])
     {
-        [self.delegate ZFAddressManagementTableCellDidClick];
+        [self.delegate ZFAddressManagementTableCellDidClick:self.addressEditModel];
     }
 }
 

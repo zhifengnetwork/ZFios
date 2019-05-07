@@ -135,7 +135,7 @@
     //如果报接受类型不一致请替换一致text/html或别的
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     //设置超时
-    manager.requestSerializer.timeoutInterval = 30.0f;
+    manager.requestSerializer.timeoutInterval = 60.0f;
     
     NSData* data = UIImageJPEGRepresentation(image, 1.0);
     NSMutableDictionary *dicParameters = nil;

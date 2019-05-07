@@ -12,6 +12,10 @@
 #import "ZFDefaultAddressTableCell.h"
 #import "ZFSubmissionTableCell.h"
 #import "ZFTool.h"
+#import "http_address.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+
 
 @interface ZFEditorialConsigneeVC ()
 
@@ -98,20 +102,22 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
         scell = [[ZFEditorialHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFEditorialHeadTableCellID];
         if (indexPath.row==0) {
             scell.title = @"收货人：";
-            scell.name  = @"张明";
+            scell.name  = self.addressEditModel.consignee;
         }
         else if (indexPath.row==1) {
             scell.title = @"手机号码：";
-            scell.name  = @"18620999999";
+            scell.name  = self.addressEditModel.mobile;
         }
         else if (indexPath.row==2) {
             scell.title = @"所在地区：";
-            scell.name  = @"广东省广州市白云区";
+            scell.name  = [NSString stringWithFormat:@"%@%@%@",self.addressEditModel.province_name,self.addressEditModel.city_name,self.addressEditModel.district_name];
         }
         else if (indexPath.row==3) {
             scell.title = @"详细地址：";
-            scell.name  = @"桃源彩速包装";
+            scell.name  = self.addressEditModel.address;
         }
+        scell.indexPath = indexPath;
+        scell.delegate = self;
         
         cell = scell;
     }
@@ -173,11 +179,51 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 //点击了哪个cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0)
+    if (indexPath.section==3)
     {
-//        ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
+        //确定
+        [self loadData];
     }
+}
+
+
+//正在输入中
+-(void)ZFEditorialHeadTableCellInputing:(NSString*)text indexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.row==0) {
+        self.addressEditModel.consignee = text;
+    }
+    else if (indexPath.row==1) {
+        self.addressEditModel.mobile = text;
+    }
+    else if (indexPath.row==2) {
+        
+    }
+    else if (indexPath.row==3) {
+        self.addressEditModel.address = text;
+    }
+}
+
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_address edit_address:self.addressEditModel.address_id.intValue consignee:self.addressEditModel.consignee mobile:self.addressEditModel.mobile province:self.addressEditModel.province.intValue city:self.addressEditModel.city.intValue district:self.addressEditModel.district.intValue address:self.addressEditModel.address addressModel:self.addressEditModel success:^(id responseObject)
+     {
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

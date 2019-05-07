@@ -56,7 +56,7 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [self loadData];
 }
 
 - (void)setupTableView
@@ -120,7 +120,7 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1+self.datas.count;
+    return self.datas.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -132,16 +132,13 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
 {
     UITableViewCell *cell = nil;
     
-    if (indexPath.section==0)
-    {
-        ZFAddressManagementTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFAddressManagementTableCellID];
-        scell = [[ZFAddressManagementTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAddressManagementTableCellID];
-        ZFAddressEditModel *addressModel = [self.datas objectAtIndex:indexPath.section-1];
-        scell.addressEditModel = addressModel;
-        scell.delegate = self;
-        
-        cell = scell;
-    }
+    ZFAddressManagementTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFAddressManagementTableCellID];
+    scell = [[ZFAddressManagementTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAddressManagementTableCellID];
+    ZFAddressEditModel *addressModel = [self.datas objectAtIndex:indexPath.section];
+    scell.addressEditModel = addressModel;
+    scell.delegate = self;
+    
+    cell = scell;
     
     return cell;
 }
@@ -216,10 +213,11 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
 }
 
 
-- (void)ZFAddressManagementTableCellDidClick
+- (void)ZFAddressManagementTableCellDidClick:(ZFAddressEditModel *)addressEditModel
 {
     //跳转编辑收货人
     ZFEditorialConsigneeVC* vc = [[ZFEditorialConsigneeVC alloc]init];
+    vc.addressEditModel = addressEditModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

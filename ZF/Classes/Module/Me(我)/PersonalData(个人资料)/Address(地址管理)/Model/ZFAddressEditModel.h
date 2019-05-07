@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString *city_name;
 @property (nonatomic , copy) NSString *district_name;
 
+@property (nonatomic, copy)NSString *label;
+
 @end
 
 NS_ASSUME_NONNULL_END

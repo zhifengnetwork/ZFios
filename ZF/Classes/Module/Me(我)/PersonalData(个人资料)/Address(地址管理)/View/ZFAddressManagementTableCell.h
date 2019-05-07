@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ZFAddressManagementTableCellDelegate <NSObject>
 
 
-- (void)ZFAddressManagementTableCellDidClick;
+- (void)ZFAddressManagementTableCellDidClick:(ZFAddressEditModel *)addressEditModel;
 
 @end
 
