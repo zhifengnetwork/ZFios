@@ -141,12 +141,12 @@
 
 //三级联动接口
 //ID    父级ID
-+ (void)get_region:(ZFAddressModel *)addressModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)get_region:(NSString*)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    if (!kStringIsEmpty(addressModel.ID)) {
-        [parameters setObject:addressModel.ID forKey:@"id"];
+    if (!kStringIsEmpty(ID)) {
+        [parameters setObject:ID forKey:@"id"];
     }
     
     NSDictionary* dic = [http hanldeSign:parameters];

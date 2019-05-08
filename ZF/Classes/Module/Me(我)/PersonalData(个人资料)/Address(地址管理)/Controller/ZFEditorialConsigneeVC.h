@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong)  ZFAddressEditModel *addressEditModel;
 
+//1.编辑 2.添加
+@property (nonatomic, strong) NSString * type;
+
 @end
 
 NS_ASSUME_NONNULL_END

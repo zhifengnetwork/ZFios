@@ -59,8 +59,7 @@
     
     [_addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bgView.mas_left).offset(15);
-        make.top.equalTo(self->_nameLabel.mas_bottom).offset(12);
-        make.bottom.equalTo(self->_bgView.mas_bottom).offset(-15);
+        make.top.equalTo(self->_nameLabel.mas_bottom).offset(8);
     }];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -15,9 +15,12 @@
 #import "http_address.h"
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
+#import "DXLAddressPickView.h"
 
 
 @interface ZFEditorialConsigneeVC ()
+
+@property(nonatomic,strong) DXLAddressPickView *pickerView;
 
 @end
 
@@ -38,6 +41,15 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     
     UIImage *imgRight = [UIImage imageNamed:@"delete"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(deleteButtonDidClick)];
+    
+    if (self.type.intValue==1)
+    {
+        
+    }
+    else
+    {
+        self.addressEditModel = [[ZFAddressEditModel alloc]init];
+    }
 }
 
 - (void)deleteButtonDidClick
@@ -179,10 +191,47 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 //点击了哪个cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section==0)
+    {
+        if (indexPath.row==2)
+        {
+            [self.pickerView show];
+            
+            __weak typeof(self) weakSelf = self;
+//            self.pickerView.determineBtnBlock = ^(NSString *shengId, NSString *shiId, NSString *xianId, NSString *shengName, NSString *shiName, NSString *xianName)
+            {
+                //调接口修改
+                [SVProgressHUD showWithStatus:@"正在加载"];
+                [http_address get_region:nil success:^(id responseObject)
+                 {
+                     [SVProgressHUD dismiss];
+//                     weakSelf.addressEditModel.province = shengName;
+//                     weakSelf.addressEditModel.city = shiName;
+//                     weakSelf.addressEditModel.district = xianName;
+//                     [weakSelf edit_success:responseObject];
+                     
+                 } failure:^(NSError *error)
+                 {
+                     
+                     [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                 }];
+            };
+        }
+    }
     if (indexPath.section==3)
     {
-        //确定
-        [self loadData];
+//        if ([self.type isEqualToString:@"1"])
+        if (self.type.intValue==1)
+        {
+            //确定
+            [self loadData];
+        }
+        else
+        {
+            //确定
+            [self loadData2];
+        }
+        
     }
 }
 
@@ -224,6 +273,35 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     }
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)loadData2
+{
+    ZWeakSelf
+    [http_address add_address:self.addressEditModel.consignee mobile:self.addressEditModel.mobile  province:self.addressEditModel.province.intValue city:self.addressEditModel.city.intValue district:self.addressEditModel.district.intValue address:self.addressEditModel.address addressModel:self.addressEditModel success:^(id responseObject)
+     {
+         [weakSelf showData2:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)showData2:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (DXLAddressPickView *)pickerView
+{
+    if (!_pickerView) {
+        _pickerView = [[DXLAddressPickView alloc] init];
+    }
+    return _pickerView;
 }
 
 
