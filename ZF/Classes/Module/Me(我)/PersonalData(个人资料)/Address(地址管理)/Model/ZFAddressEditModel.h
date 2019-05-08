@@ -10,6 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface ZFAddressServerModel : NSObject
+
+@property (nonatomic , copy) NSString *ID;
+@property (nonatomic , copy) NSString *name;
+
+@end
+
+
 @interface ZFAddressEditModel : NSObject
 
 @property (nonatomic , copy) NSString *address_id;

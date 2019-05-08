@@ -22,6 +22,10 @@
 
 @property(nonatomic,strong) DXLAddressPickView *pickerView;
 
+@property(nonatomic,strong) NSMutableArray *arr1;
+@property(nonatomic,strong) NSMutableArray *arr2;
+@property(nonatomic,strong) NSMutableArray *arr3;
+
 @end
 
 @implementation ZFEditorialConsigneeVC
@@ -54,7 +58,16 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 
 - (void)deleteButtonDidClick
 {
-    
+    ZWeakSelf
+    [http_address del_address:self.addressEditModel.address_id.intValue success:^(id responseObject)
+     {
+         [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+         [weakSelf.navigationController popViewControllerAnimated:YES];
+         
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -195,27 +208,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     {
         if (indexPath.row==2)
         {
-            [self.pickerView show];
-            
-            __weak typeof(self) weakSelf = self;
-//            self.pickerView.determineBtnBlock = ^(NSString *shengId, NSString *shiId, NSString *xianId, NSString *shengName, NSString *shiName, NSString *xianName)
-            {
-                //调接口修改
-                [SVProgressHUD showWithStatus:@"正在加载"];
-                [http_address get_region:nil success:^(id responseObject)
-                 {
-                     [SVProgressHUD dismiss];
-//                     weakSelf.addressEditModel.province = shengName;
-//                     weakSelf.addressEditModel.city = shiName;
-//                     weakSelf.addressEditModel.district = xianName;
-//                     [weakSelf edit_success:responseObject];
-                     
-                 } failure:^(NSError *error)
-                 {
-                     
-                     [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-                 }];
-            };
+
         }
     }
     if (indexPath.section==3)
@@ -251,6 +244,27 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     else if (indexPath.row==3) {
         self.addressEditModel.address = text;
     }
+}
+
+//LKPutForwardTableCell开始输入
+- (void)ZFEditorialHeadTableCellBeginInput:(NSIndexPath*)indexPath
+{
+    if (indexPath.section!=0 || indexPath.row!=2 )
+    {
+        return;
+    }
+    
+    [self.pickerView show];
+    
+    __weak typeof(self) weakSelf = self;
+    self.pickerView.determineBtnBlock = ^(NSString *shengId, NSString *shiId, NSString *xianId, NSString *shengName, NSString *shiName, NSString *xianName, NSString *postCode)
+    {
+        weakSelf.addressEditModel.province_name = shengName;
+        weakSelf.addressEditModel.city_name = shiName;
+        weakSelf.addressEditModel.district_name = xianName;
+        [weakSelf.tableView reloadData];
+        [weakSelf loadData3];
+    };
 }
 
 
@@ -302,6 +316,117 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
         _pickerView = [[DXLAddressPickView alloc] init];
     }
     return _pickerView;
+}
+
+-(NSMutableArray*)arr1
+{
+    if (_arr1==nil) {
+        _arr1 = [[NSMutableArray alloc]init];
+    }
+    return _arr1;
+}
+
+-(NSMutableArray*)arr2
+{
+    if (_arr2==nil) {
+        _arr2 = [[NSMutableArray alloc]init];
+    }
+    return _arr2;
+}
+
+-(NSMutableArray*)arr3
+{
+    if (_arr3==nil) {
+        _arr3 = [[NSMutableArray alloc]init];
+    }
+    return _arr3;
+}
+
+
+-(void)loadData3
+{
+    //调接口修改
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    ZWeakSelf
+    [http_address get_region:nil success:^(id responseObject)
+     {
+         [SVProgressHUD dismiss];
+         weakSelf.arr1 = [ZFAddressServerModel mj_objectArrayWithKeyValuesArray:responseObject];
+         
+         for (int i=0; i<weakSelf.arr1.count; i++)
+         {
+             ZFAddressServerModel* model = [weakSelf.arr1 objectAtIndex:i];
+             NSRange range = [weakSelf.addressEditModel.province_name rangeOfString:model.name];
+             if (range.location != NSNotFound)
+             {
+                 weakSelf.addressEditModel.province = model.ID;
+                 [self loadData4];
+                 break;
+             }
+         }
+
+     } failure:^(NSError *error)
+     {
+
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+     }];
+}
+
+-(void)loadData4
+{
+    //调接口修改
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    ZWeakSelf
+    [http_address get_region:weakSelf.addressEditModel.province success:^(id responseObject)
+     {
+         [SVProgressHUD dismiss];
+         weakSelf.arr2 = [ZFAddressServerModel mj_objectArrayWithKeyValuesArray:responseObject];
+         
+         for (int i=0; i<weakSelf.arr2.count; i++)
+         {
+             ZFAddressServerModel* model = [weakSelf.arr2 objectAtIndex:i];
+             NSRange range = [weakSelf.addressEditModel.city_name rangeOfString:model.name];
+             if (range.location != NSNotFound)
+             {
+                 weakSelf.addressEditModel.city = model.ID;
+                 [self loadData5];
+                 break;
+             }
+         }
+         
+     } failure:^(NSError *error)
+     {
+         
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+     }];
+}
+
+-(void)loadData5
+{
+    //调接口修改
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    ZWeakSelf
+    [http_address get_region:weakSelf.addressEditModel.city success:^(id responseObject)
+     {
+         [SVProgressHUD dismiss];
+         weakSelf.arr3 = [ZFAddressServerModel mj_objectArrayWithKeyValuesArray:responseObject];
+         
+         for (int i=0; i<weakSelf.arr3.count; i++)
+         {
+             ZFAddressServerModel* model = [weakSelf.arr3 objectAtIndex:i];
+             NSRange range = [weakSelf.addressEditModel.district_name rangeOfString:model.name];
+             if (range.location != NSNotFound)
+             {
+                 weakSelf.addressEditModel.district = model.ID;
+                 break;
+             }
+         }
+         
+     } failure:^(NSError *error)
+     {
+         
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+     }];
 }
 
 

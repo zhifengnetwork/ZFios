@@ -8,7 +8,7 @@
 
 #import "ZFEditorialHeadTableCell.h"
 
-@interface ZFEditorialHeadTableCell()
+@interface ZFEditorialHeadTableCell()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UILabel* titleLabel;
@@ -87,6 +87,13 @@
     }
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if ([self.delegate respondsToSelector:@selector(ZFEditorialHeadTableCellBeginInput:)]) {
+        [self.delegate ZFEditorialHeadTableCellBeginInput:self.indexPath];
+    }
+}
+
 -(void)setTitle:(NSString *)title
 {
     _title = title;
@@ -130,6 +137,7 @@
         _nameTextField.font = [UIFont systemFontOfSize:14];
         _nameTextField.textColor = RGBColorHex(0x666666);
         _nameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _nameTextField.delegate = self;
     }
     return _nameTextField;
 }

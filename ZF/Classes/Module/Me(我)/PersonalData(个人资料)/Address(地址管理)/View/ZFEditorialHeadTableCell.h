@@ -17,6 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 //正在输入中
 -(void)ZFEditorialHeadTableCellInputing:(NSString*)text indexPath:(NSIndexPath*)indexPath;
 
+//LKPutForwardTableCell开始输入
+- (void)ZFEditorialHeadTableCellBeginInput:(NSIndexPath*)indexPath;
+
 @end
 
 /**
