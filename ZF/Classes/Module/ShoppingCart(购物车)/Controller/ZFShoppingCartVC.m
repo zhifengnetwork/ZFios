@@ -16,12 +16,12 @@
 #import "ZFGoodModel.h"
 #import "MJExtension.h"
 
-@interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource,ZFShoppingCartCellDelegate>
-@property (nonatomic, weak)UITableView *shoppingCart;
-@property (nonatomic, weak)ZFSettlementView *settleView;
-@property (nonatomic, weak)UIButton *managementButton;
+@interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic, strong)UITableView *shoppingCart;
+@property (nonatomic, strong)ZFSettlementView *settleView;
+@property (nonatomic, strong)UIButton *managementButton;
 @property (nonatomic, strong)ZFEmptyCartView *emptyCart;
-@property (nonatomic, weak)ZFListModel *listModel;
+@property (nonatomic, strong)ZFListModel *listModel;
 
 @end
 
