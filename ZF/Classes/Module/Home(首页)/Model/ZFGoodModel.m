@@ -29,6 +29,7 @@
 
 
 @end
+
 @implementation ZFGoodListModel
 
 + (NSDictionary *)mj_objectClassInArray

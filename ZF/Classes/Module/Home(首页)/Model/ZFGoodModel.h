@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "BaseListModel.h"
 NS_ASSUME_NONNULL_BEGIN
-@interface ZFdetailsGoodModel : NSObject
+@interface ZFdetailGoodModel : NSObject
 @property (nonatomic, assign)NSInteger goods_id;
 @property (nonatomic, copy)NSString *goods_name;
 @property (nonatomic, copy)NSString *shop_price;
@@ -124,8 +124,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
 @interface ZFGoodListModel : BaseListModel
 
+@property (nonatomic, copy)NSString *cart_price_info;
+@property (nonatomic, copy)NSString *selected_flag;
 @end
 
 NS_ASSUME_NONNULL_END

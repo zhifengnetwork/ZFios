@@ -114,7 +114,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 }
 #pragma mark --tableview的协议
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.listModel.list.count;
+    return  self.listModel.list.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;

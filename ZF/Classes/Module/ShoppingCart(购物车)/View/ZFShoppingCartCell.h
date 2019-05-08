@@ -18,5 +18,5 @@
 @interface ZFShoppingCartCell : UITableViewCell
 @property (weak, nonatomic)id <ZFShoppingCartCellDelegate>delegate;
 @property (strong, nonatomic)ZFGoodModel *model;
-+ (instancetype)ShoppingCartCell;
+
 @end
