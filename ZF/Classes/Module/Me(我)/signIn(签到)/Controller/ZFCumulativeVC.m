@@ -265,6 +265,8 @@
     //跳转到签到成功
     ZFSignInView* windowView = [[ZFSignInView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
     [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
+    ZFSignInModel *signInModel = [ZFSignInModel mj_objectWithKeyValues:responseObject];
+    windowView.signInModel = signInModel;
 }
 
 /**

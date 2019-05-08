@@ -141,7 +141,7 @@
     _bondUserModel = bondUserModel;
     //显示头像
     [_headView sd_setImageWithURL:[NSURL URLWithString:_bondUserModel.head_pic]];
-    _highestLabel.text = [NSString stringWithFormat:@"当前最高¥ %@",_bondUserModel.offer_price];
+    _highestLabel.text = [NSString stringWithFormat:@"当前最高¥%@",_bondUserModel.offer_price];
 }
 
 - (void)setStartAuctionModel:(ZFStartAuctionModel *)startAuctionModel
@@ -221,7 +221,7 @@
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.textColor = RGBColorHex(0x333333);
-        _nameLabel.font = [UIFont systemFontOfSize:13];
+        _nameLabel.font = [UIFont systemFontOfSize:12];
         _nameLabel.text = @"张三";
     }
     return _nameLabel;
@@ -231,7 +231,7 @@
     if (_highestLabel == nil) {
         _highestLabel = [[UILabel alloc] init];
         _highestLabel.textColor = RGBColorHex(0x333333);
-        _highestLabel.font = [UIFont systemFontOfSize:13];
+        _highestLabel.font = [UIFont systemFontOfSize:12];
         _highestLabel.text = @"当前最高¥ 90";
     }
     return _highestLabel;

@@ -66,8 +66,8 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
          
      } failure:^(NSError *error) {
          [SVProgressHUD showErrorWithStatus:error.domain];
+         [weakSelf.navigationController popViewControllerAnimated:YES];
      }];
-
 }
 
 - (void)didReceiveMemoryWarning {
