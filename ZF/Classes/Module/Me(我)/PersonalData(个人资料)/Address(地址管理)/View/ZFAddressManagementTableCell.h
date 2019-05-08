@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFAddressEditModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ZFAddressManagementTableCellDelegate <NSObject>
 
 
-- (void)ZFAddressManagementTableCellDidClick;
+- (void)ZFAddressManagementTableCellDidClick:(ZFAddressEditModel *)addressEditModel;
 
 @end
 
@@ -23,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFAddressManagementTableCell : UITableViewCell
 
 @property (nonatomic, weak) id<ZFAddressManagementTableCellDelegate> delegate;
+
+@property (nonatomic, strong)ZFAddressEditModel *addressEditModel;
 
 @end
 

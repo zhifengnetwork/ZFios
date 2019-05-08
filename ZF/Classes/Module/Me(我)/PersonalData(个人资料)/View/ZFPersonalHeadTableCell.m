@@ -82,6 +82,8 @@
     
     //显示头像
     [_iconView sd_setImageWithURL:[NSURL URLWithString:_userInfo.head_pic]];
+    _nameLabel.text = _userInfo.nickname;
+    _userNameLabel.text =[NSString stringWithFormat:@"用户名:%@",_userInfo.user_id];
 }
 
 -(UIView *)bgView
@@ -99,7 +101,7 @@
         _iconView = [[UIImageView alloc] init];
         _iconView.image = [UIImage imageNamed:@"hd"];
         _iconView.clipsToBounds = YES;
-        _iconView.layer.cornerRadius = 3.0f;
+        _iconView.layer.cornerRadius = 35.0f;
     }
     return _iconView;
 }

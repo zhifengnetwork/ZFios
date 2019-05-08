@@ -194,6 +194,78 @@
 }
 
 
+/**
+ 处理图片大小
+ @param oldImage 原图片
+ @param ShowSize 最大宽或者高
+ @param FileSize 最大文件大小K
+ @return <#return value description#>
+ */
++ (UIImage*)handleImage:(UIImage *)oldImage ShowSize:(NSInteger)ShowSize FileSize:(NSInteger)FileSize
+{
+    //转字节
+    FileSize = FileSize*1024;
+    UIImage *newImage = oldImage;
+    //新UIImage的Data
+    NSData * newimageDataSrc = UIImageJPEGRepresentation(newImage,1);
+    if (newimageDataSrc.length<FileSize)
+    {
+        return newImage;
+    }
+    
+    float fmax = MAX(oldImage.size.width, oldImage.size.height);
+    if ( fmax>ShowSize )
+    {
+        float ssize = fmax/ShowSize;
+        
+        CGSize newsize = CGSizeMake(oldImage.size.width/ssize, oldImage.size.height/ssize);
+        
+        UIGraphicsBeginImageContext(newsize);
+        
+        CGRect rect = CGRectMake(0,
+                                 0,
+                                 newsize.width,
+                                 newsize.height);
+        
+        [oldImage drawInRect:rect];
+        
+        newImage = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+    }
+    
+    //大小
+    CGFloat compression    = 0.9f;
+    CGFloat minCompression = 0.01f;
+    NSData *imageData = UIImageJPEGRepresentation(newImage,
+                                                  compression);
+    
+    //每次减少的比例
+    float scale = 0.1;
+    
+    //新UIImage的Data
+    NSData * newimageData = UIImageJPEGRepresentation(newImage,1);
+    
+    //循环条件：没到最小压缩比例，且没压缩到目标大小
+    while ((compression > minCompression)&&
+           (newimageData.length>FileSize))
+    {
+        imageData = UIImageJPEGRepresentation(newImage,
+                                              compression);
+        UIImage *compressedImage = [UIImage imageWithData:imageData];
+        newimageData= UIImageJPEGRepresentation(compressedImage,1);
+        
+        //        NSLog(@"%f,%lu",compression,(unsigned long)newimageData.length);
+        
+        compression -= scale;
+    }
+    UIImage *compressedImage = [UIImage imageWithData:newimageData];
+    
+    
+    return compressedImage;
+}
+
+
 //得到缓存大小
 +(NSUInteger)getCacheSize
 {

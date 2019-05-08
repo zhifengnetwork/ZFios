@@ -67,6 +67,24 @@
          make.height.mas_equalTo(0.5f);
      }];
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textFieldEditChanged:) name:@"UITextFieldTextDidChangeNotification" object:self.nameTextField];
+
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UITextFieldTextDidChangeNotification" object:self.nameTextField];
+}
+
+#pragma mark - Notification Method
+-(void)textFieldEditChanged:(NSNotification *)obj
+{
+    UITextField *textField = (UITextField *)obj.object;
+    NSString *toBeString = textField.text;
+    if ([self.delegate respondsToSelector:@selector(ZFEditorialHeadTableCellInputing: indexPath:)])
+    {
+        [self.delegate ZFEditorialHeadTableCellInputing:self.nameTextField.text indexPath:self.indexPath];
+    }
 }
 
 -(void)setTitle:(NSString *)title

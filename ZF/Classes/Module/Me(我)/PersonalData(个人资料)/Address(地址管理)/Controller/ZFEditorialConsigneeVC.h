@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFAddressEditModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  编辑收货人
  */
 @interface ZFEditorialConsigneeVC : UITableViewController
+
+@property (nonatomic, strong)  ZFAddressEditModel *addressEditModel;
 
 @end
 

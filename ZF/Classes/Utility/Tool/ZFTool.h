@@ -76,6 +76,16 @@ NS_ASSUME_NONNULL_BEGIN
 //颜色转图片
 +(UIImage*)Color2Image:(UIColor*)color;
 
+/**
+ 处理图片大小
+ @param oldImage 原图片
+ @param ShowSize 最大宽或者高
+ @param FileSize 最大文件大小
+ @return <#return value description#>
+ */
++ (UIImage*)handleImage:(UIImage *)oldImage ShowSize:(NSInteger)ShowSize FileSize:(NSInteger)FileSize;
+
+
 //得到缓存大小
 +(NSUInteger)getCacheSize;
 

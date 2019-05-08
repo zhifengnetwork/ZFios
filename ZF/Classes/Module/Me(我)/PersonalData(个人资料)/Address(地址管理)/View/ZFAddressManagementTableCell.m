@@ -70,6 +70,15 @@
     
 }
 
+- (void)setAddressEditModel:(ZFAddressEditModel *)addressEditModel
+{
+    _addressEditModel = addressEditModel;
+    
+    _nameLabel.text = _addressEditModel.consignee;
+    _phoneLabel.text = _addressEditModel.mobile;
+    _addressLabel.text = _addressEditModel.address;
+}
+
 -(UIView *)bgView
 {
     if(_bgView==nil)
@@ -127,9 +136,9 @@
 
 - (void)handleSingleTap:(UITouch *)touch
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFAddressManagementTableCellDidClick)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFAddressManagementTableCellDidClick:)])
     {
-        [self.delegate ZFAddressManagementTableCellDidClick];
+        [self.delegate ZFAddressManagementTableCellDidClick:self.addressEditModel];
     }
 }
 
