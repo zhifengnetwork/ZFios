@@ -40,8 +40,19 @@
     return [[[NSBundle mainBundle] loadNibNamed:@"ZFSettlementView" owner:self options:nil]lastObject];
 }
 - (IBAction)allSelect:(id)sender {
-    
+    self.allSelectButton.selected = !self.allSelectButton.selected;
 }
+
+- (void)setSettleModel:(ZFListModel *)settleModel{
+    _settleModel = settleModel;
+//    if (_settleModel.selected_flag.all_flag ==0) {
+//        self.allSelectButton.selected = NO;
+//    }else{
+//        self.allSelectButton.selected = YES;
+//    }
+//    self.moneyLabel.text = _settleModel.cart_price_info.total_fee;
+}
+
 - (UIViewController *)currentViewController{
     UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
     while (1) {

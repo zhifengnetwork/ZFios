@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFGoodModel.h"
 //@class ZFSettlementView;
 //@protocol ZFSettlementViewDelegate <NSObject>
 //@optional
@@ -18,4 +19,5 @@
 //@property (nonatomic, weak)id <ZFSettlementViewDelegate>delegate;
 - (void)setEditing;
 - (void)setPrice;
+@property (nonatomic, strong)ZFListModel *settleModel;
 @end

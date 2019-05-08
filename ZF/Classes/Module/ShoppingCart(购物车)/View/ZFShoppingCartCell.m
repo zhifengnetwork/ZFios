@@ -11,6 +11,8 @@
 #import "ZFShoppingItem.h"
 #import "PPNumberButton.h"
 #import "UIImageView+WebCache.h"
+#import "ZFSelectTypeView.h"
+#import "TYAlertController.h"
 
 @interface ZFShoppingCartCell()
 
@@ -57,14 +59,10 @@
         }
     }
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
-    [super setSelected:selected animated:animated];
-    if (selected) {
-        self.selectGoodButton.selected = YES;
-    }else{
-        self.selectGoodButton.selected = NO;
-    }
-}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated{
+//    [super setSelected:selected animated:animated];
+//
+//}
 
 - (void)setFrame:(CGRect)frame{
     frame.origin.x = 16;
@@ -142,10 +140,11 @@
     [_mealButton setImageEdgeInsets:UIEdgeInsetsMake(0, _mealButton.titleLabel.frame.size.width+70, 0, -_mealButton.titleLabel.frame.size.width)];
     
     [_serviceButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.numberButton.mas_bottom).with.offset(10);
+        
         make.bottom.equalTo(self.goodsImageView.mas_bottom);
         make.left.equalTo(self.numberButton.mas_left);
         make.width.mas_equalTo(50);
+        make.height.mas_equalTo(18);
     }];
     
     [_goodsPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -198,7 +197,9 @@
         NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_model.original_img];
         [_goodsImageView sd_setImageWithURL:[NSURL URLWithString:str]];
     }
-
+    [_mealButton setTitle:[NSString stringWithFormat:@"%@",_model.spec_key_name] forState:UIControlStateNormal];
+    _goodsPriceLabel.text = [NSString stringWithFormat:@"￥%@",_model.goods_price];
+    _numberButton.currentNumber = _model.goods_num;
 }
 
 - (UILabel *)full{
@@ -226,6 +227,7 @@
         _selectGoodButton = [[UIButton alloc]init];
         [_selectGoodButton setImage:[UIImage imageNamed:@"option_b"] forState:UIControlStateNormal];
         [_selectGoodButton setImage:[UIImage imageNamed:@"option_selected"] forState:UIControlStateSelected];
+        [_selectGoodButton addTarget:self action:@selector(selectGood:) forControlEvents:UIControlEventTouchUpInside];
     }return _selectGoodButton;
 }
 
@@ -268,6 +270,7 @@
         _mealButton.titleLabel.font = [UIFont systemFontOfSize:12];
         [_mealButton setTitle:@"官方标配" forState:UIControlStateNormal];
         [_mealButton setImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
+        [_mealButton addTarget:self action:@selector(selectMeal) forControlEvents:UIControlEventTouchUpInside];
     }return _mealButton;
 }
 
@@ -348,5 +351,35 @@
 - (void)revise:(id)sender {
 }
 
+- (void)selectGood:(UIButton*)btn{
+    btn.selected = !btn.selected;
+}
+
+- (void)selectMeal{
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
+    view.goodID = _model.goods_id;
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
+}
+
+//获取当前控制器
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
+}
 
 @end

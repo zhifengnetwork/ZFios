@@ -14,13 +14,16 @@
 #import "SVProgressHUD.h"
 #import "http_shopping.h"
 #import "ZFGoodModel.h"
+#import "ZFShopModel.h"
 #import "MJExtension.h"
 
 @interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak)UITableView *shoppingCart;
 @property (nonatomic, weak)ZFSettlementView *settleView;
+@property (nonatomic, weak)UIButton *managementButton;
+@property (nonatomic, strong)ZFEmptyCartView *emptyCart;
+@property (nonatomic, weak)ZFListModel *listModel;
 
-@property (nonatomic, weak)ZFGoodListModel *listModel;
 @end
 
 @implementation ZFShoppingCartVC
@@ -46,14 +49,17 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     [btn setTitle:@"取消" forState:UIControlStateSelected];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(editCell:) forControlEvents:UIControlEventTouchUpInside];
-    
+    btn.hidden = NO;
+    self.managementButton = btn;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
-    //判断购物车是否为空
-//    ZFEmptyCartView *emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
-//    [self.view addSubview:emptyCart];
-//    btn.hidden = YES;
-        btn.hidden = NO;
+    
+    _emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
+    [self.view addSubview:_emptyCart];
+    _emptyCart.hidden = YES;
+
+    
+    
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
         tableView.backgroundColor = RGBColorHex(0xf4f4f4);
         tableView.delegate = self;
@@ -97,8 +103,9 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         return;
     }
     
-    self.listModel = [ZFGoodListModel mj_objectWithKeyValues:responseObject];
-
+    self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
+    self.settleView.settleModel = self.listModel;
+    [self.shoppingCart reloadData];
 }
 
 //判断settleview的按钮状态
@@ -114,6 +121,13 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 }
 #pragma mark --tableview的协议
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.listModel.list.count == 0) {//判断购物车是否为空
+        _emptyCart.hidden = NO;
+        _managementButton.hidden = YES;
+    }else{
+        _emptyCart.hidden = YES;
+        _managementButton.hidden = NO;
+    }
     return  self.listModel.list.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -125,6 +139,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFShoppingCartTableCellID];
     cell.model = [self.listModel.list objectAtIndex:indexPath.section];
+    
     return cell;
 }
 @end

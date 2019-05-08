@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseListModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
+
 @interface ZFShopGoodModel : NSObject
 
 //商品id

@@ -7,6 +7,15 @@
 //
 
 #import "ZFGoodModel.h"
+
+@implementation ZFSelectFlagModel
+
+@end
+
+@implementation ZFCartPriceModel
+
+@end
+
 @implementation ZFdetailGoodModel
 
 @end
@@ -21,16 +30,13 @@
 + (NSDictionary *)mj_objectClassInArray
 {
     return @{
-             
-             @"goods":@"ZFdetailGoodModel",
              @"comment_fr":@"ZFGoodCommentModel"
              };
 }
 
 
 @end
-
-@implementation ZFGoodListModel
+@implementation ZFListModel
 
 + (NSDictionary *)mj_objectClassInArray
 {
@@ -38,6 +44,9 @@
              @"list" : @"ZFGoodModel"
              };
 }
+
+@end
+@implementation ZFGoodListModel
 
 
 @end

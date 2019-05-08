@@ -9,6 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "BaseListModel.h"
 NS_ASSUME_NONNULL_BEGIN
+
+@interface ZFSelectFlagModel : NSObject
+@property (nonatomic, assign)NSInteger all_flag;
+
+@end
+
+@interface ZFCartPriceModel : NSObject
+@property (nonatomic, assign)NSInteger goods_fee;
+@property (nonatomic, assign)NSInteger goods_num;
+@property (nonatomic, copy)NSString *total_fee;
+
+@end
+
 @interface ZFdetailGoodModel : NSObject
 @property (nonatomic, assign)NSInteger goods_id;
 @property (nonatomic, copy)NSString *goods_name;
@@ -20,12 +33,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)NSInteger ID;
 @property (nonatomic, assign)NSInteger goods_id;
+@property (nonatomic, assign)NSInteger user_id;
 @property (nonatomic, assign)NSInteger brand_id;
 @property (nonatomic, assign)NSInteger commentType;
 @property (nonatomic, assign)NSInteger page;
 @property (nonatomic, assign)NSInteger num;
 @property (nonatomic, assign)NSInteger buy_num;
+@property (nonatomic, assign)NSInteger goods_num;
 
+@property (nonatomic, copy)NSString *goods_sn;
 @property (nonatomic, copy)NSString *spec;
 @property (nonatomic, copy)NSString *attr;
 @property (nonatomic, copy)NSString *sort;
@@ -34,6 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *price;
 @property (nonatomic, copy)NSString *start_price;
 @property (nonatomic, copy)NSString *end_price;
+@property (nonatomic, copy)NSString *goods_price;
 //商品id
 @property (nonatomic, assign)NSInteger visittime;
 //足迹id
@@ -119,16 +136,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger buy_super_nsign;
 
 @property (nonatomic, strong)NSArray *seller_info;
-@property (nonatomic, strong)NSArray *goods;
+@property (nonatomic, strong)ZFdetailGoodModel *goods;
 @property (nonatomic, strong)NSArray *comment_fr;
-
+//购物车
+@property (nonatomic, copy)NSString *spec_key;
+@property (nonatomic, copy)NSString *spec_key_name;
 @end
 
+@interface ZFListModel : NSObject
+@property (nonatomic, strong)NSArray *list;
 
+@property (copy, nonatomic)ZFCartPriceModel *cart_price_info;
+@property (copy, nonatomic)ZFSelectFlagModel *selected_flag;
+@end
 @interface ZFGoodListModel : BaseListModel
 
-@property (nonatomic, copy)NSString *cart_price_info;
-@property (nonatomic, copy)NSString *selected_flag;
+
 @end
 
 NS_ASSUME_NONNULL_END
