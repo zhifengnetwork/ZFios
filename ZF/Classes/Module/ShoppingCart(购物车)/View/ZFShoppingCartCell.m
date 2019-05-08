@@ -79,7 +79,6 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.full];
     [self.contentView addSubview:self.fullSale];
-    [self.contentView addSubview:self.selectGoodButton];
     [self.contentView addSubview:self.goodsImageView];
     [self.contentView addSubview:self.goodsLabel];
     [self.contentView addSubview:self.numberButton];
@@ -91,6 +90,7 @@
     [self.contentView addSubview:self.saleLabel];
     [self.contentView addSubview:self.lineView2];
     [self.contentView addSubview:self.changeButton];
+    [self.contentView addSubview:self.selectGoodButton];
     
     [_full mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self).with.offset(10);
@@ -105,13 +105,13 @@
     [_fullSale setTitleEdgeInsets:UIEdgeInsetsMake(0, - _fullSale.imageView.frame.size.width-150, 0, 0)];
     [_fullSale setImageEdgeInsets:UIEdgeInsetsMake(0, _fullSale.titleLabel.frame.size.width+50, 0, 0)];
     [_selectGoodButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.mas_centerY);
-        make.left.equalTo(self.full.mas_left);
+        make.centerY.equalTo(self.contentView);
+        make.left.mas_equalTo(10);
     }];
     
     [_goodsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.fullSale.mas_bottom).with.offset(14);
-        make.left.equalTo(self.selectGoodButton.mas_right).with.offset(12);
+        make.left.mas_equalTo(30);
         make.width.mas_equalTo(110);
         make.height.mas_equalTo(85);
     }];
@@ -355,9 +355,9 @@
 - (void)selectGood:(UIButton*)btn{
     btn.selected = !btn.selected;
     if (btn.selected == YES) {
-        [self.delegate selectGood:@"1" goods_id:_model.goods_id];
+        [self.delegate selectGood:@"1" goods_id:_model.ID];
     }else{
-        [self.delegate selectGood:@"0" goods_id:_model.goods_id];
+        [self.delegate selectGood:@"0" goods_id:_model.ID];
     }
     
 }

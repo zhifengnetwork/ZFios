@@ -10,5 +10,5 @@
 
 @interface ZFDeleteView : UIView
 
-@property (nonatomic, assign)NSArray* idArray;
+@property (nonatomic, strong)NSMutableArray* idArray;
 @end

@@ -24,5 +24,5 @@
 
 @property (nonatomic, strong)NSString *price;
 //删除购物车id
-@property (nonatomic, assign)NSArray* idArray;
+@property (nonatomic, strong)NSMutableArray* idArray;
 @end

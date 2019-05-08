@@ -7,6 +7,8 @@
 //
 
 #import "http_shopping.h"
+#import "MJExtension.h"
+
 
 @implementation http_shopping
 
@@ -47,12 +49,16 @@
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    for (NSNumber *ID in IDArray) {
+    NSMutableArray* array = [[NSMutableArray alloc]init];
+    for (NSNumber *ID in IDArray)
+    {
         NSString *str = [NSString stringWithFormat:@"%@",ID];
-        [parameters setObject:str forKey:@"id"];
+        NSMutableDictionary* dic = [[NSMutableDictionary alloc]init];
+        [dic setObject:str forKey:@"id"];
+        [array addObject:dic];
     }
     
-    
+    [parameters setObject:array.mj_JSONString forKey:@"id"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
