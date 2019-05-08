@@ -8,19 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "ZFGoodModel.h"
-//@class ZFSettlementView;
-//@protocol ZFSettlementViewDelegate <NSObject>
-//@optional
+@class ZFSettlementView;
+@protocol ZFSettlementViewDelegate <NSObject>
+@optional
+- (void)reloadTableView;
 //- (void)deleteClick;
 //- (void)buyClick;
-//@end
+@end
 @interface ZFSettlementView : UIView
 + (instancetype)CartView;
-//@property (nonatomic, weak)id <ZFSettlementViewDelegate>delegate;
+@property (nonatomic, weak)id <ZFSettlementViewDelegate>delegate;
 - (void)setEditing;
 - (void)setSettleMent;
 @property (nonatomic, strong)ZFListModel *settleModel;
 
+@property (nonatomic, strong)NSString *price;
 //删除购物车id
-@property (nonatomic, assign)NSInteger ID;
+@property (nonatomic, assign)NSArray* idArray;
 @end

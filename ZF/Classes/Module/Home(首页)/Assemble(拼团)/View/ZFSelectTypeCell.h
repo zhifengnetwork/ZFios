@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class ZFSelectTypeCell;
 @protocol ZFSelectTypeCellDelegate <NSObject>
 
-- (void)selectKeyID:(UIButton*)btn;
+- (void)selectKeyID:(NSInteger)item_ID Cell:(ZFSelectTypeCell*)cell;
 
 @end
 @interface ZFSelectTypeCell : UITableViewCell

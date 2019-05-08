@@ -127,7 +127,7 @@
     [self hideInWindow];
 }
 - (void)deleteClick{
-    [http_shopping delcart:_ID success:^(id responseObject)
+    [http_shopping delcart:_idArray success:^(id responseObject)
      {
          [SVProgressHUD showSuccessWithStatus:@"删除成功"];
          

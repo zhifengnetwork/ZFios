@@ -13,6 +13,8 @@
 #import "ZFDeleteView.h"
 #import "http_shopping.h"
 #import "SVProgressHUD.h"
+#import "ZFGoodModel.h"
+#import "MJExtension.h"
 
 @interface ZFSettlementView()
 @property (weak, nonatomic) IBOutlet UIButton *allSelectButton;
@@ -21,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *settleButton;
 
 @property (nonatomic, strong)ZFDeleteView *deleteView;
+
+@property (nonatomic, strong)ZFListModel *listModel;
 
 @end
 @implementation ZFSettlementView
@@ -50,6 +54,8 @@
     if (self.allSelectButton.selected == YES) {
         [http_shopping selectedOrAll:1 success:^(id responseObject)
          {
+             ZWeakSelf
+             [weakSelf loadData:responseObject];
              
          } failure:^(NSError *error)
          {
@@ -58,7 +64,8 @@
     }else{
         [http_shopping selectedOrAll:2 success:^(id responseObject)
          {
-             
+             ZWeakSelf
+             [weakSelf loadData:responseObject];
          } failure:^(NSError *error)
          {
              [SVProgressHUD showErrorWithStatus:error.domain];
@@ -67,9 +74,27 @@
     
 }
 
+- (void)loadData: (id)responseObject{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
+    ZFCartPriceModel *priceModel = self.listModel.cart_price_info;
+    self.moneyLabel.text = [NSString stringWithFormat:@"%@",priceModel.total_fee];
+    [self.delegate reloadTableView];
+    
+}
+
+- (void)setPrice:(NSString *)price{
+    _price = price;
+    self.moneyLabel.text = [NSString stringWithFormat:@"%@",_price];
+    
+}
+
 - (void)setSettleModel:(ZFListModel *)settleModel{
     _settleModel = settleModel;
-    if (_settleModel.selected_flag.all_flag ==0) {
+    if (_settleModel.selected_flag.all_flag ==2) {
         self.allSelectButton.selected = NO;
     }else{
         self.allSelectButton.selected = YES;
@@ -103,7 +128,7 @@
 - (void)deleteClick{
 //    弹出删除界面
     _deleteView = [[ZFDeleteView alloc]init];
-    _deleteView.ID = _ID;
+    _deleteView.idArray = _idArray;
     [_deleteView showInWindowWithOriginY:195 backgoundTapDismissEnable:YES];
     [_deleteView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.superview).with.offset(195 - LL_StatusBarHeight);

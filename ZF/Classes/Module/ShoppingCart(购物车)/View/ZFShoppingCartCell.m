@@ -14,7 +14,7 @@
 #import "ZFSelectTypeView.h"
 #import "TYAlertController.h"
 
-@interface ZFShoppingCartCell()
+@interface ZFShoppingCartCell()<PPNumberButtonDelegate>
 
 @property (nonatomic, strong)UILabel *full;
 @property (strong, nonatomic)  UIButton *fullSale;//满赠优惠显示
@@ -259,7 +259,7 @@
         _numberButton.inputFieldFont = 12;
         _numberButton.increaseTitle = @"＋";
         _numberButton.decreaseTitle = @"－";
-        
+        _numberButton.delegate = self;
     }return _numberButton;
 }
 
@@ -354,7 +354,12 @@
 
 - (void)selectGood:(UIButton*)btn{
     btn.selected = !btn.selected;
-    [self.delegate selectCell:self];
+    if (btn.selected == YES) {
+        [self.delegate selectGood:@"1" goods_id:_model.goods_id];
+    }else{
+        [self.delegate selectGood:@"0" goods_id:_model.goods_id];
+    }
+    
 }
 
 - (void)pp_numberButton:(PPNumberButton *)numberButton number:(NSInteger)number increaseStatus:(BOOL)increaseStatus{
@@ -364,7 +369,9 @@
 
 - (void)selectMeal{
     ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
-    view.goodID = _model.goods_id;
+    view.goodID = _model.goods.goods_id;
+    view.spec_key = _model.spec_key;
+    view.cart_id = _model.cat_id;
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];

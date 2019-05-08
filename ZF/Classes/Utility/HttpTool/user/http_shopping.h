@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  删除购物车的商品
  */
-+(void)delcart:(NSInteger)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++(void)delcart:(NSArray*)IDArray success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //勾选购物车商品，并返回计算结果
 //ID  商品id
@@ -38,7 +38,20 @@ NS_ASSUME_NONNULL_BEGIN
 //all_flag  标识 1全选 2不全选
 +(void)selectedOrAll:(NSInteger)all_flag success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+/**
+ //修改商品规格
+ @param cart_id 购物车id
+ @param item_id 选择的规格id
+ */
++(void)update_cart_spec:(NSInteger)cart_id item_id:(NSInteger)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+/**
+ 加入购物车接口
+ @param goods_id 商品ID
+ @param goods_num 商品数量，默认1
+ @param item_id 商品规格ID
+ */
++(void)add_cart:(NSInteger)goods_id goods_num:(NSInteger)goods_num item_id:(NSInteger)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 @end
 
 NS_ASSUME_NONNULL_END

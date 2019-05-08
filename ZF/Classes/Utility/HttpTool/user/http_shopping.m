@@ -42,14 +42,17 @@
 /**
  删除购物车的商品
  */
-+(void)delcart:(NSInteger)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
++(void)delcart:(NSArray*)IDArray success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 {
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
+    for (NSNumber *ID in IDArray) {
+        NSString *str = [NSString stringWithFormat:@"%@",ID];
+        [parameters setObject:str forKey:@"id"];
+    }
     
-    NSString *str = [NSString stringWithFormat:@"%ld",ID];
-    [parameters setObject:str forKey:@"id"];
+    
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
@@ -113,6 +116,54 @@
     
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/Cart/selectedOrAll"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+/**
+ //修改商品规格
+ @param cart_id 购物车id
+ @param item_id 选择的规格id
+ */
++(void)update_cart_spec:(NSInteger)cart_id item_id:(NSInteger)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",cart_id];
+    [parameters setObject:str forKey:@"cart_id"];
+    
+    NSString *str2 = [NSString stringWithFormat:@"%ld",item_id];
+    [parameters setObject:str2 forKey:@"item_id"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/Cart/update_cart_spec"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+/**
+ 加入购物车接口
+ @param goods_id 商品ID
+ @param goods_num 商品数量，默认1
+ @param item_id 商品规格ID
+ */
++(void)add_cart:(NSInteger)goods_id goods_num:(NSInteger)goods_num item_id:(NSInteger)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",goods_id];
+    [parameters setObject:str forKey:@"goods_id"];
+    
+    NSString *str2 = [NSString stringWithFormat:@"%ld",goods_num];
+    [parameters setObject:str2 forKey:@"goods_num"];
+    
+    NSString *str3 = [NSString stringWithFormat:@"%ld",item_id];
+    [parameters setObject:str3 forKey:@"item_id"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/cart/add_cart"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 @end

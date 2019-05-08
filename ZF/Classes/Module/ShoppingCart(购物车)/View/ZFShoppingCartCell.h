@@ -13,7 +13,8 @@
 @optional
 //代理商品数量
 - (void)changeGoodsNum:(NSInteger)number Cell:(ZFShoppingCartCell *)cell;
-- (void)selectCell:(ZFShoppingCartCell *)cell;
+//代理选中取消
+- (void)selectGood:(NSString*)isSelected goods_id:(NSInteger)goods_id;
 @end
 @interface ZFShoppingCartCell : UITableViewCell
 @property (weak, nonatomic)id <ZFShoppingCartCellDelegate>delegate;

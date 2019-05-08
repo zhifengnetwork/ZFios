@@ -29,6 +29,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setup];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
@@ -50,59 +51,59 @@
     }];
     
     [_typeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(62);
-        make.height.mas_equalTo(26);
-        make.top.equalTo(self.typeLabel.mas_bottom).with.offset(20);
+        make.width.mas_equalTo(88);
+        make.height.mas_equalTo(20);
+        make.top.equalTo(self.typeLabel.mas_bottom).with.offset(10);
         make.left.equalTo(self).with.offset(20);
     }];
     
     [_typeButton1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(62);
-        make.height.mas_equalTo(26);
+        make.width.mas_equalTo(88);
+        make.height.mas_equalTo(20);
         make.top.equalTo(self.typeButton.mas_top);
-        make.left.equalTo(self.typeButton.mas_right).with.offset(30);
+        make.left.equalTo(self.typeButton.mas_right).with.offset(15);
     }];
     
     [_typeButton2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(62);
-        make.height.mas_equalTo(26);
+        make.width.mas_equalTo(88);
+        make.height.mas_equalTo(20);
         make.top.equalTo(self.typeButton.mas_top);
-        make.left.equalTo(self.typeButton1.mas_right).with.offset(30);
+        make.left.equalTo(self.typeButton1.mas_right).with.offset(15);
     }];
     
     [_typeButton3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(62);
-        make.height.mas_equalTo(26);
+        make.width.mas_equalTo(88);
+        make.height.mas_equalTo(20);
         make.top.equalTo(self.typeButton.mas_top);
-        make.left.equalTo(self.typeButton2.mas_right).with.offset(30);
+        make.left.equalTo(self.typeButton2.mas_right).with.offset(15);
     }];
     
     [_typeButton4 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(62);
-        make.height.mas_equalTo(26);
-        make.top.equalTo(self.typeButton.mas_bottom).with.offset(23);
+        make.width.mas_equalTo(88);
+        make.height.mas_equalTo(20);
+        make.top.equalTo(self.typeButton.mas_bottom).with.offset(10);
         make.left.equalTo(self).with.offset(20);
     }];
     
     [_typeButton5 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(62);
-        make.height.mas_equalTo(26);
+        make.width.mas_equalTo(88);
+        make.height.mas_equalTo(20);
         make.top.equalTo(self.typeButton4.mas_top);
-        make.left.equalTo(self.typeButton4.mas_right).with.offset(30);
+        make.left.equalTo(self.typeButton4.mas_right).with.offset(15);
     }];
     
     [_typeButton6 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(62);
-        make.height.mas_equalTo(26);
+        make.width.mas_equalTo(88);
+        make.height.mas_equalTo(20);
         make.top.equalTo(self.typeButton4.mas_top);
-        make.left.equalTo(self.typeButton5.mas_right).with.offset(30);
+        make.left.equalTo(self.typeButton5.mas_right).with.offset(15);
     }];
     
     [_typeButton7 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(62);
-        make.height.mas_equalTo(26);
+        make.width.mas_equalTo(88);
+        make.height.mas_equalTo(20);
         make.top.equalTo(self.typeButton4.mas_top);
-        make.left.equalTo(self.typeButton6.mas_right).with.offset(30);
+        make.left.equalTo(self.typeButton6.mas_right).with.offset(15);
     }];
 
 }
@@ -238,40 +239,54 @@
 
 - (void)setType:(NSMutableArray *)type{
     _type = type;
-    ZFGoodModel *model = type[1];
+    ZFGoodModel *model = type[0];
     _typeLabel.text = [NSString stringWithFormat:@"%@",model.name];
-    while ([type count]>=1) {
+    if ([type count]>=1) {
         _typeButton.hidden = NO;
         ZFGoodModel *model = type[0];
         [_typeButton setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
-    }while ([type count]>=2) {
-        _typeButton1.hidden = NO;
-        ZFGoodModel *model = type[1];
-        [_typeButton1 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
-    }while ([type count]>=3) {
-        _typeButton2.hidden = NO;
-        ZFGoodModel *model = type[2];
-        [_typeButton2 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
-    }while ([type count]>=4) {
-        _typeButton3.hidden = NO;
-        ZFGoodModel *model = type[3];
-        [_typeButton3 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
-    }while ([type count]>=5) {
-        _typeButton4.hidden = NO;
-        ZFGoodModel *model = type[4];
-        [_typeButton4 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
-    }while ([type count]>=6) {
-        _typeButton5.hidden = NO;
-        ZFGoodModel *model = type[5];
-        [_typeButton5 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
-    }while ([type count]>=7) {
-        _typeButton6.hidden = NO;
-        ZFGoodModel *model = type[6];
-        [_typeButton6 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
-    }while ([type count]==8) {
-        _typeButton7.hidden = NO;
-        ZFGoodModel *model = type[7];
-        [_typeButton7 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
+        
+        if ([type count]>=2) {
+            _typeButton1.hidden = NO;
+            ZFGoodModel *model = type[1];
+            [_typeButton1 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
+            
+            if ([type count]>=3) {
+                _typeButton2.hidden = NO;
+                ZFGoodModel *model = type[2];
+                [_typeButton2 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
+                
+                if ([type count]>=4) {
+                    _typeButton3.hidden = NO;
+                    ZFGoodModel *model = type[3];
+                    [_typeButton3 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
+                    
+                    if ([type count]>=5) {
+                        _typeButton4.hidden = NO;
+                        ZFGoodModel *model = type[4];
+                        [_typeButton4 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
+                        
+                        if ([type count]>=6) {
+                            _typeButton5.hidden = NO;
+                            ZFGoodModel *model = type[5];
+                            [_typeButton5 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
+                            
+                            if ([type count]>=7) {
+                                _typeButton6.hidden = NO;
+                                ZFGoodModel *model = type[6];
+                                [_typeButton6 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
+                                
+                                if ([type count]==8) {
+                                    _typeButton7.hidden = NO;
+                                    ZFGoodModel *model = type[7];
+                                    [_typeButton7 setTitle:[NSString stringWithFormat:@"%@",model.item] forState:UIControlStateNormal];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
    
     
@@ -290,10 +305,9 @@
         _oldButton = btn;
     }
     //获取a规格id
-    NSInteger i = btn.tag;
+    NSInteger i = btn.tag-1;
     ZFGoodModel *model = self.type[i];
-    btn.tag = model.ID;
-    [self.delegate selectKeyID:btn];
+    [self.delegate selectKeyID:model.ID Cell:self];
 }
 
 @end
