@@ -24,9 +24,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFdetailGoodModel : NSObject
 @property (nonatomic, assign)NSInteger goods_id;
+@property (nonatomic, assign)NSInteger cat_id;
+@property (nonatomic, assign)NSInteger store_count;
+@property (nonatomic, assign)NSInteger is_on_sale;
+@property (nonatomic, copy)NSString *prom_type;
+@property (nonatomic, assign)NSInteger prom_id;
 @property (nonatomic, copy)NSString *goods_name;
 @property (nonatomic, copy)NSString *shop_price;
 @property (nonatomic, copy)NSString *original_img;
+@property (nonatomic, assign)NSInteger weight;
 
 @end
 @interface ZFGoodModel : NSObject
@@ -146,8 +152,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFListModel : NSObject
 @property (nonatomic, strong)NSArray *list;
 
-@property (copy, nonatomic)ZFCartPriceModel *cart_price_info;
-@property (copy, nonatomic)ZFSelectFlagModel *selected_flag;
+@property (strong, nonatomic)ZFCartPriceModel *cart_price_info;
+@property (strong, nonatomic)ZFSelectFlagModel *selected_flag;
 @end
 @interface ZFGoodListModel : BaseListModel
 
