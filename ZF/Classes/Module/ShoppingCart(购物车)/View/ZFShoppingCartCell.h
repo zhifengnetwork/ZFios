@@ -11,9 +11,9 @@
 @class ZFShoppingCartCell;
 @protocol ZFShoppingCartCellDelegate <NSObject>
 @optional
-//代理加减商品数量
-- (void)increase: (ZFShoppingCartCell *)cell;
-- (void)decrease: (ZFShoppingCartCell *)cell;
+//代理商品数量
+- (void)changeGoodsNum:(NSInteger)number Cell:(ZFShoppingCartCell *)cell;
+- (void)selectCell:(ZFShoppingCartCell *)cell;
 @end
 @interface ZFShoppingCartCell : UITableViewCell
 @property (weak, nonatomic)id <ZFShoppingCartCellDelegate>delegate;

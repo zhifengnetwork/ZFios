@@ -14,10 +14,9 @@
 #import "SVProgressHUD.h"
 #import "http_shopping.h"
 #import "ZFGoodModel.h"
-#import "ZFShopModel.h"
 #import "MJExtension.h"
 
-@interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource,ZFShoppingCartCellDelegate>
 @property (nonatomic, weak)UITableView *shoppingCart;
 @property (nonatomic, weak)ZFSettlementView *settleView;
 @property (nonatomic, weak)UIButton *managementButton;
@@ -74,7 +73,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         self.settleView = [ZFSettlementView CartView];
         [self.view addSubview:self.settleView];
     
-        [_settleView setPrice];
+        [_settleView setSettleMent];
         [_settleView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(0);
             make.right.mas_equalTo(0);
@@ -115,7 +114,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     if (self.shoppingCart.isEditing) {
         [self.settleView setEditing];
     }else{
-        [self.settleView setPrice];
+        [self.settleView setSettleMent];
     }
     
 }
@@ -139,7 +138,53 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFShoppingCartTableCellID];
     cell.model = [self.listModel.list objectAtIndex:indexPath.section];
-    
+    cell.delegate = self;
     return cell;
+}
+
+
+- (void)selectCell:(ZFShoppingCartCell *)cell{
+    
+    if (cell.selected==1) {
+        //选中时传给settleview购物车id
+        self.settleView.ID = cell.model.ID;
+        //勾选购物车时返回计算结果
+        [http_shopping AsyncUpdateCart:cell.model.goods_id selected:@"1" success:^(id responseObject) {
+            if (kObjectIsEmpty(responseObject))
+            {
+                return;
+            }
+            
+            //            self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
+        } failure:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.domain];
+        }];
+    }else{
+        //勾选购物车时返回计算结果
+        [http_shopping AsyncUpdateCart:cell.model.goods_id selected:@"0" success:^(id responseObject) {
+            if (kObjectIsEmpty(responseObject))
+            {
+                return;
+            }
+            
+            //            self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
+        } failure:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.domain];
+        }];
+    }
+}
+
+- (void)changeGoodsNum:(NSInteger)number Cell:(ZFShoppingCartCell *)cell{
+//    商品数量改变
+    [http_shopping changeNum:cell.model.ID goods_num:number success:^(id responseObject) {
+        if (kObjectIsEmpty(responseObject))
+        {
+            return;
+        }
+        
+        //            self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
 }
 @end

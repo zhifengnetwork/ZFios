@@ -18,6 +18,9 @@
 + (instancetype)CartView;
 //@property (nonatomic, weak)id <ZFSettlementViewDelegate>delegate;
 - (void)setEditing;
-- (void)setPrice;
+- (void)setSettleMent;
 @property (nonatomic, strong)ZFListModel *settleModel;
+
+//删除购物车id
+@property (nonatomic, assign)NSInteger ID;
 @end

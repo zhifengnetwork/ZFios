@@ -8,6 +8,9 @@
 
 #import "ZFDeleteView.h"
 #import "UIView+TYAlertView.h"
+#import "http_shopping.h"
+#import "SVProgressHUD.h"
+
 @interface ZFDeleteView()
 @property (nonatomic, strong)UILabel *titleLabel;
 @property (nonatomic, strong)UILabel *detailLabel;
@@ -124,6 +127,13 @@
     [self hideInWindow];
 }
 - (void)deleteClick{
-    
+    [http_shopping delcart:_ID success:^(id responseObject)
+     {
+         [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+         
+     } failure:^(NSError *error)
+     {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
 }
 @end

@@ -228,6 +228,7 @@
         [_selectGoodButton setImage:[UIImage imageNamed:@"option_b"] forState:UIControlStateNormal];
         [_selectGoodButton setImage:[UIImage imageNamed:@"option_selected"] forState:UIControlStateSelected];
         [_selectGoodButton addTarget:self action:@selector(selectGood:) forControlEvents:UIControlEventTouchUpInside];
+        
     }return _selectGoodButton;
 }
 
@@ -353,7 +354,13 @@
 
 - (void)selectGood:(UIButton*)btn{
     btn.selected = !btn.selected;
+    [self.delegate selectCell:self];
 }
+
+- (void)pp_numberButton:(PPNumberButton *)numberButton number:(NSInteger)number increaseStatus:(BOOL)increaseStatus{
+    [self.delegate changeGoodsNum:number Cell:self];
+}
+
 
 - (void)selectMeal{
     ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];

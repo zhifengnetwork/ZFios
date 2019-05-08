@@ -146,8 +146,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFListModel : NSObject
 @property (nonatomic, strong)NSArray *list;
 
-@property (copy, nonatomic)ZFCartPriceModel *cart_price_info;
-@property (copy, nonatomic)ZFSelectFlagModel *selected_flag;
+@property (strong, nonatomic)ZFCartPriceModel *cart_price_info;
+@property (strong, nonatomic)ZFSelectFlagModel *selected_flag;
 @end
 @interface ZFGoodListModel : BaseListModel
 

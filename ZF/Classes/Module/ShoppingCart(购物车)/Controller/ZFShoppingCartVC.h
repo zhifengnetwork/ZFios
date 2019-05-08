@@ -9,14 +9,14 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class ZFShoppingCartVC;
-@protocol ZFShoppingCartVCDelegate <NSObject>
-- (void)setEditing;
-@end
+//@class ZFShoppingCartVC;
+//@protocol ZFShoppingCartVCDelegate <NSObject>
+//- (void)setEditing;
+//@end
 
  //购物车
 @interface ZFShoppingCartVC : UIViewController
-@property (nonatomic, weak)id <ZFShoppingCartVCDelegate>delegate;
+//@property (nonatomic, weak)id <ZFShoppingCartVCDelegate>delegate;
 @end
 
 NS_ASSUME_NONNULL_END

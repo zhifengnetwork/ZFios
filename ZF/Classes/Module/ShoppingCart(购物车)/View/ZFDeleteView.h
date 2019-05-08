@@ -10,4 +10,5 @@
 
 @interface ZFDeleteView : UIView
 
+@property (nonatomic, assign)NSInteger ID;
 @end

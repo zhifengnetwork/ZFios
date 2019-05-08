@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  删除购物车的商品
  */
-+(void)delcart:(NSString *)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++(void)delcart:(NSInteger)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //勾选购物车商品，并返回计算结果
 //ID  商品id

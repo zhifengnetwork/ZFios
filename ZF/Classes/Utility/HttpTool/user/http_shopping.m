@@ -42,12 +42,14 @@
 /**
  删除购物车的商品
  */
-+(void)delcart:(NSString *)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
++(void)delcart:(NSInteger)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 {
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    [parameters setObject:ID forKey:@"id"];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",ID];
+    [parameters setObject:str forKey:@"id"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
