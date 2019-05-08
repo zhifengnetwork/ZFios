@@ -176,7 +176,11 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
 
 - (void)handleSingleTap:(UITouch *)touch
 {
-    
+    //跳转编辑收货人
+    ZFEditorialConsigneeVC* vc = [[ZFEditorialConsigneeVC alloc]init];
+//    vc.addressEditModel = addressEditModel;
+    vc.type = @"2";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (UITableView *)tableView {
@@ -218,6 +222,7 @@ static NSString *const ZFAddressManagementTableCellID = @"ZFAddressManagementTab
     //跳转编辑收货人
     ZFEditorialConsigneeVC* vc = [[ZFEditorialConsigneeVC alloc]init];
     vc.addressEditModel = addressEditModel;
+    vc.type = @"1";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

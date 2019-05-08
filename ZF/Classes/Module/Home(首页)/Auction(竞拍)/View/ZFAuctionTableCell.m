@@ -72,6 +72,7 @@
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_iconView.mas_left);
         make.top.equalTo(self->_iconView.mas_bottom).offset(10);
+        make.right.equalTo(self->_iconView.mas_right).offset(-30);
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,7 +90,7 @@
         make.right.equalTo(self->_iconView.mas_right);
         make.width.mas_equalTo(78);
         make.height.mas_equalTo(43);
-        make.top.equalTo(self->_iconView.mas_bottom).offset(22);
+        make.top.equalTo(self->_iconView.mas_bottom).offset(33);
     }];
     
 }

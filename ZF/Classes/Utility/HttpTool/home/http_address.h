@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //三级联动接口
 //ID    父级ID
-+ (void)get_region:(ZFAddressModel*)addressModel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)get_region:(NSString*)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 @end
 
 NS_ASSUME_NONNULL_END
