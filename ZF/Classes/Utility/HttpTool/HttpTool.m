@@ -300,7 +300,7 @@ static int invalidtoken_code = 1005;
  @param ReqSuccess <#ReqSuccess description#>
  @param ReqFailure <#ReqFailure description#>
  */
-- (void)PostRequest:(NSString *)strUrl Parameters:(NSDictionary *)dicParameters success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+- (void)PostRequest:(NSString *)strUrl Parameters:(id)dicParameters success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 {
     if ( !m_manager )
     {
@@ -407,7 +407,7 @@ static int invalidtoken_code = 1005;
 -(void)hanldRequestHeader
 {
     //申明请求的数据
-    m_manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    m_manager.requestSerializer = [AFJSONRequestSerializer serializer];
     //申明请求的编码
     m_manager.requestSerializer.stringEncoding = NSUTF8StringEncoding;
     

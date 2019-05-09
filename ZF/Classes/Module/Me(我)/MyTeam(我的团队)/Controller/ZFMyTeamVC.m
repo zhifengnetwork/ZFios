@@ -25,7 +25,7 @@ static NSString *const ZFCityAgentTableCellID = @"ZFCityAgentTableCellID";
     [super viewDidLoad];
     
     [ZFTool isHiddenNavigationBarSeparatorLine:YES vc:self];
-    self.title = @"商场我的团队业绩";
+    self.title = @"我的团队业绩";
     [self setupTableView];
     
     UISegmentedControl* segment = [[UISegmentedControl alloc]initWithFrame:CGRectMake(10, 30, 200, 30)];

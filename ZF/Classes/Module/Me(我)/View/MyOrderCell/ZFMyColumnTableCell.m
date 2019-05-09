@@ -73,7 +73,7 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     }
     else if (indexPath.item==1)
     {
-        cell.title = @"奖金体现";
+        cell.title = @"奖金提现";
         cell.iconName = @"JJTX";
     }
     else if (indexPath.item==2)

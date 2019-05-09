@@ -7,7 +7,6 @@
 //
 
 #import "http_shopping.h"
-#import "MJExtension.h"
 
 
 @implementation http_shopping
@@ -58,13 +57,11 @@
         [array addObject:dic];
     }
     
-    [parameters setObject:array.mj_JSONString forKey:@"id"];
-    
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/cart/delcart"];
-    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+    [http PostRequest:strUrl Parameters:array success:ReqSuccess failure:ReqFailure];
 }
 
 //勾选购物车商品，并返回计算结果
@@ -82,9 +79,12 @@
     }
     NSDictionary* dic = [http hanldeSign:parameters];
     
+    NSMutableArray* array = [[NSMutableArray alloc]init];
+    [array addObject:dic];
+    
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/Cart/AsyncUpdateCart"];
-    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+    [http PostRequest:strUrl Parameters:array success:ReqSuccess failure:ReqFailure];
 }
 
 /**
