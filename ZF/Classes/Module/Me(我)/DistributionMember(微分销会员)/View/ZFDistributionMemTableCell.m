@@ -75,23 +75,35 @@
 
 - (void)upgradeButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFDistributionMemTableCellDidClick:)])
+    {
+        [self.delegate ZFDistributionMemTableCellDidClick:1];
+    }
 }
 
 
 - (void)commodityButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFDistributionMemTableCellDidClick:)])
+    {
+        [self.delegate ZFDistributionMemTableCellDidClick:2];
+    }
 }
 
 - (void)recommendButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFDistributionMemTableCellDidClick:)])
+    {
+        [self.delegate ZFDistributionMemTableCellDidClick:3];
+    }
 }
 
 - (void)accountButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFDistributionMemTableCellDidClick:)])
+    {
+        [self.delegate ZFDistributionMemTableCellDidClick:4];
+    }
 }
 
 

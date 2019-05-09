@@ -52,6 +52,8 @@
 
 @property (strong , nonatomic)NSMutableArray *hots;
 
+@property (nonatomic, strong)ZFDistribListModel *distribListModel;
+
 @end
 
 @implementation ZFHomeVC
@@ -208,8 +210,60 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     }
     
     [self.collectionView reloadData];
+    [self loadData4];
 }
 
+-(void)loadData4
+{
+    ZWeakSelf
+    [http_home index:9 cat_id:15 name:nil success:^(id responseObject)
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData4:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.collectionView.mj_header endRefreshing];
+     }];
+}
+
+-(void)showData4:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.plantingLisModel = [ZFPlantingListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.collectionView reloadData];
+    [self loadData3];
+}
+
+
+-(void)loadData3
+{
+    ZWeakSelf
+    [http_home goodsList:@"is_recommend" page:1 success:^(id responseObject)
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData3:responseObject];
+     } failure:^(NSError *error) {
+         [self.collectionView.mj_header endRefreshing];
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)showData3:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.distribListModel = [ZFDistribListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.collectionView reloadData];
+}
 
 
 
@@ -228,11 +282,11 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     }
     else if (section==1)
     {
-        return 4;
+        return self.plantingLisModel.flash_sale_goods.count;
     }
     else if (section==2)
     {
-        return 10;
+        return self.distribListModel.goods_list.count;
     }
     
     return 0;
@@ -294,14 +348,16 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     {
         //秒杀商品
         ZFSpikeMerchandiseTableCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFSpikeMerchandiseTableCelllD forIndexPath:indexPath];
+        ZFPlantingModel *plantingModel = [self.plantingLisModel.flash_sale_goods objectAtIndex:indexPath.row];
+        xell.plantingModel = plantingModel;
         gridcell = xell;
     }
     else if (indexPath.section == 2)
     {
         //推荐
         ZFCommodityTableCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFCommodityTableCellID forIndexPath:indexPath];
-//        ZFHomeModel *homeModel = [self.homeDataModel.result objectAtIndex:indexPath.section];
-//        cell.homeModel = homeModel;
+        ZFDistribuCommModel *distribuCommModel = [self.distribListModel.goods_list objectAtIndex:indexPath.row];
+        cell.distribuCommModel = distribuCommModel;
         gridcell = cell;
     }
     return gridcell;

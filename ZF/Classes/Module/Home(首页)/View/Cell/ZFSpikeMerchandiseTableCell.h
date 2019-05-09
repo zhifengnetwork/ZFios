@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFPlantingModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  秒杀商品cell
  */
 @interface ZFSpikeMerchandiseTableCell : UICollectionViewCell
+
+@property (nonatomic, strong)ZFPlantingModel *plantingModel;
 
 @end
 

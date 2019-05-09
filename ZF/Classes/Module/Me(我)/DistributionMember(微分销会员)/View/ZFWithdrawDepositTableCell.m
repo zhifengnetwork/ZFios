@@ -68,9 +68,19 @@
     
 }
 
+-(void)setWithdraModel:(ZFWithdrawModel *)withdraModel
+{
+    _withdraModel = withdraModel;
+    
+    _moneyLabel.text = [NSString stringWithFormat:@"账户余额¥%@元",_withdraModel.user_money];
+}
+
 - (void)distrButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFWithdrawDepositTableCellDidClick)])
+    {
+        [self.delegate ZFWithdrawDepositTableCellDidClick];
+    }
 }
 
 

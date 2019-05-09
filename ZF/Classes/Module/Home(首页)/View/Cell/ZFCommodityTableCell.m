@@ -79,13 +79,19 @@
     _evaluateLabel.hidden = !_isShowButton;
 }
 
-//- (void)setHomeModel:(ZFHomeModel *)homeModel
-//{
-//    _homeModel = homeModel;
-//    //显示头像
-//    [_iconView sd_setImageWithURL:[NSURL URLWithString:_homeModel.original_img]];
-//    _nameLabel.text = [NSString stringWithFormat:@"%ld",(long)_homeModel.goods_name];
-//}
+-(void)setDistribuCommModel:(ZFDistribuCommModel *)distribuCommModel
+{
+    _distribuCommModel = distribuCommModel;
+    
+    if (!kStringIsEmpty(distribuCommModel.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,distribuCommModel.original_img];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _nameLabel.text = _distribuCommModel.goods_name;
+    _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_distribuCommModel.shop_price];
+    _evaluateLabel.text = [NSString stringWithFormat:@"评价: %@",_distribuCommModel.comment_count];
+}
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {
