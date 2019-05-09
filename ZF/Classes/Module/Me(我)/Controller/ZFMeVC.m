@@ -312,9 +312,11 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 /**
  我的订单headview被点击
  */
+//订单类型，默认0所有，1:待发货,2:待支付,3:待收货,4:待评价
 - (void)ZFMyOrderHeadViewDidClick
 {
     ZFZFMyOrderVC* vc = [[ZFZFMyOrderVC alloc]init];
+    vc.type = 0;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -326,20 +328,30 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     if (indexPath.item==0)
     {
         //待付款
+        ZFZFMyOrderVC* vc = [[ZFZFMyOrderVC alloc] init];
+        vc.type = 2;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.item==1)
     {
         //待发货
         ZFZFMyOrderVC* vc = [[ZFZFMyOrderVC alloc] init];
+        vc.type = 1;
         [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.item==2)
     {
         //待收货
+        ZFZFMyOrderVC* vc = [[ZFZFMyOrderVC alloc] init];
+        vc.type = 3;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.item==3)
     {
         //待评价
+        ZFZFMyOrderVC* vc = [[ZFZFMyOrderVC alloc] init];
+        vc.type = 4;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

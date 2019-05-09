@@ -10,8 +10,14 @@
 #import "ZFMyOrderHeadTableCell.h"
 #import "ZFOrderDetailsTableCell.h"
 #import "ZFBottomOrderTableCell.h"
+#import "SVProgressHUD.h"
+#import "http_user.h"
+#import "ZFOrderModel.h"
+#import "ZFOrdersModel.h"
+#import "MJExtension.h"
 
 @interface ZFZFMyOrderVC ()
+@property (nonatomic, strong)NSMutableArray *datas;
 
 @end
 
@@ -31,7 +37,29 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
     
     UIImage *imgRight = [UIImage imageNamed:@"All"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(moreButtonDidClick)];
+    [self loadData];
+}
+
+- (void)loadData{
+    ZWeakSelf
+    [http_user order_list:_type success:^(id responseObject)
+     {
+         [weakSelf showData:responseObject];
+         
+     } failure:^(NSError *error)
+     {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
     
+}
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    self.datas = [ZFOrderModel mj_objectArrayWithKeyValuesArray:responseObject];
+    [self.tableView reloadData];
 }
 
 - (void)moreButtonDidClick
@@ -74,7 +102,7 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return self.datas.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -86,30 +114,32 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
 {
     UITableViewCell *cell = nil;
     
-    if (indexPath.section==0)
-    {
+    ZFOrderModel *orderModel = [self.datas objectAtIndex:indexPath.section];
         if (indexPath.row==0)
         {
             ZFMyOrderHeadTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFMyOrderHeadTableCellID];
             scell = [[ZFMyOrderHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyOrderHeadTableCellID];
-            
+            scell.orderModel = orderModel;
+
             cell = scell;
         }
         else if (indexPath.row==1)
         {
             ZFOrderDetailsTableCell* pcell = [tableView dequeueReusableCellWithIdentifier:ZFOrderDetailsTableCellID];
             pcell = [[ZFOrderDetailsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFOrderDetailsTableCellID];
-            
+            ZFOrdersModel *goodModel = [orderModel.goods objectAtIndex:0];
+            pcell.orderModel = goodModel;
             cell = pcell;
         }
         else if (indexPath.row==2)
         {
             ZFBottomOrderTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFBottomOrderTableCellID];
             scell = [[ZFBottomOrderTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFBottomOrderTableCellID];
-            
+            scell.orderModel = orderModel;
+            scell.type = _type;
             cell = scell;
         }
-    }
+    
     
     return cell;
 }
@@ -118,17 +148,16 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
 //每行的高度是多少
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0)
+    
+    if (indexPath.row==0)
     {
-        if (indexPath.row==0)
-        {
-            return 25;
-        }
-        else if (indexPath.row==1)
-        {
-            return 105;
-        }
+        return 25;
     }
+    else if (indexPath.row==1)
+    {
+        return 105;
+    }
+    
     
     return 60;
 }

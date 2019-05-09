@@ -237,6 +237,35 @@
     }return _typeButton7;
 }
 
+- (void)setSpec_key_name:(NSString *)spec_key_name{
+    if ([spec_key_name containsString:_typeButton.titleLabel.text]){
+        _typeButton.selected = YES;
+        _oldButton = _typeButton;
+    }else if ([spec_key_name containsString:_typeButton1.titleLabel.text]){
+        _typeButton1.selected = YES;
+        _oldButton = _typeButton1;
+    }else if ([spec_key_name containsString:_typeButton2.titleLabel.text]){
+        _typeButton2.selected = YES;
+        _oldButton = _typeButton2;
+    }else if ([spec_key_name containsString:_typeButton3.titleLabel.text]){
+        _typeButton3.selected = YES;
+        _oldButton = _typeButton3;
+    }else if ([spec_key_name containsString:_typeButton4.titleLabel.text]){
+        _typeButton4.selected = YES;
+        _oldButton = _typeButton4;
+    }else if ([spec_key_name containsString:_typeButton5.titleLabel.text]){
+        _typeButton5.selected = YES;
+        _oldButton = _typeButton5;
+    }else if ([spec_key_name containsString:_typeButton6.titleLabel.text]){
+        _typeButton6.selected = YES;
+        _oldButton = _typeButton6;
+    }else if ([spec_key_name containsString:_typeButton7.titleLabel.text]){
+        _typeButton7.selected = YES;
+        _oldButton = _typeButton7;
+    }
+    
+}
+
 - (void)setType:(NSMutableArray *)type{
     _type = type;
     ZFGoodModel *model = type[0];
@@ -293,6 +322,7 @@
     
 }
 #pragma mark 方法
+
 - (void)typeChange: (UIButton *)btn{
     btn.selected = YES;
     btn.layer.borderColor = RGBColorHex(0xe82f5c).CGColor;

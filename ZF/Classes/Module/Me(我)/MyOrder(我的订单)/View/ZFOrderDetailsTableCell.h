@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFOrdersModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFOrderDetailsTableCell : UITableViewCell
 
+@property (nonatomic, strong)ZFOrdersModel *orderModel;
 @end
 
 NS_ASSUME_NONNULL_END

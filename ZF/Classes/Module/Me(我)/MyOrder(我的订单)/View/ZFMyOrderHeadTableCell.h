@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFOrderModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFMyOrderHeadTableCell : UITableViewCell
 
+@property (nonatomic, strong)ZFOrderModel *orderModel;
+//订单类型，默认0所有，1:待发货,2:待支付,3:待收货,4:待评价
+//@property (nonatomic, assign)NSInteger type;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -98,5 +98,27 @@
     return _iconView;
 }
 
+- (void)setOrderModel:(ZFOrderModel *)orderModel{
+    _orderModel = orderModel;
+    _timeLabel.text = [NSString stringWithFormat:@"%ld",(long)_orderModel.add_time];
+    if (_orderModel.pay_status ==0) {
+        _titleLabel.text = @"待付款";
+    }else if (_orderModel.shipping_status == 0) {
+        _titleLabel.text = @"等待卖家发货";
+    }
+    if (_orderModel.shipping_status == 1) {
+        _titleLabel.text = @"卖家已发货";
+    }
+    if (_orderModel.order_status == 4) {
+        _titleLabel.text = @"交易成功";
+    }
+    if (_orderModel.order_status == 3||_orderModel.order_status == 5){
+        _titleLabel.text = @"交易取消";
+    }
+}
+
+
+
+
 
 @end

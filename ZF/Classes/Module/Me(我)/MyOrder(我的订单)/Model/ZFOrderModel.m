@@ -9,5 +9,11 @@
 #import "ZFOrderModel.h"
 
 @implementation ZFOrderModel
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             @"goods" : @"ZFOrdersModel"
+             };
+}
 
 @end

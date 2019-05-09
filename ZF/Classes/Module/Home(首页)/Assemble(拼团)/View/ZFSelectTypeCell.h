@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)NSInteger item;
 @property (nonatomic, strong)NSMutableArray *type;
+@property (nonatomic, copy)NSString *spec_key_name;
 @property (nonatomic, weak) id<ZFSelectTypeCellDelegate> delegate;
 @end
 

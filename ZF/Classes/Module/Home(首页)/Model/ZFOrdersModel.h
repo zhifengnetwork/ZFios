@@ -33,6 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *alipay;
 @property (nonatomic, copy)NSString *bank_name;
 @property (nonatomic, copy)NSString *bank_card;
+@property (nonatomic, copy)NSString *goods_name;
+@property (nonatomic, copy)NSString *final_price;
+@property (nonatomic, copy)NSString *spec_key;
+@property (nonatomic, copy)NSString *spec_key_name;
+@property (nonatomic, copy)NSString *original_img;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -12,14 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFSelectTypeView : UIView
 
-@property (nonatomic, assign)NSInteger goodID;
-//购物车id
-@property (nonatomic, assign)NSInteger cart_id;
-//规格key
-@property (nonatomic, copy)NSString *spec_key;
 
+@property (nonatomic, strong)ZFGoodModel *cartModel;
 
 @property (nonatomic, assign)BOOL addCart;
+@property (nonatomic, assign)BOOL isbuy;
 @end
 
 NS_ASSUME_NONNULL_END

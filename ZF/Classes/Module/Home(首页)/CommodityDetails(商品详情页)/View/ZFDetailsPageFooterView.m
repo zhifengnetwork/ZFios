@@ -104,6 +104,7 @@
 - (void)shoppingCartButtonDidClick
 {
     
+    
 }
 
 - (void)addCartButtonDidClick
@@ -124,6 +125,7 @@
 {
     
     ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 320)];
+    view.isbuy = YES;
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];

@@ -44,7 +44,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(void)order_detail:(NSString *)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//取消订单接口
+//订单ID    order_id
++(void)CancelOrder:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//确认收货
+//订单ID    order_id
++(void)order_confirm:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 /**
  找回密码验证码比对
  */

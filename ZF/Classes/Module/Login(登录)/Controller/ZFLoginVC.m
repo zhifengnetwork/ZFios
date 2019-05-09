@@ -269,7 +269,7 @@
 
 - (void)testButtonDidClick
 {
-    NSString* username = @"13516565558";
+    NSString* username = @"13322222222";
     NSString* passwd = @"123456";
     [self toLogin:username password:passwd];
 }

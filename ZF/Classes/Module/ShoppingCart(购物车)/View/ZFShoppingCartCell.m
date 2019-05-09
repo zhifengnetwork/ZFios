@@ -369,9 +369,8 @@
 
 - (void)selectMeal{
     ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 370)];
-    view.goodID = _model.goods.goods_id;
-    view.spec_key = _model.spec_key;
-    view.cart_id = _model.cat_id;
+    
+    view.cartModel = _model;
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];

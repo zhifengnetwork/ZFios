@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface ZFOrderModel : NSObject
 
 //订单id
@@ -117,6 +118,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign) NSInteger goods_num;
 //商品上传原始图
 @property (nonatomic , copy) NSString *original_img;
+@property (nonatomic, strong)NSArray *goods;
+@property (nonatomic, copy)NSString *store_name;
 
 @end
 

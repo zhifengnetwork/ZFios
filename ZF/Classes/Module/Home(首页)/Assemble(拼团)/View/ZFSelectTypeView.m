@@ -8,12 +8,14 @@
 
 #import "ZFSelectTypeView.h"
 #import "ZFSelectTypeCell.h"
+#import "ZFConfirmOrderVC.h"
 #import "http_good.h"
 #import "SVProgressHUD.h"
 #import "ZFGoodModel.h"
 #import "MJExtension.h"
 #import "UIImageView+WebCache.h"
 #import "http_shopping.h"
+
 
 @interface ZFSelectTypeView()<UITableViewDelegate,UITableViewDataSource,ZFSelectTypeCellDelegate>
 @property (nonatomic, strong)UIImageView *iconImageView;
@@ -33,7 +35,8 @@
 @property (nonatomic, strong)ZFGoodModel *pricemodel;
 
 @property (nonatomic, strong)NSString *itemID;
-
+//规格key
+@property (nonatomic, copy)NSString *spec_key;
 @end
 @implementation ZFSelectTypeView
 static NSString * const ZFSelectTypeCellID = @"ZFSelectTypeCellID";
@@ -140,15 +143,16 @@ NSInteger count = 1;//存储购物车的数量
     
 }
 
-- (void)setGoodID:(NSInteger)goodID{
-    _goodID = goodID;
+- (void)setCartModel:(ZFGoodModel *)cartModel{
+    _cartModel = cartModel;
     ZWeakSelf
-    [http_good goodsSpec:_goodID success:^(id responseObject)
+    [http_good goodsSpec:_cartModel.goods.goods_id success:^(id responseObject)
      {
          [weakSelf loadData:responseObject];
      } failure:^(NSError *error) {
          [SVProgressHUD showErrorWithStatus:error.domain];
      }];
+    self.spec_key = cartModel.spec_key;
 }
 
 -(void)loadData:(id)responseObject
@@ -165,7 +169,7 @@ NSInteger count = 1;//存储购物车的数量
 
 - (void)setSpec_key:(NSString *)spec_key{
     _spec_key = spec_key;
-    [http_good getPricePic:_spec_key goods_id:_goodID success:^(id responseObject) {
+    [http_good getPricePic:_spec_key goods_id:_cartModel.goods.goods_id success:^(id responseObject) {
         if (kObjectIsEmpty(responseObject))
         {
             return;
@@ -298,6 +302,7 @@ NSInteger count = 1;//存储购物车的数量
     ZFSelectTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFSelectTypeCellID forIndexPath:indexPath];
     cell.type = self.datas[indexPath.section];
     cell.delegate = self;
+    cell.spec_key_name = _cartModel.spec_key_name;
     return cell;
 }
 
@@ -309,6 +314,7 @@ NSInteger count = 1;//存储购物车的数量
 //    NSIndexPath *indexpath = [self.tableView indexPathForCell:cell];
     
     cell.item = item_ID;
+    
     
     for (NSInteger i = 0; i<self.datas.count; i++) {
         ZFSelectTypeCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
@@ -365,13 +371,21 @@ NSInteger count = 1;//存储购物车的数量
 - (void)agreeClick{
     //确认
     if (_addCart == YES) {
-        [http_shopping add_cart:_goodID goods_num:self.numberLabel.text.intValue item_id:_itemID success:^(id responseObject) {
+        [http_shopping add_cart:_cartModel.goods.goods_id goods_num:self.numberLabel.text.intValue item_id:_itemID success:^(id responseObject) {
             [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
         } failure:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.domain];
         }];
+    }else if (_isbuy == YES){
+        
+        ZFConfirmOrderVC *vc = [[ZFConfirmOrderVC alloc]init];
+        [[self currentViewController]dismissViewControllerAnimated:NO completion:^{
+            [[self currentViewController].navigationController pushViewController:vc animated:NO];
+        }];
+        
+        
     }else{
-        [http_shopping update_cart_spec:_cart_id item_id:_itemID success:^(id responseObject) {
+        [http_shopping update_cart_spec:_cartModel.cat_id item_id:_itemID success:^(id responseObject) {
             [SVProgressHUD showSuccessWithStatus:@"规格修改成功"];
         } failure:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.domain];

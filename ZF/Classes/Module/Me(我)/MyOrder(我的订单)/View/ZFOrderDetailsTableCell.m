@@ -160,4 +160,17 @@
     return _seeButton;
 }
 
+- (void)setOrderModel:(ZFOrdersModel *)orderModel{
+    _orderModel = orderModel;
+    if (!kStringIsEmpty(_orderModel.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_orderModel.original_img];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _titleLabel.text = [NSString stringWithFormat:@"%@",_orderModel.goods_name];
+    _colourLabel.text = [NSString stringWithFormat:@"%@",_orderModel.spec_key_name];
+    _sizeLabel.hidden = YES;
+    _moneyLabel.text = [NSString stringWithFormat:@"¥ %@ × %ld",_orderModel.final_price,_orderModel.goods_num];
+    
+}
 @end
