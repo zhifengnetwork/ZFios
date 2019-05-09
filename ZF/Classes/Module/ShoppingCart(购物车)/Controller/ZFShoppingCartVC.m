@@ -53,13 +53,6 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     self.managementButton = btn;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
-    
-    _emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
-    [self.view addSubview:_emptyCart];
-    _emptyCart.hidden = YES;
-
-    
-    
         UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
         tableView.backgroundColor = RGBColorHex(0xf4f4f4);
         tableView.delegate = self;
@@ -68,7 +61,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         self.shoppingCart = tableView;
     [tableView registerClass:[ZFShoppingCartCell class] forCellReuseIdentifier:ZFShoppingCartTableCellID];
         [self.view addSubview:tableView];
-        
+    
         tableView.allowsMultipleSelectionDuringEditing = YES;
         //结算界面
         self.settleView = [ZFSettlementView CartView];
@@ -87,6 +80,9 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     
     [self.shoppingCart.mj_header beginRefreshing];
     
+    _emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
+    [self.view addSubview:_emptyCart];
+    _emptyCart.hidden = YES;
     
 }
 
@@ -143,9 +139,11 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     if (self.listModel.list.count == 0) {//判断购物车是否为空
         _emptyCart.hidden = NO;
         _managementButton.hidden = YES;
+        self.settleView.hidden = YES;
     }else{
         _emptyCart.hidden = YES;
         _managementButton.hidden = NO;
+        self.settleView.hidden = NO;
     }
     return  self.listModel.list.count;
 }

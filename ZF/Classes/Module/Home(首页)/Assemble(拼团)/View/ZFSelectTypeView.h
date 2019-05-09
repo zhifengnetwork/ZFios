@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 //规格key
 @property (nonatomic, copy)NSString *spec_key;
 
+
 @property (nonatomic, assign)BOOL addCart;
 @end
 

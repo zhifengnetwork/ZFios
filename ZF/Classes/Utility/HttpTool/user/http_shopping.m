@@ -130,15 +130,17 @@
  @param cart_id 购物车id
  @param item_id 选择的规格id
  */
-+(void)update_cart_spec:(NSInteger)cart_id item_id:(NSInteger)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++(void)update_cart_spec:(NSInteger)cart_id item_id:(NSString*)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
     NSString *str = [NSString stringWithFormat:@"%ld",cart_id];
     [parameters setObject:str forKey:@"cart_id"];
     
-    NSString *str2 = [NSString stringWithFormat:@"%ld",item_id];
-    [parameters setObject:str2 forKey:@"item_id"];
+    if (!kStringIsEmpty(item_id)) {
+        [parameters setObject:item_id forKey:@"item_id"];
+    }
+    
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
@@ -153,7 +155,7 @@
  @param goods_num 商品数量，默认1
  @param item_id 商品规格ID
  */
-+(void)add_cart:(NSInteger)goods_id goods_num:(NSInteger)goods_num item_id:(NSInteger)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++(void)add_cart:(NSInteger)goods_id goods_num:(NSInteger)goods_num item_id:(NSString*)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
@@ -163,8 +165,9 @@
     NSString *str2 = [NSString stringWithFormat:@"%ld",goods_num];
     [parameters setObject:str2 forKey:@"goods_num"];
     
-    NSString *str3 = [NSString stringWithFormat:@"%ld",item_id];
-    [parameters setObject:str3 forKey:@"item_id"];
+    if (!kStringIsEmpty(item_id)) {
+        [parameters setObject:item_id forKey:@"item_id"];
+    }
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

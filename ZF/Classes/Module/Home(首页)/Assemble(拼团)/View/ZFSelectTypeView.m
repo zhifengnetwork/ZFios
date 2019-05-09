@@ -31,7 +31,9 @@
 @property (nonatomic, strong)NSMutableArray *datas;
 
 @property (nonatomic, strong)ZFGoodModel *pricemodel;
-@property (nonatomic, assign)NSInteger item_ID;
+
+@property (nonatomic, strong)NSString *itemID;
+
 @end
 @implementation ZFSelectTypeView
 static NSString * const ZFSelectTypeCellID = @"ZFSelectTypeCellID";
@@ -98,7 +100,7 @@ NSInteger count = 1;//存储购物车的数量
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView.mas_bottom);
         make.left.right.equalTo(self);
-        make.height.mas_equalTo(170);
+        make.height.mas_equalTo(230);
     }];
     
     [lineView1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -224,7 +226,7 @@ NSInteger count = 1;//存储购物车的数量
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:[ZFSelectTypeCell class] forCellReuseIdentifier:ZFSelectTypeCellID];
-        _tableView.rowHeight = 90;
+        _tableView.rowHeight = 70;
         
     }return _tableView;
 }
@@ -304,22 +306,23 @@ NSInteger count = 1;//存储购物车的数量
 
 - (void)selectKeyID:(NSInteger)item_ID Cell:(ZFSelectTypeCell *)cell{
     
-    if (self.datas.count == 1) {
-        _item_ID = item_ID;
-    }if (self.datas.count == 2) {
+//    NSIndexPath *indexpath = [self.tableView indexPathForCell:cell];
+    
+    cell.item = item_ID;
+    
+    for (NSInteger i = 0; i<self.datas.count; i++) {
+        ZFSelectTypeCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:i]];
+        NSString *itemID = [NSString stringWithFormat:@"%@_%ld",_itemID,cell.item];
         
-        NSInteger item1 = item_ID;
-        
+        _itemID = itemID;
+        if (i==0) {
+            _itemID = [NSString stringWithFormat:@"%ld",cell.item];
+        }
         
     }
     
-    
-//    _item_ID = [NSString stringWithFormat:@"%ld_%ld_%ld",(long)item1,(long)item2,(long)item3];
-    [http_shopping update_cart_spec:_cart_id item_id:item_ID success:^(id responseObject) {
-        [SVProgressHUD showSuccessWithStatus:@"dfasf"];
-    } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.domain];
-    }];
+    self.spec_key = _itemID;
+
 
 }
 
@@ -362,12 +365,17 @@ NSInteger count = 1;//存储购物车的数量
 - (void)agreeClick{
     //确认
     if (_addCart == YES) {
-        [http_shopping add_cart:_goodID goods_num:self.numberLabel.text.intValue item_id:_item_ID success:^(id responseObject) {
+        [http_shopping add_cart:_goodID goods_num:self.numberLabel.text.intValue item_id:_itemID success:^(id responseObject) {
             [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
         } failure:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.domain];
         }];
     }else{
+        [http_shopping update_cart_spec:_cart_id item_id:_itemID success:^(id responseObject) {
+            [SVProgressHUD showSuccessWithStatus:@"规格修改成功"];
+        } failure:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.domain];
+        }];
         [self cancelClick];
     }
 }

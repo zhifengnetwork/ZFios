@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface ZFSelectTypeCell : UITableViewCell
 
+@property (nonatomic, assign)NSInteger item;
 @property (nonatomic, strong)NSMutableArray *type;
 @property (nonatomic, weak) id<ZFSelectTypeCellDelegate> delegate;
 @end

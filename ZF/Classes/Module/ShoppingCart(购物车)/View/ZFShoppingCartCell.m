@@ -368,7 +368,7 @@
 
 
 - (void)selectMeal{
-    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 370)];
     view.goodID = _model.goods.goods_id;
     view.spec_key = _model.spec_key;
     view.cart_id = _model.cat_id;

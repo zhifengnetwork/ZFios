@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param cart_id 购物车id
  @param item_id 选择的规格id
  */
-+(void)update_cart_spec:(NSInteger)cart_id item_id:(NSInteger)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++(void)update_cart_spec:(NSInteger)cart_id item_id:(NSString*)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 /**
  加入购物车接口
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param goods_num 商品数量，默认1
  @param item_id 商品规格ID
  */
-+(void)add_cart:(NSInteger)goods_id goods_num:(NSInteger)goods_num item_id:(NSInteger)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++(void)add_cart:(NSInteger)goods_id goods_num:(NSInteger)goods_num item_id:(NSString*)item_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 @end
 
 NS_ASSUME_NONNULL_END

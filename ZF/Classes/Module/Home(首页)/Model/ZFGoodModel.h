@@ -145,6 +145,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)ZFdetailGoodModel *goods;
 @property (nonatomic, strong)NSArray *comment_fr;
 //购物车
+
 @property (nonatomic, copy)NSString *spec_key;
 @property (nonatomic, copy)NSString *spec_key_name;
 @end
