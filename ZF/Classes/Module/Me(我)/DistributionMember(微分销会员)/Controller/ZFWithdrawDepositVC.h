@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFDistribuCommModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  分销会员
  */
 @interface ZFWithdrawDepositVC : UIViewController
+
+@property (nonatomic, strong) ZFDistribuCommModel* distribuCommModel;
 
 @end
 

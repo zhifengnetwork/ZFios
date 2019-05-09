@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFWithdrawModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  资产总计cell
  */
 @interface ZFTotalAssetsTableCell : UICollectionViewCell
+
+@property (nonatomic, strong)ZFWithdrawModel *withdraModel;
 
 @end
 

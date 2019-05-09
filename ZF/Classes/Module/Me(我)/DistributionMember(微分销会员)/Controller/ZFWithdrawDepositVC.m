@@ -12,13 +12,20 @@
 #import "ZFTotalAssetsTableCell.h"
 #import "ZFDistributionMemTableCell.h"
 #import "ZFBannerHeadView.h"
+#import "ZFDistribuCommoVC.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "ZFWithdrawModel.h"
 
-@interface ZFWithdrawDepositVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface ZFWithdrawDepositVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFDistributionMemTableCellDelegate,ZFWithdrawDepositTableCellDelegate>
 
 /* collectionView */
 @property (strong , nonatomic)UICollectionView *collectionView;
 
 @property (strong , nonatomic)NSMutableArray *imageUrls;
+
+@property (nonatomic, strong)ZFWithdrawModel *withdrawModel;
 
 @end
 
@@ -47,6 +54,8 @@ static NSString *const ZFBannerHeadViewID = @"ZFBannerHeadViewID";
 {
     [super viewWillAppear:animated];
     //    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+    [self loadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -67,8 +76,32 @@ static NSString *const ZFBannerHeadViewID = @"ZFBannerHeadViewID";
 
 -(void)loadData
 {
+    ZWeakSelf
+    [http_mine distribut_index:^(id responseObject)
+     {
+         [weakSelf loadData_ok:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+//加载数据完成
+-(void)loadData_ok:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    //jsonToModel
+    self.withdrawModel = [ZFWithdrawModel mj_objectWithKeyValues:responseObject];
+    
+    [self.collectionView reloadData];
     
 }
+
 
 
 #pragma mark - <UICollectionViewDataSource>
@@ -90,18 +123,19 @@ static NSString *const ZFBannerHeadViewID = @"ZFBannerHeadViewID";
     if (indexPath.section == 0)
     {
         ZFWithdrawDepositTableCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFWithdrawDepositTableCellID forIndexPath:indexPath];
-        
+        oell.withdraModel = self.withdrawModel;
         gridcell = oell;
     }
     else if (indexPath.section == 1)
     {
         ZFTotalAssetsTableCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFTotalAssetsTableCellID forIndexPath:indexPath];
+        xell.withdraModel = self.withdrawModel;
         gridcell = xell;
     }
     else if (indexPath.section == 2)
     {
         ZFDistributionMemTableCell *uell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFDistributionMemTableCellID forIndexPath:indexPath];
-        
+        uell.delegate = self;
         gridcell = uell;
     }
     return gridcell;
@@ -263,4 +297,26 @@ static NSString *const ZFBannerHeadViewID = @"ZFBannerHeadViewID";
     }
     return _imageUrls;
 }
+
+//1:升级会员 2:分润商品 3:推荐会员 4:账户管理
+- (void)ZFDistributionMemTableCellDidClick:(int)type
+{
+    if (type==1)
+    {
+        //跳转到升级会员
+    }
+    else if (type==2)
+    {
+        //跳转到分润商品
+        ZFDistribuCommoVC* vc = [[ZFDistribuCommoVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+//提现按钮被点击
+- (void)ZFWithdrawDepositTableCellDidClick
+{
+    
+}
+
 @end

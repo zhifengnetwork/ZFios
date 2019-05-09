@@ -59,57 +59,18 @@
 }
 
 //首页点击[看相似]根据分类id跳转至商品列表页
-+ (void)goodsList:(ZFGoodModel *)goodmodel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)goodsList:(NSString*)type page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    NSString *str = [NSString stringWithFormat:@"%ld",goodmodel.ID];
-    [parameters setObject:str forKey:@"id"];
+    NSString *str = [NSString stringWithFormat:@"%ld",page];
+    [parameters setObject:str forKey:@"page"];
     
+    [parameters setObject:@"10" forKey:@"num"];
     
-    NSString *str1 = [NSString stringWithFormat:@"%ld",goodmodel.goods_id];
-    [parameters setObject:str1 forKey:@"goods_id"];
-    
-    NSString *str2 = [NSString stringWithFormat:@"%ld",goodmodel.brand_id];
-    [parameters setObject:str2 forKey:@"brand_id"];
-    
-    if (!kStringIsEmpty(goodmodel.spec)) {
-        [parameters setObject:goodmodel.spec forKey:@"spec"];
-    }else{
-        [parameters setObject:@"0" forKey:@"spec"];
-    }
-    
-    if (!kStringIsEmpty(goodmodel.attr)) {
-        [parameters setObject:goodmodel.attr forKey:@"attr"];
-    }
-    
-    if (!kStringIsEmpty(goodmodel.sort)) {
-        [parameters setObject:goodmodel.sort forKey:@"sort"];
-    }else{
-        [parameters setObject:@"sort, [is_new,comment_count,sales_sum,shop_price]" forKey:@"sort"];
-    }
-    
-    if (!kStringIsEmpty(goodmodel.sort_asc)) {
-        [parameters setObject:goodmodel.sort_asc forKey:@"sort_asc"];
-    }
-    
-    if (!kStringIsEmpty(goodmodel.sel)) {
-        [parameters setObject:goodmodel.sel forKey:@"sel"];
-    }else{
-        [parameters setObject:@"[all,free_post,store_count,prom_type]" forKey:@"sel"];
-    }
-    
-    if (!kStringIsEmpty(goodmodel.price)) {
-        [parameters setObject:goodmodel.price forKey:@"price"];
-    }
-    
-    
-    if (!kStringIsEmpty(goodmodel.start_price)) {
-        [parameters setObject:goodmodel.start_price forKey:@"start_price"];
-    }
-    
-    if (!kStringIsEmpty(goodmodel.end_price)) {
-        [parameters setObject:goodmodel.end_price forKey:@"end_price"];
+    if (!kStringIsEmpty(type)) {
+        [parameters setObject:type forKey:@"type"];
     }
     
     NSDictionary* dic = [http hanldeSign:parameters];

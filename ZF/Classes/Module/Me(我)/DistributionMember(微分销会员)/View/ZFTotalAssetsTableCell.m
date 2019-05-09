@@ -48,7 +48,8 @@
     }];
     
     [_totalMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-55);
+        make.left.equalTo(self->_moneyLabel.mas_right).offset(60);
+//        make.right.mas_equalTo(-55);
         make.centerY.equalTo(self.contentView).offset(2);
     }];
     
@@ -68,6 +69,13 @@
     
 }
 
+-(void)setWithdraModel:(ZFWithdrawModel *)withdraModel
+{
+    _withdraModel = withdraModel;
+    
+    _moneyLabel.text = [NSString stringWithFormat:@"累积收益¥%@元",_withdraModel.distribut_money];
+    _totalMoneyLabel.text = [NSString stringWithFormat:@"资产总计¥%.2f(元)",_withdraModel.total_property];
+}
 
 - (UILabel *)moneyLabel {
     if (_moneyLabel == nil) {

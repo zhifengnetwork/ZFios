@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)Products:(NSString *)cat_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //首页点击[看相似]根据分类id跳转至商品列表页
-+ (void)goodsList:(ZFGoodModel*)goodmodel success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)goodsList:(NSString*)type page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //上传头像接口
 //image 头像

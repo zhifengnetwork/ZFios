@@ -18,7 +18,8 @@
 {
     return @{
              @"adlist" : @"ZFADModel",
-             @"notice" : @"ZFNoticeModel"
+             @"notice" : @"ZFNoticeModel",
+             @"flash_sale_goods" : @"ZFPlantingModel"
              };
 }
 
