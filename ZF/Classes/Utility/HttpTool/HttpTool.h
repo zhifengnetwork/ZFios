@@ -65,7 +65,7 @@ typedef void (^ErrorData)(NSError *error);
  @param ReqSuccess <#ReqSuccess description#>
  @param ReqFailure <#ReqFailure description#>
  */
-- (void)PostRequest:(NSString *)strUrl Parameters:(NSDictionary *)dicParameters success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+- (void)PostRequest:(NSString *)strUrl Parameters:(id)dicParameters success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //处理签名
 -(NSDictionary*)hanldeSign:(NSMutableDictionary*)parameters;
