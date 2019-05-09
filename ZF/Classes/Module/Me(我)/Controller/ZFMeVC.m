@@ -314,7 +314,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
  */
 - (void)ZFMyOrderHeadViewDidClick
 {
-    ZFMyOrderEmptyVC* vc = [[ZFMyOrderEmptyVC alloc]init];
+    ZFZFMyOrderVC* vc = [[ZFZFMyOrderVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -391,7 +391,9 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     }
     else if (indexPath.item==1)
     {
-        //奖金体现
+        //奖金提现
+        ZFWithdrawDepositVC*vc = [[ZFWithdrawDepositVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.item==2)
     {
