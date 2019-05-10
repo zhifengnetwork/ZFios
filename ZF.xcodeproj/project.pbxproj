@@ -295,6 +295,7 @@
 		84ED0CE4223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE3223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m */; };
 		84ED0CE7223CFB3200BC13C7 /* ZFDistributionMemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE6223CFB3200BC13C7 /* ZFDistributionMemTableCell.m */; };
 		84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE9223CFF8000BC13C7 /* ZFWithdrawDepositVC.m */; };
+		84F4AA3722855CE2007AE7E5 /* ZFDetailsPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F4AA3622855CE2007AE7E5 /* ZFDetailsPageModel.m */; };
 		ECC88B8EDBFFA9A3D3667654 /* libPods-ZFUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -893,6 +894,8 @@
 		84ED0CE6223CFB3200BC13C7 /* ZFDistributionMemTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDistributionMemTableCell.m; sourceTree = "<group>"; };
 		84ED0CE8223CFF8000BC13C7 /* ZFWithdrawDepositVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFWithdrawDepositVC.h; sourceTree = "<group>"; };
 		84ED0CE9223CFF8000BC13C7 /* ZFWithdrawDepositVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFWithdrawDepositVC.m; sourceTree = "<group>"; };
+		84F4AA3522855CE2007AE7E5 /* ZFDetailsPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsPageModel.h; sourceTree = "<group>"; };
+		84F4AA3622855CE2007AE7E5 /* ZFDetailsPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsPageModel.m; sourceTree = "<group>"; };
 		87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZF.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZFUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC5748F8240DC444AA69277 /* Pods-ZF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZF/Pods-ZF.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2207,6 +2210,7 @@
 		842C0B262248CE5B0058206F /* CommodityDetails(商品详情页) */ = {
 			isa = PBXGroup;
 			children = (
+				84F4AA3422855CC4007AE7E5 /* Model */,
 				5307E464224DC95600F93A11 /* 详情弹框 */,
 				842C0B282248CE960058206F /* Controller */,
 				842C0B272248CE900058206F /* View */,
@@ -2691,6 +2695,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		84F4AA3422855CC4007AE7E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				84F4AA3522855CE2007AE7E5 /* ZFDetailsPageModel.h */,
+				84F4AA3622855CE2007AE7E5 /* ZFDetailsPageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F8A1C7F47DB1A36D36A8EA77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3007,6 +3020,7 @@
 				1819919F2237C781004585D8 /* ZFRecordDetailsTableCell.m in Sources */,
 				849F9576223B8B65001824B9 /* ZFGoShoppingTableCell.m in Sources */,
 				842CE8482280165C004D73C0 /* GHDropMenuWaterFallCell.m in Sources */,
+				84F4AA3722855CE2007AE7E5 /* ZFDetailsPageModel.m in Sources */,
 				8415517F2282C3B900AD71C6 /* AreaModel.m in Sources */,
 				533BA180224C821F00FAFFF8 /* ZFOrderView.m in Sources */,
 				5325B24D22437CCE00AFD00F /* ZFCouponCenterVC.m in Sources */,

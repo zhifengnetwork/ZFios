@@ -7,6 +7,7 @@
 //
 
 #import "ZFSpikeMerchandiseTableViewCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZFSpikeMerchandiseTableViewCell()
 
@@ -72,6 +73,20 @@
      }];
     
     
+}
+
+-(void)setPlantingModel:(ZFPlantingModel *)plantingModel
+{
+    _plantingModel = plantingModel;
+    
+    if (!kStringIsEmpty(plantingModel.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,plantingModel.original_img];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _nameLabel.text = _plantingModel.goods_name;
+    _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_plantingModel.price];
+    _money2Label.text = [NSString stringWithFormat:@"¥%@",_plantingModel.shop_price];
 }
 
 

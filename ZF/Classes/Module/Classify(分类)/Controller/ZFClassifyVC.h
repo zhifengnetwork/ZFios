@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFSearchModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  分类
  */
 @interface ZFClassifyVC : UIViewController
+
+@property (nonatomic, strong) ZFSearchModel* searchModel;
 
 @end
 

@@ -22,6 +22,7 @@
 #import "ZFADModel.h"
 #import "ZFClassifyModel.h"
 #import "ZFPlantingModel.h"
+#import "ZFSearchVC.h"
 
 @interface ZFClassifyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -39,6 +40,7 @@
 @property (strong , nonatomic)NSMutableArray *lists2;
 
 @property (strong , nonatomic)ZFPlantingListModel *plantingLisModel;
+@property (nonatomic, strong)ZFSearchListModel *searchListModel;
 
 @end
 
@@ -292,6 +294,16 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"点击了个第%zd分组第%zd几个Item",indexPath.section,indexPath.row);
+    
+    ZFSearchVC* vc = [[ZFSearchVC alloc]init];
+    ZFHomeModel *homeModel = [self.lists2 objectAtIndex:indexPath.item];
+    ZFSearchModel* searchModel = [[ZFSearchModel alloc]init];
+//    searchModel.ID = homeModel.goods_id;
+//    searchModel.price = homeModel.price;
+    
+    vc.searchModel = searchModel;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 

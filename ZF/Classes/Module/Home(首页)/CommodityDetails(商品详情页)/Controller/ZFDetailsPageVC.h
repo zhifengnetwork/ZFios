@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFDetailsPageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)NSInteger goods_id;
 @property (nonatomic, assign)NSInteger region_id;
+@property (nonatomic, strong)ZFDetailsPageModel *detailsPageModel;
 
 @end
 
