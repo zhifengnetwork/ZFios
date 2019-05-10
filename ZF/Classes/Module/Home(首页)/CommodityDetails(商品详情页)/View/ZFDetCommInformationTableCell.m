@@ -125,6 +125,18 @@
     
 }
 
+-(void)setDetailsPageModel:(ZFDetailsPageModel *)detailsPageModel
+{
+    _detailsPageModel = detailsPageModel;
+    
+    _nameLabel.text = _detailsPageModel.goods_name;
+    _titleLabel.text = _detailsPageModel.goods_remark;
+    _moneyLabel.text = _detailsPageModel.shop_price;
+    _money2Label.text = [NSString stringWithFormat:@"¥%@",_detailsPageModel.market_price];
+    _salesLabel.text = [NSString stringWithFormat:@"销量：%@",_detailsPageModel.virtual_sales_sum];
+    _stockLabel.text = [NSString stringWithFormat:@"当前库存：%@件：",_detailsPageModel.virtual_sales_sum];
+}
+
 - (UILabel *)secondLabel {
     if (_secondLabel == nil) {
         _secondLabel = [[UILabel alloc] init];
@@ -218,9 +230,4 @@
     return _stockLabel;
 }
 
-- (void)setInformationModel:(ZFGoodModel *)informationModel{
-    _informationModel = informationModel;
-    _nameLabel.text = [NSString stringWithFormat:@"%@",_informationModel.goods_name];
-    
-}
 @end

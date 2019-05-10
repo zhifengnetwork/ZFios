@@ -22,6 +22,8 @@
 #import "ZFADModel.h"
 #import "ZFClassifyModel.h"
 #import "ZFPlantingModel.h"
+#import "ZFDetailsPageVC.h"
+
 
 @interface ZFClassifyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
@@ -39,6 +41,7 @@
 @property (strong , nonatomic)NSMutableArray *lists2;
 
 @property (strong , nonatomic)ZFPlantingListModel *plantingLisModel;
+@property (nonatomic, strong)ZFSearchListModel *searchListModel;
 
 @end
 
@@ -292,6 +295,12 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"点击了个第%zd分组第%zd几个Item",indexPath.section,indexPath.row);
+    
+    ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+    ZFHomeModel *homeModel = [self.lists2 objectAtIndex:indexPath.item];
+    vc.goods_id = homeModel.goods_id;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZFDetailsPageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -73,6 +74,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger low_rate;
 //评论总数
 @property (nonatomic, assign)NSInteger total_sum;
+@end
+
+@interface ZFGoodCommentListModel : NSObject
+//回复评论信息
+@property (nonatomic, strong)NSMutableArray *commentlist;
+//评论详细信息
+@property (strong, nonatomic)ZFDetailsPageModel *comment_fr;
 @end
 
 NS_ASSUME_NONNULL_END

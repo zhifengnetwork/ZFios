@@ -185,7 +185,7 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
     }
     else if (section==1)
     {
-        return 3;
+        return self.plantingLisModel.flash_sale_goods.count;
     }
     return 0;
 }
@@ -207,7 +207,11 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
     {
         //秒杀商品
         ZFSpikeMerchandiseTableViewCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFSpikeMerchandiseTableViewCellID forIndexPath:indexPath];
+        ZFPlantingModel *plantingModel = [self.plantingLisModel.flash_sale_goods objectAtIndex:indexPath.row];
+        xell.plantingModel = plantingModel;
+        
         gridcell = xell;
+        
     }
     else if (indexPath.section == 2)
     {

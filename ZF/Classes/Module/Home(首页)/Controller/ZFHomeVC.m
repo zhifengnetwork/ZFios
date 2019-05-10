@@ -528,6 +528,8 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     else if (indexPath.section==2)
     {
         ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+        ZFDistribuCommModel *distribuCommModel = [self.distribListModel.goods_list objectAtIndex:indexPath.row];
+        vc.goods_id = distribuCommModel.goods_id.integerValue;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
