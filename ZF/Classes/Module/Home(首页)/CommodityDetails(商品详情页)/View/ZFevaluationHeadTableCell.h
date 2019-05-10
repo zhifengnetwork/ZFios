@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ZFGoodCommentModel.h"
+#import "ZFDetailsPageModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -16,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFevaluationHeadTableCell : UITableViewCell
 
 @property (nonatomic, strong)ZFGoodCommentModel *titleModel;
+
+@property (strong, nonatomic)ZFDetailsPageModel *comment_fr;
+
 @end
 
 NS_ASSUME_NONNULL_END

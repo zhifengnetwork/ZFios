@@ -29,6 +29,8 @@
 #import "SVProgressHUD.h"
 #import "ZFGoodModel.h"
 #import "MJExtension.h"
+#import "ZFGoodCommentModel.h"
+
 
 @interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -43,6 +45,7 @@
 @property (strong , nonatomic)NSMutableArray *imageUrls;
 
 @property (nonatomic, strong) ZFDetailListModel* detailListModel;
+@property (nonatomic, strong) ZFGoodCommentListModel* commentListModel;
 
 @end
 
@@ -96,8 +99,46 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     
     self.detailListModel = [ZFDetailListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.imageUrls removeAllObjects];
+    for (int i=0; i<self.detailListModel.goods.goods_images.count; i++)
+    {
+        NSString* url = [self.detailListModel.goods.goods_images objectAtIndex:i];
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,url];
+        [self.imageUrls addObject:str];
+    }
+    _headView.imageUrls = self.imageUrls;
+    
+    [self loadData2];
     [self.tableView reloadData];
 }
+
+-(void)loadData2
+{
+    //获取好评评论
+    ZWeakSelf
+    [http_good getGoodsComment:_goods_id commentType:2 success:^(id responseObject)
+     {
+         [weakSelf showData2:responseObject];
+
+         }
+    failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
+
+-(void)showData2:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.commentListModel = [ZFGoodCommentListModel mj_objectWithKeyValues:responseObject];
+    
+    [self.tableView reloadData];
+}
+
 
 -(void)shareButtonDidClick
 {
@@ -252,29 +293,17 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 //                           }];
         ZFevaluationHeadTableCell* qcell = [tableView dequeueReusableCellWithIdentifier:ZFevaluationHeadTableCelllD];
         qcell = [[ZFevaluationHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFevaluationHeadTableCelllD];
-//        qcell.titleModel
+        qcell.comment_fr = self.detailListModel.goods.comment_fr;
         cell = qcell;
     }
     else if (indexPath.section==4)
     {
-//        //获取好评评论
-//        [http_good getGoodsComment:_goods_id commentType:2 success:^(id responseObject)
-//         {
-//            if (kObjectIsEmpty(responseObject))
-//            {
-//                return;
-//            }
-//
-//            //    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
-//
-//             }
-//        failure:^(NSError *error) {
-//             [SVProgressHUD showErrorWithStatus:error.domain];
-//        }];
-        
         ZFCommodityEvaluationTableCell* acell = [tableView dequeueReusableCellWithIdentifier:ZFCommodityEvaluationTableCelllD];
         acell = [[ZFCommodityEvaluationTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFCommodityEvaluationTableCelllD];
-//        acell.commentModel =
+        if (self.commentListModel.commentlist.count>0)
+        {
+            acell.commentModel = [self.commentListModel.commentlist objectAtIndex:0];
+        }
         cell = acell;
     }
     else if (indexPath.section==5)

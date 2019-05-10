@@ -103,6 +103,14 @@
     
 }
 
+-(void)setComment_fr:(ZFDetailsPageModel *)comment_fr
+{
+    _comment_fr = comment_fr;
+    _evaluateLabel.text = [NSString stringWithFormat:@"商品评价 (%@)",_comment_fr.total_sum];
+    _praiseLabel.text = [NSString stringWithFormat:@"好评 %@",_comment_fr.high_rate];
+    
+}
+
 #pragma mark -- 方法
 - (void)jumpClick{
     ZFEvaluationVC *vc = [[ZFEvaluationVC alloc]init];

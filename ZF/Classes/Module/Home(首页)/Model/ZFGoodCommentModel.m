@@ -11,3 +11,14 @@
 @implementation ZFGoodCommentModel
 
 @end
+
+@implementation ZFGoodCommentListModel
+
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             @"commentlist" : @"ZFGoodCommentModel"
+             };
+}
+
+@end
