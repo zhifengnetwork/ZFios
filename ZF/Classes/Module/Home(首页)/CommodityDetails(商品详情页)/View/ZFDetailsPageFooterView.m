@@ -110,8 +110,8 @@
 - (void)addCartButtonDidClick
 {
 
-    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 320)];
-//    view.goodID
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 370)];
+    view.goodID = _goodID;
     view.addCart = YES;
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
@@ -124,7 +124,8 @@
 - (void)immediatePurButtonDidClick
 {
     
-    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 320)];
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 370)];
+    view.goodID = _goodID;
     view.isbuy = YES;
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;

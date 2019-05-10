@@ -277,20 +277,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (indexPath.section==3)
     {
-//        //获取评价头部信息
-//        [http_good getGoodsComment:_goods_id commentType:1 success:^(id responseObject)
-//         {
-//             if (kObjectIsEmpty(responseObject))
-//             {
-//                 return;
-//             }
-//
-//             //    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
-//
-//         }
-//                           failure:^(NSError *error) {
-//                               [SVProgressHUD showErrorWithStatus:error.domain];
-//                           }];
+
         ZFevaluationHeadTableCell* qcell = [tableView dequeueReusableCellWithIdentifier:ZFevaluationHeadTableCelllD];
         qcell = [[ZFevaluationHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFevaluationHeadTableCelllD];
         qcell.comment_fr = self.detailListModel.goods.comment_fr;

@@ -169,10 +169,7 @@
     }
     _phoneLabel.text = [NSString stringWithFormat:@"%@",_commentModel.username];
     _titleLabel.attributedText = [self setLabelIndent:12 text:[NSString stringWithFormat:@"%@",_commentModel.content]];
-    if (!kStringIsEmpty(_commentModel.img))
-    {
-        [_iconView sd_setImageWithURL:[NSURL URLWithString:_commentModel.img]];
-    }
+    
     _numberLabel.text = [NSString stringWithFormat:@"%ld",(long)_commentModel.img_sum];
 }
 @end

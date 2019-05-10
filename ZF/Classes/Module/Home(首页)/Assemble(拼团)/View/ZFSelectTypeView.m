@@ -143,16 +143,25 @@ NSInteger count = 1;//存储购物车的数量
     
 }
 
+- (void)setGoodID:(NSInteger)goodID{
+    _goodID = goodID;
+    [self loadData];
+}
+
 - (void)setCartModel:(ZFGoodModel *)cartModel{
     _cartModel = cartModel;
+    _goodID = _cartModel.goods.goods_id;
+    self.spec_key = cartModel.spec_key;
+}
+
+- (void)loadData{
     ZWeakSelf
-    [http_good goodsSpec:_cartModel.goods.goods_id success:^(id responseObject)
+    [http_good goodsSpec:_goodID success:^(id responseObject)
      {
          [weakSelf loadData:responseObject];
      } failure:^(NSError *error) {
          [SVProgressHUD showErrorWithStatus:error.domain];
      }];
-    self.spec_key = cartModel.spec_key;
 }
 
 -(void)loadData:(id)responseObject
@@ -169,7 +178,7 @@ NSInteger count = 1;//存储购物车的数量
 
 - (void)setSpec_key:(NSString *)spec_key{
     _spec_key = spec_key;
-    [http_good getPricePic:_spec_key goods_id:_cartModel.goods.goods_id success:^(id responseObject) {
+    [http_good getPricePic:_spec_key goods_id:_goodID success:^(id responseObject) {
         if (kObjectIsEmpty(responseObject))
         {
             return;
@@ -371,7 +380,7 @@ NSInteger count = 1;//存储购物车的数量
 - (void)agreeClick{
     //确认
     if (_addCart == YES) {
-        [http_shopping add_cart:_cartModel.goods.goods_id goods_num:self.numberLabel.text.intValue item_id:_itemID success:^(id responseObject) {
+        [http_shopping add_cart:_goodID goods_num:self.numberButton.titleLabel.text.intValue item_id:_itemID success:^(id responseObject) {
             [SVProgressHUD showSuccessWithStatus:@"加入购物车成功"];
         } failure:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.domain];
@@ -385,7 +394,7 @@ NSInteger count = 1;//存储购物车的数量
         
         
     }else{
-        [http_shopping update_cart_spec:_cartModel.cat_id item_id:_itemID success:^(id responseObject) {
+        [http_shopping update_cart_spec:_goodID item_id:_itemID success:^(id responseObject) {
             [SVProgressHUD showSuccessWithStatus:@"规格修改成功"];
         } failure:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.domain];

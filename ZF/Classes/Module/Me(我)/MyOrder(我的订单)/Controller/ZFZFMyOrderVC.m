@@ -15,6 +15,7 @@
 #import "ZFOrderModel.h"
 #import "ZFOrdersModel.h"
 #import "MJExtension.h"
+#import "ZFDetailOrderVC.h"
 
 @interface ZFZFMyOrderVC ()
 @property (nonatomic, strong)NSMutableArray *datas;
@@ -179,6 +180,10 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
 //点击了哪个cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row==1) {
+        ZFDetailOrderVC *vc = [[ZFDetailOrderVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 //    if (indexPath.section==0)
 //    {
 //        ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
