@@ -262,6 +262,7 @@
 		8467507622867AF10063BB98 /* ZFMyMemberTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8467507522867AF10063BB98 /* ZFMyMemberTableCell.m */; };
 		8467507922867B290063BB98 /* ZFMyMemberVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8467507822867B290063BB98 /* ZFMyMemberVC.m */; };
 		8467507C228682440063BB98 /* ZFUserMemberTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8467507B228682440063BB98 /* ZFUserMemberTableCell.m */; };
+		8467507F2286B8C90063BB98 /* ZFMyMemberModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8467507E2286B8C90063BB98 /* ZFMyMemberModel.m */; };
 		847547012240938F00B698E6 /* ZFMyIntegralHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847547002240938F00B698E6 /* ZFMyIntegralHeadTableCell.m */; };
 		847547042240998400B698E6 /* ZFMyIntegralTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847547032240998400B698E6 /* ZFMyIntegralTableCell.m */; };
 		8475470722409DC800B698E6 /* ZFMyIntegralVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475470622409DC800B698E6 /* ZFMyIntegralVC.m */; };
@@ -832,6 +833,8 @@
 		8467507822867B290063BB98 /* ZFMyMemberVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyMemberVC.m; sourceTree = "<group>"; };
 		8467507A228682440063BB98 /* ZFUserMemberTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFUserMemberTableCell.h; sourceTree = "<group>"; };
 		8467507B228682440063BB98 /* ZFUserMemberTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFUserMemberTableCell.m; sourceTree = "<group>"; };
+		8467507D2286B8C90063BB98 /* ZFMyMemberModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyMemberModel.h; sourceTree = "<group>"; };
+		8467507E2286B8C90063BB98 /* ZFMyMemberModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyMemberModel.m; sourceTree = "<group>"; };
 		847546FF2240938F00B698E6 /* ZFMyIntegralHeadTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyIntegralHeadTableCell.h; sourceTree = "<group>"; };
 		847547002240938F00B698E6 /* ZFMyIntegralHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyIntegralHeadTableCell.m; sourceTree = "<group>"; };
 		847547022240998400B698E6 /* ZFMyIntegralTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyIntegralTableCell.h; sourceTree = "<group>"; };
@@ -2215,6 +2218,8 @@
 				84262D11228409300048C006 /* ZFDistribuCommModel.m */,
 				84262D1322841F670048C006 /* ZFWithdrawModel.h */,
 				84262D1422841F670048C006 /* ZFWithdrawModel.m */,
+				8467507D2286B8C90063BB98 /* ZFMyMemberModel.h */,
+				8467507E2286B8C90063BB98 /* ZFMyMemberModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3100,6 +3105,7 @@
 				534F181F224F0E03006A08A4 /* ZFSearchVC.m in Sources */,
 				53C396012276FE6C00744AAA /* ZFSelectTypeView.m in Sources */,
 				180F31A9222F71AF0040718F /* ZFTotalCommodityTableCell.m in Sources */,
+				8467507F2286B8C90063BB98 /* ZFMyMemberModel.m in Sources */,
 				842CE84D2280165C004D73C0 /* GHDropMenuFilterSectionHeader.m in Sources */,
 				84C1D77D224B241F009048C7 /* ZFDetailsPageFooterView.m in Sources */,
 				181991982237AC12004585D8 /* ZFEditorialConsigneeVC.m in Sources */,

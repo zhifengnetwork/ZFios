@@ -481,11 +481,6 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 {
     if (_imageUrls==nil) {
         _imageUrls = [[NSMutableArray alloc]init];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1obZ_BmLT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs9.gomein.net.cn/T1C3J_B5LT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1CwYjBCCT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1u8V_B4ET1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs7.gomein.net.cn/T1zODgB5CT1RCvBVdK.jpg"];
     }
     return _imageUrls;
 }

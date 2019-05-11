@@ -32,6 +32,9 @@
 #import "ZFCumulativeVC.h"
 #import "ZFPlantingModel.h"
 #import "ZFTool.h"
+#import "ZFAuctionVC.h"
+#import "ZFZFMyOrderVC.h"
+#import "ZFShoppingCartVC.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -68,7 +71,7 @@ static NSString *const ZFBannerHeadViewID = @"ZFBannerHeadViewID";
 static NSString *const ZFHomeSpikeHeadViewID = @"ZFHomeSpikeHeadViewID";
 static NSString *const ZFHomePageTitleHeadViewID = @"ZFHomePageTitleHeadViewID";
 /* foot */
-static NSString *const ZFTopLineFootViewID = @"ZFTopLineFootViewID";
+//static NSString *const ZFTopLineFootViewID = @"ZFTopLineFootViewID";
 
 static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
 
@@ -303,43 +306,43 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         
         if (indexPath.row==0)
         {
-            oell.iconName = @"jx";
-            oell.title = @"精选";
+            oell.iconName = @"Auction";
+            oell.title = @"竞拍";
         }
         else if (indexPath.row==1)
         {
-            oell.iconName = @"zb";
-            oell.title = @"视频直播";
+            oell.iconName = @"GroupBuy";
+            oell.title = @"团购";
         }
         else if (indexPath.row==2)
         {
-            oell.iconName = @"qd";
-            oell.title = @"签到";
+            oell.iconName = @"SignIn2";
+            oell.title = @"签到2天免费领";
         }
         else if (indexPath.row==3)
         {
-            oell.iconName = @"hd";
-            oell.title = @"活动专区";
+            oell.iconName = @"SignIn";
+            oell.title = @"签到";
         }
         else if (indexPath.row==4)
         {
-            oell.iconName = @"mr";
-            oell.title = @"美容专区";
+            oell.iconName = @"dingdan";
+            oell.title = @"我的订单";
         }
         else if (indexPath.row==5)
         {
-            oell.iconName = @"ph";
-            oell.title = @"佣金排行榜";
+            oell.iconName = @"MaterialArea";
+            oell.title = @"素材区";
         }
         else if (indexPath.row==6)
         {
-            oell.iconName = @"sc";
-            oell.title = @"素材区";
+            oell.iconName = @"shoppingCart";
+            oell.title = @"购物车";
         }
         else if (indexPath.row==7)
         {
-            oell.iconName = @"xyx";
-            oell.title = @"小游戏";
+            oell.iconName = @"activity";
+            oell.title = @"优惠活动";
         }
         
         gridcell = oell;
@@ -393,14 +396,14 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         }
         
     }
-    else if (kind == UICollectionElementKindSectionFooter)
-    {
-        if (indexPath.section == 0)
-        {
-            ZFTopLineFootView *footview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ZFTopLineFootViewID forIndexPath:indexPath];
-            reusableview = footview;
-        }
-    }
+//    else if (kind == UICollectionElementKindSectionFooter)
+//    {
+//        if (indexPath.section == 0)
+//        {
+//            ZFTopLineFootView *footview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ZFTopLineFootViewID forIndexPath:indexPath];
+//            reusableview = footview;
+//        }
+//    }
     
     return reusableview;
 }
@@ -474,10 +477,10 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
 #pragma mark - foot宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return CGSizeMake(LL_ScreenWidth, 44);  //Top头条的宽高
-    }
+//    if (section == 0)
+//    {
+//        return CGSizeMake(LL_ScreenWidth, 44);  //Top头条的宽高
+//    }
     
     return CGSizeZero;
 }
@@ -502,23 +505,51 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     {
         if (indexPath.row==0)
         {
-            ZFSelectedVC* vc = [[ZFSelectedVC alloc]init];
+            //竞拍
+            ZFAuctionVC* vc = [[ZFAuctionVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==1)
         {
+            //团购
 //            ZFFillOrderVC* vc = [[ZFFillOrderVC alloc]init];
 //            [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==2)
         {
-            //签到天数
-            ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+            //签到2天免费领
+            ZFSearchVC* vc = [[ZFSearchVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==3)
         {
-            
+            //签到天数
+            ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (indexPath.row==4)
+        {
+            //我的订单
+            ZFZFMyOrderVC* vc = [[ZFZFMyOrderVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (indexPath.row==5)
+        {
+            //素材区
+//            ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+//            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (indexPath.row==6)
+        {
+            //购物车
+            ZFShoppingCartVC* vc = [[ZFShoppingCartVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (indexPath.row==7)
+        {
+            //优惠活动
+//            ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+//            [self.navigationController pushViewController:vc animated:YES];
         }
     }
     else if (indexPath.section==1)
@@ -657,7 +688,7 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         [_collectionView registerClass:[ZFHomeSpikeHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFHomeSpikeHeadViewID];
         [_collectionView registerClass:[ZFHomePageTitleHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFHomePageTitleHeadViewID];
 
-        [_collectionView registerClass:[ZFTopLineFootView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ZFTopLineFootViewID];
+//        [_collectionView registerClass:[ZFTopLineFootView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ZFTopLineFootViewID];
         
         [self.view addSubview:_collectionView];
     }

@@ -7,87 +7,181 @@
 //
 
 #import "ZFMyMemberVC.h"
+#import "ZFMyMemberTableCell.h"
+#import "ZFUserMemberTableCell.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "RefreshGifHeader.h"
+#import "ZFMyMemberModel.h"
 
 @interface ZFMyMemberVC ()
+
+@property (nonatomic, strong)  NSMutableArray * datas;
 
 @end
 
 @implementation ZFMyMemberVC
 
+static NSString *const ZFMyMemberTableCellID = @"ZFMyMemberTableCellID";
+static NSString *const ZFUserMemberTableCellID = @"ZFUserMemberTableCellID";
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    //    [ZFTool isHiddenNavigationBarSeparatorLine:YES vc:self];
+    self.title = @"我的会员";
+    [self setupTableView];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAippear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+}
+
+- (void)setupTableView
+{
+    self.tableView.estimatedRowHeight = 0;
+    self.tableView.estimatedSectionHeaderHeight = 0;
+    self.tableView.estimatedSectionFooterHeight = 0;
+    self.tableView.backgroundColor = RGBTableViewBGColor;
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.alwaysBounceVertical=NO;
+    
+    [self.tableView registerClass:[ZFMyMemberTableCell class] forCellReuseIdentifier:ZFMyMemberTableCellID];
+    
+    //自定义刷新动画
+    ZWeakSelf
+    self.tableView.mj_header = [RefreshGifHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadData];
+    }];
+    [self.tableView.mj_header beginRefreshing];
+    
+}
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_mine team_list:^(id responseObject)
+     {
+         [self.tableView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [self.tableView.mj_header endRefreshing];
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)showData:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    self.datas = [ZFMyMemberModel mj_objectArrayWithKeyValuesArray:responseObject];
+    
+    [self.tableView reloadData];
+}
+
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1+self.datas.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = nil;
     
-    // Configure the cell...
+    if (indexPath.section==0)
+    {
+        ZFMyMemberTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFMyMemberTableCellID];
+        scell = [[ZFMyMemberTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyMemberTableCellID];
+        
+        cell = scell;
+    }
+    else
+    {
+        ZFUserMemberTableCell* pcell = [tableView dequeueReusableCellWithIdentifier:ZFUserMemberTableCellID];
+        pcell = [[ZFUserMemberTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFUserMemberTableCellID];
+        ZFMyMemberModel *memberModel = [self.datas objectAtIndex:indexPath.section-1];
+        pcell.myMemberModel = memberModel;
+        
+        cell = pcell;
+    }
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+//每行的高度是多少
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 45;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView* view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+#pragma mark - TableViewDelegate
+//点击了哪个cell
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //    if (indexPath.section==0)
+    //    {
+    //        ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
+    //        [self.navigationController pushViewController:vc animated:YES];
+    //    }
+    //    else if (indexPath.section==1)
+    //    {
+    //        if (indexPath.row==0)
+    //        {
+    //            ZFAddressManagementVC* vc = [[ZFAddressManagementVC alloc]init];
+    //            [self.navigationController pushViewController:vc animated:YES];
+    //        }
+    //
+    //    }
 }
-*/
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSMutableArray *)datas
+{
+    if (_datas==nil) {
+        _datas = [[NSMutableArray alloc]init];
+    }
+    return _datas;
 }
-*/
+
 
 @end

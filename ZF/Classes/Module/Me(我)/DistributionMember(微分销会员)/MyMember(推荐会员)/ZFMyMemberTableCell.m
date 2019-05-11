@@ -31,7 +31,7 @@
 
 - (void)setup
 {
-    self.contentView.backgroundColor = RGBColorHex(0xf7e7e8);
+    self.contentView.backgroundColor = RGBColorHex(0xffffff);
     [self.contentView addSubview:self.userLabel];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.orderLabel];
