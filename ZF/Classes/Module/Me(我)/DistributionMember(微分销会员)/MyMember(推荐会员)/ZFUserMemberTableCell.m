@@ -31,7 +31,7 @@
 
 - (void)setup
 {
-    self.contentView.backgroundColor = RGBColorHex(0xf7e7e8);
+    self.contentView.backgroundColor = RGBColorHex(0xffffff);
     [self.contentView addSubview:self.userLabel];
     [self.contentView addSubview:self.companyLabel];
     [self.contentView addSubview:self.seeButton];
@@ -50,6 +50,14 @@
         make.right.mas_equalTo(-10);
     }];
     
+}
+
+-(void)setMyMemberModel:(ZFMyMemberModel *)myMemberModel
+{
+    _myMemberModel = myMemberModel;
+    
+    _userLabel.text = _myMemberModel.user_id;
+    _companyLabel.text = _myMemberModel.nickname;
 }
 
 -(void)seeButtonDidClick

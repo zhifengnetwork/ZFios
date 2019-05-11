@@ -17,6 +17,7 @@
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
 #import "ZFWithdrawModel.h"
+#import "ZFMyMemberVC.h"
 
 @interface ZFWithdrawDepositVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFDistributionMemTableCellDelegate,ZFWithdrawDepositTableCellDelegate>
 
@@ -309,6 +310,12 @@ static NSString *const ZFBannerHeadViewID = @"ZFBannerHeadViewID";
     {
         //跳转到分润商品
         ZFDistribuCommoVC* vc = [[ZFDistribuCommoVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (type==3)
+    {
+        //跳转到推荐会员
+        ZFMyMemberVC* vc = [[ZFMyMemberVC alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
