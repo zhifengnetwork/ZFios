@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 //评论用户ID
 @property (nonatomic, assign)NSInteger user_id;
 //晒单图片
-@property (nonatomic, copy)NSString *img;
+@property (nonatomic, copy)NSArray *img;
 //订单id
 @property (nonatomic, assign)NSInteger order_id;
 //物流评价等级

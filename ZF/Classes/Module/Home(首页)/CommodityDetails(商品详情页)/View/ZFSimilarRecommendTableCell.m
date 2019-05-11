@@ -125,13 +125,13 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 6;
+    return self.goods.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ZFMerchandiseSaleCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMerchandiseSaleCollectionCellID forIndexPath:indexPath];
-    
+    cell.goods_image = [self.goods objectAtIndex:indexPath.item];
     return cell;
 }
 

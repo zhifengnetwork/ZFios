@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isShowTopLine;
 @property (nonatomic, assign) BOOL isShowBottomLine;
 
-@property (nonatomic, strong)ZFGoodModel *model;
+@property (nonatomic, strong)ZFGoodModel *attributemodel;
 
 @end
 

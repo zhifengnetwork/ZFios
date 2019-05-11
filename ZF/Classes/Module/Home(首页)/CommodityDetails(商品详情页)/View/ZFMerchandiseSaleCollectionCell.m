@@ -7,6 +7,7 @@
 //
 
 #import "ZFMerchandiseSaleCollectionCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZFMerchandiseSaleCollectionCell()
 
@@ -81,5 +82,21 @@
     return _moneyLabel;
 }
 
+- (void)setGoods_image:(NSString *)goods_image{
+    _goods_image = goods_image;
+    if (!kStringIsEmpty(_goods_image)) {
+        NSString *str = [NSString stringWithFormat:@"%@%@",ImageUrl,_goods_image];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+}
 
+- (void)setGoodModel:(ZFGoodsModel *)goodModel{
+    _goodModel = goodModel;
+    if (!kStringIsEmpty(_goodModel.original_img)) {
+        NSString *str = [NSString stringWithFormat:@"%@%@",ImageUrl,_goodModel.original_img];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _nameLabel.text = [NSString stringWithFormat:@"%@",[_goodModel.goods_name substringToIndex:8]];
+    _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_goodModel.shop_price];
+}
 @end

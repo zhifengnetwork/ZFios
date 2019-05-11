@@ -163,6 +163,7 @@
 }
 
 - (void)setCommentModel:(ZFGoodCommentModel *)commentModel{
+    _commentModel = commentModel;
     if (!kStringIsEmpty(_commentModel.head_pic))
     {
         [_iconView sd_setImageWithURL:[NSURL URLWithString:_commentModel.head_pic]];
@@ -170,6 +171,12 @@
     _phoneLabel.text = [NSString stringWithFormat:@"%@",_commentModel.username];
     _titleLabel.attributedText = [self setLabelIndent:12 text:[NSString stringWithFormat:@"%@",_commentModel.content]];
     
-    _numberLabel.text = [NSString stringWithFormat:@"%ld",(long)_commentModel.img_sum];
+    _numberLabel.text = [NSString stringWithFormat:@"%ld",(long)_commentModel.img.count];
+    if (_commentModel.img.count == 0) {
+        _iconImageView.hidden = YES;
+        _numberLabel.hidden = YES;
+    }else{
+        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_commentModel.img[0]]];
+    }
 }
 @end

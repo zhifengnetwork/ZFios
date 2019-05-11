@@ -9,6 +9,7 @@
 #import "ZFMerchandiseSaleHeadTableCell.h"
 #import "UIButton+LXMImagePosition.h"
 #import "ZFMerchandiseSaleCollectionCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface ZFMerchandiseSaleHeadTableCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -136,17 +137,27 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
     return _goShopButton;
 }
 
+- (void)setShopModel:(ZFDetailsPageModel *)shopModel{
+    _shopModel = shopModel;
+    if (!kStringIsEmpty(_shopModel.avatar)) {
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:_shopModel.avatar]];
+    }
+    _nameLabel.text = [NSString stringWithFormat:@"%@",_shopModel.store_name];
+    _saleLabel.text = [NSString stringWithFormat:@"在售商品 %@ 件",_shopModel.num];
+}
+
 #pragma mark - dataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return _shopModel.goods.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ZFMerchandiseSaleCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMerchandiseSaleCollectionCellID forIndexPath:indexPath];
-    
+    ZFGoodsModel *model = [_shopModel.goods objectAtIndex:indexPath.item];
+    cell.goodModel = model;
     return cell;
 }
 

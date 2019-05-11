@@ -25,7 +25,7 @@
 @property (nonatomic, strong)UIView *lineView;
 @property (nonatomic, strong)UITableView *tableView;
 
-
+@property (nonatomic, strong)ZFGoodCommentListModel *commentListModel;
 @end
 
 @implementation ZFEvaluationVC
@@ -49,6 +49,7 @@ static NSString *const ZFEvaluationCellID = @"ZFEvaluationCellID";
     [self.view addSubview:self.lineView];
     ZFBuyToolBarView *toolView = [[ZFBuyToolBarView alloc]init];
     [self.view addSubview:toolView];
+    toolView.hidden = YES;
     
     [self.view addSubview:self.tableView];
     
@@ -175,8 +176,13 @@ static NSString *const ZFEvaluationCellID = @"ZFEvaluationCellID";
     {
         return;
     }
-    
-//    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
+    self.commentListModel = [ZFGoodCommentListModel mj_objectWithKeyValues:responseObject];
+    ZFDetailsPageModel *model = self.commentListModel.comment_fr;
+    [_allButton setTitle:[NSString stringWithFormat:@"全部\n %@",model.total_sum] forState:UIControlStateNormal];
+    [_praiseButton setTitle:[NSString stringWithFormat:@"好评\n %@",model.high_sum] forState:UIControlStateNormal];
+    [_mediumReviewButton setTitle:[NSString stringWithFormat:@"中评\n  %@",model.center_sum] forState:UIControlStateNormal];
+    [_badReviewButton setTitle:[NSString stringWithFormat:@"差评\n  %@",model.low_sum] forState:UIControlStateNormal];
+    [_baskInButton setTitle:[NSString stringWithFormat:@"晒图\n  %@",model.img_sum] forState:UIControlStateNormal];
     
     [self.tableView reloadData];
 }
@@ -268,12 +274,13 @@ static NSString *const ZFEvaluationCellID = @"ZFEvaluationCellID";
 #pragma mark --方法
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return self.commentListModel.commentlist.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFEvaluationCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFEvaluationCellID forIndexPath:indexPath];
-    
+    ZFGoodCommentModel *commentModel = [self.commentListModel.commentlist objectAtIndex:indexPath.row];
+    cell.commentmodel = commentModel;
     return cell;
 }
 
@@ -316,7 +323,7 @@ static NSString *const ZFEvaluationCellID = @"ZFEvaluationCellID";
         make.top.equalTo(btn.mas_bottom);
         make.height.mas_equalTo(3);
     }];
-    
+    [self loadData];
 }
 
 - (void)shareClick{

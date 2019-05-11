@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFSimilarRecommendTableCell : UITableViewCell
 
+@property (nonatomic, strong)NSArray *goods;
 @end
 
 NS_ASSUME_NONNULL_END
