@@ -182,6 +182,8 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
 {
     if (indexPath.row==1) {
         ZFDetailOrderVC *vc = [[ZFDetailOrderVC alloc]init];
+        ZFOrderModel *orderModel = [self.datas objectAtIndex:indexPath.section];
+        vc.order_id = orderModel.order_id;
         [self.navigationController pushViewController:vc animated:YES];
     }
 //    if (indexPath.section==0)

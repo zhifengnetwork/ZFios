@@ -175,12 +175,13 @@
 /**
  订单详情
  */
-+(void)order_detail:(NSString *)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
++(void)order_detail:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 {
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    [parameters setObject:ID forKey:@"id"];
+    NSString *str = [NSString stringWithFormat:@"%ld",order_id];
+    [parameters setObject:str forKey:@"order_id"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

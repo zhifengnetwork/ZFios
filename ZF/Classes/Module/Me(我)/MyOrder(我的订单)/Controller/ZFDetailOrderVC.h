@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFDetailOrderVC : UIViewController
 
+@property (nonatomic, assign)NSInteger order_id;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  订单详情
  */
-+(void)order_detail:(NSString *)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++(void)order_detail:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //取消订单接口
 //订单ID    order_id

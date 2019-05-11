@@ -21,4 +21,10 @@
 
 @implementation ZFAddressEditModel
 
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             @"goods":@"ZFOrdersModel"
+             };
+}
 @end
