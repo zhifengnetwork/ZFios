@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFevaluationHeadTableCell : UITableViewCell
 
-@property (nonatomic, strong)ZFGoodCommentModel *titleModel;
+@property (nonatomic, assign)NSInteger goodsID;
 
 @property (strong, nonatomic)ZFDetailsPageModel *comment_fr;
 

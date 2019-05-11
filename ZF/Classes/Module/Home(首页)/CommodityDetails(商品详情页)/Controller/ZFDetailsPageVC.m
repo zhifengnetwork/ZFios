@@ -25,7 +25,9 @@
 #import "TYAlertController.h"
 #import "ZFShareView.h"
 #import "ZFGoodModel.h"
+#import "ZFAddressEditModel.h"
 #import "http_good.h"
+#import "http_address.h"
 #import "SVProgressHUD.h"
 #import "ZFGoodModel.h"
 #import "MJExtension.h"
@@ -43,8 +45,11 @@
 @property (nonatomic, assign) BOOL isUploadAvatar;
 
 @property (strong , nonatomic)NSMutableArray *imageUrls;
+@property (nonatomic, copy)NSString *address;//配送地址
+@property (nonatomic, copy)NSString *freight;//运费
 
 @property (nonatomic, strong) ZFDetailListModel* detailListModel;
+@property (nonatomic, strong) ZFGoodModel* attributeModel;
 @property (nonatomic, strong) ZFGoodCommentListModel* commentListModel;
 
 @end
@@ -81,6 +86,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 -(void)loadData
 {
     ZWeakSelf
+    //获取商品详情
     [http_good goodsInfo:_goods_id success:^(id responseObject)
      {
          [weakSelf showData:responseObject];
@@ -89,6 +95,52 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
          
          [SVProgressHUD showInfoWithStatus:error.domain];
      }];
+    
+    //获取默认地址
+    [http_address address_list:^(id responseObject) {
+        if (kObjectIsEmpty(responseObject))
+        {
+            self.address = @"请添加收货地址";
+        }
+        NSArray *addressArray = [ZFAddressEditModel mj_objectArrayWithKeyValuesArray:responseObject];
+        ZFAddressEditModel *addressModel = addressArray[0];
+        self.address = [NSString stringWithFormat:@"至 %@%@",addressModel.city_name,addressModel.district_name];
+        self.region_id = addressModel.city.integerValue;
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+    
+    //商品属性
+    [http_good goodsAttr:_goods_id success:^(id responseObject)
+     {
+         if (kObjectIsEmpty(responseObject))
+         {
+             return;
+         }
+         
+         self.attributeModel = [ZFGoodModel mj_objectWithKeyValues:responseObject];
+         
+         
+     }
+    failure:^(NSError *error) {
+                     [SVProgressHUD showErrorWithStatus:error.domain];
+                 }];
+    
+}
+
+- (void)setRegion_id:(NSInteger)region_id{
+    _region_id = region_id;
+    //    获取地址id
+    [http_good dispatching:self.goods_id region_id:self.region_id buy_num:1 success:^(id responseObject) {
+        if (kObjectIsEmpty(responseObject))
+        {
+            return;
+        }
+        //获取运费
+        self.freight = [responseObject objectForKey:@"freight"];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
 }
 
 -(void)showData:(id)responseObject
@@ -243,29 +295,23 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (indexPath.section==1)
     {
-//        获取地址id
-//        [http_good dispatching:_goods_id region_id:_region_id buy_num:1 success:^(id responseObject) {
-//            if (kObjectIsEmpty(responseObject))
-//            {
-//                return;
-//            }
-//            //获取运费
-//          //self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
-//        } failure:^(NSError *error) {
-//            [SVProgressHUD showErrorWithStatus:error.domain];
-//        }];
         
         ZFDeliveryTableCell* ocell  = [tableView dequeueReusableCellWithIdentifier:ZFDeliveryTableCelllD];
         ocell = [[ZFDeliveryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDeliveryTableCelllD];
         if (indexPath.row==0)
         {
             ocell.name = @"配送";
-            ocell.title = @"至 广州荔湾区";
+            ocell.title = self.address;
         }
         else if (indexPath.row==1)
         {
             ocell.name = @"运费";
-            ocell.title = @"免运费";
+            if (self.freight.integerValue == 0.00) {
+                ocell.title = @"免运费";
+            }else{
+                ocell.title = [NSString stringWithFormat:@"%ld",(long)self.freight.integerValue];
+            }
+            
         }
         cell = ocell;
     }
@@ -280,6 +326,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 
         ZFevaluationHeadTableCell* qcell = [tableView dequeueReusableCellWithIdentifier:ZFevaluationHeadTableCelllD];
         qcell = [[ZFevaluationHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFevaluationHeadTableCelllD];
+        qcell.goodsID = self.goods_id;
         qcell.comment_fr = self.detailListModel.goods.comment_fr;
         cell = qcell;
     }
@@ -309,34 +356,23 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     {
         ZFMerchandiseSaleHeadTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFMerchandiseSaleHeadTableCelllD];
         vcell = [[ZFMerchandiseSaleHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
+        ZFDetailsPageModel *shopModel = self.detailListModel.goods.seller_info;
+        vcell.shopModel = shopModel;
         cell = vcell;
     }
     else if (indexPath.section==8)
     {
         ZFSimilarRecommendTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFSimilarRecommendTableCelllD];
         vcell = [[ZFSimilarRecommendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSimilarRecommendTableCelllD];
+        vcell.goods = self.detailListModel.goods.goods_images;
         cell = vcell;
     }
     else if (indexPath.section==9)
     {
-        //商品属性
-        [http_good goodsAttr:_goods_id success:^(id responseObject)
-         {
-             if (kObjectIsEmpty(responseObject))
-             {
-                 return;
-             }
-             
-             //    self.datas = [ZFGoodModel mj_objectArrayWithKeyValuesArray:responseObject];
-             
-         }
-                           failure:^(NSError *error) {
-                               [SVProgressHUD showErrorWithStatus:error.domain];
-                           }];
         
         ZFDetailsImageTextTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFDetailsImageTextTableCelllD];
         vcell = [[ZFDetailsImageTextTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDetailsImageTextTableCelllD];
-//        vcell.model
+        vcell.attributemodel = self.attributeModel.goods_attribute[indexPath.row];
         cell = vcell;
     }
     
@@ -479,6 +515,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     if (_footerView==nil)
     {
         _footerView = [[ZFDetailsPageFooterView alloc]init];
+        _footerView.goodID = self.goods_id;
         _footerView.backgroundColor = RGBColorHex(0xffffff);
         
         //UIView增加点击事件

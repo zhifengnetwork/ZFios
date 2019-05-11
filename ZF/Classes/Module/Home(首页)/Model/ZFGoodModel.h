@@ -100,7 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
 //规格小项ID
 @property (nonatomic, assign)NSInteger goods_attr_id;
 //属性值
-@property (nonatomic, assign)NSInteger attr_value;
+@property (nonatomic, copy)NSString *attr_name;
 
 //商品详情
 @property (nonatomic, assign)NSInteger seller_id;

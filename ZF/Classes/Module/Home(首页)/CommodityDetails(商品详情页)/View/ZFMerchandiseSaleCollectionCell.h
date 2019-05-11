@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFDetailsPageModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFMerchandiseSaleCollectionCell : UICollectionViewCell
 
+@property (nonatomic, strong)ZFGoodsModel *goodModel;
+@property (nonatomic, copy)NSString *goods_image;
 @end
 
 NS_ASSUME_NONNULL_END

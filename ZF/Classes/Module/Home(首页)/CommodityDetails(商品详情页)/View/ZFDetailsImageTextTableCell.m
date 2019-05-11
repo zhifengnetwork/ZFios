@@ -139,4 +139,8 @@
     return _line2View;
 }
 
+- (void)setAttributemodel:(ZFGoodModel *)attributemodel{
+    _attributemodel = attributemodel;
+    _titleLabel.text = [NSString stringWithFormat:@"%@",attributemodel.attr_name];
+}
 @end

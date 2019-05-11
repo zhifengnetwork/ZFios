@@ -7,6 +7,8 @@
 //
 
 #import "ZFEvaluationCell.h"
+#import "UIImageView+WebCache.h"
+
 @interface ZFEvaluationCell()
 @property (nonatomic, strong)UILabel *nameLabel;
 @property (nonatomic, strong)UIImageView *imageView0;
@@ -205,7 +207,55 @@
 }
 
 - (void)setCommentmodel:(ZFGoodCommentModel *)commentmodel{
-    _nameLabel.text = [NSString stringWithFormat:@"%@",commentmodel.username];
+    _commentmodel = commentmodel;
+    if (_commentmodel.is_anonymous == 1) {
+        _nameLabel.text = @"匿名用户";
+    }else{
+        _nameLabel.text = [NSString stringWithFormat:@"%@",commentmodel.username];
+    }
+    
     _titleLabel.text = [NSString stringWithFormat:@"%@",commentmodel.content];
+    if (_commentmodel.goods_rank == 5) {
+        _imageView0.hidden = YES;
+        _imageView1.hidden = YES;
+        _imageView2.hidden = YES;
+        _imageView3.hidden = YES;
+        _imageView4.hidden = YES;
+    }else if (_commentmodel.goods_rank == 4) {
+        _imageView0.hidden = YES;
+        _imageView1.hidden = YES;
+        _imageView2.hidden = YES;
+        _imageView3.hidden = YES;
+    }else if (_commentmodel.goods_rank == 3){
+        _imageView0.hidden = YES;
+        _imageView1.hidden = YES;
+        _imageView2.hidden = YES;
+    }else if (_commentmodel.goods_rank == 2){
+        _imageView0.hidden = YES;
+        _imageView1.hidden = YES;
+    }else if (_commentmodel.goods_rank == 1){
+        _imageView0.hidden = YES;
+    }
+    
+    if (_commentmodel.img.count == 0) {
+        _goodImgView.hidden = YES;
+        _goodImgView1.hidden = YES;
+        _goodImgView2.hidden = YES;
+    }else{
+        if (!kStringIsEmpty(_commentmodel.img[0])) {
+            NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_commentmodel.img[0]];
+            [_goodImgView sd_setImageWithURL:[NSURL URLWithString:str]];
+        }
+        if (!kStringIsEmpty(_commentmodel.img[1])) {
+            NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_commentmodel.img[1]];
+            [_goodImgView1 sd_setImageWithURL:[NSURL URLWithString:str]];
+        }
+        if (!kStringIsEmpty(_commentmodel.img[2])) {
+            NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_commentmodel.img[2]];
+            [_goodImgView2 sd_setImageWithURL:[NSURL URLWithString:str]];
+        }
+        
+    }
+    
 }
 @end

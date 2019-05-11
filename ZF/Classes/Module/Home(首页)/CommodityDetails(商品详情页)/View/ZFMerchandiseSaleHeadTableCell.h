@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFDetailsPageModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 在售商品头部cell
+ 在售商品
  */
 @interface ZFMerchandiseSaleHeadTableCell : UITableViewCell
+
+@property (nonatomic, strong)ZFDetailsPageModel *shopModel;
 
 @end
 

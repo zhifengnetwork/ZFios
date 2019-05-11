@@ -30,7 +30,8 @@
 + (NSDictionary *)mj_objectClassInArray
 {
     return @{
-             @"comment_fr":@"ZFGoodCommentModel"
+             @"comment_fr":@"ZFGoodCommentModel",
+             @"goods_attribute":@"ZFGoodModel"
              };
 }
 
