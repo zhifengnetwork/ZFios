@@ -49,19 +49,19 @@ static NSString *const ZFSpikeTitleHeadViewID = @"ZFSpikeTitleHeadViewID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.title = @"";
+    self.title = @"秒杀";
     
-    UIBarButtonItem *item1 = [[UIBarButtonItem alloc]  initWithImage:[UIImage  imageNamed: @"Share"]
-                                                               style:UIBarButtonItemStylePlain
-                                                              target:self action:@selector(shareButtonDidClick)];
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"fanye"]
-                                                              style:UIBarButtonItemStylePlain target:self action:@selector(editButtonDidClick)];
-    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"秒杀"
-                                                              style:UIBarButtonItemStylePlain target:self action:@selector(spikeButtonDidClick)];
-    
-    //设置图片与按钮间距
-    [item2 setImageInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
-    self.navigationItem.rightBarButtonItems = @[item1,item2,item3];
+//    UIBarButtonItem *item1 = [[UIBarButtonItem alloc]  initWithImage:[UIImage  imageNamed: @"Share"]
+//                                                               style:UIBarButtonItemStylePlain
+//                                                              target:self action:@selector(shareButtonDidClick)];
+//    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"fanye"]
+//                                                              style:UIBarButtonItemStylePlain target:self action:@selector(editButtonDidClick)];
+//    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"秒杀"
+//                                                              style:UIBarButtonItemStylePlain target:self action:@selector(spikeButtonDidClick)];
+//
+//    //设置图片与按钮间距
+//    [item2 setImageInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
+//    self.navigationItem.rightBarButtonItems = @[item1,item2,item3];
     
     //    UIImage *imgRight = [UIImage imageNamed:@"All"];
     //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(editButtonDidClick)];

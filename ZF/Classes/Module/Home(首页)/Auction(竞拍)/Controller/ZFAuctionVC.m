@@ -32,16 +32,16 @@ static NSString *const ZFAuctionTableCellID = @"ZFAuctionTableCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *item1 = [[UIBarButtonItem alloc]  initWithTitle:@"竞拍"
-                                                               style:UIBarButtonItemStylePlain target:self action:@selector(auctionButtonDidClick)];
-    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"拼团"
-                                                              style:UIBarButtonItemStylePlain target:self action:@selector(assembleButtonDidClick)];
-    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"秒杀"
-                                                              style:UIBarButtonItemStylePlain target:self action:@selector(spikeButtonDidClick)];
-
-    //设置图片与按钮间距
-    [item2 setImageInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
-    self.navigationItem.rightBarButtonItems = @[item1,item2,item3];
+//    UIBarButtonItem *item1 = [[UIBarButtonItem alloc]  initWithTitle:@"竞拍"
+//                                                               style:UIBarButtonItemStylePlain target:self action:@selector(auctionButtonDidClick)];
+//    UIBarButtonItem *item2 = [[UIBarButtonItem alloc] initWithTitle:@"拼团"
+//                                                              style:UIBarButtonItemStylePlain target:self action:@selector(assembleButtonDidClick)];
+//    UIBarButtonItem *item3 = [[UIBarButtonItem alloc] initWithTitle:@"秒杀"
+//                                                              style:UIBarButtonItemStylePlain target:self action:@selector(spikeButtonDidClick)];
+//
+//    //设置图片与按钮间距
+//    [item2 setImageInsets:UIEdgeInsetsMake(0, 15, 0, -15)];
+//    self.navigationItem.rightBarButtonItems = @[item1,item2,item3];
     
     [self setupTableView];
     

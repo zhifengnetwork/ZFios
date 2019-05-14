@@ -262,10 +262,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 {
     if (type==1)
     {
-        //跳转到个人资料
-        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
-        vc.userInfo = self.userInfo2;
-        [self.navigationController pushViewController:vc animated:YES];
+        
     }
     else if (type==2)
     {
@@ -297,14 +294,10 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     }
     else if (type==5)
     {
-        //跳转到签到成功
-//            ZFSignInView* windowView = [[ZFSignInView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
-//            [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
-        
-        //签到天数
-        ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
+        //跳转到个人资料
+        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
+        vc.userInfo = self.userInfo2;
         [self.navigationController pushViewController:vc animated:YES];
-
     }
     
 }

@@ -77,7 +77,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 {
     if (section==1)
     {
-        return 6;
+        return 3;
     }
     return 1;
 }
@@ -103,20 +103,10 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
             pcell.roundTop = YES;
         }
         else if (indexPath.row==1) {
-            pcell.title = @"账号与安全";
+            pcell.title = @"修改密码";
         }
         else if (indexPath.row==2) {
-            pcell.title = @"支付设置";
-        }
-        else if (indexPath.row==3) {
-            pcell.title = @"通用";
-        }
-        else if (indexPath.row==4) {
-            pcell.title = @"操作流程";
-        }
-        else if (indexPath.row==5) {
-            pcell.title = @"关于APP";
-            pcell.roundBottom = YES;
+            pcell.title = @"支付密码";
         }
         
         cell = pcell;
@@ -151,6 +141,9 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if (section==2) {
+        return 0;
+    }
     return 20;
 }
 

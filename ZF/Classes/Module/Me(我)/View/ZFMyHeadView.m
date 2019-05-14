@@ -16,8 +16,7 @@
 @property (nonatomic, strong) UIImageView* iconView;
 @property (nonatomic, strong) UILabel* nameLabel;
 @property (nonatomic, strong) UILabel* memberLabel;
-@property (nonatomic, strong) UIButton* signInButton;
-@property (nonatomic, strong) UILabel* giftLabel;
+@property (nonatomic, strong) UIButton* setUpButton;
 @property (nonatomic, strong) UIButton* commodityButton;
 @property (nonatomic, strong) UIButton* footprintButton;
 
@@ -42,8 +41,7 @@
     [self addSubview:self.iconView];
     [self addSubview:self.nameLabel];
     [self addSubview:self.memberLabel];
-    [self addSubview:self.signInButton];
-    [self addSubview:self.giftLabel];
+    [self addSubview:self.setUpButton];
     [self addSubview:self.commodityButton];
     [self addSubview:self.footprintButton];
     
@@ -64,23 +62,18 @@
     }];
     
     [_memberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self->_iconView.mas_bottom).offset(-5);
+        make.top.equalTo(self->_iconView.mas_bottom).offset(2);
         make.centerX.equalTo(self->_iconView);
     }];
     
-    [_signInButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self->_bjIconView);
-        make.top.equalTo(self->_bjIconView.mas_top).offset(38);
-    }];
-    
-    [_giftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self->_bjIconView.mas_right).offset(-18);
-        make.centerY.equalTo(self->_signInButton);
+    [_setUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self->_bjIconView.mas_right).offset(-15);
+        make.top.equalTo(self->_bjIconView.mas_top).offset(30);
     }];
     
     [_commodityButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_bjIconView.mas_left).offset(70);
-        make.top.equalTo(self->_memberLabel.mas_bottom);
+        make.left.equalTo(self->_bjIconView.mas_left).offset(80);
+        make.top.equalTo(self->_memberLabel.mas_bottom).offset(-10);
     }];
     
     [_footprintButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -105,7 +98,7 @@
 }
 
 
--(void)signInButtonDidClick
+-(void)setUpButtonDidClick
 {
     if (self.delegate && [self.delegate respondsToSelector:@selector(ZFMyHeadViewDidClick:)])
     {
@@ -179,33 +172,22 @@
         _memberLabel.backgroundColor = [UIColor whiteColor];
         _memberLabel.layer.cornerRadius = 7.0f;
         _memberLabel.clipsToBounds = YES;
-        _memberLabel.text = @"  尊贵会员  ";
+        _memberLabel.text = @"  普通会员  ";
         
     }
     return _memberLabel;
 }
 
 
-- (UIButton *)signInButton {
-    if (_signInButton == nil) {
-        _signInButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_signInButton setTitle:@" 签到 " forState:UIControlStateNormal];
-        [_signInButton setImage:[UIImage imageNamed:@"QD1"] forState:UIControlStateNormal];
-        [_signInButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
-        _signInButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        [_signInButton addTarget:self action:@selector(signInButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+- (UIButton *)setUpButton {
+    if (_setUpButton == nil) {
+        _setUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_setUpButton setImage:[UIImage imageNamed:@"Setting"] forState:UIControlStateNormal];
+        [_setUpButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
+        _setUpButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        [_setUpButton addTarget:self action:@selector(setUpButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _signInButton;
-}
-
-- (UILabel *)giftLabel {
-    if (_giftLabel == nil) {
-        _giftLabel = [[UILabel alloc] init];
-        _giftLabel.textColor = RGBColorHex(0xffffff);
-        _giftLabel.font = [UIFont systemFontOfSize:12];
-        _giftLabel.text = @"10天签到领取礼品";
-    }
-    return _giftLabel;
+    return _setUpButton;
 }
 
 - (UIButton *)commodityButton {

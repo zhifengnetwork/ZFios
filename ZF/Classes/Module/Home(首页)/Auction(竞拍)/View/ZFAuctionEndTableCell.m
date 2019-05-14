@@ -100,8 +100,9 @@
     }];
     
     [_highestLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_nameLabel.mas_right).offset(10);
+        make.left.equalTo(self->_nameLabel.mas_right).offset(5);
         make.centerY.mas_equalTo(self->_headView);
+        make.right.mas_equalTo(-30);
     }];
     
     //下面横线

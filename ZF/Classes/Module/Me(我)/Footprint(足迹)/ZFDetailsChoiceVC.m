@@ -256,5 +256,12 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
     return _footerView;
 }
 
+-(NSMutableArray *)datas
+{
+    if (_datas==nil){
+        _datas = [[NSMutableArray alloc]init];
+    }
+    return _datas;
+}
 
 @end
