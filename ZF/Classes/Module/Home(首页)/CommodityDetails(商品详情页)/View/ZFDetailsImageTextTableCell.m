@@ -118,7 +118,6 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.textColor = RGBColorHex(0x0f0f0f);
         _titleLabel.font = [UIFont systemFontOfSize:13];
-        _titleLabel.text = @"玻璃材质";
     }
     return _titleLabel;
 }
@@ -141,6 +140,12 @@
 
 - (void)setAttributemodel:(ZFGoodModel *)attributemodel{
     _attributemodel = attributemodel;
-    _titleLabel.text = [NSString stringWithFormat:@"%@",attributemodel.attr_name];
+    _nameLabel.text = [NSString stringWithFormat:@"%@",_attributemodel.attr_name];
+
+    if (!kStringIsEmpty(_attributemodel.attr_value))
+    {
+        _titleLabel.text = [NSString stringWithFormat:@"%@",_attributemodel.attr_value];
+    }
 }
+
 @end

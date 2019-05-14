@@ -36,6 +36,7 @@
 #import "ZFZFMyOrderVC.h"
 #import "ZFShoppingCartVC.h"
 #import "ZFSpikeVC.h"
+#import "ZFGroupBuyingVC.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -512,8 +513,8 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         else if (indexPath.row==1)
         {
             //团购
-//            ZFFillOrderVC* vc = [[ZFFillOrderVC alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
+            ZFGroupBuyingVC* vc = [[ZFGroupBuyingVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==2)
         {

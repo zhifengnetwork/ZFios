@@ -134,4 +134,27 @@
     strUrl = [strUrl stringByAppendingPathComponent:@"api/goods/categoryList"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
+
+//团购商品列表
++ (void)activityGroupList:(NSString*)type page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",page];
+    [parameters setObject:str forKey:@"page"];
+    
+    [parameters setObject:@"10" forKey:@"num"];
+    
+    if (!kStringIsEmpty(type)) {
+        [parameters setObject:type forKey:@"type"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/activity/group_list"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
 @end
