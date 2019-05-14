@@ -250,7 +250,7 @@
         _zhuceLabel = [[UILabel alloc] init];
         _zhuceLabel.textColor = RGBColorHex(0x333333);
         _zhuceLabel.font = [UIFont systemFontOfSize:24];
-        _zhuceLabel.text = @"智丰商城注册";
+        _zhuceLabel.text = @"DC商城注册";
     }
     return _zhuceLabel;
 }

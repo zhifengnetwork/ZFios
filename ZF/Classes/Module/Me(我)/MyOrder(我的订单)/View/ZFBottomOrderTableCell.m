@@ -9,6 +9,8 @@
 #import "ZFBottomOrderTableCell.h"
 #import "http_user.h"
 #import "SVProgressHUD.h"
+#import "ZFWriteEvaluationVC.h"
+#import "ZFExpressDetailVC.h"
 
 @interface ZFBottomOrderTableCell()
 
@@ -73,8 +75,14 @@
     
 }
 
-- (void)deliverButtonDidClick
+- (void)deliverButtonDidClick:(UIButton *)btn
 {
+    if ([btn.titleLabel.text isEqualToString:@"查看物流"]) {
+        ZFExpressDetailVC *vc = [[ZFExpressDetailVC alloc]init];
+        [[self currentViewController].navigationController pushViewController:vc animated:YES];
+    }
+    
+    
     
 }
 
@@ -92,6 +100,9 @@
         } failure:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.domain];
         }];
+    }else if ([btn.titleLabel.text isEqualToString:@"去评价"]){
+        ZFWriteEvaluationVC *vc = [[ZFWriteEvaluationVC alloc]init];
+        [[self currentViewController].navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -134,7 +145,7 @@
         [_deliverButton setTitleColor:RGBColorHex(0xe51c23) forState:UIControlStateNormal];
         _deliverButton.titleLabel.font = [UIFont systemFontOfSize:12];
         _deliverButton.backgroundColor = RGBColorHex(0xFFCDCF);
-        [_deliverButton addTarget:self action:@selector(deliverButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+        [_deliverButton addTarget:self action:@selector(deliverButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _deliverButton;
 }
@@ -192,8 +203,28 @@
     }else if (_type == 4){//待评价
         _deliverButton.hidden = YES;
         [_orderButton setTitle:@"去评价" forState:UIControlStateNormal];
+        
     }
     
+}
+
+//获取当前控制器
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
 }
 
 @end

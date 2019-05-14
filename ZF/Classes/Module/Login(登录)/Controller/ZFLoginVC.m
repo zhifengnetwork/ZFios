@@ -310,7 +310,7 @@
         _phoneLabel = [[UILabel alloc] init];
         _phoneLabel.textColor = RGBColorHex(0x333333);
         _phoneLabel.font = [UIFont systemFontOfSize:24];
-        _phoneLabel.text = @"智丰商城账号登录";
+        _phoneLabel.text = @"DC商城账号登录";
     }
     return _phoneLabel;
 }
