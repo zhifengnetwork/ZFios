@@ -31,7 +31,8 @@
 {
     return @{
              @"comment_fr":@"ZFGoodCommentModel",
-             @"goods_attribute":@"ZFGoodModel"
+             @"goods_attribute":@"ZFGoodModel",
+             @"attr":@"ZFGoodModel"
              };
 }
 

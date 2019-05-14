@@ -31,7 +31,7 @@
 @implementation ZFEditorialConsigneeVC
 
 static NSString *const ZFEditorialHeadTableCellID = @"ZFEditorialHeadTableCellID";
-static NSString *const ZFAddressTagTableCellID = @"ZFAddressTagTableCellID";
+//static NSString *const ZFAddressTagTableCellID = @"ZFAddressTagTableCellID";
 static NSString *const ZFDefaultAddressTableCellID = @"ZFDefaultAddressTableCellID";
 static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 
@@ -97,7 +97,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
     
     [self.tableView registerClass:[ZFEditorialHeadTableCell class] forCellReuseIdentifier:ZFEditorialHeadTableCellID];
-    [self.tableView registerClass:[ZFAddressTagTableCell class] forCellReuseIdentifier:ZFAddressTagTableCellID];
+//    [self.tableView registerClass:[ZFAddressTagTableCell class] forCellReuseIdentifier:ZFAddressTagTableCellID];
     [self.tableView registerClass:[ZFDefaultAddressTableCell class] forCellReuseIdentifier:ZFDefaultAddressTableCellID];
     [self.tableView registerClass:[ZFSubmissionTableCell class] forCellReuseIdentifier:ZFSubmissionTableCellID];
 }
@@ -105,7 +105,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -146,21 +146,21 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
         
         cell = scell;
     }
+//    else if (indexPath.section==1)
+//    {
+//        ZFAddressTagTableCell* pcell = [tableView dequeueReusableCellWithIdentifier:ZFAddressTagTableCellID];
+//        pcell = [[ZFAddressTagTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAddressTagTableCellID];
+//
+//        cell = pcell;
+//    }
     else if (indexPath.section==1)
-    {
-        ZFAddressTagTableCell* pcell = [tableView dequeueReusableCellWithIdentifier:ZFAddressTagTableCellID];
-        pcell = [[ZFAddressTagTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAddressTagTableCellID];
-    
-        cell = pcell;
-    }
-    else if (indexPath.section==2)
     {
         ZFDefaultAddressTableCell* pcell = [tableView dequeueReusableCellWithIdentifier:ZFDefaultAddressTableCellID];
         pcell = [[ZFDefaultAddressTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDefaultAddressTableCellID];
         
         cell = pcell;
     }
-    else if (indexPath.section==3)
+    else if (indexPath.section==2)
     {
         ZFSubmissionTableCell* scell = [tableView dequeueReusableCellWithIdentifier:ZFSubmissionTableCellID];
         scell = [[ZFSubmissionTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSubmissionTableCellID];
@@ -185,7 +185,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
     {
         return 20;
     }
-    else if (section==3)
+    else if (section==2)
     {
         return 20;
     }
@@ -211,7 +211,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 
         }
     }
-    if (indexPath.section==3)
+    if (indexPath.section==2)
     {
 //        if ([self.type isEqualToString:@"1"])
         if (self.type.intValue==1)

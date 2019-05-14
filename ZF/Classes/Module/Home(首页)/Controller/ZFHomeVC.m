@@ -35,6 +35,8 @@
 #import "ZFAuctionVC.h"
 #import "ZFZFMyOrderVC.h"
 #import "ZFShoppingCartVC.h"
+#import "ZFSpikeVC.h"
+#import "ZFGroupBuyingVC.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -506,14 +508,13 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         if (indexPath.row==0)
         {
             //竞拍
-            ZFAuctionVC* vc = [[ZFAuctionVC alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+            [self toAuctionWMVC];
         }
         else if (indexPath.row==1)
         {
             //团购
-//            ZFFillOrderVC* vc = [[ZFFillOrderVC alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
+            ZFGroupBuyingVC* vc = [[ZFGroupBuyingVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==2)
         {
@@ -570,7 +571,8 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
  */
 - (void)ZFHomeSpikeHeadViewDidClick
 {
-    [self toAuctionWMVC];
+    ZFSpikeVC* vc = [[ZFSpikeVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)toAuctionWMVC

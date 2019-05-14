@@ -42,6 +42,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)getPricePic:(NSString*)key goods_id:(NSInteger)goods_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 //分类列表接口
 + (void)categoryList:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//团购商品列表
++ (void)activityGroupList:(NSString*)type page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+ 
 @end
 
 NS_ASSUME_NONNULL_END

@@ -49,7 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy)NSString *goods_sn;
 @property (nonatomic, copy)NSString *spec;
-@property (nonatomic, copy)NSString *attr;
 @property (nonatomic, copy)NSString *sort;
 @property (nonatomic, copy)NSString *sort_asc;
 @property (nonatomic, copy)NSString *sel;
@@ -101,6 +100,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger goods_attr_id;
 //属性值
 @property (nonatomic, copy)NSString *attr_name;
+
+@property (nonatomic, copy)NSString *attr_value;
+
+@property (nonatomic, strong)NSMutableArray *attr;
 
 //商品详情
 @property (nonatomic, assign)NSInteger seller_id;
