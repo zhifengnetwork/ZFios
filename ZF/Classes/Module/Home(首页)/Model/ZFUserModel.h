@@ -37,6 +37,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *use_scope;
 //优惠券兑换码
 @property (nonatomic, copy)NSString *coupon_code;
+@property (nonatomic, copy)NSString *invoice_no;
+
+@property (nonatomic, strong)NSMutableArray *result;
+@property (nonatomic, copy)NSString *time;
+@property (nonatomic, copy)NSString *status;
 @end
 
 

@@ -79,6 +79,7 @@
 {
     if ([btn.titleLabel.text isEqualToString:@"查看物流"]) {
         ZFExpressDetailVC *vc = [[ZFExpressDetailVC alloc]init];
+        vc.orderID = _orderModel.order_id;
         [[self currentViewController].navigationController pushViewController:vc animated:YES];
     }
     
@@ -102,6 +103,7 @@
         }];
     }else if ([btn.titleLabel.text isEqualToString:@"去评价"]){
         ZFWriteEvaluationVC *vc = [[ZFWriteEvaluationVC alloc]init];
+        vc.orderID = _orderModel.order_id;
         [[self currentViewController].navigationController pushViewController:vc animated:YES];
     }
 }
