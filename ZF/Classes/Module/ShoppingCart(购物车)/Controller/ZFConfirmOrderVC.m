@@ -8,6 +8,7 @@
 
 #import "ZFConfirmOrderVC.h"
 #import "ZFAddressManagementVC.h"
+
 #import "ZFXuXianView.h"
 #import "ZFExpressView.h"
 #import "ZFSelectPayView.h"
@@ -15,6 +16,7 @@
 #import "http_order.h"
 #import "MJExtension.h"
 #import "SVProgressHUD.h"
+#import "ZFInvoiceView.h"
 #import "ZFConfirmOrderCell.h"
 
 @interface ZFConfirmOrderVC ()<UITableViewDelegate,UITableViewDataSource>
@@ -35,8 +37,30 @@
 @property (nonatomic, strong)UILabel *quickLabel1;
 @property (nonatomic, strong)UIButton *selectButton;
 
-@property (nonatomic, strong)UILabel *totalLabel;
+@property (nonatomic, strong)ZFInvoiceView *invoiceView;
+
+@property (nonatomic, strong)UILabel *useBalanceLabel;
+@property (nonatomic, strong)UILabel *balanceLabel;
+@property (nonatomic, strong)UIButton *selectButton1;
+
+@property (nonatomic, strong)UILabel *noteLabel;
+@property (nonatomic, strong)UITextView *textView;
+
+@property (nonatomic, strong)UILabel *orderDiscountLabel;
+@property (nonatomic, strong)UILabel *orderDiscount;
 @property (nonatomic, strong)UILabel *priceLabel;
+@property (nonatomic, strong)UILabel *price;
+@property (nonatomic, strong)UILabel *deliveryLabel;
+@property (nonatomic, strong)UILabel *delivery;
+@property (nonatomic, strong)UILabel *cashInLabel;
+@property (nonatomic, strong)UILabel *cashIn;
+@property (nonatomic, strong)UILabel *depositPaidLabel;
+@property (nonatomic, strong)UILabel *depositPaid;
+@property (nonatomic, strong)UILabel *balanceDiscountLabel;
+@property (nonatomic, strong)UILabel *balanceDiscount;
+
+@property (nonatomic, strong)UILabel *totalLabel;
+@property (nonatomic, strong)UILabel *totalpriceLabel;
 @property (nonatomic, strong)UIButton *submitButton;
 @end
 
@@ -70,10 +94,39 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     [self.backgroudView addSubview:self.quickLabel];
     [self.backgroudView addSubview:self.quickLabel1];
     [self.backgroudView addSubview:self.selectButton];
-    
+    UIView *lineView= [[UIView alloc]init];
+    lineView.backgroundColor = RGBColorHex(0xcccccc);
+    [self.backgroudView addSubview:lineView];
+    [self.backgroudView addSubview:self.invoiceView];
+    UIView *lineView2= [[UIView alloc]init];
+    lineView2.backgroundColor = RGBColorHex(0xcccccc);
+    [self.backgroudView addSubview:lineView2];
+    [self.backgroudView addSubview:self.useBalanceLabel];
+    [self.backgroudView addSubview:self.balanceLabel];
+    [self.backgroudView addSubview:self.selectButton1];
+    UIView *lineView3= [[UIView alloc]init];
+    lineView3.backgroundColor = RGBColorHex(0xcccccc);
+    [self.backgroudView addSubview:lineView3];
+    [self.backgroudView addSubview:self.noteLabel];
+    [self.backgroudView addSubview:self.textView];
+    UIView *lineView4= [[UIView alloc]init];
+    lineView4.backgroundColor = RGBColorHex(0xcccccc);
+    [self.backgroudView addSubview:lineView4];
+    [self.backgroudView addSubview:self.orderDiscountLabel];
+    [self.backgroudView addSubview:self.orderDiscount];
+    [self.backgroudView addSubview:self.priceLabel];
+    [self.backgroudView addSubview:self.price];
+    [self.backgroudView addSubview:self.deliveryLabel];
+    [self.backgroudView addSubview:self.delivery];
+    [self.backgroudView addSubview:self.cashInLabel];
+    [self.backgroudView addSubview:self.cashIn];
+    [self.backgroudView addSubview:self.depositPaidLabel];
+    [self.backgroudView addSubview:self.depositPaid];
+    [self.backgroudView addSubview:self.balanceDiscountLabel];
+    [self.backgroudView addSubview:self.balanceDiscount];
     
     [self.view addSubview:self.totalLabel];
-    [self.view addSubview:self.priceLabel];
+    [self.view addSubview:self.totalpriceLabel];
     [self.view addSubview:self.submitButton];
     [_addressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).with.offset(20);
@@ -106,19 +159,21 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         make.bottom.equalTo(self.addressView).with.offset(-15);
     }];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.addressView.mas_bottom).with.offset(20);
+        make.top.equalTo(self.addressView.mas_bottom).with.offset(10);
         make.left.equalTo(self.view).with.offset(16);
         make.right.equalTo(self.view).with.offset(-16);
         make.height.mas_equalTo(60);
     }];
     [_expressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.tableView.mas_bottom).with.offset(10);
+        make.top.equalTo(self.tableView.mas_bottom).with.offset(7);
         make.left.equalTo(self.view).with.offset(20);
     }];
     
-//    _backgroudView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo
-//    }
+    [_backgroudView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.expressLabel.mas_bottom).with.offset(7);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(435);
+    }];
     
     [_quickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.expressLabel.mas_bottom).with.offset(20);
@@ -132,25 +187,142 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     
     [_selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.quickLabel.mas_top);
-        make.right.equalTo(self.view).with.offset(20);
+        make.right.equalTo(self.view).with.offset(-20);
     }];
-//    [_expressView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.tableView.mas_bottom).with.offset(20);
-//        make.left.equalTo(self.view).with.offset(16);
-//        make.right.equalTo(self.view).with.offset(-16);
-//        make.height.mas_equalTo(130);
-//    }];
-    [_submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
-        make.height.mas_equalTo(44);
+    
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.quickLabel1.mas_bottom).with.offset(4);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.height.mas_equalTo(1);
     }];
+    
+    [_invoiceView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView.mas_bottom);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.height.mas_equalTo(40);
+    }];
+
+    [lineView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.invoiceView.mas_bottom);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.height.mas_equalTo(1);
+    }];
+
+    [_useBalanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView2.mas_bottom).with.offset(10);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+    }];
+    
+    [_balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.useBalanceLabel.mas_bottom).with.offset(10);
+        make.left.equalTo(self.useBalanceLabel.mas_left);
+    }];
+    
+    [_selectButton1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.useBalanceLabel.mas_top);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+    }];
+    
+    [lineView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.balanceLabel.mas_bottom);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.height.mas_equalTo(1);
+    }];
+    
+    [_noteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView3.mas_bottom).with.offset(10);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+    }];
+    
+    [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.noteLabel.mas_bottom).with.offset(10);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.height.mas_equalTo(40);
+    }];
+    
+    [lineView4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.textView.mas_bottom).with.offset(10);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.height.mas_equalTo(1);
+    }];
+    
+    [_orderDiscountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView4.mas_bottom).with.offset(15);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+    }];
+    
+    [_orderDiscount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.orderDiscountLabel.mas_centerY);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+    }];
+    
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.submitButton.mas_top).with.offset(-5);
-        make.right.equalTo(self.view).with.offset(-26);
+        make.top.equalTo(self.orderDiscountLabel.mas_bottom).with.offset(15);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+    }];
+    
+    [_price mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.priceLabel.mas_centerY);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+    }];
+    [_deliveryLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.priceLabel.mas_bottom).with.offset(15);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+    }];
+    
+    [_delivery mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.deliveryLabel.mas_centerY);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+    }];
+    
+    [_cashInLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.deliveryLabel.mas_bottom).with.offset(15);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+    }];
+    
+    [_cashIn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.cashInLabel.mas_centerY);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+    }];
+    
+    [_depositPaidLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.cashInLabel.mas_bottom).with.offset(15);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+    }];
+    
+    [_depositPaid mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.depositPaidLabel.mas_centerY);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+    }];
+    
+    [_balanceDiscountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.depositPaidLabel.mas_bottom).with.offset(15);
+        make.left.equalTo(self.backgroudView).with.offset(20);
+    }];
+    
+    [_balanceDiscount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.balanceDiscountLabel.mas_centerY);
+        make.right.equalTo(self.backgroudView).with.offset(-20);
+    }];
+    
+    [_submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.bottom.equalTo(self.view);
+        make.width.mas_equalTo(100);
+        make.height.mas_equalTo(40);
+    }];
+    [_totalpriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.submitButton.mas_centerY);
+        make.right.equalTo(self.submitButton.mas_left).with.offset(-20);
     }];
     [_totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.priceLabel.mas_left);
-        make.centerY.equalTo(self.priceLabel.mas_centerY);
+        make.right.equalTo(self.totalpriceLabel.mas_left);
+        make.centerY.equalTo(self.totalpriceLabel.mas_centerY);
     }];
    
     
@@ -268,11 +440,18 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     }return _expressLabel;
 }
 
+- (UIView *)backgroudView{
+    if (_backgroudView == nil) {
+        _backgroudView = [[UIView alloc]init];
+        _backgroudView.backgroundColor = [UIColor whiteColor];
+    }return _backgroudView;
+}
+
 - (UILabel *)quickLabel{
     if (_quickLabel == nil) {
         _quickLabel = [[UILabel alloc]init];
         _quickLabel.font = [UIFont systemFontOfSize:15];
-        _quickLabel.textColor = RGBColorHex(0xf05050);
+        _quickLabel.textColor = [UIColor blackColor];
         _quickLabel.text = @"快速配送";
     }return _quickLabel;
 }
@@ -280,7 +459,7 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
 - (UILabel *)quickLabel1{
     if (_quickLabel1 == nil) {
         _quickLabel1 = [[UILabel alloc]init];
-        _quickLabel1.font = [UIFont systemFontOfSize:15];
+        _quickLabel1.font = [UIFont systemFontOfSize:13];
         _quickLabel1.textColor = RGBColorHex(0x4d4d4d);
         _quickLabel1.text = @"工作日、双休日与节假日均可送货";
     }return _quickLabel1;
@@ -295,28 +474,188 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     }return _selectButton;
 }
 
+- (ZFInvoiceView *)invoiceView{
+    if (_invoiceView == nil) {
+        _invoiceView = [[ZFInvoiceView alloc]init];
+        
+    }return _invoiceView;
+}
+
+- (UILabel *)useBalanceLabel{
+    if (_useBalanceLabel == nil) {
+        _useBalanceLabel = [[UILabel alloc]init];
+        _useBalanceLabel.font = [UIFont systemFontOfSize:15];
+        _useBalanceLabel.textColor = [UIColor blackColor];
+        _useBalanceLabel.text = @"使用余额";
+    }return _useBalanceLabel;
+}
+
+- (UILabel *)balanceLabel{
+    if (_balanceLabel == nil) {
+        _balanceLabel = [[UILabel alloc]init];
+        _balanceLabel.font = [UIFont systemFontOfSize:13];
+        _balanceLabel.textColor = RGBColorHex(0x4d4d4d);
+        _balanceLabel.text = @"余额：￥124.32";
+    }return _balanceLabel;
+}
+
+- (UIButton *)selectButton1{
+    if (_selectButton1 == nil) {
+        _selectButton1 = [[UIButton alloc]init];
+        [_selectButton1 setImage:[UIImage imageNamed:@"button_default"] forState:UIControlStateNormal];
+        [_selectButton1 setImage:[UIImage imageNamed:@"button_click"] forState:UIControlStateSelected];
+        [_selectButton1 addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
+    }return _selectButton1;
+}
+
+- (UILabel *)noteLabel{
+    if (_noteLabel == nil) {
+        _noteLabel = [[UILabel alloc]init];
+        _noteLabel.font = [UIFont systemFontOfSize:15];
+        _noteLabel.textColor = [UIColor blackColor];
+        _noteLabel.text = @"用户备注(50字)";
+    }return _noteLabel;
+}
+
+- (UITextView *)textView{
+    if (_textView == nil) {
+        _textView = [[UITextView alloc]init];
+        _textView.layer.borderWidth = 1;
+        _textView.layer.borderColor =RGBColorHex(0xcccccc).CGColor;
+    }return _textView;
+}
+
+- (UILabel *)orderDiscountLabel{
+    if (_orderDiscountLabel == nil) {
+        _orderDiscountLabel = [[UILabel alloc]init];
+        _orderDiscountLabel.font = [UIFont systemFontOfSize:13];
+        _orderDiscountLabel.textColor = RGBColorHex(0x4d4d4d);
+        _orderDiscountLabel.text = @"订单优惠";
+    }return _orderDiscountLabel;
+}
+
+- (UILabel *)orderDiscount{
+    if (_orderDiscount == nil) {
+        _orderDiscount = [[UILabel alloc]init];
+        _orderDiscount.font = [UIFont systemFontOfSize:13];
+        _orderDiscount.textColor = [UIColor redColor];
+        _orderDiscount.text = @"￥0.00元";
+    }return _orderDiscount;
+}
+
 - (UILabel *)priceLabel{
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc]init];
-        _priceLabel.font = [UIFont systemFontOfSize:15];
-        _priceLabel.textColor = RGBColorHex(0xf05050);
-        _priceLabel.text = @"￥4900.00";
+        _priceLabel.font = [UIFont systemFontOfSize:13];
+        _priceLabel.textColor = RGBColorHex(0x4d4d4d);
+        _priceLabel.text = @"商品金额";
+    }return _priceLabel;
+}
+
+- (UILabel *)price{
+    if (_price == nil) {
+        _price = [[UILabel alloc]init];
+        _price.font = [UIFont systemFontOfSize:13];
+        _price.textColor = [UIColor redColor];
+        _price.text = @"￥0.00元";
+    }return _price;
+}
+
+- (UILabel *)deliveryLabel{
+    if (_deliveryLabel == nil) {
+        _deliveryLabel = [[UILabel alloc]init];
+        _deliveryLabel.font = [UIFont systemFontOfSize:13];
+        _deliveryLabel.textColor = RGBColorHex(0x4d4d4d);
+        _deliveryLabel.text = @"配送费用";
+    }return _deliveryLabel;
+}
+
+- (UILabel *)delivery{
+    if (_delivery == nil) {
+        _delivery = [[UILabel alloc]init];
+        _delivery.font = [UIFont systemFontOfSize:13];
+        _delivery.textColor = [UIColor redColor];
+        _delivery.text = @"￥0.00元";
+    }return _delivery;
+}
+
+- (UILabel *)cashInLabel{
+    if (_cashInLabel == nil) {
+        _cashInLabel = [[UILabel alloc]init];
+        _cashInLabel.font = [UIFont systemFontOfSize:13];
+        _cashInLabel.textColor = RGBColorHex(0x4d4d4d);
+        _cashInLabel.text = @"签到折扣";
+    }return _cashInLabel;
+}
+
+- (UILabel *)cashIn{
+    if (_cashIn == nil) {
+        _cashIn = [[UILabel alloc]init];
+        _cashIn.font = [UIFont systemFontOfSize:13];
+        _cashIn.textColor = [UIColor redColor];
+        _cashIn.text = @"￥0.00元";
+    }return _cashIn;
+}
+
+- (UILabel *)depositPaidLabel{
+    if (_depositPaidLabel == nil) {
+        _depositPaidLabel = [[UILabel alloc]init];
+        _depositPaidLabel.font = [UIFont systemFontOfSize:13];
+        _depositPaidLabel.textColor = RGBColorHex(0x4d4d4d);
+        _depositPaidLabel.text = @"已交订金";
+    }return _depositPaidLabel;
+}
+
+- (UILabel *)depositPaid{
+    if (_depositPaid == nil) {
+        _depositPaid = [[UILabel alloc]init];
+        _depositPaid.font = [UIFont systemFontOfSize:13];
+        _depositPaid.textColor = [UIColor redColor];
+        _depositPaid.text = @"￥0.00元";
+    }return _depositPaid;
+}
+
+- (UILabel *)balanceDiscountLabel{
+    if (_balanceDiscountLabel == nil) {
+        _balanceDiscountLabel = [[UILabel alloc]init];
+        _balanceDiscountLabel.font = [UIFont systemFontOfSize:13];
+        _balanceDiscountLabel.textColor = RGBColorHex(0x4d4d4d);
+        _balanceDiscountLabel.text = @"余额折扣";
+    }return _balanceDiscountLabel;
+}
+
+- (UILabel *)balanceDiscount{
+    if (_balanceDiscount == nil) {
+        _balanceDiscount = [[UILabel alloc]init];
+        _balanceDiscount.font = [UIFont systemFontOfSize:13];
+        _balanceDiscount.textColor = [UIColor redColor];
+        _balanceDiscount.text = @"￥0.00元";
+    }return _balanceDiscount;
+}
+
+- (UILabel *)totalpriceLabel{
+    if (_totalpriceLabel == nil) {
+        _totalpriceLabel = [[UILabel alloc]init];
+        _totalpriceLabel.font = [UIFont systemFontOfSize:15];
+        _totalpriceLabel.textColor = RGBColorHex(0xf05050);
+        _totalpriceLabel.text = @"￥4900.00";
     }
-    return _priceLabel;
+    return _totalpriceLabel;
 }
 - (UILabel *)totalLabel{
     if (_totalLabel == nil) {
         _totalLabel = [[UILabel alloc]init];
         _totalLabel.font = [UIFont systemFontOfSize:15];
         _totalLabel.textColor = RGBColorHex(0x0f0f0f);
-        _totalLabel.text = @"合计:";
+        _totalLabel.text = @"应付金额:";
     }
     return _totalLabel;
 }
 - (UIButton *)submitButton{
     if (_submitButton == nil) {
         _submitButton = [[UIButton alloc]init];
-        [_submitButton setTitle:@"确认订单" forState:UIControlStateNormal];
+        _submitButton.backgroundColor = [UIColor redColor];
+        [_submitButton setTitle:@"提交订单" forState:UIControlStateNormal];
         [_submitButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
         _submitButton.titleLabel.font = [UIFont systemFontOfSize:17];
         [_submitButton addTarget:self action:@selector(submitClick) forControlEvents:UIControlEventTouchUpInside];

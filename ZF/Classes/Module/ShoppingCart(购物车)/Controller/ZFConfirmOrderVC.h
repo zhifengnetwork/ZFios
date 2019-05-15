@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ZFOrdersModel.h"
 @interface ZFConfirmOrderVC : UIViewController
+//结算界面
 
 //立即购买时需要action = 1;
 //goods_id
 //goods_num
 //item_id
-
 @property (nonatomic, strong)ZFOrdersModel *ordersModel;
 
 @end
