@@ -8,6 +8,10 @@
 
 #import "ZFWriteEvaluationVC.h"
 #import "ZFFinishEvaluationVC.h"
+#import "TZImagePickerController.h"
+#import "UIImageView+WebCache.h"
+#import "http_user.h"
+#import "SVProgressHUD.h"
 //#import "ZFTextView.h"
 
 @interface ZFWriteEvaluationVC ()<UITextViewDelegate>
@@ -673,6 +677,54 @@
 
 - (void)addClick{
     //添加图片
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
+    
+    // You can get the photos by block, the same as by delegate.
+    // 你可以通过block或者代理，来得到用户选择的照片.
+    ZWeakSelf
+    [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto)
+     {
+         [weakSelf uploadImage:[photos firstObject]];
+     }];
+    [self presentViewController:imagePickerVc animated:YES completion:nil];
+}
+
+-(void)uploadImage:(UIImage*)image
+{
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
+    //NSDataBase64EncodingEndLineWithLineFeed这个枚举值是base64串不换行
+    NSString *imageBase64Str = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+    //    //不转base64
+    //    NSString * str =[[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
+    
+    ZWeakSelf
+    [http_user  common_upload_pic:imageBase64Str success:^(id responseObject)
+     {
+         [weakSelf uploadImage_ok:responseObject];
+     } failure:^(NSError *error)
+     {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)uploadImage_ok:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    NSString *file = [responseObject objectForKey:@"img"];
+    
+    
+    if (_imageView.image == nil) {
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:file]];
+    }else if (_imageView1.image == nil){
+        [_imageView1 sd_setImageWithURL:[NSURL URLWithString:file]];
+    }else{
+        [_imageView2 sd_setImageWithURL:[NSURL URLWithString:file]];
+    }
+    
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{

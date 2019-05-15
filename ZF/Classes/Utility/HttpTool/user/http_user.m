@@ -143,32 +143,21 @@
 +(void)order_list:(NSInteger)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 {
     HttpTool *http = [HttpTool sharedManager];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",type];
+    [parameters setObject:str forKey:@"type"];
+    
+    NSString *str1 = [NSString stringWithFormat:@"%d",10];
+    [parameters setObject:str1 forKey:@"num"];
+
+    NSString *str2 = [NSString stringWithFormat:@"%d",1];
+    [parameters setObject:str2 forKey:@"page"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    if (type==0)
-    {
-        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list"];
-    }
-    else if (type==1)
-    {
-        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/WAITPAY"];
-    }
-    else if (type==2)
-    {
-        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/WAITRECEIVE"];
-    }
-    else if (type==3)
-    {
-        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/WAITCCOMMENT"];
-    }
-    else if (type==4)
-    {
-        strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list/type/WAITSEND"];
-    }
-    
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/order/order_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
@@ -259,6 +248,22 @@
     
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/order/common_upload_pic"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+//order_sn  订单编号
++(void)GetWxAppPaySign:(NSString*)order_sn info:(NSString*)info success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    if (kStringIsEmpty(order_sn)) {
+        [parameters setObject:order_sn forKey:@"order_sn"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/payment/GetWxAppPaySign"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 

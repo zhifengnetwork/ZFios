@@ -81,7 +81,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     [self.shoppingCart.mj_header beginRefreshing];
     
     _emptyCart = [[ZFEmptyCartView alloc]initWithFrame:self.view.frame];
-    [self.view addSubview:_emptyCart];
+    [self.shoppingCart addSubview:_emptyCart];
     _emptyCart.hidden = YES;
     
 }
