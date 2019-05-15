@@ -12,9 +12,9 @@
 
 @interface ZFMyHeadView()
 
-@property (nonatomic, strong) UIImageView* bjIconView;
 @property (nonatomic, strong) UIImageView* iconView;
 @property (nonatomic, strong) UILabel* nameLabel;
+@property (nonatomic, strong) UIImageView* icon2View;
 @property (nonatomic, strong) UILabel* memberLabel;
 @property (nonatomic, strong) UIButton* setUpButton;
 @property (nonatomic, strong) UIButton* commodityButton;
@@ -37,21 +37,18 @@
 
 - (void)setupUI
 {
-    [self addSubview:self.bjIconView];
+    self.backgroundColor = RGBColorHex(0xedf4f7);
     [self addSubview:self.iconView];
     [self addSubview:self.nameLabel];
+    [self addSubview:self.icon2View];
     [self addSubview:self.memberLabel];
     [self addSubview:self.setUpButton];
     [self addSubview:self.commodityButton];
     [self addSubview:self.footprintButton];
     
-    [_bjIconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
-    }];
-    
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_bjIconView.mas_left).offset(15);
-        make.top.equalTo(self->_bjIconView.mas_top).offset(25);
+        make.left.mas_equalTo(15);
+        make.top.mas_equalTo(30);
         make.width.height.mas_equalTo(50);
     }];
     
@@ -61,23 +58,28 @@
         make.right.mas_equalTo(-220);
     }];
     
+    [_icon2View mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self->_iconView.mas_right).offset(10);
+        make.top.equalTo(self->_nameLabel.mas_bottom).offset(5);
+    }];
+    
     [_memberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self->_iconView.mas_bottom).offset(2);
-        make.centerX.equalTo(self->_iconView);
+        make.left.equalTo(self->_icon2View.mas_right).offset(4);
+        make.top.equalTo(self->_nameLabel.mas_bottom).offset(5);
     }];
     
     [_setUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self->_bjIconView.mas_right).offset(-15);
-        make.top.equalTo(self->_bjIconView.mas_top).offset(30);
+        make.right.mas_equalTo(-20);
+        make.top.mas_equalTo(35);
     }];
     
     [_commodityButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_bjIconView.mas_left).offset(80);
-        make.top.equalTo(self->_memberLabel.mas_bottom).offset(-10);
+        make.left.mas_equalTo(80);
+        make.top.equalTo(self->_memberLabel.mas_bottom).offset(10);
     }];
     
     [_footprintButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self->_bjIconView.mas_right).offset(-80);
+        make.right.mas_equalTo(-80);
         make.centerY.equalTo(self->_commodityButton);
     }];
 }
@@ -122,15 +124,6 @@
     }
 }
 
-
-- (UIImageView *)bjIconView {
-    if (_bjIconView == nil) {
-        _bjIconView = [[UIImageView alloc] init];
-        _bjIconView.image = [UIImage imageNamed:@"tupian"];
-    }
-    return _bjIconView;
-}
-
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
@@ -157,22 +150,27 @@
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = RGBColorHex(0xffffff);
+        _nameLabel.textColor = RGBColorHex(0x151515);
         _nameLabel.font = [UIFont systemFontOfSize:15];
         _nameLabel.text = @"潘多拉";
     }
     return _nameLabel;
 }
 
+- (UIImageView *)icon2View {
+    if (_icon2View == nil) {
+        _icon2View = [[UIImageView alloc] init];
+        _icon2View.image = [UIImage imageNamed:@"Member"];
+    }
+    return _icon2View;
+}
+
 - (UILabel *)memberLabel {
     if (_memberLabel == nil) {
         _memberLabel = [[UILabel alloc] init];
-        _memberLabel.textColor = RGBColorHex(0x151515);
-        _memberLabel.font = [UIFont systemFontOfSize:12];
-        _memberLabel.backgroundColor = [UIColor whiteColor];
-        _memberLabel.layer.cornerRadius = 7.0f;
-        _memberLabel.clipsToBounds = YES;
-        _memberLabel.text = @"  普通会员  ";
+        _memberLabel.textColor = RGBColorHex(0x383838);
+        _memberLabel.font = [UIFont systemFontOfSize:9];
+        _memberLabel.text = @"普通会员";
         
     }
     return _memberLabel;
@@ -195,7 +193,7 @@
         _commodityButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_commodityButton setTitle:@"       10\n  商品关注" forState:UIControlStateNormal];
         _commodityButton.titleLabel.lineBreakMode = 0;
-        [_commodityButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
+        [_commodityButton setTitleColor:RGBColorHex(0x151515) forState:UIControlStateNormal];
         _commodityButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [_commodityButton addTarget:self action:@selector(commodityButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -207,7 +205,7 @@
         _footprintButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_footprintButton setTitle:@" 123\n足迹" forState:UIControlStateNormal];
         _footprintButton.titleLabel.lineBreakMode = 0;
-        [_footprintButton setTitleColor:RGBColorHex(0xffffff) forState:UIControlStateNormal];
+        [_footprintButton setTitleColor:RGBColorHex(0x151515) forState:UIControlStateNormal];
         _footprintButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [_footprintButton addTarget:self action:@selector(footprintButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     }

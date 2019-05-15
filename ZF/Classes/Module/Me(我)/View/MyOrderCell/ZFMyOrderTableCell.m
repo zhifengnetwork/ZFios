@@ -68,22 +68,22 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     if (indexPath.item==0)
     {
         cell.title = @"待付款";
-        cell.iconName = @"mm3";
+        cell.iconName = @"Pending Payment ";
     }
     else if (indexPath.item==1)
     {
         cell.title = @"待发货";
-        cell.iconName = @"mm2";
+        cell.iconName = @"Pending Shipment";
     }
     else if (indexPath.item==2)
     {
         cell.title = @"待收货";
-        cell.iconName = @"mm5";
+        cell.iconName = @"To be shipped";
     }
     else if (indexPath.item==3)
     {
         cell.title = @"待评价";
-        cell.iconName = @"mm4";
+        cell.iconName = @"To be evaluated";
     }
     
     cell.indexPath = indexPath;

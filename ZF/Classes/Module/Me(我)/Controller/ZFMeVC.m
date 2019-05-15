@@ -158,7 +158,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 //有多少组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 3;
 }
 
 //每个组有多少行
@@ -172,16 +172,6 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 {
     if (indexPath.section==0)
     {
-        ZFMyOrderTableCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFMyOrderTableCellID];
-        if (cell == nil)
-        {
-            cell = [[ZFMyOrderTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyOrderTableCellID];
-        }
-        cell.delegate = self;
-        return cell;
-    }
-    else if (indexPath.section==1)
-    {
         ZFMyWalletTableCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFMyWalletTableCellID];
         if (cell == nil)
         {
@@ -191,17 +181,27 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         cell.userInfo = self.userInfo;
         return cell;
     }
-    else if (indexPath.section==2)
+    else if (indexPath.section==1)
     {
-        ZFFundAccountControllerCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFFundAccountControllerCellID];
+        ZFMyOrderTableCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFMyOrderTableCellID];
         if (cell == nil)
         {
-            cell = [[ZFFundAccountControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFFundAccountControllerCellID];
+            cell = [[ZFMyOrderTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMyOrderTableCellID];
         }
-        cell.userInfo = self.userInfo2;
+        cell.delegate = self;
         return cell;
     }
-    else if (indexPath.section==3)
+//    else if (indexPath.section==2)
+//    {
+//        ZFFundAccountControllerCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFFundAccountControllerCellID];
+//        if (cell == nil)
+//        {
+//            cell = [[ZFFundAccountControllerCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFFundAccountControllerCellID];
+//        }
+//        cell.userInfo = self.userInfo2;
+//        return cell;
+//    }
+    else if (indexPath.section==2)
     {
         ZFMyColumnTableCell* cell = [tableView dequeueReusableCellWithIdentifier:ZFMyColumnTableCellID];
         if (cell == nil)
@@ -220,15 +220,11 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 {
     if (indexPath.section==0)
     {
-        return 88;
+        return 100.0f;
     }
     else if (indexPath.section==1)
     {
-        return 100.0f;
-    }
-    else if (indexPath.section==2)
-    {
-        return 40.0f;
+        return 88;
     }
 
     return 180.0f;
@@ -392,7 +388,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
 {
     if (indexPath.item==0)
     {
-        //我的活动
+        //账户明细
     }
     else if (indexPath.item==1)
     {
@@ -416,33 +412,19 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     }
     else if (indexPath.item==5)
     {
-        //直播
+        //我的分享
     }
     else if (indexPath.item==6)
     {
-       //小游戏
+       //签到次数
     }
     else if (indexPath.item==7)
     {
-        //美容专区
+        //我的信息
     }
     else if (indexPath.item==8)
     {
-        //虚拟币
-    }
-    else if (indexPath.item==9)
-    {
-        //线下取货
-        ZFOfflinePickupVC*vc = [[ZFOfflinePickupVC alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else if (indexPath.item==10)
-    {
-        //切换主题
-    }
-    else if (indexPath.item==11)
-    {
-        //账户明细
+        //我的分销
     }
 }
 

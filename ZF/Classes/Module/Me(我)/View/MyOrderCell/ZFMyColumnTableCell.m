@@ -60,7 +60,7 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 12;
+    return 9;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -68,8 +68,8 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     ZFMyOrderCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMyOrderCollectionCellID forIndexPath:indexPath];
     if (indexPath.item==0)
     {
-        cell.title = @"我的活动";
-        cell.iconName = @"HD2";
+        cell.title = @"账户明细";
+        cell.iconName = @"zhmx1";
     }
     else if (indexPath.item==1)
     {
@@ -93,38 +93,23 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     }
     else if (indexPath.item==5)
     {
-        cell.title = @"直播";
-        cell.iconName = @"ZB23";
+        cell.title = @"我的分享";
+        cell.iconName = @"Share";
     }
     else if (indexPath.item==6)
     {
-        cell.title = @"小游戏";
-        cell.iconName = @"xyx124";
+        cell.title = @"签到次数";
+        cell.iconName = @"Sign in";
     }
     else if (indexPath.item==7)
     {
-        cell.title = @"美容专区";
-        cell.iconName = @"mrzq147";
+        cell.title = @"我的信息";
+        cell.iconName = @"Information";
     }
     else if (indexPath.item==8)
     {
-        cell.title = @"虚拟币";
-        cell.iconName = @"jb13";
-    }
-    else if (indexPath.item==9)
-    {
-        cell.title = @"线下取货";
-        cell.iconName = @"xxqh1";
-    }
-    else if (indexPath.item==10)
-    {
-        cell.title = @"切换主题";
-        cell.iconName = @"zt26";
-    }
-    else if (indexPath.item==11)
-    {
-        cell.title = @"账户明细";
-        cell.iconName = @"zhmx1";
+        cell.title = @"我的分销";
+        cell.iconName = @"Distribution";
     }
     
     cell.indexPath = indexPath;
@@ -158,7 +143,8 @@ static NSString *const ZFMyOrderCollectionCellID = @"ZFMyOrderCollectionCellID";
     {
         _orderHeadView = [[ZFMyOrderHeadView alloc]init];
         _orderHeadView.leftTitle = @"我的专栏";
-        _orderHeadView.rightTitle = @"查看全部专栏";
+        _orderHeadView.isShowButton = NO;
+//        _orderHeadView.rightTitle = @"查看全部专栏";
         //头部点击事件
         _orderHeadView.userInteractionEnabled = YES;
         UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];

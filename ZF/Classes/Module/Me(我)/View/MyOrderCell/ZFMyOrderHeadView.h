@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 //右标题
 @property (nonatomic, strong) NSString *rightTitle;
 
+@property (nonatomic, assign) BOOL isShowButton;
+
 @end
 
 NS_ASSUME_NONNULL_END
