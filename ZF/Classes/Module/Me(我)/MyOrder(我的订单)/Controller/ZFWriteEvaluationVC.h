@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 //发布评价
 @interface ZFWriteEvaluationVC : UIViewController
 
+@property (nonatomic, assign)NSInteger orderID;
 @end
 
 NS_ASSUME_NONNULL_END

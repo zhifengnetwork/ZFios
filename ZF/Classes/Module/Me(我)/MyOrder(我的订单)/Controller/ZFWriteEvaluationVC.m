@@ -266,10 +266,6 @@
     
 }
 
-- (void)rightButtonClick{
-    ZFFinishEvaluationVC *vc = [[ZFFinishEvaluationVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
 
 - (UIImageView *)goodImageView{
     if (_goodImageView == nil) {
@@ -662,8 +658,17 @@
     }
 }
 
+#pragma mark -- 方法
 - (void)anonymousClick: (UIButton *)btn{
     btn.selected = !btn.selected;
+}
+
+
+- (void)rightButtonClick{//发布
+    
+    
+    ZFFinishEvaluationVC *vc = [[ZFFinishEvaluationVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)addClick{

@@ -8,10 +8,16 @@
 
 #import "ZFExpressDetailVC.h"
 #import "ZFExpressDetailCell.h"
+#import "http_user.h"
+#import "MJExtension.h"
+#import "SVProgressHUD.h"
+#import "ZFUserModel.h"
+
 
 @interface ZFExpressDetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UILabel *expressLabel;
 @property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, strong)ZFUserModel *expressModel;
 @end
 
 @implementation ZFExpressDetailVC
@@ -49,7 +55,7 @@ static NSString *const ZFExpressDetailCellID = @"ZFExpressDetailCellID";
 - (UITableView *)tableView{
     if (_tableView == nil) {
         _tableView = [[UITableView alloc]init];
-        _tableView.rowHeight = 20;
+        _tableView.rowHeight = 100;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -59,13 +65,30 @@ static NSString *const ZFExpressDetailCellID = @"ZFExpressDetailCellID";
 
 #pragma mark --协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    return self.expressModel.result.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFExpressDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFExpressDetailCellID forIndexPath:indexPath];
+    cell.model = [self.expressModel.result objectAtIndex:indexPath.row];
     return cell;
 }
 
+- (void)setOrderID:(NSInteger)orderID{
+    _orderID = orderID;
+    [http_user express_detail:_orderID success:^(id responseObject) {
+        [self showData:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
 
+- (void)showData:(id)responseObject{
+    if (kObjectIsEmpty(responseObject)) {
+        return;
+    }
+    self.expressModel = [ZFUserModel mj_objectWithKeyValues:responseObject];
+    _expressLabel.text = [NSString stringWithFormat:@"快递单号: %@",self.expressModel.invoice_no];
+    [self.tableView reloadData];
+}
 @end

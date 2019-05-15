@@ -51,6 +51,19 @@ NS_ASSUME_NONNULL_BEGIN
 //确认收货
 //订单ID    order_id
 +(void)order_confirm:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//获取物流信息接口
++(void)express_detail:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+/**
+ 订单评论接口
+ @param order_id 订单ID
+ @param info 评论信息,json格式
+ */
++(void)order_common:(NSInteger)order_id info:(NSString*)info success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+//评论-上传图片接口
+//file 图片
++(void)common_upload_pic:(NSString*)pic success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 /**
  找回密码验证码比对
  */

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFExpressDetailVC : UIViewController
 
+@property (nonatomic, assign)NSInteger orderID;
 @end
 
 NS_ASSUME_NONNULL_END

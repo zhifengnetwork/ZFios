@@ -9,6 +9,7 @@
 #import "ZFFinishEvaluationVC.h"
 
 @interface ZFFinishEvaluationVC ()
+@property (nonatomic, strong)UIImageView *backImagView;
 @property (nonatomic, strong)UIButton *backButton;
 @property (nonatomic, strong)UIImageView *imageView;
 @property (nonatomic, strong)UILabel *successLabel;
@@ -31,12 +32,17 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 - (void)setup{
-    self.view.backgroundColor = [UIColor redColor];
+    [self.view addSubview:self.backImagView];
     [self.view addSubview:self.backButton];
     [self.view addSubview:self.imageView];
     [self.view addSubview:self.successLabel];
     [self.view addSubview:self.homeButton];
     [self.view addSubview:self.lookEvaluation];
+    
+    
+    [_backImagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self.view);
+    }];
     
     [_backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).with.offset(50);
@@ -67,6 +73,13 @@
         make.width.mas_equalTo(135);
         make.height.mas_equalTo(40);
     }];
+}
+
+- (UIImageView *)backImagView{
+    if (_backImagView == nil) {
+        _backImagView = [[UIImageView alloc]init];
+        _backImagView.image = [UIImage imageNamed:@"beijing"];
+    }return _backImagView;
 }
 
 - (UIButton *)backButton{

@@ -10,5 +10,12 @@
 
 @implementation ZFUserModel
 
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             @"result" : @"ZFUserModel"
+             };
+}
+
 @end
 
