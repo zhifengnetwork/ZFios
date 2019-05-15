@@ -23,6 +23,10 @@
 #import "ZFClassifyModel.h"
 #import "ZFPlantingModel.h"
 #import "ZFDetailsPageVC.h"
+#import "ZFTool.h"
+#import "ZFStationNewsVC.h"
+#import "PYSearchViewController.h"
+#import "ZFSearchVC.h"
 
 
 @interface ZFClassifyVC ()<UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -34,6 +38,7 @@
 /* 顶部工具View */
 @property (nonatomic, strong) ZFClassifyTopToolView *topToolView;
 
+@property (strong , nonatomic)NSMutableArray *hots;
 //
 @property (strong , nonatomic)NSMutableArray *imageUrls;
 
@@ -58,6 +63,18 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
     [super viewDidLoad];
     
     [self setup];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 
@@ -88,9 +105,63 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
     self.navigationItem.rightBarButtonItems = @[negativeSpacer, backButton];
     
     _topToolView = [[ZFClassifyTopToolView alloc] init];
-    _topToolView.frame = CGRectMake(0, 0, LL_ScreenWidth, 44);
-    self.navigationItem.titleView = _topToolView;
+    [self.view addSubview:_topToolView];
+    _topToolView.frame = CGRectMake(0, LL_StatusBarHeight, LL_ScreenWidth, 44);
+//    self.navigationItem.titleView = _topToolView;
+    
+    ZWeakSelf
+    _topToolView.searchButtonClickBlock = ^{
+        // 1. 创建热门搜索数组
+        //NSArray *hotSeaches = @[@"周大福", @"新款连衣裙", @"连衣裙"];
+        // 2. 创建搜索控制器
+        PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:self.hots searchBarPlaceholder:@"商品 店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+            // 开始(点击)搜索时执行以下代码
+            // 如：跳转到指定控制器
+            ZFSearchVC* vc = [[ZFSearchVC alloc] init];
+            vc.text = searchText;
+            [searchViewController.navigationController pushViewController:vc animated:YES];
+        }];
+        
+        [searchViewController setSearchHistoryTitle:@"搜索历史"];
+        
+        // 3. 跳转到搜索控制器
+        [weakSelf.navigationController pushViewController:searchViewController animated:YES];
+    };
+    
 }
+
+-(void)loadData4
+{
+    ZWeakSelf
+    [http_home getHotKeywords:^(id responseObject)
+     {
+         // 拿到当前的下拉刷新控件，结束刷新状态
+         [weakSelf.collectionView.mj_header endRefreshing];
+         [weakSelf loadData4_success:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         // 拿到当前的下拉刷新控件，结束刷新状态
+         [weakSelf.collectionView.mj_header endRefreshing];
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+-(void)loadData4_success:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    NSString* str = responseObject;
+    
+    self.hots = [ZFTool strToArr:str Separator:@"|"];
+    
+    [self.collectionView reloadData];
+    [self loadData];
+}
+
 
 #pragma mark - 消息点击
 - (void)messButtonBarItemClick
@@ -136,13 +207,13 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 {
     ZWeakSelf
     [http_good categoryList:^(id responseObject)
-    {
-        [self.collectionView.mj_header endRefreshing];
-        [weakSelf showData:responseObject];
-    } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.domain];
-        [self.collectionView.mj_header endRefreshing];
-    }];
+     {
+         [self.collectionView.mj_header endRefreshing];
+         [weakSelf showData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+         [self.collectionView.mj_header endRefreshing];
+     }];
 }
 
 -(void)showData:(id)responseObject
@@ -271,7 +342,7 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 #pragma mark - item宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     return CGSizeMake((LL_ScreenWidth - 100 - 6 - 15)/3, (LL_ScreenWidth - 100 - 6 - 15)/3 + 40);
     
     return CGSizeZero;
@@ -311,7 +382,7 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-        _tableView.frame = CGRectMake(0, 0, 100, LL_ScreenHeight);
+        _tableView.frame = CGRectMake(0, LL_StatusBarAndNavigationBarHeight, 100, LL_ScreenHeight);
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
@@ -335,7 +406,7 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.alwaysBounceVertical = YES;
-        _collectionView.frame = CGRectMake(100, 0, LL_ScreenWidth-100,LL_ScreenHeight);
+        _collectionView.frame = CGRectMake(100, LL_StatusBarAndNavigationBarHeight, LL_ScreenWidth-100,LL_ScreenHeight);
         //注册Cell
         [_collectionView registerClass:[ZFClassifyCollectionCell class] forCellWithReuseIdentifier:ZFClassifyCollectionCellID];
         //注册Header
@@ -372,3 +443,4 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
 }
 
 @end
+

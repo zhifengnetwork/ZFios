@@ -79,6 +79,20 @@
     
 }
 
+-(void)setDetailsPageModel:(ZFDetailsPageModel *)detailsPageModel
+{
+    _detailsPageModel = detailsPageModel;
+    if ([_detailsPageModel.is_collect isEqualToString:@"1"])
+    {
+        _collectionButton.selected = YES;
+    }
+    else
+    {
+        _collectionButton.selected = NO;
+    }
+    
+}
+
 
 - (void)collectionButtonDidClick
 {
