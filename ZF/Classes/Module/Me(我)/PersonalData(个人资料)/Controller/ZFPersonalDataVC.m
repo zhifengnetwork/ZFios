@@ -15,6 +15,7 @@
 #import "MJExtension.h"
 #import "UUPickerView.h"
 #import "ZFTool.h"
+#import "http_user.h"
 
 @interface ZFPersonalDataVC ()<ZFTextInputVCDelegate,UUPickerViewDelegate>
 
@@ -47,8 +48,38 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self loadData];
+}
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_user userinfo:^(id responseObject)
+     {
+         [weakSelf loadData_ok:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+//加载数据完成
+-(void)loadData_ok:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    //jsonToModel
+    self.userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
+    
+    [self.tableView reloadData];
     
 }
+
+
 
 - (void)setupTableView
 {
