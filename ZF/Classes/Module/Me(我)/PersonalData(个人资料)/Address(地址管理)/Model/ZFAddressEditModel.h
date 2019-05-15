@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , assign)NSInteger shipping_status;
 @property (nonatomic , assign)NSInteger pay_status;
 @property (nonatomic , copy)NSString* total_amount;
+@property (nonatomic , copy)NSString* order_amount;
 @property (nonatomic , copy)NSString* shipping_price;
 @property (nonatomic , copy)NSString* sign_price;
 @property (nonatomic , assign)NSInteger pay_time;
@@ -61,6 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString *latitude;
 @property (nonatomic , copy) NSString *province_name;
 @property (nonatomic , copy) NSString *city_name;
+@property (nonatomic , copy) NSString *twon_name;
 @property (nonatomic , copy) NSString *district_name;
 
 @property (nonatomic, copy)NSString *label;

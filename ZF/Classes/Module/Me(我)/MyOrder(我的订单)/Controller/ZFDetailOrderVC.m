@@ -12,8 +12,10 @@
 #import "SVProgressHUD.h"
 #import "ZFAddressEditModel.h"
 #import "ZFOrdersModel.h"
+#import "UIImageView+WebCache.h"
+#import "ZFDetailOrderTableCell.h"
 
-@interface ZFDetailOrderVC ()
+@interface ZFDetailOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UILabel *orderStatus;
 @property (nonatomic, strong)UILabel *nameLabel;
 @property (nonatomic, strong)UILabel *phoneLabel;
@@ -21,10 +23,7 @@
 
 @property (nonatomic, strong)UIImageView *iconImageView;//店铺头像
 @property (nonatomic, strong)UILabel *storeLabel;//店铺名称
-@property (nonatomic, strong)UIImageView *goodImageView;//商品图片
-@property (nonatomic, strong)UILabel *goodNameLabel;
-@property (nonatomic, strong)UILabel *spec_keyLabel;//规格
-@property (nonatomic, strong)UILabel *priceLabel;//商品价格
+@property (nonatomic, strong)UITableView *tableView;//商品列表
 
 @property (nonatomic, strong)UILabel *totalPriceLabel;
 @property (nonatomic, strong)UILabel *totalPrice;//商品总价
@@ -41,9 +40,13 @@
 @property (nonatomic, strong)UILabel *orderIDLabel;
 @property (nonatomic, strong)UILabel *payTimeLabel;
 @property (nonatomic, strong)UILabel *payTypeLabel;
+
+@property (nonatomic, strong)ZFAddressEditModel *editModel;
 @end
 
 @implementation ZFDetailOrderVC
+
+static NSString *const ZFDetailOrderTableCellID = @"ZFDetailOrderTableCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -75,10 +78,8 @@
     UIView *lineView2 = [[UIView alloc]init];
     lineView2.backgroundColor = RGBColorHex(0xcdcdcd);
     [self.view addSubview:lineView2];
-    [self.view addSubview:self.goodImageView];
-    [self.view addSubview:self.goodNameLabel];
-    [self.view addSubview:self.spec_keyLabel];
-    [self.view addSubview:self.priceLabel];
+    [self.view addSubview:self.tableView];
+    
     [self.view addSubview:self.totalPriceLabel];
     [self.view addSubview:self.totalPrice];
     [self.view addSubview:self.freightLabel];
@@ -147,30 +148,16 @@
         make.height.mas_equalTo(1);
     }];
     
-    [_goodImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView2.mas_bottom).with.offset(14);
         make.left.equalTo(self.view).with.offset(10);
-        make.width.height.mas_equalTo(80);
-    }];
-    
-    [_goodNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.goodImageView.mas_right).with.offset(12);
-        make.top.equalTo(self.goodImageView.mas_top);
         make.right.equalTo(self.view).with.offset(-10);
+        make.height.mas_equalTo(150);
     }];
     
-    [_spec_keyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.goodNameLabel.mas_bottom).with.offset(12);
-        make.left.equalTo(self.goodNameLabel.mas_left);
-    }];
-    
-    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.spec_keyLabel.mas_bottom).with.offset(12);
-        make.left.equalTo(self.goodNameLabel.mas_left);
-    }];
     
     [_totalPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.goodImageView.mas_bottom).with.offset(30);
+        make.top.equalTo(self.tableView.mas_bottom).with.offset(30);
         make.left.equalTo(self.view).with.offset(10);
     }];
     
@@ -305,38 +292,15 @@
     }return _storeLabel;
 }
 
-- (UIImageView *)goodImageView{
-    if (_goodImageView == nil) {
-        _goodImageView = [[UIImageView alloc]init];
-    }return _goodImageView;
-}
-
-- (UILabel *)goodNameLabel{
-    if (_goodNameLabel == nil) {
-        _goodNameLabel = [[UILabel alloc]init];
-        _goodNameLabel.font = [UIFont systemFontOfSize:12];
-        _goodNameLabel.textColor = RGBColorHex(0x151515);
-        _goodNameLabel.text = @"发发神经发酵饲料发了手机发了两份拉进来司法局房间爱垃圾费啦";
-        _goodNameLabel.numberOfLines = 0;
-    }return _goodNameLabel;
-}
-
-- (UILabel *)spec_keyLabel{
-    if (_spec_keyLabel == nil) {
-        _spec_keyLabel = [[UILabel alloc]init];
-        _spec_keyLabel.font = [UIFont systemFontOfSize:12];
-        _spec_keyLabel.textColor = RGBColorHex(0x151515);
-        _spec_keyLabel.text = @"颜色：蓝色   尺寸：M码";
-    }return _spec_keyLabel;
-}
-
-- (UILabel *)priceLabel{
-    if (_priceLabel == nil) {
-        _priceLabel = [[UILabel alloc]init];
-        _priceLabel.font = [UIFont systemFontOfSize:12];
-        _priceLabel.textColor = RGBColorHex(0x151515);
-        _priceLabel.text = @"￥368 x 2";
-    }return _priceLabel;
+- (UITableView *)tableView{
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc]init];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.rowHeight = 100;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_tableView registerClass:[ZFDetailOrderTableCell class] forCellReuseIdentifier:ZFDetailOrderTableCellID];
+    }return _tableView;
 }
 
 - (UILabel *)totalPriceLabel{
@@ -479,8 +443,54 @@
     if (kObjectIsEmpty(responseObject)) {
         return;
     }
-    ZFAddressEditModel *editModel = [ZFAddressEditModel mj_objectWithKeyValues:responseObject];
-    ZFOrdersModel *goodModel = editModel.goods[0];
+    self.editModel = [ZFAddressEditModel mj_objectWithKeyValues:responseObject];
     
+    
+    if (_editModel.pay_status ==0) {
+        _orderStatus.text = @"待付款";
+    }else if (_editModel.shipping_status == 0) {
+        _orderStatus.text = @"等待卖家发货";
+    }
+    if (_editModel.shipping_status == 1) {
+        _orderStatus.text = @"卖家已发货";
+    }
+    if (_editModel.order_status == 4) {
+        _orderStatus.text = @"交易成功";
+    }
+    if (_editModel.order_status == 3||_editModel.order_status == 5){
+        _orderStatus.text = @"交易取消";
+    }
+    _nameLabel.text = [NSString stringWithFormat:@"%@",_editModel.consignee];
+    _phoneLabel.text = [NSString stringWithFormat:@"%@",_editModel.mobile];
+    _addressLabel.text = [NSString stringWithFormat:@"%@",_editModel.mobile];
+    _addressLabel.text = [NSString stringWithFormat:@"%@%@%@%@%@",_editModel.province_name,_editModel.city_name,_editModel.district_name,_editModel.twon_name,_editModel.address];
+    
+    
+    if (!kStringIsEmpty(_editModel.avatar))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_editModel.avatar];
+        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _storeLabel.text = [NSString stringWithFormat:@"%@",_editModel.store_name];
+    _totalPrice.text = [NSString stringWithFormat:@"￥%@",_editModel.goods_price];
+    _freight.text = [NSString stringWithFormat:@"￥%@",_editModel.shipping_price];
+    _discount.text = [NSString stringWithFormat:@"￥%@",_editModel.order_prom_amount];
+    _orderPrice.text = [NSString stringWithFormat:@"￥%@",_editModel.total_amount];
+    _payment.text = [NSString stringWithFormat:@"￥%@",_editModel.order_amount];
+    _orderIDLabel.text = [NSString stringWithFormat:@"订单号：%@",_editModel.order_sn];
+    _payTimeLabel.text = [NSString stringWithFormat:@"付款时间：%ld",(long)_editModel.pay_time];
+    _payTypeLabel.text = [NSString stringWithFormat:@"支付方式：%@",_editModel.pay_name];
+    [self.tableView reloadData];
+}
+
+#pragma mark -- 协议
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.editModel.goods.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZFDetailOrderTableCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFDetailOrderTableCellID forIndexPath:indexPath];
+    cell.goodModel = [self.editModel.goods objectAtIndex:indexPath.row];
+    return cell;
 }
 @end

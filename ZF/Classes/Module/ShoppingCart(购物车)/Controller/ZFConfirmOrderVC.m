@@ -9,11 +9,15 @@
 #import "ZFConfirmOrderVC.h"
 #import "ZFAddressManagementVC.h"
 #import "ZFXuXianView.h"
-#import "ZFOrderView.h"
 #import "ZFExpressView.h"
 #import "ZFSelectPayView.h"
 #import "TYAlertController.h"
-@interface ZFConfirmOrderVC ()
+#import "http_order.h"
+#import "MJExtension.h"
+#import "SVProgressHUD.h"
+#import "ZFConfirmOrderCell.h"
+
+@interface ZFConfirmOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 //收货地址
 @property (nonatomic, strong)UIView *addressView;
 @property (nonatomic, strong)UILabel *emptyAddressLabel;
@@ -23,16 +27,21 @@
 @property (nonatomic, strong)UILabel *phoneNumberLabel;
 @property (nonatomic, strong)UILabel *addressLabel;
 //商品信息
-@property (nonatomic, strong)ZFOrderView *orderView;
+@property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, strong)UIView *backgroudView;
 //订单信息
-@property (nonatomic, strong)ZFExpressView *expressView;
+@property (nonatomic, strong)UILabel *expressLabel;
+@property (nonatomic, strong)UILabel *quickLabel;
+@property (nonatomic, strong)UILabel *quickLabel1;
+@property (nonatomic, strong)UIButton *selectButton;
+
 @property (nonatomic, strong)UILabel *totalLabel;
 @property (nonatomic, strong)UILabel *priceLabel;
 @property (nonatomic, strong)UIButton *submitButton;
 @end
 
 @implementation ZFConfirmOrderVC
-
+static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
@@ -54,8 +63,15 @@
     [self.addressView addSubview:self.nameLabel];
     [self.addressView addSubview:self.phoneNumberLabel];
     [self.addressView addSubview:self.addressLabel];
-    [self.view addSubview:self.orderView];
-    [self.view addSubview:self.expressView];
+    [self.view addSubview:self.tableView];
+    
+    [self.view addSubview:self.expressLabel];
+    [self.view addSubview:self.backgroudView];
+    [self.backgroudView addSubview:self.quickLabel];
+    [self.backgroudView addSubview:self.quickLabel1];
+    [self.backgroudView addSubview:self.selectButton];
+    
+    
     [self.view addSubview:self.totalLabel];
     [self.view addSubview:self.priceLabel];
     [self.view addSubview:self.submitButton];
@@ -89,30 +105,54 @@
         make.top.equalTo(self.nameLabel.mas_bottom).with.offset(12);
         make.bottom.equalTo(self.addressView).with.offset(-15);
     }];
-    [_orderView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.addressView.mas_bottom).with.offset(20);
         make.left.equalTo(self.view).with.offset(16);
         make.right.equalTo(self.view).with.offset(-16);
-        make.height.mas_equalTo(199);
+        make.height.mas_equalTo(60);
     }];
-    [_expressView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.orderView.mas_bottom).with.offset(20);
-        make.left.equalTo(self.view).with.offset(16);
-        make.right.equalTo(self.view).with.offset(-16);
-        make.height.mas_equalTo(130);
+    [_expressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tableView.mas_bottom).with.offset(10);
+        make.left.equalTo(self.view).with.offset(20);
     }];
-    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.expressView.mas_bottom).with.offset(20);
-        make.right.equalTo(self.view).with.offset(-26);
+    
+//    _backgroudView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo
+//    }
+    
+    [_quickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.expressLabel.mas_bottom).with.offset(20);
+        make.left.equalTo(self.view).with.offset(20);
     }];
-    [_totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.priceLabel.mas_left);
-        make.top.equalTo(self.expressView.mas_bottom).with.offset(20);
+    
+    [_quickLabel1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.quickLabel.mas_bottom).with.offset(8);
+        make.left.equalTo(self.quickLabel.mas_left);
     }];
+    
+    [_selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.quickLabel.mas_top);
+        make.right.equalTo(self.view).with.offset(20);
+    }];
+//    [_expressView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.tableView.mas_bottom).with.offset(20);
+//        make.left.equalTo(self.view).with.offset(16);
+//        make.right.equalTo(self.view).with.offset(-16);
+//        make.height.mas_equalTo(130);
+//    }];
     [_submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.view);
         make.height.mas_equalTo(44);
     }];
+    [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.submitButton.mas_top).with.offset(-5);
+        make.right.equalTo(self.view).with.offset(-26);
+    }];
+    [_totalLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.priceLabel.mas_left);
+        make.centerY.equalTo(self.priceLabel.mas_centerY);
+    }];
+   
     
     if (/* DISABLES CODE */ (1)) {
         self.emptyAddressLabel.hidden = YES;
@@ -129,7 +169,22 @@
         self.submitButton.enabled = YES;
         [self.submitButton setBackgroundImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
     }
+    _ordersModel.act = 0;
+    [http_order post_order:_ordersModel success:^(id responseObject) {
+        [self showData:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+    
 }
+
+- (void)showData: (id)responseObject{
+    if (!kObjectIsEmpty(responseObject)) {
+        return;
+    }
+    
+}
+
 - (UIView *)addressView{
     if (_addressView == nil) {
         _addressView = [[UIView alloc]init];
@@ -190,22 +245,56 @@
     }
     return _addressLabel;
 }
-- (UIView *)orderView{
-    if (_orderView == nil) {
-        _orderView = [[ZFOrderView alloc]init];
-        _orderView.layer.cornerRadius = 9;
-        _orderView.backgroundColor = RGBColorHex(0xffffff);
+- (UITableView *)tableView{
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc]init];
+        _tableView.layer.cornerRadius = 9;
+        _tableView.backgroundColor = RGBColorHex(0xffffff);
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_tableView registerClass:[ZFConfirmOrderCell class] forCellReuseIdentifier:ZFConfirmOrderCellID];
+        _tableView.rowHeight = 50;
     }
-    return _orderView;
+    return _tableView;
 }
-- (ZFExpressView *)expressView{
-    if (_expressView == nil) {
-        _expressView = [[ZFExpressView alloc]init];
-        _expressView.layer.cornerRadius = 9;
-        _expressView.backgroundColor = RGBColorHex(0xffffff);
-    }
-    return _expressView;
+
+- (UILabel *)expressLabel{
+    if (_expressLabel == nil) {
+        _expressLabel = [[UILabel alloc]init];
+        _expressLabel.font = [UIFont systemFontOfSize:12];
+        _expressLabel.textColor = [UIColor grayColor];
+        _expressLabel.text = @"选择配送方式";
+    }return _expressLabel;
 }
+
+- (UILabel *)quickLabel{
+    if (_quickLabel == nil) {
+        _quickLabel = [[UILabel alloc]init];
+        _quickLabel.font = [UIFont systemFontOfSize:15];
+        _quickLabel.textColor = RGBColorHex(0xf05050);
+        _quickLabel.text = @"快速配送";
+    }return _quickLabel;
+}
+
+- (UILabel *)quickLabel1{
+    if (_quickLabel1 == nil) {
+        _quickLabel1 = [[UILabel alloc]init];
+        _quickLabel1.font = [UIFont systemFontOfSize:15];
+        _quickLabel1.textColor = RGBColorHex(0x4d4d4d);
+        _quickLabel1.text = @"工作日、双休日与节假日均可送货";
+    }return _quickLabel1;
+}
+
+- (UIButton *)selectButton{
+    if (_selectButton == nil) {
+        _selectButton = [[UIButton alloc]init];
+        [_selectButton setImage:[UIImage imageNamed:@"option_b"] forState:UIControlStateNormal];
+        [_selectButton setImage:[UIImage imageNamed:@"option_s"] forState:UIControlStateSelected];
+        [_selectButton addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
+    }return _selectButton;
+}
+
 - (UILabel *)priceLabel{
     if (_priceLabel == nil) {
         _priceLabel = [[UILabel alloc]init];
@@ -234,7 +323,20 @@
     }
     return _submitButton;
 }
+#pragma mark --协议
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ZFConfirmOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFConfirmOrderCellID forIndexPath:indexPath];
+    return cell;
+}
 #pragma mark --方法
+- (void)selectClick:(UIButton *)btn{
+    btn.selected = !btn.selected;
+}
+
 //选择地址
 - (void)selectAddress{
     ZFAddressManagementVC* vc = [[ZFAddressManagementVC alloc]init];
@@ -250,4 +352,5 @@
     }
     
 }
+
 @end
