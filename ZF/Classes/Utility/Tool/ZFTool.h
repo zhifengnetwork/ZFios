@@ -66,6 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
 //开始竞拍日期
 +(NSString*)startDate:(NSString*)dateline;
 
+//团购日期
++(NSString*)GroupBuying:(NSString*)dateline;
+
 //日期
 +(NSString*)dateText:(NSString*)dateline;
 

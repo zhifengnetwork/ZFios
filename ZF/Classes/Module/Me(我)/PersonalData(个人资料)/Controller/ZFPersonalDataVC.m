@@ -15,6 +15,7 @@
 #import "MJExtension.h"
 #import "UUPickerView.h"
 #import "ZFTool.h"
+#import "http_user.h"
 
 @interface ZFPersonalDataVC ()<ZFTextInputVCDelegate,UUPickerViewDelegate>
 
@@ -47,8 +48,38 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self loadData];
+}
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_user userinfo:^(id responseObject)
+     {
+         [weakSelf loadData_ok:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+//加载数据完成
+-(void)loadData_ok:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    //jsonToModel
+    self.userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
+    
+    [self.tableView reloadData];
     
 }
+
+
 
 - (void)setupTableView
 {
@@ -169,7 +200,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
             UUPickerView* pv = [[UUPickerView alloc ]initPickerViewWithArray:@[@[@"保密",@"男", @"女"]] title:@"性别"];
             pv.delegate = self;
             pv.tag = indexPath.row;
-            [pv pickerViewSelectRow:self.userInfo.sex inComponent:0];
+            [pv pickerViewSelectRow:self.userInfo.sex.intValue inComponent:0];
             [pv show];
         }
         else if (indexPath.row==4)
@@ -198,7 +229,7 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
         NSNumber *index = [rowArray objectAtIndex:0];
         //调接口修改
         ZFUserModel* m = [[ZFUserModel alloc]init];
-        m.sex = index.integerValue;
+        m.sex = index.stringValue;
         [self edit:m];
     }
     else if (pickerView.tag==4)
@@ -257,15 +288,9 @@ static NSString *const ZFPersonalCentralTableCellID = @"ZFPersonalCentralTableCe
 
 -(void)edit_success:(id)responseObject
 {
-    UserInfoModel* u = [UserInfoModel mj_objectWithKeyValues:responseObject];
-    self.userInfo.head_pic = u.head_pic;
-    self.userInfo.nickname = u.nickname;
-    self.userInfo.sex = u.sex;
-    self.userInfo.birthyear = u.birthyear;
-    self.userInfo.birthmonth = u.birthmonth;
-    self.userInfo.birthday = u.birthday;
-    self.userInfo.date_birth = [NSString stringWithFormat:@"%@-%@-%@",self.userInfo.birthyear,self.userInfo.birthmonth,self.userInfo.birthday];
-    [self.tableView reloadData];
+    [self loadData];
+//    self.userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
+//    [self.tableView reloadData];
 }
 
 #pragma mark -- 方法

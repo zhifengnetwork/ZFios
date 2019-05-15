@@ -145,6 +145,27 @@
     return str;
 }
 
+//团购日期
++(NSString*)GroupBuying:(NSString*)dateline
+{
+    if (kStringIsEmpty(dateline))
+    {
+        return nil;
+    }
+    
+    NSString* str = nil;
+    long long lltime = [dateline longLongValue];
+    if (lltime==0)
+    {
+        return str;
+    }
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:lltime];
+    str = [date formattedDateWithFormat:@"剩余 dd天HH小时mm分ss秒"];
+    
+    return str;
+}
+
 //日期
 +(NSString*)dateText:(NSString*)dateline
 {
