@@ -14,6 +14,9 @@
 #import "ZFAddressManagementVC.h"
 #import "AppDelegate.h"
 #import "UserInfoModel.h"
+#import "http_user.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
 
 
 @interface ZFPersonalVC ()
@@ -49,8 +52,37 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.tableView reloadData];
+    [self loadData];
 }
+
+-(void)loadData
+{
+    ZWeakSelf
+    [http_user userinfo:^(id responseObject)
+     {
+         [weakSelf loadData_ok:responseObject];
+         
+     } failure:^(NSError *error) {
+         
+         [SVProgressHUD showInfoWithStatus:error.domain];
+     }];
+}
+
+//加载数据完成
+-(void)loadData_ok:(id)responseObject
+{
+    if (kObjectIsEmpty(responseObject))
+    {
+        return;
+    }
+    
+    //jsonToModel
+    self.userInfo = [UserInfoModel mj_objectWithKeyValues:responseObject];
+    
+    [self.tableView reloadData];
+    
+}
+
 
 - (void)setupTableView
 {
