@@ -78,6 +78,12 @@
     [_moreButton setImagePosition:LXMImagePositionRight spacing:6];
 }
 
+-(void)setIsShowButton:(BOOL)isShowButton
+{
+    _isShowButton = isShowButton;
+    
+    _moreButton.hidden = !_isShowButton;
+}
 
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {

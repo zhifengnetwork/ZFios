@@ -8,9 +8,9 @@
 
 #import "ZFMyWalletTableCell.h"
 #import "ZFMyOrderHeadView.h"
-#import "ZFMyWalletControllerCell.h"
+#import "ZFBalanceControllerCell.h"
 
-@interface ZFMyWalletTableCell()<UICollectionViewDelegate, UICollectionViewDataSource,ZFMyWalletControllerCellDelegate>
+@interface ZFMyWalletTableCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) ZFMyOrderHeadView* orderHeadView;
 @property (nonatomic, strong) UICollectionView* collectionView;
@@ -20,7 +20,7 @@
 
 @implementation ZFMyWalletTableCell
 
-static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID";
+static NSString *const ZFBalanceControllerCellID = @"ZFBalanceControllerCellID";
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -60,29 +60,30 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 2;
+    return 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZFMyWalletControllerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFMyWalletControllerCellID forIndexPath:indexPath];
-    if (indexPath.item==0)
-    {
-        cell.iconName = @"JF1";
-        cell.title = @"积分";
-//        cell.number = @"3000";
-        cell.number = [NSString stringWithFormat:@"%@",_userInfo.pay_points];
-    }
-    else if (indexPath.item==1)
-    {
-        cell.iconName = @"YHJ1";
-        cell.title = @"优惠券";
-//        cell.number = @"30";
-        cell.number = [NSString stringWithFormat:@"%@",_userInfo.coupon_num];
-        
-    }
-    cell.indexPath = indexPath;
-    cell.delegate = self;
+    ZFBalanceControllerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFBalanceControllerCellID forIndexPath:indexPath];
+    cell.userInfo = self.userInfo;
+//    if (indexPath.item==0)
+//    {
+//        cell.iconName = @"JF1";
+//        cell.title = @"积分";
+////        cell.number = @"3000";
+//        cell.number = [NSString stringWithFormat:@"%@",_userInfo.pay_points];
+//    }
+//    else if (indexPath.item==1)
+//    {
+//        cell.iconName = @"YHJ1";
+//        cell.title = @"优惠券";
+////        cell.number = @"30";
+//        cell.number = [NSString stringWithFormat:@"%@",_userInfo.coupon_num];
+//
+//    }
+//    cell.indexPath = indexPath;
+//    cell.delegate = self;
     
     return cell;
 }
@@ -138,7 +139,7 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
     if (_collectionView == nil)
     {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        float fw = (kScreenWidth-30)/2;
+        float fw = (kScreenWidth-30);
         layout.itemSize = CGSizeMake(fw, 74);
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
@@ -148,7 +149,7 @@ static NSString *const ZFMyWalletControllerCellID = @"ZFMyWalletControllerCellID
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         
-        [_collectionView registerClass:[ZFMyWalletControllerCell class] forCellWithReuseIdentifier:ZFMyWalletControllerCellID];
+        [_collectionView registerClass:[ZFBalanceControllerCell class] forCellWithReuseIdentifier:ZFBalanceControllerCellID];
     }
     return _collectionView;
 }

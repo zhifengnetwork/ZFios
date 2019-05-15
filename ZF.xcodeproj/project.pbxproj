@@ -301,6 +301,7 @@
 		84B967312281A3FF00BB2F4D /* ZFAddressEditModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B967302281A3FF00BB2F4D /* ZFAddressEditModel.m */; };
 		84C1D77D224B241F009048C7 /* ZFDetailsPageFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */; };
 		84CDB8A0228BC19600D62BF7 /* ZFGroupBuyingWMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CDB89F228BC19600D62BF7 /* ZFGroupBuyingWMVC.m */; };
+		84CDB8A3228C1A3900D62BF7 /* ZFBalanceControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84CDB8A2228C1A3900D62BF7 /* ZFBalanceControllerCell.m */; };
 		84D879F622758709005B375B /* PooCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D879F422758709005B375B /* PooCodeView.m */; };
 		84D879F92275ABD3005B375B /* ZFPlantingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D879F82275ABD3005B375B /* ZFPlantingModel.m */; };
 		84D879FD2275C16F005B375B /* ZFAuctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D879FC2275C16F005B375B /* ZFAuctionModel.m */; };
@@ -921,6 +922,8 @@
 		84C1D77C224B241F009048C7 /* ZFDetailsPageFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsPageFooterView.m; sourceTree = "<group>"; };
 		84CDB89E228BC19600D62BF7 /* ZFGroupBuyingWMVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFGroupBuyingWMVC.h; sourceTree = "<group>"; };
 		84CDB89F228BC19600D62BF7 /* ZFGroupBuyingWMVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFGroupBuyingWMVC.m; sourceTree = "<group>"; };
+		84CDB8A1228C1A3900D62BF7 /* ZFBalanceControllerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFBalanceControllerCell.h; sourceTree = "<group>"; };
+		84CDB8A2228C1A3900D62BF7 /* ZFBalanceControllerCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFBalanceControllerCell.m; sourceTree = "<group>"; };
 		84D879F422758709005B375B /* PooCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PooCodeView.m; sourceTree = "<group>"; };
 		84D879F522758709005B375B /* PooCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PooCodeView.h; sourceTree = "<group>"; };
 		84D879F72275ABD3005B375B /* ZFPlantingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFPlantingModel.h; sourceTree = "<group>"; };
@@ -1166,6 +1169,8 @@
 				8498DAE2223FA45A008C47A6 /* ZFMyWalletControllerCell.m */,
 				8498DAE4223FA76A008C47A6 /* ZFFundAccountControllerCell.h */,
 				8498DAE5223FA76A008C47A6 /* ZFFundAccountControllerCell.m */,
+				84CDB8A1228C1A3900D62BF7 /* ZFBalanceControllerCell.h */,
+				84CDB8A2228C1A3900D62BF7 /* ZFBalanceControllerCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3051,6 +3056,7 @@
 				849F8BEF223BB0CE00D10E2E /* ZFSignInView.m in Sources */,
 				53E90CEC2272B5390063A237 /* ZFUserModel.m in Sources */,
 				189CC0E72223E81300EB5A64 /* HMEmoticonInputView.m in Sources */,
+				84CDB8A3228C1A3900D62BF7 /* ZFBalanceControllerCell.m in Sources */,
 				5358868122361C1300D7A4B6 /* ZFShoppingCartCell.m in Sources */,
 				84B9672D22818F4900BB2F4D /* UUPickerView.m in Sources */,
 				537D8CA82272FFF8002FB76B /* ZFOrdersModel.m in Sources */,
