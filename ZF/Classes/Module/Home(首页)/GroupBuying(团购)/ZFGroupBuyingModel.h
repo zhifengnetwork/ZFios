@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *virtual_num;
 @property (nonatomic , copy)NSString *rebate;
 @property (nonatomic , copy)NSString *goods_price;
+@property (nonatomic , copy)NSString *comment_count;
 
 @end
 

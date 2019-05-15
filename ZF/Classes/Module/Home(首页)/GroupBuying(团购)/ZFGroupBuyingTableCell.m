@@ -8,11 +8,13 @@
 
 #import "ZFGroupBuyingTableCell.h"
 #import "UIImageView+WebCache.h"
+#import "ZFTool.h"
 
 @interface ZFGroupBuyingTableCell()
 
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIImageView* iconView;
+@property (nonatomic, strong) UILabel* discountLabel;
 @property (nonatomic, strong) UILabel* nameLabel;
 @property (nonatomic, strong) UILabel* numberLabel;
 @property (nonatomic, strong) UILabel* timeLabel;
@@ -38,6 +40,7 @@
     self.contentView.backgroundColor = RGBColorHex(0xf3f5f7);
     [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.iconView];
+    [self.contentView addSubview:self.discountLabel];
     [self.contentView addSubview:self.nameLabel];
     [self.contentView addSubview:self.numberLabel];
     [self.contentView addSubview:self.timeLabel];
@@ -47,6 +50,7 @@
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
+        make.top.mas_equalTo(10);
         make.width.mas_equalTo(168);
         make.height.mas_equalTo(236);
     }];
@@ -58,6 +62,13 @@
         make.width.height.mas_equalTo(165);
     }];
     
+    [_discountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(30);
+        make.height.mas_equalTo(15);
+        make.top.equalTo(self->_iconView.mas_top);
+        make.right.equalTo(self->_iconView.mas_right);
+    }];
+    
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bgView.mas_left).offset(5);
         make.right.equalTo(self->_bgView.mas_right).offset(-5);
@@ -66,41 +77,25 @@
     
     [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bgView.mas_left).offset(5);
-        make.top.equalTo(self->_nameLabel.mas_bottom).offset(2);
+        make.top.equalTo(self->_nameLabel.mas_bottom).offset(6);
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_numberLabel.mas_right).offset(15);
-        make.top.equalTo(self->_nameLabel.mas_bottom).offset(2);
+        make.top.equalTo(self->_nameLabel.mas_bottom).offset(6);
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bgView.mas_left).offset(5);
-        make.top.equalTo(self->_numberLabel.mas_bottom).offset(2);
+        make.top.equalTo(self->_numberLabel.mas_bottom).offset(8);
     }];
     
     [_evaluateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self->_bgView.mas_right).offset(-15);
-        make.top.equalTo(self->_timeLabel.mas_bottom).offset(3);
+        make.top.equalTo(self->_timeLabel.mas_bottom).offset(12);
     }];
     
 }
-
-
-//-(void)setDistribuCommModel:(ZFDistribuCommModel *)distribuCommModel
-//{
-//    _distribuCommModel = distribuCommModel;
-//
-//    if (!kStringIsEmpty(distribuCommModel.original_img))
-//    {
-//        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,distribuCommModel.original_img];
-//        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
-//    }
-//    _nameLabel.text = _distribuCommModel.goods_name;
-//    _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_distribuCommModel.shop_price];
-//    _evaluateLabel.text = [NSString stringWithFormat:@"评价: %@",_distribuCommModel.comment_count];
-//}
-
 
 -(void)setGroupBuyingModel:(ZFGroupBuyingModel *)groupBuyingModel
 {
@@ -113,9 +108,10 @@
     }
     _nameLabel.text = _groupBuyingModel.goods_name;
     _numberLabel.text = [NSString stringWithFormat:@"%@参与",_groupBuyingModel.goods_num];
-    _timeLabel.text = [NSString stringWithFormat:@"%@",_groupBuyingModel.start_time];
+    _timeLabel.text = [ZFTool GroupBuying:_groupBuyingModel.end_time];
     _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_groupBuyingModel.price];
-//    _evaluateLabel.text = [NSString stringWithFormat:@"评价: %@",_groupBuyingModel.comment_count];
+    _evaluateLabel.text = [NSString stringWithFormat:@"评价: %@",_groupBuyingModel.comment_count];
+    _discountLabel.text = [NSString stringWithFormat:@" %@折",_groupBuyingModel.rebate];
 }
 
 
@@ -136,7 +132,6 @@
         _nameLabel.textColor = RGBColorHex(0x151515);
         _nameLabel.font = [UIFont systemFontOfSize:10];
         _nameLabel.text = @"羽绒服短款 韩版鸭绒休闲宽松韩国外套潮";
-        _nameLabel.numberOfLines = 0;
     }
     return _nameLabel;
 }
@@ -149,6 +144,17 @@
         _numberLabel.text = @"234参与";
     }
     return _numberLabel;
+}
+
+- (UILabel *)discountLabel {
+    if (_discountLabel == nil) {
+        _discountLabel = [[UILabel alloc] init];
+        _discountLabel.textColor = RGBColorHex(0xffffff);
+        _discountLabel.backgroundColor = RGBColorHex(0xff0000);
+        _discountLabel.font = [UIFont systemFontOfSize:9];
+        _discountLabel.text = @"2折";
+    }
+    return _discountLabel;
 }
 
 - (UILabel *)timeLabel {

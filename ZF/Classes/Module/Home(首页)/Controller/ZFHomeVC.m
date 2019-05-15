@@ -37,6 +37,7 @@
 #import "ZFShoppingCartVC.h"
 #import "ZFSpikeVC.h"
 #import "ZFGroupBuyingVC.h"
+#import "ZFGroupBuyingWMVC.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -512,9 +513,19 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         }
         else if (indexPath.row==1)
         {
-            //团购
-            ZFGroupBuyingVC* vc = [[ZFGroupBuyingVC alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+            //跳转到团购
+            ZFGroupBuyingWMVC *cwmVC = [[ZFGroupBuyingWMVC alloc] init];
+            cwmVC.menuViewStyle = WMMenuViewStyleLine;
+            cwmVC.automaticallyCalculatesItemWidths = YES;
+            cwmVC.showOnNavigationBar = NO;
+            cwmVC.menuViewLayoutMode = WMMenuViewLayoutModeCenter;
+            cwmVC.titleColorSelected = RGBColorHex(0xfa0404);
+            cwmVC.titleColorNormal = RGBColorHex(0x151515);
+            cwmVC.progressColor = RGBColorHex(0xE51C23);
+            cwmVC.titleSizeSelected = 15.0f;
+            cwmVC.titleSizeNormal = 15.0f;
+            cwmVC.itemMargin = 65.0f;
+            [self.navigationController pushViewController:cwmVC animated:YES];
         }
         else if (indexPath.row==2)
         {
