@@ -160,7 +160,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         [self.imageUrls addObject:str];
     }
     _headView.imageUrls = self.imageUrls;
-    
+    _footerView.detailsPageModel = self.detailListModel.goods;
     [self loadData2];
     [self.tableView reloadData];
 }
@@ -236,7 +236,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.equalTo(self.view);
-        make.bottom.equalTo(self->_footerView.mas_top);
+        make.bottom.mas_equalTo(-50);
     }];
     
     //自动计算高度

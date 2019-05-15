@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFDetailsPageModel.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFDetailsPageFooterView : UIView
 //商品ID
 @property (nonatomic, assign)NSInteger goodID;
+
+//商品ID
+@property (nonatomic, strong)ZFDetailsPageModel* detailsPageModel;
 
 
 @end

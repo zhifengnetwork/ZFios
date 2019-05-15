@@ -55,7 +55,7 @@ static NSString *const ZFGroupBuyingTableCellID = @"ZFGroupBuyingTableCellID";
 -(void)loadData
 {
     ZWeakSelf
-    [http_good activityGroupList:nil page:1 success:^(id responseObject)
+    [http_good activityGroupList:self.type page:1 success:^(id responseObject)
      {
          [self.collectionView.mj_header endRefreshing];
          [weakSelf showData:responseObject];

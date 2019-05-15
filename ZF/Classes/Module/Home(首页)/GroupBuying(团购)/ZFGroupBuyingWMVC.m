@@ -127,7 +127,7 @@
     if (_vc1==nil)
     {
         _vc1 = [[ZFGroupBuyingVC alloc]init];
-        _vc1.type = @"0";
+        _vc1.type = nil;
     }
     return _vc1;
 }
@@ -137,7 +137,7 @@
     if (_vc2==nil)
     {
         _vc2 = [[ZFGroupBuyingVC alloc]init];
-        _vc2.type = @"1";
+        _vc2.type = @"new";
     }
     return _vc2;
 }
@@ -147,7 +147,7 @@
     if (_vc3==nil)
     {
         _vc3 = [[ZFGroupBuyingVC alloc]init];
-        _vc3.type = @"2";
+        _vc3.type = @"comment";
     }
     return _vc3;
 }
