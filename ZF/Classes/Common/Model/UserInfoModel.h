@@ -65,7 +65,7 @@
 //区
 @property (nonatomic, copy) NSString *district;
 //性别(1代表男 2代表女 0代表保密)
-@property (nonatomic, assign) NSInteger sex;
+@property (nonatomic, copy) NSString *sex;
 //店铺关注，收藏夹
 @property (nonatomic, assign) NSInteger goods_collect_num;
 @property (nonatomic, assign) NSInteger goods_visit_num;

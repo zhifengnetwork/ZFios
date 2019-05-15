@@ -150,8 +150,9 @@
         [parameters setObject:usermodel.mobile forKey:@"mobile"];
     }
     
-    NSString *str2 = [NSString stringWithFormat:@"%ld",usermodel.sex];
-    [parameters setObject:str2 forKey:@"sex"];
+    if (!kStringIsEmpty(usermodel.sex)) {
+        [parameters setObject:usermodel.sex forKey:@"sex"];
+    }
     
     if (!kStringIsEmpty(usermodel.birthyear)) {
         [parameters setObject:usermodel.birthyear forKey:@"birthyear"];

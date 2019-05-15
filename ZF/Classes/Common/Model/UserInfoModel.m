@@ -39,11 +39,11 @@ MJCodingImplementation
 //获取性别名称
 -(NSString*)getSexText
 {
-    if (self.sex==1)
+    if (self.sex.intValue==1)
     {
         return @"男";
     }
-    else if (self.sex==2)
+    else if (self.sex.intValue==2)
     {
         return @"女";
     }
