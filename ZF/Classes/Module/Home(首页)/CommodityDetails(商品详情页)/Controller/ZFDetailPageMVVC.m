@@ -28,8 +28,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [self.menuView addSubview:self.backButton];
-    [self.menuView addSubview:self.mainButton];
+    [self.view addSubview:self.backButton];
+    [self.view addSubview:self.mainButton];
     
     [_backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).with.offset(12);
