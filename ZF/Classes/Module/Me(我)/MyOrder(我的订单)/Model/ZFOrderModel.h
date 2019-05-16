@@ -81,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 //订单总价
 @property (nonatomic , copy) NSString *total_amount;
 //下单时间
-@property (nonatomic , assign) NSInteger add_time;
+@property (nonatomic , copy) NSString * add_time;
 //最后新发货时间
 @property (nonatomic , assign) NSInteger shipping_time;
 //收货确认时间

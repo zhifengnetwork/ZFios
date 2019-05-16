@@ -187,6 +187,27 @@
     return str;
 }
 
+//我的订单日期
++(NSString*)Orderdate:(NSString*)dateline
+{
+    if (kStringIsEmpty(dateline))
+    {
+        return nil;
+    }
+    
+    NSString* str = nil;
+    long long lltime = [dateline longLongValue];
+    if (lltime==0)
+    {
+        return str;
+    }
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:lltime];
+    str = [date formattedDateWithFormat:@"yyyy/MM/dd HH:mm:ss"];//2019年04-28 11:10:10
+    
+    return str;
+}
+
 
 //将图片字符串转换为URL
 +(NSURL *)IconStringToUrl:(NSString*)iconString

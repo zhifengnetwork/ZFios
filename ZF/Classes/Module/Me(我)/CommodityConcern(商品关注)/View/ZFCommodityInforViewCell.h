@@ -10,14 +10,25 @@
 #import "ZFGoodModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
+
+@protocol ZFCommodityInforViewCellDelegate <NSObject>
+
+//查看同款被点击
+- (void)ZFCommodityInforViewCellDidClick;
+
+@end
+
 /**
  商品信息cell
  */
 @interface ZFCommodityInforViewCell : UICollectionViewCell
 
+@property (nonatomic, weak) id<ZFCommodityInforViewCellDelegate> delegate;
+
 @property (nonatomic, strong)ZFGoodModel *commodityModel;
 
-- (void)setDelete: (BOOL)isHidden;
+@property (nonatomic, strong) NSString *title;
+//- (void)setDelete: (BOOL)isHidden;
 @end
 
 NS_ASSUME_NONNULL_END

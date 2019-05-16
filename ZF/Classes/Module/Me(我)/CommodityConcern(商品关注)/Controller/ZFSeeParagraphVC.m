@@ -1,12 +1,12 @@
 //
-//  ZFCommodityInforVC.m
+//  ZFSeeParagraphVC.m
 //  ZF
 //
-//  Created by admin on 2019/3/14.
+//  Created by admin on 2019/5/16.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFCommodityInforVC.h"
+#import "ZFSeeParagraphVC.h"
 #import "RefreshGifHeader.h"
 #import "ZFCommodityInforViewCell.h"
 #import "ZFCommodityHeadView.h"
@@ -18,10 +18,9 @@
 #import "MJExtension.h"
 #import "ZFGoodModel.h"
 #import "http_home.h"
-#import "ZFSeeParagraphVC.h"
 #import "ZFDetailsPageVC.h"
 
-@interface ZFCommodityInforVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFCommodityInforViewCellDelegate>
+@interface ZFSeeParagraphVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFCommodityInforViewCellDelegate>
 
 /* collectionView */
 @property (strong , nonatomic)UICollectionView *collectionView;
@@ -31,13 +30,11 @@
 
 @end
 
-@implementation ZFCommodityInforVC
-static NSInteger type = 1;
+@implementation ZFSeeParagraphVC
 /* cell */
 static NSString *const ZFCommodityInforViewCellID = @"ZFCommodityInforViewCellID";
 static NSString *const ZFCommodityTableCellID = @"ZFCommodityTableCellID";
 /* head */
-//static NSString *const ZFClassificationHeadViewID = @"ZFClassificationHeadViewID";
 static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 /* foot */
 
@@ -45,37 +42,11 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-        self.title = @"我的关注";
-//
-//        UIImage *imgRight = [UIImage imageNamed:@"All"];
-//        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(editButtonDidClick)];
+    self.title = @"查看同款";
     
     [self setupUI];
     
 }
-
-//-(void)editButtonDidClick
-//{
-//    if (type == 0) {
-//        for (int i = 0; i<self.listModel.list.count; i++) {
-//            ZFCommodityInforViewCell *cell = (ZFCommodityInforViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-//            [cell setDelete:NO];
-//        }
-//        type = 1;
-//    }else{
-//        for (int i = 0; i<self.listModel.list.count; i++) {
-//            ZFCommodityInforViewCell *cell = (ZFCommodityInforViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-//            [cell setDelete:YES];
-//        }
-//        type = 0;
-//    }
-//
-//
-//
-//    //    LKEditingInformationVC* vc = [[LKEditingInformationVC alloc]init];
-//    //    vc.userInfo = self.userInfo;
-//    //    [self.navigationController pushViewController:vc animated:YES];
-//}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -102,50 +73,21 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     [self loadData];
 }
 
+
 -(void)loadData
 {
     ZWeakSelf
-    
-    [http_mine collect_list:^(id responseObject)
-     {
-         [weakSelf.collectionView.mj_header endRefreshing];
-         [weakSelf showData:responseObject];
-     } failure:^(NSError *error)
-    {
-        // 拿到当前的下拉刷新控件，结束刷新状态
-        [weakSelf.collectionView.mj_header endRefreshing];
-        [SVProgressHUD showErrorWithStatus:error.domain];
-     }];
-    
-}
-
--(void)showData:(id)responseObject
-{
-    if (kObjectIsEmpty(responseObject))
-    {
-        return;
-    }
-    
-    self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
-    
-    [self.collectionView reloadData];
-    [self loadData2];
-}
-
--(void)loadData2
-{
-    ZWeakSelf
-    [http_home goodsList:@"is_recommend" page:1 success:^(id responseObject)
+    [http_home goodsSameList:@"cat_id" page:1 success:^(id responseObject)
      {
          [self.collectionView.mj_header endRefreshing];
-         [weakSelf showData2:responseObject];
+         [weakSelf showData:responseObject];
      } failure:^(NSError *error) {
          [self.collectionView.mj_header endRefreshing];
          [SVProgressHUD showErrorWithStatus:error.domain];
      }];
 }
 
--(void)showData2:(id)responseObject
+-(void)showData:(id)responseObject
 {
     if (kObjectIsEmpty(responseObject))
     {
@@ -183,13 +125,14 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
         //关注商品
         ZFCommodityInforViewCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFCommodityInforViewCellID forIndexPath:indexPath];
         oell.commodityModel = [self.listModel.list objectAtIndex:indexPath.row];
+        oell.title = @"去购买";
         oell.delegate = self;
         gridcell = oell;
-
+        
     }
     else if (indexPath.section == 1)
     {
-        //猜您喜欢的商品
+        //同款
         ZFCommodityTableCell *xell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFCommodityTableCellID forIndexPath:indexPath];
         xell.isShowButton = NO;
         ZFDistribuCommModel *distribuCommModel = [self.distribListModel.goods_list objectAtIndex:indexPath.row];
@@ -219,12 +162,13 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     {
         if (indexPath.section == 0)
         {
-//            ZFClassificationHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassificationHeadViewID forIndexPath:indexPath];
-//            reusableview = headerView;
+            //            ZFClassificationHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassificationHeadViewID forIndexPath:indexPath];
+            //            reusableview = headerView;
         }
         else if (indexPath.section == 1)
         {
             ZFCommodityHeadView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFCommodityHeadViewID forIndexPath:indexPath];
+            headerView.title = @"          同款";
             reusableview = headerView;
         }
         
@@ -253,7 +197,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     {
         return CGSizeMake((LL_ScreenWidth - 4)/2, (LL_ScreenWidth - 4)/2 + 40);
     }
-
+    
     return CGSizeZero;
 }
 
@@ -284,7 +228,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 {
     if (section == 0)
     {
-//        return CGSizeMake(LL_ScreenWidth, 40);
+        //        return CGSizeMake(LL_ScreenWidth, 40);
     }
     else if (section == 1)
     {
@@ -337,24 +281,14 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 }
 
 
-//商品关注headview被点击 1:分类 2:有券 3:促销 4:降价 5:有货
-- (void)ZFClassificationHeadViewDidClick:(int)type;
-{
-    if (type==1)
-    {
-        //跳转到分类
-//        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
-    }
-    
-}
 
-//查看同款被点击
+//去购买被点击
 - (void)ZFCommodityInforViewCellDidClick
 {
-    ZFSeeParagraphVC* vc = [[ZFSeeParagraphVC alloc]init];
+    ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 
 
 - (UICollectionView *)collectionView
@@ -370,13 +304,11 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
         [_collectionView registerClass:[ZFCommodityInforViewCell class] forCellWithReuseIdentifier:ZFCommodityInforViewCellID];
         [_collectionView registerClass:[ZFCommodityTableCell class] forCellWithReuseIdentifier:ZFCommodityTableCellID];
         
-//        [_collectionView registerClass:[ZFClassificationHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassificationHeadViewID];
         [_collectionView registerClass:[ZFCommodityHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFCommodityHeadViewID];
         
         [self.view addSubview:_collectionView];
     }
     return _collectionView;
 }
-
 
 @end

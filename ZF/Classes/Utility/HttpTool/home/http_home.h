@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 //首页点击[看相似]根据分类id跳转至商品列表页
 + (void)goodsList:(NSString*)type page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//我关注的商品--同款
++ (void)goodsSameList:(NSString*)ID page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 //上传头像接口
 //image 头像
 + (void)update_head_pic:(UIImage*)image success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;

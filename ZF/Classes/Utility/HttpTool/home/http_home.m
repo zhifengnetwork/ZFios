@@ -80,6 +80,28 @@
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
+//我关注的商品--同款
++ (void)goodsSameList:(NSString*)ID page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    if (!kStringIsEmpty(ID)) {
+        [parameters setObject:ID forKey:@"id"];
+    }
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",page];
+    [parameters setObject:str forKey:@"page"];
+    
+    [parameters setObject:@"10" forKey:@"num"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/Goods/goodsList"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
 //上传头像接口
 //image 头像
 + (void)update_head_pic:(UIImage*)image success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
