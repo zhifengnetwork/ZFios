@@ -207,6 +207,9 @@
 		53F1A47222805807007B6FF4 /* ZFGoodCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F1A47122805807007B6FF4 /* ZFGoodCommentModel.m */; };
 		53F1B7E12276CF13000F2996 /* ZFBuyToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F1B7E02276CF13000F2996 /* ZFBuyToolBarView.m */; };
 		69F9943388184D9DFB8EE494 /* libPods-ZF.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */; };
+		8407149C228D134200889F63 /* ZFMaterialAreaTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8407149B228D134200889F63 /* ZFMaterialAreaTableCell.m */; };
+		8407149F228D168D00889F63 /* ZFMaterialAreaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8407149E228D168D00889F63 /* ZFMaterialAreaVC.m */; };
+		840714A2228D3AA800889F63 /* ZFMaterialAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840714A1228D3AA800889F63 /* ZFMaterialAreaModel.m */; };
 		8408F9672272EED700C55F45 /* ZFADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F9662272EED700C55F45 /* ZFADModel.m */; };
 		8408F96A2272F0AF00C55F45 /* ZFHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F9692272F0AF00C55F45 /* ZFHomeModel.m */; };
 		8408F96D2272F21F00C55F45 /* ZFNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F96B2272F21F00C55F45 /* ZFNoticeModel.m */; };
@@ -739,6 +742,12 @@
 		53F1B7E02276CF13000F2996 /* ZFBuyToolBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFBuyToolBarView.m; sourceTree = "<group>"; };
 		5ADF6DFB4E38624F35CBBCA5 /* Pods-ZFTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZFTests/Pods-ZFTests.release.xcconfig"; sourceTree = "<group>"; };
 		5FAC7E4D0704CFD067CBF286 /* Pods-ZFUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZFUITests/Pods-ZFUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8407149A228D134200889F63 /* ZFMaterialAreaTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMaterialAreaTableCell.h; sourceTree = "<group>"; };
+		8407149B228D134200889F63 /* ZFMaterialAreaTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMaterialAreaTableCell.m; sourceTree = "<group>"; };
+		8407149D228D168D00889F63 /* ZFMaterialAreaVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMaterialAreaVC.h; sourceTree = "<group>"; };
+		8407149E228D168D00889F63 /* ZFMaterialAreaVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMaterialAreaVC.m; sourceTree = "<group>"; };
+		840714A0228D3AA800889F63 /* ZFMaterialAreaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMaterialAreaModel.h; sourceTree = "<group>"; };
+		840714A1228D3AA800889F63 /* ZFMaterialAreaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMaterialAreaModel.m; sourceTree = "<group>"; };
 		8408F9652272EED700C55F45 /* ZFADModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFADModel.h; sourceTree = "<group>"; };
 		8408F9662272EED700C55F45 /* ZFADModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFADModel.m; sourceTree = "<group>"; };
 		8408F9682272F0AF00C55F45 /* ZFHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFHomeModel.h; sourceTree = "<group>"; };
@@ -1804,6 +1813,7 @@
 		18EA50AD22266ECF00A2D612 /* Home(首页) */ = {
 			isa = PBXGroup;
 			children = (
+				84071499228D12F200889F63 /* MaterialArea(素材区) */,
 				8499AF58228AD288004ADBAA /* GroupBuying(团购) */,
 				53E90D032272EA6E0063A237 /* Model */,
 				534F181A224F0D01006A08A4 /* Search(首页搜索） */,
@@ -2231,6 +2241,19 @@
 				53E8747E228D12BE007E0E9E /* ZFBuyModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		84071499228D12F200889F63 /* MaterialArea(素材区) */ = {
+			isa = PBXGroup;
+			children = (
+				8407149A228D134200889F63 /* ZFMaterialAreaTableCell.h */,
+				8407149B228D134200889F63 /* ZFMaterialAreaTableCell.m */,
+				8407149D228D168D00889F63 /* ZFMaterialAreaVC.h */,
+				8407149E228D168D00889F63 /* ZFMaterialAreaVC.m */,
+				840714A0228D3AA800889F63 /* ZFMaterialAreaModel.h */,
+				840714A1228D3AA800889F63 /* ZFMaterialAreaModel.m */,
+			);
+			path = "MaterialArea(素材区)";
 			sourceTree = "<group>";
 		};
 		840A21582274634F00CF8B72 /* Model */ = {
@@ -3102,6 +3125,7 @@
 				84499BBB223A357100A7A988 /* ZFCommodityHeadView.m in Sources */,
 				189CC0F42223E81300EB5A64 /* HttpTool.m in Sources */,
 				18F93EF9224E1B07006ED290 /* ZFClassifyBannerHeadView.m in Sources */,
+				8407149F228D168D00889F63 /* ZFMaterialAreaVC.m in Sources */,
 				842CE84B2280165C004D73C0 /* GHDropMenuTitleItem.m in Sources */,
 				8498DAE3223FA45A008C47A6 /* ZFMyWalletControllerCell.m in Sources */,
 				5315E5DF2252233C00D8CD3C /* ZFSearchTableViewCell.m in Sources */,
@@ -3231,6 +3255,7 @@
 				53D153AB2275B51D00013DE1 /* ZFSpellListHeaderView.m in Sources */,
 				840BE8FA224A027A00568B11 /* ZFevaluationHeadTableCell.m in Sources */,
 				180F31B2222FA6890040718F /* ZFStationNewsVC.m in Sources */,
+				8407149C228D134200889F63 /* ZFMaterialAreaTableCell.m in Sources */,
 				53D51251228C328100A5F0C7 /* ZFDetailInvoiceVC.m in Sources */,
 				189CC0F02223E81300EB5A64 /* UIImage+HMEmoticon.m in Sources */,
 				1819918A22376BE2004585D8 /* ZFAddressManagementVC.m in Sources */,
@@ -3344,6 +3369,7 @@
 				842CE8432280165C004D73C0 /* UIView+Extension.m in Sources */,
 				84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */,
 				188F41B82236666400165142 /* ZFTextInputVC.m in Sources */,
+				840714A2228D3AA800889F63 /* ZFMaterialAreaModel.m in Sources */,
 				189CC0E82223E81300EB5A64 /* NSBundle+HMEmoticon.m in Sources */,
 				840BE900224A220F00568B11 /* ZFAskEveryoneHeadTableCell.m in Sources */,
 				5304892E2240E53C002FAF61 /* ZFSelectPayCell.m in Sources */,
