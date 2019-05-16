@@ -16,21 +16,14 @@
 
 @interface ZFShoppingCartCell()<PPNumberButtonDelegate>
 
-@property (nonatomic, strong)UILabel *full;
-@property (strong, nonatomic)  UIButton *fullSale;//满赠优惠显示
+
 @property (strong, nonatomic)  UIButton *selectGoodButton;
 @property (strong, nonatomic)  UIImageView *goodsImageView;//商品图片
 @property (strong, nonatomic)  UILabel *goodsLabel;//商品名字
 
 @property (strong, nonatomic)  PPNumberButton *numberButton;
 @property (strong, nonatomic) UIButton *mealButton;
-@property (nonatomic, strong) UIButton *serviceButton;
 @property (strong, nonatomic)  UILabel *goodsPriceLabel;//商品价格
-@property (nonatomic, strong)   UIView *lineView;
-@property (strong, nonatomic)  UILabel *sale;
-@property (strong, nonatomic)  UILabel *saleLabel;//优惠显示
-@property (nonatomic, strong) UIView *lineView2;
-@property (nonatomic, strong) UIButton *changeButton;
 
 
 @end
@@ -77,40 +70,22 @@
     self.layer.cornerRadius = 8.0;
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    [self.contentView addSubview:self.full];
-    [self.contentView addSubview:self.fullSale];
     [self.contentView addSubview:self.goodsImageView];
     [self.contentView addSubview:self.goodsLabel];
     [self.contentView addSubview:self.numberButton];
     [self.contentView addSubview:self.mealButton];
-    [self.contentView addSubview:self.serviceButton];
     [self.contentView addSubview:self.goodsPriceLabel];
-    [self.contentView addSubview:self.lineView];
-    [self.contentView addSubview:self.sale];
-    [self.contentView addSubview:self.saleLabel];
-    [self.contentView addSubview:self.lineView2];
-    [self.contentView addSubview:self.changeButton];
+
     [self.contentView addSubview:self.selectGoodButton];
     
-    [_full mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.equalTo(self).with.offset(10);
-        make.width.mas_equalTo(40);
-    }];
-    
-    [_fullSale mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.full.mas_right).with.offset(12);
-        make.right.equalTo(self).with.offset(-10);
-        make.centerY.equalTo(self.full.mas_centerY);
-    }];
-    [_fullSale setTitleEdgeInsets:UIEdgeInsetsMake(0, - _fullSale.imageView.frame.size.width-150, 0, 0)];
-    [_fullSale setImageEdgeInsets:UIEdgeInsetsMake(0, _fullSale.titleLabel.frame.size.width+50, 0, 0)];
+   
     [_selectGoodButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.contentView);
+        make.centerY.equalTo(self.contentView.mas_centerY);
         make.left.mas_equalTo(10);
     }];
     
     [_goodsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.fullSale.mas_bottom).with.offset(14);
+        make.centerY.equalTo(self.contentView.mas_centerY);
         make.left.mas_equalTo(30);
         make.width.mas_equalTo(110);
         make.height.mas_equalTo(85);
@@ -139,46 +114,9 @@
     [_mealButton setTitleEdgeInsets:UIEdgeInsetsMake(0, - _mealButton.imageView.frame.size.width, 0, 0)];
     [_mealButton setImageEdgeInsets:UIEdgeInsetsMake(0, _mealButton.titleLabel.frame.size.width+70, 0, -_mealButton.titleLabel.frame.size.width)];
     
-    [_serviceButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.bottom.equalTo(self.goodsImageView.mas_bottom);
-        make.left.equalTo(self.numberButton.mas_left);
-        make.width.mas_equalTo(50);
-        make.height.mas_equalTo(18);
-    }];
-    
     [_goodsPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self).with.offset(-10);
         make.bottom.equalTo(self.goodsImageView.mas_bottom);
-    }];
-    
-    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.goodsImageView.mas_bottom).with.offset(15);
-        make.left.equalTo(self).with.offset(10);
-        make.right.equalTo(self).with.offset(-10);
-        make.height.mas_equalTo(1);
-    }];
-    
-    [_changeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self).with.offset(-10);
-        make.top.equalTo(self.lineView.mas_bottom).with.offset(5);
-    }];
-    
-    [_lineView2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.lineView.mas_bottom).with.offset(11);
-        make.width.mas_equalTo(1);
-        make.right.equalTo(self.changeButton.mas_left).with.offset(-15);
-        make.height.mas_equalTo(15);
-    }];
-    
-    [_saleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.lineView2.mas_left).with.offset(-15);
-        make.centerY.equalTo(self.changeButton.mas_centerY);
-    }];
-    
-    [_sale mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.saleLabel.mas_left).with.offset(-15);
-        make.centerY.equalTo(self.changeButton.mas_centerY);
     }];
     
 }
@@ -202,25 +140,6 @@
     _numberButton.currentNumber = _model.goods_num;
 }
 
-- (UILabel *)full{
-    if (_full == nil) {
-        _full = [[UILabel alloc]init];
-        _full.font = [UIFont systemFontOfSize:10];
-        _full.textColor = RGBColorHex(0xe51c23);
-        _full.text = @"满赠";
-    }return _full;
-}
-
-- (UIButton *)fullSale{
-    if (_fullSale == nil) {
-        _fullSale = [[UIButton alloc]init];
-        _fullSale.titleLabel.font = [UIFont systemFontOfSize:10];
-        [_fullSale setTitleColor:RGBColorHex(0x4d4d4d) forState:UIControlStateNormal];
-        [_fullSale setTitle:@"已购物4900.00元，可领取赠品" forState:UIControlStateNormal];
-        [_fullSale setImage:[UIImage imageNamed:@"arrow"] forState:UIControlStateNormal];
-        
-    }return _fullSale;
-}
 
 - (UIButton *)selectGoodButton{
     if (_selectGoodButton == nil) {
@@ -275,17 +194,6 @@
     }return _mealButton;
 }
 
-- (UIButton *)serviceButton{
-    if (_serviceButton == nil) {
-        _serviceButton = [[UIButton alloc]init];
-        _serviceButton.layer.cornerRadius = 10;
-        _serviceButton.backgroundColor = RGBColorHex(0xe51c23);
-        [_serviceButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_serviceButton setTitle:@"选服务" forState:UIControlStateNormal];
-        _serviceButton.titleLabel.font = [UIFont systemFontOfSize:8];
-        [_changeButton addTarget:self action:@selector(selectservice:) forControlEvents:UIControlEventTouchUpInside];
-    }return _serviceButton;
-}
 
 - (UILabel *)goodsPriceLabel{
     if (_goodsPriceLabel == nil) {
@@ -296,61 +204,6 @@
     }return _goodsPriceLabel;
 }
 
-- (UIView *)lineView{
-    if (_lineView == nil) {
-        _lineView = [[UIView alloc]init];
-        _lineView.backgroundColor = RGBColorHex(0xf2f2f2);
-    }return _lineView;
-}
-
-- (UILabel *)sale{
-    if (_sale == nil) {
-        _sale = [[UILabel alloc]init];
-        _sale.font = [UIFont systemFontOfSize:10];
-        _sale.textColor = RGBColorHex(0x6a6a6a);
-        _sale.text = @"优惠";
-    }return _sale;
-}
-
-- (UILabel *)saleLabel{
-    if (_saleLabel == nil) {
-        _saleLabel = [[UILabel alloc]init];
-        _saleLabel.font = [UIFont systemFontOfSize:10];
-        _saleLabel.textColor = RGBColorHex(0x9f9f9f);
-        _saleLabel.text = @"满100，200，323可换购商品";
-    }return _saleLabel;
-}
-
-- (UIView *)lineView2{
-    if (_lineView2 == nil) {
-        _lineView2 = [[UIView alloc]init];
-        _lineView2.backgroundColor = [UIColor blackColor];
-    }return _lineView2;
-}
-
-- (UIButton *)changeButton{
-    if (_changeButton == nil) {
-        _changeButton = [[UIButton alloc]init];
-        [_changeButton setTitleColor:RGBColorHex(0x393939) forState:UIControlStateNormal];
-        _changeButton.titleLabel.font = [UIFont boldSystemFontOfSize:12];
-        [_changeButton setTitle:@"修改" forState:UIControlStateNormal];
-        [_changeButton addTarget:self action:@selector(revise:) forControlEvents:UIControlEventTouchUpInside];
-    }return _changeButton;
-}
-
-/*点击进入店铺 */
-- (void)goStore:(id)sender {
-    NSLog(@"点击进入店铺");
-}
-//进入满赠界面
-- (void)goSale:(id)sender {
-}
-//选择服务套餐
-- (void)selectservice:(id)sender {
-}
-//修改套餐
-- (void)revise:(id)sender {
-}
 
 - (void)selectGood:(UIButton*)btn{
     btn.selected = !btn.selected;

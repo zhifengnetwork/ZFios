@@ -15,8 +15,6 @@
 @property (nonatomic, strong) UIView *rightLine;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIButton *wxButton;
-@property (nonatomic, strong) UIButton *qqButton;
-@property (nonatomic, strong) UIButton *sinaButton;
 
 @end
 
@@ -38,8 +36,6 @@
     [self addSubview:self.titleLabel];
     [self addSubview:self.rightLine];
     [self addSubview:self.wxButton];
-    [self addSubview:self.qqButton];
-    [self addSubview:self.sinaButton];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
@@ -62,28 +58,14 @@
         make.height.mas_equalTo(0.5);
     }];
     
-    [_qqButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_wxButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
         make.width.mas_equalTo(42);
         make.height.mas_equalTo(42);
     }];
     
-    [_wxButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self->_qqButton.mas_left).offset(-33);
-//        make.centerX.equalTo(self);
-        make.centerY.equalTo(self->_qqButton);
-        make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
-        make.width.mas_equalTo(42);
-        make.height.mas_equalTo(42);
-    }];
-    
-    [_sinaButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_qqButton.mas_right).offset(33);
-        make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
-        make.width.mas_equalTo(42);
-        make.height.mas_equalTo(42);
-    }];
+
 }
 
 -(void)setIsHidePhone:(BOOL)isHidePhone
@@ -94,28 +76,13 @@
     {
         _titleLabel.text = @"微信登录";
         
-        [_qqButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        [_wxButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
             make.width.mas_equalTo(42);
             make.height.mas_equalTo(42);
         }];
         
-        [_wxButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self->_qqButton.mas_left).offset(-33);
-//            make.centerX.equalTo(self);
-            make.centerY.equalTo(self->_qqButton);
-            make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
-            make.width.mas_equalTo(42);
-            make.height.mas_equalTo(42);
-        }];
-        
-        [_sinaButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self->_qqButton.mas_right).offset(33);
-            make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
-            make.width.mas_equalTo(42);
-            make.height.mas_equalTo(42);
-        }];
     }
     
 }
@@ -170,27 +137,6 @@
     return _wxButton;
 }
 
-- (UIButton *)qqButton {
-    if (_qqButton == nil) {
-        
-        _qqButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_qqButton setImage:[UIImage imageNamed:@"qqicon"] forState:UIControlStateNormal];
-        [_qqButton addTarget:self action:@selector(ButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        _qqButton.tag = 1000+1;
-    }
-    return _qqButton;
-}
-
-- (UIButton *)sinaButton {
-    if (_sinaButton == nil) {
-        
-        _sinaButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_sinaButton setImage:[UIImage imageNamed:@"weibo"] forState:UIControlStateNormal];
-        [_sinaButton addTarget:self action:@selector(ButtonDidClick:) forControlEvents:UIControlEventTouchUpInside];
-        _sinaButton.tag = 1000+3;
-    }
-    return _sinaButton;
-}
 
 
 @end
