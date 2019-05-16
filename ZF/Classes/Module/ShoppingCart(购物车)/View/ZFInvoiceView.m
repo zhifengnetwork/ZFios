@@ -8,9 +8,10 @@
 
 #import "ZFInvoiceView.h"
 #import "ZFDetailInvoiceVC.h"
-@interface ZFInvoiceView()
+@interface ZFInvoiceView()<ZFDetailInvoiceVCDelegate>
 @property (nonatomic, strong)UILabel *invoiceLabel;
 @property (nonatomic, strong)UIButton *invoiceButton;
+@property (nonatomic, strong)UIImageView *jumpImageView;
 @end
 @implementation ZFInvoiceView
 
@@ -26,19 +27,25 @@
 - (void)setup{
     [self addSubview:self.invoiceLabel];
     [self addSubview:self.invoiceButton];
+    [self addSubview:self.jumpImageView];
     
     [_invoiceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.centerY.equalTo(self.mas_centerY);
     }];
     
-    [_invoiceButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_jumpImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self);
-        make.top.bottom.equalTo(self);
-        make.width.mas_equalTo(100);
+        make.centerY.equalTo(self.mas_centerY);
     }];
-    [_invoiceButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -self.invoiceButton.imageView.frame.size.width, 0, 0)];
-    [_invoiceButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0,-self.invoiceButton.titleLabel.frame.size.width-80)];
+    
+    [_invoiceButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.jumpImageView.mas_left);
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.mas_equalTo(200);
+    }];
+    
+    
     
 }
 
@@ -50,6 +57,12 @@
         _invoiceLabel.text = @"发票信息";
     }return _invoiceLabel;
 }
+- (UIImageView *)jumpImageView{
+    if (_jumpImageView == nil) {
+        _jumpImageView = [[UIImageView alloc]init];
+        _jumpImageView.image = [UIImage imageNamed:@"arrow"];
+    }return _jumpImageView;
+}
 
 - (UIButton *)invoiceButton{
     if (_invoiceButton == nil) {
@@ -57,14 +70,19 @@
         _invoiceButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [_invoiceButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_invoiceButton setTitle:@"不开发票" forState:UIControlStateNormal];
-        [_invoiceButton setImage:[UIImage imageNamed:@"arrow"] forState:UIControlStateNormal];
         [_invoiceButton addTarget:self action:@selector(invoiceClick) forControlEvents:UIControlEventTouchUpInside];
     }return _invoiceButton;
 }
 
 - (void)invoiceClick{
     ZFDetailInvoiceVC *vc = [[ZFDetailInvoiceVC alloc]init];
+    vc.delegate = self;
     [[self currentViewController].navigationController pushViewController:vc animated:YES];
+}
+
+- (void)invoice:(NSArray *)invoiceArray{
+    _invoiceArray = invoiceArray;
+    [_invoiceButton setTitle:invoiceArray[0] forState:UIControlStateNormal];
 }
 
 //获取当前控制器

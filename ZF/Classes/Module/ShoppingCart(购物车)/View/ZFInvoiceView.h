@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFInvoiceView : UIView
 
+@property (nonatomic, strong)NSArray *invoiceArray;
 @end
 
 NS_ASSUME_NONNULL_END

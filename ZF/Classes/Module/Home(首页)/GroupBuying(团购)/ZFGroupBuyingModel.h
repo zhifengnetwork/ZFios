@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *rebate;
 @property (nonatomic , copy)NSString *goods_price;
 @property (nonatomic , copy)NSString *comment_count;
+//结算
+@property (nonatomic , copy)NSString *shop_price;
+@property (nonatomic , copy)NSString *item;
 
 @end
 

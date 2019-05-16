@@ -7,6 +7,7 @@
 //
 
 #import "ZFDetailInvoiceVC.h"
+#import "SVProgressHUD.h"
 
 @interface ZFDetailInvoiceVC ()
 @property (nonatomic, strong)UIView *titleView;
@@ -226,6 +227,7 @@
         _companyTF.placeholder = @"请填写单位名称";
         _companyTF.font = [UIFont systemFontOfSize:13];
         _companyTF.textColor = RGBColorHex(0x4d4d4d);
+        
     }return _companyTF;
 }
 
@@ -237,6 +239,7 @@
         _identifyTF.placeholder = @"请在此填写纳税人识别号";
         _identifyTF.font = [UIFont systemFontOfSize:13];
         _identifyTF.textColor = RGBColorHex(0x4d4d4d);
+        
     }return _identifyTF;
 }
 
@@ -281,7 +284,7 @@
         _noButton = [[UIButton alloc]init];
         _noButton.titleLabel.font = [UIFont systemFontOfSize:15];
         [_noButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [_noButton setTitle:@"商品类别" forState:UIControlStateNormal];
+        [_noButton setTitle:@"不开发票" forState:UIControlStateNormal];
         [_noButton setImage:[UIImage imageNamed:@"option_b"] forState:UIControlStateNormal];
         [_noButton setImage:[UIImage imageNamed:@"option_s"] forState:UIControlStateSelected];
         [_noButton addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -360,7 +363,53 @@
     }
 }
 
+- (void)write{
+    self.agreeButton.enabled = self.companyTF.text.length>0;
+    
+}
+
 - (void)agreeClick{
+    NSMutableArray* invoiceArray = [NSMutableArray new];
+    if (self.noButton.selected == YES) {
+        [invoiceArray addObject:@"不开发票"];
+        [self.delegate invoice:invoiceArray];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else if (self.detailButton.selected == YES) {
+        if (self.companyButton.selected == YES) {
+            if (self.companyTF.text.length==0) {
+                [SVProgressHUD showErrorWithStatus:@"发票抬头不能为空"];
+                return;
+            }else if(self.identifyTF.text.length!=15){
+                [SVProgressHUD showErrorWithStatus:@"请填写正确的纳税人识别号"];
+                return;
+            }
+            [invoiceArray addObject:[NSString stringWithFormat:@"纸质（%@-商品明细）",self.companyTF.text]];
+            [invoiceArray addObject:[NSString stringWithFormat:@"%@",self.companyTF.text]];
+            [invoiceArray addObject:[NSString stringWithFormat:@"%@",self.identifyTF.text]];
+        }else{
+            [invoiceArray addObject:@"纸质（个人-商品明细）"];
+        }
+        [self.delegate invoice:invoiceArray];
+        [self.navigationController popViewControllerAnimated:YES];
+        
+    }else if (self.categoriesButton.selected == YES){
+        if (self.companyButton.selected == YES) {
+            if (self.companyTF.text.length==0) {
+                [SVProgressHUD showErrorWithStatus:@"发票抬头不能为空"];
+                return;
+            }else if(self.identifyTF.text.length!=15){
+                [SVProgressHUD showErrorWithStatus:@"请填写正确的纳税人识别号"];
+                return;
+            }
+            [invoiceArray addObject:[NSString stringWithFormat:@"纸质（%@-商品类别）",self.companyTF.text]];
+            [invoiceArray addObject:[NSString stringWithFormat:@"%@",self.companyTF.text]];
+            [invoiceArray addObject:[NSString stringWithFormat:@"%@",self.identifyTF.text]];
+        }else{
+            [invoiceArray addObject:@"纸质（个人-商品类别）"];
+        }
+        [self.delegate invoice:invoiceArray];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     
 }
 @end

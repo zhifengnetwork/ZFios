@@ -8,7 +8,7 @@
 
 #import "ZFConfirmOrderVC.h"
 #import "ZFAddressManagementVC.h"
-
+#import "ZFBuyModel.h"
 #import "ZFXuXianView.h"
 #import "ZFExpressView.h"
 #import "ZFSelectPayView.h"
@@ -18,6 +18,7 @@
 #import "SVProgressHUD.h"
 #import "ZFInvoiceView.h"
 #import "ZFConfirmOrderCell.h"
+#import "ZFGroupBuyingModel.h"
 
 @interface ZFConfirmOrderVC ()<UITableViewDelegate,UITableViewDataSource>
 //收货地址
@@ -62,6 +63,9 @@
 @property (nonatomic, strong)UILabel *totalLabel;
 @property (nonatomic, strong)UILabel *totalpriceLabel;
 @property (nonatomic, strong)UIButton *submitButton;
+@property (nonatomic, strong)ZFBuyModel *buyModel;
+
+@property (nonatomic, copy)NSString *order_sn;
 @end
 
 @implementation ZFConfirmOrderVC
@@ -324,24 +328,10 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         make.right.equalTo(self.totalpriceLabel.mas_left);
         make.centerY.equalTo(self.totalpriceLabel.mas_centerY);
     }];
-   
+
+    self.ordersModel = [[ZFOrdersModel alloc]init];
+    self.ordersModel.act = 0;
     
-    if (/* DISABLES CODE */ (1)) {
-        self.emptyAddressLabel.hidden = YES;
-    }else{
-        self.nameLabel.hidden = YES;
-        self.phoneNumberLabel.hidden = YES;
-        self.addressLabel.hidden = YES;
-    }
-    if (self.emptyAddressLabel.hidden == NO) {
-        self.submitButton.enabled = NO;
-        [self.submitButton setBackgroundImage:nil forState:UIControlStateNormal];
-        [self.submitButton setBackgroundColor:RGBColorHex(0xe6e6e6)];
-    }else{
-        self.submitButton.enabled = YES;
-        [self.submitButton setBackgroundImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
-    }
-    _ordersModel.act = 0;
     [http_order post_order:_ordersModel success:^(id responseObject) {
         [self showData:responseObject];
     } failure:^(NSError *error) {
@@ -351,10 +341,42 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
 }
 
 - (void)showData: (id)responseObject{
-    if (!kObjectIsEmpty(responseObject)) {
+    if (kObjectIsEmpty(responseObject)) {
         return;
     }
+    self.buyModel = [ZFBuyModel mj_objectWithKeyValues:responseObject];
+    ZFAddressEditModel *addressModel = self.buyModel.address;
+    if (kObjectIsEmpty(addressModel)) {
+        _emptyAddressLabel.hidden = NO;
+        self.nameLabel.hidden = YES;
+        self.phoneNumberLabel.hidden = YES;
+        self.addressLabel.hidden = YES;
+    }else{
+    _nameLabel.text = [NSString stringWithFormat:@"%@",addressModel.consignee];
+        _phoneNumberLabel.text = [NSString stringWithFormat:@"%@",addressModel.mobile];
+        _addressLabel.text = [NSString stringWithFormat:@"%@%@%@%@",addressModel.province_name,addressModel.city_name,addressModel.district_name,addressModel.twon_name];
+    }
+    _balanceLabel.text = [NSString stringWithFormat:@"余额：￥%@",_buyModel.user_money];
+    ZFOrderModel *priceModel = self.buyModel.price;
+    _orderDiscount.text = [NSString stringWithFormat:@"￥%@元",priceModel.order_prom_amount];
+    _price.text = [NSString stringWithFormat:@"￥%@元",priceModel.goods_price];
+    _delivery.text = [NSString stringWithFormat:@"￥%@元",priceModel.shipping_price];
+    _cashIn.text = [NSString stringWithFormat:@"￥%@元",priceModel.sign_price];
+    _depositPaid.text = [NSString stringWithFormat:@"￥%ld元",(long)priceModel.deposit];
+    _balanceDiscount.text = [NSString stringWithFormat:@"￥%@元",priceModel.user_money];
+    _totalpriceLabel.text = [NSString stringWithFormat:@"￥%@元",priceModel.order_amount];
+    //设置提交按钮
+    if (self.emptyAddressLabel.hidden == NO) {
+        self.submitButton.enabled = NO;
+        [self.submitButton setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.submitButton setBackgroundColor:RGBColorHex(0xe6e6e6)];
+    }else{
+        self.submitButton.enabled = YES;
+        [self.submitButton setBackgroundImage:[UIImage imageNamed:@"submit"] forState:UIControlStateNormal];
+    }
+
     
+    [self.tableView reloadData];
 }
 
 - (UIView *)addressView{
@@ -373,6 +395,7 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
 //        [_emptyAddressLabel setFont:[UIFont systemFontOfSize:12]];
         [_emptyAddressLabel setFont:[UIFont boldSystemFontOfSize:12]];
         [_emptyAddressLabel setTextColor:RGBColorHex(0xe51c23)];
+        _emptyAddressLabel.hidden = YES;
     }
     return _emptyAddressLabel;
 }
@@ -664,11 +687,12 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
 }
 #pragma mark --协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return self.buyModel.goodsinfo.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFConfirmOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFConfirmOrderCellID forIndexPath:indexPath];
+    cell.goodModel = [self.buyModel.goodsinfo objectAtIndex:indexPath.row];
     return cell;
 }
 #pragma mark --方法
@@ -683,8 +707,44 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
 }
 //提交订单，调到选择支付方式页面
 - (void)submitClick{
+    //设置提交订单参数
+    ZFAddressEditModel *addressModel = self.buyModel.address;
+//    ZFGroupBuyingModel *goodModel = self.buyModel.goodsinfo[0];
+    [_ordersModel setAddress_id:addressModel.address_id];
+    if (self.invoiceView.invoiceArray.count ==0) {
+        _ordersModel.invoice_title = @"不开发票";
+    }else{
+        _ordersModel.invoice_title = self.invoiceView.invoiceArray[0];
+        if (self.invoiceView.invoiceArray.count>2) {
+            _ordersModel.invoice_desc = self.invoiceView.invoiceArray[1];
+            _ordersModel.taxpayer = self.invoiceView.invoiceArray[2];
+        }
+    }
+    
+    if (self.selectButton1.selected == YES) {
+        _ordersModel.user_money = @"1";
+    }
+    _ordersModel.user_note = self.textView.text;
+    //是否立即购买
+//    _ordersModel.action = 1
+//    _ordersModel.goods_id =
+//    _ordersModel.goods_num=
+//    _ordersModel.item_id =
+    _ordersModel.act = 1;
+    _ordersModel.consignee = addressModel.consignee;
+    _ordersModel.mobile = addressModel.mobile;
+    
+    [http_order post_order:_ordersModel success:^(id responseObject) {
+        if (kObjectIsEmpty(responseObject)) {
+            return;
+        }
+        self.order_sn = [responseObject objectForKey:@"order_sn"];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
     if (self.submitButton.enabled ) {
         ZFSelectPayView *payView = [[ZFSelectPayView alloc]initWithFrame:CGRectMake(0, LL_ScreenHeight - 367, LL_ScreenWidth, 367)];
+        payView.order_sn = _order_sn;
         TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:payView preferredStyle:TYAlertControllerStyleActionSheet];
         alertController.backgoundTapDismissEnable = YES;
         [self presentViewController:alertController animated:YES completion:nil];

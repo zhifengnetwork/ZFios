@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ZFDetailInvoiceVC;
+@protocol ZFDetailInvoiceVCDelegate <NSObject>
 
+- (void)invoice: (NSArray *_Nonnull)invoiceArray;
+
+@end
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFDetailInvoiceVC : UIViewController
 //选择发票类型
+
+@property (nonatomic, weak) id <ZFDetailInvoiceVCDelegate>delegate;
 @end
 
 NS_ASSUME_NONNULL_END
