@@ -7,6 +7,7 @@
 //
 
 #import "ZFMyOrderHeadTableCell.h"
+#import "ZFTool.h"
 
 @interface ZFMyOrderHeadTableCell()
 
@@ -100,7 +101,7 @@
 
 - (void)setOrderModel:(ZFOrderModel *)orderModel{
     _orderModel = orderModel;
-    _timeLabel.text = [NSString stringWithFormat:@"%ld",(long)_orderModel.add_time];
+    _timeLabel.text = [ZFTool Orderdate:_orderModel.add_time];
     if (_orderModel.pay_status ==0) {
         _titleLabel.text = @"待付款";
     }else if (_orderModel.shipping_status == 0) {

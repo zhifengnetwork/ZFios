@@ -15,12 +15,10 @@
 
 @property (nonatomic, strong) UIImageView* iconView;
 @property (nonatomic, strong) UILabel* titleLabel;
-@property (nonatomic, strong) UILabel* colourLabel;
-@property (nonatomic, strong) UILabel* sizeLabel;
 @property (nonatomic, strong) UILabel* moneyLabel;
 @property (nonatomic, strong) UILabel* money2Label;
 @property (nonatomic, strong) UIButton *seeButton;
-@property (nonatomic, strong)UIButton *deleteButton;
+//@property (nonatomic, strong)UIButton *deleteButton;
 
 @end
 
@@ -41,12 +39,10 @@
     self.contentView.backgroundColor = RGBColorHex(0xffffff);
     [self.contentView addSubview:self.iconView];
     [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.colourLabel];
-    [self.contentView addSubview:self.sizeLabel];
     [self.contentView addSubview:self.moneyLabel];
     [self.contentView addSubview:self.money2Label];
     [self.contentView addSubview:self.seeButton];
-    [self.contentView addSubview:self.deleteButton];
+//    [self.contentView addSubview:self.deleteButton];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
@@ -56,23 +52,13 @@
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_iconView.mas_right).offset(13);
-        make.top.mas_equalTo(20);
+        make.top.mas_equalTo(30);
         make.right.mas_equalTo(-25);
-    }];
-    
-    [_colourLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_iconView.mas_right).offset(13);
-        make.top.equalTo(self->_titleLabel.mas_bottom).offset(10);
-    }];
-    
-    [_sizeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_colourLabel.mas_right).offset(10);
-        make.top.equalTo(self->_titleLabel.mas_bottom).offset(10);
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_iconView.mas_right).offset(13);
-        make.top.equalTo(self->_colourLabel.mas_bottom).offset(10);
+        make.top.equalTo(self->_titleLabel.mas_bottom).offset(20);
     }];
     
     [_money2Label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -87,10 +73,10 @@
         make.bottom.equalTo(self->_iconView.mas_bottom);
     }];
     
-    [_deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
-        make.centerY.equalTo(self.mas_centerY);
-    }];
+//    [_deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(-20);
+//        make.centerY.equalTo(self.mas_centerY);
+//    }];
     
     //横线
     UIView *hLine2View = [[UIView alloc] init];
@@ -105,24 +91,35 @@
      }];
     
 }
-- (void)setDelete:(BOOL)isHidden{
-    _deleteButton.hidden = isHidden;
-}
+//- (void)setDelete:(BOOL)isHidden{
+//    _deleteButton.hidden = isHidden;
+//}
 
-- (void)deleteClick{
-    //删除cell
-    [http_mine del_collect_goods:_commodityModel.goods_id success:^(id responseObject) {
-        [SVProgressHUD showSuccessWithStatus:@"删除成功"];
-    } failure:^(NSError *error) {
-        
-        [SVProgressHUD showErrorWithStatus:error.domain];
-    }];
-}
+//- (void)deleteClick{
+//    //删除cell
+//    [http_mine del_collect_goods:_commodityModel.goods_id success:^(id responseObject) {
+//        [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+//    } failure:^(NSError *error) {
+//
+//        [SVProgressHUD showErrorWithStatus:error.domain];
+//    }];
+//}
 
 - (void)seeButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFCommodityInforViewCellDidClick)])
+    {
+        [self.delegate ZFCommodityInforViewCellDidClick];
+    }
 }
+
+-(void)setTitle:(NSString *)title
+{
+    _title = title;
+    
+    [_seeButton setTitle:_title forState:UIControlStateNormal];
+}
+
 
 - (UIImageView *)iconView {
     if (_iconView == nil) {
@@ -143,28 +140,6 @@
         _titleLabel.text = @"女式花瓣连衣裙女式花瓣连衣裙女式花瓣连衣裙女式花瓣连衣裙";
     }
     return _titleLabel;
-}
-
-- (UILabel *)colourLabel {
-    if (_colourLabel == nil) {
-        _colourLabel = [[UILabel alloc] init];
-        _colourLabel.textColor = RGBColorHex(0x151515);
-        _colourLabel.font = [UIFont systemFontOfSize:12];
-        _colourLabel.numberOfLines = 0;
-        _colourLabel.text = @"颜色:蓝色";
-    }
-    return _colourLabel;
-}
-
-- (UILabel *)sizeLabel {
-    if (_sizeLabel == nil) {
-        _sizeLabel = [[UILabel alloc] init];
-        _sizeLabel.textColor = RGBColorHex(0x151515);
-        _sizeLabel.font = [UIFont systemFontOfSize:12];
-        _sizeLabel.numberOfLines = 0;
-        _sizeLabel.text = @"尺寸:M码";
-    }
-    return _sizeLabel;
 }
 
 - (UILabel *)moneyLabel {
@@ -202,17 +177,18 @@
     return _seeButton;
 }
 
-- (UIButton *)deleteButton{
-    if (_deleteButton == nil) {
-        _deleteButton = [[UIButton alloc]init];
-        [_deleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
-        [_deleteButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
-    }return _deleteButton;
-}
+//- (UIButton *)deleteButton{
+//    if (_deleteButton == nil) {
+//        _deleteButton = [[UIButton alloc]init];
+//        [_deleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+//        [_deleteButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
+//    }return _deleteButton;
+//}
 
 - (void)setCommodityModel:(ZFGoodModel *)commodityModel{
     _commodityModel = commodityModel;
-    _titleLabel.text = [NSString stringWithFormat:@"%@",_commodityModel.goods_name];
+    
+    _titleLabel.text = _commodityModel.goods_name;
     _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",_commodityModel.shop_price];
     if (!kStringIsEmpty(_commodityModel.original_img))
     {

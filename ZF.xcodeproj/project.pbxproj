@@ -209,6 +209,7 @@
 		8407149C228D134200889F63 /* ZFMaterialAreaTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8407149B228D134200889F63 /* ZFMaterialAreaTableCell.m */; };
 		8407149F228D168D00889F63 /* ZFMaterialAreaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8407149E228D168D00889F63 /* ZFMaterialAreaVC.m */; };
 		840714A2228D3AA800889F63 /* ZFMaterialAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 840714A1228D3AA800889F63 /* ZFMaterialAreaModel.m */; };
+		840714A5228D719A00889F63 /* ZFSeeParagraphVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840714A4228D719A00889F63 /* ZFSeeParagraphVC.m */; };
 		8408F9672272EED700C55F45 /* ZFADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F9662272EED700C55F45 /* ZFADModel.m */; };
 		8408F96A2272F0AF00C55F45 /* ZFHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F9692272F0AF00C55F45 /* ZFHomeModel.m */; };
 		8408F96D2272F21F00C55F45 /* ZFNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408F96B2272F21F00C55F45 /* ZFNoticeModel.m */; };
@@ -745,6 +746,8 @@
 		8407149E228D168D00889F63 /* ZFMaterialAreaVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMaterialAreaVC.m; sourceTree = "<group>"; };
 		840714A0228D3AA800889F63 /* ZFMaterialAreaModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMaterialAreaModel.h; sourceTree = "<group>"; };
 		840714A1228D3AA800889F63 /* ZFMaterialAreaModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMaterialAreaModel.m; sourceTree = "<group>"; };
+		840714A3228D719A00889F63 /* ZFSeeParagraphVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFSeeParagraphVC.h; sourceTree = "<group>"; };
+		840714A4228D719A00889F63 /* ZFSeeParagraphVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFSeeParagraphVC.m; sourceTree = "<group>"; };
 		8408F9652272EED700C55F45 /* ZFADModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFADModel.h; sourceTree = "<group>"; };
 		8408F9662272EED700C55F45 /* ZFADModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFADModel.m; sourceTree = "<group>"; };
 		8408F9682272F0AF00C55F45 /* ZFHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFHomeModel.h; sourceTree = "<group>"; };
@@ -2514,6 +2517,8 @@
 				84499BC0223A44E100A7A988 /* ZFCommodityWMVC.m */,
 				84499BBC223A390900A7A988 /* ZFCommodityInforVC.h */,
 				84499BBD223A390900A7A988 /* ZFCommodityInforVC.m */,
+				840714A3228D719A00889F63 /* ZFSeeParagraphVC.h */,
+				840714A4228D719A00889F63 /* ZFSeeParagraphVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3326,6 +3331,7 @@
 				189CC0DD2223E81300EB5A64 /* StaticTableCell.m in Sources */,
 				5301146F2243352D00C36D42 /* ZFMyWalletVC.m in Sources */,
 				53355235224E25970070E724 /* ZFShareSuccessView.m in Sources */,
+				840714A5228D719A00889F63 /* ZFSeeParagraphVC.m in Sources */,
 				536F6D202276EAEA00F14AD9 /* ZFEvaluationCell.m in Sources */,
 				840BE8FD224A06D600568B11 /* ZFCommodityEvaluationTableCell.m in Sources */,
 				849F8BEA223BA16C00D10E2E /* ZFMyOrderEmptyVC.m in Sources */,

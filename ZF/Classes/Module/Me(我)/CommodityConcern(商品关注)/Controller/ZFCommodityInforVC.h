@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFDistribuCommModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,7 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 //列表类型（1商品 2店铺 ）
 @property (nonatomic, strong) NSString *type;
 
+@property (nonatomic, strong) ZFDistribuCommModel* distribuCommModel;
+
 -(void)editButtonDidClick;
+
 @end
 
 NS_ASSUME_NONNULL_END
