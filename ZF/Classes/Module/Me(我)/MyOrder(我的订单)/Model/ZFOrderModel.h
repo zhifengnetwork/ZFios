@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString *order_sn;
 //用户id
 @property (nonatomic , assign) NSInteger user_id;
+@property (nonatomic , assign) NSInteger pay_points;
 //订单状态
 @property (nonatomic , assign) NSInteger order_status;
 //发货状态
@@ -120,7 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy) NSString *original_img;
 @property (nonatomic, strong)NSArray *goods;
 @property (nonatomic, copy)NSString *store_name;
-
+@property (nonatomic, assign)NSInteger deposit;
 @end
 
 NS_ASSUME_NONNULL_END

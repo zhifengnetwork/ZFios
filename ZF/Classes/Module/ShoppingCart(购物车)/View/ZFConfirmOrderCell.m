@@ -8,6 +8,8 @@
 //
 
 #import "ZFConfirmOrderCell.h"
+#import "UIImageView+WebCache.h"
+
 @interface ZFConfirmOrderCell()
 @property (nonatomic, strong)UIImageView *pictureImageView;
 @property (nonatomic, strong)UILabel *nameLabel;
@@ -74,5 +76,17 @@
         _priceLabel.text = @"￥4900.00 x2";
     }
     return _priceLabel;
+}
+
+- (void)setGoodModel:(ZFGroupBuyingModel *)goodModel{
+    _goodModel = goodModel;
+    if (!kStringIsEmpty(_goodModel.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_goodModel.original_img];
+        [_pictureImageView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _nameLabel.text = [NSString stringWithFormat:@"%@",_goodModel.goods_name];
+    _priceLabel.text = [NSString stringWithFormat:@"￥%@ x%@",_goodModel.shop_price,_goodModel.goods_num];
+
 }
 @end
