@@ -46,6 +46,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 //获取热门搜索词汇
 + (void)getHotKeywords:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//获取素材列表
++ (void)getMaterialList:(NSInteger)cid page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//获取素材详情
++ (void)getMaterialDetail:(NSString*)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -271,7 +271,7 @@ _Pragma("clang diagnostic pop") \
 
 //测试环境
 #define MainUrl @"https://mobile.zhifengwangluo.c3w.cc/"
-#define ImageUrl @"http://www.dchqzg1688.com"
+#define ImageUrl @"https://mobile.zhifengwangluo.c3w.cc"
 
 #else
 

@@ -38,6 +38,7 @@
 #import "ZFSpikeVC.h"
 #import "ZFGroupBuyingVC.h"
 #import "ZFGroupBuyingWMVC.h"
+#import "ZFMaterialAreaVC.h"
 
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
@@ -548,8 +549,8 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         else if (indexPath.row==5)
         {
             //素材区
-//            ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
+            ZFMaterialAreaVC* vc = [[ZFMaterialAreaVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==6)
         {

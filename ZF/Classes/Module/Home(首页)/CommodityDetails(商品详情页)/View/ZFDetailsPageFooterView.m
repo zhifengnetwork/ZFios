@@ -45,23 +45,27 @@
     [_collectionButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.width.height.mas_equalTo(50);
+        make.top.mas_equalTo(0);
     }];
     
     [_shoppingCartButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_collectionButton.mas_right);
         make.width.height.mas_equalTo(50);
+        make.top.mas_equalTo(0);
     }];
     
     [_addCartButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_shoppingCartButton.mas_right);
         make.width.mas_equalTo(140);
         make.height.mas_equalTo(50);
+        make.top.mas_equalTo(0);
     }];
     
     [_immediatePurButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_addCartButton.mas_right);
         make.width.mas_equalTo(140);
         make.height.mas_equalTo(50);
+        make.top.mas_equalTo(0);
     }];
     
     //竖线
@@ -123,14 +127,14 @@
 
 - (void)addCartButtonDidClick
 {
-
+    
     ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 370)];
     view.goodID = _goodID;
     view.addCart = YES;
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
-
+    
 }
 
 

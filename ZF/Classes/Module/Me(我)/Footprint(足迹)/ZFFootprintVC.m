@@ -101,8 +101,8 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
         make.bottom.equalTo(self.view);
     }];
     
-    self.tableView.estimatedRowHeight = 0;
-    self.tableView.estimatedSectionHeaderHeight = 10;
+    self.tableView.estimatedRowHeight = 100;
+    self.tableView.estimatedSectionHeaderHeight = 44;
     self.tableView.estimatedSectionFooterHeight = 0;
     self.tableView.backgroundColor = RGBColorHex(0xf3f5f7);
     self.tableView.tableFooterView = [UIView new];
@@ -176,9 +176,9 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
 {
     if (type==1)
     {
-//        //跳转到个人资料
-//        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
-//        [self.navigationController pushViewController:vc animated:YES];
+        //        //跳转到个人资料
+        //        ZFPersonalVC* vc = [[ZFPersonalVC alloc]init];
+        //        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (type==2)
     {

@@ -245,5 +245,43 @@
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
+//获取素材列表
++ (void)getMaterialList:(NSInteger)cid page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",cid];
+    [parameters setObject:str forKey:@"cid"];
+    
+    NSString *str2 = [NSString stringWithFormat:@"%ld",page];
+    [parameters setObject:str2 forKey:@"page"];
+    
+    [parameters setObject:@"6" forKey:@"num"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/Material/GetMaterialList"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+//获取素材详情
++ (void)getMaterialDetail:(NSString*)ID success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    if (!kStringIsEmpty(ID)) {
+        [parameters setObject:ID forKey:@"id"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/Material/GetMaterialDetail"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
 
 @end
