@@ -252,8 +252,8 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     [self.tableView registerClass:[ZFDeliveryTableCell class] forCellReuseIdentifier:ZFDeliveryTableCelllD];
     [self.tableView registerClass:[ZFExplainTableCell class] forCellReuseIdentifier:ZFExplainTableCelllD];
     [self.tableView registerClass:[ZFevaluationHeadTableCell class] forCellReuseIdentifier:ZFevaluationHeadTableCelllD];
-    [self.tableView registerClass:[ZFCommodityEvaluationTableCell class] forCellReuseIdentifier:ZFCommodityEvaluationTableCelllD];
-    [self.tableView registerClass:[ZFAskEveryoneHeadTableCell class] forCellReuseIdentifier:ZFAskEveryoneHeadTableCelllD];
+//    [self.tableView registerClass:[ZFCommodityEvaluationTableCell class] forCellReuseIdentifier:ZFCommodityEvaluationTableCelllD];
+//    [self.tableView registerClass:[ZFAskEveryoneHeadTableCell class] forCellReuseIdentifier:ZFAskEveryoneHeadTableCelllD];
     [self.tableView registerClass:[ZFAskEveryoneTableCell class] forCellReuseIdentifier:ZFAskEveryoneTableCelllD];
     [self.tableView registerClass:[ZFMerchandiseSaleHeadTableCell class] forCellReuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
     [self.tableView registerClass:[ZFSimilarRecommendTableCell class] forCellReuseIdentifier:ZFSimilarRecommendTableCelllD];
@@ -273,7 +273,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 {
     if (section==1)
     {
-        return 2;
+        return 3;
     }
     else if (section==9)
     {
@@ -298,21 +298,22 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         
         ZFDeliveryTableCell* ocell  = [tableView dequeueReusableCellWithIdentifier:ZFDeliveryTableCelllD];
         ocell = [[ZFDeliveryTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDeliveryTableCelllD];
-        if (indexPath.row==0)
+        if (indexPath.row == 0) {
+            ocell.name = @"领券";
+            ocell.title = @"";
+            
+        }else if (indexPath.row==1)
         {
-            ocell.name = @"配送";
-            ocell.title = self.address;
+            ocell.name = @"地址";
+            ocell.title = @"北京市市辖区东城区";
         }
-        else if (indexPath.row==1)
+        else if (indexPath.row==2)
         {
-            ocell.name = @"运费";
-            if (self.freight.integerValue == 0.00) {
-                ocell.title = @"免运费";
-            }else{
-                ocell.title = [NSString stringWithFormat:@"%ld",(long)self.freight.integerValue];
-            }
+            ocell.name = @"规格";
+            ocell.title = @"一件";
             
         }
+        
         cell = ocell;
     }
     else if (indexPath.section==2)
@@ -323,7 +324,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (indexPath.section==3)
     {
-
+        //评价cell
         ZFevaluationHeadTableCell* qcell = [tableView dequeueReusableCellWithIdentifier:ZFevaluationHeadTableCelllD];
         qcell = [[ZFevaluationHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFevaluationHeadTableCelllD];
         qcell.goodsID = self.goods_id;
@@ -332,6 +333,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (indexPath.section==4)
     {
+
         ZFCommodityEvaluationTableCell* acell = [tableView dequeueReusableCellWithIdentifier:ZFCommodityEvaluationTableCelllD];
         acell = [[ZFCommodityEvaluationTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFCommodityEvaluationTableCelllD];
         if (self.commentListModel.commentlist.count>0)
@@ -346,13 +348,13 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         ncell = [[ZFAskEveryoneHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAskEveryoneHeadTableCelllD];
         cell = ncell;
     }
-    else if (indexPath.section==6)
+    else if (indexPath.section==4)
     {
         ZFAskEveryoneTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFAskEveryoneTableCelllD];
         vcell = [[ZFAskEveryoneTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAskEveryoneTableCelllD];
         cell = vcell;
     }
-    else if (indexPath.section==7)
+    else if (indexPath.section==5)
     {
         ZFMerchandiseSaleHeadTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFMerchandiseSaleHeadTableCelllD];
         vcell = [[ZFMerchandiseSaleHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
@@ -360,14 +362,14 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         vcell.shopModel = shopModel;
         cell = vcell;
     }
-    else if (indexPath.section==8)
+    else if (indexPath.section==6)
     {
         ZFSimilarRecommendTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFSimilarRecommendTableCelllD];
         vcell = [[ZFSimilarRecommendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSimilarRecommendTableCelllD];
         vcell.goods = self.detailListModel.goods.goods_images;
         cell = vcell;
     }
-    else if (indexPath.section==9)
+    else if (indexPath.section==7)
     {
         
         ZFDetailsImageTextTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFDetailsImageTextTableCelllD];
@@ -412,7 +414,10 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section==3) {
-        return 20;
+        return 1;
+    }
+    if (section==4) {
+        return 5;
     }
     else if (section==7) {
         return 20;

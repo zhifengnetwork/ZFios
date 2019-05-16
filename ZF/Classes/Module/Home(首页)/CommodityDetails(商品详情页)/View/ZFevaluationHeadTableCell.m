@@ -64,9 +64,9 @@
 - (UILabel *)evaluateLabel {
     if (_evaluateLabel == nil) {
         _evaluateLabel = [[UILabel alloc] init];
-        _evaluateLabel.textColor = RGBColorHex(0x000000);
-        _evaluateLabel.font = [UIFont systemFontOfSize:13];
-        _evaluateLabel.text = @"商品评价 (342100)";
+        _evaluateLabel.textColor = RGBColorHex(0x999999);
+        _evaluateLabel.font = [UIFont systemFontOfSize:15];
+        _evaluateLabel.text = @"用户评价";
     }
     return _evaluateLabel;
 }
@@ -74,9 +74,9 @@
 - (UILabel *)praiseLabel {
     if (_praiseLabel == nil) {
         _praiseLabel = [[UILabel alloc] init];
-        _praiseLabel.textColor = RGBColorHex(0xE60B30);
-        _praiseLabel.font = [UIFont systemFontOfSize:13];
-        _praiseLabel.text = @"好评 98.7%";
+        _praiseLabel.textColor = RGBColorHex(0x333333);
+        _praiseLabel.font = [UIFont systemFontOfSize:15];
+        _praiseLabel.text = @"好评率 98.7%    107人好评   ";
     }
     return _praiseLabel;
 }
@@ -100,9 +100,12 @@
 -(void)setComment_fr:(ZFDetailsPageModel *)comment_fr
 {
     _comment_fr = comment_fr;
-    _evaluateLabel.text = [NSString stringWithFormat:@"商品评价 (%@)",_comment_fr.total_sum];
-    _praiseLabel.text = [NSString stringWithFormat:@"好评 %@",_comment_fr.high_rate];
+    NSRange range = NSMakeRange(4, 12);
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"好评率  %@%%      %@人好评            " ,_comment_fr.high_rate,_comment_fr.total_sum]];
+    //设置文字颜色
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
     
+    _praiseLabel.attributedText = str;
 }
 
 #pragma mark -- 方法

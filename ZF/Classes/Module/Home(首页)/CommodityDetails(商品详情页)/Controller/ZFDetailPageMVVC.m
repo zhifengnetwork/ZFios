@@ -67,7 +67,7 @@
 - (UIButton *)mainButton{
     if (_mainButton == nil) {
         _mainButton = [[UIButton alloc]init];
-        [_mainButton setImage:[UIImage imageNamed:@"More"] forState:UIControlStateNormal];
+        [_mainButton setImage:[UIImage imageNamed:@"All"] forState:UIControlStateNormal];
         [_mainButton addTarget:self action:@selector(mainClick) forControlEvents:UIControlEventTouchUpInside];
     }return _mainButton;
 }
@@ -147,7 +147,7 @@
 }
 
 - (void)mainClick{
-    
+    //更多按钮点击
 }
 
 ////当key路径对应的属性值发生改变时，监听器就会回调自身的监听方法，如下

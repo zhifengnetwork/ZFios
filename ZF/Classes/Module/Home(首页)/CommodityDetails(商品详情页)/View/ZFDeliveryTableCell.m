@@ -81,8 +81,8 @@
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = RGBColorHex(0x000000);
-        _nameLabel.font = [UIFont systemFontOfSize:13];
+        _nameLabel.textColor = RGBColorHex(0x999999);
+        _nameLabel.font = [UIFont systemFontOfSize:15];
         _nameLabel.text = @"配送";
     }
     return _nameLabel;
@@ -91,8 +91,8 @@
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.textColor = RGBColorHex(0x000000);
-        _titleLabel.font = [UIFont systemFontOfSize:13];
+        _titleLabel.textColor = RGBColorHex(0x333333);
+        _titleLabel.font = [UIFont systemFontOfSize:15];
         _titleLabel.text = @"至 广州荔湾区";
     }
     return _titleLabel;

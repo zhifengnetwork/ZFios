@@ -220,8 +220,8 @@
         [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
     }
     _money2Label.text = [NSString stringWithFormat:@"¥ %@",_commodityModel.market_price];
-    
-    
+
+
 }
 
 @end

@@ -57,9 +57,9 @@
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = RGBColorHex(0x000000);
-        _nameLabel.font = [UIFont systemFontOfSize:13];
-        _nameLabel.text = @"说明";
+        _nameLabel.textColor = RGBColorHex(0x999999);
+        _nameLabel.font = [UIFont systemFontOfSize:15];
+        _nameLabel.text = @"服务";
     }
     return _nameLabel;
 }
@@ -67,9 +67,9 @@
 - (UILabel *)titleLabel {
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.textColor = RGBColorHex(0x7C7C7C);
-        _titleLabel.font = [UIFont systemFontOfSize:12];
-        _titleLabel.text = @"假一赔十 | 7天无忧退货 | 保税仓发货 | 黑卡会员 96折";
+        _titleLabel.textColor = RGBColorHex(0x333333);
+        _titleLabel.font = [UIFont systemFontOfSize:15];
+        _titleLabel.text = @"由商城自营发货并提供售后服务";
         _titleLabel.numberOfLines = 0;
         
     }

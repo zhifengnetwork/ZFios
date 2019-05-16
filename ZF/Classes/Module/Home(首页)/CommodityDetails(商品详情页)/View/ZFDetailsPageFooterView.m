@@ -172,9 +172,8 @@
 - (UIButton *)collectionButton {
     if (_collectionButton == nil) {
         _collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_collectionButton setTitle:@"收藏" forState:UIControlStateNormal];
-        [_collectionButton setImage:[UIImage imageNamed:@"collect_default"] forState:UIControlStateNormal];
-        [_collectionButton setImage:[UIImage imageNamed:@"collect_click"] forState:UIControlStateSelected];
+        [_collectionButton setTitle:@"客服" forState:UIControlStateNormal];
+        [_collectionButton setImage:[UIImage imageNamed:@"service"] forState:UIControlStateNormal];
         [_collectionButton setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
         _collectionButton.titleLabel.font = [UIFont systemFontOfSize:11];
         [_collectionButton setImagePosition:LXMImagePositionTop spacing:6];
