@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZFDistribuCommModel.h"
+#import "ZFGoodModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,9 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFSeeParagraphVC : UIViewController
 
-@property (nonatomic, strong) ZFDistribuCommModel* distribuCommModel;
-
 @property (nonatomic, strong) NSString *ID;
+
+@property (nonatomic, strong)ZFGoodModel *commodityModel;
 
 @end
 

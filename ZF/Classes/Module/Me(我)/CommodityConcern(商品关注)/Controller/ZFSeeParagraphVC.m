@@ -19,6 +19,8 @@
 #import "ZFGoodModel.h"
 #import "http_home.h"
 #import "ZFDetailsPageVC.h"
+#import "ZFDistribuCommModel.h"
+
 
 @interface ZFSeeParagraphVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFCommodityInforViewCellDelegate>
 
@@ -69,15 +71,13 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     
     [self.collectionView.mj_header beginRefreshing];
-    
-    [self loadData];
 }
 
 
 -(void)loadData
 {
     ZWeakSelf
-    [http_home goodsSameList:@"cat_id" page:1 success:^(id responseObject)
+    [http_home goodsSameList:self.commodityModel.cat_id page:1 success:^(id responseObject)
      {
          [self.collectionView.mj_header endRefreshing];
          [weakSelf showData:responseObject];
@@ -109,11 +109,12 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (section==0)
+    if (section==1)
     {
-        return self.listModel.list.count;
+        return self.distribListModel.goods_list.count;
     }
-    return self.distribListModel.goods_list.count;
+    
+    return 1;
 }
 
 
@@ -124,7 +125,7 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     {
         //关注商品
         ZFCommodityInforViewCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFCommodityInforViewCellID forIndexPath:indexPath];
-        oell.commodityModel = [self.listModel.list objectAtIndex:indexPath.row];
+        oell.commodityModel = self.commodityModel;
         oell.title = @"去购买";
         oell.delegate = self;
         gridcell = oell;
@@ -275,7 +276,9 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 {
     if (indexPath.section==1)
     {
+        ZFDistribuCommModel *distribuCommModel = [self.distribListModel.goods_list objectAtIndex:indexPath.row];
         ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+        vc.goods_id = distribuCommModel.goods_id.intValue;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -283,9 +286,10 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 
 
 //去购买被点击
-- (void)ZFCommodityInforViewCellDidClick
+- (void)ZFCommodityInforViewCellDidClick:(ZFGoodModel *)commodityModel
 {
     ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+    vc.goods_id = self.commodityModel.goods_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

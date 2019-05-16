@@ -97,8 +97,6 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     
     [self.collectionView.mj_header beginRefreshing];
-    
-    [self loadData];
 }
 
 -(void)loadData
@@ -330,7 +328,9 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 {
     if (indexPath.section==1)
     {
+        ZFDistribuCommModel *distribuCommModel = [self.distribListModel.goods_list objectAtIndex:indexPath.row];
         ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+        vc.goods_id = distribuCommModel.goods_id.intValue;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -349,9 +349,10 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 }
 
 //查看同款被点击
-- (void)ZFCommodityInforViewCellDidClick
+- (void)ZFCommodityInforViewCellDidClick:(ZFGoodModel *)commodityModel
 {
     ZFSeeParagraphVC* vc = [[ZFSeeParagraphVC alloc]init];
+    vc.commodityModel = commodityModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

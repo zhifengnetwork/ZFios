@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ZFCommodityInforViewCellDelegate <NSObject>
 
 //查看同款被点击
-- (void)ZFCommodityInforViewCellDidClick;
+- (void)ZFCommodityInforViewCellDidClick:(ZFGoodModel *)commodityModel;
 
 @end
 
@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<ZFCommodityInforViewCellDelegate> delegate;
 
 @property (nonatomic, strong)ZFGoodModel *commodityModel;
+@property (nonatomic, strong)NSIndexPath *indexPath;
 
 @property (nonatomic, strong) NSString *title;
 //- (void)setDelete: (BOOL)isHidden;

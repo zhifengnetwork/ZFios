@@ -109,9 +109,9 @@
 
 - (void)seeButtonDidClick
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFCommodityInforViewCellDidClick)])
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFCommodityInforViewCellDidClick:)])
     {
-        [self.delegate ZFCommodityInforViewCellDidClick];
+        [self.delegate ZFCommodityInforViewCellDidClick:self.commodityModel];
     }
 }
 

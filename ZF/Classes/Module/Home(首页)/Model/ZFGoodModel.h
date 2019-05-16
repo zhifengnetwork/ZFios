@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *goods_name;
 //商品价格
 @property (nonatomic, copy)NSString *shop_price;
-@property (nonatomic, assign)NSInteger cat_id;
+@property (nonatomic, copy)NSString *cat_id;
 //评论数量
 @property (nonatomic, assign)NSInteger comment_count;
 //购买数量
