@@ -34,7 +34,7 @@
 #import "ZFGoodCommentModel.h"
 
 
-@interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource,ZFDetailsImageTextHeadViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -52,6 +52,9 @@
 @property (nonatomic, strong) ZFGoodModel* attributeModel;
 @property (nonatomic, strong) ZFGoodCommentListModel* commentListModel;
 
+@property (nonatomic, strong)UIImageView *imageView;
+@property (nonatomic, strong)ZFDetailsImageTextHeadView* headView1;
+@property (nonatomic, strong)ZFDetailsImageTextFootView* footView1;
 @end
 
 @implementation ZFDetailsPageVC
@@ -223,6 +226,12 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     _headView = [[ZFCommDetHeadView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 375)];
     _headView.imageUrls = self.imageUrls;
     self.tableView.tableHeaderView = _headView;
+    [self.tableView addSubview:self.imageView];
+//    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self->_headView1.mas_bottom);
+//        make.left.right.equalTo(self);
+//        make.height.mas_equalTo(300);
+//    }];
 }
 
 
@@ -252,8 +261,8 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     [self.tableView registerClass:[ZFDeliveryTableCell class] forCellReuseIdentifier:ZFDeliveryTableCelllD];
     [self.tableView registerClass:[ZFExplainTableCell class] forCellReuseIdentifier:ZFExplainTableCelllD];
     [self.tableView registerClass:[ZFevaluationHeadTableCell class] forCellReuseIdentifier:ZFevaluationHeadTableCelllD];
-//    [self.tableView registerClass:[ZFCommodityEvaluationTableCell class] forCellReuseIdentifier:ZFCommodityEvaluationTableCelllD];
-//    [self.tableView registerClass:[ZFAskEveryoneHeadTableCell class] forCellReuseIdentifier:ZFAskEveryoneHeadTableCelllD];
+    [self.tableView registerClass:[ZFCommodityEvaluationTableCell class] forCellReuseIdentifier:ZFCommodityEvaluationTableCelllD];
+    [self.tableView registerClass:[ZFAskEveryoneHeadTableCell class] forCellReuseIdentifier:ZFAskEveryoneHeadTableCelllD];
     [self.tableView registerClass:[ZFAskEveryoneTableCell class] forCellReuseIdentifier:ZFAskEveryoneTableCelllD];
     [self.tableView registerClass:[ZFMerchandiseSaleHeadTableCell class] forCellReuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
     [self.tableView registerClass:[ZFSimilarRecommendTableCell class] forCellReuseIdentifier:ZFSimilarRecommendTableCelllD];
@@ -266,7 +275,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 10;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -275,7 +284,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     {
         return 3;
     }
-    else if (section==9)
+    else if (section==5)
     {
         return 6;
     }
@@ -331,45 +340,45 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         qcell.comment_fr = self.detailListModel.goods.comment_fr;
         cell = qcell;
     }
+//    else if (indexPath.section==4)
+//    {
+//
+//        ZFCommodityEvaluationTableCell* acell = [tableView dequeueReusableCellWithIdentifier:ZFCommodityEvaluationTableCelllD];
+//        acell = [[ZFCommodityEvaluationTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFCommodityEvaluationTableCelllD];
+//        if (self.commentListModel.commentlist.count>0)
+//        {
+//            acell.commentModel = [self.commentListModel.commentlist objectAtIndex:0];
+//        }
+//        cell = acell;
+//    }
+//    else if (indexPath.section==5)
+//    {
+//        ZFAskEveryoneHeadTableCell* ncell = [tableView dequeueReusableCellWithIdentifier:ZFAskEveryoneHeadTableCelllD];
+//        ncell = [[ZFAskEveryoneHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAskEveryoneHeadTableCelllD];
+//        cell = ncell;
+//    }
+//    else if (indexPath.section==4)
+//    {
+//        ZFAskEveryoneTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFAskEveryoneTableCelllD];
+//        vcell = [[ZFAskEveryoneTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAskEveryoneTableCelllD];
+//        cell = vcell;
+//    }
+//    else if (indexPath.section==4)
+//    {
+//        ZFMerchandiseSaleHeadTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFMerchandiseSaleHeadTableCelllD];
+//        vcell = [[ZFMerchandiseSaleHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
+//        ZFDetailsPageModel *shopModel = self.detailListModel.goods.seller_info;
+//        vcell.shopModel = shopModel;
+//        cell = vcell;
+//    }
     else if (indexPath.section==4)
-    {
-
-        ZFCommodityEvaluationTableCell* acell = [tableView dequeueReusableCellWithIdentifier:ZFCommodityEvaluationTableCelllD];
-        acell = [[ZFCommodityEvaluationTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFCommodityEvaluationTableCelllD];
-        if (self.commentListModel.commentlist.count>0)
-        {
-            acell.commentModel = [self.commentListModel.commentlist objectAtIndex:0];
-        }
-        cell = acell;
-    }
-    else if (indexPath.section==5)
-    {
-        ZFAskEveryoneHeadTableCell* ncell = [tableView dequeueReusableCellWithIdentifier:ZFAskEveryoneHeadTableCelllD];
-        ncell = [[ZFAskEveryoneHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAskEveryoneHeadTableCelllD];
-        cell = ncell;
-    }
-    else if (indexPath.section==4)
-    {
-        ZFAskEveryoneTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFAskEveryoneTableCelllD];
-        vcell = [[ZFAskEveryoneTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFAskEveryoneTableCelllD];
-        cell = vcell;
-    }
-    else if (indexPath.section==5)
-    {
-        ZFMerchandiseSaleHeadTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFMerchandiseSaleHeadTableCelllD];
-        vcell = [[ZFMerchandiseSaleHeadTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
-        ZFDetailsPageModel *shopModel = self.detailListModel.goods.seller_info;
-        vcell.shopModel = shopModel;
-        cell = vcell;
-    }
-    else if (indexPath.section==6)
     {
         ZFSimilarRecommendTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFSimilarRecommendTableCelllD];
         vcell = [[ZFSimilarRecommendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSimilarRecommendTableCelllD];
         vcell.goods = self.detailListModel.goods.goods_images;
         cell = vcell;
     }
-    else if (indexPath.section==7)
+    else if (indexPath.section==5)
     {
         
         ZFDetailsImageTextTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFDetailsImageTextTableCelllD];
@@ -396,15 +405,15 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     {
         return 50;
     }
-    else if (indexPath.section==4)
+    else if (indexPath.section==5)
     {
-        return 130;
+        return 25;
     }
     else if (indexPath.section==7)
     {
         return 265;
     }
-    else if (indexPath.section==8)
+    else if (indexPath.section==4)
     {
         return 385;
     }
@@ -425,10 +434,21 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     else if (section==8) {
         return 20;
     }
-    else if (section==9) {
-        return 130;
+    else if (section==5) {
+        return 40;
     }
     return 0;
+}
+
+- (void)ZFDetailsImageTextHeadViewDidClick:(NSString*)type{
+    if (type == 0) {
+        _imageView.hidden = NO;
+        _footView1.hidden = YES;
+        
+    }else{
+        _imageView.hidden = YES;
+        _footView1.hidden = NO;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -437,9 +457,9 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     {
         return 20;
     }
-    else if (section==9)
+    else if (section==5)
     {
-        return 35;
+        return 15;
     }
     
     return 0;
@@ -447,10 +467,12 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (section==9)
+    if (section==5)
     {
-        ZFDetailsImageTextHeadView* headView = [[ZFDetailsImageTextHeadView alloc]init];
-        return headView;
+        _headView1 = [[ZFDetailsImageTextHeadView alloc]init];
+        _headView1.delegate = self;
+        
+        return _headView1;
     }
     UIView* view = [[UIView alloc]init];
     view.backgroundColor = [UIColor clearColor];
@@ -459,10 +481,10 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    if (section==9)
+    if (section==5)
     {
-        ZFDetailsImageTextFootView* footView = [[ZFDetailsImageTextFootView alloc]init];
-        return footView;
+        self.footView1 = [[ZFDetailsImageTextFootView alloc]init];
+        return _footView1;
     }
     
     UIView* view = [[UIView alloc]init];
@@ -495,6 +517,12 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     
 }
 
+-(UIImageView *)imageView{
+    if (_imageView == nil) {
+        _imageView = [[UIImageView alloc]init];
+        
+    }return _imageView;
+}
 
 - (UITableView *)tableView {
     if (_tableView == nil) {

@@ -32,7 +32,6 @@
 @end
 
 @implementation ZFCommodityInforVC
-static NSInteger type = 1;
 /* cell */
 static NSString *const ZFCommodityInforViewCellID = @"ZFCommodityInforViewCellID";
 static NSString *const ZFCommodityTableCellID = @"ZFCommodityTableCellID";

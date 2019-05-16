@@ -14,6 +14,7 @@
 @interface ZFCommodityInforViewCell()
 
 @property (nonatomic, strong) UIImageView* iconView;
+@property (nonatomic, strong) UIButton* deleteButton;
 @property (nonatomic, strong) UILabel* titleLabel;
 @property (nonatomic, strong) UILabel* moneyLabel;
 @property (nonatomic, strong) UILabel* money2Label;
@@ -38,6 +39,7 @@
 {
     self.contentView.backgroundColor = RGBColorHex(0xffffff);
     [self.contentView addSubview:self.iconView];
+    [self.contentView addSubview:self.deleteButton];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.moneyLabel];
     [self.contentView addSubview:self.money2Label];
@@ -73,10 +75,10 @@
         make.bottom.equalTo(self->_iconView.mas_bottom);
     }];
     
-//    [_deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(-20);
-//        make.centerY.equalTo(self.mas_centerY);
-//    }];
+    [_deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-10);
+        make.top.equalTo(self.iconView.mas_top);
+    }];
     
     //横线
     UIView *hLine2View = [[UIView alloc] init];
@@ -91,19 +93,19 @@
      }];
     
 }
-//- (void)setDelete:(BOOL)isHidden{
-//    _deleteButton.hidden = isHidden;
-//}
+- (void)setDelete:(BOOL)isHidden{
+    _deleteButton.hidden = isHidden;
+}
 
-//- (void)deleteClick{
-//    //删除cell
-//    [http_mine del_collect_goods:_commodityModel.goods_id success:^(id responseObject) {
-//        [SVProgressHUD showSuccessWithStatus:@"删除成功"];
-//    } failure:^(NSError *error) {
-//
-//        [SVProgressHUD showErrorWithStatus:error.domain];
-//    }];
-//}
+- (void)deleteClick{
+    //删除cell
+    [http_mine del_collect_goods:_commodityModel.goods_id success:^(id responseObject) {
+        [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+    } failure:^(NSError *error) {
+
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
 
 - (void)seeButtonDidClick
 {
@@ -177,13 +179,13 @@
     return _seeButton;
 }
 
-//- (UIButton *)deleteButton{
-//    if (_deleteButton == nil) {
-//        _deleteButton = [[UIButton alloc]init];
-//        [_deleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
-//        [_deleteButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
-//    }return _deleteButton;
-//}
+- (UIButton *)deleteButton{
+    if (_deleteButton == nil) {
+        _deleteButton = [[UIButton alloc]init];
+        [_deleteButton setImage:[UIImage imageNamed:@"Delete"] forState:UIControlStateNormal];
+        [_deleteButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
+    }return _deleteButton;
+}
 
 - (void)setCommodityModel:(ZFGoodModel *)commodityModel{
     _commodityModel = commodityModel;

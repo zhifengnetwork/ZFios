@@ -11,10 +11,12 @@
 
 @interface ZFSimilarRecommendTableCell ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UIButton* button1;
-@property (nonatomic, strong) UIButton* button2;
-@property (nonatomic, strong) UIView *lineView1;
-@property (nonatomic, strong) UIView *lineView2;
+//@property (nonatomic, strong) UIButton* button1;
+//@property (nonatomic, strong) UIButton* button2;
+//@property (nonatomic, strong) UIView *lineView1;
+//@property (nonatomic, strong) UIView *lineView2;
+
+@property (nonatomic, strong)UILabel *recommendLabel;
 
 @property (nonatomic, strong) UICollectionView* collectionView;
 
@@ -41,36 +43,43 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
 {
     self.contentView.backgroundColor = RGBColorHex(0xffffff);
     
-    [self addSubview:self.button1];
-    [self addSubview:self.button2];
-    [self addSubview:self.lineView1];
-    [self addSubview:self.lineView2];
+//    [self addSubview:self.button1];
+//    [self addSubview:self.button2];
+//    [self addSubview:self.lineView1];
+//    [self addSubview:self.lineView2];
+    [self addSubview:self.recommendLabel];
     [self.contentView addSubview:self.collectionView];
     
-    [_button1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [_button1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(15);
+//        make.right.equalTo(self.mas_centerX).offset(-30);
+//    }];
+//
+//    [_button2 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(15);
+//        make.left.equalTo(self.mas_centerX).offset(30);
+//    }];
+//
+//    [_lineView1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.button1.mas_bottom).offset(1);
+//        make.left.right.equalTo(self.button1);
+//        make.height.mas_equalTo(1);
+//    }];
+//
+//    [_lineView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.button2.mas_bottom).offset(1);
+//        make.left.right.equalTo(self.button2);
+//        make.height.mas_equalTo(1);
+//    }];
+    
+    [_recommendLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(15);
-        make.right.equalTo(self.mas_centerX).offset(-30);
+        make.left.mas_equalTo(15);
     }];
     
-    [_button2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(15);
-        make.left.equalTo(self.mas_centerX).offset(30);
-    }];
-    
-    [_lineView1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.button1.mas_bottom).offset(1);
-        make.left.right.equalTo(self.button1);
-        make.height.mas_equalTo(1);
-    }];
-    
-    [_lineView2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.button2.mas_bottom).offset(1);
-        make.left.right.equalTo(self.button2);
-        make.height.mas_equalTo(1);
-    }];
     
     [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self->_button1.mas_bottom).offset(10);
+        make.top.equalTo(self.recommendLabel.mas_bottom).offset(15);
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-15);
         make.height.mas_equalTo(330);
@@ -82,43 +91,43 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
     hLineView.backgroundColor = RGBColorHex(0xE8E8E8);
     [self addSubview:hLineView];
     
-    [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
-     {
-         make.left.mas_equalTo(0);
-         make.right.mas_equalTo(-0);
-         make.top.equalTo(self->_button1.mas_bottom).offset(1);
-         make.height.mas_equalTo(0.25f);
-     }];
+//    [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
+//     {
+//         make.left.mas_equalTo(0);
+//         make.right.mas_equalTo(-0);
+//         make.top.equalTo(self->_button1.mas_bottom).offset(1);
+//         make.height.mas_equalTo(0.25f);
+//     }];
     
     self.isSimilar = YES;
-    [self updateUI];
+//    [self updateUI];
 }
 
--(void)button1DidClick
-{
-    self.isSimilar = YES;
-    [self updateUI];
-}
-
--(void)button2DidClick
-{
-    self.isSimilar = NO;
-    [self updateUI];
-}
-
--(void)updateUI
-{
-    if (self.isSimilar)
-    {
-        self.lineView1.hidden = NO;
-        self.lineView2.hidden = YES;
-    }
-    else
-    {
-        self.lineView1.hidden = YES;
-        self.lineView2.hidden = NO;
-    }
-}
+//-(void)button1DidClick
+//{
+//    self.isSimilar = YES;
+//    [self updateUI];
+//}
+//
+//-(void)button2DidClick
+//{
+//    self.isSimilar = NO;
+//    [self updateUI];
+//}
+//
+//-(void)updateUI
+//{
+//    if (self.isSimilar)
+//    {
+//        self.lineView1.hidden = NO;
+//        self.lineView2.hidden = YES;
+//    }
+//    else
+//    {
+//        self.lineView1.hidden = YES;
+//        self.lineView2.hidden = NO;
+//    }
+//}
 
 
 #pragma mark - dataSource
@@ -143,44 +152,53 @@ static NSString *const ZFMerchandiseSaleCollectionCellID = @"ZFMerchandiseSaleCo
 }
 
 
-- (UIButton *)button1
-{
-    if (_button1 == nil) {
-        _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button1 setTitle:@"相似推荐" forState:UIControlStateNormal];
-        [_button1 setTitleColor:RGBColorHex(0x2E2E2E) forState:UIControlStateNormal];
-        _button1.titleLabel.font = [UIFont systemFontOfSize:17];
-        [_button1 addTarget:self action:@selector(button1DidClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _button1;
-}
+//- (UIButton *)button1
+//{
+//    if (_button1 == nil) {
+//        _button1 = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_button1 setTitle:@"相似推荐" forState:UIControlStateNormal];
+//        [_button1 setTitleColor:RGBColorHex(0x2E2E2E) forState:UIControlStateNormal];
+//        _button1.titleLabel.font = [UIFont systemFontOfSize:17];
+//        [_button1 addTarget:self action:@selector(button1DidClick) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _button1;
+//}
+//
+//- (UIButton *)button2
+//{
+//    if (_button2 == nil) {
+//        _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [_button2 setTitle:@"同类热销排行" forState:UIControlStateNormal];
+//        [_button2 setTitleColor:RGBColorHex(0x2E2E2E) forState:UIControlStateNormal];
+//        _button2.titleLabel.font = [UIFont systemFontOfSize:17];
+//        [_button2 addTarget:self action:@selector(button2DidClick) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _button2;
+//}
 
-- (UIButton *)button2
-{
-    if (_button2 == nil) {
-        _button2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button2 setTitle:@"同类热销排行" forState:UIControlStateNormal];
-        [_button2 setTitleColor:RGBColorHex(0x2E2E2E) forState:UIControlStateNormal];
-        _button2.titleLabel.font = [UIFont systemFontOfSize:17];
-        [_button2 addTarget:self action:@selector(button2DidClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _button2;
-}
+//- (UIView *)lineView1 {
+//    if (_lineView1 == nil) {
+//        _lineView1 = [[UIView alloc] init];
+//        _lineView1.backgroundColor = RGBColorHex(0x000000);
+//    }
+//    return _lineView1;
+//}
+//
+//- (UIView *)lineView2 {
+//    if (_lineView2 == nil) {
+//        _lineView2 = [[UIView alloc] init];
+//        _lineView2.backgroundColor = RGBColorHex(0x000000);
+//    }
+//    return _lineView2;
+//}
 
-- (UIView *)lineView1 {
-    if (_lineView1 == nil) {
-        _lineView1 = [[UIView alloc] init];
-        _lineView1.backgroundColor = RGBColorHex(0x000000);
-    }
-    return _lineView1;
-}
-
-- (UIView *)lineView2 {
-    if (_lineView2 == nil) {
-        _lineView2 = [[UIView alloc] init];
-        _lineView2.backgroundColor = RGBColorHex(0x000000);
-    }
-    return _lineView2;
+- (UILabel *)recommendLabel{
+    if (_recommendLabel == nil) {
+        _recommendLabel = [[UILabel alloc]init];
+        _recommendLabel.font = [UIFont systemFontOfSize:15];
+        _recommendLabel.textColor = RGBColorHex(0xda2a20);
+        _recommendLabel.text = @"为您推荐";
+    }return _recommendLabel;
 }
 
 

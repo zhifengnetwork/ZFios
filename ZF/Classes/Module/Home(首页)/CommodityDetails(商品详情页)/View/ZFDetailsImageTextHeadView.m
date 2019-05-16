@@ -44,7 +44,7 @@
     [self addSubview:self.infoLabel];
     
     [_segmentedControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.top.mas_equalTo(15);
+        make.left.top.mas_equalTo(5);
         make.right.mas_equalTo(-15);
         make.height.mas_equalTo(30);
     }];
@@ -75,26 +75,26 @@
     
 }
 
-
-- (UILabel *)nameLabel {
-    if (_nameLabel == nil) {
-        _nameLabel = [[UILabel alloc] init];
-        _nameLabel.textColor = RGBColorHex(0x000000);
-        _nameLabel.font = [UIFont systemFontOfSize:12];
-        _nameLabel.text = @"图文详情";
-    }
-    return _nameLabel;
-}
-
-- (UILabel *)infoLabel {
-    if (_infoLabel == nil) {
-        _infoLabel = [[UILabel alloc] init];
-        _infoLabel.textColor = RGBColorHex(0x000000);
-        _infoLabel.font = [UIFont systemFontOfSize:12];
-        _infoLabel.text = @"产品信息";
-    }
-    return _infoLabel;
-}
+//
+//- (UILabel *)nameLabel {
+//    if (_nameLabel == nil) {
+//        _nameLabel = [[UILabel alloc] init];
+//        _nameLabel.textColor = RGBColorHex(0x000000);
+//        _nameLabel.font = [UIFont systemFontOfSize:12];
+//        _nameLabel.text = @"商品详情";
+//    }
+//    return _nameLabel;
+//}
+//
+//- (UILabel *)infoLabel {
+//    if (_infoLabel == nil) {
+//        _infoLabel = [[UILabel alloc] init];
+//        _infoLabel.textColor = RGBColorHex(0x000000);
+//        _infoLabel.font = [UIFont systemFontOfSize:12];
+//        _infoLabel.text = @"规格参数";
+//    }
+//    return _infoLabel;
+//}
 
 
 -(UISegmentedControl*)segmentedControl
@@ -103,11 +103,11 @@
     {
         _segmentedControl = [[UISegmentedControl alloc] initWithItems:self.types];
         [_segmentedControl setSelectedSegmentIndex:0];
-        _segmentedControl.tintColor = RGBColorHex(0x262626);
+        _segmentedControl.tintColor = [UIColor whiteColor];
         //设置普通状态下(未选中)状态下的文字颜色和字体
-        [_segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName: RGBColorHex(0x262626)} forState:UIControlStateNormal];
+        [_segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],NSForegroundColorAttributeName: RGBColorHex(0x747474)} forState:UIControlStateNormal];
         //设置选中状态下的文字颜色和字体
-        [_segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14],NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateSelected];
+        [_segmentedControl setTitleTextAttributes:@{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],NSForegroundColorAttributeName:RGBColorHex(0xda2a20)} forState:UIControlStateSelected];
         //添加监听
         [self.segmentedControl addTarget:self action:@selector(sementedControlClick:) forControlEvents:UIControlEventValueChanged];
     }
@@ -132,27 +132,27 @@
 {
     if (!_types)
     {
-        _types = @[@"图文详情",@"答疑"];
+        _types = @[@"商品详情",@"规格参数"];
     }
     
     return _types;
 }
 
 
-- (UIView *)lineView1 {
-    if (_lineView1 == nil) {
-        _lineView1 = [[UIView alloc] init];
-        _lineView1.backgroundColor = RGBColorHex(0x000000);
-    }
-    return _lineView1;
-}
-
-- (UIView *)lineView2 {
-    if (_lineView2 == nil) {
-        _lineView2 = [[UIView alloc] init];
-        _lineView2.backgroundColor = RGBColorHex(0x000000);
-    }
-    return _lineView2;
-}
+//- (UIView *)lineView1 {
+//    if (_lineView1 == nil) {
+//        _lineView1 = [[UIView alloc] init];
+//        _lineView1.backgroundColor = RGBColorHex(0x000000);
+//    }
+//    return _lineView1;
+//}
+//
+//- (UIView *)lineView2 {
+//    if (_lineView2 == nil) {
+//        _lineView2 = [[UIView alloc] init];
+//        _lineView2.backgroundColor = RGBColorHex(0x000000);
+//    }
+//    return _lineView2;
+//}
 
 @end

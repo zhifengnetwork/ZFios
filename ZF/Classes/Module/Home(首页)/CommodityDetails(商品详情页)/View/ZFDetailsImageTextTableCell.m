@@ -11,6 +11,8 @@
 
 @interface ZFDetailsImageTextTableCell()
 
+@property (nonatomic, strong)UIButton *button1;
+@property (nonatomic, strong)UIButton *button2;
 @property (nonatomic, strong) UILabel* nameLabel;
 @property (nonatomic, strong) UILabel* titleLabel;
 
@@ -39,6 +41,7 @@
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.line1View];
     [self.contentView addSubview:self.line2View];
+    
     
     [_line1View mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
@@ -137,6 +140,8 @@
     }
     return _line2View;
 }
+
+
 
 - (void)setAttributemodel:(ZFGoodModel *)attributemodel{
     _attributemodel = attributemodel;
