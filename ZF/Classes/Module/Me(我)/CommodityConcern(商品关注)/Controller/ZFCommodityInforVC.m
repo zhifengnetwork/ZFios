@@ -80,12 +80,20 @@ static NSString *const ZFCommodityHeadViewID = @"ZFCommodityHeadViewID";
 {
     [super viewWillAppear:animated];
     //    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    // 注册加载完成高度的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noti:) name:@"del_collect_goods" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     //    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"del_collect_goods" object:nil];
+}
+
+- (void)noti:(NSNotification *)sender
+{
+    [self loadData];
 }
 
 

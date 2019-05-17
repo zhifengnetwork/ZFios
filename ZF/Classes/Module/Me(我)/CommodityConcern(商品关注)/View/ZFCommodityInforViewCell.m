@@ -99,6 +99,8 @@
     //删除cell
     [http_mine del_collect_goods:_commodityModel.goods_id success:^(id responseObject) {
         [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"del_collect_goods" object:self userInfo:nil];
+        
     } failure:^(NSError *error) {
 
         [SVProgressHUD showErrorWithStatus:error.domain];

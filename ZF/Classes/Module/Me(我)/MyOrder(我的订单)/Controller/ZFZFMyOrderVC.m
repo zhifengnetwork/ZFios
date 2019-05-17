@@ -77,12 +77,19 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
 -(void)viewWillAippear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    // 注册加载完成高度的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noti:) name:@"del_collect_goods2" object:nil];
 }
 
 -(void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"del_collect_goods2" object:nil];
+}
+
+- (void)noti:(NSNotification *)sender
+{
+    [self loadData];
 }
 
 - (void)setupTableView
