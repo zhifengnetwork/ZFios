@@ -82,15 +82,8 @@
     return _moneyLabel;
 }
 
-- (void)setGoods_image:(NSString *)goods_image{
-    _goods_image = goods_image;
-    if (!kStringIsEmpty(_goods_image)) {
-        NSString *str = [NSString stringWithFormat:@"%@%@",ImageUrl,_goods_image];
-        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
-    }
-}
 
-- (void)setGoodModel:(ZFGoodsModel *)goodModel{
+- (void)setGoodModel:(ZFGroupBuyingModel *)goodModel{
     _goodModel = goodModel;
     if (!kStringIsEmpty(_goodModel.original_img)) {
         NSString *str = [NSString stringWithFormat:@"%@%@",ImageUrl,_goodModel.original_img];

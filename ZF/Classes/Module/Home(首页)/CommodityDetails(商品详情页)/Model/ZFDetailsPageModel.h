@@ -58,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *sign_free_receive;
 @property (nonatomic, copy)NSString *buy_super_nsign;
 @property (nonatomic, copy)NSString *is_ground_push;
+@property (nonatomic, copy)NSString *province_name;
+@property (nonatomic, copy)NSString *city_name;
 
 @property (nonatomic, copy)NSString *store_id;
 @property (nonatomic, copy)NSString *store_name;

@@ -47,14 +47,13 @@
 @property (strong , nonatomic)NSMutableArray *imageUrls;
 @property (nonatomic, copy)NSString *address;//配送地址
 @property (nonatomic, copy)NSString *freight;//运费
+@property (nonatomic, copy)NSString *itemID;//规格id
+@property (nonatomic, copy)NSString *itemName;//规格名称
 
 @property (nonatomic, strong) ZFDetailListModel* detailListModel;
 @property (nonatomic, strong) ZFGoodModel* attributeModel;
 @property (nonatomic, strong) ZFGoodCommentListModel* commentListModel;
 
-@property (nonatomic, strong)UIImageView *imageView;
-@property (nonatomic, strong)ZFDetailsImageTextHeadView* headView1;
-@property (nonatomic, strong)ZFDetailsImageTextFootView* footView1;
 @end
 
 @implementation ZFDetailsPageVC
@@ -107,7 +106,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         }
         NSArray *addressArray = [ZFAddressEditModel mj_objectArrayWithKeyValuesArray:responseObject];
         ZFAddressEditModel *addressModel = addressArray[0];
-        self.address = [NSString stringWithFormat:@"至 %@%@",addressModel.city_name,addressModel.district_name];
+        self.address = [NSString stringWithFormat:@"%@%@",addressModel.city_name,addressModel.district_name];
         self.region_id = addressModel.city.integerValue;
     } failure:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.domain];
@@ -131,6 +130,20 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     
 }
 
+- (void)setItemID:(NSString *)itemID{
+    _itemID = itemID;
+    [http_good getPricePic:_itemID goods_id:self.goods_id success:^(id responseObject) {
+        if (kObjectIsEmpty(responseObject))
+        {
+            return;
+        }
+        ZFGoodModel *pricemodel = [ZFGoodModel mj_objectWithKeyValues:responseObject];
+        self.itemName = pricemodel.spec_key_name;
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
+
 - (void)setRegion_id:(NSInteger)region_id{
     _region_id = region_id;
     //    获取地址id
@@ -141,9 +154,11 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         }
         //获取运费
         self.freight = [responseObject objectForKey:@"freight"];
+        
     } failure:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.domain];
     }];
+    
 }
 
 -(void)showData:(id)responseObject
@@ -226,7 +241,6 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     _headView = [[ZFCommDetHeadView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 375)];
     _headView.imageUrls = self.imageUrls;
     self.tableView.tableHeaderView = _headView;
-    [self.tableView addSubview:self.imageView];
 //    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.top.equalTo(self->_headView1.mas_bottom);
 //        make.left.right.equalTo(self);
@@ -300,6 +314,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         ZFDetCommInformationTableCell* dcell = [tableView dequeueReusableCellWithIdentifier:ZFDetCommInformationTableCelllD];
         dcell = [[ZFDetCommInformationTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDetCommInformationTableCelllD];
         dcell.detailsPageModel = self.detailListModel.goods;
+        dcell.freight = _freight;
         cell = dcell;
     }
     else if (indexPath.section==1)
@@ -314,12 +329,17 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         }else if (indexPath.row==1)
         {
             ocell.name = @"地址";
-            ocell.title = @"北京市市辖区东城区";
+            ocell.title = [NSString stringWithFormat:@"%@",self.address];
         }
         else if (indexPath.row==2)
         {
             ocell.name = @"规格";
-            ocell.title = @"一件";
+            if (!kStringIsEmpty(self.itemName)) {
+                ocell.title = [NSString stringWithFormat:@"%@",self.itemName];
+            }else{
+                ocell.title = @"一件";
+            }
+            
             
         }
         
@@ -375,7 +395,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     {
         ZFSimilarRecommendTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFSimilarRecommendTableCelllD];
         vcell = [[ZFSimilarRecommendTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSimilarRecommendTableCelllD];
-        vcell.goods = self.detailListModel.goods.goods_images;
+        vcell.goods = self.detailListModel.goods.seller_info.goods;
         cell = vcell;
     }
     else if (indexPath.section==5)
@@ -384,6 +404,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         ZFDetailsImageTextTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFDetailsImageTextTableCelllD];
         vcell = [[ZFDetailsImageTextTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDetailsImageTextTableCelllD];
         vcell.attributemodel = self.attributeModel.goods_attribute[indexPath.row];
+        
         cell = vcell;
     }
     
@@ -440,16 +461,6 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     return 0;
 }
 
-- (void)ZFDetailsImageTextHeadViewDidClick:(NSString*)type{
-    if (type == 0) {
-        _imageView.hidden = NO;
-        _footView1.hidden = YES;
-        
-    }else{
-        _imageView.hidden = YES;
-        _footView1.hidden = NO;
-    }
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
@@ -459,7 +470,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (section==5)
     {
-        return 15;
+        return 200;
     }
     
     return 0;
@@ -469,10 +480,9 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 {
     if (section==5)
     {
-        _headView1 = [[ZFDetailsImageTextHeadView alloc]init];
-        _headView1.delegate = self;
-        
-        return _headView1;
+        ZFDetailsImageTextHeadView *headerView = [[ZFDetailsImageTextHeadView alloc]init];
+        headerView.delegate = self;
+        return headerView;
     }
     UIView* view = [[UIView alloc]init];
     view.backgroundColor = [UIColor clearColor];
@@ -483,8 +493,11 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 {
     if (section==5)
     {
-        self.footView1 = [[ZFDetailsImageTextFootView alloc]init];
-        return _footView1;
+//        ZFDetailsImageTextFootView *footView = [[ZFDetailsImageTextFootView alloc]init];
+//        return footView;
+        UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 200)];
+        [webView loadHTMLString:self.detailListModel.goods_content baseURL:nil];
+        
     }
     
     UIView* view = [[UIView alloc]init];
@@ -492,6 +505,14 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     return view;
 }
 
+- (void)ZFDetailsImageTextHeadViewDidClick:(NSString *)type{
+    if (type == 0) {
+//        ZFDetailsImageTextTableCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:5]];
+//        cell.goods_content = self.detailListModel.goods_content;
+    }else{
+        
+    }
+}
 
 #pragma mark - TableViewDelegate
 //点击了哪个cell
@@ -517,12 +538,6 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     
 }
 
--(UIImageView *)imageView{
-    if (_imageView == nil) {
-        _imageView = [[UIImageView alloc]init];
-        
-    }return _imageView;
-}
 
 - (UITableView *)tableView {
     if (_tableView == nil) {
@@ -544,6 +559,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     {
         _footerView = [[ZFDetailsPageFooterView alloc]init];
         _footerView.goodID = self.goods_id;
+        _footerView.itemID = self.itemID;
         _footerView.backgroundColor = RGBColorHex(0xffffff);
         
         //UIView增加点击事件

@@ -8,6 +8,8 @@
 
 #import "ZFDetCommInformationTableCell.h"
 #import "UIButton+LXMImagePosition.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
 
 @interface ZFDetCommInformationTableCell()
 
@@ -148,9 +150,17 @@
     _moneyLabel.text = _detailsPageModel.shop_price;
     _money2Label.text = [NSString stringWithFormat:@"¥%@",_detailsPageModel.market_price];
     _salesLabel.text = [NSString stringWithFormat:@"销量：%@",_detailsPageModel.virtual_sales_sum];
-    _stockLabel.text = [NSString stringWithFormat:@"当前库存：%@件：",_detailsPageModel.virtual_sales_sum];
+    if (_detailsPageModel.is_free_shipping.integerValue == 1) {
+        _stockLabel.text = @"运费：￥0.00";
+    }
+    self.collectionButton.selected = _detailsPageModel.is_collect;
+    _addressLabel.text = [NSString stringWithFormat:@"%@%@",_detailsPageModel.seller_info.province_name,_detailsPageModel.seller_info.city_name];
 }
 
+- (void)setFreight:(NSString *)freight{
+    _freight = freight;
+    _stockLabel.text = [NSString stringWithFormat:@"运费：￥%@",_freight];
+}
 
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
@@ -259,6 +269,20 @@
 
 - (void)collectionButtonDidClick:(UIButton *)btn{
     btn.selected = !btn.selected;
-    
+    if (_collectionButton.selected == YES) {
+        [http_mine collect_goods:_detailsPageModel.goods_id success:^(id responseObject)
+         {
+             [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+         } failure:^(NSError *error) {
+             [SVProgressHUD showErrorWithStatus:error.domain];
+         }];
+    }else{
+        [http_mine del_collect_goods:_detailsPageModel.goods_id success:^(id responseObject)
+         {
+             [SVProgressHUD showSuccessWithStatus:@"删除收藏成功"];
+         } failure:^(NSError *error) {
+             [SVProgressHUD showErrorWithStatus:error.domain];
+         }];
+    }
 }
 @end

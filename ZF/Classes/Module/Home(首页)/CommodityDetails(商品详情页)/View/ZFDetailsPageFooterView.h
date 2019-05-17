@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 //商品ID
 @property (nonatomic, strong)ZFDetailsPageModel* detailsPageModel;
 
+@property (nonatomic, strong)NSString *itemID;
 
 @end
 

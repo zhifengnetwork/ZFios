@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong)ZFGoodModel *attributemodel;
 
-
+@property (nonatomic, copy)NSString *goods_content;
 @end
 
 NS_ASSUME_NONNULL_END

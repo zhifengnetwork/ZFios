@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 详情相似推荐cell
+ 为您推荐
  */
 @interface ZFSimilarRecommendTableCell : UITableViewCell
 

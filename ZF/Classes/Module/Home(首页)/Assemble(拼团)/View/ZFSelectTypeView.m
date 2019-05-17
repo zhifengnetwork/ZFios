@@ -385,6 +385,7 @@ NSInteger count = 1;//存储购物车的数量
         } failure:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.domain];
         }];
+        [[self currentViewController].navigationController popViewControllerAnimated:YES];
     }else if (_isbuy == YES){
         
         ZFConfirmOrderVC *vc = [[ZFConfirmOrderVC alloc]init];
@@ -401,5 +402,6 @@ NSInteger count = 1;//存储购物车的数量
         }];
         [self cancelClick];
     }
+    [self.delegate selectItemID:self.itemID];
 }
 @end

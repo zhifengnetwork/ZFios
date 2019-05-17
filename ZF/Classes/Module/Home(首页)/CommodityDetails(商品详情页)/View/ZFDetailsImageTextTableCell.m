@@ -8,11 +8,9 @@
 
 #import "ZFDetailsImageTextTableCell.h"
 
-
 @interface ZFDetailsImageTextTableCell()
 
-@property (nonatomic, strong)UIButton *button1;
-@property (nonatomic, strong)UIButton *button2;
+@property (nonatomic, strong)UIWebView *webView;
 @property (nonatomic, strong) UILabel* nameLabel;
 @property (nonatomic, strong) UILabel* titleLabel;
 
@@ -41,7 +39,7 @@
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.line1View];
     [self.contentView addSubview:self.line2View];
-    
+    [self.contentView addSubview:self.webView];
     
     [_line1View mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
@@ -66,6 +64,10 @@
         make.left.mas_equalTo(130);
         make.centerY.equalTo(self.contentView);
         make.right.mas_equalTo(-50);
+    }];
+    
+    [_webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self);
     }];
     
     //竖线
@@ -151,6 +153,13 @@
     {
         _titleLabel.text = [NSString stringWithFormat:@"%@",_attributemodel.attr_value];
     }
+}
+
+- (void)setGoods_content:(NSString *)goods_content{
+    _goods_content = goods_content;
+    [_webView loadHTMLString:_goods_content baseURL:nil];
+
+    
 }
 
 @end

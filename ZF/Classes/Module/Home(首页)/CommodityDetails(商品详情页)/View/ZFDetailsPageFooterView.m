@@ -15,7 +15,7 @@
 #import "ZFSelectTypeView.h"
 #import "TYAlertController.h"
 
-@interface ZFDetailsPageFooterView()
+@interface ZFDetailsPageFooterView()<ZFSelectTypeViewDelegate>
 
 @property (nonatomic, strong) UIButton* collectionButton;
 @property (nonatomic, strong) UIButton* shoppingCartButton;
@@ -86,37 +86,30 @@
 -(void)setDetailsPageModel:(ZFDetailsPageModel *)detailsPageModel
 {
     _detailsPageModel = detailsPageModel;
-    if ([_detailsPageModel.is_collect isEqualToString:@"1"])
-    {
-        _collectionButton.selected = YES;
-    }
-    else
-    {
-        _collectionButton.selected = NO;
-    }
+    
     
 }
 
 
 - (void)collectionButtonDidClick
 {
-    _collectionButton.selected = !_collectionButton.selected;
-    if (_collectionButton.selected == YES) {
-        [http_mine collect_goods:_goodID success:^(id responseObject)
-         {
-             [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
-         } failure:^(NSError *error) {
-             [SVProgressHUD showErrorWithStatus:error.domain];
-         }];
-    }else{
-        [http_mine del_collect_goods:_goodID success:^(id responseObject)
-         {
-             [SVProgressHUD showSuccessWithStatus:@"删除收藏成功"];
-         } failure:^(NSError *error) {
-             [SVProgressHUD showErrorWithStatus:error.domain];
-         }];
-    }
-    
+//    _collectionButton.selected = !_collectionButton.selected;
+//    if (_collectionButton.selected == YES) {
+//        [http_mine collect_goods:_goodID success:^(id responseObject)
+//         {
+//             [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+//         } failure:^(NSError *error) {
+//             [SVProgressHUD showErrorWithStatus:error.domain];
+//         }];
+//    }else{
+//        [http_mine del_collect_goods:_goodID success:^(id responseObject)
+//         {
+//             [SVProgressHUD showSuccessWithStatus:@"删除收藏成功"];
+//         } failure:^(NSError *error) {
+//             [SVProgressHUD showErrorWithStatus:error.domain];
+//         }];
+//    }
+   
 }
 
 - (void)shoppingCartButtonDidClick
@@ -131,13 +124,16 @@
     ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 370)];
     view.goodID = _goodID;
     view.addCart = YES;
+    view.delegate = self;
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
     
 }
 
-
+- (void)selectItemID:(NSString *)itemID{
+    _itemID = itemID;
+}
 
 - (void)immediatePurButtonDidClick
 {

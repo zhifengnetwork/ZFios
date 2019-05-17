@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UIView *lineView2;
 @property (nonatomic, strong) UILabel* infoLabel;
 
+
 @property (nonatomic, strong) NSArray *types;
 @property (nonatomic, strong) NSString *type;
 
