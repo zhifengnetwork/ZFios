@@ -281,6 +281,8 @@
 		847547042240998400B698E6 /* ZFMyIntegralTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847547032240998400B698E6 /* ZFMyIntegralTableCell.m */; };
 		8475470722409DC800B698E6 /* ZFMyIntegralVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475470622409DC800B698E6 /* ZFMyIntegralVC.m */; };
 		8475470D2240C45700B698E6 /* ZFMyTeamTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475470C2240C45700B698E6 /* ZFMyTeamTableCell.m */; };
+		8479329F228E58D50051CFD1 /* ZFMaterialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8479329E228E58D50051CFD1 /* ZFMaterialVC.m */; };
+		847932A2228E61BF0051CFD1 /* ZFMaterialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 847932A1228E61BF0051CFD1 /* ZFMaterialModel.m */; };
 		847A09BE223917FB0021E236 /* ZFDetailsChoiceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */; };
 		8498DAE3223FA45A008C47A6 /* ZFMyWalletControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498DAE2223FA45A008C47A6 /* ZFMyWalletControllerCell.m */; };
 		8498DAE6223FA76A008C47A6 /* ZFFundAccountControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498DAE5223FA76A008C47A6 /* ZFFundAccountControllerCell.m */; };
@@ -891,6 +893,10 @@
 		8475470622409DC800B698E6 /* ZFMyIntegralVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyIntegralVC.m; sourceTree = "<group>"; };
 		8475470B2240C45700B698E6 /* ZFMyTeamTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyTeamTableCell.h; sourceTree = "<group>"; };
 		8475470C2240C45700B698E6 /* ZFMyTeamTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyTeamTableCell.m; sourceTree = "<group>"; };
+		8479329D228E58D50051CFD1 /* ZFMaterialVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFMaterialVC.h; sourceTree = "<group>"; };
+		8479329E228E58D50051CFD1 /* ZFMaterialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFMaterialVC.m; sourceTree = "<group>"; };
+		847932A0228E61BF0051CFD1 /* ZFMaterialModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMaterialModel.h; sourceTree = "<group>"; };
+		847932A1228E61BF0051CFD1 /* ZFMaterialModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMaterialModel.m; sourceTree = "<group>"; };
 		847A09BC223917FB0021E236 /* ZFDetailsChoiceTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsChoiceTableCell.h; sourceTree = "<group>"; };
 		847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsChoiceTableCell.m; sourceTree = "<group>"; };
 		8498DAE1223FA45A008C47A6 /* ZFMyWalletControllerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyWalletControllerCell.h; sourceTree = "<group>"; };
@@ -2249,12 +2255,16 @@
 		84071499228D12F200889F63 /* MaterialArea(素材区) */ = {
 			isa = PBXGroup;
 			children = (
+				8479329D228E58D50051CFD1 /* ZFMaterialVC.h */,
+				8479329E228E58D50051CFD1 /* ZFMaterialVC.m */,
 				8407149A228D134200889F63 /* ZFMaterialAreaTableCell.h */,
 				8407149B228D134200889F63 /* ZFMaterialAreaTableCell.m */,
 				8407149D228D168D00889F63 /* ZFMaterialAreaVC.h */,
 				8407149E228D168D00889F63 /* ZFMaterialAreaVC.m */,
 				840714A0228D3AA800889F63 /* ZFMaterialAreaModel.h */,
 				840714A1228D3AA800889F63 /* ZFMaterialAreaModel.m */,
+				847932A0228E61BF0051CFD1 /* ZFMaterialModel.h */,
+				847932A1228E61BF0051CFD1 /* ZFMaterialModel.m */,
 			);
 			path = "MaterialArea(素材区)";
 			sourceTree = "<group>";
@@ -3131,6 +3141,7 @@
 				189CC0F42223E81300EB5A64 /* HttpTool.m in Sources */,
 				18F93EF9224E1B07006ED290 /* ZFClassifyBannerHeadView.m in Sources */,
 				8407149F228D168D00889F63 /* ZFMaterialAreaVC.m in Sources */,
+				8479329F228E58D50051CFD1 /* ZFMaterialVC.m in Sources */,
 				842CE84B2280165C004D73C0 /* GHDropMenuTitleItem.m in Sources */,
 				8498DAE3223FA45A008C47A6 /* ZFMyWalletControllerCell.m in Sources */,
 				5315E5DF2252233C00D8CD3C /* ZFSearchTableViewCell.m in Sources */,
@@ -3173,6 +3184,7 @@
 				842CE84A2280165C004D73C0 /* GHDropMenuFilterInputItem.m in Sources */,
 				1819919F2237C781004585D8 /* ZFRecordDetailsTableCell.m in Sources */,
 				53B4C3182285AA7D00DFF557 /* ZFDetailOrderVC.m in Sources */,
+				847932A2228E61BF0051CFD1 /* ZFMaterialModel.m in Sources */,
 				849F9576223B8B65001824B9 /* ZFGoShoppingTableCell.m in Sources */,
 				842CE8482280165C004D73C0 /* GHDropMenuWaterFallCell.m in Sources */,
 				8499AF57228ABA65004ADBAA /* ZFBalanceTableCell.m in Sources */,
