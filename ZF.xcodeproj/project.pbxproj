@@ -284,6 +284,9 @@
 		8475470D2240C45700B698E6 /* ZFMyTeamTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475470C2240C45700B698E6 /* ZFMyTeamTableCell.m */; };
 		8479329F228E58D50051CFD1 /* ZFMaterialVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8479329E228E58D50051CFD1 /* ZFMaterialVC.m */; };
 		847932A2228E61BF0051CFD1 /* ZFMaterialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 847932A1228E61BF0051CFD1 /* ZFMaterialModel.m */; };
+		847932B3228EC27A0051CFD1 /* ZFMyWalletHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 847932AF228EC27A0051CFD1 /* ZFMyWalletHeadView.m */; };
+		847932B4228EC27A0051CFD1 /* ZFWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 847932B0228EC27A0051CFD1 /* ZFWalletVC.m */; };
+		847932B5228EC27A0051CFD1 /* ZFMyWalletCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847932B2228EC27A0051CFD1 /* ZFMyWalletCollectionCell.m */; };
 		847A09BE223917FB0021E236 /* ZFDetailsChoiceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */; };
 		8498DAE3223FA45A008C47A6 /* ZFMyWalletControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498DAE2223FA45A008C47A6 /* ZFMyWalletControllerCell.m */; };
 		8498DAE6223FA76A008C47A6 /* ZFFundAccountControllerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8498DAE5223FA76A008C47A6 /* ZFFundAccountControllerCell.m */; };
@@ -900,6 +903,12 @@
 		8479329E228E58D50051CFD1 /* ZFMaterialVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFMaterialVC.m; sourceTree = "<group>"; };
 		847932A0228E61BF0051CFD1 /* ZFMaterialModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMaterialModel.h; sourceTree = "<group>"; };
 		847932A1228E61BF0051CFD1 /* ZFMaterialModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMaterialModel.m; sourceTree = "<group>"; };
+		847932AD228EC27A0051CFD1 /* ZFMyWalletHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZFMyWalletHeadView.h; path = "ZF/Classes/Module/Me(我)/MyWallets(我的钱包)/ZFMyWalletHeadView.h"; sourceTree = SOURCE_ROOT; };
+		847932AE228EC27A0051CFD1 /* ZFMyWalletCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZFMyWalletCollectionCell.h; path = "ZF/Classes/Module/Me(我)/MyWallets(我的钱包)/ZFMyWalletCollectionCell.h"; sourceTree = SOURCE_ROOT; };
+		847932AF228EC27A0051CFD1 /* ZFMyWalletHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZFMyWalletHeadView.m; path = "ZF/Classes/Module/Me(我)/MyWallets(我的钱包)/ZFMyWalletHeadView.m"; sourceTree = SOURCE_ROOT; };
+		847932B0228EC27A0051CFD1 /* ZFWalletVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZFWalletVC.m; path = "ZF/Classes/Module/Me(我)/MyWallets(我的钱包)/ZFWalletVC.m"; sourceTree = SOURCE_ROOT; };
+		847932B1228EC27A0051CFD1 /* ZFWalletVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZFWalletVC.h; path = "ZF/Classes/Module/Me(我)/MyWallets(我的钱包)/ZFWalletVC.h"; sourceTree = SOURCE_ROOT; };
+		847932B2228EC27A0051CFD1 /* ZFMyWalletCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZFMyWalletCollectionCell.m; path = "ZF/Classes/Module/Me(我)/MyWallets(我的钱包)/ZFMyWalletCollectionCell.m"; sourceTree = SOURCE_ROOT; };
 		847A09BC223917FB0021E236 /* ZFDetailsChoiceTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsChoiceTableCell.h; sourceTree = "<group>"; };
 		847A09BD223917FB0021E236 /* ZFDetailsChoiceTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsChoiceTableCell.m; sourceTree = "<group>"; };
 		8498DAE1223FA45A008C47A6 /* ZFMyWalletControllerCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyWalletControllerCell.h; sourceTree = "<group>"; };
@@ -2013,6 +2022,12 @@
 		5301146C224334D500C36D42 /* MyWallet(我的钱包) */ = {
 			isa = PBXGroup;
 			children = (
+				847932AE228EC27A0051CFD1 /* ZFMyWalletCollectionCell.h */,
+				847932B2228EC27A0051CFD1 /* ZFMyWalletCollectionCell.m */,
+				847932AD228EC27A0051CFD1 /* ZFMyWalletHeadView.h */,
+				847932AF228EC27A0051CFD1 /* ZFMyWalletHeadView.m */,
+				847932B1228EC27A0051CFD1 /* ZFWalletVC.h */,
+				847932B0228EC27A0051CFD1 /* ZFWalletVC.m */,
 				53011471224335A900C36D42 /* View */,
 				530114702243359600C36D42 /* Controller */,
 				5301146D2243352D00C36D42 /* ZFMyWalletVC.h */,
@@ -3117,6 +3132,7 @@
 				53F1A46F22802ECF007B6FF4 /* ZFShopModel.m in Sources */,
 				189CC0D62223E81300EB5A64 /* ZFPhoneLoginVC.m in Sources */,
 				189CC0D02223E81300EB5A64 /* UIImage+WaterMark.m in Sources */,
+				847932B3228EC27A0051CFD1 /* ZFMyWalletHeadView.m in Sources */,
 				1864717C2238013A00F2C147 /* ZFFootprintVC.m in Sources */,
 				842CE8442280165C004D73C0 /* NSString+Size.m in Sources */,
 				536187E3228C122D006DD444 /* ZFInvoiceView.m in Sources */,
@@ -3176,8 +3192,10 @@
 				18E3CF9F222A7175003C7737 /* ZFSpikeMerchandiseTableViewCell.m in Sources */,
 				53E90CFF2272E81F0063A237 /* http_address.m in Sources */,
 				531658CD2243872500CBD060 /* ZFCouponCell.m in Sources */,
+				847932B4228EC27A0051CFD1 /* ZFWalletVC.m in Sources */,
 				5309FA7B223A631C0062AA0B /* ZFShoppingItem.m in Sources */,
 				842CE8452280165C004D73C0 /* GHDropMenu.m in Sources */,
+				847932B5228EC27A0051CFD1 /* ZFMyWalletCollectionCell.m in Sources */,
 				182E8A092224010B005CE5FE /* ZFTipsView.m in Sources */,
 				1830DB6E2232525200C30C90 /* ZFMyOrderCollectionCell.m in Sources */,
 				842CE85022801B10004D73C0 /* GHWaterFallLabel.m in Sources */,
@@ -3574,8 +3592,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QYVGXM58W4;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZF/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3602,8 +3620,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QYVGXM58W4;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZF/PrefixHeader.pch";
 				INFOPLIST_FILE = ZF/Info.plist;

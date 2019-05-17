@@ -26,7 +26,7 @@
 #import "ZFMyWalletTableCell.h"
 #import "ZFMyColumnTableCell.h"
 #import "ZFMyOrderEmptyVC.h"
-#import "ZFMyWalletVC.h"
+#import "ZFWalletVC.h"
 #import "ZFCouponCenterVC.h"
 #import "ZFZFMyOrderVC.h"
 #import "http_user.h"
@@ -349,7 +349,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
  */
 - (void)ZFMyWalletHeadViewDidClick
 {
-    ZFMyWalletVC* vc = [[ZFMyWalletVC alloc]init];
+    ZFWalletVC* vc = [[ZFWalletVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

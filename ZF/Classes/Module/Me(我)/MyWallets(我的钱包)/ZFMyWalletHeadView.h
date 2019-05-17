@@ -1,5 +1,5 @@
 //
-//  ETHHomePageTitleHeadView.h
+//  ZFMyWalletHeadView.h
 //  ZF
 //
 //  Created by apple on 2019/3/2.
@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZFOrdersModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- 首页title
+ 我的钱包headview
  */
 @interface ZFMyWalletHeadView : UICollectionReusableView
+
+@property (nonatomic, strong)ZFOrdersModel *orderModel;
 
 @end
 
