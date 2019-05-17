@@ -32,6 +32,7 @@
 #import "ZFGoodModel.h"
 #import "MJExtension.h"
 #import "ZFGoodCommentModel.h"
+#import "ZFDetailsWebViewTableCell.h"
 
 
 @interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource,ZFDetailsImageTextHeadViewDelegate>
@@ -54,6 +55,9 @@
 @property (nonatomic, strong) ZFGoodModel* attributeModel;
 @property (nonatomic, strong) ZFGoodCommentListModel* commentListModel;
 
+@property (nonatomic, assign) BOOL isShowIt;
+@property (nonatomic, strong) NSMutableDictionary* heightDic;
+
 @end
 
 @implementation ZFDetailsPageVC
@@ -68,6 +72,7 @@ static NSString *const ZFAskEveryoneTableCelllD = @"ZFAskEveryoneTableCelllD";
 static NSString *const ZFMerchandiseSaleHeadTableCelllD = @"ZFMerchandiseSaleHeadTableCelllD";
 static NSString *const ZFSimilarRecommendTableCelllD = @"ZFSimilarRecommendTableCelllD";
 static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTableCelllD";
+static NSString *const ZFDetailsWebViewTableCelllD = @"ZFDetailsWebViewTableCelllD";
 
 
 - (void)viewDidLoad {
@@ -78,6 +83,10 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     self.view.backgroundColor = TableViewBGColor;
     [self setupUI];
     [self setupTableView];
+    
+    // 用于缓存cell高度
+    self.heightDic = [[NSMutableDictionary alloc] init];
+    [self.heightDic setObject:@"375" forKey:@"0"];
     
     UIImage *imgRight = [UIImage imageNamed:@"share"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(shareButtonDidClick)];
@@ -228,12 +237,15 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 {
     [super viewWillAppear:animated];
     //    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    // 注册加载完成高度的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noti:) name:@"WEBVIEW_HEIGHT" object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     //    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"WEBVIEW_HEIGHT" object:nil];
 }
 
 -(void)setupUI
@@ -281,6 +293,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     [self.tableView registerClass:[ZFMerchandiseSaleHeadTableCell class] forCellReuseIdentifier:ZFMerchandiseSaleHeadTableCelllD];
     [self.tableView registerClass:[ZFSimilarRecommendTableCell class] forCellReuseIdentifier:ZFSimilarRecommendTableCelllD];
     [self.tableView registerClass:[ZFDetailsImageTextTableCell class] forCellReuseIdentifier:ZFDetailsImageTextTableCelllD];
+    [self.tableView registerClass:[ZFDetailsWebViewTableCell class] forCellReuseIdentifier:ZFDetailsWebViewTableCelllD];
     
 }
 
@@ -289,7 +302,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -300,7 +313,16 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (section==5)
     {
-        return 6;
+        if (self.isShowIt) {
+            return 6;
+        }
+        return 0;
+    }
+    else if (section==6)
+    {
+        if (self.isShowIt) {
+            return 0;
+        }
     }
     return 1;
 }
@@ -407,6 +429,14 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
         
         cell = vcell;
     }
+    else if (indexPath.section==6)
+    {
+        ZFDetailsWebViewTableCell* vcell = [tableView dequeueReusableCellWithIdentifier:ZFDetailsWebViewTableCelllD];
+        vcell = [[ZFDetailsWebViewTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDetailsWebViewTableCelllD];
+        vcell.goods_content = self.detailListModel.goods_content;
+        
+        cell = vcell;
+    }
     
     return cell;
 }
@@ -430,9 +460,10 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     {
         return 25;
     }
-    else if (indexPath.section==7)
+    else if (indexPath.section==6)
     {
-        return 265;
+        NSNumber* h = [self.heightDic objectForKey:@"0"];
+        return h.floatValue;
     }
     else if (indexPath.section==4)
     {
@@ -470,7 +501,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     }
     else if (section==5)
     {
-        return 200;
+//        return 200;
     }
     
     return 0;
@@ -481,6 +512,7 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     if (section==5)
     {
         ZFDetailsImageTextHeadView *headerView = [[ZFDetailsImageTextHeadView alloc]init];
+        headerView.isShowIt = self.isShowIt;
         headerView.delegate = self;
         return headerView;
     }
@@ -495,8 +527,8 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
     {
 //        ZFDetailsImageTextFootView *footView = [[ZFDetailsImageTextFootView alloc]init];
 //        return footView;
-        UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 200)];
-        [webView loadHTMLString:self.detailListModel.goods_content baseURL:nil];
+//        UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 200)];
+//        [webView loadHTMLString:self.detailListModel.goods_content baseURL:nil];
         
     }
     
@@ -506,11 +538,23 @@ static NSString *const ZFDetailsImageTextTableCelllD = @"ZFDetailsImageTextTable
 }
 
 - (void)ZFDetailsImageTextHeadViewDidClick:(NSString *)type{
-    if (type == 0) {
-//        ZFDetailsImageTextTableCell* cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:5]];
-//        cell.goods_content = self.detailListModel.goods_content;
+    if ([type isEqualToString:@"商品详情"]) {
+        self.isShowIt = NO;
     }else{
-        
+        self.isShowIt = YES;
+    }
+    
+    [self.tableView reloadData];
+}
+
+- (void)noti:(NSNotification *)sender
+{
+    ZFDetailsWebViewTableCell *cell = [sender object];
+    
+    if (![self.heightDic objectForKey:@"0"]||[[self.heightDic objectForKey:@"0"] floatValue] != cell.height)
+    {
+        [self.heightDic setObject:[NSNumber numberWithFloat:cell.height] forKey:@"0"];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:6]] withRowAnimation:UITableViewRowAnimationNone];
     }
 }
 
