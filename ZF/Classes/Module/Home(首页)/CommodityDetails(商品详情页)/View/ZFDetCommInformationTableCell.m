@@ -155,6 +155,15 @@
     }
     self.collectionButton.selected = _detailsPageModel.is_collect;
     _addressLabel.text = [NSString stringWithFormat:@"%@%@",_detailsPageModel.seller_info.province_name,_detailsPageModel.seller_info.city_name];
+    
+    if ([_detailsPageModel.is_collect isEqualToString:@"1"])
+    {
+        _collectionButton.selected = YES;
+    }
+    else
+    {
+        _collectionButton.selected = NO;
+    }
 }
 
 - (void)setFreight:(NSString *)freight{
@@ -227,8 +236,8 @@
     if (_collectionButton == nil) {
         _collectionButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_collectionButton setTitle:@"收藏" forState:UIControlStateNormal];
-        [_collectionButton setImage:[UIImage imageNamed:@"collect_default"] forState:UIControlStateNormal];
-        [_collectionButton setImage:[UIImage imageNamed:@"collect_click"] forState:UIControlStateSelected];
+        [_collectionButton setImage:[UIImage imageNamed:@"collection1"] forState:UIControlStateNormal];
+        [_collectionButton setImage:[UIImage imageNamed:@"collection2"] forState:UIControlStateSelected];
         [_collectionButton setTitleColor:RGBColorHex(0x666666) forState:UIControlStateNormal];
         _collectionButton.titleLabel.font = [UIFont systemFontOfSize:11];
         [_collectionButton setImagePosition:LXMImagePositionTop spacing:6];
@@ -270,14 +279,14 @@
 - (void)collectionButtonDidClick:(UIButton *)btn{
     btn.selected = !btn.selected;
     if (_collectionButton.selected == YES) {
-        [http_mine collect_goods:_detailsPageModel.goods_id success:^(id responseObject)
+        [http_mine collect_goods:_detailsPageModel.goods_id.intValue success:^(id responseObject)
          {
              [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
          } failure:^(NSError *error) {
              [SVProgressHUD showErrorWithStatus:error.domain];
          }];
     }else{
-        [http_mine del_collect_goods:_detailsPageModel.goods_id success:^(id responseObject)
+        [http_mine del_collect_goods:_detailsPageModel.goods_id.intValue success:^(id responseObject)
          {
              [SVProgressHUD showSuccessWithStatus:@"删除收藏成功"];
          } failure:^(NSError *error) {

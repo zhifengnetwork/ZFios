@@ -18,6 +18,10 @@
 		180A97A3222E1812003A12FF /* ZFConfirmationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A97A2222E1812003A12FF /* ZFConfirmationTableCell.m */; };
 		180A97A6222E21CD003A12FF /* ZFStartAuctionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A97A5222E21CD003A12FF /* ZFStartAuctionVC.m */; };
 		180A97AD222E32F4003A12FF /* ZFAssembleCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180A97AC222E32F4003A12FF /* ZFAssembleCollectionCell.m */; };
+		180B48F0228E9E100056760E /* ZFDetailsWebViewTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B48EF228E9E100056760E /* ZFDetailsWebViewTableCell.m */; };
+		180B48F8228EC5EF0056760E /* ZFMyWalletHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B48F5228EC5EF0056760E /* ZFMyWalletHeadView.m */; };
+		180B48F9228EC5EF0056760E /* ZFWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B48F6228EC5EF0056760E /* ZFWalletVC.m */; };
+		180B48FA228EC5EF0056760E /* ZFMyWalletCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180B48F7228EC5EF0056760E /* ZFMyWalletCollectionCell.m */; };
 		180F262C22364B6800B688E9 /* UIView+HJViewStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F262B22364B6800B688E9 /* UIView+HJViewStyle.m */; };
 		180F31A3222F68610040718F /* ZFAddressTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F31A2222F68610040718F /* ZFAddressTableCell.m */; };
 		180F31A6222F6C510040718F /* ZFOrderInformationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F31A5222F6C510040718F /* ZFOrderInformationTableCell.m */; };
@@ -146,9 +150,6 @@
 		18F8D89E222918EC00203E9A /* ZFNewProductsTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F8D89D222918EC00203E9A /* ZFNewProductsTableCell.m */; };
 		18F93EF6224E1A9C006ED290 /* ZFClassifyFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F93EF5224E1A9C006ED290 /* ZFClassifyFootView.m */; };
 		18F93EF9224E1B07006ED290 /* ZFClassifyBannerHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F93EF8224E1B07006ED290 /* ZFClassifyBannerHeadView.m */; };
-		5301146F2243352D00C36D42 /* ZFMyWalletVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5301146E2243352D00C36D42 /* ZFMyWalletVC.m */; };
-		530114742243363700C36D42 /* ZFMyWalletButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 530114732243363700C36D42 /* ZFMyWalletButton.m */; };
-		53011477224336AC00C36D42 /* ZFMyWalletView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53011476224336AC00C36D42 /* ZFMyWalletView.m */; };
 		530358B5228BFDA900691221 /* ZFConfirmOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 530358B4228BFDA900691221 /* ZFConfirmOrderCell.m */; };
 		5304891F2240C42B002FAF61 /* ZFEmptyCartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304891E2240C42B002FAF61 /* ZFEmptyCartView.m */; };
 		5304892B2240E03A002FAF61 /* ZFSelectPayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5304892A2240E03A002FAF61 /* ZFSelectPayView.m */; };
@@ -367,6 +368,14 @@
 		180A97A5222E21CD003A12FF /* ZFStartAuctionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFStartAuctionVC.m; sourceTree = "<group>"; };
 		180A97AB222E32F4003A12FF /* ZFAssembleCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAssembleCollectionCell.h; sourceTree = "<group>"; };
 		180A97AC222E32F4003A12FF /* ZFAssembleCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAssembleCollectionCell.m; sourceTree = "<group>"; };
+		180B48EE228E9E100056760E /* ZFDetailsWebViewTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsWebViewTableCell.h; sourceTree = "<group>"; };
+		180B48EF228E9E100056760E /* ZFDetailsWebViewTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsWebViewTableCell.m; sourceTree = "<group>"; };
+		180B48F2228EC5EF0056760E /* ZFMyWalletHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFMyWalletHeadView.h; sourceTree = "<group>"; };
+		180B48F3228EC5EF0056760E /* ZFWalletVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFWalletVC.h; sourceTree = "<group>"; };
+		180B48F4228EC5EF0056760E /* ZFMyWalletCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFMyWalletCollectionCell.h; sourceTree = "<group>"; };
+		180B48F5228EC5EF0056760E /* ZFMyWalletHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFMyWalletHeadView.m; sourceTree = "<group>"; };
+		180B48F6228EC5EF0056760E /* ZFWalletVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFWalletVC.m; sourceTree = "<group>"; };
+		180B48F7228EC5EF0056760E /* ZFMyWalletCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFMyWalletCollectionCell.m; sourceTree = "<group>"; };
 		180F262A22364B6800B688E9 /* UIView+HJViewStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+HJViewStyle.h"; sourceTree = "<group>"; };
 		180F262B22364B6800B688E9 /* UIView+HJViewStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+HJViewStyle.m"; sourceTree = "<group>"; };
 		180F31A1222F68610040718F /* ZFAddressTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAddressTableCell.h; sourceTree = "<group>"; };
@@ -625,12 +634,6 @@
 		18F93EF7224E1B07006ED290 /* ZFClassifyBannerHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFClassifyBannerHeadView.h; sourceTree = "<group>"; };
 		18F93EF8224E1B07006ED290 /* ZFClassifyBannerHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFClassifyBannerHeadView.m; sourceTree = "<group>"; };
 		35B60207C013D37496B67DF4 /* Pods-ZF.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZF.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZF/Pods-ZF.release.xcconfig"; sourceTree = "<group>"; };
-		5301146D2243352D00C36D42 /* ZFMyWalletVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyWalletVC.h; sourceTree = "<group>"; };
-		5301146E2243352D00C36D42 /* ZFMyWalletVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyWalletVC.m; sourceTree = "<group>"; };
-		530114722243363700C36D42 /* ZFMyWalletButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyWalletButton.h; sourceTree = "<group>"; };
-		530114732243363700C36D42 /* ZFMyWalletButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyWalletButton.m; sourceTree = "<group>"; };
-		53011475224336AC00C36D42 /* ZFMyWalletView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyWalletView.h; sourceTree = "<group>"; };
-		53011476224336AC00C36D42 /* ZFMyWalletView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyWalletView.m; sourceTree = "<group>"; };
 		530358B3228BFDA900691221 /* ZFConfirmOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFConfirmOrderCell.h; sourceTree = "<group>"; };
 		530358B4228BFDA900691221 /* ZFConfirmOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFConfirmOrderCell.m; sourceTree = "<group>"; };
 		5304891D2240C42B002FAF61 /* ZFEmptyCartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFEmptyCartView.h; sourceTree = "<group>"; };
@@ -1101,6 +1104,19 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		180B48F1228EC5EF0056760E /* MyWallets(我的钱包) */ = {
+			isa = PBXGroup;
+			children = (
+				180B48F4228EC5EF0056760E /* ZFMyWalletCollectionCell.h */,
+				180B48F7228EC5EF0056760E /* ZFMyWalletCollectionCell.m */,
+				180B48F2228EC5EF0056760E /* ZFMyWalletHeadView.h */,
+				180B48F5228EC5EF0056760E /* ZFMyWalletHeadView.m */,
+				180B48F3228EC5EF0056760E /* ZFWalletVC.h */,
+				180B48F6228EC5EF0056760E /* ZFWalletVC.m */,
+			);
+			path = "MyWallets(我的钱包)";
+			sourceTree = "<group>";
+		};
 		180F262922364B6800B688E9 /* HJViewStyle */ = {
 			isa = PBXGroup;
 			children = (
@@ -1345,8 +1361,8 @@
 		182E8A0A2224017C005CE5FE /* Me(我) */ = {
 			isa = PBXGroup;
 			children = (
+				180B48F1228EC5EF0056760E /* MyWallets(我的钱包) */,
 				5325B24822437C4F00AFD00F /* CouponCenter(我的优惠券中心） */,
-				5301146C224334D500C36D42 /* MyWallet(我的钱包) */,
 				842EDEE52240E5F600B53E45 /* PublicWelfare(公益基金账户) */,
 				847547082240C3F400B698E6 /* MyTeam(我的团队) */,
 				847546FC2240932500B698E6 /* Integral(积分)   */,
@@ -2013,35 +2029,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		5301146C224334D500C36D42 /* MyWallet(我的钱包) */ = {
-			isa = PBXGroup;
-			children = (
-				53011471224335A900C36D42 /* View */,
-				530114702243359600C36D42 /* Controller */,
-				5301146D2243352D00C36D42 /* ZFMyWalletVC.h */,
-				5301146E2243352D00C36D42 /* ZFMyWalletVC.m */,
-				530114722243363700C36D42 /* ZFMyWalletButton.h */,
-				530114732243363700C36D42 /* ZFMyWalletButton.m */,
-			);
-			path = "MyWallet(我的钱包)";
-			sourceTree = "<group>";
-		};
-		530114702243359600C36D42 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		53011471224335A900C36D42 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				53011475224336AC00C36D42 /* ZFMyWalletView.h */,
-				53011476224336AC00C36D42 /* ZFMyWalletView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		53034D31224B0FD100780BB7 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -2380,6 +2367,8 @@
 				188EFD6F224CC8C400C90070 /* ZFDetailsImageTextFootView.m */,
 				188EFD71224CCCD900C90070 /* ZFDetailsImageTextTableCell.h */,
 				188EFD72224CCCD900C90070 /* ZFDetailsImageTextTableCell.m */,
+				180B48EE228E9E100056760E /* ZFDetailsWebViewTableCell.h */,
+				180B48EF228E9E100056760E /* ZFDetailsWebViewTableCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3154,7 +3143,6 @@
 				5309F2162238E74900275D4C /* ZFMenuView.m in Sources */,
 				53F1A47222805807007B6FF4 /* ZFGoodCommentModel.m in Sources */,
 				188F41B2223619DE00165142 /* ZFPersonalVC.m in Sources */,
-				53011477224336AC00C36D42 /* ZFMyWalletView.m in Sources */,
 				18D9160922301BE3003B113A /* ZFClusterWindowView.m in Sources */,
 				84499BBB223A357100A7A988 /* ZFCommodityHeadView.m in Sources */,
 				189CC0F42223E81300EB5A64 /* HttpTool.m in Sources */,
@@ -3198,9 +3186,11 @@
 				53E90CF52272DF5E0063A237 /* http_order.m in Sources */,
 				5315E5DC225205E500D8CD3C /* ZFTitleView.m in Sources */,
 				842EDEF92240FEF000B53E45 /* ZFDonationButtonTableCell.m in Sources */,
+				180B48F8228EC5EF0056760E /* ZFMyWalletHeadView.m in Sources */,
 				18F8D8982228D7DE00203E9A /* ZFSelectedVC.m in Sources */,
 				18C26BFC222D62BD004951D9 /* ZFAuctionWMVC.m in Sources */,
 				842CE84A2280165C004D73C0 /* GHDropMenuFilterInputItem.m in Sources */,
+				180B48F0228E9E100056760E /* ZFDetailsWebViewTableCell.m in Sources */,
 				1819919F2237C781004585D8 /* ZFRecordDetailsTableCell.m in Sources */,
 				53B4C3182285AA7D00DFF557 /* ZFDetailOrderVC.m in Sources */,
 				847932A2228E61BF0051CFD1 /* ZFMaterialModel.m in Sources */,
@@ -3316,6 +3306,7 @@
 				189CC0DB2223E81300EB5A64 /* RefreshGifHeader.m in Sources */,
 				18285F08222D072800CBA408 /* ZFAuctionVC.m in Sources */,
 				84D879F92275ABD3005B375B /* ZFPlantingModel.m in Sources */,
+				180B48F9228EC5EF0056760E /* ZFWalletVC.m in Sources */,
 				53E8747F228D12BE007E0E9E /* ZFBuyModel.m in Sources */,
 				842EDEF02240EF6300B53E45 /* ZFDynamicsITableCell.m in Sources */,
 				189CC0E52223E81300EB5A64 /* HMEmoticonButton.m in Sources */,
@@ -3366,14 +3357,12 @@
 				188EFD73224CCCD900C90070 /* ZFDetailsImageTextTableCell.m in Sources */,
 				182E8A082224010B005CE5FE /* LoginTypeView.m in Sources */,
 				189CC0DD2223E81300EB5A64 /* StaticTableCell.m in Sources */,
-				5301146F2243352D00C36D42 /* ZFMyWalletVC.m in Sources */,
 				53355235224E25970070E724 /* ZFShareSuccessView.m in Sources */,
 				840714A5228D719A00889F63 /* ZFSeeParagraphVC.m in Sources */,
 				536F6D202276EAEA00F14AD9 /* ZFEvaluationCell.m in Sources */,
 				840BE8FD224A06D600568B11 /* ZFCommodityEvaluationTableCell.m in Sources */,
 				849F8BEA223BA16C00D10E2E /* ZFMyOrderEmptyVC.m in Sources */,
 				18B10A7C223FF584007407E0 /* ZFMyOrderTableCell.m in Sources */,
-				530114742243363700C36D42 /* ZFMyWalletButton.m in Sources */,
 				534D1BA82244BD8D0013C0B4 /* ZFQRCodeView.m in Sources */,
 				5307E463224DC8D100F93A11 /* ZFShareView.m in Sources */,
 				18285F11222D20BC00CBA408 /* ZFAuctionPeopleTableCell.m in Sources */,
@@ -3413,6 +3402,7 @@
 				1830DB712232560300C30C90 /* ZFMyOrderHeadView.m in Sources */,
 				530F9A32228ED93A00344A55 /* ZFBindAlipayVC.m in Sources */,
 				18C26BFF222D6AA7004951D9 /* ZFHomeSpikeHeadView.m in Sources */,
+				180B48FA228EC5EF0056760E /* ZFMyWalletCollectionCell.m in Sources */,
 				189CC0DF2223E81300EB5A64 /* BaseTabBarController.m in Sources */,
 				84499BC4223A57E200A7A988 /* ZFClassificationHeadView.m in Sources */,
 				1819919C2237C629004585D8 /* ZFTimeHeadView.m in Sources */,
@@ -3588,8 +3578,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QYVGXM58W4;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZF/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3616,8 +3606,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QYVGXM58W4;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZF/PrefixHeader.pch";
 				INFOPLIST_FILE = ZF/Info.plist;

@@ -8,13 +8,15 @@
 
 #import "ZFMyOrderHeadTableCell.h"
 #import "ZFTool.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
+#import "RefreshGifHeader.h"
 
 @interface ZFMyOrderHeadTableCell()
 
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UIImageView *iconView;
-
+@property (nonatomic, strong) UIButton* deleteButton;
 
 @end
 
@@ -36,7 +38,7 @@
     self.contentView.backgroundColor = RGBColorHex(0xffffff);
     [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.titleLabel];
-    [self.contentView addSubview:self.iconView];
+    [self.contentView addSubview:self.deleteButton];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
@@ -44,13 +46,13 @@
     }];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self->_iconView.mas_left).offset(-10);
+        make.right.equalTo(self->_deleteButton.mas_left).offset(-10);
         make.centerY.equalTo(self.contentView);
     }];
     
-    [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_deleteButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-10);
-        make.bottom.equalTo(self->_titleLabel.mas_bottom);
+        make.bottom.equalTo(self->_titleLabel.mas_bottom).offset(3);
     }];
     
     //下面横线
@@ -61,14 +63,21 @@
     [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
      {
          make.left.equalTo(self->_timeLabel.mas_left);
-         make.right.equalTo(self->_iconView.mas_right);
+         make.right.equalTo(self->_deleteButton.mas_right);
          make.bottom.equalTo(self.contentView);
          make.height.mas_equalTo(0.5f);
      }];
-    
-    
 }
 
+- (void)deleteClick{
+    //删除cell
+    [http_mine del_collect_goods:_orderModel.order_id success:^(id responseObject) {
+        [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+    } failure:^(NSError *error) {
+        
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
 
 - (UILabel *)timeLabel {
     if (_timeLabel == nil) {
@@ -91,12 +100,12 @@
     return _titleLabel;
 }
 
-- (UIImageView *)iconView {
-    if (_iconView == nil) {
-        _iconView = [[UIImageView alloc] init];
-        _iconView.image = [UIImage imageNamed:@"Delete"];
-    }
-    return _iconView;
+- (UIButton *)deleteButton{
+    if (_deleteButton == nil) {
+        _deleteButton = [[UIButton alloc]init];
+        [_deleteButton setImage:[UIImage imageNamed:@"Delete"] forState:UIControlStateNormal];
+        [_deleteButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
+    }return _deleteButton;
 }
 
 - (void)setOrderModel:(ZFOrderModel *)orderModel{

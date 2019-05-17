@@ -19,7 +19,6 @@
 @property (nonatomic, strong) UILabel* moneyLabel;
 @property (nonatomic, strong) UILabel* money2Label;
 @property (nonatomic, strong) UIButton *seeButton;
-//@property (nonatomic, strong)UIButton *deleteButton;
 
 @end
 
@@ -44,7 +43,6 @@
     [self.contentView addSubview:self.moneyLabel];
     [self.contentView addSubview:self.money2Label];
     [self.contentView addSubview:self.seeButton];
-//    [self.contentView addSubview:self.deleteButton];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
