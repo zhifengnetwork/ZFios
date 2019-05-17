@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFDetailsImageTextHeadView : UIView
 
 @property (nonatomic, weak) id <ZFDetailsImageTextHeadViewDelegate> delegate;
+@property (nonatomic, assign) BOOL isShowIt;
 
 @end
 

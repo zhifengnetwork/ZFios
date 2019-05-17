@@ -116,6 +116,18 @@
     return _segmentedControl;
 }
 
+-(void)setIsShowIt:(BOOL)isShowIt
+{
+    _isShowIt = isShowIt;
+    if (_isShowIt) {
+        [_segmentedControl setSelectedSegmentIndex:1];
+    }
+    else
+    {
+        [_segmentedControl setSelectedSegmentIndex:0];
+    }
+}
+
 
 //点击不同分段就会有不同的事件进行相应
 -(void)sementedControlClick:(UISegmentedControl *)sender
