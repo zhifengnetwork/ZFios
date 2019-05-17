@@ -14,7 +14,7 @@
 /* 轮播图 */
 @property (strong , nonatomic)SDCycleScrollView *cycleScrollView;
 
-@property (nonatomic, strong) UILabel* numberLabel;
+//@property (nonatomic, strong) UILabel* numberLabel;
 
 @end
 
@@ -39,14 +39,14 @@
     _cycleScrollView.showPageControl = NO;
     
     [self addSubview:_cycleScrollView];
-    [self addSubview:self.numberLabel];
+//    [self addSubview:self.numberLabel];
     
-    [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self->_cycleScrollView.mas_right).offset(-15);
-        make.bottom.equalTo(self->_cycleScrollView.mas_bottom).offset(-17);
-        make.width.mas_equalTo(42);
-        make.height.mas_equalTo(20);
-    }];
+//    [_numberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self->_cycleScrollView.mas_right).offset(-15);
+//        make.bottom.equalTo(self->_cycleScrollView.mas_bottom).offset(-17);
+//        make.width.mas_equalTo(42);
+//        make.height.mas_equalTo(20);
+//    }];
     
     //下面横线
     UIView *hLineView = [[UIView alloc] init];
@@ -72,18 +72,18 @@
     
 }
 
-- (UILabel *)numberLabel {
-    if (_numberLabel == nil) {
-        _numberLabel = [[UILabel alloc] init];
-        _numberLabel.textColor = RGBColorHex(0xffffff);
-        _numberLabel.font = [UIFont systemFontOfSize:12];
-        _numberLabel.backgroundColor = RGBColorHex(0xCDCDCD);
-        _numberLabel.layer.cornerRadius = 10;
-        _numberLabel.clipsToBounds = YES;
-        _numberLabel.text = @"    1/2";
-    }
-    return _numberLabel;
-}
+//- (UILabel *)numberLabel {
+//    if (_numberLabel == nil) {
+//        _numberLabel = [[UILabel alloc] init];
+//        _numberLabel.textColor = RGBColorHex(0xffffff);
+//        _numberLabel.font = [UIFont systemFontOfSize:12];
+//        _numberLabel.backgroundColor = RGBColorHex(0xCDCDCD);
+//        _numberLabel.layer.cornerRadius = 10;
+//        _numberLabel.clipsToBounds = YES;
+//        _numberLabel.text = @"    1/2";
+//    }
+//    return _numberLabel;
+//}
 
 
 #pragma mark - 点击图片Bannar跳转
