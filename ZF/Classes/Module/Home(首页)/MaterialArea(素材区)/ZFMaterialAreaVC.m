@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
 #import "RefreshGifHeader.h"
+#import "ZFMaterialVC.h"
 
 @interface ZFMaterialAreaVC ()
 
@@ -146,20 +147,10 @@ static NSString *const ZFMaterialAreaTableCellID = @"ZFMaterialAreaTableCellID";
 //点击了哪个cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    if (indexPath.section==0)
-    //    {
-    //        ZFPersonalDataVC* vc = [[ZFPersonalDataVC alloc]init];
-    //        [self.navigationController pushViewController:vc animated:YES];
-    //    }
-    //    else if (indexPath.section==1)
-    //    {
-    //        if (indexPath.row==0)
-    //        {
-    //            ZFAddressManagementVC* vc = [[ZFAddressManagementVC alloc]init];
-    //            [self.navigationController pushViewController:vc animated:YES];
-    //        }
-    //
-    //    }
+    ZFMaterialAreaModel* materialAreaModel = [self.materialListModel.list objectAtIndex:indexPath.section];
+    ZFMaterialVC *vc = [[ZFMaterialVC alloc]init];
+    vc.materialAreaModel = materialAreaModel;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
