@@ -26,6 +26,22 @@ NS_ASSUME_NONNULL_BEGIN
 //提现记录接口
 + (void)withdrawals_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//绑定支付宝接口
+//zfb_account 支付宝账号
+//realname    真实姓名
++ (void)BindZfb:(NSString*)zfb_account realname:(NSString*)realname success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+
+/**
+ 申请提现接口
+ @param paypwd 支付密码
+ @param money 提现金额
+ @param bank_name 银行名称 如支付宝 微信 中国银行 农业银行等
+ @param bank_card 对应账号
+ @param realname 真实姓名
+ */
++ (void)withdrawals:(NSString*)paypwd money:(NSString*)money bank_name:(NSString*)bank_name bank_card:(NSString*)bank_card realname:(NSString*)realname  success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 //我的关注
 //我关注的商品
 + (void)collect_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;

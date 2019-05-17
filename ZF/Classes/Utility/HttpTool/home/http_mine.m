@@ -75,6 +75,64 @@
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
+//绑定支付宝接口
+//zfb_account 支付宝账号
+//realname    真实姓名
++ (void)BindZfb:(NSString*)zfb_account realname:(NSString*)realname success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    if (!kStringIsEmpty(zfb_account)) {
+        [parameters setObject:zfb_account forKey:@"zfb_account"];
+    }
+    
+    if (!kStringIsEmpty(realname)) {
+        [parameters setObject:realname forKey:@"realname"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/BindZfb"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+/**
+ 申请提现接口
+ @param paypwd 支付密码
+ @param money 提现金额
+ @param bank_name 银行名称 如支付宝 微信 中国银行 农业银行等
+ @param bank_card 对应账号
+ @param realname 真实姓名
+ */
++ (void)withdrawals:(NSString*)paypwd money:(NSString*)money bank_name:(NSString*)bank_name bank_card:(NSString*)bank_card realname:(NSString*)realname  success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    if (!kStringIsEmpty(paypwd)) {
+        [parameters setObject:paypwd forKey:@"paypwd"];
+    }
+    
+    if (!kStringIsEmpty(money)) {
+        [parameters setObject:money forKey:@"money"];
+    }
+    if (!kStringIsEmpty(bank_name)) {
+        [parameters setObject:bank_name forKey:@"bank_name"];
+    }
+    if (!kStringIsEmpty(bank_card)) {
+        [parameters setObject:bank_card forKey:@"bank_card"];
+    }
+    if (!kStringIsEmpty(realname)) {
+        [parameters setObject:realname forKey:@"realname"];
+    }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/withdrawals"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
 //我的关注
 //我关注的商品
 + (void)collect_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{

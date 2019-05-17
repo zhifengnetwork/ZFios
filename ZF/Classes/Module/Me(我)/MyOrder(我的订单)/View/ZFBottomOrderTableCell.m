@@ -185,7 +185,7 @@
             [_deliverButton setTitle:@"查看物流" forState:UIControlStateNormal];
             [_orderButton setTitle:@"确认收货" forState:UIControlStateNormal];
         }
-        if (_orderModel.order_status == 4) {
+        if (_orderModel.order_status == 2) {
             _deliverButton.hidden = YES;
             [_orderButton setTitle:@"去评价" forState:UIControlStateNormal];
         }

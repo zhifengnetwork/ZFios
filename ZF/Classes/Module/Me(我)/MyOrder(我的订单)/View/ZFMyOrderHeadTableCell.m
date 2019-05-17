@@ -110,6 +110,9 @@
     if (_orderModel.shipping_status == 1) {
         _titleLabel.text = @"卖家已发货";
     }
+    if (_orderModel.order_status == 2) {
+        _titleLabel.text = @"买家已收货";
+    }
     if (_orderModel.order_status == 4) {
         _titleLabel.text = @"交易成功";
     }

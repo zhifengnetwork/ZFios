@@ -18,6 +18,7 @@
 #import "MJExtension.h"
 #import "ZFWithdrawModel.h"
 #import "ZFMyMemberVC.h"
+#import "ZFwithdrawalVC.h"
 
 @interface ZFWithdrawDepositVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFDistributionMemTableCellDelegate,ZFWithdrawDepositTableCellDelegate>
 
@@ -125,6 +126,7 @@ static NSString *const ZFBannerHeadViewID = @"ZFBannerHeadViewID";
     {
         ZFWithdrawDepositTableCell *oell = [collectionView dequeueReusableCellWithReuseIdentifier:ZFWithdrawDepositTableCellID forIndexPath:indexPath];
         oell.withdraModel = self.withdrawModel;
+        oell.delegate = self;
         gridcell = oell;
     }
     else if (indexPath.section == 1)
@@ -323,6 +325,8 @@ static NSString *const ZFBannerHeadViewID = @"ZFBannerHeadViewID";
 //提现按钮被点击
 - (void)ZFWithdrawDepositTableCellDidClick
 {
+    ZFwithdrawalVC *vc = [[ZFwithdrawalVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
