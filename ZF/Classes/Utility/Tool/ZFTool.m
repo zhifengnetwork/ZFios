@@ -208,6 +208,26 @@
     return str;
 }
 
+//充值日期
++(NSString*)Rechargedate:(NSString*)dateline
+{
+    if (kStringIsEmpty(dateline))
+    {
+        return nil;
+    }
+    
+    NSString* str = nil;
+    long long lltime = [dateline longLongValue];
+    if (lltime==0)
+    {
+        return str;
+    }
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:lltime];
+    str = [date formattedDateWithFormat:@"yyyy/MM/dd"];
+    
+    return str;
+}
 
 //将图片字符串转换为URL
 +(NSURL *)IconStringToUrl:(NSString*)iconString

@@ -37,11 +37,19 @@
 
 //余额明细接口
 //type    类型，全部all，赚取plus，消费minus；默认all
-+ (void)account_list:(NSString*)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)account_list:(NSString*)type page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    [parameters setObject:type forKey:@"type"];
+    NSString *str = [NSString stringWithFormat:@"%ld",page];
+    [parameters setObject:str forKey:@"page"];
+    
+    [parameters setObject:@"10" forKey:@"num"];
+    
+    if (!kStringIsEmpty(type)) {
+        [parameters setObject:type forKey:@"type"];
+    }
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
@@ -74,6 +82,23 @@
     strUrl = [strUrl stringByAppendingPathComponent:@"api/user/recharge_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
+//充值记录接口
+//+ (void)recharge_list:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
+//{
+//    HttpTool *http = [HttpTool sharedManager];
+//    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+//
+//    NSString *str = [NSString stringWithFormat:@"%ld",page];
+//    [parameters setObject:str forKey:@"page"];
+//
+//    [parameters setObject:@"10" forKey:@"num"];
+//
+//    NSDictionary* dic = [http hanldeSign:parameters];
+//
+//    NSString* strUrl = [http getMainUrl];
+//    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/recharge_list"];
+//    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+//}
 
 //绑定支付宝接口
 //zfb_account 支付宝账号

@@ -270,6 +270,19 @@
 		842EDEF92240FEF000B53E45 /* ZFDonationButtonTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842EDEF82240FEF000B53E45 /* ZFDonationButtonTableCell.m */; };
 		843521012241E39E005DA298 /* ZFMyWalletTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843521002241E39E005DA298 /* ZFMyWalletTableCell.m */; };
 		843521042241EAC7005DA298 /* ZFMyColumnTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843521032241EAC7005DA298 /* ZFMyColumnTableCell.m */; };
+		843E9920228FBACB005E6D24 /* ZFCheckTimesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E991E228FBACA005E6D24 /* ZFCheckTimesVC.m */; };
+		843E9924228FEE70005E6D24 /* ZFDetailBalanceWMVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E9922228FEE70005E6D24 /* ZFDetailBalanceWMVC.m */; };
+		843E9929228FEFED005E6D24 /* ZFDetailBalanceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E9925228FEFED005E6D24 /* ZFDetailBalanceTableCell.m */; };
+		843E992A228FEFED005E6D24 /* ZFDetailBalanceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E9928228FEFED005E6D24 /* ZFDetailBalanceVC.m */; };
+		843E9934228FFAC1005E6D24 /* EmptyDataTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E992C228FFAC1005E6D24 /* EmptyDataTableCell.m */; };
+		843E9935228FFAC1005E6D24 /* DZNEmptyDataSetCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E992D228FFAC1005E6D24 /* DZNEmptyDataSetCVC.m */; };
+		843E9936228FFAC1005E6D24 /* DZNEmptyDataSetTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E992E228FFAC1005E6D24 /* DZNEmptyDataSetTVC.m */; };
+		843E9937228FFAC1005E6D24 /* DZNEmptyDataSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E992F228FFAC1005E6D24 /* DZNEmptyDataSetVC.m */; };
+		843E993A22900420005E6D24 /* ZFDetailBalanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E993922900420005E6D24 /* ZFDetailBalanceModel.m */; };
+		843E993E22900ECB005E6D24 /* ZFRechargeHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E993D22900ECB005E6D24 /* ZFRechargeHeadTableCell.m */; };
+		843E994122901059005E6D24 /* ZFRechargeRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E994022901059005E6D24 /* ZFRechargeRecordTableCell.m */; };
+		843E9944229010D7005E6D24 /* ZFRechargeRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E9943229010D7005E6D24 /* ZFRechargeRecordVC.m */; };
+		843E99472290157A005E6D24 /* ZFRechargeRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E99462290157A005E6D24 /* ZFRechargeRecordModel.m */; };
 		8444CC852277FBA700934E96 /* CQCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8444CC822277FBA700934E96 /* CQCountDownButton.m */; };
 		8444CC862277FBA700934E96 /* NSTimer+CQBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8444CC832277FBA700934E96 /* NSTimer+CQBlockSupport.m */; };
 		84499BB22239F8FD00A7A988 /* ZFDetailsChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BB12239F8FD00A7A988 /* ZFDetailsChoiceVC.m */; };
@@ -877,6 +890,32 @@
 		843521002241E39E005DA298 /* ZFMyWalletTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyWalletTableCell.m; sourceTree = "<group>"; };
 		843521022241EAC7005DA298 /* ZFMyColumnTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyColumnTableCell.h; sourceTree = "<group>"; };
 		843521032241EAC7005DA298 /* ZFMyColumnTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyColumnTableCell.m; sourceTree = "<group>"; };
+		843E991E228FBACA005E6D24 /* ZFCheckTimesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFCheckTimesVC.m; sourceTree = "<group>"; };
+		843E991F228FBACA005E6D24 /* ZFCheckTimesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFCheckTimesVC.h; sourceTree = "<group>"; };
+		843E9922228FEE70005E6D24 /* ZFDetailBalanceWMVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDetailBalanceWMVC.m; sourceTree = "<group>"; };
+		843E9923228FEE70005E6D24 /* ZFDetailBalanceWMVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDetailBalanceWMVC.h; sourceTree = "<group>"; };
+		843E9925228FEFED005E6D24 /* ZFDetailBalanceTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDetailBalanceTableCell.m; sourceTree = "<group>"; };
+		843E9926228FEFED005E6D24 /* ZFDetailBalanceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDetailBalanceVC.h; sourceTree = "<group>"; };
+		843E9927228FEFED005E6D24 /* ZFDetailBalanceTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFDetailBalanceTableCell.h; sourceTree = "<group>"; };
+		843E9928228FEFED005E6D24 /* ZFDetailBalanceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFDetailBalanceVC.m; sourceTree = "<group>"; };
+		843E992C228FFAC1005E6D24 /* EmptyDataTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyDataTableCell.m; sourceTree = "<group>"; };
+		843E992D228FFAC1005E6D24 /* DZNEmptyDataSetCVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZNEmptyDataSetCVC.m; sourceTree = "<group>"; };
+		843E992E228FFAC1005E6D24 /* DZNEmptyDataSetTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZNEmptyDataSetTVC.m; sourceTree = "<group>"; };
+		843E992F228FFAC1005E6D24 /* DZNEmptyDataSetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZNEmptyDataSetVC.m; sourceTree = "<group>"; };
+		843E9930228FFAC1005E6D24 /* EmptyDataTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyDataTableCell.h; sourceTree = "<group>"; };
+		843E9931228FFAC1005E6D24 /* DZNEmptyDataSetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNEmptyDataSetVC.h; sourceTree = "<group>"; };
+		843E9932228FFAC1005E6D24 /* DZNEmptyDataSetCVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNEmptyDataSetCVC.h; sourceTree = "<group>"; };
+		843E9933228FFAC1005E6D24 /* DZNEmptyDataSetTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DZNEmptyDataSetTVC.h; sourceTree = "<group>"; };
+		843E993822900420005E6D24 /* ZFDetailBalanceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailBalanceModel.h; sourceTree = "<group>"; };
+		843E993922900420005E6D24 /* ZFDetailBalanceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailBalanceModel.m; sourceTree = "<group>"; };
+		843E993C22900ECB005E6D24 /* ZFRechargeHeadTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFRechargeHeadTableCell.h; sourceTree = "<group>"; };
+		843E993D22900ECB005E6D24 /* ZFRechargeHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFRechargeHeadTableCell.m; sourceTree = "<group>"; };
+		843E993F22901059005E6D24 /* ZFRechargeRecordTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFRechargeRecordTableCell.h; sourceTree = "<group>"; };
+		843E994022901059005E6D24 /* ZFRechargeRecordTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFRechargeRecordTableCell.m; sourceTree = "<group>"; };
+		843E9942229010D7005E6D24 /* ZFRechargeRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFRechargeRecordVC.h; sourceTree = "<group>"; };
+		843E9943229010D7005E6D24 /* ZFRechargeRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFRechargeRecordVC.m; sourceTree = "<group>"; };
+		843E99452290157A005E6D24 /* ZFRechargeRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFRechargeRecordModel.h; sourceTree = "<group>"; };
+		843E99462290157A005E6D24 /* ZFRechargeRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFRechargeRecordModel.m; sourceTree = "<group>"; };
 		8444CC812277FBA700934E96 /* NSTimer+CQBlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+CQBlockSupport.h"; sourceTree = "<group>"; };
 		8444CC822277FBA700934E96 /* CQCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCountDownButton.m; sourceTree = "<group>"; };
 		8444CC832277FBA700934E96 /* NSTimer+CQBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+CQBlockSupport.m"; sourceTree = "<group>"; };
@@ -1116,6 +1155,8 @@
 		180B48F1228EC5EF0056760E /* MyWallets(我的钱包) */ = {
 			isa = PBXGroup;
 			children = (
+				843E993B22900E4E005E6D24 /* RechargeRecord(充值记录) */,
+				843E9921228FED44005E6D24 /* DetailBalance(余额明细) */,
 				180B48F4228EC5EF0056760E /* ZFMyWalletCollectionCell.h */,
 				180B48F7228EC5EF0056760E /* ZFMyWalletCollectionCell.m */,
 				180B48F2228EC5EF0056760E /* ZFMyWalletHeadView.h */,
@@ -1622,6 +1663,7 @@
 		189CC08B2223E81300EB5A64 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				843E992B228FFAC1005E6D24 /* EmptyData */,
 				189CC08C2223E81300EB5A64 /* Model */,
 				189CC08F2223E81300EB5A64 /* View */,
 			);
@@ -2521,6 +2563,51 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		843E9921228FED44005E6D24 /* DetailBalance(余额明细) */ = {
+			isa = PBXGroup;
+			children = (
+				843E9927228FEFED005E6D24 /* ZFDetailBalanceTableCell.h */,
+				843E9925228FEFED005E6D24 /* ZFDetailBalanceTableCell.m */,
+				843E9926228FEFED005E6D24 /* ZFDetailBalanceVC.h */,
+				843E9928228FEFED005E6D24 /* ZFDetailBalanceVC.m */,
+				843E9923228FEE70005E6D24 /* ZFDetailBalanceWMVC.h */,
+				843E9922228FEE70005E6D24 /* ZFDetailBalanceWMVC.m */,
+				843E993822900420005E6D24 /* ZFDetailBalanceModel.h */,
+				843E993922900420005E6D24 /* ZFDetailBalanceModel.m */,
+			);
+			path = "DetailBalance(余额明细)";
+			sourceTree = "<group>";
+		};
+		843E992B228FFAC1005E6D24 /* EmptyData */ = {
+			isa = PBXGroup;
+			children = (
+				843E992C228FFAC1005E6D24 /* EmptyDataTableCell.m */,
+				843E992D228FFAC1005E6D24 /* DZNEmptyDataSetCVC.m */,
+				843E992E228FFAC1005E6D24 /* DZNEmptyDataSetTVC.m */,
+				843E992F228FFAC1005E6D24 /* DZNEmptyDataSetVC.m */,
+				843E9930228FFAC1005E6D24 /* EmptyDataTableCell.h */,
+				843E9931228FFAC1005E6D24 /* DZNEmptyDataSetVC.h */,
+				843E9932228FFAC1005E6D24 /* DZNEmptyDataSetCVC.h */,
+				843E9933228FFAC1005E6D24 /* DZNEmptyDataSetTVC.h */,
+			);
+			path = EmptyData;
+			sourceTree = "<group>";
+		};
+		843E993B22900E4E005E6D24 /* RechargeRecord(充值记录) */ = {
+			isa = PBXGroup;
+			children = (
+				843E993C22900ECB005E6D24 /* ZFRechargeHeadTableCell.h */,
+				843E993D22900ECB005E6D24 /* ZFRechargeHeadTableCell.m */,
+				843E993F22901059005E6D24 /* ZFRechargeRecordTableCell.h */,
+				843E994022901059005E6D24 /* ZFRechargeRecordTableCell.m */,
+				843E9942229010D7005E6D24 /* ZFRechargeRecordVC.h */,
+				843E9943229010D7005E6D24 /* ZFRechargeRecordVC.m */,
+				843E99452290157A005E6D24 /* ZFRechargeRecordModel.h */,
+				843E99462290157A005E6D24 /* ZFRechargeRecordModel.m */,
+			);
+			path = "RechargeRecord(充值记录)";
+			sourceTree = "<group>";
+		};
 		8444CC802277FBA700934E96 /* CQCountDownButton */ = {
 			isa = PBXGroup;
 			children = (
@@ -2834,6 +2921,8 @@
 		84ED0CCE223CB02C00BC13C7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				843E991F228FBACA005E6D24 /* ZFCheckTimesVC.h */,
+				843E991E228FBACA005E6D24 /* ZFCheckTimesVC.m */,
 				84ED0CCF223CB05700BC13C7 /* ZFCumulativeVC.h */,
 				84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */,
 			);
@@ -3151,6 +3240,7 @@
 				53E90CEC2272B5390063A237 /* ZFUserModel.m in Sources */,
 				189CC0E72223E81300EB5A64 /* HMEmoticonInputView.m in Sources */,
 				84CDB8A3228C1A3900D62BF7 /* ZFBalanceControllerCell.m in Sources */,
+				843E993A22900420005E6D24 /* ZFDetailBalanceModel.m in Sources */,
 				5358868122361C1300D7A4B6 /* ZFShoppingCartCell.m in Sources */,
 				84B9672D22818F4900BB2F4D /* UUPickerView.m in Sources */,
 				537D8CA82272FFF8002FB76B /* ZFOrdersModel.m in Sources */,
@@ -3205,8 +3295,10 @@
 				5309FA7B223A631C0062AA0B /* ZFShoppingItem.m in Sources */,
 				842CE8452280165C004D73C0 /* GHDropMenu.m in Sources */,
 				182E8A092224010B005CE5FE /* ZFTipsView.m in Sources */,
+				843E9929228FEFED005E6D24 /* ZFDetailBalanceTableCell.m in Sources */,
 				1830DB6E2232525200C30C90 /* ZFMyOrderCollectionCell.m in Sources */,
 				842CE85022801B10004D73C0 /* GHWaterFallLabel.m in Sources */,
+				843E9935228FFAC1005E6D24 /* DZNEmptyDataSetCVC.m in Sources */,
 				53E90CF52272DF5E0063A237 /* http_order.m in Sources */,
 				5315E5DC225205E500D8CD3C /* ZFTitleView.m in Sources */,
 				842EDEF92240FEF000B53E45 /* ZFDonationButtonTableCell.m in Sources */,
@@ -3245,6 +3337,7 @@
 				188EFD6D224CC8B300C90070 /* ZFDetailsImageTextHeadView.m in Sources */,
 				189CC0EB2223E81300EB5A64 /* HMEmoticonToolbar.m in Sources */,
 				84ED0CE4223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m in Sources */,
+				843E9944229010D7005E6D24 /* ZFRechargeRecordVC.m in Sources */,
 				84499BB22239F8FD00A7A988 /* ZFDetailsChoiceVC.m in Sources */,
 				18E3CF9C222A6A8D003C7737 /* ZFSpikeTitleHeadViewl.m in Sources */,
 				189CC0EC2223E81300EB5A64 /* HMInputView.m in Sources */,
@@ -3268,6 +3361,7 @@
 				537D55FE227549AB00384C19 /* ZFGoodDetailVC.m in Sources */,
 				1830DB6B2232181900C30C90 /* ZFEndSpikeHeadView.m in Sources */,
 				84ED0CE7223CFB3200BC13C7 /* ZFDistributionMemTableCell.m in Sources */,
+				843E993E22900ECB005E6D24 /* ZFRechargeHeadTableCell.m in Sources */,
 				182E899B2223BEA2005CE5FE /* main.m in Sources */,
 				534F181F224F0E03006A08A4 /* ZFSearchVC.m in Sources */,
 				530AAA41228FFC0F006FB0B3 /* ZFForgetPasswordVC.m in Sources */,
@@ -3306,6 +3400,7 @@
 				53D153AB2275B51D00013DE1 /* ZFSpellListHeaderView.m in Sources */,
 				840BE8FA224A027A00568B11 /* ZFevaluationHeadTableCell.m in Sources */,
 				180F31B2222FA6890040718F /* ZFStationNewsVC.m in Sources */,
+				843E9934228FFAC1005E6D24 /* EmptyDataTableCell.m in Sources */,
 				8407149C228D134200889F63 /* ZFMaterialAreaTableCell.m in Sources */,
 				53D51251228C328100A5F0C7 /* ZFDetailInvoiceVC.m in Sources */,
 				189CC0F02223E81300EB5A64 /* UIImage+HMEmoticon.m in Sources */,
@@ -3339,6 +3434,7 @@
 				84CDB8A0228BC19600D62BF7 /* ZFGroupBuyingWMVC.m in Sources */,
 				8467507C228682440063BB98 /* ZFUserMemberTableCell.m in Sources */,
 				189CC0E22223E81300EB5A64 /* HMEmoticonTipView.m in Sources */,
+				843E994122901059005E6D24 /* ZFRechargeRecordTableCell.m in Sources */,
 				188F41B5223658E700165142 /* ZFPersonalDataVC.m in Sources */,
 				18381E72222785CF009F176F /* ZFSpikeMerchandiseTableCell.m in Sources */,
 				842CE8412280165C004D73C0 /* NSString+Arc4random.m in Sources */,
@@ -3349,6 +3445,7 @@
 				533BA183224C9EA500FAFFF8 /* ZFExpressView.m in Sources */,
 				189CC0D22223E81300EB5A64 /* UIButton+Ex.m in Sources */,
 				53E90CEF2272B7A30063A237 /* http_good.m in Sources */,
+				843E99472290157A005E6D24 /* ZFRechargeRecordModel.m in Sources */,
 				180F31C1222FDB9B0040718F /* ZFClusterWindowTableCell.m in Sources */,
 				847547012240938F00B698E6 /* ZFMyIntegralHeadTableCell.m in Sources */,
 				53C27A0122707ACE00C17DAB /* http_home.m in Sources */,
@@ -3418,8 +3515,11 @@
 				1808E0D72231224E00B9DB1D /* ZFSpikeFooterView.m in Sources */,
 				18381E6F22278115009F176F /* ZFClassificationTableCell.m in Sources */,
 				18381E7C2227F233009F176F /* ZFPicturesDisplayingHeadView.m in Sources */,
+				843E9920228FBACB005E6D24 /* ZFCheckTimesVC.m in Sources */,
 				842CE8432280165C004D73C0 /* UIView+Extension.m in Sources */,
+				843E992A228FEFED005E6D24 /* ZFDetailBalanceVC.m in Sources */,
 				84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */,
+				843E9936228FFAC1005E6D24 /* DZNEmptyDataSetTVC.m in Sources */,
 				188F41B82236666400165142 /* ZFTextInputVC.m in Sources */,
 				840714A2228D3AA800889F63 /* ZFMaterialAreaModel.m in Sources */,
 				189CC0E82223E81300EB5A64 /* NSBundle+HMEmoticon.m in Sources */,
@@ -3436,9 +3536,11 @@
 				847547042240998400B698E6 /* ZFMyIntegralTableCell.m in Sources */,
 				849ABEA422436905008B089F /* ZFMyOrderHeadTableCell.m in Sources */,
 				180F31A3222F68610040718F /* ZFAddressTableCell.m in Sources */,
+				843E9937228FFAC1005E6D24 /* DZNEmptyDataSetVC.m in Sources */,
 				180F31B5222FAC1A0040718F /* ZFHarvestAddressTableCell.m in Sources */,
 				189CC0E92223E81300EB5A64 /* HMEmoticonAttachment.m in Sources */,
 				189CC0ED2223E81300EB5A64 /* HMEmoticonTextView.m in Sources */,
+				843E9924228FEE70005E6D24 /* ZFDetailBalanceWMVC.m in Sources */,
 				841551802282C3B900AD71C6 /* DXLAddressPickView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

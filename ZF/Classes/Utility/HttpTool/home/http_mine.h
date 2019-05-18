@@ -16,12 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 //我的页面
 + (void)myIndex:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 //余额明细接口
 //type    类型，全部all，赚取plus，消费minus；默认all
-+ (void)account_list:(NSString*)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)account_list:(NSString*)type page:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //充值记录接口
 + (void)recharge_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+//充值记录接口
+//+ (void)recharge_list:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //提现记录接口
 + (void)withdrawals_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;

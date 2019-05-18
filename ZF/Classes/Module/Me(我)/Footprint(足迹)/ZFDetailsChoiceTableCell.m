@@ -188,7 +188,10 @@
 #pragma mark -- 方法
 - (void)purchaseButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFDetailsChoiceTableCellDidClick:)])
+    {
+        [self.delegate ZFDetailsChoiceTableCellDidClick:self.detailModel];
+    }
 }
 
 - (void)selectionButtonDidClick{
