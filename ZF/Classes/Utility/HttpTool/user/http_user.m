@@ -307,6 +307,30 @@
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
+//设置支付密码
++(void)FindPwdCheckSms:(NSString*)mobile code:(NSString*)code scene:(NSInteger)scene success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    if ( !kStringIsEmpty(mobile) )
+    {
+        [parameters setObject:mobile forKey:@"mobile"];
+    }
+    
+    if ( !kStringIsEmpty(code) )
+    {
+        [parameters setObject:code forKey:@"code"];
+    }
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",scene];
+    [parameters setObject:str forKey:@"scene"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/FindPwdCheckSms"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
 /**
  找回密码
  */
@@ -329,6 +353,36 @@
     {
         [parameters setObject:password2 forKey:@"password2"];
     }
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/FindPwd"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+//设置支付密码
++(void)FindPwd:(NSString*)mobile password:(NSString*)password password2:(NSString*)password2 scene:(NSInteger)scene success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    if ( !kStringIsEmpty(mobile) )
+    {
+        [parameters setObject:mobile forKey:@"mobile"];
+    }
+    
+    if ( !kStringIsEmpty(password) )
+    {
+        [parameters setObject:password forKey:@"password"];
+    }
+    
+    if ( !kStringIsEmpty(password2) )
+    {
+        [parameters setObject:password2 forKey:@"password2"];
+    }
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",scene];
+    [parameters setObject:str forKey:@"scene"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

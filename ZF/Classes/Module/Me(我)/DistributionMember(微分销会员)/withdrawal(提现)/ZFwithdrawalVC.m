@@ -12,6 +12,7 @@
 #import "SVProgressHUD.h"
 #import "ZFWithdrawModel.h"
 #import "MJExtension.h"
+#import "ZFForgetPasswordVC.h"
 #import "UIButton+LXMImagePosition.h"
 
 @interface ZFwithdrawalVC ()
@@ -36,6 +37,7 @@
 @property (nonatomic, strong)UILabel *serviceChargeLabel;
 @property (nonatomic, strong)UILabel *passwordLabel;
 @property (nonatomic, strong)UITextField *passwordTF;
+@property (nonatomic, strong)UIButton *forgetButton;
 
 @property (nonatomic, strong)UIButton *withdrawalButton;
 @property (nonatomic, strong)UILabel *footerLabel;
@@ -72,6 +74,7 @@
     [self.view addSubview:lineView2];
     [self.view addSubview:self.passwordLabel];
     [self.view addSubview:self.passwordTF];
+    [self.view addSubview:self.forgetButton];
     UIView *lineView3 = [[UIView alloc]init];
     lineView3.backgroundColor = RGBColorHex(0xdcdcdc);
     [self.view addSubview:lineView3];
@@ -228,6 +231,13 @@
         make.height.mas_equalTo(1);
     }];
     
+    [_forgetButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView3.mas_bottom).with.offset(12);
+        make.right.equalTo(self.view).with.offset(-12);
+        make.width.mas_equalTo(200);
+        make.height.mas_equalTo(30);
+    }];
+    
     [_withdrawalButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView3.mas_bottom).with.offset(60);
         make.left.equalTo(self.view).with.offset(32.5);
@@ -366,7 +376,7 @@
         _accountButton = [[UIButton alloc]init];
         _accountButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_accountButton setTitleColor:RGBColorHex(0x404040) forState:UIControlStateNormal];
-        [_accountButton setTitle:@"测试135243232323" forState:UIControlStateNormal];
+        [_accountButton setTitle:@"请选择提现账号" forState:UIControlStateNormal];
         [_accountButton setImage:[UIImage imageNamed:@"Alipay"] forState:UIControlStateNormal];
         [_accountButton setImagePosition:LXMImagePositionLeft spacing:17];
     }return _accountButton;
@@ -427,6 +437,16 @@
     }return _passwordTF;
 }
 
+- (UIButton *)forgetButton{
+    if (_forgetButton == nil) {
+        _forgetButton = [[UIButton alloc]init];
+        _forgetButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_forgetButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [_forgetButton setTitle:@"前往设置或修改支付密码" forState:UIControlStateNormal];
+        [_forgetButton addTarget:self action:@selector(forgetClick) forControlEvents:UIControlEventTouchUpInside];
+    }return _forgetButton;
+}
+
 - (UIButton *)withdrawalButton{
     if (_withdrawalButton == nil) {
         _withdrawalButton = [[UIButton alloc]init];
@@ -435,6 +455,7 @@
         _withdrawalButton.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         [_withdrawalButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_withdrawalButton setTitle:@"提交申请" forState:UIControlStateNormal];
+        [_withdrawalButton addTarget:self action:@selector(withdrawClick) forControlEvents:UIControlEventTouchUpInside];
     }return _withdrawalButton;
 }
 
@@ -472,10 +493,37 @@
     if (btn.tag == 100) {
         self.button1.selected = YES;
         self.button2.selected = NO;
+        [_accountButton setImage:[UIImage imageNamed:@"Alipay"] forState:UIControlStateNormal];
+        if (!kStringIsEmpty(self.withdrawModel.alipay)) {
+            [_accountButton setTitle:[NSString stringWithFormat:@"%@ %@",self.withdrawModel.realname,self.withdrawModel.alipay] forState:UIControlStateNormal];
+        }
     }else{
         self.button1.selected = NO;
         self.button2.selected = YES;
+        [_accountButton setImage:[UIImage imageNamed:@"WeChat"] forState:UIControlStateNormal];
+         [_accountButton setTitle:@"微信账号已绑定" forState:UIControlStateNormal];
     }
 }
 
+- (void)forgetClick{
+    ZFForgetPasswordVC *vc = [[ZFForgetPasswordVC alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)withdrawClick{
+    if (self.button1.selected == YES) {
+        [http_mine withdrawals:self.passwordTF.text money:self.priceTF.text bank_name:@"支付宝" bank_card:self.withdrawModel.alipay realname:self.withdrawModel.realname success:^(id responseObject) {
+            [SVProgressHUD showSuccessWithStatus:@"已提交申请"];
+        } failure:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.domain];
+        }];
+    }else{
+        [http_mine withdrawals:self.passwordTF.text money:self.priceTF.text bank_name:@"微信" bank_card:self.withdrawModel.openid realname:nil success:^(id responseObject) {
+            [SVProgressHUD showSuccessWithStatus:@"已提交申请"];
+        } failure:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.domain];
+        }];
+    }
+    
+}
 @end

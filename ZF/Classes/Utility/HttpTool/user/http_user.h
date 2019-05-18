@@ -73,12 +73,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(void)FindPwdCheckSms:(NSString*)mobile code:(NSString*)code success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//设置支付密码
++(void)FindPwdCheckSms:(NSString*)mobile code:(NSString*)code scene:(NSInteger)scene success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 /**
  找回密码
  */
 +(void)FindPwd:(NSString*)mobile password:(NSString*)password password2:(NSString*)password2 success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
-
+//设置支付密码
++(void)FindPwd:(NSString*)mobile password:(NSString*)password password2:(NSString*)password2 scene:(NSInteger)scene success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 /**
  微信登录
  */

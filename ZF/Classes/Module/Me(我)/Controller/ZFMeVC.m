@@ -26,6 +26,7 @@
 #import "ZFMyWalletTableCell.h"
 #import "ZFMyColumnTableCell.h"
 #import "ZFMyOrderEmptyVC.h"
+#import "ZFDistributionVC.h"
 #import "ZFWalletVC.h"
 #import "ZFCouponCenterVC.h"
 #import "ZFZFMyOrderVC.h"
@@ -425,6 +426,8 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     else if (indexPath.item==8)
     {
         //我的分销
+        ZFDistributionVC *vc = [[ZFDistributionVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
