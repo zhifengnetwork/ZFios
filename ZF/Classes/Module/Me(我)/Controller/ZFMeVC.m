@@ -34,6 +34,8 @@
 #import "MJExtension.h"
 #import "UserInfoModel.h"
 #import "http_mine.h"
+#import "ZFAuctionWMVC.h"
+#import "ZFCheckTimesVC.h"
 
 @interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate,ZFMyWalletTableCellDelegate,ZFMyColumnTableCellDelegate>
 
@@ -399,10 +401,35 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     else if (indexPath.item==2)
     {
         //拍卖
+        ZFAuctionWMVC *wmvc = [[ZFAuctionWMVC alloc] init];
+        wmvc.menuViewStyle = WMMenuViewStyleLine;
+        wmvc.automaticallyCalculatesItemWidths = YES;
+        wmvc.showOnNavigationBar = YES;
+        wmvc.menuViewLayoutMode = WMMenuViewLayoutModeCenter;
+        wmvc.titleColorSelected = RGBColorHex(0x333333);
+        wmvc.titleColorNormal = RGBColorHex(0x333333);
+        wmvc.progressColor = RGBColorHex(0x333333);
+        wmvc.titleSizeSelected = 16.0f;
+        wmvc.titleSizeNormal = 16.0f;
+        wmvc.itemMargin = 30.0f;
+        [self.navigationController pushViewController:wmvc animated:YES];
     }
     else if (indexPath.item==3)
     {
         //拼团
+        ZFAuctionWMVC *wmvc = [[ZFAuctionWMVC alloc] init];
+        wmvc.menuViewStyle = WMMenuViewStyleLine;
+        wmvc.automaticallyCalculatesItemWidths = YES;
+        wmvc.showOnNavigationBar = YES;
+        wmvc.selectIndex = 1;
+        wmvc.menuViewLayoutMode = WMMenuViewLayoutModeCenter;
+        wmvc.titleColorSelected = RGBColorHex(0x333333);
+        wmvc.titleColorNormal = RGBColorHex(0x333333);
+        wmvc.progressColor = RGBColorHex(0x333333);
+        wmvc.titleSizeSelected = 16.0f;
+        wmvc.titleSizeNormal = 16.0f;
+        wmvc.itemMargin = 30.0f;
+        [self.navigationController pushViewController:wmvc animated:YES];
     }
     else if (indexPath.item==4)
     {
@@ -417,6 +444,8 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     else if (indexPath.item==6)
     {
        //签到次数
+        ZFCheckTimesVC* vc = [[ZFCheckTimesVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.item==7)
     {

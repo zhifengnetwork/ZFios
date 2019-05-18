@@ -267,6 +267,7 @@
 		842EDEF92240FEF000B53E45 /* ZFDonationButtonTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 842EDEF82240FEF000B53E45 /* ZFDonationButtonTableCell.m */; };
 		843521012241E39E005DA298 /* ZFMyWalletTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843521002241E39E005DA298 /* ZFMyWalletTableCell.m */; };
 		843521042241EAC7005DA298 /* ZFMyColumnTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 843521032241EAC7005DA298 /* ZFMyColumnTableCell.m */; };
+		843E9920228FBACB005E6D24 /* ZFCheckTimesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 843E991E228FBACA005E6D24 /* ZFCheckTimesVC.m */; };
 		8444CC852277FBA700934E96 /* CQCountDownButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8444CC822277FBA700934E96 /* CQCountDownButton.m */; };
 		8444CC862277FBA700934E96 /* NSTimer+CQBlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 8444CC832277FBA700934E96 /* NSTimer+CQBlockSupport.m */; };
 		84499BB22239F8FD00A7A988 /* ZFDetailsChoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84499BB12239F8FD00A7A988 /* ZFDetailsChoiceVC.m */; };
@@ -868,6 +869,8 @@
 		843521002241E39E005DA298 /* ZFMyWalletTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyWalletTableCell.m; sourceTree = "<group>"; };
 		843521022241EAC7005DA298 /* ZFMyColumnTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyColumnTableCell.h; sourceTree = "<group>"; };
 		843521032241EAC7005DA298 /* ZFMyColumnTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyColumnTableCell.m; sourceTree = "<group>"; };
+		843E991E228FBACA005E6D24 /* ZFCheckTimesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFCheckTimesVC.m; sourceTree = "<group>"; };
+		843E991F228FBACA005E6D24 /* ZFCheckTimesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFCheckTimesVC.h; sourceTree = "<group>"; };
 		8444CC812277FBA700934E96 /* NSTimer+CQBlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+CQBlockSupport.h"; sourceTree = "<group>"; };
 		8444CC822277FBA700934E96 /* CQCountDownButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQCountDownButton.m; sourceTree = "<group>"; };
 		8444CC832277FBA700934E96 /* NSTimer+CQBlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+CQBlockSupport.m"; sourceTree = "<group>"; };
@@ -2811,6 +2814,8 @@
 		84ED0CCE223CB02C00BC13C7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				843E991F228FBACA005E6D24 /* ZFCheckTimesVC.h */,
+				843E991E228FBACA005E6D24 /* ZFCheckTimesVC.m */,
 				84ED0CCF223CB05700BC13C7 /* ZFCumulativeVC.h */,
 				84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */,
 			);
@@ -3392,6 +3397,7 @@
 				1808E0D72231224E00B9DB1D /* ZFSpikeFooterView.m in Sources */,
 				18381E6F22278115009F176F /* ZFClassificationTableCell.m in Sources */,
 				18381E7C2227F233009F176F /* ZFPicturesDisplayingHeadView.m in Sources */,
+				843E9920228FBACB005E6D24 /* ZFCheckTimesVC.m in Sources */,
 				842CE8432280165C004D73C0 /* UIView+Extension.m in Sources */,
 				84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */,
 				188F41B82236666400165142 /* ZFTextInputVC.m in Sources */,
