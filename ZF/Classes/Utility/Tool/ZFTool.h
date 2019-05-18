@@ -75,6 +75,9 @@ NS_ASSUME_NONNULL_BEGIN
 //我的订单日期
 +(NSString*)Orderdate:(NSString*)dateline;
 
+//充值日期
++(NSString*)Rechargedate:(NSString*)dateline;
+
 //将图片字符串转换为URL
 +(NSURL *)IconStringToUrl:(NSString*)iconString;
 

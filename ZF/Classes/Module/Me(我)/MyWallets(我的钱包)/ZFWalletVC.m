@@ -14,6 +14,8 @@
 #import "MJExtension.h"
 #import "http_mine.h"
 #import "ZFOrdersModel.h"
+#import "ZFDetailBalanceWMVC.h"
+#import "ZFRechargeRecordVC.h"
 
 @interface ZFWalletVC ()
 
@@ -229,27 +231,25 @@ static NSString *const ZFMyWalletHeadViewID = @"ZFMyWalletHeadViewID";
 {
     if (indexPath.section==0)
     {
-//        if (indexPath.row==0)
-//        {
+        if (indexPath.row==0)
+        {
 //            ETHInvestmentRecordVC* vc = [[ETHInvestmentRecordVC alloc]init];
 //            [self.navigationController pushViewController:vc animated:YES];
 //            vc.type = @"1";
-//        }
-//        else if (indexPath.row==1)
-//        {
-//            ETHTodayEarningMVVC* vc = [[ETHTodayEarningMVVC alloc]init];
-//            vc.incomeType = @"1";
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//        else if (indexPath.row==2)
-//        {
-//            ETHTodayEarningMVVC* vc = [[ETHTodayEarningMVVC alloc]init];
-//            vc.incomeType = @"2";
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
+        }
+        else if (indexPath.row==1)
+        {
+            ZFDetailBalanceWMVC* vc = [[ZFDetailBalanceWMVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (indexPath.row==2)
+        {
+            ZFRechargeRecordVC* vc = [[ZFRechargeRecordVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
 //        else if (indexPath.row==3)
 //        {
-//            ETHWalletBalanceWMVC* vc = [[ETHWalletBalanceWMVC alloc]init];
+//            ZFDetailBalanceWMVC* vc = [[ZFDetailBalanceWMVC alloc]init];
 //            [self.navigationController pushViewController:vc animated:YES];
 //        }
     }

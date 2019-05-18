@@ -36,6 +36,7 @@
 #import "http_mine.h"
 #import "ZFAuctionWMVC.h"
 #import "ZFCheckTimesVC.h"
+#import "ZFDetailBalanceWMVC.h"
 
 @interface ZFMeVC()<UITableViewDataSource,UITableViewDelegate,ZFMyHeadViewDelegate,ZFMyOrderTableCellDelegate,ZFMyWalletTableCellDelegate,ZFMyColumnTableCellDelegate>
 
@@ -391,6 +392,8 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     if (indexPath.item==0)
     {
         //账户明细
+        ZFDetailBalanceWMVC*vc = [[ZFDetailBalanceWMVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.item==1)
     {
