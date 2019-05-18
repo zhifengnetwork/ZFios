@@ -16,9 +16,9 @@
 #import "RefreshGifHeader.h"
 #import "MJExtension.h"
 #import "ZFGoodModel.h"
+#import "ZFDetailsPageVC.h"
 
-
-@interface ZFFootprintVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZFFootprintVC ()<UITableViewDelegate,UITableViewDataSource,ZFRecordDetailsTableCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong)  NSMutableArray * datas;
@@ -132,7 +132,7 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     scell = [[ZFRecordDetailsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFRecordDetailsTableCellID];
     ZFGoodModel *detailModel = [self.datas objectAtIndex:indexPath.section];
     scell.detailModel = detailModel;
-    
+    scell.delegate = self;
     cell = scell;
     
     return cell;
@@ -212,5 +212,12 @@ static NSString *const ZFRecordDetailsTableCellID = @"ZFRecordDetailsTableCellID
     return _datas;
 }
 
+//去购买被点击
+- (void)ZFRecordDetailsTableCellDidClick:(ZFGoodModel *)detailModel
+{
+    ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+    vc.goods_id = detailModel.goods_id;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 @end

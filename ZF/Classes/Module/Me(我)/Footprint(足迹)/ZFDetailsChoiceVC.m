@@ -16,8 +16,9 @@
 #import "RefreshGifHeader.h"
 #import "MJExtension.h"
 #import "SVProgressHUD.h"
+#import "ZFDetailsPageVC.h"
 
-@interface ZFDetailsChoiceVC ()<UITableViewDelegate,UITableViewDataSource,ZFFootprintFooterViewDelegate>
+@interface ZFDetailsChoiceVC ()<UITableViewDelegate,UITableViewDataSource,ZFFootprintFooterViewDelegate,ZFDetailsChoiceTableCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) ZFFootprintFooterView *footerView;
@@ -138,6 +139,7 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
     scell = [[ZFDetailsChoiceTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFDetailsChoiceTableCellID];
     ZFGoodModel *detailModel = [self.datas objectAtIndex:indexPath.section];
     scell.detailModel = detailModel;
+    scell.delegate = self;
     cell = scell;
     
     return cell;
@@ -262,6 +264,14 @@ static NSString *const ZFDetailsChoiceTableCellID = @"ZFDetailsChoiceTableCellID
         _datas = [[NSMutableArray alloc]init];
     }
     return _datas;
+}
+
+//去购买被点击
+- (void)ZFDetailsChoiceTableCellDidClick:(ZFGoodModel *)detailModel
+{
+    ZFDetailsPageVC* vc = [[ZFDetailsPageVC alloc]init];
+    vc.goods_id = detailModel.goods_id;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

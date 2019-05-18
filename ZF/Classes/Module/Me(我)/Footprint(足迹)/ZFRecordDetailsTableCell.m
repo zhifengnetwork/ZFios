@@ -161,7 +161,10 @@
 #pragma mark -- 购买
 - (void)purchaseButtonDidClick
 {
-    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(ZFRecordDetailsTableCellDidClick:)])
+    {
+        [self.delegate ZFRecordDetailsTableCellDidClick:self.detailModel];
+    }
 }
 
 @end
