@@ -342,6 +342,9 @@
 		84D879F622758709005B375B /* PooCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D879F422758709005B375B /* PooCodeView.m */; };
 		84D879F92275ABD3005B375B /* ZFPlantingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D879F82275ABD3005B375B /* ZFPlantingModel.m */; };
 		84D879FD2275C16F005B375B /* ZFAuctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D879FC2275C16F005B375B /* ZFAuctionModel.m */; };
+		84D8E85722924F950098DC94 /* ZFWithdrawalsRecordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D8E85622924F950098DC94 /* ZFWithdrawalsRecordVC.m */; };
+		84D8E85A229261170098DC94 /* ZFWithRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D8E859229261170098DC94 /* ZFWithRecordModel.m */; };
+		84D8E85D229283960098DC94 /* ZFWithdrawalsRecordTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D8E85C229283960098DC94 /* ZFWithdrawalsRecordTableCell.m */; };
 		84ED0CD1223CB05700BC13C7 /* ZFCumulativeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */; };
 		84ED0CD5223CD8D100BC13C7 /* ZFOfflinePickupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CD4223CD8D100BC13C7 /* ZFOfflinePickupVC.m */; };
 		84ED0CDE223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CDD223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m */; };
@@ -1041,6 +1044,12 @@
 		84D879F82275ABD3005B375B /* ZFPlantingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFPlantingModel.m; sourceTree = "<group>"; };
 		84D879FB2275C16F005B375B /* ZFAuctionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFAuctionModel.h; sourceTree = "<group>"; };
 		84D879FC2275C16F005B375B /* ZFAuctionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAuctionModel.m; sourceTree = "<group>"; };
+		84D8E85522924F950098DC94 /* ZFWithdrawalsRecordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFWithdrawalsRecordVC.h; sourceTree = "<group>"; };
+		84D8E85622924F950098DC94 /* ZFWithdrawalsRecordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFWithdrawalsRecordVC.m; sourceTree = "<group>"; };
+		84D8E858229261170098DC94 /* ZFWithRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFWithRecordModel.h; sourceTree = "<group>"; };
+		84D8E859229261170098DC94 /* ZFWithRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFWithRecordModel.m; sourceTree = "<group>"; };
+		84D8E85B229283960098DC94 /* ZFWithdrawalsRecordTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFWithdrawalsRecordTableCell.h; sourceTree = "<group>"; };
+		84D8E85C229283960098DC94 /* ZFWithdrawalsRecordTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFWithdrawalsRecordTableCell.m; sourceTree = "<group>"; };
 		84ED0CCF223CB05700BC13C7 /* ZFCumulativeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFCumulativeVC.h; sourceTree = "<group>"; };
 		84ED0CD0223CB05700BC13C7 /* ZFCumulativeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFCumulativeVC.m; sourceTree = "<group>"; };
 		84ED0CD3223CD8D100BC13C7 /* ZFOfflinePickupVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFOfflinePickupVC.h; sourceTree = "<group>"; };
@@ -1176,6 +1185,7 @@
 		180B48F1228EC5EF0056760E /* MyWallets(我的钱包) */ = {
 			isa = PBXGroup;
 			children = (
+				84D8E85422924F460098DC94 /* WithdrawalsRecord(提现记录) */,
 				843E993B22900E4E005E6D24 /* RechargeRecord(充值记录) */,
 				843E9921228FED44005E6D24 /* DetailBalance(余额明细) */,
 				180B48F4228EC5EF0056760E /* ZFMyWalletCollectionCell.h */,
@@ -2962,6 +2972,19 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		84D8E85422924F460098DC94 /* WithdrawalsRecord(提现记录) */ = {
+			isa = PBXGroup;
+			children = (
+				84D8E85B229283960098DC94 /* ZFWithdrawalsRecordTableCell.h */,
+				84D8E85C229283960098DC94 /* ZFWithdrawalsRecordTableCell.m */,
+				84D8E85522924F950098DC94 /* ZFWithdrawalsRecordVC.h */,
+				84D8E85622924F950098DC94 /* ZFWithdrawalsRecordVC.m */,
+				84D8E858229261170098DC94 /* ZFWithRecordModel.h */,
+				84D8E859229261170098DC94 /* ZFWithRecordModel.m */,
+			);
+			path = "WithdrawalsRecord(提现记录)";
+			sourceTree = "<group>";
+		};
 		84DD71E9223B473300F32754 /* StoreConcern(店铺关注) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3335,6 +3358,7 @@
 				84499BBB223A357100A7A988 /* ZFCommodityHeadView.m in Sources */,
 				189CC0F42223E81300EB5A64 /* HttpTool.m in Sources */,
 				18F93EF9224E1B07006ED290 /* ZFClassifyBannerHeadView.m in Sources */,
+				84D8E85722924F950098DC94 /* ZFWithdrawalsRecordVC.m in Sources */,
 				8407149F228D168D00889F63 /* ZFMaterialAreaVC.m in Sources */,
 				8479329F228E58D50051CFD1 /* ZFMaterialVC.m in Sources */,
 				842CE84B2280165C004D73C0 /* GHDropMenuTitleItem.m in Sources */,
@@ -3522,6 +3546,7 @@
 				84ED0CDE223CE30000BC13C7 /* ZFWithdrawDepositTableCell.m in Sources */,
 				533BA183224C9EA500FAFFF8 /* ZFExpressView.m in Sources */,
 				189CC0D22223E81300EB5A64 /* UIButton+Ex.m in Sources */,
+				84D8E85D229283960098DC94 /* ZFWithdrawalsRecordTableCell.m in Sources */,
 				53E90CEF2272B7A30063A237 /* http_good.m in Sources */,
 				843E99472290157A005E6D24 /* ZFRechargeRecordModel.m in Sources */,
 				180F31C1222FDB9B0040718F /* ZFClusterWindowTableCell.m in Sources */,
@@ -3569,6 +3594,7 @@
 				534D1BA82244BD8D0013C0B4 /* ZFQRCodeView.m in Sources */,
 				5307E463224DC8D100F93A11 /* ZFShareView.m in Sources */,
 				18285F11222D20BC00CBA408 /* ZFAuctionPeopleTableCell.m in Sources */,
+				84D8E85A229261170098DC94 /* ZFWithRecordModel.m in Sources */,
 				8475470D2240C45700B698E6 /* ZFMyTeamTableCell.m in Sources */,
 				18C0ABAD227492B900B0D5A7 /* ZFClassifyModel.m in Sources */,
 				180A97A3222E1812003A12FF /* ZFConfirmationTableCell.m in Sources */,

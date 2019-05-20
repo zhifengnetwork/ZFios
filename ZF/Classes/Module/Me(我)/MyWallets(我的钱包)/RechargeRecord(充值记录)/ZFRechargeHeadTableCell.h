@@ -12,6 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFRechargeHeadTableCell : UITableViewCell
 
+@property (nonatomic, strong) NSString *time;
+
+@property (nonatomic, strong) NSString *money;
+
+@property (nonatomic, strong) NSString *service;
+
 @end
 
 NS_ASSUME_NONNULL_END

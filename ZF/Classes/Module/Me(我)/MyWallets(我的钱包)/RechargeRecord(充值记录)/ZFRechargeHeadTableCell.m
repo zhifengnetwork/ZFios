@@ -44,7 +44,7 @@
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_methodLabel.mas_right).offset(70);
+        make.left.equalTo(self->_methodLabel.mas_right).offset(60);
         make.centerY.equalTo(self.contentView);
     }];
     
@@ -54,10 +54,44 @@
     }];
     
     [_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_moneyLabel.mas_right).offset(60);
+        make.left.equalTo(self->_moneyLabel.mas_right).offset(55);
         make.centerY.equalTo(self.contentView);
     }];
     
+    //下面横线
+    UIView *hLineView = [[UIView alloc] init];
+    hLineView.backgroundColor = RGBColorHex(0xcccccc);
+    [self.contentView addSubview:hLineView];
+    
+    [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.left.mas_equalTo(0);
+         make.right.mas_equalTo(-0);
+         make.bottom.equalTo(self.contentView);
+         make.height.mas_equalTo(0.5f);
+     }];
+    
+}
+
+-(void)setTime:(NSString *)time
+{
+    _time = time;
+    
+    _methodLabel.text = _time;
+}
+
+-(void)setMoney:(NSString *)money
+{
+    _money = money;
+    
+    _timeLabel.text = _money;
+}
+
+-(void)setService:(NSString *)service
+{
+    _service = service;
+    
+    _moneyLabel.text = _service;
 }
 
 
