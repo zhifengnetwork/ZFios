@@ -8,6 +8,12 @@
 
 #import "ZFDistributeModel.h"
 
+@implementation ZFMoneytotalModel
+
+@end
+@implementation ZFLeaderModel
+
+@end
 @implementation ZFDistributeModel
 
 @end

@@ -93,7 +93,9 @@ static NSString *const ZFDetailDistributeCellID = @"ZFDetailDistributeCellID";
         return;
     }
     self.listModel = [ZFDetailDistListModel mj_objectWithKeyValues:responseObject];
+    [_tableView reloadData];
     [self.tableView.mj_header endRefreshing];
+    
 }
 
 - (UIView *)titleView{
@@ -141,11 +143,12 @@ static NSString *const ZFDetailDistributeCellID = @"ZFDetailDistributeCellID";
 
 #pragma mark --协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.listModel.list.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFDetailDistributeCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFDetailDistributeCellID forIndexPath:indexPath];
+    cell.detailModel = [self.listModel.list objectAtIndex:indexPath.row];
     return cell;
 }
 @end

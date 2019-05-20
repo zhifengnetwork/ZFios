@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFDetailDistModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFDetailDistributeCell : UITableViewCell
 
+@property (nonatomic, strong)ZFDetailDistModel *detailModel;
 @end
 
 NS_ASSUME_NONNULL_END

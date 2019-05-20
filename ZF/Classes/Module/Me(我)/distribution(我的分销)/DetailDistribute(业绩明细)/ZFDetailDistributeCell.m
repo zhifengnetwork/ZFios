@@ -83,4 +83,11 @@
     }return _promptLabel;
 }
 
+
+- (void)setDetailModel:(ZFDetailDistModel *)detailModel{
+    _detailModel = detailModel;
+    _orderIDLabel.text = [NSString stringWithFormat:@"订单%ld",_detailModel.performance_id];
+    _priceLabel.text = _detailModel.money;
+    _promptLabel.text = _detailModel.note;
+}
 @end

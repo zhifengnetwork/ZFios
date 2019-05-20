@@ -189,14 +189,14 @@
      } failure:^(NSError *error) {
          [SVProgressHUD showErrorWithStatus:error.domain];
      }];
+    [self.navigationController dismissViewControllerAnimated:NO completion:^{
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 -(void)sdData:(id)responseObject
 {
     [SVProgressHUD showSuccessWithStatus:@"修改成功"];
-    [self.navigationController dismissViewControllerAnimated:NO completion:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
 }
 
 @end
