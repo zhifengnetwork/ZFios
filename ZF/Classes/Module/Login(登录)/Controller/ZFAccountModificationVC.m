@@ -21,14 +21,17 @@
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIView *bg1View;
 @property (nonatomic, strong) UIView *bg2View;
+@property (nonatomic, strong) UIView *bg3View;
 
-@property (nonatomic, strong) UIImageView* vcodeView;
+//@property (nonatomic, strong) UIImageView* vcodeView;
 @property (nonatomic, strong) UIImageView* iconView;
 
 @property (nonatomic, strong) UILabel *phoneLabel;
 @property (nonatomic, strong) UITextField *phoneTextField;
 @property (nonatomic, strong) UITextField *vcodeTextField;
-@property (nonatomic, strong) UITextField *verificationTextField;
+@property (nonatomic, strong) UITextField *passwordTextField;
+@property (nonatomic, strong) UITextField *twoPasswordTextField;
+//@property (nonatomic, strong) UITextField *verificationTextField;
 
 @property (nonatomic, strong) UIButton *loginButton;
 
@@ -53,13 +56,16 @@
     [self.view addSubview:self.bgView];
     [self.view addSubview:self.bg1View];
     [self.view addSubview:self.bg2View];
+    [self.view addSubview:self.bg3View];
     [self.view addSubview:self.phoneLabel];
     [self.view addSubview:self.phoneTextField];
     [self.view addSubview:self.vcodeTextField];
-    [self.view addSubview:self.verificationTextField];
+    [self.view addSubview:self.passwordTextField];
+    [self.view addSubview:self.twoPasswordTextField];
+//    [self.view addSubview:self.verificationTextField];
    
     [self.view addSubview:self.iconView];
-    [self.view addSubview:self.vcodeView];
+//    [self.view addSubview:self.vcodeView];
     
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.vcodeButton];
@@ -89,7 +95,14 @@
     [_bg2View mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_bg1View.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(10);
-        make.width.mas_equalTo(200);
+        make.right.equalTo(self.view).offset(-10);
+        make.height.mas_equalTo(50);
+    }];
+    
+    [_bg3View mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self->_bg2View.mas_bottom).offset(20);
+        make.left.equalTo(self.view).offset(10);
+        make.right.equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
     }];
     
@@ -119,23 +132,36 @@
         make.height.mas_equalTo(40);
     }];
     
-    [_verificationTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_bg2View).offset(8);
+    [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self->_bg2View.mas_left).offset(8);
         make.top.bottom.equalTo(self->_bg2View);
         make.right.mas_equalTo(-165);
     }];
     
-    [_vcodeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_vcodeTextField.mas_right).offset(5);
-        make.top.bottom.equalTo(self->_bg2View);
-        make.right.mas_equalTo(-15);
-        make.width.mas_equalTo(137);
-        make.height.mas_equalTo(50);
-        
+    [_twoPasswordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self->_bg3View.mas_left).offset(8);
+        make.top.bottom.equalTo(self->_bg3View);
+        make.right.mas_equalTo(-165);
     }];
     
+        
+//    [_verificationTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self->_bg2View).offset(8);
+//        make.top.bottom.equalTo(self->_bg2View);
+//        make.right.mas_equalTo(-165);
+//    }];
+    
+//    [_vcodeView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self->_vcodeTextField.mas_right).offset(5);
+//        make.top.bottom.equalTo(self->_bg2View);
+//        make.right.mas_equalTo(-15);
+//        make.width.mas_equalTo(137);
+//        make.height.mas_equalTo(50);
+//
+//    }];
+    
     [_loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self->_verificationTextField.mas_bottom).offset(30);
+        make.top.equalTo(self->_twoPasswordTextField.mas_bottom).offset(30);
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
         make.height.mas_equalTo(50);
@@ -177,17 +203,42 @@
     return _vcodeTextField;
 }
 
-- (UITextField *)verificationTextField {
-    if (_verificationTextField == nil) {
-        _verificationTextField = [[UITextField alloc] init];
-        _verificationTextField.placeholder = @"其他验证方式";
-        _verificationTextField.font = [UIFont systemFontOfSize:14];
-        _verificationTextField.textColor = RGBColorHex(0x757575);
-        _verificationTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _verificationTextField.keyboardType = UIKeyboardTypeNumberPad;
+- (UITextField *)passwordTextField {
+    if (_passwordTextField == nil) {
+        _passwordTextField = [[UITextField alloc] init];
+        _passwordTextField.placeholder = @"请输入重置密码";
+        _passwordTextField.font = [UIFont systemFontOfSize:14];
+        _passwordTextField.textColor = RGBColorHex(0x757575);
+        _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _passwordTextField.keyboardType = UIKeyboardTypeASCIICapable;
     }
-    return _verificationTextField;
+    return _passwordTextField;
 }
+
+- (UITextField *)twoPasswordTextField{
+    if (_twoPasswordTextField == nil) {
+        _twoPasswordTextField = [[UITextField alloc] init];
+        _twoPasswordTextField.placeholder = @"请再输入密码";
+        _twoPasswordTextField.font = [UIFont systemFontOfSize:14];
+        _twoPasswordTextField.textColor = RGBColorHex(0x757575);
+        _twoPasswordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _twoPasswordTextField.keyboardType = UIKeyboardTypeASCIICapable;
+    }
+    return _twoPasswordTextField;
+}
+
+
+//- (UITextField *)verificationTextField {
+//    if (_verificationTextField == nil) {
+//        _verificationTextField = [[UITextField alloc] init];
+//        _verificationTextField.placeholder = @"其他验证方式";
+//        _verificationTextField.font = [UIFont systemFontOfSize:14];
+//        _verificationTextField.textColor = RGBColorHex(0x757575);
+//        _verificationTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+//        _verificationTextField.keyboardType = UIKeyboardTypeNumberPad;
+//    }
+//    return _verificationTextField;
+//}
 
 
 
@@ -228,6 +279,18 @@
     return _bg2View;
 }
 
+-(UIView *)bg3View
+{
+    if(_bg3View==nil)
+    {
+        _bg3View = [[UIView alloc]initWithFrame:CGRectZero];
+        _bg3View.layer.borderWidth = 1.0f;
+        _bg3View.layer.borderColor = RGBColorHex(0xBBBBBB).CGColor;
+        _bg3View.layer.cornerRadius = 4.0f;
+    }
+    return _bg3View;
+}
+
 - (UIImageView *)iconView {
     if (_iconView == nil) {
         _iconView = [[UIImageView alloc] init];
@@ -238,23 +301,23 @@
     return _iconView;
 }
 
-- (UIImageView *)vcodeView {
-    if (_vcodeView == nil) {
-        _vcodeView = [[UIImageView alloc] init];
-        _vcodeView.layer.borderWidth = 1.0f;
-        _vcodeView.layer.borderColor = RGBColorHex(0xBBBBBB).CGColor;
-        _vcodeView.image = [UIImage imageNamed:@"icon_login_bgk"];
-        _vcodeView.clipsToBounds = YES;
-        _vcodeView.layer.cornerRadius = 3.0f;
-    }
-    return _vcodeView;
-}
+//- (UIImageView *)vcodeView {
+//    if (_vcodeView == nil) {
+//        _vcodeView = [[UIImageView alloc] init];
+//        _vcodeView.layer.borderWidth = 1.0f;
+//        _vcodeView.layer.borderColor = RGBColorHex(0xBBBBBB).CGColor;
+//        _vcodeView.image = [UIImage imageNamed:@"icon_login_bgk"];
+//        _vcodeView.clipsToBounds = YES;
+//        _vcodeView.layer.cornerRadius = 3.0f;
+//    }
+//    return _vcodeView;
+//}
 
 - (UIButton *)loginButton {
     if (_loginButton == nil) {
         _loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _loginButton.backgroundColor = RGBColorHex(0xFF4200);
-        [_loginButton setTitle:@"提交按钮" forState:UIControlStateNormal];
+        [_loginButton setTitle:@"点击修改" forState:UIControlStateNormal];
         _loginButton.titleLabel.font = [UIFont systemFontOfSize:24];
         [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _loginButton.layer.cornerRadius = 3;
@@ -269,6 +332,8 @@
 {
     NSString* phone = _phoneTextField.text;
     NSString* vcode = _vcodeTextField.text;
+    NSString* password = _passwordTextField.text;
+    NSString* twoPassword = _twoPasswordTextField.text;
     
     if (kStringIsEmpty(phone))
     {
@@ -285,6 +350,23 @@
     if (kStringIsEmpty(vcode))
     {
         [SVProgressHUD showInfoWithStatus:@"请输入验证码"];
+        return;
+    }
+    if (kStringIsEmpty(password))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请输入密码"];
+        return;
+    }
+    
+    if (kStringIsEmpty(twoPassword))
+    {
+        [SVProgressHUD showInfoWithStatus:@"请再输入密码"];
+        return;
+    }
+    
+    if ([password isEqualToString:twoPassword]==NO)
+    {
+        [SVProgressHUD showInfoWithStatus:@"两次密码不一致"];
         return;
     }
     
