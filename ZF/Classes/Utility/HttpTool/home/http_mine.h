@@ -29,11 +29,16 @@ NS_ASSUME_NONNULL_BEGIN
 //提现记录接口
 + (void)withdrawals_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//业绩明细接口
++ (void)performance_log:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 //绑定支付宝接口
 //zfb_account 支付宝账号
 //realname    真实姓名
 + (void)BindZfb:(NSString*)zfb_account realname:(NSString*)realname success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//我的分销首页
++ (void)distribut:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 /**
  申请提现接口

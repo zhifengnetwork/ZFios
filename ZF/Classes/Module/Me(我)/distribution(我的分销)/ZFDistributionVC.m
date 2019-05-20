@@ -7,8 +7,16 @@
 //
 
 #import "ZFDistributionVC.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "http_mine.h"
+#import "ZFDetailDistributeVC.h"
+#import "ZFDetailRecordVC.h"
+#import "ZFDistributeOrderVC.h"
+#import "ZFTeamListVC.h"
+#import "ZFDistributeModel.h"
 
-@interface ZFDistributionVC ()
+@interface ZFDistributionVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UIView *timeView;
 @property (nonatomic, strong)UILabel *timeLabel;
 @property (nonatomic, strong)UIView *distributeView;
@@ -24,10 +32,16 @@
 @property (nonatomic, strong)UILabel *number;
 @property (nonatomic, strong)UILabel *numberLabel;
 @property (nonatomic, strong)UIButton *updateButton;
+@property (nonatomic, strong)UILabel *topIDLabel;
+@property (nonatomic, strong)UILabel *myIDLabel;
+@property (nonatomic, strong)UILabel *topNameLabel;
+
+@property (nonatomic, strong)UITableView *tableView;
 @end
 
 @implementation ZFDistributionVC
 
+static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的分销";
@@ -50,6 +64,16 @@
     [self.distributeView3 addSubview:self.number];
     [self.distributeView3 addSubview:self.numberLabel];
     [self.distributeView3 addSubview:self.updateButton];
+    [self.view addSubview:self.topIDLabel];
+    UIView *lineView = [[UIView alloc]init];
+    lineView.backgroundColor = RGBColorHex(0xe6e6e6);
+    [self.view addSubview:lineView];
+    [self.view addSubview:self.myIDLabel];
+    [self.view addSubview:self.topNameLabel];
+    UIView *lineView1 = [[UIView alloc]init];
+    lineView1.backgroundColor = RGBColorHex(0xe6e6e6);
+    [self.view addSubview:lineView1];
+    [self.view addSubview:self.tableView];
     
     
     [_timeView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -139,8 +163,63 @@
         make.height.mas_equalTo(25);
     }];
     
+    [_topIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.distributeView3.mas_bottom).with.offset(10);
+        make.left.equalTo(self.view).with.offset(20);
+        make.width.mas_equalTo(80);
+    }];
+    
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.topIDLabel.mas_right).with.offset(24);
+        make.centerY.equalTo(self.topIDLabel.mas_centerY);
+        make.width.mas_equalTo(1);
+        make.height.equalTo(self.topIDLabel.mas_height);
+    }];
+    
+    [_myIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(lineView.mas_right).with.offset(42);
+        make.centerY.mas_equalTo(self.topIDLabel.mas_centerY);
+    }];
+    
+    [_topNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.topIDLabel.mas_bottom).with.offset(10);
+        make.left.equalTo(self.view).with.offset(20);
+    }];
+    
+    [lineView1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.topNameLabel.mas_bottom).with.offset(9);
+        make.left.mas_equalTo(20);
+        make.right.mas_equalTo(-20);
+        make.height.mas_equalTo(1);
+    }];
+    
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView1.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    [http_mine distribut:^(id responseObject) {
+        [self showData:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
 
-
+- (void)showData:(id)responseObject{
+    if (kObjectIsEmpty(responseObject)) {
+        return;
+    }
+    ZFDistributeModel *distributeModel = [ZFDistributeModel mj_objectWithKeyValues:responseObject];
+    ZFMoneytotalModel *totalModel = distributeModel.money_total;
+    ZFLeaderModel *leaderModel = distributeModel.leader;
+    _timeLabel.text = @"统计时间：2019-05-11  02：55：30";
+    _totalLabel.text = [NSString stringWithFormat:@"￥ %@",[totalModel valueForKey:@"money_total"]];
+    _maxLabel.text = [NSString stringWithFormat:@"￥ %@",[totalModel valueForKey:@"max_moneys"]];
+    _otherLabel.text = [NSString stringWithFormat:@"￥ %@",[totalModel valueForKey:@"moneys"]];
+    _numberLabel.text = [NSString stringWithFormat:@"%@",distributeModel.underling_number];
+    _topIDLabel.text = [NSString stringWithFormat:@"上级ID:%@",[leaderModel valueForKey:@"user_id"]];
+    _topNameLabel.text = [NSString stringWithFormat:@"上级名称：%@",[leaderModel valueForKey:@"nickname"]];
+    _myIDLabel.text = [NSString stringWithFormat:@"我的ID:%ld",(long)distributeModel.user_id];
 }
 
 - (UIView *)timeView{
@@ -276,9 +355,99 @@
     }return _updateButton;
 }
 
+- (UILabel *)topIDLabel{
+    if (_topIDLabel== nil) {
+        _topIDLabel = [[UILabel alloc]init];
+        _topIDLabel.font = [UIFont systemFontOfSize:12];
+        _topIDLabel.textColor = RGBColorHex(0x151515);
+        _topIDLabel.text = @"上级ID:83432";
+    }return _topIDLabel;
+}
+
+- (UILabel *)myIDLabel{
+    if (_myIDLabel == nil) {
+        _myIDLabel = [[UILabel alloc]init];
+        _myIDLabel.font = [UIFont systemFontOfSize:12];
+        _myIDLabel.textColor = RGBColorHex(0x151515);
+        _myIDLabel.text = @"我的ID:83432";
+    }return _myIDLabel;
+}
+
+- (UILabel *)topNameLabel{
+    if (_topNameLabel == nil) {
+        _topNameLabel = [[UILabel alloc]init];
+        _topNameLabel.font = [UIFont systemFontOfSize:12];
+        _topNameLabel.textColor = RGBColorHex(0x151515);
+        _topNameLabel.text = @"上级名称：我的菜";
+    }return _topNameLabel;
+}
+
+- (UITableView *)tableView{
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc]init];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:ZFDistributionCellID];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.scrollEnabled = NO;
+    }return _tableView;
+}
+
+#pragma mark --协议
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 4;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFDistributionCellID forIndexPath:indexPath];
+    if (indexPath.row == 0) {
+        [cell.textLabel setText:@"业绩明细"];
+    }else if (indexPath.row == 1){
+        [cell.textLabel setText:@"明细记录"];
+    }else if (indexPath.row == 2){
+        [cell.textLabel setText:@"团队列表"];
+    }else if (indexPath.row == 3){
+        [cell.textLabel setText:@"分销订单"];
+    }
+    
+    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
+    cell.textLabel.textColor = RGBColorHex(0x2f2f2f);
+    //设置下划线
+    UIView*lineView =[[UIView alloc]init];
+    lineView.frame = CGRectMake(cell.frame.origin.x+20,cell.frame.size.height-5,cell.frame.size.width-40,1);
+    lineView.backgroundColor= RGBColorHex(0xe6e6e6);
+    [cell.contentView addSubview:lineView];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        ZFDetailDistributeVC *vc = [[ZFDetailDistributeVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 1){
+        ZFDetailRecordVC *vc = [[ZFDetailRecordVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 2){
+        ZFTeamListVC *vc = [[ZFTeamListVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 3){
+        ZFDistributeOrderVC *vc = [[ZFDistributeOrderVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 #pragma mark--方法
 
 - (void)updateClick{
     //点击更新
+    [http_mine distribut:^(id responseObject) {
+        [self showData:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
 }
+
+
 @end
