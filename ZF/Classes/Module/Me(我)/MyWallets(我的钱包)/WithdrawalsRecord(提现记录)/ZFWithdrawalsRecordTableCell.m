@@ -1,24 +1,24 @@
 //
-//  ZFRechargeRecordTableCell.m
+//  ZFWithdrawalsRecordTableCell.m
 //  ZF
 //
-//  Created by admin on 2019/5/18.
+//  Created by admin on 2019/5/20.
 //  Copyright © 2019 hyy. All rights reserved.
 //
 
-#import "ZFRechargeRecordTableCell.h"
+#import "ZFWithdrawalsRecordTableCell.h"
 #import "ZFTool.h"
 
-@interface ZFRechargeRecordTableCell()
+@interface ZFWithdrawalsRecordTableCell()
 
-@property (nonatomic, strong) UILabel *methodLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UILabel *moneyLabel;
+@property (nonatomic, strong) UILabel *serviceLabel;
 @property (nonatomic, strong) UILabel *stateLabel;
 
 @end
 
-@implementation ZFRechargeRecordTableCell
+@implementation ZFWithdrawalsRecordTableCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -34,28 +34,28 @@
 - (void)setup
 {
     self.contentView.backgroundColor = RGBColorHex(0xffffff);
-    [self.contentView addSubview:self.methodLabel];
     [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.moneyLabel];
+    [self.contentView addSubview:self.serviceLabel];
     [self.contentView addSubview:self.stateLabel];
     
-    [_methodLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(20);
         make.centerY.equalTo(self.contentView);
     }];
     
-    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_methodLabel.mas_right).offset(40);
+    [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self->_timeLabel.mas_right).offset(35);
         make.centerY.equalTo(self.contentView);
     }];
     
-    [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_timeLabel.mas_right).offset(30);
+    [_serviceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(230);
         make.centerY.equalTo(self.contentView);
     }];
     
     [_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-15);
         make.centerY.equalTo(self.contentView);
     }];
     
@@ -71,29 +71,16 @@
          make.bottom.equalTo(self.contentView);
          make.height.mas_equalTo(0.5f);
      }];
-    
 }
 
--(void)setRechargeRecordModel:(ZFRechargeRecordModel *)rechargeRecordModel
+-(void)setWithRecordModel:(ZFWithRecordModel *)withRecordModel
 {
-    _rechargeRecordModel = rechargeRecordModel;
+    _withRecordModel = withRecordModel;
     
-    _methodLabel.text = _rechargeRecordModel.pay_name;
-    _timeLabel.text = _rechargeRecordModel.ctime;
-    _timeLabel.text = [ZFTool Rechargedate:_rechargeRecordModel.ctime];
-    _moneyLabel.text = _rechargeRecordModel.account;
-    _stateLabel.text = [_rechargeRecordModel getStatusText];
-}
-
-
-- (UILabel *)methodLabel {
-    if (_methodLabel == nil) {
-        _methodLabel = [[UILabel alloc] init];
-        _methodLabel.textColor = RGBColorHex(0x333333);
-        _methodLabel.font = [UIFont systemFontOfSize:14];
-        _methodLabel.text = @"支付方式";
-    }
-    return _methodLabel;
+    _timeLabel.text = [ZFTool Rechargedate:_withRecordModel.create_time];
+    _moneyLabel.text = _withRecordModel.money;
+    _serviceLabel.text = _withRecordModel.taxfee;
+    _stateLabel.text = [_withRecordModel getCashText];
 }
 
 - (UILabel *)timeLabel {
@@ -101,7 +88,6 @@
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.textColor = RGBColorHex(0x333333);
         _timeLabel.font = [UIFont systemFontOfSize:14];
-        _timeLabel.text = @"日期";
     }
     return _timeLabel;
 }
@@ -111,9 +97,17 @@
         _moneyLabel = [[UILabel alloc] init];
         _moneyLabel.textColor = RGBColorHex(0x333333);
         _moneyLabel.font = [UIFont systemFontOfSize:14];
-        _moneyLabel.text = @"金额";
     }
     return _moneyLabel;
+}
+
+- (UILabel *)serviceLabel {
+    if (_serviceLabel == nil) {
+        _serviceLabel = [[UILabel alloc] init];
+        _serviceLabel.textColor = RGBColorHex(0x333333);
+        _serviceLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _serviceLabel;
 }
 
 - (UILabel *)stateLabel {
@@ -121,7 +115,6 @@
         _stateLabel = [[UILabel alloc] init];
         _stateLabel.textColor = RGBColorHex(0x333333);
         _stateLabel.font = [UIFont systemFontOfSize:14];
-        _stateLabel.text = @"状态";
     }
     return _stateLabel;
 }

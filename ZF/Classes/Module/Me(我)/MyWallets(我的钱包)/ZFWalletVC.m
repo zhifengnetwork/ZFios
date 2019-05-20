@@ -16,6 +16,8 @@
 #import "ZFOrdersModel.h"
 #import "ZFDetailBalanceWMVC.h"
 #import "ZFRechargeRecordVC.h"
+#import "ZFWithdrawalsRecordVC.H"
+#import "ZFwithdrawalVC.h"
 
 @interface ZFWalletVC ()
 
@@ -233,9 +235,8 @@ static NSString *const ZFMyWalletHeadViewID = @"ZFMyWalletHeadViewID";
     {
         if (indexPath.row==0)
         {
-//            ETHInvestmentRecordVC* vc = [[ETHInvestmentRecordVC alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            vc.type = @"1";
+            ZFwithdrawalVC* vc = [[ZFwithdrawalVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==1)
         {
@@ -247,11 +248,11 @@ static NSString *const ZFMyWalletHeadViewID = @"ZFMyWalletHeadViewID";
             ZFRechargeRecordVC* vc = [[ZFRechargeRecordVC alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
         }
-//        else if (indexPath.row==3)
-//        {
-//            ZFDetailBalanceWMVC* vc = [[ZFDetailBalanceWMVC alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
+        else if (indexPath.row==3)
+        {
+            ZFWithdrawalsRecordVC* vc = [[ZFWithdrawalsRecordVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 

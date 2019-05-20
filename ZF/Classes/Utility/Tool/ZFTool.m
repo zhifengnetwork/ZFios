@@ -224,7 +224,7 @@
     }
     
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:lltime];
-    str = [date formattedDateWithFormat:@"yyyy/MM/dd"];
+    str = [date formattedDateWithFormat:@"yyyy-MM-dd"];
     
     return str;
 }
