@@ -381,8 +381,24 @@
 
 -(void)sdData:(id)responseObject
 {
-    ZFResetPasswordVC* vc = [[ZFResetPasswordVC alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    NSString* phone = _phoneTextField.text;
+    NSString* vcode = _vcodeTextField.text;
+    NSString* password = _passwordTextField.text;
+    NSString* twoPassword = _twoPasswordTextField.text;
+    
+    ZWeakSelf
+    [http_user FindPwd:phone password:password password2:twoPassword success:^(id responseObject)
+     {
+         [weakSelf sdData2:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
+}
+
+-(void)sdData2:(id)responseObject
+{
+    [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
