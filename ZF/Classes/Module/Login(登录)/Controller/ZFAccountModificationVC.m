@@ -120,7 +120,7 @@
     [_vcodeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bg1View).offset(10);
         make.top.bottom.equalTo(self->_bg1View);
-        make.width.mas_equalTo(154);
+        make.right.equalTo(self->_vcodeButton.mas_left).offset(-15);
         make.height.mas_equalTo(40);
     }];
     
@@ -135,13 +135,13 @@
     [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bg2View.mas_left).offset(8);
         make.top.bottom.equalTo(self->_bg2View);
-        make.right.mas_equalTo(-165);
+        make.right.mas_equalTo(-15);
     }];
     
     [_twoPasswordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bg3View.mas_left).offset(8);
         make.top.bottom.equalTo(self->_bg3View);
-        make.right.mas_equalTo(-165);
+        make.right.mas_equalTo(-15);
     }];
     
         
@@ -211,6 +211,7 @@
         _passwordTextField.textColor = RGBColorHex(0x757575);
         _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _passwordTextField.keyboardType = UIKeyboardTypeASCIICapable;
+        _passwordTextField.secureTextEntry = YES;
     }
     return _passwordTextField;
 }
@@ -223,6 +224,7 @@
         _twoPasswordTextField.textColor = RGBColorHex(0x757575);
         _twoPasswordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         _twoPasswordTextField.keyboardType = UIKeyboardTypeASCIICapable;
+        _twoPasswordTextField.secureTextEntry = YES;
     }
     return _twoPasswordTextField;
 }

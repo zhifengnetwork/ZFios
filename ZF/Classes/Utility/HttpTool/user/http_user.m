@@ -354,7 +354,7 @@
         [parameters setObject:password2 forKey:@"password2"];
     }
     
-    [parameters setObject:@"6" forKey:@"scene"];
+    [parameters setObject:@"2" forKey:@"scene"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
