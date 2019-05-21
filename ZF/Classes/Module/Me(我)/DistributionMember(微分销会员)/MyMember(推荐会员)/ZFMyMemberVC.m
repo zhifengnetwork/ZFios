@@ -77,7 +77,7 @@ static NSString *const ZFUserMemberTableCellID = @"ZFUserMemberTableCellID";
 -(void)loadData
 {
     ZWeakSelf
-    [http_mine team_list:^(id responseObject)
+    [http_mine team_list:nil success:^(id responseObject)
      {
          [self.tableView.mj_header endRefreshing];
          [weakSelf showData:responseObject];

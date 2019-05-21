@@ -142,16 +142,20 @@ NSInteger count = 1;//存储购物车的数量
     }];
     
 }
-
 - (void)setGoodID:(NSInteger)goodID{
     _goodID = goodID;
     [self loadData];
+    self.spec_key = @"";
 }
+
 
 - (void)setCartModel:(ZFGoodModel *)cartModel{
     _cartModel = cartModel;
-    _goodID = _cartModel.goods.goods_id;
+    _cart_id = _cartModel.ID;
+    _goodID = cartModel.goods.goods_id;
     self.spec_key = cartModel.spec_key;
+    [self.numberButton setTitle:[NSString stringWithFormat:@"%ld",self.cartModel.goods_num] forState:UIControlStateNormal];
+    count = self.cartModel.goods_num;
 }
 
 - (void)loadData{
@@ -178,6 +182,10 @@ NSInteger count = 1;//存储购物车的数量
 
 - (void)setSpec_key:(NSString *)spec_key{
     _spec_key = spec_key;
+    [self getPricePic];
+    
+}
+- (void)getPricePic{
     [http_good getPricePic:_spec_key goods_id:_goodID success:^(id responseObject) {
         if (kObjectIsEmpty(responseObject))
         {
@@ -351,6 +359,18 @@ NSInteger count = 1;//存储购物车的数量
     }else{
         count++;
     }
+    [http_shopping changeNum:self.cart_id goods_num:count success:^(id responseObject) {
+        
+        if (kObjectIsEmpty(responseObject))
+        {
+            return;
+        }
+        
+        //            self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
+        //        self.settleView.cart_priceArray =
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
     [self.numberButton setTitle:[NSString stringWithFormat:@"%ld",(long)count] forState:UIControlStateNormal];
 }
 
@@ -389,13 +409,17 @@ NSInteger count = 1;//存储购物车的数量
     }else if (_isbuy == YES){
         
         ZFConfirmOrderVC *vc = [[ZFConfirmOrderVC alloc]init];
+        vc.ordersModel.goods_id = self.goodID;
+        vc.ordersModel.item_id = self.itemID;
+        vc.ordersModel.goods_num = self.numberButton.titleLabel.text.integerValue;
+        vc.isBuy = YES;
         [[self currentViewController]dismissViewControllerAnimated:NO completion:^{
             [[self currentViewController].navigationController pushViewController:vc animated:NO];
         }];
         
         
     }else{
-        [http_shopping update_cart_spec:_goodID item_id:_itemID success:^(id responseObject) {
+        [http_shopping update_cart_spec:_cart_id item_id:_itemID success:^(id responseObject) {
             [SVProgressHUD showSuccessWithStatus:@"规格修改成功"];
         } failure:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.domain];

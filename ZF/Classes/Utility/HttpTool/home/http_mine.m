@@ -94,6 +94,32 @@
     strUrl = [strUrl stringByAppendingPathComponent:@"api/user/performance_log"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
+
+//明细记录接口
++ (void)commision:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/commision"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+
+//分销订单接口
++ (void)distribut_order:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/distribut_order"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
 //充值记录接口
 //+ (void)recharge_list:(NSInteger)page success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure
 //{
@@ -284,9 +310,18 @@
 }
 
 //我的会员
-+ (void)team_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)team_list:(NSInteger)next_user_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",next_user_id];
+    [parameters setObject:str forKey:@"next_user_id"];
+    
+    NSString *str2 = [NSString stringWithFormat:@"%d",1];
+    [parameters setObject:str2 forKey:@"page"];
+    
+    NSString *str1 = [NSString stringWithFormat:@"%d",6];
+    [parameters setObject:str1 forKey:@"num"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

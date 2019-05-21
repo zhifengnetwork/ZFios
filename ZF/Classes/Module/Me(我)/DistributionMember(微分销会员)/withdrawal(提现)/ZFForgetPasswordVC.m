@@ -189,7 +189,7 @@
 {
     ZFRePayPassWordVC* vc = [[ZFRePayPassWordVC alloc]init];
     vc.phoneNumber = self.userInfo.mobile;
-    [self.navigationController presentViewController:vc animated:YES completion:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

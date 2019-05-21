@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 @interface ZFSelectTypeView : UIView
 
+@property (nonatomic, assign)NSInteger cart_id;
 @property (nonatomic, assign)NSInteger goodID;
 
 @property (nonatomic, strong)ZFGoodModel *cartModel;

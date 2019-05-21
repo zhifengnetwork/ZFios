@@ -329,15 +329,25 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         make.centerY.equalTo(self.totalpriceLabel.mas_centerY);
     }];
 
-    self.ordersModel = [[ZFOrdersModel alloc]init];
+    
     self.ordersModel.act = 0;
     
+    [self loadData];
+    
+}
+
+- (void)setIsBuy:(BOOL )isBuy{
+    _isBuy =isBuy;
+    self.ordersModel.action = 1;
+    [self loadData];
+}
+
+- (void)loadData{
     [http_order post_order:_ordersModel success:^(id responseObject) {
         [self showData:responseObject];
     } failure:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.domain];
     }];
-    
 }
 
 - (void)showData: (id)responseObject{
@@ -684,6 +694,12 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         [_submitButton addTarget:self action:@selector(submitClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submitButton;
+}
+
+- (ZFOrdersModel *)ordersModel{
+    if (_ordersModel == nil) {
+        _ordersModel = [[ZFOrdersModel alloc]init];
+    }return _ordersModel;
 }
 #pragma mark --协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

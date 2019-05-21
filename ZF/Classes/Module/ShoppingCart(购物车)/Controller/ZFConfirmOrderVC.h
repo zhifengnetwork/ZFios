@@ -15,6 +15,7 @@
 //goods_id
 //goods_num
 //item_id
+@property (nonatomic, getter=isBuy)BOOL isBuy;
 @property (nonatomic, strong)ZFOrdersModel *ordersModel;
 
 @end

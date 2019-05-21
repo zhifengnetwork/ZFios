@@ -189,9 +189,7 @@
      } failure:^(NSError *error) {
          [SVProgressHUD showErrorWithStatus:error.domain];
      }];
-    [self.navigationController dismissViewControllerAnimated:NO completion:^{
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 -(void)sdData:(id)responseObject

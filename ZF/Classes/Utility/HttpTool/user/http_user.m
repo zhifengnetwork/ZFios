@@ -162,6 +162,34 @@
 }
 
 /**
+ 团队成员订单列表接口
+ @param next_user_id 下级团员ID，与type只能传其中一个
+ */
++ (void)order_list:(NSInteger)next_user_id type:(NSString*)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
+    
+    NSString *str = [NSString stringWithFormat:@"%ld",next_user_id];
+    [parameters setObject:str forKey:@"next_user_id"];
+    
+    if (!kStringIsEmpty(type)) {
+        [parameters setObject:str forKey:@"type"];
+    }
+    
+    NSString *str1 = [NSString stringWithFormat:@"%d",10];
+    [parameters setObject:str1 forKey:@"num"];
+    
+    NSString *str2 = [NSString stringWithFormat:@"%d",1];
+    [parameters setObject:str2 forKey:@"page"];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/order_list"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+/**
  订单详情
  */
 +(void)order_detail:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure

@@ -251,7 +251,14 @@
         make.right.equalTo(self.view).with.offset(-12);
         make.height.mas_equalTo(150);
     }];
-    
+    [http_mine my_wallet:^(id responseObject) {
+        [self showData:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
     [http_mine my_wallet:^(id responseObject) {
         [self showData:responseObject];
     } failure:^(NSError *error) {

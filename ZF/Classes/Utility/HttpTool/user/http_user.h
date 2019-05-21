@@ -36,8 +36,14 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param type 0全部订单 1:待支付 2:待收货 3:待评价 4:待发货
  */
-+(void)order_list:(NSInteger)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)order_list:(NSInteger)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+
+/**
+ 团队成员订单列表接口
+ @param next_user_id 下级团员ID，与type只能传其中一个
+ */
++ (void)order_list:(NSInteger)next_user_id type:(NSString*)type success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 /**
  订单详情

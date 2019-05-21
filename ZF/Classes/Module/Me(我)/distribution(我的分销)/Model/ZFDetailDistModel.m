@@ -10,7 +10,12 @@
 #import "ZFDetailDistModel.h"
 
 @implementation ZFDetailDistModel
-
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             @"goods" : @"ZFOrdersModel"
+             };
+}
 @end
 
 @implementation ZFDetailDistListModel

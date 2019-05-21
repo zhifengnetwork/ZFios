@@ -32,6 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 //业绩明细接口
 + (void)performance_log:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//明细记录接口
++ (void)commision:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
+//分销订单接口
++ (void)distribut_order:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 //绑定支付宝接口
 //zfb_account 支付宝账号
 //realname    真实姓名
@@ -80,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)distribut_index:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //我的会员
-+ (void)team_list:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++ (void)team_list:(NSInteger)next_user_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //店铺关注列表
 + (void)getSellerCollect:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
