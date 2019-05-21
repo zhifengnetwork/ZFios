@@ -27,7 +27,7 @@
     self.title = @"账户明细";
     self.view.backgroundColor = RGBColorHex(0xffffff);
     
-    UISegmentedControl* segment = [[UISegmentedControl alloc]initWithFrame:CGRectMake(0, 10, LL_ScreenWidth, 40)];
+    UISegmentedControl* segment = [[UISegmentedControl alloc]initWithFrame:CGRectMake(10, 10, LL_ScreenWidth-20, 40)];
     //在索引值为0的位置上插入一个标题为red的按钮，第三个参数为是否开启动画
     [segment insertSegmentWithTitle:@"全部" atIndex:0 animated:YES];
     [segment insertSegmentWithTitle:@"赚取" atIndex:1 animated:YES];
@@ -38,7 +38,7 @@
                           //1.设置字体样式:例如黑体,和字体大小
                           NSFontAttributeName:[UIFont fontWithName:@"Arial" size:17],
                           //2.字体颜色
-                          NSForegroundColorAttributeName:RGBColorHex(0xffffff)
+                          NSForegroundColorAttributeName:RGBColorHex(0x585859)
                           };
     
     [segment setTitleTextAttributes:dic forState:UIControlStateNormal];
@@ -48,21 +48,21 @@
                            //1.设置字体样式:例如黑体,和字体大小
                            NSFontAttributeName:[UIFont fontWithName:@"Arial" size:17],
                            //2.字体颜色
-                           NSForegroundColorAttributeName:RGBColorHex(0xffffff)
+                           NSForegroundColorAttributeName:RGBColorHex(0xf10a0a)
                            };
     
     [segment setTitleTextAttributes:dic2 forState:UIControlStateSelected];
     
     //设置未选中时的背景色
-    [segment setBackgroundImage:[UIImage imageNamed:@"button-a"]
+    [segment setBackgroundImage:[UIImage imageNamed:@"select"]
                        forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    
+
     //设置选中时的背景色
-    [segment setBackgroundImage:[UIImage imageNamed:@"button-b"]
+    [segment setBackgroundImage:[UIImage imageNamed:@"select"]
                        forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     
     //设置标题和边框的颜色
-    segment.tintColor = RGBColorHex(0xffffff);
+    segment.tintColor = RGBColorHex(0xe4edf4);
     //设置初始选中值，默认是没有选中
     segment.selectedSegmentIndex = 0;
     //    self.view.backgroundColor = [UIColor magentaColor];

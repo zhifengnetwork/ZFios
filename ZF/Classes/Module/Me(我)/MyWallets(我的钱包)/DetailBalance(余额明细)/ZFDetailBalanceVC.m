@@ -137,7 +137,7 @@ static NSString *const ZFDetailBalanceTableCellID = @"ZFDetailBalanceTableCellID
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0;
+    return 5;
 }
 
 

@@ -32,7 +32,7 @@
 
 - (void)setup
 {
-    self.contentView.backgroundColor = RGBColorHex(0xffffff);
+    self.contentView.backgroundColor = RGBColorHex(0xecf4fa);
     [self.contentView addSubview:self.methodLabel];
     [self.contentView addSubview:self.timeLabel];
     [self.contentView addSubview:self.moneyLabel];
@@ -57,20 +57,6 @@
         make.left.equalTo(self->_moneyLabel.mas_right).offset(55);
         make.centerY.equalTo(self.contentView);
     }];
-    
-    //下面横线
-    UIView *hLineView = [[UIView alloc] init];
-    hLineView.backgroundColor = RGBColorHex(0xcccccc);
-    [self.contentView addSubview:hLineView];
-    
-    [hLineView mas_makeConstraints:^(MASConstraintMaker *make)
-     {
-         make.left.mas_equalTo(0);
-         make.right.mas_equalTo(-0);
-         make.bottom.equalTo(self.contentView);
-         make.height.mas_equalTo(0.5f);
-     }];
-    
 }
 
 -(void)setTime:(NSString *)time
