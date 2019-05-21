@@ -84,6 +84,17 @@
         make.right.mas_equalTo(-15);
     }];
     
+    //控件优先级
+    [self.icon1View setContentHuggingPriority:UILayoutPriorityRequired
+                                     forAxis:UILayoutConstraintAxisHorizontal];
+    [self.icon1View setContentCompressionResistancePriority:UILayoutPriorityRequired
+                                                   forAxis:UILayoutConstraintAxisHorizontal];
+    [self.usedPasswordTextField setContentHuggingPriority:UILayoutPriorityDefaultLow
+                                  forAxis:UILayoutConstraintAxisHorizontal];
+    [self.usedPasswordTextField setContentCompressionResistancePriority:UILayoutPriorityDefaultLow
+                                                forAxis:UILayoutConstraintAxisHorizontal];
+    
+    
     [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_icon2View.mas_right).offset(10);
         make.top.bottom.equalTo(self->_icon2View);

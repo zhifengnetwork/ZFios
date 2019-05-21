@@ -44,7 +44,7 @@
         
         //隐藏底部条
         viewController.hidesBottomBarWhenPushed = YES;
-        
+        viewController.view.backgroundColor = [UIColor whiteColor];
         [self setNaviagtionItem:viewController];
     }
     
