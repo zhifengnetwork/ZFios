@@ -171,6 +171,10 @@
         self.selectRowWithCity = 0;
         [pickerView reloadComponent:1];
         [pickerView selectRow:0 inComponent:1 animated:YES];
+        
+        [pickerView reloadComponent:2];
+        [pickerView selectRow:0 inComponent:2 animated:YES];
+        
     }else if (component==1)
     {
         self.selectRowWithCity = row;

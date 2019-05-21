@@ -33,6 +33,7 @@
 #import "MJExtension.h"
 #import "ZFGoodCommentModel.h"
 #import "ZFDetailsWebViewTableCell.h"
+#import "DXLAddressPickView.h"
 
 
 @interface ZFDetailsPageVC ()<UITableViewDelegate,UITableViewDataSource,ZFDetailsImageTextHeadViewDelegate>
@@ -57,6 +58,14 @@
 
 @property (nonatomic, assign) BOOL isShowIt;
 @property (nonatomic, strong) NSMutableDictionary* heightDic;
+
+
+@property (nonatomic, strong)  ZFAddressEditModel *addressEditModel;
+@property(nonatomic,strong) DXLAddressPickView *pickerView;
+
+@property(nonatomic,strong) NSMutableArray *arr1;
+@property(nonatomic,strong) NSMutableArray *arr2;
+@property(nonatomic,strong) NSMutableArray *arr3;
 
 @end
 
@@ -566,6 +575,24 @@ static NSString *const ZFDetailsWebViewTableCelllD = @"ZFDetailsWebViewTableCell
     {
         
     }
+    else if (indexPath.section==1)
+    {
+        if (indexPath.row==1)
+        {
+            [self.pickerView show];
+            
+            __weak typeof(self) weakSelf = self;
+            self.pickerView.determineBtnBlock = ^(NSString *shengId, NSString *shiId, NSString *xianId, NSString *shengName, NSString *shiName, NSString *xianName, NSString *postCode)
+            {
+                weakSelf.addressEditModel.province_name = shengName;
+                weakSelf.addressEditModel.city_name = shiName;
+                weakSelf.addressEditModel.district_name = xianName;
+                weakSelf.address = [NSString stringWithFormat:@"%@%@%@",weakSelf.addressEditModel.province_name,weakSelf.addressEditModel.city_name,weakSelf.addressEditModel.district_name];
+                [weakSelf.tableView reloadData];
+                [weakSelf loadData3];
+            };
+        }
+    }
 }
 
 
@@ -613,6 +640,134 @@ static NSString *const ZFDetailsWebViewTableCelllD = @"ZFDetailsWebViewTableCell
     }
     
     return _footerView;
+}
+
+
+- (DXLAddressPickView *)pickerView
+{
+    if (!_pickerView) {
+        _pickerView = [[DXLAddressPickView alloc] init];
+    }
+    return _pickerView;
+}
+
+-(NSMutableArray*)arr1
+{
+    if (_arr1==nil) {
+        _arr1 = [[NSMutableArray alloc]init];
+    }
+    return _arr1;
+}
+
+-(NSMutableArray*)arr2
+{
+    if (_arr2==nil) {
+        _arr2 = [[NSMutableArray alloc]init];
+    }
+    return _arr2;
+}
+
+-(NSMutableArray*)arr3
+{
+    if (_arr3==nil) {
+        _arr3 = [[NSMutableArray alloc]init];
+    }
+    return _arr3;
+}
+
+-(ZFAddressEditModel *)addressEditModel
+{
+    if (_addressEditModel==nil) {
+        _addressEditModel = [[ZFAddressEditModel alloc]init];
+    }
+    
+    return _addressEditModel;
+}
+
+-(void)loadData3
+{
+    //调接口修改
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    ZWeakSelf
+    [http_address get_region:nil success:^(id responseObject)
+     {
+         [SVProgressHUD dismiss];
+         weakSelf.arr1 = [ZFAddressServerModel mj_objectArrayWithKeyValuesArray:responseObject];
+         
+         for (int i=0; i<weakSelf.arr1.count; i++)
+         {
+             ZFAddressServerModel* model = [weakSelf.arr1 objectAtIndex:i];
+             NSRange range = [weakSelf.addressEditModel.province_name rangeOfString:model.name];
+             if (range.location != NSNotFound)
+             {
+                 weakSelf.addressEditModel.province = model.ID;
+                 [self loadData4];
+                 break;
+             }
+         }
+         
+     } failure:^(NSError *error)
+     {
+         
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+     }];
+}
+
+-(void)loadData4
+{
+    //调接口修改
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    ZWeakSelf
+    [http_address get_region:weakSelf.addressEditModel.province success:^(id responseObject)
+     {
+         [SVProgressHUD dismiss];
+         weakSelf.arr2 = [ZFAddressServerModel mj_objectArrayWithKeyValuesArray:responseObject];
+         
+         for (int i=0; i<weakSelf.arr2.count; i++)
+         {
+             ZFAddressServerModel* model = [weakSelf.arr2 objectAtIndex:i];
+             NSRange range = [weakSelf.addressEditModel.city_name rangeOfString:model.name];
+             if (range.location != NSNotFound)
+             {
+                 weakSelf.addressEditModel.city = model.ID;
+                 [self loadData5];
+                 break;
+             }
+         }
+         
+     } failure:^(NSError *error)
+     {
+         
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+     }];
+}
+
+-(void)loadData5
+{
+    //调接口修改
+    [SVProgressHUD showWithStatus:@"正在加载"];
+    ZWeakSelf
+    [http_address get_region:weakSelf.addressEditModel.city success:^(id responseObject)
+     {
+         [SVProgressHUD dismiss];
+         weakSelf.arr3 = [ZFAddressServerModel mj_objectArrayWithKeyValuesArray:responseObject];
+         
+         for (int i=0; i<weakSelf.arr3.count; i++)
+         {
+             ZFAddressServerModel* model = [weakSelf.arr3 objectAtIndex:i];
+             NSRange range = [weakSelf.addressEditModel.district_name rangeOfString:model.name];
+             if (range.location != NSNotFound)
+             {
+                 weakSelf.addressEditModel.district = model.ID;
+                 break;
+             }
+         }
+         
+     } failure:^(NSError *error)
+     {
+         
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+     }];
 }
 
 
