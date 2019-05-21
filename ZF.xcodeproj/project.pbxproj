@@ -236,6 +236,7 @@
 		840BE903224A26FF00568B11 /* ZFAskEveryoneTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BE902224A26FF00568B11 /* ZFAskEveryoneTableCell.m */; };
 		840BE906224A2E7D00568B11 /* ZFMerchandiseSaleHeadTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BE905224A2E7D00568B11 /* ZFMerchandiseSaleHeadTableCell.m */; };
 		840BE909224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BE908224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.m */; };
+		840FD6302293FD43006D52AB /* ZFChangePasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 840FD62F2293FD43006D52AB /* ZFChangePasswordVC.m */; };
 		8412DF7A2251EE5C00476690 /* http_shopping.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412DF792251EE5C00476690 /* http_shopping.m */; };
 		8412DF7D2251F28200476690 /* ZFShoppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8412DF7C2251F28200476690 /* ZFShoppingModel.m */; };
 		8415517C2282C3B900AD71C6 /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 841551732282C3B900AD71C6 /* CityModel.m */; };
@@ -832,6 +833,8 @@
 		840BE905224A2E7D00568B11 /* ZFMerchandiseSaleHeadTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMerchandiseSaleHeadTableCell.m; sourceTree = "<group>"; };
 		840BE907224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMerchandiseSaleCollectionCell.h; sourceTree = "<group>"; };
 		840BE908224A37A700568B11 /* ZFMerchandiseSaleCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMerchandiseSaleCollectionCell.m; sourceTree = "<group>"; };
+		840FD62E2293FD43006D52AB /* ZFChangePasswordVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFChangePasswordVC.h; sourceTree = "<group>"; };
+		840FD62F2293FD43006D52AB /* ZFChangePasswordVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFChangePasswordVC.m; sourceTree = "<group>"; };
 		8412DF782251EE5C00476690 /* http_shopping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_shopping.h; sourceTree = "<group>"; };
 		8412DF792251EE5C00476690 /* http_shopping.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_shopping.m; sourceTree = "<group>"; };
 		8412DF7B2251F28200476690 /* ZFShoppingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFShoppingModel.h; sourceTree = "<group>"; };
@@ -1553,6 +1556,7 @@
 		188F41A72236125000165142 /* PersonalData(个人资料) */ = {
 			isa = PBXGroup;
 			children = (
+				840FD62D2293FD1A006D52AB /* ChangePassword(修改密码) */,
 				1819918422375527004585D8 /* Address(地址管理) */,
 				188F41A92236127B00165142 /* Controller */,
 				188F41A82236127500165142 /* View */,
@@ -2432,6 +2436,15 @@
 			name = Model;
 			path = "ZF/Classes/Module/Home(首页)/Assemble(拼团)/Model";
 			sourceTree = SOURCE_ROOT;
+		};
+		840FD62D2293FD1A006D52AB /* ChangePassword(修改密码) */ = {
+			isa = PBXGroup;
+			children = (
+				840FD62E2293FD43006D52AB /* ZFChangePasswordVC.h */,
+				840FD62F2293FD43006D52AB /* ZFChangePasswordVC.m */,
+			);
+			path = "ChangePassword(修改密码)";
+			sourceTree = "<group>";
 		};
 		841551722282C3B900AD71C6 /* Address */ = {
 			isa = PBXGroup;
@@ -3560,6 +3573,7 @@
 				842CE8542280474D004D73C0 /* ZFSignInModel.m in Sources */,
 				5325B2502243804300AFD00F /* ZFCouponVC.m in Sources */,
 				53426FB722928028005559E9 /* ZFTeamListVC.m in Sources */,
+				840FD6302293FD43006D52AB /* ZFChangePasswordVC.m in Sources */,
 				840BE903224A26FF00568B11 /* ZFAskEveryoneTableCell.m in Sources */,
 				53E90D022272EA5B0063A237 /* ZFAddressModel.m in Sources */,
 				849F956D223B7B31001824B9 /* ZFStoreConcernVC.m in Sources */,
