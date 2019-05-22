@@ -337,12 +337,16 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     if (kObjectIsEmpty(responseObject)) {
         return;
     }
-    [self.imageUrls removeAllObjects];
     self.listModel = [ZFAssembleListModel mj_objectWithKeyValues:responseObject];
     for (ZFGoodsImageModel *imageModel in self.listModel.goodsImg) {
         [self.imageUrls addObject:imageModel.image_url];
     }
-    
+//    for (int i=0; i<self.detailListModel.goods.goods_images.count; i++)
+//    {
+//        NSString* url = [self.detailListModel.goods.goods_images objectAtIndex:i];
+//        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,url];
+//        [self.imageUrls addObject:str];
+//    }
 }
 
 - (UIScrollView *)scrollView{
@@ -383,9 +387,6 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
 {
     if (_imageUrls==nil) {
         _imageUrls = [[NSMutableArray alloc]init];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1obZ_BmLT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs9.gomein.net.cn/T1C3J_B5LT1RCvBVdK.jpg"];
-        [_imageUrls addObject:@"http://gfs5.gomein.net.cn/T1CwYjBCCT1RCvBVdK.jpg"];
     }
     return _imageUrls;
 }
