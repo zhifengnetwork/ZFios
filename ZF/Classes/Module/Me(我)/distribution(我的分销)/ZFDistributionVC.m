@@ -389,7 +389,6 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
         _tableView.dataSource = self;
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:ZFDistributionCellID];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.scrollEnabled = NO;
     }return _tableView;
 }
 

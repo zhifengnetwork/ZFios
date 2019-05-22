@@ -11,7 +11,12 @@
 #import "ZFSpellListCell.h"
 #import "ZFSpellListHeaderView.h"
 #import "ZFEvaluationVC.h"
+#import "http_groupbuy.h"
+#import "SVProgressHUD.h"
+#import "MJExtension.h"
 #import "ZFBuyToolBarView.h"
+#import "ZFAssembleModel.h"
+#import "ZFSearchModel.h"
 
 @interface ZFGoodDetailVC ()<SDCycleScrollViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UIScrollView *scrollView;
@@ -53,7 +58,7 @@
 
 @property (nonatomic, strong)UITableView *tableView;
 
-
+@property (nonatomic, strong)ZFAssembleListModel *listModel;
 @end
 
 @implementation ZFGoodDetailVC
@@ -316,7 +321,30 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         make.left.right.bottom.equalTo(self.view);
     }];
     
+    
 }
+
+- (void)setTeam_id:(NSInteger)team_id{
+    _team_id = team_id;
+    [http_groupbuy detail:self.team_id success:^(id responseObject) {
+        [self showData:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
+
+- (void)showData: (id)responseObject{
+    if (kObjectIsEmpty(responseObject)) {
+        return;
+    }
+    [self.imageUrls removeAllObjects];
+    self.listModel = [ZFAssembleListModel mj_objectWithKeyValues:responseObject];
+    for (ZFGoodsImageModel *imageModel in self.listModel.goodsImg) {
+        [self.imageUrls addObject:imageModel.image_url];
+    }
+    
+}
+
 - (UIScrollView *)scrollView{
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight-47)];

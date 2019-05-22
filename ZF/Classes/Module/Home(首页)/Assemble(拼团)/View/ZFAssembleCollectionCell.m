@@ -82,8 +82,13 @@
 {
     _assembleModel = assembleModel;
     
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:_assembleModel.original_img]];
-    _nameLabel.text = [NSString stringWithFormat:@"%ld",(long)_assembleModel.goods_name];
+    if (!kStringIsEmpty(_assembleModel.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_assembleModel.original_img];
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    _nameLabel.text = _assembleModel.act_name;
+    _titleLabel.text = [NSString stringWithFormat:@"%@",_assembleModel.goods_name];
     _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",_assembleModel.group_price];
 }
 

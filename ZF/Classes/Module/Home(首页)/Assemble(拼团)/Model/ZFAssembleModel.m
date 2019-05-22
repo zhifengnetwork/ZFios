@@ -11,6 +11,17 @@
 @implementation ZFAssembleModel
 
 @end
+@implementation ZFAssembleListModel
+
++ (NSDictionary *)mj_objectClassInArray
+{
+    return @{
+             @"goodsImg" : @"ZFGoodsImageModel",
+             @"team_found" : @"ZFNoticeModel"
+             };
+}
+@end
+
 
 
 

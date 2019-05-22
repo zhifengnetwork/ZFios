@@ -169,25 +169,24 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
 //点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0)
-    {
-        if (indexPath.row==0)
-        {
-            ZFGoodDetailVC *vc = [[ZFGoodDetailVC alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+    
+    ZFGoodDetailVC *vc = [[ZFGoodDetailVC alloc]init];
+    ZFAssembleModel *assembleModel = [self.datas objectAtIndex:indexPath.section];
+    vc.team_id = assembleModel.team_id;
+    [self.navigationController pushViewController:vc animated:YES];
             return;
 //            ZFSelectedVC* vc = [[ZFSelectedVC alloc]init];
 //            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }
     
 //    ZFClusterWindowView* windowView = [[ZFClusterWindowView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
 //    [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
     
-    ZFHarvestAddressView* addressView = [[ZFHarvestAddressView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
-    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:addressView preferredStyle:TYAlertControllerStyleActionSheet];
-    alertController.backgoundTapDismissEnable = YES;
-    [self presentViewController:alertController animated:YES completion:nil];
+    
+    //竞拍收货地址弹窗
+//    ZFHarvestAddressView* addressView = [[ZFHarvestAddressView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
+//    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:addressView preferredStyle:TYAlertControllerStyleActionSheet];
+//    alertController.backgoundTapDismissEnable = YES;
+//    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 

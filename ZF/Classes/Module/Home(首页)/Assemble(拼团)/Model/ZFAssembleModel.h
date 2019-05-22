@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseListModel.h"
+#import "ZFGoodCommentModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 //商品ID
 @property (nonatomic, assign)NSInteger goods_id;
 //商品名称
-@property (nonatomic, assign)NSInteger goods_name;
+@property (nonatomic, copy)NSString* goods_name;
 //拼团价格
 @property (nonatomic, copy)NSString *group_price;
 //开始时间
@@ -43,7 +44,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger comment_count;
 //时间
 @property (nonatomic, copy)NSString *date;
+@property (nonatomic, strong)ZFGoodCommentModel *comment_fr;
 
+
+@end
+
+@interface ZFAssembleListModel : NSObject
+
+@property (nonatomic, strong)ZFAssembleModel *info;
+
+@property (nonatomic, assign)NSInteger team_found_num;
+@property (nonatomic, assign)NSInteger collect;
+@property (nonatomic, strong)NSArray *team_found;
+@property (nonatomic, strong)NSArray *goodsImg;
 
 @end
 

@@ -12,12 +12,12 @@
 //拼团详情
 //团购商品详情接口
 // order_id   拼团活动ID
-+ (void)detail:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++ (void)detail:(NSInteger)team_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    NSString *str = [NSString stringWithFormat:@"%ld",order_id];
-    [parameters setObject:str forKey:@"order_id"];
+    NSString *str = [NSString stringWithFormat:@"%ld",team_id];
+    [parameters setObject:str forKey:@"team_id"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

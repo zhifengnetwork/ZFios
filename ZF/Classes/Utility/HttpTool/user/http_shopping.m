@@ -97,10 +97,10 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
     NSString *str = [NSString stringWithFormat:@"%ld",ID];
-    [parameters setObject:str forKey:@"id"];
+    [parameters setObject:str forKey:@"cart[id]"];
     
     NSString *str2 = [NSString stringWithFormat:@"%ld",goods_num];
-    [parameters setObject:str2 forKey:@"goods_num"];
+    [parameters setObject:str2 forKey:@"cart[goods_num]"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

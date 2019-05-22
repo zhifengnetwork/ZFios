@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFGoodDetailVC : UIViewController
 
-
+@property (nonatomic, assign)NSInteger team_id;
 @end
 
 NS_ASSUME_NONNULL_END
