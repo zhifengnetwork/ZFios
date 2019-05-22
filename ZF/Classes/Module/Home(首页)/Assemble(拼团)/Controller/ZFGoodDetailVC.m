@@ -71,7 +71,6 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
 }
 
 - (void)setup{
-    self.navigationController.navigationBar.hidden = YES;
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.cycleScrollView];
     [self.cycleScrollView addSubview:self.backButton];
@@ -338,15 +337,13 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         return;
     }
     self.listModel = [ZFAssembleListModel mj_objectWithKeyValues:responseObject];
-    for (ZFGoodsImageModel *imageModel in self.listModel.goodsImg) {
-        [self.imageUrls addObject:imageModel.image_url];
+    for (int i=0; i<self.listModel.goodsImg.count; i++)
+    {
+        ZFGoodsImageModel *imageModel = [self.listModel.goodsImg objectAtIndex:i];
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,imageModel.image_url];
+        [self.imageUrls addObject:str];
     }
-//    for (int i=0; i<self.detailListModel.goods.goods_images.count; i++)
-//    {
-//        NSString* url = [self.detailListModel.goods.goods_images objectAtIndex:i];
-//        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,url];
-//        [self.imageUrls addObject:str];
-//    }
+    _cycleScrollView.imageURLStringsGroup = self.imageUrls;
 }
 
 - (UIScrollView *)scrollView{
@@ -680,18 +677,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
 }
 
 #pragma mark --方法
-- (void)backClick{
-    self.navigationController.navigationBar.hidden = NO;
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
-- (void)viewWillDisappear:(BOOL)animated{
-    self.navigationController.navigationBar.hidden = NO;
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBar.hidden = YES;
-}
 
 - (void)shareClick{
     //分享界面
