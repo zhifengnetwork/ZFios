@@ -90,6 +90,7 @@
     _nameLabel.text = _assembleModel.act_name;
     _titleLabel.text = [NSString stringWithFormat:@"%@",_assembleModel.goods_name];
     _moneyLabel.text = [NSString stringWithFormat:@"¥ %@",_assembleModel.group_price];
+    
 }
 
 

@@ -7,6 +7,9 @@
 //
 
 #import "ZFSpellListCell.h"
+#import "UIImageView+WebCache.h"
+#import "ZFTool.h"
+
 @interface ZFSpellListCell()
 @property (nonatomic, strong)UIImageView *iconImageView;
 @property (nonatomic, strong)UILabel *nameLabel;
@@ -121,28 +124,41 @@ static NSInteger  secondsCountDown = 86400;
     }return _timeLabel;
 }
 
-//实现倒计时动作
--(void)countDownAction{
-    //倒计时-1
-    secondsCountDown--;
-    
-    //重新计算 时/分/秒
-    NSString *str_hour = [NSString stringWithFormat:@"%02ld",secondsCountDown/3600];
-    
-    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(secondsCountDown%3600)/60];
-    
-    NSString *str_second = [NSString stringWithFormat:@"%02ld",secondsCountDown%60];
-    
-    NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
-    //修改倒计时标签及显示内容
-    self.timeLabel.text=[NSString stringWithFormat:@"剩余%@",format_time];
-    
-    
-    //当倒计时到0时做需要的操作，比如验证码过期不能提交
-    if(secondsCountDown==0){
-        
-        [_countDownTimer invalidate];
+- (void)setTeamModel:(ZFTeamFoundModel *)teamModel{
+    _teamModel = teamModel;
+    if (!kStringIsEmpty(_teamModel.head_pic))
+    {
+        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:_teamModel.head_pic]];
     }
+    _nameLabel.text = _teamModel.nickname;
+    _lackNumberLabel.text = [NSString stringWithFormat:@"还差%ld人拼成",_teamModel.need];
+    self.timeLabel.text = [ZFTool GroupBuying:[NSString stringWithFormat:@"%ld",self.teamModel.found_end_time]];
     
+
 }
+
+//实现倒计时动作
+//-(void)countDownAction{
+//    //倒计时-1
+//    secondsCountDown--;
+//    
+//    //重新计算 时/分/秒
+//    NSString *str_hour = [NSString stringWithFormat:@"%02ld",secondsCountDown/3600];
+//    
+//    NSString *str_minute = [NSString stringWithFormat:@"%02ld",(secondsCountDown%3600)/60];
+//    
+//    NSString *str_second = [NSString stringWithFormat:@"%02ld",secondsCountDown%60];
+//    
+//    NSString *format_time = [NSString stringWithFormat:@"%@:%@:%@",str_hour,str_minute,str_second];
+//    //修改倒计时标签及显示内容
+//    self.timeLabel.text=[NSString stringWithFormat:@"剩余%@",format_time];
+//    
+//    
+//    //当倒计时到0时做需要的操作，比如验证码过期不能提交
+//    if(secondsCountDown==0){
+//        _spellListButton.enabled = NO;
+//        [_countDownTimer invalidate];
+//    }
+//    
+//}
 @end

@@ -10,7 +10,7 @@
 @class ZFDetailInvoiceVC;
 @protocol ZFDetailInvoiceVCDelegate <NSObject>
 
-- (void)invoice: (NSArray *_Nonnull)invoiceArray;
+- (void)invoice: (NSArray *_Nonnull)invoiceArray isInvoice:(BOOL)isInvoice;
 
 @end
 NS_ASSUME_NONNULL_BEGIN

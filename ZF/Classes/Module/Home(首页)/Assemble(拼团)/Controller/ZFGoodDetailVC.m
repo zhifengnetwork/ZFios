@@ -17,6 +17,8 @@
 #import "ZFBuyToolBarView.h"
 #import "ZFAssembleModel.h"
 #import "ZFSearchModel.h"
+#import "ZFTool.h"
+
 
 @interface ZFGoodDetailVC ()<SDCycleScrollViewDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UIScrollView *scrollView;
@@ -57,6 +59,8 @@
 @property (nonatomic, strong)UIImageView *goodImgView2;
 
 @property (nonatomic, strong)UITableView *tableView;
+@property (nonatomic, strong)ZFSpellListHeaderView *headerView;
+@property (nonatomic, strong)ZFBuyToolBarView *toolView;
 
 @property (nonatomic, strong)ZFAssembleListModel *listModel;
 @end
@@ -67,10 +71,12 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"fenxiang"] style:UIBarButtonItemStylePlain target:self action:@selector(shareClick)];
     [self setup];
 }
 
 - (void)setup{
+    
     [self.view addSubview:self.scrollView];
     [self.scrollView addSubview:self.cycleScrollView];
     [self.cycleScrollView addSubview:self.backButton];
@@ -118,25 +124,12 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     [self.scrollView addSubview:lineView4];
     [self.scrollView addSubview:self.tableView];
     
-    ZFSpellListHeaderView *headerView = [[ZFSpellListHeaderView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 35)];
-    self.tableView.tableHeaderView = headerView;
+    self.headerView = [[ZFSpellListHeaderView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 35)];
     
-    ZFBuyToolBarView *toolView = [[ZFBuyToolBarView alloc]init];
-    [self.view addSubview:toolView];
+    self.tableView.tableHeaderView = self.headerView;
     
-    [_backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.cycleScrollView).with.offset(27.5);
-        make.top.equalTo(self.cycleScrollView).with.offset(42.5);
-        make.width.mas_equalTo(20);
-        make.height.mas_equalTo(20);
-    }];
-    
-    [_shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.cycleScrollView).with.offset(-27.5);
-        make.top.equalTo(self.cycleScrollView).with.offset(42.5);
-        make.width.mas_equalTo(20);
-        make.height.mas_equalTo(20);
-    }];
+    self.toolView = [[ZFBuyToolBarView alloc]init];
+    [self.view addSubview:self.toolView];
     
     [_activityNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.cycleScrollView.mas_bottom).with.offset(15);
@@ -162,14 +155,14 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     [_priceButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).with.offset(25);
         make.top.equalTo(self.goodNameLabel.mas_bottom).with.offset(10);
-        make.width.mas_equalTo(70);
+        make.width.mas_equalTo(100);
         make.height.mas_equalTo(25);
     }];
     
     [_oldPriceButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.priceButton.mas_right);
         make.top.equalTo(self.priceButton.mas_top);
-        make.width.mas_equalTo(70);
+        make.width.mas_equalTo(100);
         make.height.mas_equalTo(25);
     }];
 
@@ -230,7 +223,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     }];
     
     [_mediumReviewButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.priceButton.mas_right).with.offset(10);
+        make.left.equalTo(self.praiseButton.mas_right).with.offset(10);
         make.top.equalTo(lineView3.mas_bottom).with.offset(15);
         make.width.mas_equalTo(71);
         make.height.mas_equalTo(25);
@@ -315,8 +308,8 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         make.height.mas_equalTo(150);
     }];
     
-    [toolView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.scrollView.mas_bottom);
+    [_toolView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(50);
         make.left.right.bottom.equalTo(self.view);
     }];
     
@@ -337,6 +330,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         return;
     }
     self.listModel = [ZFAssembleListModel mj_objectWithKeyValues:responseObject];
+    ZFAssembleModel *detailModel = self.listModel.info;
     for (int i=0; i<self.listModel.goodsImg.count; i++)
     {
         ZFGoodsImageModel *imageModel = [self.listModel.goodsImg objectAtIndex:i];
@@ -344,6 +338,30 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         [self.imageUrls addObject:str];
     }
     _cycleScrollView.imageURLStringsGroup = self.imageUrls;
+//    团购类型：1小团，2大团，3 阶梯团
+    if (!kStringIsEmpty(detailModel.cluster_type)) {
+        if (detailModel.cluster_type.integerValue == 1) {
+            _activityNameLabel.text = @"小团";
+        }else if (detailModel.cluster_type.integerValue == 2){
+            _activityNameLabel.text = @"大团";
+        }else if (detailModel.cluster_type.integerValue == 3){
+            _activityNameLabel.text = @"阶级团";
+        }
+    }
+    _endTimeLabel.text = [ZFTool startDate:detailModel.end_time];
+    _goodNameLabel.text = detailModel.goods_name;
+    [_priceButton setTitle:[NSString stringWithFormat:@"￥%@起",detailModel.shop_price] forState:UIControlStateNormal];
+     [_oldPriceButton setTitle:[NSString stringWithFormat:@"￥%@起",detailModel.market_price] forState:UIControlStateNormal];
+    _groupBuyNumber.text = [NSString stringWithFormat:@"已团%@件",detailModel.sales_sum];
+    ZFGoodCommentModel *commentModel = self.listModel.info.comment_fr;
+    _commentRateLabel.text = [NSString stringWithFormat:@"好评  %ld",commentModel.high_rate];
+    _commentNumber.text = [NSString stringWithFormat:@"共%ld+条评论",commentModel.total_sum];
+    [_praiseButton setTitle:[NSString stringWithFormat:@"好评(%ld+)",commentModel.high_sum] forState:UIControlStateNormal];
+    [_mediumReviewButton setTitle:[NSString stringWithFormat:@"中评(%ld+)",commentModel.center_sum] forState:UIControlStateNormal];
+    [_badReviewButton setTitle:[NSString stringWithFormat:@"差评(%ld+)",commentModel.low_sum] forState:UIControlStateNormal];
+    [_baskInButton setTitle:[NSString stringWithFormat:@"晒图(%ld+)",commentModel.img_sum] forState:UIControlStateNormal];
+    self.headerView.team_found_num = self.listModel.team_found_num;
+    self.toolView.assembleModel = self.listModel;
 }
 
 - (UIScrollView *)scrollView{
@@ -355,21 +373,6 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     }return _scrollView;
 }
 
-- (UIButton *)backButton{
-    if (_backButton == nil) {
-        _backButton = [[UIButton alloc]init];
-        [_backButton setImage:[UIImage imageNamed:@"zuojiantou"] forState:UIControlStateNormal];
-        [_backButton addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
-    }return _backButton;
-}
-
-- (UIButton *)shareButton{
-    if (_shareButton == nil) {
-        _shareButton = [[UIButton alloc]init];
-        [_shareButton setImage:[UIImage imageNamed:@"fenxiang"] forState:UIControlStateNormal];
-        [_shareButton addTarget:self action:@selector(shareClick) forControlEvents:UIControlEventTouchUpInside];
-    }return _shareButton;
-}
 
 - (SDCycleScrollView *)cycleScrollView{
     if (_cycleScrollView == nil) {
@@ -534,7 +537,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         _baskInButton = [[UIButton alloc]init];
         _baskInButton.backgroundColor = RGBColor(254, 240, 240);
         _baskInButton.titleLabel.font = [UIFont systemFontOfSize:10];
-        [_baskInButton setTitle:@"差评(0)" forState:UIControlStateNormal];
+        [_baskInButton setTitle:@"晒图(0)" forState:UIControlStateNormal];
         [_baskInButton setTitleColor:RGBColor(153, 153, 153) forState:UIControlStateNormal];
         [_baskInButton addTarget:self action:@selector(jumpEvaluation) forControlEvents:UIControlEventTouchUpInside];
     }return _baskInButton;
@@ -691,11 +694,14 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
 
 #pragma mark --tableview协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    
+    return self.listModel.team_found.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFSpellListCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFSpellListCellID forIndexPath:indexPath];
+    ZFTeamFoundModel *teamModel = [self.listModel.team_found objectAtIndex:indexPath.row];
+    cell.teamModel = teamModel;
     return cell;
 }
 @end

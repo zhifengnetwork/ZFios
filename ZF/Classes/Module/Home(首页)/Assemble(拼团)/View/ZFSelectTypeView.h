@@ -15,15 +15,23 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)selectItemID: (NSString*)itemID;
 
 @end
+
+/**
+ 选择规格view
+ */
 @interface ZFSelectTypeView : UIView
 
-@property (nonatomic, assign)NSInteger cart_id;
+@property (nonatomic, assign)NSInteger cart_id;//购物车id
+@property (nonatomic, assign)NSInteger team_id;//拼团活动id；
 @property (nonatomic, assign)NSInteger goodID;
 
 @property (nonatomic, strong)ZFGoodModel *cartModel;
 
-@property (nonatomic, assign)BOOL addCart;
-@property (nonatomic, assign)BOOL isbuy;
+@property (nonatomic, assign)BOOL addCart;//加入购物车
+@property (nonatomic, assign)BOOL isbuy;//单独购买
+
+@property (nonatomic, getter=isping)BOOL isPin;//拼团界面拼单
+@property (nonatomic, getter=onlyBuy)BOOL onlyBuy;//拼团界面单独购买
 @property (nonatomic, weak) id<ZFSelectTypeViewDelegate>delegate;
 @end
 

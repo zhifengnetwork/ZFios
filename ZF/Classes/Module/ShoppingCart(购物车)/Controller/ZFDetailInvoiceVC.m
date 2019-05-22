@@ -372,7 +372,7 @@
     NSMutableArray* invoiceArray = [NSMutableArray new];
     if (self.noButton.selected == YES) {
         [invoiceArray addObject:@"不开发票"];
-        [self.delegate invoice:invoiceArray];
+        [self.delegate invoice:invoiceArray isInvoice:NO];
         [self.navigationController popViewControllerAnimated:YES];
     }else if (self.detailButton.selected == YES) {
         if (self.companyButton.selected == YES) {
@@ -389,7 +389,7 @@
         }else{
             [invoiceArray addObject:@"纸质（个人-商品明细）"];
         }
-        [self.delegate invoice:invoiceArray];
+        [self.delegate invoice:invoiceArray isInvoice:YES];
         [self.navigationController popViewControllerAnimated:YES];
         
     }else if (self.categoriesButton.selected == YES){
@@ -407,7 +407,7 @@
         }else{
             [invoiceArray addObject:@"纸质（个人-商品类别）"];
         }
-        [self.delegate invoice:invoiceArray];
+        [self.delegate invoice:invoiceArray isInvoice:YES];
         [self.navigationController popViewControllerAnimated:YES];
     }
     

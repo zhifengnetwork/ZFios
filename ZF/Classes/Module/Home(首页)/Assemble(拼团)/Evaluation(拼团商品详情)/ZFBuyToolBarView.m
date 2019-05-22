@@ -93,7 +93,7 @@
         _onlyBuyButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [_onlyBuyButton setTitle:@" ￥279\n单独购买" forState:UIControlStateNormal];
         [_onlyBuyButton setTitleColor:RGBColor(255, 255, 255) forState:UIControlStateNormal];
-        [_onlyBuyButton addTarget:self action:@selector(selectType) forControlEvents:UIControlEventTouchUpInside];
+        [_onlyBuyButton addTarget:self action:@selector(onlyBuyClick) forControlEvents:UIControlEventTouchUpInside];
     }return _onlyBuyButton;
 }
 
@@ -105,18 +105,45 @@
         _spellListButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [_spellListButton setTitle:@" ￥139\n发起拼单" forState:UIControlStateNormal];
         [_spellListButton setTitleColor:RGBColor(255, 255, 255) forState:UIControlStateNormal];
+         [_spellListButton addTarget:self action:@selector(spellClick) forControlEvents:UIControlEventTouchUpInside];
     }return _spellListButton;
+}
+
+- (void)setAssembleModel:(ZFAssembleListModel *)assembleModel{
+    _assembleModel = assembleModel;
+    if (_assembleModel.collect ==0) {
+        self.collectButton.selected = NO;
+    }else{
+        self.collectButton.selected = YES;
+    }
+    
+    
 }
 
 #pragma mark -- 跳转
 //弹出选择款式窗口
-- (void)selectType{
-    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 278)];
+- (void)spellClick{
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
+    view.isPin = YES;
+    view.team_id = self.assembleModel.info.team_id;
+    view.goodID = self.assembleModel.info.goods_id;
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
     
 }
+
+- (void)onlyBuyClick{
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
+    view.onlyBuy = YES;
+    view.team_id = self.assembleModel.info.team_id;
+    view.goodID = self.assembleModel.info.goods_id;
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
+    
+}
+
 //获取当前控制器
 - (UIViewController *)currentViewController{
     UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;

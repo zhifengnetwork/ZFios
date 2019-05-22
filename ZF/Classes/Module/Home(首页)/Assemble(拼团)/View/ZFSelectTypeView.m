@@ -406,7 +406,32 @@ NSInteger count = 1;//存储购物车的数量
             [SVProgressHUD showErrorWithStatus:error.domain];
         }];
         [[self currentViewController].navigationController popViewControllerAnimated:YES];
-    }else if (_isbuy == YES){
+    }else if (_isPin == YES){
+//        购买类型    (1：单独购买，2：拼团,默认1)  buy_type
+        ZFConfirmOrderVC *vc = [[ZFConfirmOrderVC alloc]init];
+        vc.pingModel.team_id = self.team_id;
+        vc.pingModel.buy_type = 2;
+        vc.pingModel.act = 0;
+        vc.pingModel.buy_num = self.numberButton.titleLabel.text.integerValue;
+//        vc.ordersModel.item_id = self.itemID;
+        vc.isPin = YES;
+        [[self currentViewController]dismissViewControllerAnimated:NO completion:^{
+            [[self currentViewController].navigationController pushViewController:vc animated:NO];
+        }];
+        
+    }else if (_onlyBuy == YES){
+        ZFConfirmOrderVC *vc = [[ZFConfirmOrderVC alloc]init];
+        vc.pingModel.team_id = self.team_id;
+        vc.pingModel.buy_type = 1;
+        vc.pingModel.act = 0;
+        vc.pingModel.buy_num = self.numberButton.titleLabel.text.integerValue;
+        vc.isPin = YES;
+        [[self currentViewController]dismissViewControllerAnimated:NO completion:^{
+            [[self currentViewController].navigationController pushViewController:vc animated:NO];
+        }];
+    }
+
+    else if (_isbuy == YES){
         
         ZFConfirmOrderVC *vc = [[ZFConfirmOrderVC alloc]init];
         vc.ordersModel.goods_id = self.goodID;

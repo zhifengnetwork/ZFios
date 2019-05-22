@@ -80,8 +80,9 @@
     [[self currentViewController].navigationController pushViewController:vc animated:YES];
 }
 
-- (void)invoice:(NSArray *)invoiceArray{
+- (void)invoice:(NSArray *)invoiceArray isInvoice:(BOOL)isInvoice{
     _invoiceArray = invoiceArray;
+    self.isInvoice = isInvoice;
     [_invoiceButton setTitle:invoiceArray[0] forState:UIControlStateNormal];
 }
 

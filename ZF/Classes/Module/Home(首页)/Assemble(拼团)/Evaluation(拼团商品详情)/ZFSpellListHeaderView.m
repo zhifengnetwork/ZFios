@@ -89,6 +89,11 @@
     }return _moreButton;
 }
 
+- (void)setTeam_found_num:(NSInteger)team_found_num{
+    _team_found_num = team_found_num;
+    _spellListNumber.text = [NSString stringWithFormat:@"%ld人在拼单， 可直接参与",self.team_found_num];
+}
+
 - (void)spellListClick{
     //拼单页面
 }

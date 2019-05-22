@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 //拼团详情   拼单headerview
 @interface ZFSpellListHeaderView : UIView
 
+@property (nonatomic, assign)NSInteger team_found_num;
+
 @end
 
 NS_ASSUME_NONNULL_END

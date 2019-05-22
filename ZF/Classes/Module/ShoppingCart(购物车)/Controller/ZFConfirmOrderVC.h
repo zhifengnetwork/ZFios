@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZFOrdersModel.h"
+#import "ZFAddressModel.h"
 @interface ZFConfirmOrderVC : UIViewController
 //结算界面
 
@@ -16,6 +17,8 @@
 //goods_num
 //item_id
 @property (nonatomic, getter=isBuy)BOOL isBuy;
+@property (nonatomic, getter=isBuy)BOOL isPin;
+@property (nonatomic, strong)ZFAddressModel *pingModel;
 @property (nonatomic, strong)ZFOrdersModel *ordersModel;
 
 @end

@@ -76,6 +76,9 @@
     NSString *str4 = [NSString stringWithFormat:@"%ld",addressModel.invoice_type];
     [parameters setObject:str4 forKey:@"invoice_type"];
     
+    NSString *str5 = [NSString stringWithFormat:@"%ld",addressModel.act];
+    [parameters setObject:str5 forKey:@"act"];
+    
     if (!kStringIsEmpty(addressModel.invoice_identity)) {
         [parameters setObject:addressModel.invoice_identity forKey:@"invoice_identity"];
     }
@@ -89,8 +92,8 @@
     }
     
 
-    NSString *str5 = [NSString stringWithFormat:@"%ld",addressModel.found_id];
-    [parameters setObject:str5 forKey:@"found_id"];
+    NSString *str6 = [NSString stringWithFormat:@"%ld",addressModel.found_id];
+    [parameters setObject:str6 forKey:@"found_id"];
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

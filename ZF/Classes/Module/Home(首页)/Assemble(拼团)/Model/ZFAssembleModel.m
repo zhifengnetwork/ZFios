@@ -8,6 +8,9 @@
 
 #import "ZFAssembleModel.h"
 
+@implementation ZFTeamFoundModel
+
+@end
 @implementation ZFAssembleModel
 
 @end
@@ -17,7 +20,7 @@
 {
     return @{
              @"goodsImg" : @"ZFGoodsImageModel",
-             @"team_found" : @"ZFNoticeModel"
+             @"team_found" : @"ZFTeamFoundModel"
              };
 }
 @end

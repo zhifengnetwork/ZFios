@@ -12,6 +12,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface ZFTeamFoundModel : NSObject
+@property (nonatomic, assign)NSInteger found_id;
+@property (nonatomic, assign)NSInteger found_time;
+@property (nonatomic, assign)NSInteger found_end_time;
+@property (nonatomic, assign)NSInteger user_id;
+@property (nonatomic, copy)NSString* nickname;
+@property (nonatomic, copy)NSString* head_pic;
+@property (nonatomic, assign)NSInteger order_id;
+@property (nonatomic, assign)NSInteger join;
+@property (nonatomic, assign)NSInteger need;
+@end
 @interface ZFAssembleModel : NSObject
 
 //拼团活动ID
@@ -44,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger comment_count;
 //时间
 @property (nonatomic, copy)NSString *date;
+@property (nonatomic, copy)NSString *cluster_type;
 @property (nonatomic, strong)ZFGoodCommentModel *comment_fr;
 
 
