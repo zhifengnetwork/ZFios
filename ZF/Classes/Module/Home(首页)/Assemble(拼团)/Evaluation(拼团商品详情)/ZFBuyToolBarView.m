@@ -8,6 +8,8 @@
 
 #import "ZFBuyToolBarView.h"
 #import "ZFSelectTypeView.h"
+#import "http_mine.h"
+#import "SVProgressHUD.h"
 #import "TYAlertController.h"
 
 @interface ZFBuyToolBarView()
@@ -68,9 +70,11 @@
         _collectButton = [[UIButton alloc]init];
         _collectButton.backgroundColor = RGBColor(245, 245, 245);
         _collectButton.titleLabel.font = [UIFont systemFontOfSize:10];
-        [_collectButton setImage:[UIImage imageNamed:@"shoucang"] forState:UIControlStateNormal];
+        [_collectButton setImage:[UIImage imageNamed:@"collection1"] forState:UIControlStateNormal];
+        [_collectButton setImage:[UIImage imageNamed:@"collection2"] forState:UIControlStateSelected];
         [_collectButton setTitleColor:RGBColor(51, 51, 51) forState:UIControlStateNormal];
         [_collectButton setTitle:@"收藏" forState:UIControlStateNormal];
+        [_collectButton addTarget:self action:@selector(collectClick) forControlEvents:UIControlEventTouchUpInside];
     }return _collectButton;
 }
 
@@ -121,6 +125,28 @@
 }
 
 #pragma mark -- 跳转
+
+- (void)collectClick{
+    self.collectButton.selected = !self.collectButton.selected;
+    if (_collectButton.selected == YES) {
+                [http_mine collect_goods:self.assembleModel.info.goods_id success:^(id responseObject)
+                 {
+                     [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+                 } failure:^(NSError *error) {
+                     [SVProgressHUD showErrorWithStatus:error.domain];
+                 }];
+        }else{
+                [http_mine del_collect_goods:self.assembleModel.info.goods_id success:^(id responseObject)
+                 {
+                     [SVProgressHUD showSuccessWithStatus:@"删除收藏成功"];
+                 } failure:^(NSError *error) {
+                     [SVProgressHUD showErrorWithStatus:error.domain];
+                 }];
+        
+        }
+    
+}
+
 //弹出选择款式窗口
 - (void)spellClick{
     ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];

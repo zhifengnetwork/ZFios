@@ -444,13 +444,16 @@ NSInteger count = 1;//存储购物车的数量
         
         
     }else{
-        [http_shopping update_cart_spec:_cart_id item_id:_itemID success:^(id responseObject) {
-            [SVProgressHUD showSuccessWithStatus:@"规格修改成功"];
-        } failure:^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:error.domain];
-        }];
-        [self cancelClick];
+        if (!kStringIsEmpty(self.spec_key)){
+            [http_shopping update_cart_spec:_cart_id item_id:_itemID success:^(id responseObject) {
+                [SVProgressHUD showSuccessWithStatus:@"规格修改成功"];
+            } failure:^(NSError *error) {
+                [SVProgressHUD showErrorWithStatus:error.domain];
+            }];
+        }
+        
     }
+    [self cancelClick];
     [self.delegate selectItemID:self.itemID];
 }
 @end
