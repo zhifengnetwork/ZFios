@@ -331,14 +331,18 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     }];
 
     
+    
+}
+
+- (void)setIsSettle:(BOOL)isSettle{
+    _isSettle = isSettle;
     self.ordersModel.act = 0;
-    
     [self loadData];
-    
 }
 
 - (void)setIsBuy:(BOOL )isBuy{
     _isBuy =isBuy;
+    self.ordersModel.act = 0;
     self.ordersModel.action = 1;
     [self loadData];
 }
@@ -789,16 +793,16 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     if (self.isPin == YES) {//是否拼团
         ZFAddressEditModel *addressModel = self.buyModel.address;
         
-
         if (self.invoiceView.isInvoice ==NO) {//不开发票
             _pingModel.invoice_type = 0;
         }else{
             _pingModel.invoice_type = 1;
-            _pingModel.invoice_title = self.invoiceView.invoiceArray[0];
-//            if (self.invoiceView.invoiceArray.count>2) {
-//                _pingModel.invoice_desc = self.invoiceView.invoiceArray[1];
-//                _ordersModel.taxpayer = self.invoiceView.invoiceArray[2];
-//            }
+            _pingModel.invoice_identity = @"个人";
+            if (self.invoiceView.invoiceArray.count>2) {
+                _pingModel.invoice_identity = @"公司";
+                _pingModel.invoice_title = self.invoiceView.invoiceArray[1];
+                _pingModel.invoice_code = self.invoiceView.invoiceArray[2];
+            }
         }
         
         if (self.selectButton1.selected == YES) {
@@ -810,7 +814,7 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
             if (kObjectIsEmpty(responseObject)) {
                 return;
             }
-            self.order_sn = [responseObject objectForKey:@"order_sn"];
+//            self.order_sn = [responseObject objectForKey:@"order_sn"];
         } failure:^(NSError *error) {
             [SVProgressHUD showErrorWithStatus:error.domain];
         }];

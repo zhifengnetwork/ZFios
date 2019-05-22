@@ -689,6 +689,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
 - (void)jumpEvaluation{
     //跳到评价界面
     ZFEvaluationVC *vc = [[ZFEvaluationVC alloc]init];
+    vc.goods_id = self.listModel.info.goods_id;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

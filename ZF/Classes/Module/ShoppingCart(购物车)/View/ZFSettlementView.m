@@ -122,6 +122,7 @@
 }
 - (void)buyClick{
     ZFConfirmOrderVC *vc = [[ZFConfirmOrderVC alloc]init];
+    vc.isSettle = YES;
     [[self currentViewController].navigationController pushViewController:vc animated:YES];
 }
 

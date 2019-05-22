@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong)NSArray *invoiceArray;
 @property (nonatomic, getter=isinvoice)BOOL isInvoice;
+
 @end
 
 NS_ASSUME_NONNULL_END
