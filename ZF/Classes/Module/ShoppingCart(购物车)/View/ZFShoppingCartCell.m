@@ -14,7 +14,7 @@
 #import "ZFSelectTypeView.h"
 #import "TYAlertController.h"
 
-@interface ZFShoppingCartCell()<PPNumberButtonDelegate>
+@interface ZFShoppingCartCell()<PPNumberButtonDelegate,ZFSelectTypeViewDelegate>
 
 
 @property (strong, nonatomic)  UIButton *selectGoodButton;
@@ -222,12 +222,17 @@
 
 - (void)selectMeal{
     ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 370)];
-    
     view.cartModel = _model;
+    view.delegate = self;
     TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
     alertController.backgoundTapDismissEnable = YES;
     [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
 }
+
+- (void)selectItemID:(NSString *)itemID{
+    [self.delegate updateSpec_key];
+}
+
 
 //获取当前控制器
 - (UIViewController *)currentViewController{

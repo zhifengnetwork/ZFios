@@ -100,6 +100,8 @@
 - (void)spellListClick{
     //拼单页面
     ZFClusterWindowView* windowView = [[ZFClusterWindowView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
+    windowView.team_id = self.team_id;
+    windowView.goodID = self.goodID;
     windowView.teamArray = self.teamArray;
     [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
 }

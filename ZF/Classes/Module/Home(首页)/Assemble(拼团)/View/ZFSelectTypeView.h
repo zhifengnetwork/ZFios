@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)NSInteger cart_id;//购物车id
 @property (nonatomic, assign)NSInteger team_id;//拼团活动id；
 @property (nonatomic, assign)NSInteger goodID;
+@property (nonatomic, assign)NSInteger found_id;//开团id
 
 @property (nonatomic, strong)ZFGoodModel *cartModel;
 

@@ -9,6 +9,8 @@
 #import "ZFSpellListCell.h"
 #import "UIImageView+WebCache.h"
 #import "ZFTool.h"
+#import "ZFSelectTypeView.h"
+#import "TYAlertController.h"
 
 @interface ZFSpellListCell()
 @property (nonatomic, strong)UIImageView *iconImageView;
@@ -92,6 +94,7 @@
         _spellListButton.titleLabel.font = [UIFont systemFontOfSize:10];
         [_spellListButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_spellListButton setTitle:@"去拼单" forState:UIControlStateNormal];
+        [_spellListButton addTarget:self action:@selector(spellClick) forControlEvents:UIControlEventTouchUpInside];
     }return _spellListButton;
 }
 
@@ -124,6 +127,36 @@
     self.timeLabel.text = [ZFTool startDate:[NSString stringWithFormat:@"%ld",self.teamModel.found_end_time]];
     
 
+}
+
+- (void)spellClick{
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
+    view.isPin = YES;
+    view.found_id = self.teamModel.found_id;
+    view.team_id = self.team_id;
+    view.goodID = self.goodID;
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
+}
+
+//获取当前控制器
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
 }
 
 //实现倒计时动作

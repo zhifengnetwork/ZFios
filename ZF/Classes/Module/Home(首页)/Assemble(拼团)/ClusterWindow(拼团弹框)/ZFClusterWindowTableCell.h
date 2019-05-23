@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFClusterWindowTableCell : UITableViewCell
 
+@property (nonatomic, assign)NSInteger team_id;//拼团活动id
+@property (nonatomic, assign)NSInteger goodID;//商品id
+
 @property (nonatomic, strong)ZFTeamFoundModel *foundModel;
 @end
 

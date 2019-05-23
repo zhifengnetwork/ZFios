@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 //拼团详情   拼单cell
 @interface ZFSpellListCell : UITableViewCell
 
+@property (nonatomic, assign)NSInteger team_id;
+@property (nonatomic, assign)NSInteger goodID;
+
 @property (nonatomic, strong)ZFTeamFoundModel *teamModel;
 @end
 

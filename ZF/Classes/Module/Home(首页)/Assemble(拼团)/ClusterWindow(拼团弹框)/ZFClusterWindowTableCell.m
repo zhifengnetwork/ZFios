@@ -8,6 +8,8 @@
 
 #import "ZFClusterWindowTableCell.h"
 #import "UIImageView+WebCache.h"
+#import "ZFSelectTypeView.h"
+#import "TYAlertController.h"
 #import "ZFTool.h"
 
 @interface ZFClusterWindowTableCell()
@@ -88,7 +90,14 @@
 
 - (void)goSpellButtonDidClick
 {
-    
+    ZFSelectTypeView *view = [[ZFSelectTypeView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
+    view.isPin = YES;
+    view.found_id = self.foundModel.found_id;
+    view.team_id = self.team_id;
+    view.goodID = self.goodID;
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:view preferredStyle:TYAlertControllerStyleActionSheet];
+    alertController.backgoundTapDismissEnable = YES;
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
 }
 
 
@@ -157,5 +166,24 @@
     _timeLabel.text = [ZFTool dateText:[NSString stringWithFormat:@"%ld",_foundModel.found_end_time]];
     
     
+}
+
+//获取当前控制器
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
 }
 @end

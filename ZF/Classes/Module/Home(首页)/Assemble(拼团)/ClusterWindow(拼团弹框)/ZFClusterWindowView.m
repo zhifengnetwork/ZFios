@@ -100,6 +100,8 @@ static NSString *const ZFSpellNumberTableCellID = @"ZFSpellNumberTableCellID";
             cell = [[ZFClusterWindowTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFClusterWindowTableCellID];
         }
         ZFTeamFoundModel *foundModel = [self.teamArray objectAtIndex:indexPath.row];
+        cell.team_id = self.team_id;
+        cell.goodID = self.goodID;
         cell.foundModel = foundModel;
         return cell;
     }

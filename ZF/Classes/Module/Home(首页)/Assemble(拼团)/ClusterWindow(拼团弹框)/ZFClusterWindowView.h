@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ZFClusterWindowView : UIView
 
 
+@property (nonatomic, assign)NSInteger team_id;//拼团id
+@property (nonatomic, assign)NSInteger goodID;//商品id
+
 @property (nonatomic, strong)NSArray *teamArray;
 @end
 

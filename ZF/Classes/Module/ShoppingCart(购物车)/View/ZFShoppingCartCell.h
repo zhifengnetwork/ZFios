@@ -11,6 +11,7 @@
 @class ZFShoppingCartCell;
 @protocol ZFShoppingCartCellDelegate <NSObject>
 @optional
+- (void)updateSpec_key;
 //代理商品数量
 - (void)changeGoodsNum:(NSInteger)number Cell:(ZFShoppingCartCell *)cell;
 //代理选中取消

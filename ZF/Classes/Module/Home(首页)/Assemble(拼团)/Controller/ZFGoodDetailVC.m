@@ -362,7 +362,11 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     [_mediumReviewButton setTitle:[NSString stringWithFormat:@"中评(%ld+)",commentModel.center_sum] forState:UIControlStateNormal];
     [_badReviewButton setTitle:[NSString stringWithFormat:@"差评(%ld+)",commentModel.low_sum] forState:UIControlStateNormal];
     [_baskInButton setTitle:[NSString stringWithFormat:@"晒图(%ld+)",commentModel.img_sum] forState:UIControlStateNormal];
+    //确保去拼单的所有参数
     self.headerView.team_found_num = self.listModel.team_found_num;
+    self.headerView.team_id = self.listModel.info.team_id;
+    self.headerView.goodID = self.listModel.info.goods_id;
+    
     ZFGoodCommentModel *detailCommentModel = self.listModel.info.commentinfo;
     _nameLabel.text = detailCommentModel.username;
     if (detailCommentModel.goods_rank == 1) {
@@ -759,6 +763,8 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFSpellListCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFSpellListCellID forIndexPath:indexPath];
     ZFTeamFoundModel *teamModel = [self.listModel.team_found objectAtIndex:indexPath.row];
+    cell.goodID = self.listModel.info.goods_id;
+    cell.team_id = self.listModel.info.team_id;
     cell.teamModel = teamModel;
     return cell;
 }

@@ -141,6 +141,7 @@ NSInteger count = 1;//存储购物车的数量
         make.height.mas_equalTo(46);
     }];
     
+    
 }
 - (void)setGoodID:(NSInteger)goodID{
     _goodID = goodID;
@@ -151,8 +152,8 @@ NSInteger count = 1;//存储购物车的数量
 
 - (void)setCartModel:(ZFGoodModel *)cartModel{
     _cartModel = cartModel;
-    _cart_id = _cartModel.ID;
-    _goodID = cartModel.goods.goods_id;
+    self.cart_id = _cartModel.ID;
+    self.goodID = cartModel.goods.goods_id;
     self.spec_key = cartModel.spec_key;
     [self.numberButton setTitle:[NSString stringWithFormat:@"%ld",self.cartModel.goods_num] forState:UIControlStateNormal];
     count = self.cartModel.goods_num;
@@ -414,6 +415,7 @@ NSInteger count = 1;//存储购物车的数量
         vc.pingModel.act = 0;
         vc.pingModel.buy_num = self.numberButton.titleLabel.text.integerValue;
 //        vc.ordersModel.item_id = self.itemID;
+        vc.pingModel.found_id = self.found_id;
         vc.isPin = YES;
         [[self currentViewController]dismissViewControllerAnimated:NO completion:^{
             [[self currentViewController].navigationController pushViewController:vc animated:NO];
