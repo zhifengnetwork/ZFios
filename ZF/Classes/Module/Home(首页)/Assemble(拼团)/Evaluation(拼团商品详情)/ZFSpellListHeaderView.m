@@ -7,6 +7,8 @@
 //
 
 #import "ZFSpellListHeaderView.h"
+#import "ZFSpellingView.h"
+
 @interface ZFSpellListHeaderView()
 @property (nonatomic, strong)UILabel *spellListNumber;
 @property (nonatomic, strong)UILabel *moreLabel;
@@ -96,5 +98,6 @@
 
 - (void)spellListClick{
     //拼单页面
+    
 }
 @end

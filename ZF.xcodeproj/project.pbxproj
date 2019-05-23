@@ -208,6 +208,7 @@
 		53D153AB2275B51D00013DE1 /* ZFSpellListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D153AA2275B51D00013DE1 /* ZFSpellListHeaderView.m */; };
 		53D4393D22812EF2008EE075 /* ZFSelectTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D4393C22812EF2008EE075 /* ZFSelectTypeCell.m */; };
 		53D51251228C328100A5F0C7 /* ZFDetailInvoiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53D51250228C328100A5F0C7 /* ZFDetailInvoiceVC.m */; };
+		53E52B8D2296305900A2A166 /* ZFSpellingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E52B8C2296305900A2A166 /* ZFSpellingView.m */; };
 		53E8747F228D12BE007E0E9E /* ZFBuyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E8747E228D12BE007E0E9E /* ZFBuyModel.m */; };
 		53E8EE4D2292493E00DA0319 /* ZFDistributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E8EE4C2292493D00DA0319 /* ZFDistributeModel.m */; };
 		53E90CE92272A74D0063A237 /* ZFGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90CE82272A74D0063A237 /* ZFGoodModel.m */; };
@@ -785,6 +786,8 @@
 		53D4393C22812EF2008EE075 /* ZFSelectTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFSelectTypeCell.m; sourceTree = "<group>"; };
 		53D5124F228C328100A5F0C7 /* ZFDetailInvoiceVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailInvoiceVC.h; sourceTree = "<group>"; };
 		53D51250228C328100A5F0C7 /* ZFDetailInvoiceVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailInvoiceVC.m; sourceTree = "<group>"; };
+		53E52B8B2296305900A2A166 /* ZFSpellingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFSpellingView.h; sourceTree = "<group>"; };
+		53E52B8C2296305900A2A166 /* ZFSpellingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFSpellingView.m; sourceTree = "<group>"; };
 		53E8747D228D12BE007E0E9E /* ZFBuyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFBuyModel.h; sourceTree = "<group>"; };
 		53E8747E228D12BE007E0E9E /* ZFBuyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFBuyModel.m; sourceTree = "<group>"; };
 		53E8EE4B2292493D00DA0319 /* ZFDistributeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDistributeModel.h; sourceTree = "<group>"; };
@@ -1184,14 +1187,14 @@
 		180A97A8222E32A9003A12FF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				180A97AB222E32F4003A12FF /* ZFAssembleCollectionCell.h */,
-				180A97AC222E32F4003A12FF /* ZFAssembleCollectionCell.m */,
 				536F6D1E2276EAEA00F14AD9 /* ZFEvaluationCell.h */,
 				536F6D1F2276EAEA00F14AD9 /* ZFEvaluationCell.m */,
 				53C395FF2276FE6C00744AAA /* ZFSelectTypeView.h */,
 				53C396002276FE6C00744AAA /* ZFSelectTypeView.m */,
 				53D4393B22812EF2008EE075 /* ZFSelectTypeCell.h */,
 				53D4393C22812EF2008EE075 /* ZFSelectTypeCell.m */,
+				53E52B8B2296305900A2A166 /* ZFSpellingView.h */,
+				53E52B8C2296305900A2A166 /* ZFSpellingView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2356,6 +2359,8 @@
 				53D153A72275B1DA00013DE1 /* ZFSpellListCell.m */,
 				53D153A92275B51C00013DE1 /* ZFSpellListHeaderView.h */,
 				53D153AA2275B51D00013DE1 /* ZFSpellListHeaderView.m */,
+				180A97AB222E32F4003A12FF /* ZFAssembleCollectionCell.h */,
+				180A97AC222E32F4003A12FF /* ZFAssembleCollectionCell.m */,
 			);
 			path = "Evaluation(拼团商品详情)";
 			sourceTree = "<group>";
@@ -3596,6 +3601,7 @@
 				84D879F92275ABD3005B375B /* ZFPlantingModel.m in Sources */,
 				180B48F9228EC5EF0056760E /* ZFWalletVC.m in Sources */,
 				53E8747F228D12BE007E0E9E /* ZFBuyModel.m in Sources */,
+				53E52B8D2296305900A2A166 /* ZFSpellingView.m in Sources */,
 				842EDEF02240EF6300B53E45 /* ZFDynamicsITableCell.m in Sources */,
 				189CC0E52223E81300EB5A64 /* HMEmoticonButton.m in Sources */,
 				181A421F2232209F008A7014 /* ZFMyHeadView.m in Sources */,
