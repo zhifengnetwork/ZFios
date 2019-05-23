@@ -8,6 +8,7 @@
 
 #import "ZFSpellListHeaderView.h"
 #import "ZFSpellingView.h"
+#import "TYAlertController.h"
 
 @interface ZFSpellListHeaderView()
 @property (nonatomic, strong)UILabel *spellListNumber;
@@ -98,6 +99,28 @@
 
 - (void)spellListClick{
     //拼单页面
-    
+    ZFSpellingView *bounceView = [[ZFSpellingView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth-100, 400)];
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:bounceView preferredStyle:TYAlertControllerStyleAlert];
+    alertController.backgoundTapDismissEnable = YES;
+    [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
+}
+
+//获取当前控制器
+- (UIViewController *)currentViewController{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    while (1) {
+        if ([vc isKindOfClass:[UITabBarController class]]) {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]]) {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController) {
+            vc = vc.presentedViewController;
+        }else{
+            break;
+        }
+    }
+    return vc;
 }
 @end

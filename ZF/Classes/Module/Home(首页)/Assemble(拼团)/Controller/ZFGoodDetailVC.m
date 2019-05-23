@@ -362,13 +362,14 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     [_baskInButton setTitle:[NSString stringWithFormat:@"晒图(%ld+)",commentModel.img_sum] forState:UIControlStateNormal];
     self.headerView.team_found_num = self.listModel.team_found_num;
     self.toolView.assembleModel = self.listModel;
+    [self.tableView reloadData];
 }
 
 - (UIScrollView *)scrollView{
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight-47)];
         _scrollView.delegate = self;
-        _scrollView.contentSize = CGSizeMake(0,970);
+        _scrollView.contentSize = CGSizeMake(0,1000);
         _scrollView.showsVerticalScrollIndicator = NO;
     }return _scrollView;
 }

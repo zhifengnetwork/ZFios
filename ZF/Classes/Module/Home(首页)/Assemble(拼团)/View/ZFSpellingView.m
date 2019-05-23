@@ -25,6 +25,7 @@
 }
 
 - (void)setup{
+    self.backgroundColor = [UIColor redColor];
     [self addSubview:self.titleLabel];
     [self addSubview:self.cancelButton];
     [self addSubview:self.tableView];
