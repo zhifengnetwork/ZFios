@@ -148,8 +148,8 @@
         make.right.equalTo(self.view).offset(-15);
         make.height.mas_equalTo(50);
     }];
-    UserInfoModel *userInfo = [UserInfoModel readUserInfo];
-    _phoneLabel.text = userInfo.mobile;
+    
+    _phoneLabel.text = self.userInfo.mobile;
 }
 
 - (UILabel *)passwordLabel {

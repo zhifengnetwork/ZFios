@@ -213,6 +213,7 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
         else if (indexPath.row==2)
         {
             ZFPaymentPasswordVC* vc = [[ZFPaymentPasswordVC alloc]init];
+            vc.userInfo = self.userInfo;
             [self.navigationController pushViewController:vc animated:YES];
         }
         
