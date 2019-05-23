@@ -39,6 +39,7 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
     [self setupUI];
 }
 
+
 - (void)setupUI
 {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -178,8 +179,6 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
 //            ZFSelectedVC* vc = [[ZFSelectedVC alloc]init];
 //            [self.navigationController pushViewController:vc animated:YES];
     
-//    ZFClusterWindowView* windowView = [[ZFClusterWindowView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
-//    [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
     
     
     //竞拍收货地址弹窗

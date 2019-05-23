@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFSpellNumberTableCell : UITableViewCell
 
+@property (nonatomic, assign)NSInteger number;
 @end
 
 NS_ASSUME_NONNULL_END

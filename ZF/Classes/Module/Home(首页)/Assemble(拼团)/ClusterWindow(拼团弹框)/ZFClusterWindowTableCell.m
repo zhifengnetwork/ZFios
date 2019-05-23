@@ -7,6 +7,8 @@
 //
 
 #import "ZFClusterWindowTableCell.h"
+#import "UIImageView+WebCache.h"
+#import "ZFTool.h"
 
 @interface ZFClusterWindowTableCell()
 
@@ -143,4 +145,17 @@
     return _goSpellButton;
 }
 
+- (void)setFoundModel:(ZFTeamFoundModel *)foundModel{
+    _foundModel = foundModel;
+
+    if (!kStringIsEmpty(_foundModel.head_pic))
+    {
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:_foundModel.head_pic]];
+    }
+    _titleLabel.text = [NSString stringWithFormat:@"还差%ld人拼成",_foundModel.need];
+    _nameLabel.text = _foundModel.nickname;
+    _timeLabel.text = [ZFTool dateText:[NSString stringWithFormat:@"%ld",_foundModel.found_end_time]];
+    
+    
+}
 @end

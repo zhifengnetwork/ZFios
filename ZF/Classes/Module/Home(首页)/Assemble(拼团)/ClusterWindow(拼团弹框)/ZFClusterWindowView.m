@@ -11,7 +11,7 @@
 #import "UIView+TYAlertView.h"
 #import "ZFClusterWindowTableCell.h"
 #import "ZFSpellNumberTableCell.h"
-
+#import "ZFAssembleModel.h"
 
 @interface ZFClusterWindowView()<UITableViewDataSource,UITableViewDelegate>
 
@@ -66,6 +66,10 @@ static NSString *const ZFSpellNumberTableCellID = @"ZFSpellNumberTableCellID";
     [self.tableView registerClass:[ZFSpellNumberTableCell class] forCellReuseIdentifier:ZFSpellNumberTableCellID];
 }
 
+- (void)setTeamArray:(NSArray *)teamArray{
+    _teamArray = teamArray;
+    [self.tableView reloadData];
+}
 
 
 #pragma mark - Table view data source
@@ -80,7 +84,7 @@ static NSString *const ZFSpellNumberTableCellID = @"ZFSpellNumberTableCellID";
 {
     if (section==0)
     {
-        return 6;
+        return self.teamArray.count;
     }
     return 1;
 }
@@ -95,6 +99,8 @@ static NSString *const ZFSpellNumberTableCellID = @"ZFSpellNumberTableCellID";
         {
             cell = [[ZFClusterWindowTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFClusterWindowTableCellID];
         }
+        ZFTeamFoundModel *foundModel = [self.teamArray objectAtIndex:indexPath.row];
+        cell.foundModel = foundModel;
         return cell;
     }
     else if (indexPath.section==1)
@@ -104,6 +110,7 @@ static NSString *const ZFSpellNumberTableCellID = @"ZFSpellNumberTableCellID";
         {
             cell = [[ZFSpellNumberTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFSpellNumberTableCellID];
         }
+        cell.number = self.teamArray.count;
         return cell;
     }
     
@@ -163,3 +170,4 @@ static NSString *const ZFSpellNumberTableCellID = @"ZFSpellNumberTableCellID";
 }
 
 @end
+

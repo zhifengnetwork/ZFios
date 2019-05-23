@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)NSInteger team_found_num;
 
+@property (nonatomic, strong)NSArray *teamArray;
 @end
 
 NS_ASSUME_NONNULL_END

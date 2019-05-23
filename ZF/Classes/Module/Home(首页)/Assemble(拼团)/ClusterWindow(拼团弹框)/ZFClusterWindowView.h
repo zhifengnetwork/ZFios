@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFClusterWindowView : UIView
 
+
+@property (nonatomic, strong)NSArray *teamArray;
 @end
 
 

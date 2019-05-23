@@ -47,5 +47,9 @@
     return _titleLabel;
 }
 
+- (void)setNumber:(NSInteger)number{
+    _number = number;
+    _titleLabel.text = [NSString stringWithFormat:@"仅显示%ld个正在拼单的人",number];
+}
 
 @end

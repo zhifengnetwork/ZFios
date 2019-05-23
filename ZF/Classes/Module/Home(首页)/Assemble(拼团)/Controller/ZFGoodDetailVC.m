@@ -17,6 +17,7 @@
 #import "ZFBuyToolBarView.h"
 #import "ZFAssembleModel.h"
 #import "ZFSearchModel.h"
+#import "UIImageView+WebCache.h"
 #import "ZFTool.h"
 
 
@@ -353,6 +354,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     [_priceButton setTitle:[NSString stringWithFormat:@"￥%@起",detailModel.shop_price] forState:UIControlStateNormal];
      [_oldPriceButton setTitle:[NSString stringWithFormat:@"￥%@起",detailModel.market_price] forState:UIControlStateNormal];
     _groupBuyNumber.text = [NSString stringWithFormat:@"已团%@件",detailModel.sales_sum];
+    
     ZFGoodCommentModel *commentModel = self.listModel.info.comment_fr;
     _commentRateLabel.text = [NSString stringWithFormat:@"好评  %ld",commentModel.high_rate];
     _commentNumber.text = [NSString stringWithFormat:@"共%ld+条评论",commentModel.total_sum];
@@ -361,8 +363,62 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     [_badReviewButton setTitle:[NSString stringWithFormat:@"差评(%ld+)",commentModel.low_sum] forState:UIControlStateNormal];
     [_baskInButton setTitle:[NSString stringWithFormat:@"晒图(%ld+)",commentModel.img_sum] forState:UIControlStateNormal];
     self.headerView.team_found_num = self.listModel.team_found_num;
+    ZFGoodCommentModel *detailCommentModel = self.listModel.info.commentinfo;
+    _nameLabel.text = detailCommentModel.username;
+    if (detailCommentModel.goods_rank == 1) {
+        self.imageView1.hidden = YES;
+        self.imageView2.hidden = YES;
+        self.imageView3.hidden = YES;
+        self.imageView4.hidden = YES;
+    }else if (detailCommentModel.goods_rank == 2){
+        self.imageView2.hidden = YES;
+        self.imageView3.hidden = YES;
+        self.imageView4.hidden = YES;
+    }else if (detailCommentModel.goods_rank == 3){
+        self.imageView3.hidden = YES;
+        self.imageView4.hidden = YES;
+    }else if (detailCommentModel.goods_rank == 4){
+        self.imageView4.hidden = YES;
+    }
+    _writeTimeLabel.text = [ZFTool Rechargedate:[NSString stringWithFormat:@"%ld",detailCommentModel.add_time]];
+    _titleLabel.text = detailCommentModel.content;
+    
+    if (!kStringIsEmpty(detailCommentModel.img[0]))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,detailCommentModel.img[0]];
+        [self.goodImgView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    if (!kStringIsEmpty(detailCommentModel.img[1]))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,detailCommentModel.img[1]];
+        [self.goodImgView1 sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    if (!kStringIsEmpty(detailCommentModel.img[2]))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,detailCommentModel.img[2]];
+        [self.goodImgView2 sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+   
     self.toolView.assembleModel = self.listModel;
     [self.tableView reloadData];
+    [self loadData2];
+}
+
+- (void)loadData2{
+    //获取正在开团的前5人
+    [http_groupbuy getTeamFive:self.listModel.info.team_id success:^(id responseObject) {
+        [self showData2:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
+
+- (void)showData2:(id)responObject{
+    if (kObjectIsEmpty(responObject)) {
+        return;
+    }
+    NSArray *teamArray = [ZFAssembleListModel mj_objectArrayWithKeyValuesArray:responObject];
+    self.headerView.teamArray = teamArray;
 }
 
 - (UIScrollView *)scrollView{

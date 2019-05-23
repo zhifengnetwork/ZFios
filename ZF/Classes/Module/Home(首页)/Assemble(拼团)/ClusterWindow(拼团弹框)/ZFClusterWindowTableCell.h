@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ZFAssembleModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface ZFClusterWindowTableCell : UITableViewCell
 
+@property (nonatomic, strong)ZFTeamFoundModel *foundModel;
 @end
 
 NS_ASSUME_NONNULL_END

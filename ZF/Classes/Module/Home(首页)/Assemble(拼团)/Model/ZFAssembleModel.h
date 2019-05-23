@@ -56,6 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 //时间
 @property (nonatomic, copy)NSString *date;
 @property (nonatomic, copy)NSString *cluster_type;
+@property (nonatomic, strong)ZFGoodCommentModel *commentinfo;
 @property (nonatomic, strong)ZFGoodCommentModel *comment_fr;
 
 
