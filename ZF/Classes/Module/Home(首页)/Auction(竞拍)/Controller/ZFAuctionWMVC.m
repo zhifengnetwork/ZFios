@@ -26,23 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.title = @"竞拍";
 }
-
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [ZFTool isHiddenNavigationBarSeparatorLine:YES vc:self];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [ZFTool isHiddenNavigationBarSeparatorLine:NO vc:self];
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -102,14 +87,14 @@
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForMenuView:(WMMenuView *)menuView
 {
     CGFloat leftMargin = self.showOnNavigationBar ? 50 : 0;
-    CGFloat originY = self.showOnNavigationBar ? 0 : CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    CGFloat originY = 0;
     return CGRectMake(leftMargin, originY, self.view.frame.size.width - 2*leftMargin, 44);
 }
 
 - (CGRect)pageController:(WMPageController *)pageController preferredFrameForContentView:(WMScrollView *)contentView
 {
     CGFloat originY = CGRectGetMaxY([self pageController:pageController preferredFrameForMenuView:self.menuView]);
-    return CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    return CGRectMake(0, originY, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 
