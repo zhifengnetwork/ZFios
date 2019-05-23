@@ -18,6 +18,7 @@
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
 #import "ZFChangePasswordVC.h"
+#import "ZFPaymentPasswordVC.h"
 
 
 @interface ZFPersonalVC ()
@@ -207,6 +208,12 @@ static NSString *const ZFSubmissionTableCellID = @"ZFSubmissionTableCellID";
         else if (indexPath.row==1)
         {
             ZFChangePasswordVC* vc = [[ZFChangePasswordVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else if (indexPath.row==2)
+        {
+            ZFPaymentPasswordVC* vc = [[ZFPaymentPasswordVC alloc]init];
+            vc.userInfo = self.userInfo;
             [self.navigationController pushViewController:vc animated:YES];
         }
         
