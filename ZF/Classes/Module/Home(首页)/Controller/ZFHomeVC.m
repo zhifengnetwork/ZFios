@@ -346,8 +346,8 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         }
         else if (indexPath.row==7)
         {
-            oell.iconName = @"activity";
-            oell.title = @"优惠活动";
+            oell.iconName = @"Spike";
+            oell.title = @"秒杀";
         }
         
         gridcell = oell;
@@ -561,9 +561,9 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         }
         else if (indexPath.row==7)
         {
-            //优惠活动
-//            ZFCumulativeVC* vc = [[ZFCumulativeVC alloc]init];
-//            [self.navigationController pushViewController:vc animated:YES];
+            //秒杀
+            ZFSpikeVC* vc = [[ZFSpikeVC alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
     else if (indexPath.section==1)
