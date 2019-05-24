@@ -127,10 +127,20 @@
 //付款
 - (void)payClick{
     //跳转到添加银行卡
-    if ([self.tableView indexPathForSelectedRow].row== 0&&[self.tableView indexPathForSelectedRow]!=nil) {
-        ZFAddCardVC *vc = [[ZFAddCardVC alloc]init];
-        [[self currentViewController]presentViewController:vc animated:YES completion:nil];
-    }
+//    if ([self.tableView indexPathForSelectedRow].row== 0&&[self.tableView indexPathForSelectedRow]!=nil) {
+//        ZFAddCardVC *vc = [[ZFAddCardVC alloc]init];
+//        [[self currentViewController]presentViewController:vc animated:YES completion:nil];
+//    }
+}
+
+- (void)setPayNumber:(NSString *)payNumber{
+    _payNumber = payNumber;
+
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"请在0小时30分钟内完成支付 金额 %@元",self.payNumber]];
+    NSRange range = [[str string]rangeOfString:self.payNumber];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:238/225 green:65/225 blue:65/225 alpha:1] range:range];
+    
+    _explainLabel.attributedText = str;
 }
 
 #pragma mark --tableview数据源协议
@@ -145,20 +155,21 @@
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 5;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFSelectPayCell *cell = [[ZFSelectPayCell alloc]init];
     if (indexPath.row == 0) {
-        [cell.textLabel setText:@"银行卡快捷支付"];
-    }else if (indexPath.row == 1) {
-        [cell.textLabel setText:@"网易支付"];
-    }else if (indexPath.row == 2){
-        [cell.textLabel setText:@"支付宝"];
-    }else if (indexPath.row == 3) {
         [cell.textLabel setText:@"微信支付"];
-    }else {
-        [cell.textLabel setText:@"余额"];
+        }
+    else if (indexPath.row == 1) {
+        [cell.textLabel setText:@"支付宝"];
+//    }else if (indexPath.row == 2){
+//          [cell.textLabel setText:@"网易支付"];
+//    }else if (indexPath.row == 3) {
+//        [cell.textLabel setText:@"银行卡快捷支付"];
+//    }else {
+//        [cell.textLabel setText:@"余额"];
     }
     
     return cell;

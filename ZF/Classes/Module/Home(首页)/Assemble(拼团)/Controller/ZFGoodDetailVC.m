@@ -352,7 +352,8 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     _endTimeLabel.text = [ZFTool startDate:detailModel.end_time];
     _goodNameLabel.text = detailModel.goods_name;
     [_priceButton setTitle:[NSString stringWithFormat:@"￥%@起",detailModel.shop_price] forState:UIControlStateNormal];
-     [_oldPriceButton setTitle:[NSString stringWithFormat:@"￥%@起",detailModel.market_price] forState:UIControlStateNormal];
+    [_oldPriceButton setTitle:[NSString stringWithFormat:@"￥%@起",detailModel.market_price] forState:UIControlStateNormal];
+    [self createLineInView:_oldPriceButton Mark:0];//添加下划线
     _groupBuyNumber.text = [NSString stringWithFormat:@"已团%@件",detailModel.sales_sum];
     
     ZFGoodCommentModel *commentModel = self.listModel.info.comment_fr;
@@ -497,7 +498,6 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         _oldPriceButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_oldPriceButton setTitle:@"￥279起" forState:UIControlStateNormal];
         [_oldPriceButton setTitleColor:RGBColor(153, 153, 153) forState:UIControlStateNormal];
-        [self createLineInView:_oldPriceButton Mark:0];
     }return _oldPriceButton;
 }
 

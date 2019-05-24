@@ -68,8 +68,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign)NSInteger team_found_num;
 @property (nonatomic, assign)NSInteger collect;
-@property (nonatomic, strong)NSArray *team_found;
-@property (nonatomic, strong)NSArray *goodsImg;
+@property (nonatomic, strong)NSMutableArray *team_found;
+@property (nonatomic, strong)NSMutableArray *goodsImg;
 
 @end
 

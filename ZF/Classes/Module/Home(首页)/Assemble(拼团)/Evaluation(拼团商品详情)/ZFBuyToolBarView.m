@@ -120,7 +120,8 @@
     }else{
         self.collectButton.selected = YES;
     }
-    
+   [_spellListButton setTitle:[NSString stringWithFormat:@" ￥%@\n发起拼单",self.assembleModel.info.group_price] forState:UIControlStateNormal];
+    [_onlyBuyButton setTitle:[NSString stringWithFormat:@" ￥%@\n单独购买",self.assembleModel.info.shop_price] forState:UIControlStateNormal];
     
 }
 

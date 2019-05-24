@@ -11,4 +11,5 @@
 @interface ZFSelectPayView : UIView
 
 @property (nonatomic, copy)NSString *order_sn;
+@property (nonatomic, copy)NSString* payNumber;
 @end

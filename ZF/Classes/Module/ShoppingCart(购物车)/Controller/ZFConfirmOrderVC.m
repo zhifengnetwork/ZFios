@@ -21,7 +21,7 @@
 #import "ZFConfirmOrderCell.h"
 #import "ZFGroupBuyingModel.h"
 
-@interface ZFConfirmOrderVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface ZFConfirmOrderVC ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 //收货地址
 @property (nonatomic, strong)UIView *addressView;
 @property (nonatomic, strong)UILabel *emptyAddressLabel;
@@ -32,7 +32,7 @@
 @property (nonatomic, strong)UILabel *addressLabel;
 //商品信息
 @property (nonatomic, strong)UITableView *tableView;
-@property (nonatomic, strong)UIView *backgroudView;
+@property (nonatomic, strong)UIScrollView *scrollView;
 //订单信息
 @property (nonatomic, strong)UILabel *expressLabel;
 @property (nonatomic, strong)UILabel *quickLabel;
@@ -44,6 +44,10 @@
 @property (nonatomic, strong)UILabel *useBalanceLabel;
 @property (nonatomic, strong)UILabel *balanceLabel;
 @property (nonatomic, strong)UIButton *selectButton1;
+@property (nonatomic, strong)UIView *zhifuView;
+@property (nonatomic, strong)MASConstraint *height;
+@property (nonatomic, strong)UILabel *passwordLabel;
+@property (nonatomic, strong)UITextField *passwordTF;
 
 @property (nonatomic, strong)UILabel *noteLabel;
 @property (nonatomic, strong)UITextView *textView;
@@ -94,45 +98,56 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     [self.addressView addSubview:self.addressLabel];
     [self.view addSubview:self.tableView];
     
-    [self.view addSubview:self.expressLabel];
-    [self.view addSubview:self.backgroudView];
-    [self.backgroudView addSubview:self.quickLabel];
-    [self.backgroudView addSubview:self.quickLabel1];
-    [self.backgroudView addSubview:self.selectButton];
+    [self.view addSubview:self.scrollView];
+    [self.scrollView addSubview:self.expressLabel];
+    [self.scrollView addSubview:self.quickLabel];
+    [self.scrollView addSubview:self.quickLabel1];
+    [self.scrollView addSubview:self.selectButton];
     UIView *lineView= [[UIView alloc]init];
     lineView.backgroundColor = RGBColorHex(0xcccccc);
-    [self.backgroudView addSubview:lineView];
-    [self.backgroudView addSubview:self.invoiceView];
+    [self.scrollView addSubview:lineView];
+    [self.scrollView addSubview:self.invoiceView];
     UIView *lineView2= [[UIView alloc]init];
     lineView2.backgroundColor = RGBColorHex(0xcccccc);
-    [self.backgroudView addSubview:lineView2];
-    [self.backgroudView addSubview:self.useBalanceLabel];
-    [self.backgroudView addSubview:self.balanceLabel];
-    [self.backgroudView addSubview:self.selectButton1];
+    [self.scrollView addSubview:lineView2];
+    [self.scrollView addSubview:self.useBalanceLabel];
+    [self.scrollView addSubview:self.balanceLabel];
+    [self.scrollView addSubview:self.selectButton1];
     UIView *lineView3= [[UIView alloc]init];
     lineView3.backgroundColor = RGBColorHex(0xcccccc);
-    [self.backgroudView addSubview:lineView3];
-    [self.backgroudView addSubview:self.noteLabel];
-    [self.backgroudView addSubview:self.textView];
+    [self.scrollView addSubview:lineView3];
+    
+    //添加输入支付密码view
+    [self.scrollView addSubview:self.zhifuView];
+    UIView *lineView5= [[UIView alloc]init];
+    lineView5.backgroundColor = RGBColorHex(0xcccccc);
+    [self.scrollView addSubview:lineView5];
+    [self.zhifuView addSubview:self.passwordTF];
+    [self.zhifuView addSubview:self.passwordLabel];
+    
+    [self.scrollView addSubview:self.noteLabel];
+    [self.scrollView addSubview:self.textView];
     UIView *lineView4= [[UIView alloc]init];
     lineView4.backgroundColor = RGBColorHex(0xcccccc);
-    [self.backgroudView addSubview:lineView4];
-    [self.backgroudView addSubview:self.orderDiscountLabel];
-    [self.backgroudView addSubview:self.orderDiscount];
-    [self.backgroudView addSubview:self.priceLabel];
-    [self.backgroudView addSubview:self.price];
-    [self.backgroudView addSubview:self.deliveryLabel];
-    [self.backgroudView addSubview:self.delivery];
-    [self.backgroudView addSubview:self.cashInLabel];
-    [self.backgroudView addSubview:self.cashIn];
-    [self.backgroudView addSubview:self.depositPaidLabel];
-    [self.backgroudView addSubview:self.depositPaid];
-    [self.backgroudView addSubview:self.balanceDiscountLabel];
-    [self.backgroudView addSubview:self.balanceDiscount];
+    [self.scrollView addSubview:lineView4];
+    [self.scrollView addSubview:self.orderDiscountLabel];
+    [self.scrollView addSubview:self.orderDiscount];
+    [self.scrollView addSubview:self.priceLabel];
+    [self.scrollView addSubview:self.price];
+    [self.scrollView addSubview:self.deliveryLabel];
+    [self.scrollView addSubview:self.delivery];
+    [self.scrollView addSubview:self.cashInLabel];
+    [self.scrollView addSubview:self.cashIn];
+    [self.scrollView addSubview:self.depositPaidLabel];
+    [self.scrollView addSubview:self.depositPaid];
+    [self.scrollView addSubview:self.balanceDiscountLabel];
+    [self.scrollView addSubview:self.balanceDiscount];
     
     [self.view addSubview:self.totalLabel];
     [self.view addSubview:self.totalpriceLabel];
     [self.view addSubview:self.submitButton];
+    
+    
     [_addressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).with.offset(20);
         make.left.equalTo(self.view).with.offset(16);
@@ -169,15 +184,16 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         make.right.equalTo(self.view).with.offset(-16);
         make.height.mas_equalTo(60);
     }];
-    [_expressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.tableView.mas_bottom).with.offset(7);
-        make.left.equalTo(self.view).with.offset(20);
+    
+    [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tableView.mas_bottom);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view.mas_bottom).with.offset(-45);
     }];
     
-    [_backgroudView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.expressLabel.mas_bottom).with.offset(7);
-        make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(435);
+    [_expressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.scrollView).with.offset(7);
+        make.left.equalTo(self.view).with.offset(20);
     }];
     
     [_quickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -197,125 +213,150 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.quickLabel1.mas_bottom).with.offset(4);
-        make.left.equalTo(self.backgroudView).with.offset(20);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.left.equalTo(self.view).with.offset(20);
+        make.right.equalTo(self.view).with.offset(-20);
         make.height.mas_equalTo(1);
     }];
-    
+
     [_invoiceView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView.mas_bottom);
-        make.left.equalTo(self.backgroudView).with.offset(20);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.left.equalTo(self.view).with.offset(20);
+        make.right.equalTo(self.view).with.offset(-20);
         make.height.mas_equalTo(40);
     }];
 
     [lineView2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.invoiceView.mas_bottom);
-        make.left.equalTo(self.backgroudView).with.offset(20);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.left.equalTo(self.view).with.offset(20);
+        make.right.equalTo(self.view).with.offset(-20);
         make.height.mas_equalTo(1);
     }];
 
     [_useBalanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView2.mas_bottom).with.offset(10);
-        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.left.equalTo(self.view).with.offset(20);
     }];
-    
+
     [_balanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.useBalanceLabel.mas_bottom).with.offset(10);
         make.left.equalTo(self.useBalanceLabel.mas_left);
     }];
-    
+
     [_selectButton1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.useBalanceLabel.mas_top);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.right.equalTo(self.view).with.offset(-20);
     }];
-    
+
     [lineView3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.balanceLabel.mas_bottom);
-        make.left.equalTo(self.backgroudView).with.offset(20);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.left.equalTo(self.view).with.offset(20);
+        make.right.equalTo(self.view).with.offset(-20);
         make.height.mas_equalTo(1);
     }];
     
-    [_noteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lineView3.mas_bottom).with.offset(10);
-        make.left.equalTo(self.backgroudView).with.offset(20);
+    [_zhifuView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView3.mas_bottom);
+        make.left.right.equalTo(self.view);
+        self.height = make.height.mas_equalTo(1);
     }];
     
+    [_passwordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.zhifuView).with.offset(20);
+        make.centerY.equalTo(self.zhifuView.mas_centerY);
+    }];
+    
+    [_passwordTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.zhifuView).with.offset(100);
+        make.centerY.equalTo(self.zhifuView.mas_centerY);
+        make.width.mas_equalTo(200);
+        make.height.mas_equalTo(25);
+    }];
+    
+    [lineView5 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.zhifuView);
+        make.left.equalTo(self.view).with.offset(20);
+        make.right.equalTo(self.view).with.offset(-20);
+        make.height.mas_equalTo(1);
+    }];
+
+    [_noteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView5.mas_bottom).with.offset(10);
+        make.left.equalTo(self.view).with.offset(20);
+    }];
+
     [_textView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.noteLabel.mas_bottom).with.offset(10);
-        make.left.equalTo(self.backgroudView).with.offset(20);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.left.equalTo(self.view).with.offset(20);
+        make.right.equalTo(self.view).with.offset(-20);
         make.height.mas_equalTo(40);
     }];
-    
+
     [lineView4 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.textView.mas_bottom).with.offset(10);
-        make.left.equalTo(self.backgroudView).with.offset(20);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.left.equalTo(self.view).with.offset(20);
+        make.right.equalTo(self.view).with.offset(-20);
         make.height.mas_equalTo(1);
     }];
-    
+
     [_orderDiscountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView4.mas_bottom).with.offset(15);
-        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.left.equalTo(self.view).with.offset(20);
     }];
-    
+
     [_orderDiscount mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.orderDiscountLabel.mas_centerY);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.right.equalTo(self.view).with.offset(-20);
     }];
-    
+
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.orderDiscountLabel.mas_bottom).with.offset(15);
-        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.left.equalTo(self.view).with.offset(20);
     }];
-    
+
     [_price mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.priceLabel.mas_centerY);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.right.equalTo(self.view).with.offset(-20);
     }];
     [_deliveryLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.priceLabel.mas_bottom).with.offset(15);
-        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.left.equalTo(self.view).with.offset(20);
     }];
-    
+
     [_delivery mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.deliveryLabel.mas_centerY);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.right.equalTo(self.view).with.offset(-20);
     }];
-    
+
     [_cashInLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.deliveryLabel.mas_bottom).with.offset(15);
-        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.left.equalTo(self.view).with.offset(20);
     }];
-    
+
     [_cashIn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.cashInLabel.mas_centerY);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.right.equalTo(self.view).with.offset(-20);
     }];
-    
+
     [_depositPaidLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.cashInLabel.mas_bottom).with.offset(15);
-        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.left.equalTo(self.view).with.offset(20);
     }];
-    
+
     [_depositPaid mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.depositPaidLabel.mas_centerY);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.right.equalTo(self.view).with.offset(-20);
     }];
-    
+
     [_balanceDiscountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.depositPaidLabel.mas_bottom).with.offset(15);
-        make.left.equalTo(self.backgroudView).with.offset(20);
+        make.left.equalTo(self.view).with.offset(20);
     }];
-    
+
     [_balanceDiscount mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.balanceDiscountLabel.mas_centerY);
-        make.right.equalTo(self.backgroudView).with.offset(-20);
+        make.right.equalTo(self.view).with.offset(-20);
     }];
-    
+
     [_submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.bottom.equalTo(self.view);
         make.width.mas_equalTo(100);
@@ -447,6 +488,14 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     [self.tableView reloadData];
 }
 
+- (UIScrollView *)scrollView{
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc]init];
+        _scrollView.delegate = self;
+        _scrollView.showsVerticalScrollIndicator = NO;
+        self.scrollView.contentSize = CGSizeMake(0, 500);
+    }return _scrollView;
+}
 
 - (UIView *)addressView{
     if (_addressView == nil) {
@@ -532,12 +581,6 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     }return _expressLabel;
 }
 
-- (UIView *)backgroudView{
-    if (_backgroudView == nil) {
-        _backgroudView = [[UIView alloc]init];
-        _backgroudView.backgroundColor = [UIColor whiteColor];
-    }return _backgroudView;
-}
 
 - (UILabel *)quickLabel{
     if (_quickLabel == nil) {
@@ -598,6 +641,35 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         [_selectButton1 setImage:[UIImage imageNamed:@"button_click"] forState:UIControlStateSelected];
         [_selectButton1 addTarget:self action:@selector(selectClick:) forControlEvents:UIControlEventTouchUpInside];
     }return _selectButton1;
+}
+
+- (UIView *)zhifuView{
+    if (_zhifuView == nil) {
+        _zhifuView = [[UIView alloc]init];
+
+    }return _zhifuView;
+}
+
+- (UILabel *)passwordLabel{
+    if (_passwordLabel == nil) {
+        _passwordLabel = [[UILabel alloc]init];
+        _passwordLabel.font = [UIFont systemFontOfSize:15];
+        _passwordLabel.textColor = [UIColor blackColor];
+        _passwordLabel.text = @"支付密码：";
+        _passwordLabel.hidden = YES;
+    }return _passwordLabel;
+}
+
+- (UITextField *)passwordTF{
+    if (_passwordTF == nil) {
+        _passwordTF = [[UITextField alloc]init];
+        _passwordTF.layer.borderWidth = 1;
+        _passwordTF.layer.borderColor = RGBColorHex(0xcccccc).CGColor;
+        _passwordTF.font = [UIFont systemFontOfSize:15];
+        _passwordTF.textColor = [UIColor blackColor];
+        _passwordTF.placeholder = @"请输入支付密码";
+        _passwordTF.hidden = YES;
+    }return _passwordTF;
 }
 
 - (UILabel *)noteLabel{
@@ -779,6 +851,22 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
 #pragma mark --方法
 - (void)selectClick:(UIButton *)btn{
     btn.selected = !btn.selected;
+    if (btn.selected == YES) {
+        [self.height uninstall];
+        [self.zhifuView mas_updateConstraints:^(MASConstraintMaker *make) {
+            self.height = make.height.mas_equalTo(35);
+        }];
+        self.passwordLabel.hidden = NO;
+        self.passwordTF.hidden = NO;
+    }else{
+        [self.height uninstall];
+        [self.zhifuView mas_updateConstraints:^(MASConstraintMaker *make) {
+            self.height = make.height.mas_equalTo(1);
+        }];
+        self.passwordLabel.hidden = YES;
+        self.passwordTF.hidden = YES;
+    }
+    
 }
 
 //选择地址
@@ -808,6 +896,7 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         if (self.selectButton1.selected == YES) {
             _pingModel.user_money = @"1";
         }
+        _pingModel.pay_pwd = self.passwordTF.text;
         _pingModel.user_note = self.textView.text;
         _pingModel.act = 1;
         [http_groupbuy falceOrder:addressModel.address_id invoice_title:self.pingModel.invoice_title addressModel:self.pingModel success:^(id responseObject) {
@@ -837,9 +926,9 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         }
         _ordersModel.user_note = self.textView.text;
         _ordersModel.act = 1;
-        _ordersModel.consignee = addressModel.consignee;
+//        _ordersModel.consignee = addressModel.consignee;
         _ordersModel.mobile = addressModel.mobile;
-        
+        _ordersModel.pay_pwd = self.passwordTF.text;
         [http_order post_order:_ordersModel success:^(id responseObject) {
             if (kObjectIsEmpty(responseObject)) {
                 return;
@@ -852,7 +941,8 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
     
     if (self.submitButton.enabled ) {
         ZFSelectPayView *payView = [[ZFSelectPayView alloc]initWithFrame:CGRectMake(0, LL_ScreenHeight - 367, LL_ScreenWidth, 367)];
-        payView.order_sn = _order_sn;
+        payView.payNumber = self.totalpriceLabel.text;
+        payView.order_sn = self.order_sn;
         TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:payView preferredStyle:TYAlertControllerStyleActionSheet];
         alertController.backgoundTapDismissEnable = YES;
         [self presentViewController:alertController animated:YES completion:nil];

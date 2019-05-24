@@ -13,7 +13,7 @@
 #import "TYShowAlertView.h"
 #import "ZFHarvestAddressView.h"
 #import "TYAlertController.h"
-#import "ZFGoodDetailVC.h"
+#import "ZFDetailsPageVC.h"
 #import "http_good.h"
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
@@ -168,25 +168,21 @@ static NSString *const ZFGroupBuyingTableCellID = @"ZFGroupBuyingTableCellID";
 //点击事件
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section==0)
-    {
-        if (indexPath.row==0)
-        {
-            ZFGoodDetailVC *vc = [[ZFGoodDetailVC alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
-            return;
+    ZFGroupBuyingModel *groupModel = [self.groupBuyListModel.list objectAtIndex:indexPath.item];
+    ZFDetailsPageVC *vc = [[ZFDetailsPageVC alloc]init];
+    vc.goods_id = groupModel.goods_id.integerValue;
+    [self.navigationController pushViewController:vc animated:YES];
+    
             //            ZFSelectedVC* vc = [[ZFSelectedVC alloc]init];
             //            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }
     
     //    ZFClusterWindowView* windowView = [[ZFClusterWindowView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];
     //    [TYShowAlertView showAlertViewWithView:windowView backgoundTapDismissEnable:YES];
     
-    ZFHarvestAddressView* addressView = [[ZFHarvestAddressView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
-    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:addressView preferredStyle:TYAlertControllerStyleActionSheet];
-    alertController.backgoundTapDismissEnable = YES;
-    [self presentViewController:alertController animated:YES completion:nil];
+//    ZFHarvestAddressView* addressView = [[ZFHarvestAddressView alloc]initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, 400)];
+//    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:addressView preferredStyle:TYAlertControllerStyleActionSheet];
+//    alertController.backgoundTapDismissEnable = YES;
+//    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 

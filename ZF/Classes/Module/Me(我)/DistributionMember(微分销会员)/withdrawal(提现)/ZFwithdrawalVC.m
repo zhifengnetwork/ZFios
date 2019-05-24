@@ -154,6 +154,8 @@
         make.top.equalTo(self.button2.mas_top);
         make.bottom.equalTo(self.button2.mas_bottom);
         make.right.equalTo(self.button2.mas_right);
+        make.height.mas_equalTo(29);
+        make.width.mas_equalTo(100);
     }];
     
     [_accountButton mas_makeConstraints:^(MASConstraintMaker *make) {

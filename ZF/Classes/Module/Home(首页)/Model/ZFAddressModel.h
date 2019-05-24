@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *invoice_identity;
 @property (nonatomic, copy)NSString *invoice_code;
 @property (nonatomic, copy)NSString *user_note;
+@property (nonatomic, copy)NSString *pay_pwd;
 @property (nonatomic, assign)NSInteger found_id;
 @end
 

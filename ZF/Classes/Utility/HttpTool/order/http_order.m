@@ -34,8 +34,10 @@
     NSString *str = [NSString stringWithFormat:@"%ld",orderModel.coupon_id];
     [parameters setObject:str forKey:@"coupon_id"];
     
-    NSString *str2 = [NSString stringWithFormat:@"%ld",orderModel.pay_points];
-    [parameters setObject:str2 forKey:@"pay_points"];
+    
+     NSString *str2 = [NSString stringWithFormat:@"%ld",orderModel.pay_points];
+     [parameters setObject:str2 forKey:@"pay_points"];
+    
     
     if (!kStringIsEmpty(orderModel.user_money)) {
         [parameters setObject:orderModel.user_money forKey:@"user_money"];
@@ -83,6 +85,7 @@
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/order/post_order"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+
 }
 
 
