@@ -9,6 +9,7 @@
 #import "ZFDetCommInformationTableCell.h"
 #import "UIButton+LXMImagePosition.h"
 #import "http_mine.h"
+#import "ZFTool.h"
 #import "SVProgressHUD.h"
 
 @interface ZFDetCommInformationTableCell()
@@ -22,6 +23,7 @@
 @property (nonatomic, strong) UILabel* money2Label;
 @property (nonatomic, strong) UILabel* salesLabel;
 @property (nonatomic, strong) UILabel* stockLabel;
+@property (nonatomic, strong) MASConstraint  *right;
 @property (nonatomic, strong)UIButton *collectionButton;
 @property (nonatomic, strong)UILabel *addressLabel;
 @end
@@ -77,7 +79,7 @@
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.symbolLabel.mas_right).with.offset(8);
+        make.left.equalTo(self.symbolLabel.mas_right).with.offset(5);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(15);
     }];
     
@@ -104,8 +106,8 @@
     }];
     
     [_stockLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self->_salesLabel);
-        make.centerX.equalTo(self.mas_centerX);
+        make.centerY.equalTo(self.salesLabel);
+        self.right = make.centerX.equalTo(self.mas_centerX);
         make.bottom.mas_equalTo(-15);
     }];
     
@@ -147,9 +149,26 @@
     
     _nameLabel.text = _detailsPageModel.goods_name;
     _titleLabel.text = _detailsPageModel.goods_remark;
-    _moneyLabel.text = _detailsPageModel.shop_price;
-    _money2Label.text = [NSString stringWithFormat:@"¥%@",_detailsPageModel.market_price];
-    _salesLabel.text = [NSString stringWithFormat:@"销量：%@",_detailsPageModel.virtual_sales_sum];
+    if (!kStringIsEmpty(_detailsPageModel.prom_price)) {
+        _symbolLabel.text = @"团购价¥";
+        _symbolLabel.font = [UIFont systemFontOfSize:19];
+        _moneyLabel.text = [NSString stringWithFormat:@"%@",_detailsPageModel.prom_price];
+        _money2Label.text = [NSString stringWithFormat:@"¥%@",_detailsPageModel.shop_price];
+        _salesLabel.backgroundColor = RGBColorHex(0xda2a20);
+        _salesLabel.textColor = [UIColor whiteColor];
+        _salesLabel.text = [ZFTool GroupBuying:[NSString stringWithFormat:@"%ld",_detailsPageModel.end_time]];
+        //修改运费的约束
+        [self.right uninstall];
+        [self.stockLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.contentView).with.offset(-120);
+        }];
+    }else{
+        _moneyLabel.text = _detailsPageModel.shop_price;
+        _money2Label.text = [NSString stringWithFormat:@"¥%@",_detailsPageModel.market_price];
+         _salesLabel.text = [NSString stringWithFormat:@"销量：%@",_detailsPageModel.virtual_sales_sum];
+    }
+    
+   
     if (_detailsPageModel.is_free_shipping.integerValue == 1) {
         _stockLabel.text = @"运费：￥0.00";
     }

@@ -106,6 +106,7 @@
         _deleteButton = [[UIButton alloc]init];
         [_deleteButton setImage:[UIImage imageNamed:@"Delete"] forState:UIControlStateNormal];
         [_deleteButton addTarget:self action:@selector(deleteClick) forControlEvents:UIControlEventTouchUpInside];
+        _deleteButton.hidden = YES;
     }return _deleteButton;
 }
 

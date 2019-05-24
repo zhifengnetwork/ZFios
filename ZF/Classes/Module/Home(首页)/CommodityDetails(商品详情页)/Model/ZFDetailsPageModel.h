@@ -61,10 +61,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *province_name;
 @property (nonatomic, copy)NSString *city_name;
 
+@property (nonatomic, assign)NSInteger start_time;
+@property (nonatomic, assign)NSInteger end_time;
+
 @property (nonatomic, copy)NSString *store_id;
 @property (nonatomic, copy)NSString *store_name;
 @property (nonatomic, copy)NSString *avatar;
 @property (nonatomic, copy)NSString *num;
+@property (nonatomic, copy)NSString *prom_price;
 
 @property (nonatomic, copy)NSString *img_sum;
 @property (nonatomic, copy)NSString *high_sum;

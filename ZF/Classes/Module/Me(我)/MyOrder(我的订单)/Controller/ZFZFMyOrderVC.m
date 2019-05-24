@@ -15,9 +15,10 @@
 #import "ZFOrderModel.h"
 #import "ZFOrdersModel.h"
 #import "MJExtension.h"
+#import "RefreshGifHeader.h"
 #import "ZFDetailOrderVC.h"
 
-@interface ZFZFMyOrderVC ()
+@interface ZFZFMyOrderVC ()<ZFBottomOrderTableCellDelegate>
 @property (nonatomic, strong)NSMutableArray *datas;
 
 @end
@@ -38,8 +39,11 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
     
     UIImage *imgRight = [UIImage imageNamed:@"All"];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[imgRight imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(moreButtonDidClick)];
-    [self loadData];
+    self.tableView.mj_header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    [self.tableView.mj_header beginRefreshing];
+    
 }
+
 
 - (void)loadData{
     ZWeakSelf
@@ -55,12 +59,14 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
 }
 -(void)showData:(id)responseObject
 {
+    
     if (kObjectIsEmpty(responseObject))
     {
         return;
     }
     self.datas = [ZFOrderModel mj_objectArrayWithKeyValuesArray:responseObject];
     [self.tableView reloadData];
+    [self.tableView.mj_header endRefreshing];
 }
 
 - (void)moreButtonDidClick
@@ -79,6 +85,7 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
     [super viewWillAppear:animated];
     // 注册加载完成高度的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noti:) name:@"del_collect_goods2" object:nil];
+    
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -101,6 +108,7 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.alwaysBounceVertical=NO;
+
     
     [self.tableView registerClass:[ZFMyOrderHeadTableCell class] forCellReuseIdentifier:ZFMyOrderHeadTableCellID];
     [self.tableView registerClass:[ZFOrderDetailsTableCell class] forCellReuseIdentifier:ZFOrderDetailsTableCellID];
@@ -145,11 +153,16 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
             scell = [[ZFBottomOrderTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZFBottomOrderTableCellID];
             scell.orderModel = orderModel;
             scell.type = _type;
+            scell.delegate = self;
             cell = scell;
         }
     
     
     return cell;
+}
+
+- (void)updateCell{
+    [self.tableView.mj_header beginRefreshing];
 }
 
 

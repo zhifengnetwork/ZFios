@@ -82,10 +82,9 @@
         vc.orderID = _orderModel.order_id;
         [[self currentViewController].navigationController pushViewController:vc animated:YES];
     }
-    
-    
-    
+    [self.delegate updateCell];
 }
+
 
 - (void)orderButtonDidClick:(UIButton *)btn
 {
@@ -106,6 +105,7 @@
         vc.orderID = _orderModel.order_id;
         [[self currentViewController].navigationController pushViewController:vc animated:YES];
     }
+    [self.delegate updateCell];
 }
 
 

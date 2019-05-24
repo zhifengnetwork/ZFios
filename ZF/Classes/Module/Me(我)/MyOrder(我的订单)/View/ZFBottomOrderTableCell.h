@@ -10,6 +10,12 @@
 #import "ZFOrderModel.h"
 #import "ZFOrdersModel.h"
 NS_ASSUME_NONNULL_BEGIN
+@class ZFBottomOrderTableCell;
+@protocol ZFBottomOrderTableCellDelegate <NSObject>
+@optional
+- (void)updateCell;
+
+@end
 
 /**
  订单底部cell
@@ -21,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 //订单类型，默认0所有，1:待发货,2:待支付,3:待收货,4:待评价
 @property (nonatomic, assign)NSInteger type;
 
-
+@property (nonatomic, weak)id <ZFBottomOrderTableCellDelegate> delegate;
 
 @end
 

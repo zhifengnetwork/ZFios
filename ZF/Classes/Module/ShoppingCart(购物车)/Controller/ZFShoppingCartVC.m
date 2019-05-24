@@ -160,6 +160,10 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     return cell;
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.shoppingCart.mj_header beginRefreshing];
+}
+
 - (void)updateSpec_key{
     [self.shoppingCart.mj_header beginRefreshing];
 }
