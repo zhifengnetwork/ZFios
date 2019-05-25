@@ -361,6 +361,13 @@
 		84ED0CE7223CFB3200BC13C7 /* ZFDistributionMemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE6223CFB3200BC13C7 /* ZFDistributionMemTableCell.m */; };
 		84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE9223CFF8000BC13C7 /* ZFWithdrawDepositVC.m */; };
 		84F4AA3722855CE2007AE7E5 /* ZFDetailsPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F4AA3622855CE2007AE7E5 /* ZFDetailsPageModel.m */; };
+		A96AC6002299172F0009EE85 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5F22299172F0009EE85 /* NSMutableArray+Safe.m */; };
+		A96AC6012299172F0009EE85 /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5F52299172F0009EE85 /* NSMutableDictionary+Safe.m */; };
+		A96AC6022299172F0009EE85 /* NSMutableString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5FA2299172F0009EE85 /* NSMutableString+Safe.m */; };
+		A96AC6032299172F0009EE85 /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5FC2299172F0009EE85 /* NSDictionary+Safe.m */; };
+		A96AC6042299172F0009EE85 /* NSObject+Swizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5FD2299172F0009EE85 /* NSObject+Swizzling.m */; };
+		A96AC6052299172F0009EE85 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5FE2299172F0009EE85 /* NSArray+Safe.m */; };
+		A96AC6062299172F0009EE85 /* NSObject+ImpChangeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5FF2299172F0009EE85 /* NSObject+ImpChangeTool.m */; };
 		ECC88B8EDBFFA9A3D3667654 /* libPods-ZFUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -1092,6 +1099,21 @@
 		84F4AA3522855CE2007AE7E5 /* ZFDetailsPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsPageModel.h; sourceTree = "<group>"; };
 		84F4AA3622855CE2007AE7E5 /* ZFDetailsPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsPageModel.m; sourceTree = "<group>"; };
 		87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZF.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A96AC5F12299172F0009EE85 /* NSMutableString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Safe.h"; sourceTree = "<group>"; };
+		A96AC5F22299172F0009EE85 /* NSMutableArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Safe.m"; sourceTree = "<group>"; };
+		A96AC5F32299172F0009EE85 /* NSDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Safe.h"; sourceTree = "<group>"; };
+		A96AC5F42299172F0009EE85 /* SafeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafeObject.h; sourceTree = "<group>"; };
+		A96AC5F52299172F0009EE85 /* NSMutableDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Safe.m"; sourceTree = "<group>"; };
+		A96AC5F62299172F0009EE85 /* NSObject+ImpChangeTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ImpChangeTool.h"; sourceTree = "<group>"; };
+		A96AC5F72299172F0009EE85 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
+		A96AC5F82299172F0009EE85 /* NSObject+Swizzling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzling.h"; sourceTree = "<group>"; };
+		A96AC5F92299172F0009EE85 /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safe.h"; sourceTree = "<group>"; };
+		A96AC5FA2299172F0009EE85 /* NSMutableString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Safe.m"; sourceTree = "<group>"; };
+		A96AC5FB2299172F0009EE85 /* NSMutableDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Safe.h"; sourceTree = "<group>"; };
+		A96AC5FC2299172F0009EE85 /* NSDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Safe.m"; sourceTree = "<group>"; };
+		A96AC5FD2299172F0009EE85 /* NSObject+Swizzling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzling.m"; sourceTree = "<group>"; };
+		A96AC5FE2299172F0009EE85 /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
+		A96AC5FF2299172F0009EE85 /* NSObject+ImpChangeTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ImpChangeTool.m"; sourceTree = "<group>"; };
 		B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZFUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC5748F8240DC444AA69277 /* Pods-ZF.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZF.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZF/Pods-ZF.debug.xcconfig"; sourceTree = "<group>"; };
 		E120F4E3FF8F855CA3C59BAB /* Pods-ZFTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZFTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZFTests/Pods-ZFTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -2019,6 +2041,7 @@
 		18EA50B522266ECF00A2D612 /* Classify(分类) */ = {
 			isa = PBXGroup;
 			children = (
+				A96AC5F02299172F0009EE85 /* SafeObject */,
 				18C0ABAA2274929400B0D5A7 /* Model */,
 				18EA50B622266ECF00A2D612 /* Controller */,
 				18EA50B822266ECF00A2D612 /* View */,
@@ -3141,6 +3164,28 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A96AC5F02299172F0009EE85 /* SafeObject */ = {
+			isa = PBXGroup;
+			children = (
+				A96AC5F12299172F0009EE85 /* NSMutableString+Safe.h */,
+				A96AC5F22299172F0009EE85 /* NSMutableArray+Safe.m */,
+				A96AC5F32299172F0009EE85 /* NSDictionary+Safe.h */,
+				A96AC5F42299172F0009EE85 /* SafeObject.h */,
+				A96AC5F52299172F0009EE85 /* NSMutableDictionary+Safe.m */,
+				A96AC5F62299172F0009EE85 /* NSObject+ImpChangeTool.h */,
+				A96AC5F72299172F0009EE85 /* NSArray+Safe.h */,
+				A96AC5F82299172F0009EE85 /* NSObject+Swizzling.h */,
+				A96AC5F92299172F0009EE85 /* NSMutableArray+Safe.h */,
+				A96AC5FA2299172F0009EE85 /* NSMutableString+Safe.m */,
+				A96AC5FB2299172F0009EE85 /* NSMutableDictionary+Safe.h */,
+				A96AC5FC2299172F0009EE85 /* NSDictionary+Safe.m */,
+				A96AC5FD2299172F0009EE85 /* NSObject+Swizzling.m */,
+				A96AC5FE2299172F0009EE85 /* NSArray+Safe.m */,
+				A96AC5FF2299172F0009EE85 /* NSObject+ImpChangeTool.m */,
+			);
+			path = SafeObject;
+			sourceTree = "<group>";
+		};
 		F8A1C7F47DB1A36D36A8EA77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3451,6 +3496,7 @@
 				18515F8C222FCC9A00F36E26 /* UIView+DCRolling.m in Sources */,
 				53FE680C22901A5B00859C61 /* ZFDistributionVC.m in Sources */,
 				84B0C2F3229650170047C49A /* ZFPaymentPasswordVC.m in Sources */,
+				A96AC6012299172F0009EE85 /* NSMutableDictionary+Safe.m in Sources */,
 				8462D50C224F565A002F7F5B /* ZFOrderModel.m in Sources */,
 				180F31AF222FA1B50040718F /* ZFStationNewsTableCell.m in Sources */,
 				18E3CF9F222A7175003C7737 /* ZFSpikeMerchandiseTableViewCell.m in Sources */,
@@ -3470,6 +3516,7 @@
 				18F8D8982228D7DE00203E9A /* ZFSelectedVC.m in Sources */,
 				18C26BFC222D62BD004951D9 /* ZFAuctionWMVC.m in Sources */,
 				842CE84A2280165C004D73C0 /* GHDropMenuFilterInputItem.m in Sources */,
+				A96AC6062299172F0009EE85 /* NSObject+ImpChangeTool.m in Sources */,
 				180B48F0228E9E100056760E /* ZFDetailsWebViewTableCell.m in Sources */,
 				1819919F2237C781004585D8 /* ZFRecordDetailsTableCell.m in Sources */,
 				53B4C3182285AA7D00DFF557 /* ZFDetailOrderVC.m in Sources */,
@@ -3503,6 +3550,7 @@
 				84ED0CE4223CF9E700BC13C7 /* ZFTotalAssetsTableCell.m in Sources */,
 				843E9944229010D7005E6D24 /* ZFRechargeRecordVC.m in Sources */,
 				84499BB22239F8FD00A7A988 /* ZFDetailsChoiceVC.m in Sources */,
+				A96AC6032299172F0009EE85 /* NSDictionary+Safe.m in Sources */,
 				18E3CF9C222A6A8D003C7737 /* ZFSpikeTitleHeadViewl.m in Sources */,
 				53426FB122927FD4005559E9 /* ZFDetailDistributeVC.m in Sources */,
 				189CC0EC2223E81300EB5A64 /* HMInputView.m in Sources */,
@@ -3586,6 +3634,7 @@
 				840A215B2274634F00CF8B72 /* ZFAssembleModel.m in Sources */,
 				189CC0F92223EA2400EB5A64 /* http_user.m in Sources */,
 				18EA50C122266F2600A2D612 /* ZFShoppingCartVC.m in Sources */,
+				A96AC6042299172F0009EE85 /* NSObject+Swizzling.m in Sources */,
 				849F956A223B6169001824B9 /* ZFShopImgeViewCell.m in Sources */,
 				840BE906224A2E7D00568B11 /* ZFMerchandiseSaleHeadTableCell.m in Sources */,
 				18F60011222E6A1500DE7EF4 /* ZFPaymentMethodTableCell.m in Sources */,
@@ -3615,9 +3664,11 @@
 				84D8E85D229283960098DC94 /* ZFWithdrawalsRecordTableCell.m in Sources */,
 				53E90CEF2272B7A30063A237 /* http_good.m in Sources */,
 				843E99472290157A005E6D24 /* ZFRechargeRecordModel.m in Sources */,
+				A96AC6002299172F0009EE85 /* NSMutableArray+Safe.m in Sources */,
 				180F31C1222FDB9B0040718F /* ZFClusterWindowTableCell.m in Sources */,
 				847547012240938F00B698E6 /* ZFMyIntegralHeadTableCell.m in Sources */,
 				53C27A0122707ACE00C17DAB /* http_home.m in Sources */,
+				A96AC6022299172F0009EE85 /* NSMutableString+Safe.m in Sources */,
 				18EA50C722266FBD00A2D612 /* ZFMeVC.m in Sources */,
 				8499AF5B228AD2D5004ADBAA /* ZFGroupBuyingTableCell.m in Sources */,
 				18482D87223B8743008342C8 /* BaseCollectionHeadView.m in Sources */,
@@ -3687,6 +3738,7 @@
 				180F31A6222F6C510040718F /* ZFOrderInformationTableCell.m in Sources */,
 				53784D60228ACA2200433409 /* ZFTextView.m in Sources */,
 				849F9567223B5B5E001824B9 /* ZFFavoriteShopViewCell.m in Sources */,
+				A96AC6052299172F0009EE85 /* NSArray+Safe.m in Sources */,
 				18C26C02222D6C20004951D9 /* ZFTopLineFootView.m in Sources */,
 				53138E5422929F7200D27DAB /* ZFDetailDistModel.m in Sources */,
 				53AB3C3622940FB1006C9FD8 /* ZFOrderDetailCell.m in Sources */,
