@@ -197,9 +197,9 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
         {
             return;
         }
-        
-        //            self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
-//        self.settleView.cart_priceArray =
+        //获取当前购物车商品的总价
+        self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
+        self.settleView.price = self.listModel.cart_price_info.total_fee;
     } failure:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.domain];
     }];
