@@ -86,6 +86,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(void)FindPwd:(NSString*)mobile password:(NSString*)password password2:(NSString*)password2 success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+/**
+ //修改密码接口
+ @param passold 原密码
+ @param password 新密码
+ @param password2 确认密码
+ */
++(void)UpdatePwd:(NSString*)passold password:(NSString*)password password2:(NSString*)password2 success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 //设置支付密码
 +(void)FindPwd:(NSString*)mobile password:(NSString*)password password2:(NSString*)password2 scene:(NSInteger)scene success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 /**
@@ -105,6 +113,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 +(void)AppGetSignDay:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+//我的分享接口
++(void)GetSharePic:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 @end
 
 NS_ASSUME_NONNULL_END

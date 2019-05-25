@@ -391,6 +391,39 @@
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 
+/**
+ //修改密码接口
+ @param passold 原密码
+ @param password 新密码
+ @param password2 确认密码
+ */
++(void)UpdatePwd:(NSString*)passold password:(NSString*)password password2:(NSString*)password2 success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    if ( !kStringIsEmpty(passold) )
+    {
+        [parameters setObject:passold forKey:@"passold"];
+    }
+    
+    if ( !kStringIsEmpty(password) )
+    {
+        [parameters setObject:password forKey:@"password"];
+    }
+    
+    if ( !kStringIsEmpty(password2) )
+    {
+        [parameters setObject:password2 forKey:@"password2"];
+    }
+    
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/UpdatePwd"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
 //设置支付密码
 +(void)FindPwd:(NSString*)mobile password:(NSString*)password password2:(NSString*)password2 scene:(NSInteger)scene success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
@@ -469,6 +502,18 @@
     
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/sign/AppGetSignDay"];
+    [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+}
+
+//我的分享接口
++(void)GetSharePic:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
+    HttpTool *http = [HttpTool sharedManager];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:2];
+    
+    NSDictionary* dic = [http hanldeSign:parameters];
+    
+    NSString* strUrl = [http getMainUrl];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/GetSharePic"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 

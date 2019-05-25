@@ -9,6 +9,7 @@
 #import "ZFDetCommInformationTableCell.h"
 #import "UIButton+LXMImagePosition.h"
 #import "http_mine.h"
+#import "stdlib.h"
 #import "ZFTool.h"
 #import "SVProgressHUD.h"
 
@@ -166,13 +167,13 @@
         NSString *nowStr = [ZFTool getCurrentTimeyyyymmdd];
         // 计算时间差值
         NSInteger secondsCountDown = [ZFTool getDateDifferenceWithNowDateStr:nowStr deadlineStr:deadlineStr];
-        
+
         //添加倒计时
         __weak __typeof(self) weakSelf = self;
-        
+
         if (_timer == nil) {
             __block NSInteger timeout = secondsCountDown; // 倒计时时间
-            
+
             if (timeout!=0) {
                 dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
                 _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
@@ -196,21 +197,21 @@
                             } else {
                                 weakSelf.salesLabel.text = [NSString stringWithFormat:@"限时团购 %ld天%02ld小时%02ld分%02ld秒", days, hours, minute, second];
                             }
-                            
+
                         });
                         timeout--; // 递减 倒计时-1(总时间以秒来计算)
                     }
                 });
-                dispatch_resume(_timer);
+                dispzzatch_resume(_timer);
             }
         }
         
         
         
-        //修改运费的约束
+        //修改运费的约束z
         [self.right uninstall];
         [self.stockLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.contentView).with.offset(-120);
+            make.right.equalTo(self.contentView).with.offset(-108);
         }];
     }else{
         _moneyLabel.text = _detailsPageModel.shop_price;

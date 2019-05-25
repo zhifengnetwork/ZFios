@@ -29,6 +29,7 @@
 #import "ZFDistributionVC.h"
 #import "ZFWalletVC.h"
 #import "ZFCouponCenterVC.h"
+#import "ZFMyShareVC.h"
 #import "ZFZFMyOrderVC.h"
 #import "http_user.h"
 #import "SVProgressHUD.h"
@@ -444,6 +445,9 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     else if (indexPath.item==5)
     {
         //我的分享
+        ZFMyShareVC *vc = [[ZFMyShareVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
     }
     else if (indexPath.item==6)
     {

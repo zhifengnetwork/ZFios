@@ -275,18 +275,18 @@
         return;
     }
     
-//    ZWeakSelf
-//    [http_user FindPwd:nil password:password password2:twoPassword success:^(id responseObject)
-//     {
-//         [weakSelf sdData:responseObject];
-//     } failure:^(NSError *error) {
-//         [SVProgressHUD showErrorWithStatus:error.domain];
-//     }];
+    ZWeakSelf
+    [http_user UpdatePwd:used password:password password2:twoPassword success:^(id responseObject)
+     {
+         [weakSelf sdData:responseObject];
+     } failure:^(NSError *error) {
+         [SVProgressHUD showErrorWithStatus:error.domain];
+     }];
 }
 
-//-(void)sdData:(id)responseObject
-//{
-//    [SVProgressHUD showSuccessWithStatus:@"修改成功"];
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+-(void)sdData:(id)responseObject
+{
+    [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

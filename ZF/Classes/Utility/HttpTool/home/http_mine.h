@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 //分销订单接口
 + (void)distribut_order:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+
 //绑定支付宝接口
 //zfb_account 支付宝账号
 //realname    真实姓名
