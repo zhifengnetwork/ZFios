@@ -187,6 +187,7 @@
 		5358868422365F4E00D7A4B6 /* ZFSettlementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5358868322365F4E00D7A4B6 /* ZFSettlementView.m */; };
 		5360BE7C224B1647007F8DA0 /* ZFSettlementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5360BE7B224B1647007F8DA0 /* ZFSettlementView.xib */; };
 		536187E3228C122D006DD444 /* ZFInvoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 536187E2228C122D006DD444 /* ZFInvoiceView.m */; };
+		536638A222996D4A00AFCD2D /* ZFMyShareVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 536638A122996D4A00AFCD2D /* ZFMyShareVC.m */; };
 		536F6D202276EAEA00F14AD9 /* ZFEvaluationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 536F6D1F2276EAEA00F14AD9 /* ZFEvaluationCell.m */; };
 		53784D54228A96B600433409 /* ZFWriteEvaluationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53784D53228A96B600433409 /* ZFWriteEvaluationVC.m */; };
 		53784D5A228A980F00433409 /* ZFFinishEvaluationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 53784D59228A980F00433409 /* ZFFinishEvaluationVC.m */; };
@@ -750,6 +751,8 @@
 		5360BE7B224B1647007F8DA0 /* ZFSettlementView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZFSettlementView.xib; sourceTree = "<group>"; };
 		536187E1228C122D006DD444 /* ZFInvoiceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFInvoiceView.h; sourceTree = "<group>"; };
 		536187E2228C122D006DD444 /* ZFInvoiceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFInvoiceView.m; sourceTree = "<group>"; };
+		536638A022996D4A00AFCD2D /* ZFMyShareVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFMyShareVC.h; sourceTree = "<group>"; };
+		536638A122996D4A00AFCD2D /* ZFMyShareVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFMyShareVC.m; sourceTree = "<group>"; };
 		536F6D1E2276EAEA00F14AD9 /* ZFEvaluationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFEvaluationCell.h; sourceTree = "<group>"; };
 		536F6D1F2276EAEA00F14AD9 /* ZFEvaluationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFEvaluationCell.m; sourceTree = "<group>"; };
 		53784D52228A96B600433409 /* ZFWriteEvaluationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFWriteEvaluationVC.h; sourceTree = "<group>"; };
@@ -1489,6 +1492,7 @@
 		182E8A0A2224017C005CE5FE /* Me(我) */ = {
 			isa = PBXGroup;
 			children = (
+				5366389F22996D0C00AFCD2D /* MyShare(我的分享) */,
 				53FE680922901A0C00859C61 /* distribution(我的分销) */,
 				180B48F1228EC5EF0056760E /* MyWallets(我的钱包) */,
 				5325B24822437C4F00AFD00F /* CouponCenter(我的优惠券中心） */,
@@ -2366,6 +2370,15 @@
 				53426FBC22928E07005559E9 /* ZFDetailDistributeCell.m */,
 			);
 			path = "DetailDistribute(业绩明细)";
+			sourceTree = "<group>";
+		};
+		5366389F22996D0C00AFCD2D /* MyShare(我的分享) */ = {
+			isa = PBXGroup;
+			children = (
+				536638A022996D4A00AFCD2D /* ZFMyShareVC.h */,
+				536638A122996D4A00AFCD2D /* ZFMyShareVC.m */,
+			);
+			path = "MyShare(我的分享)";
 			sourceTree = "<group>";
 		};
 		537D560222754AFB00384C19 /* Evaluation(拼团商品详情) */ = {
@@ -3551,6 +3564,7 @@
 				180F340B22263D4000EB0449 /* ZFResetPasswordVC.m in Sources */,
 				842EDEF32240EFFA00B53E45 /* ZFMyDynamicsTableCell.m in Sources */,
 				849CB39E2277091E00386882 /* ZFStartAuctionModel.m in Sources */,
+				536638A222996D4A00AFCD2D /* ZFMyShareVC.m in Sources */,
 				53426FBD22928E07005559E9 /* ZFDetailDistributeCell.m in Sources */,
 				53E90D0A2272F7420063A237 /* http_activity.m in Sources */,
 				842CE8462280165C004D73C0 /* GHDropMenuOptionCell.m in Sources */,

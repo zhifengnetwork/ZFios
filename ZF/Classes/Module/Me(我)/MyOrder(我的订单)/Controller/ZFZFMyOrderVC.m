@@ -59,14 +59,14 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
 }
 -(void)showData:(id)responseObject
 {
-    
+    [self.tableView.mj_header endRefreshing];
     if (kObjectIsEmpty(responseObject))
     {
         return;
     }
     self.datas = [ZFOrderModel mj_objectArrayWithKeyValuesArray:responseObject];
     [self.tableView reloadData];
-    [self.tableView.mj_header endRefreshing];
+    
 }
 
 - (void)moreButtonDidClick
