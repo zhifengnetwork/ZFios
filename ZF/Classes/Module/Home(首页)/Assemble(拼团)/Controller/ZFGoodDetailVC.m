@@ -350,18 +350,18 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
         }
     }
     
-    // 倒计时的时间 测试数据
-    NSString *deadlineStr = [ZFTool dateText:[NSString stringWithFormat:@"%ld",detailModel.end_time.integerValue+detailModel.start_time.integerValue]];
-    // 当前时间的时间戳
-    NSString *nowStr = [ZFTool getCurrentTimeyyyymmdd];
-    // 计算时间差值
-    NSInteger secondsCountDown = [ZFTool getDateDifferenceWithNowDateStr:nowStr deadlineStr:deadlineStr];
+//    // 倒计时的时间
+//    NSString *deadlineStr = [ZFTool dateText:[NSString stringWithFormat:@"%ld",detailModel.end_time.integerValue+detailModel.start_time.integerValue]];
+//    // 当前时间的时间戳
+//    NSString *nowStr = [ZFTool getCurrentTimeyyyymmdd];
+//    // 计算时间差值
+//    NSInteger secondsCountDown = [ZFTool getDateDifferenceWithNowDateStr:nowStr deadlineStr:deadlineStr];
     
     //添加倒计时
     __weak __typeof(self) weakSelf = self;
     
     if (_timer == nil) {
-        __block NSInteger timeout = secondsCountDown; // 倒计时时间
+        __block NSInteger timeout = detailModel.end_time.integerValue; // 倒计时时间
         
         if (timeout!=0) {
             dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -379,7 +379,7 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
                     NSInteger hours = (int)((timeout-days*24*3600)/3600);
                     NSInteger minute = (int)(timeout-days*24*3600-hours*3600)/60;
                     NSInteger second = timeout - days*24*3600 - hours*3600 - minute*60;
-                    NSString *strTime = [NSString stringWithFormat:@"活动倒计时 %02ld : %02ld : %02ld", hours, minute, second];
+                    NSString *strTime = [NSString stringWithFormat:@"距离结束还有 %02ld : %02ld : %02ld", hours, minute, second];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         if (days == 0) {
                             weakSelf.endTimeLabel.text = strTime;
@@ -416,6 +416,16 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     
     ZFGoodCommentModel *detailCommentModel = self.listModel.info.commentinfo;
     _nameLabel.text = detailCommentModel.username;
+    if (kObjectIsEmpty(detailCommentModel)) {
+        self.imageView.hidden = YES;
+        self.imageView1.hidden = YES;
+        self.imageView2.hidden = YES;
+        self.imageView3.hidden = YES;
+        self.imageView4.hidden = YES;
+        self.goodImgView.hidden = YES;
+        self.goodImgView1.hidden = YES;
+        self.goodImgView2.hidden = YES;
+    }
     if (detailCommentModel.goods_rank == 1) {
         self.imageView1.hidden = YES;
         self.imageView2.hidden = YES;
@@ -468,8 +478,9 @@ static NSString *const ZFSpellListCellID = @"ZFSpellListCellID";
     if (kObjectIsEmpty(responObject)) {
         return;
     }
-    NSArray *teamArray = [ZFAssembleListModel mj_objectArrayWithKeyValuesArray:responObject];
-    self.headerView.teamArray = teamArray;
+    ZFAssembleListModel *AssembleModel = [ZFAssembleListModel mj_objectWithKeyValues:responObject];
+    
+    self.headerView.teamArray = AssembleModel.team_found;
 }
 
 - (UIScrollView *)scrollView{
