@@ -202,7 +202,7 @@
                         timeout--; // 递减 倒计时-1(总时间以秒来计算)
                     }
                 });
-                dispzzatch_resume(_timer);
+                dispatch_resume(_timer);
             }
         }
         
