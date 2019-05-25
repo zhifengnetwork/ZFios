@@ -201,16 +201,16 @@
                         timeout--; // 递减 倒计时-1(总时间以秒来计算)
                     }
                 });
-                dispatch_resume(_timer);
+                dispzzatch_resume(_timer);
             }
         }
         
         
         
-        //修改运费的约束
+        //修改运费的约束z
         [self.right uninstall];
         [self.stockLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self.contentView).with.offset(-120);
+            make.right.equalTo(self.contentView).with.offset(-108);
         }];
     }else{
         _moneyLabel.text = _detailsPageModel.shop_price;

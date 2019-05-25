@@ -116,19 +116,7 @@ static NSString *const ZFDetailsWebViewTableCelllD = @"ZFDetailsWebViewTableCell
          [SVProgressHUD showInfoWithStatus:error.domain];
      }];
     
-    //获取默认地址
-    [http_address address_list:^(id responseObject) {
-        if (kObjectIsEmpty(responseObject))
-        {
-            self.address = @"请添加收货地址";
-        }
-        NSArray *addressArray = [ZFAddressEditModel mj_objectArrayWithKeyValuesArray:responseObject];
-        ZFAddressEditModel *addressModel = addressArray[0];
-        self.address = [NSString stringWithFormat:@"%@%@",addressModel.city_name,addressModel.district_name];
-        self.region_id = addressModel.city.integerValue;
-    } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.domain];
-    }];
+    [self loadData6];//获取默认地址
     
     //商品属性
     [http_good goodsAttr:_goods_id success:^(id responseObject)
@@ -147,6 +135,8 @@ static NSString *const ZFDetailsWebViewTableCelllD = @"ZFDetailsWebViewTableCell
                  }];
     
 }
+
+
 
 - (void)setItemID:(NSString *)itemID{
     _itemID = itemID;
@@ -176,7 +166,7 @@ static NSString *const ZFDetailsWebViewTableCelllD = @"ZFDetailsWebViewTableCell
     } failure:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.domain];
     }];
-    
+    [self.tableView reloadData];
 }
 
 -(void)showData:(id)responseObject
@@ -731,6 +721,7 @@ static NSString *const ZFDetailsWebViewTableCelllD = @"ZFDetailsWebViewTableCell
              {
                  weakSelf.addressEditModel.city = model.ID;
                  [self loadData5];
+                 self.region_id = weakSelf.addressEditModel.city.integerValue;
                  break;
              }
          }
@@ -770,5 +761,23 @@ static NSString *const ZFDetailsWebViewTableCelllD = @"ZFDetailsWebViewTableCell
      }];
 }
 
+- (void)loadData6{
+    //获取默认地址
+    [http_address address_list:^(id responseObject) {
+        if (kObjectIsEmpty(responseObject))
+        {
+            self.address = @"请输入收货地址";
+            return;
+        }
+        NSArray *addressArray = [ZFAddressEditModel mj_objectArrayWithKeyValuesArray:responseObject];
+        
+        
+            ZFAddressEditModel *addressModel = addressArray[0];
+            self.address = [NSString stringWithFormat:@"%@%@",addressModel.city_name,addressModel.district_name];
+            self.region_id = addressModel.city.integerValue;
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
 
 @end
