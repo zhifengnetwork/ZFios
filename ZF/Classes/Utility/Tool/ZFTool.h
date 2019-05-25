@@ -116,6 +116,20 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)isHiddenNavigationBarSeparatorLine:(BOOL)hide vc:(UIViewController*)viewController;
 
 
+/**
+ *  获取时间差值  截止时间-当前时间
+ *  nowDateStr : 当前时间
+ *  deadlineStr : 截止时间
+ *  @return 时间戳差值
+ */
++ (NSInteger)getDateDifferenceWithNowDateStr:(NSString*)nowDateStr deadlineStr:(NSString*)deadlineStr;
+
+/**
+ *  获取当天的字符串
+ *
+ *  @return 格式为年-月-日 时分秒
+ */
++ (NSString *)getCurrentTimeyyyymmdd;
 @end
 
 NS_ASSUME_NONNULL_END

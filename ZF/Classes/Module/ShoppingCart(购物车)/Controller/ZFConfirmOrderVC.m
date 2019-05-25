@@ -851,7 +851,7 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
 #pragma mark --方法
 - (void)selectClick:(UIButton *)btn{
     btn.selected = !btn.selected;
-    if (btn.selected == YES) {
+    if (self.selectButton1.selected == YES) {
         [self.height uninstall];
         [self.zhifuView mas_updateConstraints:^(MASConstraintMaker *make) {
             self.height = make.height.mas_equalTo(35);
