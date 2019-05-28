@@ -70,6 +70,8 @@
 @property (nonatomic, strong)UIButton *submitButton;
 @property (nonatomic, strong)ZFBuyModel *buyModel;
 
+@property (nonatomic, strong)ZFSelectPayView *payView;
+
 @property (nonatomic, copy)NSString *order_sn;
 @end
 
@@ -838,6 +840,19 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         _ordersModel = [[ZFOrdersModel alloc]init];
     }return _ordersModel;
 }
+
+- (void)loadData2{
+    [http_order post_order:_ordersModel success:^(id responseObject) {
+        if (kObjectIsEmpty(responseObject)) {
+            return;
+        }
+        self.order_sn = [responseObject objectForKey:@"order_sn"];
+        self.payView.order_sn = self.order_sn;
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
+
 #pragma mark --协议
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.buyModel.goodsinfo.count;
@@ -929,21 +944,13 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
 //        _ordersModel.consignee = addressModel.consignee;
         _ordersModel.mobile = addressModel.mobile;
         _ordersModel.pay_pwd = self.passwordTF.text;
-        [http_order post_order:_ordersModel success:^(id responseObject) {
-            if (kObjectIsEmpty(responseObject)) {
-                return;
-            }
-            self.order_sn = [responseObject objectForKey:@"order_sn"];
-        } failure:^(NSError *error) {
-            [SVProgressHUD showErrorWithStatus:error.domain];
-        }];
+        [self loadData2];
     }
     
     if (self.submitButton.enabled ) {
-        ZFSelectPayView *payView = [[ZFSelectPayView alloc]initWithFrame:CGRectMake(0, LL_ScreenHeight - 367, LL_ScreenWidth, 367)];
-        payView.payNumber = self.totalpriceLabel.text;
-        payView.order_sn = self.order_sn;
-        TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:payView preferredStyle:TYAlertControllerStyleActionSheet];
+        self.payView = [[ZFSelectPayView alloc]initWithFrame:CGRectMake(0, LL_ScreenHeight - 367, LL_ScreenWidth, 367)];
+        _payView.payNumber = self.totalpriceLabel.text;
+        TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:_payView preferredStyle:TYAlertControllerStyleActionSheet];
         alertController.backgoundTapDismissEnable = YES;
         [self presentViewController:alertController animated:YES completion:nil];
     }

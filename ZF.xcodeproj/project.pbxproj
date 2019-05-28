@@ -52,7 +52,6 @@
 		18285F0E222D1CA600CBA408 /* ZFAuctionEndVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285F0D222D1CA600CBA408 /* ZFAuctionEndVC.m */; };
 		18285F11222D20BC00CBA408 /* ZFAuctionPeopleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285F10222D20BC00CBA408 /* ZFAuctionPeopleTableCell.m */; };
 		18285F14222D32A400CBA408 /* ZFAuctionRulesTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18285F13222D32A400CBA408 /* ZFAuctionRulesTableCell.m */; };
-		182E898D2223BEA0005CE5FE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E898C2223BEA0005CE5FE /* AppDelegate.m */; };
 		182E89902223BEA0005CE5FE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182E898F2223BEA0005CE5FE /* ViewController.m */; };
 		182E89952223BEA2005CE5FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 182E89942223BEA2005CE5FE /* Assets.xcassets */; };
 		182E89982223BEA2005CE5FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182E89962223BEA2005CE5FE /* LaunchScreen.storyboard */; };
@@ -220,6 +219,17 @@
 		53E90D0A2272F7420063A237 /* http_activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D092272F7420063A237 /* http_activity.m */; };
 		53E90D0D2272FAC60063A237 /* http_mine.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D0C2272FAC60063A237 /* http_mine.m */; };
 		53E99E3C229CE5DE00CAA23A /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E3A229CE5DE00CAA23A /* libWeChatSDK.a */; };
+		53E99E45229D11C300CAA23A /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E99E43229D11C300CAA23A /* WXApiManager.m */; };
+		53E99E48229D142700CAA23A /* WXPayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E99E47229D142700CAA23A /* WXPayModel.m */; };
+		53E99E4A229D17BD00CAA23A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E99E49229D17BD00CAA23A /* AppDelegate.m */; };
+		53E99E5B229D24C900CAA23A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E4B229D1B3A00CAA23A /* SystemConfiguration.framework */; };
+		53E99E5C229D24D300CAA23A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E4F229D1BBA00CAA23A /* libz.tbd */; };
+		53E99E5D229D24E000CAA23A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E4D229D1BA000CAA23A /* libsqlite3.0.tbd */; };
+		53E99E5E229D24F000CAA23A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E51229D1BD400CAA23A /* libc++.tbd */; };
+		53E99E5F229D24F800CAA23A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E53229D1BDE00CAA23A /* Security.framework */; };
+		53E99E60229D250100CAA23A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E55229D1BEA00CAA23A /* CoreTelephony.framework */; };
+		53E99E61229D250900CAA23A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E57229D1BF400CAA23A /* CFNetwork.framework */; };
+		53E99E62229D251400CAA23A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E59229D1BFF00CAA23A /* CoreGraphics.framework */; };
 		53EB041B22938ABF00CB0B94 /* ZFDetailRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EB041A22938ABF00CB0B94 /* ZFDetailRecordCell.m */; };
 		53EB041E22939CC500CB0B94 /* ZFDistributeOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EB041D22939CC500CB0B94 /* ZFDistributeOrderCell.m */; };
 		53ED537F228BE8E7007CD6DB /* ZFDetailOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED537E228BE8E7007CD6DB /* ZFDetailOrderTableCell.m */; };
@@ -481,7 +491,6 @@
 		18285F13222D32A400CBA408 /* ZFAuctionRulesTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFAuctionRulesTableCell.m; sourceTree = "<group>"; };
 		182E89882223BEA0005CE5FE /* ZF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		182E898B2223BEA0005CE5FE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		182E898C2223BEA0005CE5FE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		182E898E2223BEA0005CE5FE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		182E898F2223BEA0005CE5FE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		182E89942223BEA2005CE5FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -818,6 +827,19 @@
 		53E99E39229CE5DE00CAA23A /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		53E99E3A229CE5DE00CAA23A /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		53E99E3B229CE5DE00CAA23A /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		53E99E43229D11C300CAA23A /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		53E99E44229D11C300CAA23A /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		53E99E46229D142700CAA23A /* WXPayModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXPayModel.h; sourceTree = "<group>"; };
+		53E99E47229D142700CAA23A /* WXPayModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXPayModel.m; sourceTree = "<group>"; };
+		53E99E49229D17BD00CAA23A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		53E99E4B229D1B3A00CAA23A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		53E99E4D229D1BA000CAA23A /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		53E99E4F229D1BBA00CAA23A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		53E99E51229D1BD400CAA23A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		53E99E53229D1BDE00CAA23A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		53E99E55229D1BEA00CAA23A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		53E99E57229D1BF400CAA23A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		53E99E59229D1BFF00CAA23A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		53EB041922938ABF00CB0B94 /* ZFDetailRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailRecordCell.h; sourceTree = "<group>"; };
 		53EB041A22938ABF00CB0B94 /* ZFDetailRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailRecordCell.m; sourceTree = "<group>"; };
 		53EB041C22939CC500CB0B94 /* ZFDistributeOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDistributeOrderCell.h; sourceTree = "<group>"; };
@@ -1129,6 +1151,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53E99E62229D251400CAA23A /* CoreGraphics.framework in Frameworks */,
+				53E99E61229D250900CAA23A /* CFNetwork.framework in Frameworks */,
+				53E99E60229D250100CAA23A /* CoreTelephony.framework in Frameworks */,
+				53E99E5F229D24F800CAA23A /* Security.framework in Frameworks */,
+				53E99E5E229D24F000CAA23A /* libc++.tbd in Frameworks */,
+				53E99E5D229D24E000CAA23A /* libsqlite3.0.tbd in Frameworks */,
+				53E99E5C229D24D300CAA23A /* libz.tbd in Frameworks */,
+				53E99E5B229D24C900CAA23A /* SystemConfiguration.framework in Frameworks */,
 				53E99E3C229CE5DE00CAA23A /* libWeChatSDK.a in Frameworks */,
 				69F9943388184D9DFB8EE494 /* libPods-ZF.a in Frameworks */,
 			);
@@ -1441,7 +1471,7 @@
 			children = (
 				189CC0662223E81300EB5A64 /* Classes */,
 				182E898B2223BEA0005CE5FE /* AppDelegate.h */,
-				182E898C2223BEA0005CE5FE /* AppDelegate.m */,
+				53E99E49229D17BD00CAA23A /* AppDelegate.m */,
 				182E898E2223BEA0005CE5FE /* ViewController.h */,
 				182E898F2223BEA0005CE5FE /* ViewController.m */,
 				182E89942223BEA2005CE5FE /* Assets.xcassets */,
@@ -2467,9 +2497,13 @@
 		53E99E38229CE5B600CAA23A /* wechatSDK */ = {
 			isa = PBXGroup;
 			children = (
+				53E99E44229D11C300CAA23A /* WXApiManager.h */,
+				53E99E43229D11C300CAA23A /* WXApiManager.m */,
 				53E99E3A229CE5DE00CAA23A /* libWeChatSDK.a */,
 				53E99E3B229CE5DE00CAA23A /* WXApi.h */,
 				53E99E39229CE5DE00CAA23A /* WXApiObject.h */,
+				53E99E46229D142700CAA23A /* WXPayModel.h */,
+				53E99E47229D142700CAA23A /* WXPayModel.m */,
 			);
 			path = wechatSDK;
 			sourceTree = "<group>";
@@ -3205,6 +3239,14 @@
 		F8A1C7F47DB1A36D36A8EA77 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				53E99E59229D1BFF00CAA23A /* CoreGraphics.framework */,
+				53E99E57229D1BF400CAA23A /* CFNetwork.framework */,
+				53E99E55229D1BEA00CAA23A /* CoreTelephony.framework */,
+				53E99E53229D1BDE00CAA23A /* Security.framework */,
+				53E99E51229D1BD400CAA23A /* libc++.tbd */,
+				53E99E4F229D1BBA00CAA23A /* libz.tbd */,
+				53E99E4D229D1BA000CAA23A /* libsqlite3.0.tbd */,
+				53E99E4B229D1B3A00CAA23A /* SystemConfiguration.framework */,
 				87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */,
 				1712D21875F26DD261FC060D /* libPods-ZFTests.a */,
 				B9A5791C4326F24640F33906 /* libPods-ZFUITests.a */,
@@ -3570,6 +3612,7 @@
 				18E3CF9C222A6A8D003C7737 /* ZFSpikeTitleHeadViewl.m in Sources */,
 				53426FB122927FD4005559E9 /* ZFDetailDistributeVC.m in Sources */,
 				189CC0EC2223E81300EB5A64 /* HMInputView.m in Sources */,
+				53E99E48229D142700CAA23A /* WXPayModel.m in Sources */,
 				53E90CE92272A74D0063A237 /* ZFGoodModel.m in Sources */,
 				180F34082226379200EB0449 /* ZFAccountModificationVC.m in Sources */,
 				18F8D89E222918EC00203E9A /* ZFNewProductsTableCell.m in Sources */,
@@ -3609,7 +3652,9 @@
 				1819918D22379C14004585D8 /* ZFEditorialHeadTableCell.m in Sources */,
 				5312CB3C2293CF60006B1CCD /* ZFSeeOrderCell.m in Sources */,
 				537D560122754AE200384C19 /* ZFEvaluationVC.m in Sources */,
+				53E99E45229D11C300CAA23A /* WXApiManager.m in Sources */,
 				18EA50CD2226874C00A2D612 /* ZFBannerHeadView.m in Sources */,
+				53E99E4A229D17BD00CAA23A /* AppDelegate.m in Sources */,
 				84D879F622758709005B375B /* PooCodeView.m in Sources */,
 				84B967312281A3FF00BB2F4D /* ZFAddressEditModel.m in Sources */,
 				8475470722409DC800B698E6 /* ZFMyIntegralVC.m in Sources */,
@@ -3745,7 +3790,6 @@
 				53784D63228AE47D00433409 /* ZFExpressDetailVC.m in Sources */,
 				8499AF5E228AD72F004ADBAA /* ZFGroupBuyingVC.m in Sources */,
 				842CE8492280165C004D73C0 /* GHDropMenuFilterTagItem.m in Sources */,
-				182E898D2223BEA0005CE5FE /* AppDelegate.m in Sources */,
 				842EDEED2240EDA100B53E45 /* ZFPublicTitleTableCell.m in Sources */,
 				53E8EE4D2292493E00DA0319 /* ZFDistributeModel.m in Sources */,
 				18F60008222E60E100DE7EF4 /* ZFSubmittedHeadTableCell.m in Sources */,
@@ -3971,6 +4015,76 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZF/Classes/wechatSDK",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"CYLTabBarController\"",
+					"-l\"DZNEmptyDataSet\"",
+					"-l\"DateTools\"",
+					"-l\"FMDB\"",
+					"-l\"FSCalendar\"",
+					"-l\"FSTextView\"",
+					"-l\"JXPagingView\"",
+					"-l\"LBXDataHandler\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"PPNumberButton\"",
+					"-l\"PYSearch\"",
+					"-l\"RealReachability\"",
+					"-l\"SDCycleScrollView\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"SocialQQ\"",
+					"-l\"SocialSina\"",
+					"-l\"SocialWeChat\"",
+					"-l\"TYAlertController\"",
+					"-l\"TZImagePickerController\"",
+					"-l\"UITableView-BMTemplateLayoutCell\"",
+					"-l\"WMPageController\"",
+					"-l\"YBImageBrowser\"",
+					"-l\"YTKKeyValueStore\"",
+					"-l\"YYImage\"",
+					"-l\"YYText\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Photos\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UMCommon\"",
+					"-framework",
+					"\"UMShare\"",
+					"-framework",
+					"\"UShareUI\"",
+					"-Objc-all_load",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zf.app1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3997,6 +4111,76 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ZF/Classes/wechatSDK",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"AFNetworking\"",
+					"-l\"CYLTabBarController\"",
+					"-l\"DZNEmptyDataSet\"",
+					"-l\"DateTools\"",
+					"-l\"FMDB\"",
+					"-l\"FSCalendar\"",
+					"-l\"FSTextView\"",
+					"-l\"JXPagingView\"",
+					"-l\"LBXDataHandler\"",
+					"-l\"MJExtension\"",
+					"-l\"MJRefresh\"",
+					"-l\"Masonry\"",
+					"-l\"PPNumberButton\"",
+					"-l\"PYSearch\"",
+					"-l\"RealReachability\"",
+					"-l\"SDCycleScrollView\"",
+					"-l\"SDWebImage\"",
+					"-l\"SVProgressHUD\"",
+					"-l\"SocialQQ\"",
+					"-l\"SocialSina\"",
+					"-l\"SocialWeChat\"",
+					"-l\"TYAlertController\"",
+					"-l\"TZImagePickerController\"",
+					"-l\"UITableView-BMTemplateLayoutCell\"",
+					"-l\"WMPageController\"",
+					"-l\"YBImageBrowser\"",
+					"-l\"YTKKeyValueStore\"",
+					"-l\"YYImage\"",
+					"-l\"YYText\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"AssetsLibrary\"",
+					"-framework",
+					"\"CoreFoundation\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"Photos\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-framework",
+					"\"UMCommon\"",
+					"-framework",
+					"\"UMShare\"",
+					"-framework",
+					"\"UShareUI\"",
+					"-Objc-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zf.app1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

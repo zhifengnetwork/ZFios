@@ -280,13 +280,14 @@
 }
 
 //order_sn  订单编号
-+(void)GetWxAppPaySign:(NSString*)order_sn info:(NSString*)info success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++(void)GetWxAppPaySign:(NSString*)order_sn success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    if (kStringIsEmpty(order_sn)) {
+    if (!kStringIsEmpty(order_sn)) {
         [parameters setObject:order_sn forKey:@"order_sn"];
     }
+    
     
     NSDictionary* dic = [http hanldeSign:parameters];
     

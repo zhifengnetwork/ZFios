@@ -11,10 +11,10 @@
 #import "ZFSettlementView.h"
 #import "ZFEmptyCartView.h"
 #import "ZFTool.h"
+#import "MJExtension.h"
 #import "SVProgressHUD.h"
 #import "http_shopping.h"
 #import "ZFGoodModel.h"
-#import "MJExtension.h"
 #import "RefreshGifHeader.h"
 
 @interface ZFShoppingCartVC ()<UITableViewDelegate,UITableViewDataSource,ZFShoppingCartCellDelegate,ZFSettlementViewDelegate>

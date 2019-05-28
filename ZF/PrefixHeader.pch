@@ -269,11 +269,11 @@ _Pragma("clang diagnostic pop") \
 
 #define PGY_AppKey @"69b3f8eed0790e07fe87821074705132"
 
-//测试环境
-#define MainUrl @"https://mobile.zhifengwangluo.c3w.cc/"
-#define ImageUrl @"https://mobile.zhifengwangluo.c3w.cc"
+////测试环境
+//#define MainUrl @"https://mobile.zhifengwangluo.c3w.cc/"
+//#define ImageUrl @"https://mobile.zhifengwangluo.c3w.cc"
 
-#else
+//#else
 
 //生产环境
 #define MainUrl @"http://www.dchqzg1688.com/"

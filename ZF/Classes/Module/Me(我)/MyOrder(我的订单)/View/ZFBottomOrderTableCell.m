@@ -11,6 +11,8 @@
 #import "SVProgressHUD.h"
 #import "ZFWriteEvaluationVC.h"
 #import "ZFExpressDetailVC.h"
+#import "TYAlertController.h"
+#import "ZFSelectPayView.h"
 
 @interface ZFBottomOrderTableCell()
 
@@ -20,6 +22,7 @@
 @property (nonatomic, strong) UIButton *deliverButton;
 @property (nonatomic, strong) UIButton *orderButton;
 
+@property (nonatomic, strong)ZFSelectPayView *payView;
 @end
 
 @implementation ZFBottomOrderTableCell
@@ -81,6 +84,13 @@
         ZFExpressDetailVC *vc = [[ZFExpressDetailVC alloc]init];
         vc.orderID = _orderModel.order_id;
         [[self currentViewController].navigationController pushViewController:vc animated:YES];
+    }else if ([btn.titleLabel.text isEqualToString:@"确认支付"]){
+        self.payView = [[ZFSelectPayView alloc]initWithFrame:CGRectMake(0, LL_ScreenHeight - 367, LL_ScreenWidth, 367)];
+        _payView.payNumber = self.moneyLabel.text;
+        _payView.order_sn = self.orderModel.order_sn;
+        TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:_payView preferredStyle:TYAlertControllerStyleActionSheet];
+        alertController.backgoundTapDismissEnable = YES;
+        [[self currentViewController] presentViewController:alertController animated:YES completion:nil];
     }
     [self.delegate updateCell];
 }

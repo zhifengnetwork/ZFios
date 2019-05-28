@@ -9,11 +9,19 @@
 #import "ZFSelectPayView.h"
 #import "ZFSelectPayCell.h"
 #import "ZFAddCardVC.h"
+#import "MJExtension.h"
+#import "SVProgressHUD.h"
+#import "WXPayModel.h"
+#import "http_user.h"
+#import "WXApiManager.h"
+
 @interface ZFSelectPayView()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong)UILabel *explainLabel;
 @property (nonatomic, strong)UITableView *tableView;
 @property (nonatomic, strong)UIButton *payBtn;
 @property (nonatomic, assign) NSIndexPath *selIndex;
+
+@property (nonatomic, strong)WXPayModel *payModel;
 @end
 @implementation ZFSelectPayView
 - (instancetype)initWithFrame:(CGRect)frame
@@ -101,6 +109,24 @@
         make.left.bottom.right.equalTo(self);
     }];
 }
+
+- (void)setOrder_sn:(NSString *)order_sn{
+    _order_sn = order_sn;
+    NSLog(@"%@",MainUrl);
+    [http_user GetWxAppPaySign:self.order_sn success:^(id responseObject) {
+        [self showData:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
+
+- (void)showData:(id)responseObject{
+    if (kObjectIsEmpty(responseObject)) {
+        return;
+    }
+    self.payModel = [WXPayModel mj_objectWithKeyValues:responseObject];
+    
+}
 #pragma mark --方法
 //获取当前控制器
 - (UIViewController *)currentViewController{
@@ -126,6 +152,11 @@
 }
 //付款
 - (void)payClick{
+     ZFSelectPayCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    if (cell.selected == YES) {
+        WXApiManager *manager = [[WXApiManager alloc]init];
+        [manager wechatPayWithPayModel:self.payModel];
+    }
     //跳转到添加银行卡
 //    if ([self.tableView indexPathForSelectedRow].row== 0&&[self.tableView indexPathForSelectedRow]!=nil) {
 //        ZFAddCardVC *vc = [[ZFAddCardVC alloc]init];
@@ -141,6 +172,8 @@
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:238/225 green:65/225 blue:65/225 alpha:1] range:range];
     
     _explainLabel.attributedText = str;
+    
+    
 }
 
 #pragma mark --tableview数据源协议

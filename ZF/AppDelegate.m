@@ -8,11 +8,13 @@
 
 #import "AppDelegate.h"
 #import "SVProgressHUD.h"
+#import "WXApi.h"
 #import "TabBarControllerConfig.h"
 #import "BaseNaviViewController.h"
 #import "ZFLoginVC.h"
 #import "HttpTool.h"
 #import "ZFTool.h"
+#import "WXApiManager.h"
 #import "UserInfoModel.h"
 #import <SDWebImage/SDWebImageManager.h>
 #import "UMSocialTool.h"
@@ -39,7 +41,7 @@
     //设置主域名
     HttpTool *httptool = [HttpTool sharedManager];
     [httptool setMainUrl:MainUrl];
-    
+    [WXApi registerApp:@"wxfca03365fd947fa0"];
     [self to_MainVC];
     [self BaseSetup];
     
@@ -151,6 +153,25 @@
 }
 
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    
+    //    if ([url.host isEqualToString:@"safepay"]) {
+    //        //跳转支付宝钱包进行支付，处理支付结果
+    //        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+    //            NSLog(@"result = %@",resultDic);
+    //        }];
+    //    }
+    //    else if([url.host isEqualToString:@"assoc"])
+    //    {
+    //        [self to_MainVC];
+    //    }
+    //    else
+    
+    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    
+    return YES;
+}
+
 // 支持所有iOS系统
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
@@ -158,18 +179,20 @@
     BOOL result = [[UMSocialTool sharedManager]setCallbackWithOpenURL:url sourceApplication:sourceApplication annotation:annotation];
     if (!result) {
         // 其他如支付等SDK的回调
+        
     }
 //    //　先调用友盟，然后调用微信清册信息
 //    /****************       注册微信支付信息    *****************/
-//    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
-//    /****************       注册支付宝支付信息    *****************/
+    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    //    /****************       注册支付宝支付信息    *****************/
 //    if ([url.host isEqualToString:@"safepay"]) {
 //        //跳转支付宝钱包进行支付，处理支付结果
 //        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
 //            NSLog(@"result = %@",resultDic);
 //        }];
 //    }
-    else if([url.host isEqualToString:@"assoc"])
+//    else
+        if([url.host isEqualToString:@"assoc"])
     {
         [self to_MainVC];
     }
@@ -194,12 +217,16 @@
         BOOL result = [[UMSocialTool sharedManager] setCallbackWithHandleOpenURL:url options:options];
         if (!result) {
             // 其他如支付等SDK的回调
+            
         }
     }
+    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    
     return YES;
     
-//    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    
 }
+
 
 
 

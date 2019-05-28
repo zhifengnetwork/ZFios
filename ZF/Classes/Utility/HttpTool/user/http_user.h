@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)order_common:(NSInteger)order_id info:(NSString*)info success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //order_sn  订单编号
-+(void)GetWxAppPaySign:(NSString*)order_sn info:(NSString*)info success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++(void)GetWxAppPaySign:(NSString*)order_sn success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
 //评论-上传图片接口
 //file 图片
