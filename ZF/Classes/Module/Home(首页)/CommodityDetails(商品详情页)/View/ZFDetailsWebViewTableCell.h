@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZFDetailsWebViewTableCell : UITableViewCell
 
+//商品详情webview
 @property (nonatomic, copy)NSString *goods_content;
 @property (nonatomic, assign)CGFloat height;
 

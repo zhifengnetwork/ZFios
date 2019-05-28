@@ -219,6 +219,7 @@
 		53E90D072272F0CB0063A237 /* http_groupbuy.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D062272F0CB0063A237 /* http_groupbuy.m */; };
 		53E90D0A2272F7420063A237 /* http_activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D092272F7420063A237 /* http_activity.m */; };
 		53E90D0D2272FAC60063A237 /* http_mine.m in Sources */ = {isa = PBXBuildFile; fileRef = 53E90D0C2272FAC60063A237 /* http_mine.m */; };
+		53E99E3C229CE5DE00CAA23A /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53E99E3A229CE5DE00CAA23A /* libWeChatSDK.a */; };
 		53EB041B22938ABF00CB0B94 /* ZFDetailRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EB041A22938ABF00CB0B94 /* ZFDetailRecordCell.m */; };
 		53EB041E22939CC500CB0B94 /* ZFDistributeOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53EB041D22939CC500CB0B94 /* ZFDistributeOrderCell.m */; };
 		53ED537F228BE8E7007CD6DB /* ZFDetailOrderTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 53ED537E228BE8E7007CD6DB /* ZFDetailOrderTableCell.m */; };
@@ -814,6 +815,9 @@
 		53E90D092272F7420063A237 /* http_activity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_activity.m; sourceTree = "<group>"; };
 		53E90D0B2272FAC60063A237 /* http_mine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = http_mine.h; sourceTree = "<group>"; };
 		53E90D0C2272FAC60063A237 /* http_mine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = http_mine.m; sourceTree = "<group>"; };
+		53E99E39229CE5DE00CAA23A /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		53E99E3A229CE5DE00CAA23A /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		53E99E3B229CE5DE00CAA23A /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		53EB041922938ABF00CB0B94 /* ZFDetailRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailRecordCell.h; sourceTree = "<group>"; };
 		53EB041A22938ABF00CB0B94 /* ZFDetailRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailRecordCell.m; sourceTree = "<group>"; };
 		53EB041C22939CC500CB0B94 /* ZFDistributeOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDistributeOrderCell.h; sourceTree = "<group>"; };
@@ -1125,6 +1129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53E99E3C229CE5DE00CAA23A /* libWeChatSDK.a in Frameworks */,
 				69F9943388184D9DFB8EE494 /* libPods-ZF.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1636,6 +1641,7 @@
 		189CC0662223E81300EB5A64 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				53E99E38229CE5B600CAA23A /* wechatSDK */,
 				189CC0672223E81300EB5A64 /* Category */,
 				189CC0752223E81300EB5A64 /* Module */,
 				189CC08B2223E81300EB5A64 /* Common */,
@@ -2456,6 +2462,16 @@
 				53E8747E228D12BE007E0E9E /* ZFBuyModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		53E99E38229CE5B600CAA23A /* wechatSDK */ = {
+			isa = PBXGroup;
+			children = (
+				53E99E3A229CE5DE00CAA23A /* libWeChatSDK.a */,
+				53E99E3B229CE5DE00CAA23A /* WXApi.h */,
+				53E99E39229CE5DE00CAA23A /* WXApiObject.h */,
+			);
+			path = wechatSDK;
 			sourceTree = "<group>";
 		};
 		53FE680922901A0C00859C61 /* distribution(我的分销) */ = {
@@ -3937,7 +3953,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A6Q5NYSU4Z;
+				DEVELOPMENT_TEAM = QYVGXM58W4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZF/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3950,6 +3966,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZF/Classes/wechatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zf.app1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3965,7 +3985,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A6Q5NYSU4Z;
+				DEVELOPMENT_TEAM = QYVGXM58W4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ZF/PrefixHeader.pch";
 				INFOPLIST_FILE = ZF/Info.plist;
@@ -3973,6 +3993,10 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ZF/Classes/wechatSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zf.app1;
 				PRODUCT_NAME = "$(TARGET_NAME)";

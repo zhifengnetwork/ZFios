@@ -802,7 +802,7 @@ static NSString *const ZFConfirmOrderCellID = @"ZFConfirmOrderCellID";
         _totalpriceLabel = [[UILabel alloc]init];
         _totalpriceLabel.font = [UIFont systemFontOfSize:15];
         _totalpriceLabel.textColor = RGBColorHex(0xf05050);
-        _totalpriceLabel.text = @"￥4900.00";
+        _totalpriceLabel.text = @"￥0.00";
     }
     return _totalpriceLabel;
 }

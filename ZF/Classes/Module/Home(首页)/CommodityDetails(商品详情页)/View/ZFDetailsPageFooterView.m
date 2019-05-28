@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIButton* collectionButton;
 @property (nonatomic, strong) UIButton* shoppingCartButton;
 @property (nonatomic, strong) UIButton* addCartButton;
+@property (nonatomic, strong) MASConstraint *left;
 @property (nonatomic, strong) UIButton* immediatePurButton;
 
 
@@ -62,8 +63,8 @@
     }];
     
     [_immediatePurButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_addCartButton.mas_right);
-        make.width.mas_equalTo(140);
+        self.left = make.left.equalTo(self->_addCartButton.mas_right);
+        make.right.equalTo(self);
         make.height.mas_equalTo(50);
         make.top.mas_equalTo(0);
     }];
@@ -86,7 +87,14 @@
 -(void)setDetailsPageModel:(ZFDetailsPageModel *)detailsPageModel
 {
     _detailsPageModel = detailsPageModel;
-    
+    if (detailsPageModel.sign_free_receive.integerValue == 1) {
+        [self.left uninstall];
+        [self.immediatePurButton mas_updateConstraints:^(MASConstraintMaker *make) {
+            self.left = make.left.equalTo(self.shoppingCartButton.mas_right);
+        }];
+        [self.immediatePurButton setTitle:@"免费领取" forState:UIControlStateNormal];
+        self.addCartButton.hidden = YES;
+    }
     
 }
 

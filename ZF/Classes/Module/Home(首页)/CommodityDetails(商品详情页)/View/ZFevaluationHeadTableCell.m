@@ -100,10 +100,15 @@
 -(void)setComment_fr:(ZFDetailsPageModel *)comment_fr
 {
     _comment_fr = comment_fr;
-    NSRange range = NSMakeRange(4, 12);
+    
+    
+
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"好评率  %@%%      %@人好评            " ,_comment_fr.high_rate,_comment_fr.total_sum]];
+    NSRange range = [[str string]rangeOfString:[NSString stringWithFormat:@"%@人",_comment_fr.total_sum]];
+    NSRange range1 = [[str string]rangeOfString:[NSString stringWithFormat:@"%@%%",_comment_fr.high_rate]];
     //设置文字颜色
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:range1];
     
     _praiseLabel.attributedText = str;
 }

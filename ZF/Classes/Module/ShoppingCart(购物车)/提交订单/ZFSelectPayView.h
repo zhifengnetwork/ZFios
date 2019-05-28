@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WXApi.h"
 
-@interface ZFSelectPayView : UIView
+@interface ZFSelectPayView : UIView<UIApplicationDelegate, WXApiDelegate>
+//支付方式
+
 
 @property (nonatomic, copy)NSString *order_sn;
 @property (nonatomic, copy)NSString* payNumber;
