@@ -7,6 +7,7 @@
 //
 
 #import "ZFEvaluationCell.h"
+#import "ZFTool.h"
 #import "UIImageView+WebCache.h"
 
 @interface ZFEvaluationCell()
@@ -20,6 +21,8 @@
 @property (nonatomic, strong)UIImageView *goodImgView;
 @property (nonatomic, strong)UIImageView *goodImgView1;
 @property (nonatomic, strong)UIImageView *goodImgView2;
+@property (nonatomic, strong)UIImageView *goodImgView3;
+@property (nonatomic, strong)UIImageView *goodImgView4;
 @property (nonatomic, strong)UILabel *writeTimeLabel;
 @property (nonatomic, strong)UILabel *typeLabel;
 @end
@@ -48,6 +51,8 @@
     [self.contentView addSubview:self.goodImgView];
     [self.contentView addSubview:self.goodImgView1];
     [self.contentView addSubview:self.goodImgView2];
+    [self.contentView addSubview:self.goodImgView3];
+    [self.contentView addSubview:self.goodImgView4];
     [self.contentView addSubview:self.writeTimeLabel];
     [self.contentView addSubview:self.typeLabel];
     
@@ -102,16 +107,26 @@
         make.left.equalTo(self.goodImgView1.mas_right).with.offset(10);
         make.width.height.mas_equalTo(55);
     }];
+    [_goodImgView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.mas_bottom).with.offset(12);
+        make.left.equalTo(self.goodImgView2.mas_right).with.offset(10);
+        make.width.height.mas_equalTo(55);
+    }];
+    [_goodImgView4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.titleLabel.mas_bottom).with.offset(12);
+        make.left.equalTo(self.goodImgView3.mas_right).with.offset(10);
+        make.width.height.mas_equalTo(55);
+    }];
 
     [_writeTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.goodImgView.mas_bottom).with.offset(15);
         make.left.equalTo(self).with.offset(10);
     }];
     
-    [_typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.goodImgView.mas_bottom).with.offset(15);
-        make.left.equalTo(self.writeTimeLabel.mas_right).with.offset(3);
-    }];
+//    [_typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.goodImgView.mas_bottom).with.offset(15);
+//        make.left.equalTo(self.writeTimeLabel.mas_right).with.offset(3);
+//    }];
     
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self);
@@ -172,20 +187,32 @@
 - (UIImageView *)goodImgView{
     if (_goodImgView == nil) {
         _goodImgView = [[UIImageView alloc]init];
-        _goodImgView.image = [UIImage imageNamed:@"Picture"];
+       
     }return _goodImgView;
 }
 - (UIImageView *)goodImgView1{
     if (_goodImgView1 == nil) {
         _goodImgView1 = [[UIImageView alloc]init];
-        _goodImgView1.image = [UIImage imageNamed:@"Picture"];
+        
     }return _goodImgView1;
 }
 - (UIImageView *)goodImgView2{
     if (_goodImgView2 == nil) {
         _goodImgView2 = [[UIImageView alloc]init];
-        _goodImgView2.image = [UIImage imageNamed:@"Picture"];
+        
     }return _goodImgView2;
+}
+- (UIImageView *)goodImgView3{
+    if (_goodImgView3 == nil) {
+        _goodImgView3 = [[UIImageView alloc]init];
+        
+    }return _goodImgView3;
+}
+- (UIImageView *)goodImgView4{
+    if (_goodImgView4 == nil) {
+        _goodImgView4 = [[UIImageView alloc]init];
+       
+    }return _goodImgView4;
 }
 
 - (UILabel *)writeTimeLabel{
@@ -197,14 +224,14 @@
     }return _writeTimeLabel;
 }
 
-- (UILabel *)typeLabel{
-    if (_typeLabel == nil) {
-        _typeLabel = [[UILabel alloc]init];
-        _typeLabel.font = [UIFont systemFontOfSize:10];
-        _typeLabel.textColor = RGBColor(153, 153, 153);
-        _typeLabel.text = @"| 黑色 XXL";
-    }return _typeLabel;
-}
+//- (UILabel *)typeLabel{
+//    if (_typeLabel == nil) {
+//        _typeLabel = [[UILabel alloc]init];
+//        _typeLabel.font = [UIFont systemFontOfSize:10];
+//        _typeLabel.textColor = RGBColor(153, 153, 153);
+//        _typeLabel.text = @"| 黑色 XXL";
+//    }return _typeLabel;
+//}
 
 - (void)setCommentmodel:(ZFGoodCommentModel *)commentmodel{
     _commentmodel = commentmodel;
@@ -215,32 +242,24 @@
     }
     
     _titleLabel.text = [NSString stringWithFormat:@"%@",commentmodel.content];
-    if (_commentmodel.goods_rank == 5) {
-        _imageView0.hidden = YES;
+    if (_commentmodel.goods_rank == 1) {
         _imageView1.hidden = YES;
         _imageView2.hidden = YES;
         _imageView3.hidden = YES;
         _imageView4.hidden = YES;
-    }else if (_commentmodel.goods_rank == 4) {
-        _imageView0.hidden = YES;
-        _imageView1.hidden = YES;
+    }else if (_commentmodel.goods_rank == 2) {
         _imageView2.hidden = YES;
         _imageView3.hidden = YES;
+        _imageView4.hidden = YES;
     }else if (_commentmodel.goods_rank == 3){
-        _imageView0.hidden = YES;
-        _imageView1.hidden = YES;
-        _imageView2.hidden = YES;
-    }else if (_commentmodel.goods_rank == 2){
-        _imageView0.hidden = YES;
-        _imageView1.hidden = YES;
-    }else if (_commentmodel.goods_rank == 1){
-        _imageView0.hidden = YES;
+        _imageView3.hidden = YES;
+        _imageView4.hidden = YES;
+    }else if (_commentmodel.goods_rank == 4){
+        _imageView4.hidden = YES;
     }
     
     if (_commentmodel.img.count == 0) {
-        _goodImgView.hidden = YES;
-        _goodImgView1.hidden = YES;
-        _goodImgView2.hidden = YES;
+        
     }else{
         if (!kStringIsEmpty(_commentmodel.img[0])) {
             NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_commentmodel.img[0]];
@@ -254,8 +273,17 @@
             NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_commentmodel.img[2]];
             [_goodImgView2 sd_setImageWithURL:[NSURL URLWithString:str]];
         }
+        if (!kStringIsEmpty(_commentmodel.img[3])) {
+            NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_commentmodel.img[3]];
+            [_goodImgView3 sd_setImageWithURL:[NSURL URLWithString:str]];
+        }
+        if (!kStringIsEmpty(_commentmodel.img[4])) {
+            NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,_commentmodel.img[4]];
+            [_goodImgView4 sd_setImageWithURL:[NSURL URLWithString:str]];
+        }
         
     }
+    self.writeTimeLabel.text = [ZFTool dateText:[NSString stringWithFormat:@"%ld",_commentmodel.add_time]];
     
 }
 @end

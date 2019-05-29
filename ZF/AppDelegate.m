@@ -152,26 +152,6 @@
     [self to_HomeVC];
 }
 
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    
-    //    if ([url.host isEqualToString:@"safepay"]) {
-    //        //跳转支付宝钱包进行支付，处理支付结果
-    //        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-    //            NSLog(@"result = %@",resultDic);
-    //        }];
-    //    }
-    //    else if([url.host isEqualToString:@"assoc"])
-    //    {
-    //        [self to_MainVC];
-    //    }
-    //    else
-    
-    [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
-    
-    return YES;
-}
-
 // 支持所有iOS系统
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {

@@ -7,6 +7,7 @@
 //
 
 #import "http_user.h"
+#import "AFHTTPSessionManager.h"
 
 
 @implementation http_user
@@ -295,6 +296,7 @@
     strUrl = [strUrl stringByAppendingPathComponent:@"api/payment/GetWxAppPaySign"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
+
 
 //获取物流信息接口
 +(void)express_detail:(NSInteger)order_id success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{

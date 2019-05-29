@@ -454,6 +454,9 @@ static NSString *const ZFDetailOrderTableCellID = @"ZFDetailOrderTableCellID";
     if (_editModel.shipping_status == 1) {
         _orderStatus.text = @"卖家已发货";
     }
+    if (_editModel.order_status == 2) {
+        _orderStatus.text = @"买家已收货";
+    }
     if (_editModel.order_status == 4) {
         _orderStatus.text = @"交易成功";
     }

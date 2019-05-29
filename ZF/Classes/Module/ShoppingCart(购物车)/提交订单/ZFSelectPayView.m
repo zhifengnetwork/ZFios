@@ -13,6 +13,7 @@
 #import "SVProgressHUD.h"
 #import "WXPayModel.h"
 #import "http_user.h"
+#import "AFHTTPSessionManager.h"
 #import "WXApiManager.h"
 
 @interface ZFSelectPayView()<UITableViewDelegate,UITableViewDataSource>
@@ -112,21 +113,19 @@
 
 - (void)setOrder_sn:(NSString *)order_sn{
     _order_sn = order_sn;
-    NSLog(@"%@",MainUrl);
-    [http_user GetWxAppPaySign:self.order_sn success:^(id responseObject) {
-        [self showData:responseObject];
-    } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.domain];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    UserInfoModel* userInfo = [UserInfoModel readUserInfo];
+    [manager.requestSerializer setValue:userInfo.token forHTTPHeaderField:@"token"];
+    
+    [manager POST:@"http://www.dchqzg1688.com/api/payment/GetWxAppPaySign" parameters:@{@"order_sn" : @"201905281734209545"} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        DLog(@"获取成功：%@", responseObject);
+        self.payModel = [WXPayModel payModelWithDic:responseObject[@"data"]];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        DLog(@"获取失败：%@", error);
     }];
 }
 
-- (void)showData:(id)responseObject{
-    if (kObjectIsEmpty(responseObject)) {
-        return;
-    }
-    self.payModel = [WXPayModel mj_objectWithKeyValues:responseObject];
-    
-}
 #pragma mark --方法
 //获取当前控制器
 - (UIViewController *)currentViewController{

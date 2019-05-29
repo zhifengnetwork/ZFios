@@ -12,6 +12,8 @@
 #import "UIImageView+WebCache.h"
 #import "http_user.h"
 #import "SVProgressHUD.h"
+#import "MJExtension.h"
+#import "ZFAddressEditModel.h"
 //#import "ZFTextView.h"
 
 @interface ZFWriteEvaluationVC ()<UITextViewDelegate>
@@ -47,6 +49,8 @@
 @property (nonatomic, strong)UIImageView *imageView1;
 @property (nonatomic, strong)UIImageView *imageView2;
 @property (nonatomic, strong)UIButton *addImageButton;
+
+@property (nonatomic, strong)ZFAddressEditModel *editModel;
 @end
 
 @implementation ZFWriteEvaluationVC
@@ -268,6 +272,24 @@
         make.left.equalTo(self.imageView2.mas_right).with.offset(10);
     }];
     
+}
+
+- (void)setOrderID:(NSInteger)orderID{
+    _orderID = orderID;
+    
+    [http_user order_detail:_orderID success:^(id responseObject) {
+        [self showData:responseObject];
+    } failure:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.domain];
+    }];
+}
+
+- (void)showData:(id)responseObject{
+    if (kObjectIsEmpty(responseObject)) {
+        return;
+    }
+    self.editModel = [ZFAddressEditModel mj_objectWithKeyValues:responseObject];
+//    _goodImageView = _editModel
 }
 
 
