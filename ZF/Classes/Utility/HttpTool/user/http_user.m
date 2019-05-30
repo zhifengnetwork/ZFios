@@ -265,19 +265,59 @@
 
 //评论-上传图片接口
 //file 图片
-+(void)common_upload_pic:(NSString*)pic success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
++(void)common_upload_pic:(NSData *)pic success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure{
     HttpTool *http = [HttpTool sharedManager];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc]initWithCapacity:1];
     
-    if (!kStringIsEmpty(pic)) {
-        [parameters setObject:pic forKey:@"pic"];
-    }
+//    if (!kStringIsEmpty(pic)) {
+//        [parameters setObject:pic forKey:@"pic"];
+//    }
     
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
     strUrl = [strUrl stringByAppendingPathComponent:@"api/order/common_upload_pic"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
+    [http PostRequestWithBlock:strUrl Parameters:parameters uploadData:pic success:ReqSuccess failure:ReqFailure];
+    
+//    NSDictionary *parameterDict = @{@"userkey" : appDelegate.userKeyString};
+    
+//    AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager m
+//
+//    sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    
+//    NSString *requestUrlStr = [NSString stringWithFormat:@"%@%@", WEBBASEURL,  WEBInterFace_Personal_UploadHeadImg];
+    
+    
+    
+//    [http POST:strUrl parameters:parameterDict constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//
+//        // 上传文件  服务器对应[file]
+//
+//        NSData *imageData = UIImageJPEGRepresentation(uploadImage, imageType == 1);
+//
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//
+//        formatter.dateFormat = @"yyyyMMddHHmmss";
+//
+//        NSString *str = [formatter stringFromDate:[NSDate date]];
+//
+//        NSString *fileName = [NSString stringWithFormat:@"%@%@.jpg", appDelegate.userKeyString, str];
+//
+//        [formData appendPartWithFileData:imageData name:@"headImg"  fileName:fileName mimeType:@"image/jpg"];       // 上传图片的参数key
+//
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//
+//        NSLog(@"success");
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//        NSLog(@"failure：%@", error);
+//
+//    }];
+    
+    
+    
 }
 
 //order_sn  订单编号

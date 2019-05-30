@@ -366,6 +366,34 @@ static int invalidtoken_code = 1005;
      }];
 }
 
+- (void)PostRequestWithBlock:(NSString *)strUrl Parameters:(id)dicParameters uploadData:(NSData *)imageData success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure {
+    
+    [m_manager POST:strUrl parameters:dicParameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        // 上传文件  服务器对应[file]
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        
+        formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+        
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        
+        NSString *fileName = [NSString stringWithFormat:@"picture%@.jpg",str];
+        
+        [formData appendPartWithFileData:imageData name:@"pic" fileName:fileName mimeType:@"image/jpg"];       // 上传图片的参数key
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        
+        NSLog(@"success");
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        NSLog(@"failure：%@", error);
+        
+    }];
+    
+}
+
 -(NSDictionary*)hanldeJsonDta:(id)jsondata
 {
     NSString* str = [[NSString alloc]initWithData:jsondata encoding:NSUTF8StringEncoding];

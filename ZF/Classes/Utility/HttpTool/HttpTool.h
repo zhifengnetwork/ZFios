@@ -67,6 +67,8 @@ typedef void (^ErrorData)(NSError *error);
  */
 - (void)PostRequest:(NSString *)strUrl Parameters:(id)dicParameters success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 
+- (void)PostRequestWithBlock:(NSString *)strUrl Parameters:(id)dicParameters uploadData:(NSData *)imageData success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
+
 //处理签名
 -(NSDictionary*)hanldeSign:(NSMutableDictionary*)parameters;
 

@@ -715,12 +715,12 @@
 {
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
     //NSDataBase64EncodingEndLineWithLineFeed这个枚举值是base64串不换行
-    NSString *imageBase64Str = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+//    NSString *imageBase64Str = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
     //    //不转base64
     //    NSString * str =[[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
     
     ZWeakSelf
-    [http_user  common_upload_pic:imageBase64Str success:^(id responseObject)
+    [http_user  common_upload_pic:imageData success:^(id responseObject)
      {
          [weakSelf uploadImage_ok:responseObject];
      } failure:^(NSError *error)
