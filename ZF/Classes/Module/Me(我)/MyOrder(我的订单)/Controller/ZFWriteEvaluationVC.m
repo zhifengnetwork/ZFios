@@ -14,10 +14,12 @@
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
 #import "ZFAddressEditModel.h"
+#import "ZFOrderModel.h"
 //#import "ZFTextView.h"
 
 @interface ZFWriteEvaluationVC ()<UITextViewDelegate>
 @property (nonatomic, strong)UIImageView *goodImageView;
+@property (nonatomic, strong)UILabel *keyLabel;
 @property (nonatomic, strong)UILabel *describeLabel;
 @property (nonatomic, strong)UIButton *button1;
 @property (nonatomic, strong)UIButton *button2;
@@ -48,6 +50,8 @@
 @property (nonatomic, strong)UIImageView *imageView;
 @property (nonatomic, strong)UIImageView *imageView1;
 @property (nonatomic, strong)UIImageView *imageView2;
+@property (nonatomic, strong)UIImageView *imageView3;
+@property (nonatomic, strong)UIImageView *imageView4;
 @property (nonatomic, strong)UIButton *addImageButton;
 
 @property (nonatomic, strong)ZFAddressEditModel *editModel;
@@ -58,7 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"发布评论";
-    
+
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(rightButtonClick)];
     NSDictionary *dic = [NSDictionary dictionaryWithObject:RGBColorHex(0xe82f63) forKey:NSForegroundColorAttributeName];
     [self.navigationItem.rightBarButtonItem setTitleTextAttributes:dic forState:UIControlStateNormal];
@@ -67,6 +71,7 @@
 
 - (void)setup{
     [self.view addSubview:self.goodImageView];
+    [self.view addSubview:self.keyLabel];
     [self.view addSubview:self.describeLabel];
     [self.view addSubview:self.button1];
     [self.view addSubview:self.button2];
@@ -82,7 +87,7 @@
     UIView *lineView2 = [[UIView alloc]init];
     lineView2.backgroundColor = RGBColorHex(0xcccccc);
     [self.view addSubview:lineView2];
-    
+
     [self.view addSubview:self.LogisticsServiceLabel];
     [self.view addSubview:self.button1_1];
     [self.view addSubview:self.button2_1];
@@ -102,62 +107,35 @@
     [self.view addSubview:self.imageView];
     [self.view addSubview:self.imageView1];
     [self.view addSubview:self.imageView2];
+    [self.view addSubview:self.imageView3];
+    [self.view addSubview:self.imageView4];
     [self.view addSubview:self.addImageButton];
-    
-    
+
+
     [_goodImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.view).with.offset(10);
         make.width.height.mas_equalTo(40);
     }];
-    
-    [_describeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.goodImageView.mas_centerY);
+
+    [_keyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.goodImageView.mas_top);
         make.left.equalTo(self.goodImageView.mas_right).with.offset(15);
+
     }];
-    
-    [_button1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.goodImageView.mas_centerY);
-        make.left.equalTo(self.describeLabel.mas_right).with.offset(15);
-    }];
-    
-    [_button2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.goodImageView.mas_centerY);
-        make.left.equalTo(self->_button1.mas_right).with.offset(5);
-    }];
-    
-    [_button3 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.goodImageView.mas_centerY);
-        make.left.equalTo(self->_button2.mas_right).with.offset(5);
-    }];
-    
-    [_button4 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.goodImageView.mas_centerY);
-        make.left.equalTo(self->_button3.mas_right).with.offset(5);
-    }];
-    
-    [_button5 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.goodImageView.mas_centerY);
-        make.left.equalTo(self->_button4.mas_right).with.offset(5);
-    }];
-    
-    [_evaluationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).with.offset(-10);
-        make.centerY.equalTo(self.goodImageView.mas_centerY);
-    }];
-    
+
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(1);
         make.top.equalTo(self.goodImageView.mas_bottom).with.offset(10);
         make.left.right.equalTo(self.view);
     }];
-    
+
     [_evaluationTV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(lineView.mas_bottom).with.offset(12);
         make.left.equalTo(self.view).with.offset(10);
         make.right.equalTo(self.view).with.offset(-10);
         make.height.mas_equalTo(90);
     }];
-    
+
     [_placeHolderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self.evaluationTV);
     }];
@@ -169,9 +147,45 @@
         make.height.mas_equalTo(1);
     }];
 
-    [_LogisticsServiceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_describeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).with.offset(10);
         make.top.equalTo(lineView2.mas_bottom).with.offset(10);
+    }];
+
+    [_button1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.describeLabel.mas_centerY);
+        make.left.equalTo(self.describeLabel.mas_right).with.offset(15);
+    }];
+
+    [_button2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.describeLabel.mas_centerY);
+        make.left.equalTo(self->_button1.mas_right).with.offset(5);
+    }];
+
+    [_button3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.describeLabel.mas_centerY);
+        make.left.equalTo(self->_button2.mas_right).with.offset(5);
+    }];
+
+    [_button4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.describeLabel.mas_centerY);
+        make.left.equalTo(self->_button3.mas_right).with.offset(5);
+    }];
+
+    [_button5 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.describeLabel.mas_centerY);
+        make.left.equalTo(self->_button4.mas_right).with.offset(5);
+    }];
+
+    [_evaluationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view).with.offset(-10);
+        make.centerY.equalTo(self.describeLabel.mas_centerY);
+    }];
+
+    [_LogisticsServiceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.describeLabel
+                         .mas_bottom).with.offset(10);
+        make.left.equalTo(self.view).with.offset(10);
     }];
 
     [_button1_1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -238,45 +252,58 @@
         make.centerY.equalTo(self.serviceAttitudeLabel.mas_centerY);
         make.left.equalTo(self.button5_2.mas_right).with.offset(15);
     }];
-    
+
     [_anonymousLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.serviceAttitudeLabel.mas_bottom).with.offset(10);
         make.left.equalTo(self.view).with.offset(10);
     }];
-    
+
     [_anonymousButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.anonymousLabel.mas_centerY);
         make.left.equalTo(self.anonymousLabel.mas_right).with.offset(10);
     }];
-    
-    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.anonymousLabel.mas_bottom).with.offset(10);
+
+    [_addImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.anonymousLabel.mas_bottom).with.offset(40);
         make.left.equalTo(self.view).with.offset(10);
-        make.width.height.mas_equalTo(110);
     }];
-    
+
+    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.addImageButton.mas_centerY);
+        make.left.equalTo(self.addImageButton.mas_right).with.offset(10);
+        make.width.height.mas_equalTo(50);
+    }];
+
     [_imageView1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.imageView.mas_centerY);
         make.left.equalTo(self.imageView.mas_right).with.offset(10);
-        make.width.height.mas_equalTo(110);
+        make.width.height.mas_equalTo(50);
     }];
-    
+
     [_imageView2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.imageView.mas_centerY);
         make.left.equalTo(self.imageView1.mas_right).with.offset(10);
-        make.width.height.mas_equalTo(110);
+        make.width.height.mas_equalTo(50);
     }];
-    
-    [_addImageButton mas_makeConstraints:^(MASConstraintMaker *make) {
+
+    [_imageView3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.imageView.mas_centerY);
         make.left.equalTo(self.imageView2.mas_right).with.offset(10);
+        make.width.height.mas_equalTo(50);
     }];
-    
+
+    [_imageView4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.imageView.mas_centerY);
+        make.left.equalTo(self.imageView3.mas_right).with.offset(10);
+        make.width.height.mas_equalTo(50);
+    }];
+
+
 }
 
 - (void)setOrderID:(NSInteger)orderID{
     _orderID = orderID;
-    
+
     [http_user order_detail:_orderID success:^(id responseObject) {
         [self showData:responseObject];
     } failure:^(NSError *error) {
@@ -289,7 +316,13 @@
         return;
     }
     self.editModel = [ZFAddressEditModel mj_objectWithKeyValues:responseObject];
-//    _goodImageView = _editModel
+    ZFOrderModel *orderModel = self.editModel.goods[0];
+    if (!kStringIsEmpty(orderModel.original_img))
+    {
+        NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,orderModel.original_img];
+        [_goodImageView sd_setImageWithURL:[NSURL URLWithString:str]];
+    }
+    self.keyLabel.text = [NSString stringWithFormat:@"%@\n%@",orderModel.goods_name,orderModel.spec_key_name];
 }
 
 
@@ -297,6 +330,14 @@
     if (_goodImageView == nil) {
         _goodImageView = [[UIImageView alloc]init];
     }return _goodImageView;
+}
+
+- (UILabel *)keyLabel{
+    if (_keyLabel == nil) {
+        _keyLabel = [[UILabel alloc]init];
+        _keyLabel.font = [UIFont systemFontOfSize:12];
+        _keyLabel.textColor = RGBColorHex(0x333333);
+    }return _keyLabel;
 }
 
 - (UILabel *)describeLabel{
@@ -378,7 +419,7 @@
         _placeHolderLabel = [[UILabel alloc]init];
         _placeHolderLabel.font = [UIFont systemFontOfSize:10];
         _placeHolderLabel.textColor = RGBColorHex(0x999999);
-       _placeHolderLabel.text = @"请填写您对产品的评价";
+       _placeHolderLabel.text = @"写下购买体会和使用感受来帮助其他小伙伴~";
     }return _placeHolderLabel;
 }
 
@@ -537,22 +578,34 @@
 - (UIImageView *)imageView{
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc]init];
-        
+
     }return _imageView;
 }
 
 - (UIImageView *)imageView1{
     if (_imageView1 == nil) {
         _imageView1 = [[UIImageView alloc]init];
-        
+
     }return _imageView1;
 }
 
 - (UIImageView *)imageView2{
     if (_imageView2 == nil) {
         _imageView2 = [[UIImageView alloc]init];
-        
+
     }return _imageView2;
+}
+- (UIImageView *)imageView3{
+    if (_imageView3 == nil) {
+        _imageView3 = [[UIImageView alloc]init];
+
+    }return _imageView3;
+}
+- (UIImageView *)imageView4{
+    if (_imageView4 == nil) {
+        _imageView4 = [[UIImageView alloc]init];
+
+    }return _imageView4;
 }
 
 - (UIButton *)addImageButton{
@@ -561,7 +614,7 @@
         [_addImageButton setImage:[UIImage imageNamed:@"jia"] forState:UIControlStateNormal];
         [_addImageButton addTarget:self action:@selector(addClick) forControlEvents:UIControlEventTouchUpInside];
     }return _addImageButton;
-    
+
 }
 
 
@@ -605,7 +658,7 @@
         self.button5.selected = YES;
         _evaluationLabel.text = @"非常好";
      }
-    
+
 }
 - (void)selectClick1: (UIButton*)btn{
     if (btn.tag == 21) {
@@ -691,8 +744,7 @@
 
 
 - (void)rightButtonClick{//发布
-    
-    
+
     ZFFinishEvaluationVC *vc = [[ZFFinishEvaluationVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -700,7 +752,7 @@
 - (void)addClick{
     //添加图片
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
-    
+
     // You can get the photos by block, the same as by delegate.
     // 你可以通过block或者代理，来得到用户选择的照片.
     ZWeakSelf
@@ -716,9 +768,10 @@
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
     //NSDataBase64EncodingEndLineWithLineFeed这个枚举值是base64串不换行
 //    NSString *imageBase64Str = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+    NSString *imageBase64Str = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
     //    //不转base64
-    //    NSString * str =[[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
-    
+//        NSString * str =[[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
+
     ZWeakSelf
     [http_user  common_upload_pic:imageData success:^(id responseObject)
      {
@@ -735,18 +788,24 @@
     {
         return;
     }
-    
-    NSString *file = [responseObject objectForKey:@"img"];
-    
-    
+
+    NSString *file = [responseObject objectForKey:@"dir"];
+
+    NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,file];
+
+
     if (_imageView.image == nil) {
-        [_imageView sd_setImageWithURL:[NSURL URLWithString:file]];
+        [_imageView sd_setImageWithURL:[NSURL URLWithString:str]];
     }else if (_imageView1.image == nil){
-        [_imageView1 sd_setImageWithURL:[NSURL URLWithString:file]];
-    }else{
-        [_imageView2 sd_setImageWithURL:[NSURL URLWithString:file]];
+        [_imageView1 sd_setImageWithURL:[NSURL URLWithString:str]];
+    }else if (_imageView2.image == nil){
+        [_imageView2 sd_setImageWithURL:[NSURL URLWithString:str]];
+    }else if (_imageView3.image == nil){
+        [_imageView3 sd_setImageWithURL:[NSURL URLWithString:str]];
+    }else if (_imageView4.image == nil){
+        [_imageView4 sd_setImageWithURL:[NSURL URLWithString:str]];
     }
-    
+
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
