@@ -180,7 +180,7 @@ static NSString *const ZFBottomOrderTableCellID = @"ZFBottomOrderTableCellID";
     }
     
     
-    return 40;
+    return 60;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

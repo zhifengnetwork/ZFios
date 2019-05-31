@@ -53,28 +53,28 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
     self.managementButton = btn;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
-        UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
-        tableView.backgroundColor = RGBColorHex(0xf4f4f4);
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        tableView.rowHeight = 160;
-        self.shoppingCart = tableView;
-    [tableView registerClass:[ZFShoppingCartCell class] forCellReuseIdentifier:ZFShoppingCartTableCellID];
-        [self.view addSubview:tableView];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,0, LL_ScreenWidth, LL_ScreenHeight- LL_TabbarSafeBottomMargin- 88) style:UITableViewStyleGrouped];
+    tableView.backgroundColor = RGBColorHex(0xf4f4f4);
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    tableView.rowHeight = 120;
+    self.shoppingCart = tableView;
+    [tableView registerClass:[ZFShoppingCartCell class]forCellReuseIdentifier:ZFShoppingCartTableCellID];
+    [self.view addSubview:tableView];
     
-        tableView.allowsMultipleSelectionDuringEditing = YES;
-        //结算界面
-        self.settleView = [ZFSettlementView CartView];
-        [self.view addSubview:self.settleView];
+    tableView.allowsMultipleSelectionDuringEditing = YES;
+    //结算界面
+    self.settleView = [ZFSettlementView CartView];
+    [self.view addSubview:self.settleView];
     _settleView.delegate = self;
-        [_settleView setSettleMent];
-        [_settleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(0);
-            make.right.mas_equalTo(0);
-            make.width.mas_equalTo(LL_ScreenWidth);
-            make.height.mas_equalTo(44);
-            make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(-48);
-        }];
+    [_settleView setSettleMent];
+    [_settleView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.width.mas_equalTo(LL_ScreenWidth);
+        make.height.mas_equalTo(44);
+        make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(-48);
+    }];
     
     self.shoppingCart.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     
@@ -153,6 +153,7 @@ static NSString *const ZFShoppingCartTableCellID =@"ZFShoppingCartTableCellID";
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath{
     return NO;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ZFShoppingCartCell *cell = [tableView dequeueReusableCellWithIdentifier:ZFShoppingCartTableCellID];
     cell.model = [self.listModel.list objectAtIndex:indexPath.section];

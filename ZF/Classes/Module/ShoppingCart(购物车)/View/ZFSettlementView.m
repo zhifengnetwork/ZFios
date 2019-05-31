@@ -56,7 +56,7 @@
          {
              ZWeakSelf
              [weakSelf loadData:responseObject];
-             
+
          } failure:^(NSError *error)
          {
              [SVProgressHUD showErrorWithStatus:error.domain];
@@ -71,24 +71,22 @@
              [SVProgressHUD showErrorWithStatus:error.domain];
          }];
     }
-    
+
 }
 
 - (void)loadData: (id)responseObject{
-    if (kObjectIsEmpty(responseObject))
-    {
-        return;
-    }
-    self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
-    ZFCartPriceModel *priceModel = self.listModel.cart_price_info;
-    self.moneyLabel.text = [NSString stringWithFormat:@"%@",priceModel.total_fee];
+//    if (kObjectIsEmpty(responseObject))
+//    {
+//        return;
+//    }
+//    self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
     [self.delegate reloadTableView];
     
 }
 
 - (void)setPrice:(NSString *)price{
     _price = price;
-    self.moneyLabel.text = [NSString stringWithFormat:@"%@",_price];
+    self.moneyLabel.text = [NSString stringWithFormat:@"%.2f",_price.floatValue];
     
 }
 
@@ -99,8 +97,7 @@
     }else{
         self.allSelectButton.selected = YES;
     }
-    self.moneyLabel.text = _settleModel.cart_price_info.total_fee;
-    
+    self.moneyLabel.text = [NSString stringWithFormat:@"%.2f",_settleModel.cart_price_info.total_fee.floatValue];
 }
 
 - (UIViewController *)currentViewController{

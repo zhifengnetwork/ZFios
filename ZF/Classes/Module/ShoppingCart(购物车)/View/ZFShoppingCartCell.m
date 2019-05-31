@@ -60,7 +60,7 @@
 - (void)setFrame:(CGRect)frame{
     frame.origin.x = 16;
     frame.size.width -= 2* frame.origin.x;
-    frame.size.height -= 2*frame.origin.x;
+//    frame.size.height -= 2*frame.origin.x;
     [super setFrame:frame];
 }
 - (void)setUp{

@@ -71,7 +71,7 @@
     
     [_orderButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-20);
-        make.top.equalTo(self->_moneyLabel.mas_bottom).offset(8);
+        make.centerY.equalTo(self.deliverButton.mas_centerY);
         make.width.mas_equalTo(60);
         make.height.mas_equalTo(20);
     }];
