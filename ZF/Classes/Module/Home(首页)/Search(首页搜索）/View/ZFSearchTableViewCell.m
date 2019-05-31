@@ -7,7 +7,6 @@
 //
 
 #import "ZFSearchTableViewCell.h"
-#import "UIImageView+WebCache.h"
 
 @interface ZFSearchTableViewCell()
 @property (nonatomic, strong)UIImageView *iconimageView;

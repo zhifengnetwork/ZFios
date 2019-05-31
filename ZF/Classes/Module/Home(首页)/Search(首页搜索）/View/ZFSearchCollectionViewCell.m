@@ -7,7 +7,7 @@
 //
 
 #import "ZFSearchCollectionViewCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFSearchCollectionViewCell()
 @property (nonatomic, strong)UIImageView *iconimageView;

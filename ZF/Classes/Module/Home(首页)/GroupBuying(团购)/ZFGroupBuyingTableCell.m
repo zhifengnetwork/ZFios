@@ -7,7 +7,6 @@
 //
 
 #import "ZFGroupBuyingTableCell.h"
-#import "UIImageView+WebCache.h"
 #import "ZFTool.h"
 
 @interface ZFGroupBuyingTableCell()

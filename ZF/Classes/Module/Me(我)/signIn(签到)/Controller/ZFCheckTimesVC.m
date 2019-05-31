@@ -12,7 +12,7 @@
 #import "MJExtension.h"
 #import "RefreshGifHeader.h"
 #import "http_user.h"
-#import "UIImageView+WebCache.h"
+
 
 
 @interface ZFCheckTimesVC ()

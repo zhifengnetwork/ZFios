@@ -8,7 +8,7 @@
 
 #import "ZFEvaluationCell.h"
 #import "ZFTool.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFEvaluationCell()
 @property (nonatomic, strong)UILabel *nameLabel;

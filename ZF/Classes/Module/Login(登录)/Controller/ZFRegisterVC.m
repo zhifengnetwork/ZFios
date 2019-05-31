@@ -11,7 +11,7 @@
 #import "ZFRegisterVC.h"
 #import "JKCountDownButton.h"
 #import "LoginTypeView.h"
-#import "UIImageView+WebCache.h"
+
 #import "UIButton+LXMImagePosition.h"
 #import "ZFTool.h"
 #import "http_user.h"

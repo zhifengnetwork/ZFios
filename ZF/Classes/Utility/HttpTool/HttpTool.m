@@ -6,7 +6,7 @@
 //  Copyright © 2018年 apple. All rights reserved.
 //
 
-#import "HttpTool.h"
+
 #import <AFNetworking.h>
 #import "UserInfoModel.h"
 
@@ -230,6 +230,9 @@ static int invalidtoken_code = 1005;
     if ( !m_manager )
     {
         m_manager = [AFHTTPSessionManager manager];
+        m_manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        [m_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [m_manager.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     }
     
     [self hanldRequestHeader];
@@ -240,9 +243,10 @@ static int invalidtoken_code = 1005;
     // 在AFN的block内使用，防止造成循环引用
     kWeakSelf(self);
     
+    NSLog(@"[%@] {%@} URL: %@", [self class], NSStringFromSelector(_cmd), strUrl);
     //发送请求
-    [m_manager GET:strUrl parameters:dicParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
-     {
+    [m_manager GET:strUrl parameters:dicParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+         NSLog(@"[%@] {%@} Response Object: %@", [self class], NSStringFromSelector(_cmd), responseObject);
          //判断状态是否有效
          int nRet = [weakself StatusJudge:responseObject success:ReqSuccess failure:ReqFailure];
          if (nRet==success_code || nRet==success_code_xm)
@@ -312,12 +316,15 @@ static int invalidtoken_code = 1005;
     //设置超时
     [self SetRequestTimeOut:30.0f];
     
+    m_manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    m_manager.responseSerializer.acceptableContentTypes = [m_manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     // 在AFN的block内使用，防止造成循环引用
     kWeakSelf(self);
     
+    NSLog(@"[%@] {%@} URL: %@", [self class], NSStringFromSelector(_cmd), strUrl);
     //发送请求
-    [m_manager POST:strUrl parameters:dicParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject)
-     {
+    [m_manager POST:strUrl parameters:dicParameters progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"[%@] {%@} Response Object: %@", [self class], NSStringFromSelector(_cmd), responseObject);
          //判断状态是否有效
          int nRet = [weakself StatusJudge:responseObject success:ReqSuccess failure:ReqFailure];
          if (nRet==success_code || nRet==success_code_xm)
@@ -368,28 +375,69 @@ static int invalidtoken_code = 1005;
 
 - (void)PostRequestWithBlock:(NSString *)strUrl Parameters:(id)dicParameters uploadData:(NSData *)imageData success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure {
     
+    m_manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    m_manager.responseSerializer.acceptableContentTypes = [m_manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    
+    kWeakSelf(self);
+    
+    NSLog(@"[%@] {%@} URL: %@", [self class], NSStringFromSelector(_cmd), strUrl);
     [m_manager POST:strUrl parameters:dicParameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        
+       
         // 上传文件  服务器对应[file]
-        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        
         formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        
         NSString *str = [formatter stringFromDate:[NSDate date]];
-        
         NSString *fileName = [NSString stringWithFormat:@"picture%@.jpg",str];
-        
         [formData appendPartWithFileData:imageData name:@"pic" fileName:fileName mimeType:@"image/jpg"];       // 上传图片的参数key
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        NSLog(@"[%@] {%@} Response Object: %@", [self class], NSStringFromSelector(_cmd), responseObject);
         
-        NSLog(@"success");
+        //判断状态是否有效
+        int nRet = [weakself StatusJudge:responseObject success:ReqSuccess failure:ReqFailure];
+        if (nRet==success_code || nRet==success_code_xm)
+        {
+            //解析需要的数据
+            NSError *error = nil;
+            NSDictionary *dcattributes = nil;
+            //判断是否需要转换
+            if (![responseObject isKindOfClass:[NSDictionary class]])
+            {
+                dcattributes =[NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+            }
+            else
+            {
+                dcattributes = responseObject;
+            }
+            
+            if ( kObjectIsEmpty(dcattributes) )
+            {
+                dcattributes = [self hanldeJsonDta:responseObject];
+                if ( kObjectIsEmpty(dcattributes) )
+                {
+                    if (ReqFailure)
+                    {
+                        ReqFailure(error);
+                    }
+                    return;
+                }
+            }
+            
+            NSDictionary *dic = [dcattributes objectForKey:RESDATA];
+            if ( ReqSuccess )
+            {
+                //成功回调
+                ReqSuccess(dic);
+            }
+            
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         NSLog(@"failure：%@", error);
-        
+        if (ReqFailure) {
+            [self ErrorStatus:error failure:ReqFailure];
+        }
     }];
     
 }
@@ -556,9 +604,10 @@ static int invalidtoken_code = 1005;
     // 在AFN的block内使用，防止造成循环引用
     kWeakSelf(self);
     
+    NSLog(@"[%@] {%@} URL: %@", [self class], NSStringFromSelector(_cmd), strUrl);
     //发送请求
-    [m_manager DELETE:strUrl parameters:dicParameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-    {
+    [m_manager DELETE:strUrl parameters:dicParameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"[%@] {%@} Response Object: %@", [self class], NSStringFromSelector(_cmd), responseObject);
         //判断状态是否有效
         int nRet = [weakself StatusJudge:responseObject success:ReqSuccess failure:ReqFailure];
         if (nRet==success_code || nRet==success_code_xm)

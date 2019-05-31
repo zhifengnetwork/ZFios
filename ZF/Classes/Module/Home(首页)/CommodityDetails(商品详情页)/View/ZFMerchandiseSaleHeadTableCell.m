@@ -9,7 +9,7 @@
 #import "ZFMerchandiseSaleHeadTableCell.h"
 #import "UIButton+LXMImagePosition.h"
 #import "ZFMerchandiseSaleCollectionCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFMerchandiseSaleHeadTableCell()<UICollectionViewDelegate, UICollectionViewDataSource>
 

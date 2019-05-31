@@ -17,7 +17,7 @@
 #import "ZFBuyToolBarView.h"
 #import "ZFAssembleModel.h"
 #import "ZFSearchModel.h"
-#import "UIImageView+WebCache.h"
+
 #import "ZFTool.h"
 
 

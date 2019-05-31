@@ -7,7 +7,7 @@
 //
 
 #import "ZFCommodityTableCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFCommodityTableCell()
 

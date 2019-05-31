@@ -8,7 +8,7 @@
 //
 
 #import "ZFConfirmOrderCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFConfirmOrderCell()
 @property (nonatomic, strong)UIImageView *pictureImageView;

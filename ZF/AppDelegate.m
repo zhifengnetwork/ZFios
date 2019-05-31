@@ -12,7 +12,7 @@
 #import "TabBarControllerConfig.h"
 #import "BaseNaviViewController.h"
 #import "ZFLoginVC.h"
-#import "HttpTool.h"
+
 #import "ZFTool.h"
 #import "WXApiManager.h"
 #import "UserInfoModel.h"
@@ -33,6 +33,9 @@
     
     //设置svp最小时间
     [SVProgressHUD setMinimumDismissTimeInterval:1.0f];
+    IQKeyboardManager *keyboardManager = [IQKeyboardManager sharedManager];
+    keyboardManager.enable = YES;
+    keyboardManager.shouldResignOnTouchOutside = YES;
     
     //SDWebImage referer(防盗链)
     SDWebImageDownloader *dmanager = [SDWebImageManager sharedManager].imageDownloader;

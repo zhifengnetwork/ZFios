@@ -7,7 +7,7 @@
 //
 
 #import "ZFClusterWindowTableCell.h"
-#import "UIImageView+WebCache.h"
+
 #import "ZFSelectTypeView.h"
 #import "TYAlertController.h"
 #import "ZFTool.h"

@@ -29,8 +29,8 @@ target "ZF" do
     pod 'PPNumberButton'
     pod 'FSCalendar'
     pod 'JXPagingView/Pager'
-    pod "PYSearch"
- 
+    pod 'PYSearch'
+    pod 'IQKeyboardManager'
     
     pod 'UMCShare/UI'
     pod 'UMCShare/Social/ReducedWeChat'

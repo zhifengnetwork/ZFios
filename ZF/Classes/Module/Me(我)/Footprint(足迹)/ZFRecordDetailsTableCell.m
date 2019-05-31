@@ -7,7 +7,7 @@
 //
 
 #import "ZFRecordDetailsTableCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFRecordDetailsTableCell()
 

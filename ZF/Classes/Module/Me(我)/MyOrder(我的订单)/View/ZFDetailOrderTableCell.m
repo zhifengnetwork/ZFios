@@ -7,7 +7,7 @@
 //
 
 #import "ZFDetailOrderTableCell.h"
-#import "UIImageView+WebCache.h"
+
 @interface ZFDetailOrderTableCell()
 @property (nonatomic, strong)UIImageView *goodImageView;//商品图片
 @property (nonatomic, strong)UILabel *goodNameLabel;

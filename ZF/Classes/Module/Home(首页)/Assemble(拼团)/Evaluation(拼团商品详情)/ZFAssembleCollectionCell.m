@@ -7,7 +7,7 @@
 //
 
 #import "ZFAssembleCollectionCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFAssembleCollectionCell()
 

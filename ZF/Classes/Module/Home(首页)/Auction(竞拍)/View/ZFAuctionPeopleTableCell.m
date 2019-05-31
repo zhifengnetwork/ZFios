@@ -7,7 +7,7 @@
 //
 
 #import "ZFAuctionPeopleTableCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFAuctionPeopleTableCell()
 

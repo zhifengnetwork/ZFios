@@ -7,7 +7,7 @@
 //
 
 #import "ZFStoreConcernViewCell.h"
-#import "UIImageView+WebCache.h"
+
 #import "UIButton+LXMImagePosition.h"
 
 @interface ZFStoreConcernViewCell()

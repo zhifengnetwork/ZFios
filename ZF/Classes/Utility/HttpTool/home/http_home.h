@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "httpTool.h"
 #import "ZFGoodModel.h"
 #import "ZFUserModel.h"
 #import "ZFSearchModel.h"

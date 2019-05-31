@@ -8,7 +8,7 @@
 
 #import "ZFPersonalHeadTableCell.h"
 #import "UIView+HJViewStyle.h"
-#import "UIImageView+WebCache.h"
+
 
 
 @interface ZFPersonalHeadTableCell()

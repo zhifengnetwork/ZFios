@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HttpTool.h"
+
 #import "UserInfoModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 //评论-上传图片接口
 //file 图片
-+(void)common_upload_pic:(NSString*)pic success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
++(void)common_upload_pic:(NSData*)pic success:(SuccessData)ReqSuccess failure:(ErrorData)ReqFailure;
 /**
  找回密码验证码比对
  */

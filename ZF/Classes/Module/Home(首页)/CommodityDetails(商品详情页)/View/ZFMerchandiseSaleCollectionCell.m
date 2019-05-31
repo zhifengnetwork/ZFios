@@ -7,7 +7,7 @@
 //
 
 #import "ZFMerchandiseSaleCollectionCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFMerchandiseSaleCollectionCell()
 

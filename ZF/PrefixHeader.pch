@@ -19,11 +19,11 @@
 # define DLog(...);
 #endif
 
-
-#ifdef __OBJC__
+#import "UIImageView+WebCache.h"
+#import "UIImageView+LoadWebImage.h"
+#import "IQKeyboardManager.h"
+#import "HttpTool.h"
 #import <Masonry.h>
-#endif
-
 
 //判断是真机还是模拟器
 #if TARGET_OS_IPHONE
@@ -53,7 +53,7 @@
 #define kApplication        [UIApplication sharedApplication]
 #define kKeyWindow          [UIApplication sharedApplication].keyWindow
 #define kAppDelegate        [UIApplication sharedApplication].delegate
-#define kUserDefaults      [NSUserDefaults standardUserDefaults]
+#define kUserDefaults       [NSUserDefaults standardUserDefaults]
 #define kNotificationCenter [NSNotificationCenter defaultCenter]
 
 //APP版本号

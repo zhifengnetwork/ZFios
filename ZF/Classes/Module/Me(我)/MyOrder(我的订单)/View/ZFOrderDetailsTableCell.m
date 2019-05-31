@@ -7,7 +7,7 @@
 //
 
 #import "ZFOrderDetailsTableCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFOrderDetailsTableCell()
 
@@ -71,7 +71,7 @@
     }];
     
     [_seeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-10);
+        make.right.mas_equalTo(-15);
         make.bottom.equalTo(self->_iconView.mas_bottom);
     }];
     

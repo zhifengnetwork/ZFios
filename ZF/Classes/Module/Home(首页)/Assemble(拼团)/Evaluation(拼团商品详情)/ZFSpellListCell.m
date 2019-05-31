@@ -7,7 +7,7 @@
 //
 
 #import "ZFSpellListCell.h"
-#import "UIImageView+WebCache.h"
+
 #import "ZFTool.h"
 #import "ZFSelectTypeView.h"
 #import "TYAlertController.h"

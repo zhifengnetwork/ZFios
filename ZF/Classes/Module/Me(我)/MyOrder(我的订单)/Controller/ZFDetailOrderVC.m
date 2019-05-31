@@ -12,7 +12,7 @@
 #import "SVProgressHUD.h"
 #import "ZFAddressEditModel.h"
 #import "ZFOrdersModel.h"
-#import "UIImageView+WebCache.h"
+
 #import "ZFDetailOrderTableCell.h"
 
 @interface ZFDetailOrderVC ()<UITableViewDelegate,UITableViewDataSource>

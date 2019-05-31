@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ZFOrdersModel.h"
-#import "HttpTool.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface http_order : NSObject

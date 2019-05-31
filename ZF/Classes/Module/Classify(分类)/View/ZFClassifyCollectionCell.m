@@ -7,7 +7,7 @@
 //
 
 #import "ZFClassifyCollectionCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFClassifyCollectionCell ()
 

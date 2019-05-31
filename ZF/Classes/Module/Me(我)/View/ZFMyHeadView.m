@@ -7,7 +7,7 @@
 //
 
 #import "ZFMyHeadView.h"
-#import "UIImageView+WebCache.h"
+
 
 
 @interface ZFMyHeadView()

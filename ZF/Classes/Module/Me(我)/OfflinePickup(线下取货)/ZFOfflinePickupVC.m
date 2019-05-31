@@ -7,7 +7,7 @@
 //
 
 #import "ZFOfflinePickupVC.h"
-#import "UIImageView+WebCache.h"
+
 #import "SVProgressHUD.h"
 #import "ZFTool.h"
 

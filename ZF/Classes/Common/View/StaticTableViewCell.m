@@ -7,7 +7,7 @@
 //
 
 #import "StaticTableViewCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface StaticTableViewCell()
 //标题

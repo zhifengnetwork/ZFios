@@ -7,7 +7,7 @@
 //
 
 #import "ZFAuctionEndTableCell.h"
-#import "UIImageView+WebCache.h"
+
 #import "ZFTool.h"
 
 @interface ZFAuctionEndTableCell()

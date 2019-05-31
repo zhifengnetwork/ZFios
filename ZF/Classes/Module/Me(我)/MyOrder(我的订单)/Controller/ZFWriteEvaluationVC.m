@@ -9,7 +9,7 @@
 #import "ZFWriteEvaluationVC.h"
 #import "ZFFinishEvaluationVC.h"
 #import "TZImagePickerController.h"
-#import "UIImageView+WebCache.h"
+
 #import "http_user.h"
 #import "SVProgressHUD.h"
 #import "MJExtension.h"
@@ -26,7 +26,7 @@
 @property (nonatomic, strong)UIButton *button3;
 @property (nonatomic, strong)UIButton *button4;
 @property (nonatomic, strong)UIButton *button5;
-@property (nonatomic, strong)UILabel *evaluationLabel;
+@property (nonatomic, strong)UILabel *evaluationLabel;  // 描述相符
 @property (nonatomic, strong)UITextView *evaluationTV;
 @property (nonatomic, strong)UILabel *placeHolderLabel;
 
@@ -154,7 +154,7 @@
 
     [_button1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.describeLabel.mas_centerY);
-        make.left.equalTo(self.describeLabel.mas_right).with.offset(15);
+        make.left.equalTo(self.describeLabel.mas_right).with.offset(10);
     }];
 
     [_button2 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -178,13 +178,12 @@
     }];
 
     [_evaluationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).with.offset(-10);
+        make.left.equalTo(self.button5.mas_right).with.offset(15);
         make.centerY.equalTo(self.describeLabel.mas_centerY);
     }];
 
     [_LogisticsServiceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.describeLabel
-                         .mas_bottom).with.offset(10);
+        make.top.equalTo(self.describeLabel.mas_bottom).with.offset(10);
         make.left.equalTo(self.view).with.offset(10);
     }];
 
@@ -297,8 +296,6 @@
         make.left.equalTo(self.imageView3.mas_right).with.offset(10);
         make.width.height.mas_equalTo(50);
     }];
-
-
 }
 
 - (void)setOrderID:(NSInteger)orderID{
@@ -578,6 +575,8 @@
 - (UIImageView *)imageView{
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc]init];
+        _imageView.layer.borderColor = RGBColor(218, 221, 214).CGColor;
+        _imageView.layer.borderWidth = 0.5f;
 
     }return _imageView;
 }
@@ -585,6 +584,8 @@
 - (UIImageView *)imageView1{
     if (_imageView1 == nil) {
         _imageView1 = [[UIImageView alloc]init];
+        _imageView1.layer.borderColor = RGBColor(218, 221, 214).CGColor;
+        _imageView1.layer.borderWidth = 0.5f;
 
     }return _imageView1;
 }
@@ -592,18 +593,24 @@
 - (UIImageView *)imageView2{
     if (_imageView2 == nil) {
         _imageView2 = [[UIImageView alloc]init];
+        _imageView2.layer.borderColor = RGBColor(218, 221, 214).CGColor;
+        _imageView2.layer.borderWidth = 0.5f;
 
     }return _imageView2;
 }
 - (UIImageView *)imageView3{
     if (_imageView3 == nil) {
         _imageView3 = [[UIImageView alloc]init];
+        _imageView3.layer.borderColor = RGBColor(218, 221, 214).CGColor;
+        _imageView3.layer.borderWidth = 0.5f;
 
     }return _imageView3;
 }
 - (UIImageView *)imageView4{
     if (_imageView4 == nil) {
         _imageView4 = [[UIImageView alloc]init];
+        _imageView4.layer.borderColor = RGBColor(218, 221, 214).CGColor;
+        _imageView4.layer.borderWidth = 0.5f;
 
     }return _imageView4;
 }
@@ -752,7 +759,8 @@
 - (void)addClick{
     //添加图片
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:self];
-
+    imagePickerVc.allowTakeVideo = NO;
+    imagePickerVc.naviBgColor = [UIColor blackColor];
     // You can get the photos by block, the same as by delegate.
     // 你可以通过block或者代理，来得到用户选择的照片.
     ZWeakSelf
@@ -766,18 +774,11 @@
 -(void)uploadImage:(UIImage*)image
 {
     NSData *imageData = UIImageJPEGRepresentation(image, 1.0f);
-    //NSDataBase64EncodingEndLineWithLineFeed这个枚举值是base64串不换行
-//    NSString *imageBase64Str = [imageData base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
-    NSString *imageBase64Str = [imageData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    //    //不转base64
-//        NSString * str =[[NSString alloc] initWithData:imageData encoding:NSUTF8StringEncoding];
 
     ZWeakSelf
-    [http_user  common_upload_pic:imageData success:^(id responseObject)
-     {
+    [http_user common_upload_pic:imageData success:^(id responseObject) {
          [weakSelf uploadImage_ok:responseObject];
-     } failure:^(NSError *error)
-     {
+     } failure:^(NSError *error) {
          [SVProgressHUD showErrorWithStatus:error.domain];
      }];
 }
@@ -789,10 +790,8 @@
         return;
     }
 
-    NSString *file = [responseObject objectForKey:@"dir"];
-
+    NSString *file = responseObject[@"dir"];
     NSString* str = [NSString stringWithFormat:@"%@%@",ImageUrl,file];
-
 
     if (_imageView.image == nil) {
         [_imageView sd_setImageWithURL:[NSURL URLWithString:str]];

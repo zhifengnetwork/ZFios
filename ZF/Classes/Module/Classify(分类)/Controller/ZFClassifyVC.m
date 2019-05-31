@@ -11,7 +11,6 @@
 #import "ZFClassifyCollectionCell.h"
 #import "ZFClassifyHeadView.h"
 #import "ZFClassifyTopToolView.h"
-#import "ZFClassifyFootView.h"
 #import "ZFClassifyBannerHeadView.h"
 #import "http_home.h"
 #import "http_good.h"
@@ -55,7 +54,6 @@
 static NSString *const ZFClassifyTableCellID = @"ZFClassifyTableCellID";
 static NSString *const ZFClassifyCollectionCellID = @"ZFClassifyCollectionCellID";
 static NSString *const ZFClassifyHeadViewID = @"ZFClassifyHeadViewID";
-static NSString *const ZFClassifyFootViewID = @"ZFClassifyFootViewID";
 static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID";
 
 
@@ -114,7 +112,7 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
         // 1. 创建热门搜索数组
         //NSArray *hotSeaches = @[@"周大福", @"新款连衣裙", @"连衣裙"];
         // 2. 创建搜索控制器
-        PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:self.hots searchBarPlaceholder:@"商品 店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
+        PYSearchViewController *searchViewController = [PYSearchViewController searchViewControllerWithHotSearches:weakSelf.hots searchBarPlaceholder:@"商品 店铺" didSearchBlock:^(PYSearchViewController *searchViewController, UISearchBar *searchBar, NSString *searchText) {
             // 开始(点击)搜索时执行以下代码
             // 如：跳转到指定控制器
             ZFSearchVC* vc = [[ZFSearchVC alloc] init];
@@ -225,6 +223,7 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
     
     self.lists = [ZFClassifyModel mj_objectArrayWithKeyValuesArray:responseObject];
     [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     if (self.lists.count>0)
     {
         ZFClassifyModel* model = [self.lists objectAtIndex:0];
@@ -331,12 +330,6 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
         }
         
     }
-    else if (kind == UICollectionElementKindSectionFooter)
-    {
-        
-        ZFClassifyFootView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ZFClassifyFootViewID forIndexPath:indexPath];
-        reusableview = footerView;
-    }
     return reusableview;
 }
 #pragma mark - item宽高
@@ -355,12 +348,6 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
         return CGSizeMake(LL_ScreenWidth, 110);
     }
     return CGSizeMake(LL_ScreenWidth, 25);
-}
-
-#pragma mark - foot宽高
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
-{
-    return CGSizeMake(LL_ScreenWidth, 15);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -406,14 +393,12 @@ static NSString *const ZFClassifyBannerHeadViewID = @"ZFClassifyBannerHeadViewID
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.alwaysBounceVertical = YES;
-        _collectionView.frame = CGRectMake(100, LL_StatusBarAndNavigationBarHeight, LL_ScreenWidth-100,LL_ScreenHeight);
+        _collectionView.frame = CGRectMake(100, LL_StatusBarAndNavigationBarHeight, LL_ScreenWidth - 100,LL_ScreenHeight - LL_TabbarHeight - LL_StatusBarAndNavigationBarHeight);
         //注册Cell
         [_collectionView registerClass:[ZFClassifyCollectionCell class] forCellWithReuseIdentifier:ZFClassifyCollectionCellID];
         //注册Header
         [_collectionView registerClass:[ZFClassifyHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassifyHeadViewID];
         [_collectionView registerClass:[ZFClassifyBannerHeadView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ZFClassifyBannerHeadViewID];
-        //注册Footer
-        [_collectionView registerClass:[ZFClassifyFootView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ZFClassifyFootViewID];
     }
     return _collectionView;
 }

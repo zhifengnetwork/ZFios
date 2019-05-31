@@ -7,7 +7,7 @@
 //
 
 #import "ZFDistribuCommoTableCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFDistribuCommoTableCell()
 

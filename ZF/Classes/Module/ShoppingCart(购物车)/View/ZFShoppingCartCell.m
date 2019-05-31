@@ -10,7 +10,7 @@
 #import "ZFMenuView.h"
 #import "ZFShoppingItem.h"
 #import "PPNumberButton.h"
-#import "UIImageView+WebCache.h"
+
 #import "ZFSelectTypeView.h"
 #import "TYAlertController.h"
 

@@ -7,7 +7,7 @@
 //
 
 #import "ZFSpikeDetailsTableCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFSpikeDetailsTableCell()
 

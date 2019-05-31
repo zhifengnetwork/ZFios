@@ -13,7 +13,7 @@
 #import "SVProgressHUD.h"
 #import "ZFGoodModel.h"
 #import "MJExtension.h"
-#import "UIImageView+WebCache.h"
+
 #import "http_shopping.h"
 
 

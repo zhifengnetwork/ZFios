@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HttpTool.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface http_mine : NSObject

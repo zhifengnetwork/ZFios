@@ -7,7 +7,7 @@
 //
 
 #import "ZFCommodityInforViewCell.h"
-#import "UIImageView+WebCache.h"
+
 #import "http_mine.h"
 #import "SVProgressHUD.h"
 

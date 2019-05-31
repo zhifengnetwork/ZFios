@@ -7,7 +7,7 @@
 //
 
 #import "ZFAuctionTableCell.h"
-#import "UIImageView+WebCache.h"
+
 #import "ZFTool.h"
 
 

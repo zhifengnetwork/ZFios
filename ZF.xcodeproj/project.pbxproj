@@ -372,6 +372,7 @@
 		84ED0CE7223CFB3200BC13C7 /* ZFDistributionMemTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE6223CFB3200BC13C7 /* ZFDistributionMemTableCell.m */; };
 		84ED0CEA223CFF8000BC13C7 /* ZFWithdrawDepositVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 84ED0CE9223CFF8000BC13C7 /* ZFWithdrawDepositVC.m */; };
 		84F4AA3722855CE2007AE7E5 /* ZFDetailsPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F4AA3622855CE2007AE7E5 /* ZFDetailsPageModel.m */; };
+		84FD8481229FC735003E7857 /* UIImageView+LoadWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD8480229FC735003E7857 /* UIImageView+LoadWebImage.m */; };
 		A96AC6002299172F0009EE85 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5F22299172F0009EE85 /* NSMutableArray+Safe.m */; };
 		A96AC6012299172F0009EE85 /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5F52299172F0009EE85 /* NSMutableDictionary+Safe.m */; };
 		A96AC6022299172F0009EE85 /* NSMutableString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A96AC5FA2299172F0009EE85 /* NSMutableString+Safe.m */; };
@@ -1124,6 +1125,8 @@
 		84ED0CE9223CFF8000BC13C7 /* ZFWithdrawDepositVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFWithdrawDepositVC.m; sourceTree = "<group>"; };
 		84F4AA3522855CE2007AE7E5 /* ZFDetailsPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZFDetailsPageModel.h; sourceTree = "<group>"; };
 		84F4AA3622855CE2007AE7E5 /* ZFDetailsPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZFDetailsPageModel.m; sourceTree = "<group>"; };
+		84FD847F229FC735003E7857 /* UIImageView+LoadWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+LoadWebImage.h"; sourceTree = "<group>"; };
+		84FD8480229FC735003E7857 /* UIImageView+LoadWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+LoadWebImage.m"; sourceTree = "<group>"; };
 		87AFC8E3BDFC40848185FC4C /* libPods-ZF.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZF.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A96AC5F12299172F0009EE85 /* NSMutableString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Safe.h"; sourceTree = "<group>"; };
 		A96AC5F22299172F0009EE85 /* NSMutableArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Safe.m"; sourceTree = "<group>"; };
@@ -1706,6 +1709,8 @@
 			children = (
 				189CC06A2223E81300EB5A64 /* UIImage+WaterMark.m */,
 				189CC06B2223E81300EB5A64 /* UIImage+WaterMark.h */,
+				84FD847F229FC735003E7857 /* UIImageView+LoadWebImage.h */,
+				84FD8480229FC735003E7857 /* UIImageView+LoadWebImage.m */,
 			);
 			path = UIImage;
 			sourceTree = "<group>";
@@ -3449,6 +3454,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ZF/Pods-ZF-resources.sh",
 				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/PYSearch/PYSearch/PYSearch.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
@@ -3459,6 +3465,7 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PYSearch.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
@@ -3716,6 +3723,7 @@
 				188F41B5223658E700165142 /* ZFPersonalDataVC.m in Sources */,
 				18381E72222785CF009F176F /* ZFSpikeMerchandiseTableCell.m in Sources */,
 				842CE8412280165C004D73C0 /* NSString+Arc4random.m in Sources */,
+				84FD8481229FC735003E7857 /* UIImageView+LoadWebImage.m in Sources */,
 				18515F8B222FCC9A00F36E26 /* DCTitleRolling.m in Sources */,
 				53472E2F228D4BA400760710 /* ZFDetailPageMVVC.m in Sources */,
 				84ED0CD1223CB05700BC13C7 /* ZFCumulativeVC.m in Sources */,

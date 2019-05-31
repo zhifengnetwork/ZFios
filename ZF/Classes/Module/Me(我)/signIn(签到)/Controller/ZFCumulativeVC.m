@@ -7,7 +7,7 @@
 //
 
 #import "ZFCumulativeVC.h"
-#import "UIImageView+WebCache.h"
+
 #import "UIButton+LXMImagePosition.h"
 #import "SVProgressHUD.h"
 #import "FSCalendar.h"

@@ -7,7 +7,7 @@
 //
 
 #import "ZFSubmittedHeadTableCell.h"
-#import "UIImageView+WebCache.h"
+
 
 @interface ZFSubmittedHeadTableCell()
 

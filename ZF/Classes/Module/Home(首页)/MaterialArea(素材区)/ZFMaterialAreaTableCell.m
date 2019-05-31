@@ -7,7 +7,6 @@
 //
 
 #import "ZFMaterialAreaTableCell.h"
-#import "UIImageView+WebCache.h"
 
 @interface ZFMaterialAreaTableCell()
 

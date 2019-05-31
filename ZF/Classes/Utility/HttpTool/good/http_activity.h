@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HttpTool.h"
+
 #import "ZFGoodModel.h"
 NS_ASSUME_NONNULL_BEGIN
 

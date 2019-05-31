@@ -261,11 +261,11 @@ static NSString *const ZFMyWalletHeadViewID = @"ZFMyWalletHeadViewID";
 {
     if (scrollView.contentOffset.y > 44)
     {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+//        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
         [[NSNotificationCenter defaultCenter] postNotificationName:UserShowTopToolViewNotification object:nil];
     }else
     {
-        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         [[NSNotificationCenter defaultCenter] postNotificationName:UserHideTopToolViewNotification object:nil];
     }
 }
