@@ -29,7 +29,7 @@
 @property (nonatomic, strong)UIButton *button2;
 @property (nonatomic, strong)UIButton *wexinButton;
 @property (nonatomic, strong)UIButton *accountButton;
-@property (nonatomic, strong)UIButton *jumpButton;
+@property (nonatomic, strong)UIImageView *arrowImageView;
 
 @property (nonatomic, strong)UILabel *promptLabel;
 @property (nonatomic, strong)UIImageView *imageView3;
@@ -67,7 +67,7 @@
     [self.button2 addSubview:self.wexinButton];
     
     [self.view addSubview:self.accountButton];
-    [self.view addSubview:self.jumpButton];
+    [self.accountButton addSubview:self.arrowImageView];
     [self.view addSubview:self.serviceChargeLabel];
     UIView *lineView2 = [[UIView alloc]init];
     lineView2.backgroundColor = RGBColorHex(0xdcdcdc);
@@ -159,22 +159,21 @@
     }];
     
     [_accountButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.wexinButton.mas_bottom).with.offset(12);
+        make.top.equalTo(self.wexinButton.mas_bottom).with.offset(16);
         make.left.equalTo(self.view).with.offset(12);
-        make.right.equalTo(self.wexinButton.mas_right);
+        make.right.equalTo(self.view.mas_right).offset(-13);
         make.height.mas_equalTo(29);
     }];
     
-    [_jumpButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view).with.offset(-12);
-        make.left.equalTo(self.view).with.offset(12);
-        make.top.equalTo(self.wexinButton.mas_bottom).with.offset(12);
-        make.height.mas_equalTo(29);
+    [_arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.accountButton);
+        make.centerY.equalTo(self.accountButton);
+        make.width.mas_equalTo(8);
+        make.height.mas_equalTo(14);
     }];
-    [_jumpButton setImageEdgeInsets:UIEdgeInsetsMake(0, self.jumpButton.frame.size.width +350, 0, 0)];
     
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.accountButton.mas_bottom).with.offset(24);
+        make.top.equalTo(self.accountButton.mas_bottom).with.offset(17);
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(4);
     }];
@@ -241,17 +240,16 @@
     }];
     
     [_withdrawalButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lineView3.mas_bottom).with.offset(60);
+        make.top.equalTo(lineView3.mas_bottom).with.offset(55);
         make.left.equalTo(self.view).with.offset(32.5);
         make.right.equalTo(self.view).with.offset(-32.5);
         make.height.mas_equalTo(40);
     }];
     
     [_footerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.withdrawalButton.mas_bottom).with.offset(25);
+        make.top.equalTo(self.withdrawalButton.mas_bottom).with.offset(15);
         make.left.equalTo(self.view).with.offset(12);
         make.right.equalTo(self.view).with.offset(-12);
-        make.height.mas_equalTo(150);
     }];
     [http_mine my_wallet:^(id responseObject) {
         [self showData:responseObject];
@@ -273,6 +271,7 @@
         return;
     }
     self.withdrawModel = [ZFWithdrawModel mj_objectWithKeyValues:responseObject];
+    [self typeClick:self.zhifubaoButton];
     _todayNumberLabel.text = [NSString stringWithFormat:@"当日额度:%@",self.withdrawModel.count_cash];
     _totalMoneyLabel.text = [NSString stringWithFormat:@"%@",self.withdrawModel.user_money];
     _promptLabel.text = [NSString stringWithFormat:@"提现金额（单次可提最大金额：%@）",self.withdrawModel.max_cash];
@@ -383,20 +382,24 @@
 - (UIButton *)accountButton{
     if (_accountButton== nil) {
         _accountButton = [[UIButton alloc]init];
+        _accountButton.adjustsImageWhenDisabled = _accountButton.adjustsImageWhenHighlighted = NO;
         _accountButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_accountButton setTitleColor:RGBColorHex(0x404040) forState:UIControlStateNormal];
         [_accountButton setTitle:@"请选择提现账号" forState:UIControlStateNormal];
+        _accountButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [_accountButton setImage:[UIImage imageNamed:@"Alipay"] forState:UIControlStateNormal];
+        [_accountButton addTarget:self action:@selector(jumpAlipay) forControlEvents:UIControlEventTouchUpInside];
         [_accountButton setImagePosition:LXMImagePositionLeft spacing:17];
     }return _accountButton;
 }
 
-- (UIButton *)jumpButton{
-    if (_jumpButton == nil) {
-        _jumpButton = [[UIButton alloc]init];
-        [_jumpButton setImage:[UIImage imageNamed:@"back2"] forState:UIControlStateNormal];
-        [_jumpButton addTarget:self action:@selector(jumpAlipay) forControlEvents:UIControlEventTouchUpInside];
-    }return _jumpButton;
+- (UIImageView *)arrowImageView {
+    if (_arrowImageView == nil) {
+        _arrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"back2"]];
+//        _arrowImageView
+        
+    }
+    return _arrowImageView;
 }
 
 - (UILabel *)promptLabel{
@@ -502,6 +505,7 @@
     if (btn.tag == 100) {
         self.button1.selected = YES;
         self.button2.selected = NO;
+        self.accountButton.enabled = YES;
         [_accountButton setImage:[UIImage imageNamed:@"Alipay"] forState:UIControlStateNormal];
         if (!kStringIsEmpty(self.withdrawModel.alipay)) {
             [_accountButton setTitle:[NSString stringWithFormat:@"%@ %@",self.withdrawModel.realname,self.withdrawModel.alipay] forState:UIControlStateNormal];
@@ -509,6 +513,7 @@
     }else{
         self.button1.selected = NO;
         self.button2.selected = YES;
+        self.accountButton.enabled = NO;
         [_accountButton setImage:[UIImage imageNamed:@"WeChat"] forState:UIControlStateNormal];
          [_accountButton setTitle:@"微信账号已绑定" forState:UIControlStateNormal];
     }

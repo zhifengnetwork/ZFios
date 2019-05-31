@@ -57,6 +57,7 @@ static NSString *const ZFDetailBalanceTableCellID = @"ZFDetailBalanceTableCellID
     self.tableView.tableFooterView = [UIView new];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 5)];
     
     [self.tableView registerClass:[ZFDetailBalanceTableCell class] forCellReuseIdentifier:ZFDetailBalanceTableCellID];
     

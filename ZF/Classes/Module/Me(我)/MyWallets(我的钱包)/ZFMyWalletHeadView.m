@@ -57,8 +57,9 @@
 - (void)setOrderModel:(ZFOrdersModel *)orderModel
 {
     _orderModel = orderModel;
-    
-    _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_orderModel.user_money];
+    if (kStringIsEmpty(orderModel.user_money) == NO) {
+        _moneyLabel.text = [NSString stringWithFormat:@"¥%@",_orderModel.user_money];
+    }
 }
 
 - (UIImageView *)iconView {
@@ -84,7 +85,6 @@
         _moneyLabel = [[UILabel alloc] init];
         _moneyLabel.textColor = RGBColorHex(0xffffff);
         _moneyLabel.font = [UIFont systemFontOfSize:15];
-        _moneyLabel.text = @"¥123.00";
     }
     return _moneyLabel;
 }

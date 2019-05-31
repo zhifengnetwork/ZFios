@@ -53,14 +53,6 @@
     
     [segment setTitleTextAttributes:dic2 forState:UIControlStateSelected];
     
-    //设置未选中时的背景色
-    [segment setBackgroundImage:[UIImage imageNamed:@"select"]
-                       forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-
-    //设置选中时的背景色
-    [segment setBackgroundImage:[UIImage imageNamed:@"select"]
-                       forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    
     //设置标题和边框的颜色
     segment.tintColor = RGBColorHex(0xe4edf4);
     //设置初始选中值，默认是没有选中
