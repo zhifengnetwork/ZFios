@@ -29,6 +29,7 @@
 #import "ZFDistributionVC.h"
 #import "ZFWalletVC.h"
 #import "ZFCouponCenterVC.h"
+#import "ZFStationNewsVC.h"
 //#import "ZFMyShareVC.h"
 #import "ZFZFMyOrderVC.h"
 #import "http_user.h"
@@ -458,6 +459,8 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
     else if (indexPath.item==7)
     {
         //我的信息
+        ZFStationNewsVC *vc = [[ZFStationNewsVC alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     else if (indexPath.item==8)
     {

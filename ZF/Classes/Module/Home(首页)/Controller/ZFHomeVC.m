@@ -533,6 +533,7 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
         {
             //签到2天免费领
             ZFSearchVC* vc = [[ZFSearchVC alloc]init];
+            vc.text = @"签到";
             [self.navigationController pushViewController:vc animated:YES];
         }
         else if (indexPath.row==3)

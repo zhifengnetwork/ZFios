@@ -118,7 +118,7 @@
     UserInfoModel* userInfo = [UserInfoModel readUserInfo];
     [manager.requestSerializer setValue:userInfo.token forHTTPHeaderField:@"token"];
     
-    [manager POST:@"http://www.dchqzg1688.com/api/payment/GetWxAppPaySign" parameters:@{@"order_sn" : @"201905281734209545"} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [manager POST:@"https://mobile.zhifengwangluo.c3w.cc/api/payment/GetWxAppPaySign" parameters:@{@"order_sn" : _order_sn} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         DLog(@"获取成功：%@", responseObject);
         self.payModel = [WXPayModel payModelWithDic:responseObject[@"data"]];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
