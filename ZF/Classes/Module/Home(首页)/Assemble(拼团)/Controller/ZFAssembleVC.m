@@ -45,8 +45,6 @@ static NSString *const ZFAssembleCollectionCellID = @"ZFAssembleCollectionCellID
     self.view.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundColor = TableViewBGColor;
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    
     self.collectionView.mj_header = [RefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     [self.collectionView.mj_header beginRefreshing];
 

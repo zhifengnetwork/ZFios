@@ -36,7 +36,6 @@
 
 - (void)setup
 {
-    self.contentView.backgroundColor = TableViewBGColor;
     [self.contentView addSubview:self.bgView];
     [self.contentView addSubview:self.iconView];
     [self.contentView addSubview:self.nameLabel];
