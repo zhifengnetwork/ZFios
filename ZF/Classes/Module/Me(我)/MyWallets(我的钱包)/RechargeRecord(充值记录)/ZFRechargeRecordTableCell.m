@@ -45,7 +45,7 @@
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_methodLabel.mas_right).offset(40);
+        make.left.equalTo(self.contentView).offset(100);
         make.centerY.equalTo(self.contentView);
     }];
     

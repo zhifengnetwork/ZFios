@@ -41,30 +41,31 @@
     
     [_orderIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
-        make.left.equalTo(self.contentView).with.offset(LL_ScreenWidth/8);
+        make.left.equalTo(self.contentView).with.offset(kScale(22));
     }];
     
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).with.offset(LL_ScreenWidth/4+20);
+        make.left.equalTo(self.contentView).with.offset(kScale(110));
         make.centerY.equalTo(self.contentView.mas_centerY);
+        make.width.mas_equalTo(kScale(80));
     }];
     
     [_jumpButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.priceLabel.mas_centerY);
         make.right.equalTo(self.contentView).with.offset(-LL_ScreenWidth/8);
-        make.width.height.mas_equalTo(30);
+        make.width.height.mas_equalTo(kScale(30));
     }];
     
     [_promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.jumpButton.mas_left).with.offset(-20);
+        make.right.equalTo(self.jumpButton.mas_left).with.offset(-kScale(30));
         make.centerY.equalTo(self.contentView.mas_centerY);
     }];
     
     [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView.mas_bottom);
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-20);
-        make.height.mas_equalTo(1);
+        make.left.mas_equalTo(kScale(20));
+        make.right.mas_equalTo(-kScale(20));
+        make.height.mas_equalTo(kScale(1));
     }];
 }
 

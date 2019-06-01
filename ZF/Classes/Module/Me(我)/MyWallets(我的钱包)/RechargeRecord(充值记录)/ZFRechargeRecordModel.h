@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic , copy)NSString *pay_time;
 @property (nonatomic , copy)NSString *pay_code;
 @property (nonatomic , copy)NSString *pay_name;
+@property (nonatomic , copy)NSString *note;
+@property (nonatomic , copy)NSString *create_time;
+@property (nonatomic , copy)NSString *money;
 //充值状态0:待支付 1:充值成功 2:交易关闭
 @property (nonatomic , copy)NSString *pay_status;
 @property (nonatomic , copy)NSString *buy_vip;

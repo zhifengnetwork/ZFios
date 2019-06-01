@@ -47,29 +47,29 @@ static NSString *const ZFTeamListCellID = @"ZFTeamListCellID";
     [self.view addSubview:self.tableView];
     
     [_mineIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).with.offset(35);
+        make.top.equalTo(self.view).with.offset(kScale(35));
         make.centerX.equalTo(self.view.mas_centerX);
     }];
     
     
     [_titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mineIDLabel.mas_bottom).with.offset(17);
+        make.top.equalTo(self.mineIDLabel.mas_bottom).with.offset(kScale(17));
         make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(25);
+        make.height.mas_equalTo(kScale(25));
     }];
     
     [_orderIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.titleView.mas_centerY);
-        make.left.equalTo(self.titleView).with.offset(LL_ScreenWidth/8);
+        make.left.equalTo(self.titleView).with.offset(kScale(20));
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.titleView).with.offset(LL_ScreenWidth/3);
+        make.left.equalTo(self.orderIDLabel.mas_right).with.offset(kScale(50));
         make.centerY.equalTo(self.titleView.mas_centerY);
     }];
     
     [_priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.titleView).with.offset(-LL_ScreenWidth/3-20);
+       make.left.equalTo(self.nameLabel.mas_right).with.offset(kScale(70));
         make.centerY.equalTo(self.titleView.mas_centerY);
     }];
     

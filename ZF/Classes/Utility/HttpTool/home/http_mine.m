@@ -79,7 +79,7 @@
     NSDictionary* dic = [http hanldeSign:parameters];
     
     NSString* strUrl = [http getMainUrl];
-    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/performance_log"];
+    strUrl = [strUrl stringByAppendingPathComponent:@"api/user/recharge_list"];
     [http PostRequest:strUrl Parameters:dic success:ReqSuccess failure:ReqFailure];
 }
 

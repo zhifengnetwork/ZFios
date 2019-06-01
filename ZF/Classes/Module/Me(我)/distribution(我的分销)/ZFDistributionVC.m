@@ -49,30 +49,32 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
 }
 
 - (void)setup{
-    [self.view addSubview:self.timeView];
+    UIView *headView = [[UIView alloc]init];
+    [self.view addSubview:headView];
+    [headView addSubview:self.timeView];
     [self.timeView addSubview:self.timeLabel];
-    [self.view addSubview:self.distributeView];
+    [headView addSubview:self.distributeView];
     [self.distributeView addSubview:self.total];
     [self.distributeView addSubview:self.totalLabel];
-    [self.view addSubview:self.distributeView1];
+    [headView addSubview:self.distributeView1];
     [self.distributeView1 addSubview:self.max];
     [self.distributeView1 addSubview:self.maxLabel];
-    [self.view addSubview:self.distributeView2];
+    [headView addSubview:self.distributeView2];
     [self.distributeView2 addSubview:self.other];
     [self.distributeView2 addSubview:self.otherLabel];
-    [self.view addSubview:self.distributeView3];
+    [headView addSubview:self.distributeView3];
     [self.distributeView3 addSubview:self.number];
     [self.distributeView3 addSubview:self.numberLabel];
     [self.distributeView3 addSubview:self.updateButton];
-    [self.view addSubview:self.topIDLabel];
+    [headView addSubview:self.topIDLabel];
     UIView *lineView = [[UIView alloc]init];
     lineView.backgroundColor = RGBColorHex(0xe6e6e6);
-    [self.view addSubview:lineView];
-    [self.view addSubview:self.myIDLabel];
-    [self.view addSubview:self.topNameLabel];
+    [headView addSubview:lineView];
+    [headView addSubview:self.myIDLabel];
+    [headView addSubview:self.topNameLabel];
     UIView *lineView1 = [[UIView alloc]init];
     lineView1.backgroundColor = RGBColorHex(0xe6e6e6);
-    [self.view addSubview:lineView1];
+    [headView addSubview:lineView1];
     [self.view addSubview:self.tableView];
     
     
