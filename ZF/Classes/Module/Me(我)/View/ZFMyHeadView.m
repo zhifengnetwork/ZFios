@@ -53,9 +53,9 @@
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_iconView.mas_right).offset(10);
-        make.centerY.equalTo(self->_iconView).offset(-5);
-        make.right.mas_equalTo(-220);
+        make.left.equalTo(self->_iconView.mas_right).offset(kScale(10));
+        make.centerY.equalTo(self->_iconView).offset(-kScale(5));
+        make.right.mas_equalTo(-kScale(220));
     }];
     
     [_icon2View mas_makeConstraints:^(MASConstraintMaker *make) {

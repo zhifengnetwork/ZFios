@@ -40,22 +40,22 @@
     [self.contentView addSubview:self.stateLabel];
     
     [_methodLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(20);
+        make.left.mas_equalTo(kScale(20));
         make.centerY.equalTo(self.contentView);
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(100);
+        make.left.equalTo(self.contentView).offset(kScale(100));
         make.centerY.equalTo(self.contentView);
     }];
     
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_timeLabel.mas_right).offset(30);
+        make.left.equalTo(self->_timeLabel.mas_right).offset(kScale(40));
         make.centerY.equalTo(self.contentView);
     }];
     
     [_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-kScale(50));
         make.centerY.equalTo(self.contentView);
     }];
     

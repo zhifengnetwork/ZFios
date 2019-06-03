@@ -233,7 +233,7 @@ static NSString *const ZFMyColumnTableCellID = @"ZFMyColumnTableCellID";
         return 88;
     }
 
-    return 180.0f;
+    return 250.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

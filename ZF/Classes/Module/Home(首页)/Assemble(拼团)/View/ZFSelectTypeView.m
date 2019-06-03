@@ -29,6 +29,7 @@
 @property (nonatomic, strong)UIButton *numberButton;
 @property (nonatomic, strong)UIButton *increaseButton;
 @property (nonatomic, strong)UIButton *agreeButton;
+@property (nonatomic, assign)NSInteger count; //存储购物车的数量
 
 @property (nonatomic, strong)NSMutableArray *datas;
 
@@ -40,7 +41,6 @@
 @end
 @implementation ZFSelectTypeView
 static NSString * const ZFSelectTypeCellID = @"ZFSelectTypeCellID";
-NSInteger count = 1;//存储购物车的数量
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -52,6 +52,7 @@ NSInteger count = 1;//存储购物车的数量
 }
 
 - (void)setup{
+    self.count = 1;
     self.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.iconImageView];
     [self addSubview:self.priceLabel];
@@ -156,7 +157,7 @@ NSInteger count = 1;//存储购物车的数量
     self.goodID = cartModel.goods.goods_id;
     self.spec_key = cartModel.spec_key;
     [self.numberButton setTitle:[NSString stringWithFormat:@"%ld",self.cartModel.goods_num] forState:UIControlStateNormal];
-    count = self.cartModel.goods_num;
+    self.count = self.cartModel.goods_num;
 }
 
 - (void)loadData{
@@ -353,26 +354,15 @@ NSInteger count = 1;//存储购物车的数量
 - (void)NumberChange: (UIButton *)btn{
 
     if (btn == self.decreaseButton) {
-        count--;
-        if (count <= 0) {
-            count = 0;
+        self.count--;
+        if (self.count <= 0) {
+            self.count = 1;
         }
     }else{
-        count++;
+        self.count++;
     }
-    [http_shopping changeNum:self.cart_id goods_num:count success:^(id responseObject) {
-        
-        if (kObjectIsEmpty(responseObject))
-        {
-            return;
-        }
-        
-        //            self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
-        //        self.settleView.cart_priceArray =
-    } failure:^(NSError *error) {
-        [SVProgressHUD showErrorWithStatus:error.domain];
-    }];
-    [self.numberButton setTitle:[NSString stringWithFormat:@"%ld",(long)count] forState:UIControlStateNormal];
+    
+    [self.numberButton setTitle:[NSString stringWithFormat:@"%ld",self.count] forState:UIControlStateNormal];
 }
 
 //获取当前控制器
@@ -453,6 +443,18 @@ NSInteger count = 1;//存储购物车的数量
                 [SVProgressHUD showErrorWithStatus:error.domain];
             }];
         }
+        [http_shopping changeNum:self.cart_id goods_num:self.count success:^(id responseObject) {
+            
+            if (kObjectIsEmpty(responseObject))
+            {
+                return;
+            }
+            
+            //            self.listModel = [ZFListModel mj_objectWithKeyValues:responseObject];
+            //        self.settleView.cart_priceArray =
+        } failure:^(NSError *error) {
+            [SVProgressHUD showErrorWithStatus:error.domain];
+        }];
         
     }
     [self cancelClick];

@@ -45,12 +45,13 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的分销";
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     [self setup];
 }
 
 - (void)setup{
-    UIView *headView = [[UIView alloc]init];
-    [self.view addSubview:headView];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, LL_ScreenWidth, LL_ScreenHeight-kScale(120))];
+
     [headView addSubview:self.timeView];
     [self.timeView addSubview:self.timeLabel];
     [headView addSubview:self.distributeView];
@@ -76,12 +77,12 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
     lineView1.backgroundColor = RGBColorHex(0xe6e6e6);
     [headView addSubview:lineView1];
     [self.view addSubview:self.tableView];
-    
+    [self.tableView setTableHeaderView:headView];
     
     [_timeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).with.offset(5);
-        make.left.equalTo(self.view).with.offset(10);
-        make.right.equalTo(self.view).with.offset(-10);
+        make.top.equalTo(headView).with.offset(5);
+        make.left.equalTo(headView).with.offset(10);
+        make.right.equalTo(headView).with.offset(-10);
         make.height.mas_equalTo(18);
     }];
     
@@ -92,8 +93,8 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
     
     [_distributeView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.timeView.mas_bottom).with.offset(5);
-        make.left.equalTo(self.view).with.offset(10);
-        make.right.equalTo(self.view).with.offset(-10);
+        make.left.equalTo(headView).with.offset(10);
+        make.right.equalTo(headView).with.offset(-10);
         make.height.mas_equalTo(90);
     }];
     
@@ -109,8 +110,8 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
     
     [_distributeView1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.distributeView.mas_bottom).with.offset(5);
-        make.left.equalTo(self.view).with.offset(10);
-        make.right.equalTo(self.view).with.offset(-10);
+        make.left.equalTo(headView).with.offset(10);
+        make.right.equalTo(headView).with.offset(-10);
         make.height.mas_equalTo(90);
     }];
     
@@ -126,8 +127,8 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
     
     [_distributeView2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.distributeView1.mas_bottom).with.offset(5);
-        make.left.equalTo(self.view).with.offset(10);
-        make.right.equalTo(self.view).with.offset(-10);
+        make.left.equalTo(headView).with.offset(10);
+        make.right.equalTo(headView).with.offset(-10);
         make.height.mas_equalTo(90);
     }];
     
@@ -143,8 +144,8 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
     
     [_distributeView3 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.distributeView2.mas_bottom).with.offset(5);
-        make.left.equalTo(self.view).with.offset(10);
-        make.right.equalTo(self.view).with.offset(-10);
+        make.left.equalTo(headView).with.offset(10);
+        make.right.equalTo(headView).with.offset(-10);
         make.height.mas_equalTo(90);
     }];
     
@@ -167,7 +168,7 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
     
     [_topIDLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.distributeView3.mas_bottom).with.offset(10);
-        make.left.equalTo(self.view).with.offset(20);
+        make.left.equalTo(headView).with.offset(20);
         make.width.mas_equalTo(80);
     }];
     
@@ -185,7 +186,7 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
     
     [_topNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.topIDLabel.mas_bottom).with.offset(10);
-        make.left.equalTo(self.view).with.offset(20);
+        make.left.equalTo(headView).with.offset(20);
     }];
     
     [lineView1 mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -196,7 +197,7 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
     }];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lineView1.mas_bottom);
+        make.top.equalTo(self.view);
         make.left.right.bottom.equalTo(self.view);
     }];
     
@@ -442,9 +443,11 @@ static NSString *const ZFDistributionCellID = @"ZFDistributionCellID";
 #pragma mark--方法
 
 - (void)updateClick{
+    [self.updateButton setTitle:@"正在更新" forState:UIControlStateNormal];
     //点击更新
     [http_mine distribut:^(id responseObject) {
         [self showData:responseObject];
+        [self.updateButton setTitle:@"已更新" forState:UIControlStateNormal];
     } failure:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:error.domain];
     }];
