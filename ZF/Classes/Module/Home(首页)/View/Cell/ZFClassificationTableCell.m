@@ -34,13 +34,14 @@
     [self.contentView addSubview:self.nameLabel];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(25);
-        make.top.mas_equalTo(10);
+        make.top.mas_equalTo(kScale(5));
+        make.centerX.mas_equalTo(self.contentView);
         make.width.height.mas_equalTo(40);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_iconView.mas_bottom).offset(4);
+        make.left.right.equalTo(self.contentView);
         make.centerX.equalTo(self->_iconView);
     }];
     
@@ -69,6 +70,9 @@
 - (UILabel *)nameLabel {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
+        _nameLabel.minimumScaleFactor = 0.7f;
+        _nameLabel.adjustsFontSizeToFitWidth = YES;
+        _nameLabel.textAlignment = NSTextAlignmentCenter;
         _nameLabel.textColor = RGBColorHex(0x434343);
         _nameLabel.font = [UIFont systemFontOfSize:12];
         _nameLabel.text = @"精选";

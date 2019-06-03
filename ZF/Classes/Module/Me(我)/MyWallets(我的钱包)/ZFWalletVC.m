@@ -19,6 +19,8 @@
 #import "ZFWithdrawalsRecordVC.H"
 #import "ZFwithdrawalVC.h"
 
+#define kMargin kScale(8)
+
 @interface ZFWalletVC ()
 
 /* collectionView */
@@ -171,7 +173,7 @@ static NSString *const ZFMyWalletHeadViewID = @"ZFMyWalletHeadViewID";
     if (indexPath.section == 0)
     {
         //9宫格组
-        return CGSizeMake((LL_ScreenWidth - 4)/2, (LL_ScreenWidth - 4)/2 - 60);
+        return CGSizeMake((LL_ScreenWidth - kMargin * 3)/2, (LL_ScreenWidth - 4)/2 - 60);
     }
    
     return CGSizeZero;
@@ -225,7 +227,7 @@ static NSString *const ZFMyWalletHeadViewID = @"ZFMyWalletHeadViewID";
 #pragma mark - Y间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return (section == 5) ? 4 : 0;
+    return kMargin;
 }
 
 //点击事件
@@ -292,6 +294,7 @@ static NSString *const ZFMyWalletHeadViewID = @"ZFMyWalletHeadViewID";
 {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+        layout.sectionInset = UIEdgeInsetsMake(kMargin, kMargin, 0, kMargin);
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;

@@ -37,14 +37,11 @@
     [self.contentView addSubview:self.nameLabel];
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.top.mas_equalTo(15);
-        make.width.mas_equalTo(168);
-        make.height.mas_equalTo(115);
+        make.left.right.top.bottom.equalTo(self.contentView);
     }];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_bgView.mas_left).offset(45);
+        make.left.equalTo(self->_bgView.mas_left).offset(kScale(45));
         make.centerY.equalTo(self->_bgView);
     }];
     

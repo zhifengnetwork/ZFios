@@ -41,6 +41,8 @@
 #import "ZFDetailPageMVVC.h"
 #import "ZFMaterialAreaVC.h"
 
+#define kMargin 10
+
 
 @interface ZFHomeVC ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,ZFHomeSpikeHeadViewDelegate>
 
@@ -420,7 +422,7 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
     if (indexPath.section == 0)
     {
         //9宫格组
-        return CGSizeMake(LL_ScreenWidth/4 , LL_ScreenWidth/4 - 15);
+        return CGSizeMake((LL_ScreenWidth - kMargin * 2)/4 , LL_ScreenWidth/4 - 15);
     }
     else if (indexPath.section == 1)
     {
@@ -434,7 +436,7 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
 //        return [self layoutAttributesForItemAtIndexPath:indexPath].size;
 //    }
     else if (indexPath.section == 2) {//猜你喜欢
-        return CGSizeMake((LL_ScreenWidth - 4)/2, (LL_ScreenWidth - 4)/2 + 40);
+        return CGSizeMake((LL_ScreenWidth - kMargin * 3)/2, (LL_ScreenWidth - 4)/2 + kScale(70));
     }
     return CGSizeZero;
 }
@@ -690,6 +692,7 @@ static NSString *const SpikeHeadTime = @"2019-03-06 14:24:02";
 {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+        layout.sectionInset = UIEdgeInsetsMake(0, kMargin, 0, kMargin);
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;

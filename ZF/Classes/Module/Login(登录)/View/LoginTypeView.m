@@ -38,7 +38,7 @@
     [self addSubview:self.wxButton];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self);
+        make.top.equalTo(self).offset(kScale(15));
         make.centerX.equalTo(self);
     }];
     
@@ -46,7 +46,6 @@
         make.centerY.equalTo(self->_titleLabel);
         make.right.equalTo(self->_titleLabel.mas_left).offset(-10);
         make.left.mas_equalTo(10);
-        make.width.mas_equalTo(111);
         make.height.mas_equalTo(0.5);
     }];
     
@@ -54,7 +53,6 @@
         make.centerY.equalTo(self->_titleLabel);
         make.left.equalTo(self->_titleLabel.mas_right).offset(5);
         make.right.mas_equalTo(-10);
-        make.width.mas_equalTo(111);
         make.height.mas_equalTo(0.5);
     }];
     

@@ -132,7 +132,7 @@
     [_bg2View mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self->_bg1View.mas_bottom).offset(20);
         make.left.equalTo(self.view).offset(10);
-        make.width.mas_equalTo(200);
+        make.right.equalTo(self.codeView.mas_left).offset(-5);
         make.height.mas_equalTo(50);
     }];
     
@@ -156,16 +156,14 @@
     [_vcodeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bg2View).offset(8);
         make.top.bottom.equalTo(self->_bg2View);
-        make.right.mas_equalTo(-165);
     }];
     
     [_codeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_vcodeTextField.mas_right).offset(5);
+        make.left.equalTo(self->_vcodeTextField.mas_right).offset(-5);
         make.top.bottom.equalTo(self->_bg2View);
         make.right.mas_equalTo(-15);
-        make.width.mas_equalTo(137);
-        make.height.mas_equalTo(50);
-        
+        make.width.mas_equalTo(kScale(137));
+        make.height.mas_equalTo(self->_codeView.mas_width).multipliedBy(50/137.f);
     }];
     
     [_icon2View mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -191,7 +189,7 @@
     }];
     
     [_typeView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_bottom).offset(-148);
+        make.top.equalTo(self.wmButton.mas_bottom).offset(10);
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(100);
     }];

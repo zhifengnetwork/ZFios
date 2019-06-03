@@ -42,16 +42,15 @@
     
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.width.mas_equalTo(168);
-        make.height.mas_equalTo(222);
+        make.left.right.top.equalTo(self.contentView);
+        make.bottom.equalTo(self.contentView).offset(-6);
     }];
     
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_bgView.mas_left).offset(5);
         make.right.equalTo(self->_bgView.mas_right).offset(-5);
         make.top.equalTo(self->_bgView.mas_top).offset(5);
-        make.width.height.mas_equalTo(160);
+        make.height.mas_equalTo(self->_iconView.mas_width).multipliedBy(160.f/148);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
