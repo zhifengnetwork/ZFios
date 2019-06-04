@@ -803,6 +803,8 @@
         [_imageView3 sd_setImageWithURL:[NSURL URLWithString:str]];
     }else if (_imageView4.image == nil){
         [_imageView4 sd_setImageWithURL:[NSURL URLWithString:str]];
+    }else{
+        self.addImageButton.hidden = YES;
     }
 
 }

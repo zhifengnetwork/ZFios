@@ -237,14 +237,18 @@
     
     self.signInModel = [ZFSignInModel mj_objectWithKeyValues:responseObject];
     
-    self.integralLabel.text = [NSString stringWithFormat:@"+%@积分",self.signInModel.add_point];
+    
     self.dayLabel.text = [NSString stringWithFormat:@"已连续签到：%@天",self.signInModel.continue_sign];
     self.totalDayLabel.text = [NSString stringWithFormat:@"累积签到：%@天",self.signInModel.accumulate_day];
     
-    
-    if (self.signInModel.today_sign==NO)
-    {
-        [self loadData2];
+    if (self.signInModel.auth.integerValue == 1) {
+        self.integralLabel.text = [NSString stringWithFormat:@"+%@积分",self.signInModel.add_point];
+        if (self.signInModel.today_sign==NO)
+        {
+            [self loadData2];
+        }
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"只有 分销商 以及 购买399以后才可以签到"];
     }
 }
 
